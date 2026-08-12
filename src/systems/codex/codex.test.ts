@@ -119,14 +119,93 @@ describe('Codex', () => {
     const migrated = migrateToCurrent(raw);
     expect(codexOf(migrated).npcs['npc_jeanne']?.relationships.player?.notes)
       .toBe('từng cùng vượt qua một cuộc phục kích');
+    expect(codexOf(migrated).npcs['npc_jeanne']?.portrait).toBe('');
+  });
+
+  /**
+   * Đúng lô mà người chơi báo hỏng: model gửi một biến cố với `time`,
+   * `description` và một `sources` dạng chuỗi, không kèm `id` lẫn `name`. Cả lô
+   * bị từ chối với ba dòng "Invalid input", và lượt đó mất sạch phần ghi nhớ.
+   */
+  it('nhận hồ sơ AI gửi thiếu id/name và sai hình dạng sources', () => {
+    const state = createInitialState('codex-hinh-dang-ai');
+    const ops = reconcileCodexOps(state, [{
+      op: 'set',
+      path: 'codex.events.event_aimery_morning_training',
+      from: null,
+      to: {
+        time: '1444-11-15T06:00',
+        description: 'Aimery Valois tập kiếm buổi sáng tại sân huấn luyện Orléans.',
+        sources: 'lượt hiện tại',
+      },
+      reason: 'ghi nhớ biến cố',
+      source: 'json',
+    }], 6);
+
+    const result = applyPatch(state, ops, { actor: 'ai' });
+    expect(result.failures).toEqual([]);
+    expect(result.applied).toBe(true);
+
+    const event = codexOf(result.next!).events['event_aimery_morning_training'];
+    expect(event?.id).toBe('event_aimery_morning_training');
+    expect(event?.name).toBe('aimery morning training');
+    // Chữ AI viết phải về đúng chỗ, không được rơi mất vì gọi sai tên trường.
+    expect(event?.summary).toBe('Aimery Valois tập kiếm buổi sáng tại sân huấn luyện Orléans.');
+    expect(event?.dateText).toBe('1444-11-15T06:00');
+    expect(event?.sources).toEqual([{ turn: 0, source: 'lượt hiện tại', confidence: 50 }]);
+    expect(event?.lastUpdatedTurn).toBe(6);
+  });
+
+  it('không để tên trường AI đè lên trường đúng đã gửi kèm', () => {
+    const state = createInitialState('codex-uu-tien-truong-dung');
+    const ops = reconcileCodexOps(state, [{
+      op: 'set',
+      path: 'codex.events.event_hop_trieu',
+      from: null,
+      to: { name: 'Buổi chầu', title: 'Cái tên AI gửi kèm', summary: 'bản chính', description: 'bản phụ' },
+      reason: 'ghi nhớ biến cố',
+      source: 'json',
+    }], 2);
+
+    const event = codexOf(applyPatch(state, ops, { actor: 'ai' }).next!).events['event_hop_trieu'];
+    expect(event?.name).toBe('Buổi chầu');
+    expect(event?.summary).toBe('bản chính');
+  });
+
+  it('giữ tên và tóm tắt cũ khi lượt sau chỉ gửi thêm một mẩu', () => {
+    const state = createInitialState('codex-gop-mau');
+    const first = applyPatch(state, reconcileCodexOps(state, [{
+      op: 'set',
+      path: 'codex.events.event_vay_thanh',
+      from: null,
+      to: { name: 'Vây thành Orléans', description: 'Quân Anh siết vòng vây.' },
+      reason: 'ghi nhớ biến cố',
+      source: 'json',
+    }], 1), { actor: 'ai' }).next!;
+
+    const second = applyPatch(first, reconcileCodexOps(first, [{
+      op: 'set',
+      path: 'codex.events.event_vay_thanh',
+      from: null,
+      to: { participants: ['npc_jeanne'] },
+      reason: 'bổ sung người tham gia',
+      source: 'json',
+    }], 4), { actor: 'ai' });
+
+    expect(second.applied).toBe(true);
+    const event = codexOf(second.next!).events['event_vay_thanh'];
+    expect(event?.name).toBe('Vây thành Orléans');
+    expect(event?.summary).toBe('Quân Anh siết vòng vây.');
+    expect(event?.participantIds).toEqual(['npc_jeanne']);
   });
 
   it('prompt chỉ lấy chi tiết NPC trong cảnh nhưng vẫn giữ chỉ mục chống trùng', () => {
     const initial = createInitialState('codex-prompt');
+    const portrait = 'data:image/webp;base64,UklGRg==';
     const result = applyPatch(
       initial,
       reconcileCodexOps(initial, [
-        setNpc('npc_jeanne', { role: 'sứ giả' }),
+        setNpc('npc_jeanne', { role: 'sứ giả', portrait }),
         { ...setNpc('npc_marie', { name: 'Marie', role: 'thợ may' }), path: 'codex.npcs.npc_marie' },
       ], 1),
       { actor: 'ai' },
@@ -139,5 +218,7 @@ describe('Codex', () => {
     });
     expect(view.index.npcs).toHaveLength(2);
     expect(view.relevant.npcs.map((npc) => npc.id)).toEqual(['npc_jeanne']);
+    expect('portrait' in (view.relevant.npcs[0] ?? {})).toBe(false);
+    expect(codexOf(result.next!).npcs['npc_jeanne']?.portrait).toBe(portrait);
   });
 });

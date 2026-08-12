@@ -11,12 +11,14 @@
  * QUYẾT.** AI được nói ĐÚNG những thứ một người kể chuyện biết:
  *
  *   · đánh với ai      (một cái tên, một dòng tả, quan hệ với người chơi)
- *   · mạnh cỡ nào      (bốn nấc tương quan — KHÔNG phải chỉ số, KHÔNG phải quân số)
+ *   · mạnh cỡ nào      (bốn nấc tương quan — không phải chỉ số kỹ năng)
  *   · to cỡ nào        (ba nấc quy mô)
  *   · ở đâu, vì cái gì (một địa danh, một câu được-mất)
+ *   · quân số/tên phe  (chỉ khi chính câu chuyện đã xác lập)
  *
  * Engine tự chọn kỹ năng thật của đối thủ, trang bị, quân số từng cánh, binh
- * chủng, bậc công sự, mùa, và địa hình. AI không chạm vào một con số nào (R1).
+ * chủng, bậc công sự, mùa, và địa hình. AI không được BỊA số; số đã có trong
+ * diễn biến phải được giữ nguyên để UI và truyện không nói hai sự thật khác nhau.
  *
  * NGƯỜI CHƠI VẪN LÀ NGƯỜI QUYẾT: một lời mời chỉ là một lời mời. Nó hiện thành
  * một tấm thẻ dưới đoạn văn với hai nút — vào trận, hoặc bỏ qua để engine tự

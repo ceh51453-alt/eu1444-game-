@@ -150,6 +150,36 @@ body {
   }
 }
 
+/*
+  TRÌNH TẠO NHÂN VẬT TRÊN THIẾT BỊ CẢM ỨNG.
+
+  Nút mặc định của game cao khoảng 28px — vừa đủ cho con trỏ chuột, quá nhỏ cho
+  đầu ngón tay, mà bước 3 và bước 5 là hai màn hình người chơi bấm − và + hàng
+  trăm lần. Nới ở đây chứ không nới ở `controls.tsx`: các bảng dã chiến, vây
+  thành và cai trị sống bằng mật độ, và chúng dùng chung đúng những nút này.
+
+  `pointer: coarse` mới là điều kiện đúng, không phải bề rộng màn hình: một máy
+  tính bảng nằm ngang vẫn rộng 1024px nhưng vẫn được điều khiển bằng ngón tay.
+*/
+@media (pointer: coarse) {
+  .character-creator button,
+  .character-creator select,
+  .character-creator textarea,
+  .character-creator input:not([type='range']):not([type='checkbox']) {
+    min-height: 2.25rem;
+  }
+
+  /* Nút − và + của bước 3 và bước 5 chỉ rộng 28px vì nội dung là một ký tự. */
+  .character-creator button {
+    min-width: 2.25rem;
+  }
+
+  .character-creator input[type='checkbox'] {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+}
+
 /* Marker trên bản đồ: nhịp nhẹ để không thất lạc trên ảnh nhiều chi tiết. */
 @keyframes map-player-pulse {
   0%,

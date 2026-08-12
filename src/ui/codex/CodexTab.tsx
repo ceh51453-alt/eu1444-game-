@@ -1,6 +1,9 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { codexOf, type CodexCollection, type NpcCodexEntry } from '@/systems/codex';
+import { applyPatch } from '@/state/mvu';
 import { useGameStore } from '@/state/store';
+import { PortraitImage, PortraitPicker } from '@/ui/portrait';
+import { LoreEntryReader } from '@/ui/lore/LoreEntryReader';
 import { TextInput } from '@/ui/settings/controls';
 
 const COLLECTIONS: Array<{ id: CodexCollection; label: string }> = [
@@ -99,6 +102,11 @@ function NpcDetail({ npc }: { npc: NpcCodexEntry }): ReactNode {
     <div className="flex flex-col gap-3">
       <Section title="Danh tính">
         <Field label="Vai trò" value={npc.role} />
+        <Field label="Quan hệ gia đình" value={npc.familyRelation} />
+        <Field label="Gia tộc" value={npc.houseId} />
+        <Field label="Hồ sơ lore" value={npc.loreEntry} />
+        <Field label="Còn sống" value={npc.alive} />
+        <Field label="Tình trạng" value={npc.status} />
         <Field label="Tuổi" value={npc.age} />
         <Field label="Giới tính sinh học" value={npc.sex} />
         <Field label="Bản dạng giới" value={npc.gender} />
@@ -106,6 +114,8 @@ function NpcDetail({ npc }: { npc: NpcCodexEntry }): ReactNode {
         <Field label="Chủng tộc" value={npc.race} />
         <Field label="Đã xác nhận 18+" value={npc.adultConfirmed} />
       </Section>
+
+      {npc.loreEntry !== '' && <LoreEntryReader key={npc.loreEntry} entryId={npc.loreEntry} />}
 
       <Section title="Ngoại hình & thông số cơ thể">
         <Field label="Tổng quan" value={npc.appearance.overview} />
@@ -144,6 +154,7 @@ function NpcDetail({ npc }: { npc: NpcCodexEntry }): ReactNode {
         <Field label="Lịch sử" value={npc.background.history} />
         <Field label="Bí mật đã biết" value={npc.background.knownSecrets} />
         <Field label="Động cơ" value={npc.background.motivations} />
+        <Field label="Ghi chú" value={npc.background.notes} />
         <Field label="Chỉ số" value={npc.statistics} />
         <Field label="Các lần gặp" value={npc.encounters} />
       </Section>
@@ -187,6 +198,7 @@ export function CodexTab(): ReactNode {
   const [collection, setCollection] = useState<CodexCollection>('npcs');
   const [filter, setFilter] = useState('');
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [portraitError, setPortraitError] = useState('');
 
   const records = useMemo(() => Object.values(codex[collection]) as BaseEntry[], [codex, collection]);
   const filtered = useMemo(() => {
@@ -205,6 +217,32 @@ export function CodexTab(): ReactNode {
   const selected = selectedId === null
     ? null
     : codex[collection][selectedId] as (BaseEntry & Record<string, unknown>) | undefined;
+
+  const selectedNpc = collection === 'npcs' && selected !== null && selected !== undefined
+    ? selected as unknown as NpcCodexEntry
+    : null;
+
+  const updateNpcPortrait = (portrait: string): void => {
+    if (selectedNpc === null) return;
+    const store = useGameStore.getState();
+    const snapshot = store.snapshot();
+    const current = codexOf(snapshot).npcs[selectedNpc.id];
+    if (current === undefined) return;
+    const applied = applyPatch(snapshot, [{
+      op: 'set',
+      path: `codex.npcs.${current.id}`,
+      from: current,
+      to: { ...current, portrait },
+      reason: portrait === '' ? 'người chơi xóa ảnh hồ sơ Codex' : 'người chơi chọn ảnh hồ sơ Codex',
+      source: 'json',
+    }], { actor: 'engine' });
+    if (!applied.applied || applied.next === null) {
+      setPortraitError(applied.failures[0]?.message ?? 'Không thể lưu ảnh vào hồ sơ này.');
+      return;
+    }
+    store.commitBatch(applied.next);
+    setPortraitError('');
+  };
 
   return (
     <div className="flex min-h-[32rem] flex-col gap-3">
@@ -239,20 +277,28 @@ export function CodexTab(): ReactNode {
       <div className="grid min-h-0 flex-1 gap-3 lg:grid-cols-[16rem_minmax(0,1fr)]">
         <div className="max-h-[58vh] overflow-y-auto rounded border border-oak-light bg-ink/45 p-2">
           {filtered.length === 0 && <p className="p-3 text-xs text-vellum/40 italic">Chưa có hồ sơ trong nhóm này.</p>}
-          {filtered.map((entry) => (
-            <button
-              key={entry.id}
-              type="button"
-              onClick={() => setSelectedId(entry.id)}
-              className={`mb-1 w-full rounded border px-2 py-2 text-left ${selectedId === entry.id
-                ? 'border-brass/60 bg-brass/10'
-                : 'border-transparent hover:border-oak-light hover:bg-oak-light/50'}`}
-            >
-              <span className="block text-sm text-parchment">{entry.name}</span>
-              <span className="block truncate font-mono text-[10px] text-vellum/35">{entry.id}</span>
-              <span className="block text-[10px] text-vellum/35">cập nhật lượt {entry.lastUpdatedTurn}</span>
-            </button>
-          ))}
+          {filtered.map((entry) => {
+            const npc = collection === 'npcs' ? entry as unknown as NpcCodexEntry : null;
+            return (
+              <button
+                key={entry.id}
+                type="button"
+                onClick={() => { setSelectedId(entry.id); setPortraitError(''); }}
+                className={`mb-1 flex w-full items-center gap-2 rounded border px-2 py-2 text-left ${selectedId === entry.id
+                  ? 'border-brass/60 bg-brass/10'
+                  : 'border-transparent hover:border-oak-light hover:bg-oak-light/50'}`}
+              >
+                {npc !== null && (
+                  <PortraitImage value={npc.portrait} alt={`Ảnh ${entry.name}`} className="h-12 w-10 shrink-0" />
+                )}
+                <span className="min-w-0 flex-1">
+                  <span className="block text-sm text-parchment">{entry.name}</span>
+                  <span className="block truncate font-mono text-[10px] text-vellum/35">{entry.id}</span>
+                  <span className="block text-[10px] text-vellum/35">cập nhật lượt {entry.lastUpdatedTurn}</span>
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         <div className="max-h-[58vh] overflow-y-auto pr-1">
@@ -263,13 +309,28 @@ export function CodexTab(): ReactNode {
           ) : (
             <article className="flex flex-col gap-3">
               <header className="rounded border border-oak-light bg-oak/55 p-3">
-                <h3 className="text-lg text-brass">{selected.name}</h3>
-                <p className="font-mono text-[10px] text-vellum/35">{selected.id}</p>
-                {selected.aliases.length > 0 && <p className="mt-1 text-xs text-vellum/55">Bí danh: {selected.aliases.join(' · ')}</p>}
-                {selected.summary !== '' && <p className="mt-2 text-sm text-parchment">{selected.summary}</p>}
-                <p className="mt-2 text-[10px] text-vellum/35">
-                  Gặp lần đầu: lượt {selected.firstSeenTurn} · gần nhất: lượt {selected.lastSeenTurn} · cập nhật: lượt {selected.lastUpdatedTurn}
-                </p>
+                <div className="flex items-start gap-3">
+                  {selectedNpc !== null && (
+                    <div className="shrink-0">
+                      <PortraitPicker
+                        value={selectedNpc.portrait}
+                        alt={`Ảnh ${selectedNpc.name}`}
+                        compact
+                        onChange={updateNpcPortrait}
+                      />
+                    </div>
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-lg text-brass">{selected.name}</h3>
+                    <p className="font-mono text-[10px] text-vellum/35">{selected.id}</p>
+                    {selected.aliases.length > 0 && <p className="mt-1 text-xs text-vellum/55">Bí danh: {selected.aliases.join(' · ')}</p>}
+                    {selected.summary !== '' && <p className="mt-2 text-sm text-parchment">{selected.summary}</p>}
+                    <p className="mt-2 text-[10px] text-vellum/35">
+                      Gặp lần đầu: lượt {selected.firstSeenTurn} · gần nhất: lượt {selected.lastSeenTurn} · cập nhật: lượt {selected.lastUpdatedTurn}
+                    </p>
+                    {portraitError !== '' && <p className="mt-2 text-xs text-red-300">{portraitError}</p>}
+                  </div>
+                </div>
               </header>
 
               {collection === 'npcs'

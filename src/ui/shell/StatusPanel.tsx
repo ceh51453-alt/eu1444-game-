@@ -14,6 +14,7 @@ import type { GameState } from '@/state/slices';
 import { useGameStore } from '@/state/store';
 import { LastCheckPanel } from '@/ui/panels';
 import { BodyPanel } from '@/ui/bodymap';
+import { PortraitImage } from '@/ui/portrait';
 import {
   STATS,
   STAT_GROUPS,
@@ -74,9 +75,18 @@ function CharacterRows({ character }: { character: CharacterState }): ReactNode 
 
   return (
     <>
-      <Row label="Tên" value={character.identity.name === '' ? '—' : character.identity.name} />
-      <Row label="Chủng tộc" value={raceName(character.identity.race)} />
-      <Row label="Tuổi" value={`${character.identity.age} · ${stage.name}`} />
+      <div className="mb-2 flex items-start gap-3">
+        <PortraitImage
+          value={character.identity.portrait}
+          alt={character.identity.name === '' ? 'Chân dung nhân vật' : `Chân dung ${character.identity.name}`}
+          className="aspect-[4/5] w-20 shrink-0"
+        />
+        <div className="min-w-0 flex-1">
+          <Row label="Tên" value={character.identity.name === '' ? '—' : character.identity.name} />
+          <Row label="Chủng tộc" value={raceName(character.identity.race)} />
+          <Row label="Tuổi" value={`${character.identity.age} · ${stage.name}`} />
+        </div>
+      </div>
       {STAT_GROUPS.map((group) => (
         <div key={group.id} className="mt-1">
           <p className="text-[0.6rem] tracking-widest text-vellum/40 uppercase">{group.name}</p>

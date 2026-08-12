@@ -3,20 +3,20 @@
   "version": 1,
 
   "settlementTiers": [
-    { "id": "thon", "level": 1, "name": "Thôn", "population": "dưới 100", "note": "Không tường. Nông trại, giếng, nhà gỗ." },
-    { "id": "lang", "level": 2, "name": "Làng", "population": "100–500", "note": "Hàng rào gỗ. Cối xay, lò rèn, nhà nguyện." },
-    { "id": "tran", "level": 3, "name": "Trấn", "population": "500–2.000", "note": "Tường gỗ hoặc đất. Chợ, xưởng nghề, doanh trại." },
-    { "id": "thanh", "level": 4, "name": "Thành", "population": "2.000–8.000", "note": "Tường đá. Nhà thờ, tòa án, xưởng lớn." },
-    { "id": "dai-thanh", "level": 5, "name": "Đại thành", "population": "trên 8.000", "note": "Tường đá nhiều lớp. Đại giáo đường, thư viện, xưởng đúc." }
+    { "id": "thon", "level": 1, "name": "Thôn / xóm", "population": "dưới 100 người", "note": "Thường để ngỏ: cụm nông trại, giếng, chuồng và nhà gỗ; có thể nấp sau bờ rào nhưng không chịu nổi một cuộc vây." },
+    { "id": "lang", "level": 2, "name": "Làng", "population": "khoảng 100–500 người", "note": "Đơn vị cư trú–nông nghiệp, có cối xay, lò rèn, nhà nguyện và đất chung; hàng rào hoặc hào chủ yếu chống cướp, không phải tường thành." },
+    { "id": "tran", "level": 3, "name": "Trấn / thị trấn", "population": "khoảng 500–2.000 người", "note": "Có chợ định kỳ, thợ chuyên nghiệp và bộ máy thu phí; có thể có bờ đất, palisade, cổng và tháp gỗ, nhưng nhiều trấn vẫn để ngỏ." },
+    { "id": "thanh", "level": 4, "name": "Thành / đô thị có tường", "population": "khoảng 2.000–8.000 người", "note": "Tường đá hoặc gạch, cổng kiên cố, tháp, nhà thờ, tòa án và phường nghề. Thành thị và lâu đài bên trong có thể thuộc hai chủ thể pháp lý khác nhau." },
+    { "id": "dai-thanh", "level": 5, "name": "Đại thành", "population": "trên 8.000 người", "note": "Nhiều khu phố và cổng, tường nhiều lớp hoặc ngoại thành, đại giáo đường, bến cảng/xưởng lớn. Dân và quyền tự trị đô thị có thể hạn chế quyền trực tiếp của quý tộc." }
   ],
 
   "holdingRoles": [
-    { "id": "chu-so-huu", "name": "Chủ sở hữu", "note": "Ngài giữ nó, và giấy tờ mang tên ngài." },
-    { "id": "duoc-uy-thac", "name": "Được ủy thác", "note": "Coi sóc hộ người khác. Mất là phải đền, được cũng không phải của mình." },
-    { "id": "dong-so-huu", "name": "Đồng sở hữu", "note": "Chia với anh em hoặc với một phường hội. Mọi quyết định phải bàn." },
-    { "id": "thua-ke-cho", "name": "Thừa kế chờ", "note": "Sẽ là của ngài khi người đang giữ chết. Người đó biết điều đó." },
-    { "id": "dang-tranh-chap", "name": "Đang tranh chấp", "note": "Ngài đòi, người khác cũng đòi, và tòa chưa xử." },
-    { "id": "don-tru", "name": "Đồn trú", "note": "Ngài chỉ huy quân ở đó, không sở hữu gì cả." }
+    { "id": "chu-so-huu", "name": "Giữ cho chính mình", "note": "Ngài là người nắm quyền chiếm hữu và hưởng lợi, nhưng vẫn có thể nợ tô, quân dịch hoặc lời thề với cấp trên; đây chưa chắc là sở hữu tuyệt đối kiểu hiện đại." },
+    { "id": "duoc-uy-thac", "name": "Quản thủ / được ủy thác", "note": "Coi sóc hộ vương quyền, lãnh chúa, người thừa kế vị thành niên hoặc chủ đang vắng mặt; được quản, thu và giữ trong giới hạn, không được tự ý bán hay truyền lại." },
+    { "id": "dong-so-huu", "name": "Đồng quyền", "note": "Quyền bị chia giữa anh em, vợ chồng, Giáo hội, đô thị hoặc phường hội; mỗi bên có thể giữ một loại quyền khác nhau trên cùng địa điểm." },
+    { "id": "thua-ke-cho", "name": "Người thừa kế dự kiến", "note": "Có vị trí trong hàng kế vị nhưng chưa chiếm hữu. Cái chết, di chúc, lễ công nhận, phí kế thừa hoặc phán quyết của tòa vẫn có thể đổi kết quả." },
+    { "id": "dang-tranh-chap", "name": "Đang tranh quyền", "note": "Có yêu sách nhưng đối thủ cũng có giấy tờ, huyết thống hoặc quân đang giữ. Quyền trên giấy và quyền ngoài thực địa chưa trùng nhau." },
+    { "id": "don-tru", "name": "Chỉ huy đồn trú", "note": "Có chìa khóa, quân và trách nhiệm phòng thủ, nhưng không sở hữu đất, không tự thu tô và phải hoàn trả địa điểm theo lệnh hợp pháp." }
   ],
 
   "fiefTitles": [
@@ -33,21 +33,21 @@
   ],
 
   "fiefObligations": [
-    { "id": "quan-dich-40", "name": "Quân dịch 40 ngày mỗi năm" },
-    { "id": "quan-dich-60", "name": "Quân dịch 60 ngày mỗi năm" },
-    { "id": "cung-ky-si", "name": "Cung cấp một số kỵ sĩ có giáp khi được gọi" },
-    { "id": "cong-nap", "name": "Cống nạp hằng năm bằng tiền hoặc hiện vật" },
-    { "id": "chau-trieu", "name": "Chầu triều mỗi năm một lần" },
-    { "id": "thap-phan", "name": "Nộp thập phân cho Giáo hội" },
-    { "id": "giu-duong", "name": "Giữ một đoạn đường hoặc một bến đò" },
-    { "id": "khong-co", "name": "Không nghĩa vụ nào — hiếm, và thường là vì có người đã trả hộ" }
+    { "id": "quan-dich-40", "name": "Quân dịch tối đa 40 ngày/năm", "note": "Mốc nổi tiếng trong một số lệ Anglo-Norman, không phải chuẩn chung toàn châu Âu; quá hạn thường cần trả công, thương lượng hoặc đổi thành tiền." },
+    { "id": "quan-dich-60", "name": "Quân dịch tối đa 60 ngày/năm", "note": "Điều khoản nặng và mang tính địa phương; cần nói rõ tính từ ngày tập kết, hành quân hay ngày ở chiến trường." },
+    { "id": "cung-ky-si", "name": "Cung cấp kỵ sĩ có ngựa và giáp", "note": "Số người, thời hạn và nơi phục vụ phải theo văn thư hoặc tập quán; đến 1444 đội tùy tùng trả lương và quân hợp đồng ngày càng quan trọng." },
+    { "id": "cong-nap", "name": "Tô/cống hằng năm bằng tiền hoặc hiện vật", "note": "Có thể là tiền cố định, phần mùa vụ, gia súc, rượu, sáp hoặc khoản thay quân dịch; không đồng nhất với mọi loại thuế của lãnh thổ." },
+    { "id": "chau-trieu", "name": "Hầu triều và dự hội đồng/tòa", "note": "Vừa là nghĩa vụ phục vụ vừa là cơ hội chính trị; vắng mặt có thể bị phạt, mất ân sủng hoặc để đối thủ nói thay mình." },
+    { "id": "thap-phan", "name": "Nộp thập phân cho Giáo hội", "note": "Thập phân thuộc cơ chế Giáo hội và thường đánh lên sản vật; người nhận có thể là giáo xứ, tu viện hoặc người đã được chuyển nhượng quyền thu." },
+    { "id": "giu-duong", "name": "Bảo trì đường, cầu, cổng hoặc bến đò", "note": "Quyền thu phí thường đi cùng nghĩa vụ giữ thông thương, sửa chữa và bảo đảm an toàn; bỏ bê có thể là cớ thu hồi đặc quyền." },
+    { "id": "khong-co", "name": "Miễn nghĩa vụ ghi rõ", "note": "Hiếm và cần căn cứ: đặc ân miễn trừ, đất tự do, đã chuộc bằng tiền, nghĩa vụ do người khác gánh, hoặc chức vụ vốn không phải thái ấp." }
   ],
 
   "realmRoles": [
-    { "id": "khong-co", "name": "Không cai trị vùng nào" },
-    { "id": "chu-hau", "name": "Chư hầu", "note": "Cai trị một phần, và thề với người trên." },
-    { "id": "cai-tri", "name": "Cai trị trực tiếp" },
-    { "id": "nhiep-chinh", "name": "Nhiếp chính", "note": "Cai trị thay một người chưa đủ tuổi hoặc đang vắng mặt." },
-    { "id": "luu-vong", "name": "Bị tước đoạt", "note": "Trên giấy vẫn là của ngài. Trên thực địa thì không." }
+    { "id": "khong-co", "name": "Không cai trị vùng nào", "note": "Có thể vẫn giàu, có chức hoặc giữ một thành, nhưng không đặt thuế, ban luật hay gọi quân cho cả một vùng." },
+    { "id": "chu-hau", "name": "Cai trị với tư cách chư hầu", "note": "Có thực quyền địa phương nhưng thừa nhận cấp trên, nợ lời thề và nghĩa vụ; cấp trên cũng nợ bảo hộ và tôn trọng tập quán/thỏa ước." },
+    { "id": "cai-tri", "name": "Cai trị trực tiếp nhân danh mình", "note": "Đặt quan, xử án, thu nghĩa vụ và gọi lực lượng trong phạm vi được công nhận; vẫn có thể bị luật, hội đồng, đô thị, Giáo hội và đặc quyền địa phương kiềm chế." },
+    { "id": "nhiep-chinh", "name": "Nhiếp chính / quản trị thay", "note": "Cai trị thay người chưa đủ tuổi, bị bệnh, bị giam hoặc vắng mặt. Quyền có thời hạn và thường bị hội đồng, họ hàng hoặc văn thư giám sát." },
+    { "id": "luu-vong", "name": "Có danh nghĩa nhưng mất thực địa", "note": "Vẫn giữ tước/yêu sách trên giấy hoặc trong mắt đồng minh, nhưng đối thủ kiểm soát thành, thu nhập và bộ máy ngoài thực địa." }
   ]
 }

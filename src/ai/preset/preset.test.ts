@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { assemblePrompt, checkLockedPlacement, orderBlocks } from './assemble';
 import { LOCKED_BLOCK_IDS, LOCKED_BLOCK_SPECS } from './blocks';
 import { exportSillyTavernPreset } from './export';
-import { formatImportReport, importSillyTavernPreset, PresetImportError } from './import';
+import { dedupeRegexScripts, formatImportReport, importSillyTavernPreset, PresetImportError } from './import';
 
 const SAMPLES_DIR = join(import.meta.dirname, '..', '..', '..', 'presets', 'mau');
 
@@ -223,6 +223,27 @@ describe('preset — extensions, regex, script', () => {
     const greedy = preset.regexScripts.find((script) => script.id === 'greedy-danger');
     expect(greedy?.rejected).toContain('quay lui thảm họa');
     expect(preset.regexScripts.find((script) => script.id === 'trim-ooc')?.enabled).toBe(false);
+  });
+
+  /**
+   * Preset thật chép cả bộ regex vào CẢ HAI khóa, và ở một mẫu, hai bản không
+   * khớp nhau về `disabled`. Mẫu đó là `^([\s\S]*)$` → `""` — bản đang bật xóa
+   * trắng mọi đoạn văn hiển thị. Đây là bài kiểm cho đúng ca đó.
+   */
+  it('gộp regex trùng id giữa hai khóa, và bản bị TẮT thắng', () => {
+    expect(dedupeRegexScripts([
+      { id: 'an-het', scriptName: 'Ẩn display', findRegex: '^([\\s\\S]*)$', replaceString: '', disabled: true },
+      { id: 'an-het', scriptName: 'Ẩn display', findRegex: '^([\\s\\S]*)$', replaceString: '', disabled: false },
+      { id: 'lam-dep', findRegex: '<thinking>', disabled: false },
+      { id: 'lam-dep', findRegex: '<thinking>', disabled: false },
+      { findRegex: 'khong-co-id' },
+      { findRegex: 'khong-co-id' },
+    ])).toEqual([
+      { id: 'an-het', scriptName: 'Ẩn display', findRegex: '^([\\s\\S]*)$', replaceString: '', disabled: true },
+      { id: 'lam-dep', findRegex: '<thinking>', disabled: false },
+      { findRegex: 'khong-co-id' },
+      { findRegex: 'khong-co-id' },
+    ]);
   });
 
   it('phân loại script tavern_helper theo nhiệm vụ', () => {

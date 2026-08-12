@@ -45,9 +45,10 @@ một lý do: người gọi mới là chỗ giữ ngăn xếp undo.
 
 ## Ràng buộc
 
-- **R1.** AI không quyết một con số nào. Nó nói bốn thứ định tính — đánh với ai,
-  mạnh cỡ nào (4 nấc), to cỡ nào (3 nấc), ở đâu vì cái gì — và engine đổi ra kỹ
-  năng, trang bị, quân số, binh chủng, bậc công sự, mùa, địa hình.
+- **R1.** AI không được bịa con số. Nó nói đánh với ai, mạnh cỡ nào (4 nấc), to
+  cỡ nào (3 nấc), ở đâu vì cái gì; nếu truyện đã xác lập quân số/tên lực lượng/
+  hai chủ soái thì thẻ phải chép nguyên dữ kiện ấy. Engine dùng dữ kiện truyện
+  trước, rồi mới đọc state hoặc ước lượng phần còn thiếu.
 - **Tương quan là TƯƠNG ĐỐI với người chơi.** Một kẻ "ngang cơ" ở lượt 5 và ở
   lượt 300 là hai con người khác nhau. Không có bảng số tuyệt đối nào ở đây.
 - **Chữ lạ thì hạ nấc, không lùi về nấc giữa.** Cùng luật với mức độ thương tích

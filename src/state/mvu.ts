@@ -101,7 +101,7 @@ type CoarseType = 'number' | 'string' | 'boolean' | 'array' | 'object' | 'enum' 
 function coarseTypeOf(schema: z.ZodType): CoarseType {
   let current = schema;
   for (let guard = 0; guard < 20; guard++) {
-    const def = (current as unknown as { def?: { type?: string; innerType?: z.ZodType } }).def;
+    const def = (current as unknown as { def?: { type?: string; innerType?: z.ZodType; out?: z.ZodType } }).def;
     const type = def?.type;
     if (
       (type === 'optional' ||
@@ -114,6 +114,13 @@ function coarseTypeOf(schema: z.ZodType): CoarseType {
       def?.innerType !== undefined
     ) {
       current = def.innerType;
+      continue;
+    }
+    // `z.preprocess(fn, schema)` là một pipe: kiểu thật nằm ở đầu RA. Dừng ở
+    // 'pipe' thì B5 trả 'other' — nghĩa là bỏ kiểm kiểu — và những trường dùng
+    // preprocess (Codex) mất lớp chắn duy nhất mà "Áp dụng dù sao" không vượt được.
+    if (type === 'pipe' && def?.out !== undefined) {
+      current = def.out;
       continue;
     }
     switch (type) {
@@ -401,10 +408,17 @@ function checkB4(
 function elementSchemaOf(schema: z.ZodType): z.ZodType | null {
   let current = schema;
   for (let guard = 0; guard < 20; guard++) {
-    const def = (current as unknown as { def?: { type?: string; innerType?: z.ZodType; element?: z.ZodType } }).def;
+    const def = (current as unknown as {
+      def?: { type?: string; innerType?: z.ZodType; element?: z.ZodType; out?: z.ZodType };
+    }).def;
     if (def?.type === 'array') return def.element ?? null;
     if (def?.innerType !== undefined) {
       current = def.innerType;
+      continue;
+    }
+    // Cùng lý do với `coarseTypeOf`: mảng thật của một `z.preprocess` nằm ở đầu ra.
+    if (def?.type === 'pipe' && def.out !== undefined) {
+      current = def.out;
       continue;
     }
     return null;
@@ -463,11 +477,22 @@ function checkB6(
     op,
     step: 'B6',
     code: 'ngoai-pham-vi',
-    message: `Giá trị ${describe(nextValue)} không hợp lệ cho "${op.path}": ${parsed.error.issues
-      .map((issue) => issue.message)
-      .join('; ')}.`,
+    message: `Giá trị ${describe(nextValue)} không hợp lệ cho "${op.path}": ${issueLines(parsed.error).join('; ')}.`,
     schemaHint: schemaHintFor(schema),
   };
+}
+
+/**
+ * Zod đặt tên trường hỏng trong `issue.path`, KHÔNG trong `issue.message`. Bỏ
+ * path đi thì ba trường hỏng thành "Invalid input; Invalid input; Invalid
+ * input" — một câu vừa đúng vừa vô dụng, cho cả người chơi lẫn vòng nhờ AI sửa
+ * ở Phần 2, vốn chỉ nhận được đúng chuỗi này để biết phải sửa cái gì.
+ */
+function issueLines(error: z.ZodError): string[] {
+  return error.issues.map((issue) => {
+    const where = issue.path.map(String).join('.');
+    return where === '' ? issue.message : `${where}: ${issue.message}`;
+  });
 }
 
 /**

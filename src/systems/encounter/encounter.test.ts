@@ -7,7 +7,7 @@
  * phí" và cách chơi tối ưu là không bao giờ chơi.
  *
  * Những bài còn lại gác bốn luật cứng của module:
- *   · AI không chạm được vào một con số nào — chỉ bốn nấc và ba nấc
+ *   · AI không bịa số; quân số đã có trong truyện phải thắng số ước lượng
  *   · chữ lạ thì HẠ nấc, không lùi về nấc giữa (khuôn của Phần 7 mục 3)
  *   · nhiều nhất MỘT lời mời mỗi lượt
  *   · tương quan là tương đối với NGƯỜI CHƠI, không phải một thang tuyệt đối
@@ -206,7 +206,7 @@ describe('bốn cửa kiểm duyệt', () => {
 // Dựng ván
 // ---------------------------------------------------------------------------
 
-describe('engine dựng ván từ bốn chữ AI nói', () => {
+describe('engine dựng ván từ dữ kiện câu chuyện', () => {
   it('TƯƠNG QUAN LÀ TƯƠNG ĐỐI: cùng một chữ, hai người chơi khác nhau ra hai đối thủ khác nhau', () => {
     const raw = '<RequestDuel doi-thu="Ser Aymer" trinh-do="ngang cơ" />';
 
@@ -240,6 +240,20 @@ describe('engine dựng ván từ bốn chữ AI nói', () => {
     expect(skills[2]).toBeLessThan(skills[3] ?? 0);
     // Một huyền thoại vẫn là huyền thoại kể cả khi người chơi mới cầm kiếm.
     expect(skills[3]).toBeGreaterThanOrEqual(50);
+  });
+
+  it('PvP giữ đúng vũ khí và giáp đã tả thay vì bộ đồ mẫu theo sức mạnh', () => {
+    const state = playing();
+    const built = buildEncounter(
+      offerFrom('<RequestDuel doi-thu="Ser Aymer" mo-ta="tay không, mặc giáp tấm" trinh-do="hơn" />', state),
+      state,
+      createRng('trang-bi-truyen'),
+      1,
+    );
+    if (built.kind !== 'duel') throw new Error('phải là quyết đấu');
+    expect(built.duel.b.loadout.weaponId).toBe('');
+    expect(built.duel.b.loadout.carried.some((entry) => entry.item === 'item_giap-tam')).toBe(true);
+    expect(built.duel.b.loadout.carried.some((entry) => entry.item === 'item_kiem-mot-tay')).toBe(false);
   });
 
   it('địa danh trong truyện chọn sàn đấu và bãi chiến', () => {

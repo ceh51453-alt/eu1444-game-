@@ -10,10 +10,21 @@ import { useState, type ReactNode } from 'react';
 import type { Rng } from '@/core/rng';
 import { allRegions, regionName } from '@/lore/regions';
 import { Button, Field, Select, TextInput } from '@/ui/settings/controls';
+import { PortraitPicker } from '@/ui/portrait';
+import { LoreEntryReader } from '@/ui/lore/LoreEntryReader';
 // Bước 2 hiện luôn cái giá của tuổi tác ở Phần 8 mục 5: chọn một lão tướng là
 // chọn luôn việc học chậm hẳn lại, và người chơi phải biết điều đó lúc kéo thanh
 // tuổi chứ không phải sau ba mươi lượt chơi.
 import { ageFactor } from '@/systems/skills';
+import {
+  ladderForNation,
+  ladderOf,
+  panelFor,
+  startingLegitimacy,
+  successionLawOf,
+  titleOf,
+  titlesOfLadder,
+} from '@/systems/titles';
 import { HousePicker } from './HousePicker';
 import {
   CREATION_STEPS,
@@ -59,8 +70,6 @@ import {
   draftSkillPercent,
   fiefIdFor,
   fiefObligations,
-  fiefTitleOf,
-  fiefTitles,
   finalStats,
   fullName,
   gearKinds,
@@ -74,11 +83,13 @@ import {
   gearWeight,
   generateSecrets,
   holdingIdFor,
+  holdingRoleOf,
   holdingRoles,
   lowerSkill,
   lowerStat,
   nationIds,
   nationName,
+  obligationOf,
   originOf,
   playableRaces,
   pointBuy,
@@ -92,6 +103,7 @@ import {
   randomGivenName,
   randomScar,
   realmRoles,
+  realmRoleOf,
   relationKinds,
   religionOf,
   religionsForRace,
@@ -100,6 +112,7 @@ import {
   rollNames,
   scaleIntensity,
   settlementTiers,
+  settlementTierOf,
   settlementsWithin,
   UNNAMED,
   skillGroups,
@@ -238,24 +251,30 @@ function RaceStep({ draft, onChange }: StepProps): ReactNode {
                   key={race.id}
                   type="button"
                   onClick={() => onChange(withRace(draft, race.id))}
-                  className={`flex w-full items-baseline gap-2 px-2 py-1.5 text-left text-sm hover:bg-oak-light ${
+                  className={`flex w-full flex-col gap-0.5 px-2 py-1.5 text-left text-sm hover:bg-oak-light sm:flex-row sm:items-baseline sm:gap-2 ${
                     race.id === draft.raceId ? 'bg-oak-light text-brass' : 'text-vellum'
                   }`}
                 >
-                  <span className="w-32 shrink-0">{race.name}</span>
-                  {/* Viết tắt ba chữ cái của mục 2 (STR, ELO…) chứ không cắt tên
-                      tiếng Việt: cắt "Hùng biện" còn ba ký tự ra "Hùn". */}
-                  <span
-                    className="w-24 shrink-0 font-mono text-xs text-vellum/50"
-                    title={Object.entries(race.stats)
-                      .filter(([, value]) => value > 0)
-                      .map(([id]) => STATS[id as StatId].name)
-                      .join(', ')}
-                  >
-                    {Object.entries(race.stats)
-                      .filter(([, value]) => value > 0)
-                      .map(([id]) => id.toUpperCase())
-                      .join(' ')}
+                  {/* `sm:contents` để hàng này tan ra thành ba ô cùng cấp trên màn
+                      rộng, còn trên điện thoại thì tên và viết tắt đứng chung một
+                      dòng, vị thế xã hội xuống dòng dưới — ba cột cố định 224px
+                      không nhét vừa 375px. */}
+                  <span className="flex items-baseline gap-2 sm:contents">
+                    <span className="min-w-0 flex-1 truncate sm:w-32 sm:flex-none sm:shrink-0">{race.name}</span>
+                    {/* Viết tắt ba chữ cái của mục 2 (STR, ELO…) chứ không cắt tên
+                        tiếng Việt: cắt "Hùng biện" còn ba ký tự ra "Hùn". */}
+                    <span
+                      className="shrink-0 font-mono text-xs text-vellum/50 sm:w-24"
+                      title={Object.entries(race.stats)
+                        .filter(([, value]) => value > 0)
+                        .map(([id]) => STATS[id as StatId].name)
+                        .join(', ')}
+                    >
+                      {Object.entries(race.stats)
+                        .filter(([, value]) => value > 0)
+                        .map(([id]) => id.toUpperCase())
+                        .join(' ')}
+                    </span>
                   </span>
                   <span className="truncate text-xs text-vellum/40">{race.standing}</span>
                 </button>
@@ -268,7 +287,7 @@ function RaceStep({ draft, onChange }: StepProps): ReactNode {
       {chosen !== null && (
         <>
           <Card title={`${chosen.name} — mod chỉ số`}>
-            <div className="grid grid-cols-4 gap-x-3 gap-y-1 text-sm">
+            <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-sm sm:grid-cols-4">
               {Object.entries(mods)
                 .filter(([, value]) => value !== 0)
                 .map(([id, value]) => (
@@ -358,7 +377,7 @@ function AgeCard({ draft, onChange }: { draft: CharacterDraft; onChange: (draft:
           max={high}
           value={draft.age}
           onChange={(event) => onChange(withAge(draft, Number(event.target.value)))}
-          className="h-1 flex-1 cursor-pointer appearance-none rounded bg-oak-light accent-brass"
+          className="h-1 min-w-0 flex-1 cursor-pointer appearance-none rounded bg-oak-light accent-brass"
           aria-label="Tuổi"
         />
         <TextInput
@@ -367,9 +386,9 @@ function AgeCard({ draft, onChange }: { draft: CharacterDraft; onChange: (draft:
           max={high}
           value={draft.age}
           onChange={(event) => onChange(withAge(draft, Number(event.target.value) || low))}
-          className="w-20"
+          className="w-16 shrink-0 sm:w-20"
         />
-        <span className="w-28 shrink-0 text-xs text-vellum/50">{stage.name}</span>
+        <span className="w-20 shrink-0 truncate text-xs text-vellum/50 sm:w-28">{stage.name}</span>
       </div>
 
       <p className="text-[0.68rem] text-vellum/40">
@@ -377,7 +396,7 @@ function AgeCard({ draft, onChange }: { draft: CharacterDraft; onChange: (draft:
         {draft.age !== effective && ` · quy về thang người thường: ${effective} tuổi`}
       </p>
 
-      <div className="grid grid-cols-3 gap-2 text-xs">
+      <div className="grid grid-cols-1 gap-2 text-xs sm:grid-cols-3">
         <div className="rounded border border-oak-light px-2 py-1">
           <p className="text-[0.6rem] tracking-widest text-vellum/40 uppercase">Điểm kỹ năng</p>
           <p className={bonus > 0 ? 'text-emerald-300' : bonus < 0 ? 'text-red-300' : 'text-vellum/60'}>
@@ -439,13 +458,15 @@ function OriginStep({ draft, onChange }: StepProps): ReactNode {
             key={entry.id}
             type="button"
             onClick={() => onChange(withOrigin(draft, entry.id))}
-            className={`flex w-full items-baseline gap-2 px-2 py-1.5 text-left text-sm hover:bg-oak-light ${
+            className={`flex w-full flex-col gap-0.5 px-2 py-1.5 text-left text-sm hover:bg-oak-light sm:flex-row sm:items-baseline sm:gap-2 ${
               entry.id === draft.originId ? 'bg-oak-light text-brass' : 'text-vellum'
             }`}
           >
-            <span className="w-32 shrink-0">{entry.name}</span>
-            <span className="w-40 shrink-0 font-mono text-xs text-vellum/50">
-              chỉ số +{entry.statPoints} · kỹ năng +{entry.skillPoints}
+            <span className="flex items-baseline gap-2 sm:contents">
+              <span className="min-w-0 flex-1 truncate sm:w-32 sm:flex-none sm:shrink-0">{entry.name}</span>
+              <span className="shrink-0 font-mono text-xs text-vellum/50 sm:w-40">
+                chỉ số +{entry.statPoints} · kỹ năng +{entry.skillPoints}
+              </span>
             </span>
             <span className="truncate text-xs text-vellum/40">{entry.assetNote}</span>
           </button>
@@ -454,7 +475,7 @@ function OriginStep({ draft, onChange }: StepProps): ReactNode {
 
       {origin !== null && <p className="text-xs text-vellum/60 italic">{origin.description}</p>}
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <Field label="Vùng sinh" hint={homelandIds.length > 0 ? 'vùng bản địa của chủng tộc' : 'chủng tộc chưa khai vùng bản địa'}>
           <Select value={draft.birthRegionId} onChange={(event) => onChange({ ...draft, birthRegionId: event.target.value })}>
             <option value="">—</option>
@@ -520,7 +541,7 @@ function OriginStep({ draft, onChange }: StepProps): ReactNode {
       <HouseCard draft={draft} onChange={onChange} />
 
       <Card title="Vạch xuất phát">
-        <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-vellum/70">
+        <div className="grid grid-cols-1 gap-x-4 gap-y-1 text-sm text-vellum/70 sm:grid-cols-2">
           <span>Tiền: {line.coins} đồng bạc</span>
           <span>Uy tín: {line.prestige}</span>
           <span>Quan hệ: {line.relationSlots}</span>
@@ -575,7 +596,7 @@ function HouseCard({ draft, onChange }: { draft: CharacterDraft; onChange: (draf
       {chosen !== null && (
         <>
           <p className="text-xs text-vellum/60 italic">{chosen.note}</p>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-xs text-vellum/60">
+          <div className="grid grid-cols-1 gap-x-4 gap-y-0.5 text-xs text-vellum/60 sm:grid-cols-2">
             <span>Bậc tước: {houseRankName(chosen.id)}</span>
             <span>Tình trạng: {chosen.status}</span>
             {chosen.realm !== '' && <span>Cai trị: {regionName(chosen.realm)}</span>}
@@ -627,7 +648,7 @@ function StatsStep({ draft, onChange }: StepProps): ReactNode {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-baseline justify-between">
+      <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
         <p className={`text-sm ${left === 0 ? 'text-vellum/60' : left > 0 ? 'text-brass' : 'text-red-300'}`}>
           Còn {left} điểm chỉ số
         </p>
@@ -645,22 +666,27 @@ function StatsStep({ draft, onChange }: StepProps): ReactNode {
             // đổi cái gì, và sẽ chỉ phát hiện ra sau vài giờ chơi.
             const affected = skillsAffectedBy(id);
             return (
-              <div key={id} className="flex items-center gap-2 text-sm">
-                <span className="w-24 shrink-0 text-vellum/70" title={STATS[id].covers}>
-                  {STATS[id].name}
-                </span>
-                <Button disabled={!canLowerStat(draft, id)} onClick={() => onChange(lowerStat(draft, id))}>
-                  −
-                </Button>
-                <span className="w-8 text-center font-mono text-parchment">{draft.allocated[id]}</span>
-                <Button disabled={!canRaiseStat(draft, id)} onClick={() => onChange(raiseStat(draft, id))}>
-                  +
-                </Button>
-                <span className="w-16 font-mono text-xs text-vellum/50">
-                  {mods[id] === 0 ? '' : mods[id] > 0 ? `+${mods[id]}` : mods[id]} → {final[id]}
+              // Trên điện thoại hàng này gãy làm hai: nút bấm ở trên, dòng chú
+              // giải ở dưới. Sáu ô cố định trên một dòng 375px thì ô nào cũng
+              // rách, kể cả nút − và +.
+              <div key={id} className="flex flex-col gap-1 text-sm sm:flex-row sm:items-center sm:gap-2">
+                <span className="flex items-center gap-2 sm:contents">
+                  <span className="min-w-0 flex-1 truncate text-vellum/70 sm:w-24 sm:flex-none sm:shrink-0" title={STATS[id].covers}>
+                    {STATS[id].name}
+                  </span>
+                  <Button disabled={!canLowerStat(draft, id)} onClick={() => onChange(lowerStat(draft, id))}>
+                    −
+                  </Button>
+                  <span className="w-8 shrink-0 text-center font-mono text-parchment">{draft.allocated[id]}</span>
+                  <Button disabled={!canRaiseStat(draft, id)} onClick={() => onChange(raiseStat(draft, id))}>
+                    +
+                  </Button>
+                  <span className="w-16 shrink-0 font-mono text-xs text-vellum/50">
+                    {mods[id] === 0 ? '' : mods[id] > 0 ? `+${mods[id]}` : mods[id]} → {final[id]}
+                  </span>
                 </span>
                 <span
-                  className="flex-1 truncate text-xs text-vellum/40"
+                  className="truncate text-xs text-vellum/40 sm:flex-1"
                   title={affected.map((row) => row.name).join(', ')}
                 >
                   trần {cap} · {affected.length} kỹ năng: {affected.slice(0, 3).map((row) => row.name).join(', ')}
@@ -697,12 +723,20 @@ function AppearanceStep({ draft, onChange, rng }: StepProps): ReactNode {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-center gap-2">
+      <Card title="Ảnh chân dung">
+        <PortraitPicker
+          value={draft.portrait}
+          alt={fullName(draft) === '' ? 'Chân dung nhân vật' : `Chân dung ${fullName(draft)}`}
+          onChange={(portrait) => onChange({ ...draft, portrait })}
+        />
+      </Card>
+
+      <div className="flex flex-wrap items-center gap-2">
         <Button variant="primary" onClick={() => onChange(rollAppearance(draft, rng))}>
           Ngẫu nhiên theo chủng tộc
         </Button>
         <Select
-          className="w-32"
+          className="w-32 shrink-0"
           value={draft.sex}
           onChange={(event) => onChange({ ...draft, sex: event.target.value === 'nu' ? 'nu' : 'nam' })}
         >
@@ -716,7 +750,9 @@ function AppearanceStep({ draft, onChange, rng }: StepProps): ReactNode {
         <p className="text-sm text-vellum/50 italic">Chưa dựng ngoại hình. Bấm nút trên, rồi sửa tay thứ nào muốn đổi.</p>
       ) : (
         <>
-          <div className="grid grid-cols-3 gap-3">
+          {/* Mười lăm ô ngắn: xếp một cột trên điện thoại là cuộn mãi không hết,
+              nên hai cột — nhãn vẫn đủ chỗ ở 150px mỗi cột. */}
+          <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
             <Field label="Chiều cao (cm)">
               <TextInput
                 type="number"
@@ -884,7 +920,7 @@ function SkillsStep({ draft, onChange }: StepProps): ReactNode {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-baseline justify-between">
+      <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between">
         <p className={`text-sm ${left === 0 ? 'text-vellum/60' : left > 0 ? 'text-brass' : 'text-red-300'}`}>
           Còn {left} điểm kỹ năng
         </p>
@@ -913,23 +949,32 @@ function SkillsStep({ draft, onChange }: StepProps): ReactNode {
           {skillsInGroup(group.id).map((skill) => {
             const training = draft.skills[skill.id] ?? 0;
             return (
-              <div key={skill.id} className="flex items-center gap-2 text-sm">
-                <span
-                  className={`w-40 shrink-0 truncate ${favoured.has(skill.id) ? 'text-brass' : 'text-vellum/70'}`}
-                  title={skill.description}
-                >
-                  {skill.name}
+              // Cùng cách gãy hàng với bước 3. Thẻ hệ thống (`skill.system`) là
+              // thứ duy nhất bị giấu hẳn trên điện thoại: nó là nhãn kỹ thuật,
+              // còn chỉ số gốc ở cuối hàng mới là thứ người chơi cần cân nhắc.
+              <div key={skill.id} className="flex flex-col gap-1 text-sm sm:flex-row sm:items-center sm:gap-2">
+                <span className="flex items-center gap-2 sm:contents">
+                  <span
+                    className={`min-w-0 flex-1 truncate sm:w-40 sm:flex-none sm:shrink-0 ${favoured.has(skill.id) ? 'text-brass' : 'text-vellum/70'}`}
+                    title={skill.description}
+                  >
+                    {skill.name}
+                  </span>
+                  <span className="hidden w-10 shrink-0 font-mono text-[0.65rem] text-vellum/40 sm:inline">
+                    {skill.system}
+                  </span>
+                  <Button disabled={training === 0} onClick={() => onChange(lowerSkill(draft, skill.id))}>
+                    −
+                  </Button>
+                  <span className="w-8 shrink-0 text-center font-mono text-parchment">{training}</span>
+                  <Button disabled={!canRaiseSkill(draft, skill.id)} onClick={() => onChange(raiseSkill(draft, skill.id))}>
+                    +
+                  </Button>
+                  <span className="w-14 shrink-0 text-right font-mono text-xs text-vellum/50 sm:w-20 sm:text-left">
+                    {draftSkillPercent(draft, skill.id)}%
+                  </span>
                 </span>
-                <span className="w-10 shrink-0 font-mono text-[0.65rem] text-vellum/40">{skill.system}</span>
-                <Button disabled={training === 0} onClick={() => onChange(lowerSkill(draft, skill.id))}>
-                  −
-                </Button>
-                <span className="w-8 text-center font-mono text-parchment">{training}</span>
-                <Button disabled={!canRaiseSkill(draft, skill.id)} onClick={() => onChange(raiseSkill(draft, skill.id))}>
-                  +
-                </Button>
-                <span className="w-20 font-mono text-xs text-vellum/50">{draftSkillPercent(draft, skill.id)}%</span>
-                <span className="flex-1 truncate text-xs text-vellum/40">{STATS[skill.stat].name}</span>
+                <span className="truncate text-xs text-vellum/40 sm:flex-1">{STATS[skill.stat].name}</span>
               </div>
             );
           })}
@@ -998,7 +1043,7 @@ function FamilyMemberRow({
         </Button>
       </div>
 
-      <div className="mt-1 flex items-center gap-2 text-xs text-vellum/50">
+      <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-vellum/50">
         <span className="w-16 shrink-0">thái độ</span>
         <input
           type="range"
@@ -1006,11 +1051,12 @@ function FamilyMemberRow({
           max={100}
           value={member.attitude}
           onChange={(event) => onPatch({ attitude: Number(event.target.value) })}
-          className="w-40"
+          aria-label={`Thái độ của ${member.name}`}
+          className="w-32 sm:w-40"
         />
-        <span className="w-10 font-mono">{member.attitude}</span>
+        <span className="w-10 shrink-0 font-mono">{member.attitude}</span>
         <TextInput
-          className="flex-1"
+          className="min-w-40 flex-1"
           value={member.goal}
           placeholder="mục tiêu riêng"
           onChange={(event) => onPatch({ goal: event.target.value })}
@@ -1059,6 +1105,8 @@ function FamilyMemberRow({
             </Select>
           </div>
 
+          {member.loreEntry !== '' && <LoreEntryReader key={member.loreEntry} entryId={member.loreEntry} />}
+
           <div className="flex flex-col gap-1">
             <span className="text-xs text-vellum/50">
               Sinh từ nhà — đây là chỗ &laquo;mẹ là con gái vua Đức&raquo; thành một yêu sách thật
@@ -1074,7 +1122,7 @@ function FamilyMemberRow({
           {/* Mười hai chỉ số đầy đủ: người nhà dùng chung mọi công thức với
               người chơi, nên Phần 10 chỉ huy được họ và Phần 15 mô phỏng được
               họ mà không phải nội suy từ một bộ rút gọn. */}
-          <div className="grid grid-cols-6 gap-1">
+          <div className="grid grid-cols-3 gap-1 sm:grid-cols-4 lg:grid-cols-6">
             {STAT_IDS.map((id) => (
               <label key={id} className="flex items-center gap-1 text-[0.65rem] text-vellum/50">
                 <span className="w-8 shrink-0" title={STATS[id].name}>
@@ -1133,7 +1181,7 @@ function ClaimsCard({ draft, onChange }: { draft: CharacterDraft; onChange: (dra
       ) : (
         draft.claims.map((claim, index) => (
           <div key={claim.id} className="flex flex-wrap items-center gap-1.5 text-xs">
-            <span className="w-44 shrink-0 text-parchment">{claim.targetName}</span>
+            <span className="w-full shrink-0 text-parchment sm:w-44">{claim.targetName}</span>
             <Select
               className="w-32"
               value={claim.strength}
@@ -1275,10 +1323,11 @@ function FamilyStep({ draft, onChange, rng }: StepProps): ReactNode {
               max={100}
               value={relation.trust}
               onChange={(event) => patchRelation(index, { trust: Number(event.target.value) })}
+              aria-label={`Mức tin cậy với ${relation.name}`}
               className="w-32"
             />
-            <span className="w-10 font-mono text-vellum/50">{relation.trust}</span>
-            <TextInput className="flex-1" value={relation.note} onChange={(event) => patchRelation(index, { note: event.target.value })} />
+            <span className="w-10 shrink-0 font-mono text-vellum/50">{relation.trust}</span>
+            <TextInput className="min-w-40 flex-1" value={relation.note} onChange={(event) => patchRelation(index, { note: event.target.value })} />
             <Button
               variant="danger"
               onClick={() => onChange({ ...draft, outsideRelations: draft.outsideRelations.filter((_, i) => i !== index) })}
@@ -1298,9 +1347,37 @@ function FamilyStep({ draft, onChange, rng }: StepProps): ReactNode {
 // ---------------------------------------------------------------------------
 
 function FactionStep({ draft, onChange, rng }: StepProps): ReactNode {
+  const setAttitude = (nationId: string, value: number): void => {
+    onChange({
+      ...draft,
+      allegiance: {
+        ...draft.allegiance,
+        attitudes: { ...draft.allegiance.attitudes, [nationId]: value },
+      },
+    });
+  };
+
+  const resetAttitude = (nationId: string): void => {
+    const attitudes = { ...draft.allegiance.attitudes };
+    delete attitudes[nationId];
+    onChange({ ...draft, allegiance: { ...draft.allegiance, attitudes } });
+  };
+
+  const resetAllAttitudes = (): void => {
+    onChange({ ...draft, allegiance: { ...draft.allegiance, attitudes: {} } });
+  };
+
+  const nextSecretId = (): string => {
+    const used = new Set(draft.secrets.map((secret) => secret.id));
+    let number = 1;
+    while (used.has(`secret_${number}`)) number += 1;
+    return `secret_${number}`;
+  };
+
   return (
     <div className="flex flex-col gap-3">
-      <div className="grid grid-cols-2 gap-3">
+      <Card title="Lời thề và địa vị">
+      <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
         <Field label="Trung thành với thế lực nào">
           <Select
             value={draft.allegiance.nationId}
@@ -1338,7 +1415,22 @@ function FactionStep({ draft, onChange, rng }: StepProps): ReactNode {
             ))}
           </Select>
         </Field>
+      </div>
+      {draft.allegiance.nationId !== '' && (
+        <p className="text-xs text-vellum/50">
+          Thái độ nền của {nationName(draft.allegiance.nationId)} với {raceName(draft.raceId)}:{' '}
+          <span className="text-parchment">
+            {draft.allegiance.attitudes[draft.allegiance.nationId] ?? raceAttitudeTo(draft.raceId, draft.allegiance.nationId)} ·{' '}
+            {attitudeLabel(
+              draft.allegiance.attitudes[draft.allegiance.nationId] ?? raceAttitudeTo(draft.raceId, draft.allegiance.nationId),
+            )}
+          </span>
+        </p>
+      )}
+      </Card>
 
+      <Card title="Tôn giáo">
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
         <Field label="Tôn giáo" hint="hiệu ứng nhân với mức sùng đạo bên dưới">
           <Select
             value={draft.allegiance.religionId}
@@ -1367,7 +1459,7 @@ function FactionStep({ draft, onChange, rng }: StepProps): ReactNode {
             className="w-full"
           />
         </Field>
-      </div>
+        </div>
 
       <BeliefCard
         title="Tôn giáo tác động gì"
@@ -1376,8 +1468,10 @@ function FactionStep({ draft, onChange, rng }: StepProps): ReactNode {
         description={religionOf(draft.allegiance.religionId)?.description ?? ''}
         taboos={religionOf(draft.allegiance.religionId)?.taboos ?? []}
       />
+      </Card>
 
-      <div className="grid grid-cols-2 gap-3">
+      <Card title="Văn hóa nuôi dạy">
+      <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
         <Field label="Văn hóa nuôi dạy" hint="có thể khác chủng tộc — đó thường là chỗ hay nhất">
           <Select
             value={draft.cultureId}
@@ -1412,6 +1506,59 @@ function FactionStep({ draft, onChange, rng }: StepProps): ReactNode {
         description={cultureOf(draft.cultureId)?.description ?? ''}
         taboos={[]}
       />
+      </Card>
+
+      <Card title="Thái độ của các thế lực">
+        <div className="flex flex-col items-start gap-2 sm:flex-row sm:justify-between sm:gap-3">
+          <p className="text-xs text-vellum/50">
+            Mặc định suy từ chủng tộc. Có thể sửa từng thế lực để phản ánh danh tiếng hoặc quá khứ riêng của nhân vật.
+          </p>
+          <Button className="shrink-0" disabled={Object.keys(draft.allegiance.attitudes).length === 0} onClick={resetAllAttitudes}>
+            Về mặc định
+          </Button>
+        </div>
+        <div className="grid max-h-80 grid-cols-1 gap-x-6 gap-y-2 overflow-y-auto pr-1 lg:grid-cols-2">
+          {nationIds().map((nationId) => {
+            const base = raceAttitudeTo(draft.raceId, nationId);
+            const overridden = draft.allegiance.attitudes[nationId] !== undefined;
+            const value = draft.allegiance.attitudes[nationId] ?? base;
+            return (
+              <div
+                key={nationId}
+                className={`rounded border px-2 py-1.5 ${
+                  nationId === draft.allegiance.nationId ? 'border-brass/60 bg-brass/5' : 'border-oak-light'
+                }`}
+              >
+                <div className="flex items-baseline justify-between gap-2 text-xs">
+                  <span className="truncate text-parchment" title={nationName(nationId)}>{nationName(nationId)}</span>
+                  <span className="shrink-0 font-mono text-vellum/70">
+                    {value > 0 ? '+' : ''}{value} · {attitudeLabel(value)}
+                  </span>
+                </div>
+                <div className="mt-1 flex items-center gap-2">
+                  <input
+                    aria-label={`Thái độ của ${nationName(nationId)}`}
+                    type="range"
+                    min={-100}
+                    max={100}
+                    value={value}
+                    onChange={(event) => setAttitude(nationId, Number(event.target.value))}
+                    className="min-w-0 flex-1"
+                  />
+                  <button
+                    type="button"
+                    disabled={!overridden}
+                    onClick={() => resetAttitude(nationId)}
+                    className="w-14 shrink-0 text-[0.65rem] text-vellum/50 hover:text-brass disabled:invisible"
+                  >
+                    đặt lại
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </Card>
 
       <Field label="Hội đoàn" hint="phường hội, dòng tu, hiệp sĩ đoàn, hội thương nhân, hội trộm — cách nhau bằng dấu phẩy">
         <TextInput
@@ -1434,23 +1581,44 @@ function FactionStep({ draft, onChange, rng }: StepProps): ReactNode {
 
       <Card title="Bí mật khởi đầu">
         <p className="text-xs text-vellum/40">
-          1–3 điều nhân vật giấu. Chúng được cắm thẳng vào slice tri thức của Phần 4 với độ tin cậy
+          Chọn 1–3 điều nhân vật giấu. Chúng được cắm thẳng vào slice tri thức của Phần 4 với độ tin cậy
           100 — nhân vật biết chuyện của chính mình, NPC thì không, cho tới khi bị lộ.
         </p>
-        <div className="flex items-center gap-2">
-          <Button onClick={() => onChange({ ...draft, secrets: generateSecrets(rng) })}>Sinh bí mật</Button>
-          <span className="text-xs text-vellum/40">{draft.secrets.length} điều</span>
+        <div className="flex flex-wrap items-center gap-2">
+          <Button onClick={() => onChange({ ...draft, secrets: generateSecrets(rng) })}>Sinh lại ngẫu nhiên</Button>
+          <Button
+            disabled={draft.secrets.length >= 3}
+            onClick={() => onChange({
+              ...draft,
+              secrets: [...draft.secrets, { id: nextSecretId(), text: '', revealed: false }],
+            })}
+          >
+            Thêm bí mật
+          </Button>
+          <span className={`text-xs ${draft.secrets.length >= 1 && draft.secrets.length <= 3 ? 'text-vellum/40' : 'text-amber-300'}`}>
+            {draft.secrets.length}/3 điều
+          </span>
         </div>
         {draft.secrets.map((secret, index) => (
-          <TextInput
-            key={secret.id}
-            value={secret.text}
-            onChange={(event) => {
-              const secrets = [...draft.secrets];
-              secrets[index] = { ...secret, text: event.target.value };
-              onChange({ ...draft, secrets });
-            }}
-          />
+          <div key={secret.id} className="flex items-center gap-2">
+            <span className="w-5 shrink-0 text-right font-mono text-xs text-vellum/40">{index + 1}.</span>
+            <TextInput
+              value={secret.text}
+              placeholder="Điều nhân vật đang che giấu…"
+              onChange={(event) => {
+                const secrets = [...draft.secrets];
+                secrets[index] = { ...secret, text: event.target.value };
+                onChange({ ...draft, secrets });
+              }}
+            />
+            <Button
+              variant="danger"
+              aria-label={`Bỏ bí mật ${index + 1}`}
+              onClick={() => onChange({ ...draft, secrets: draft.secrets.filter((_, secretIndex) => secretIndex !== index) })}
+            >
+              Bỏ
+            </Button>
+          </div>
         ))}
       </Card>
     </div>
@@ -1476,7 +1644,7 @@ function GearStep({ draft, onChange }: StepProps): ReactNode {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-baseline justify-between text-sm">
+      <div className="flex flex-col gap-0.5 text-sm sm:flex-row sm:items-baseline sm:justify-between">
         <span className="text-vellum/70">
           Tiền mang theo: <span className="text-parchment">{line.coins}</span> đồng bạc
         </span>
@@ -1529,8 +1697,8 @@ function GearStep({ draft, onChange }: StepProps): ReactNode {
                     </option>
                   ))}
                 </Select>
-                <span className="w-16 text-right font-mono text-vellum/40">{gearPrice(entry)} đ</span>
-                <span className="flex-1 truncate text-vellum/40">
+                <span className="w-16 shrink-0 text-right font-mono text-vellum/40">{gearPrice(entry)} đ</span>
+                <span className="min-w-32 flex-1 truncate text-vellum/40">
                   {item?.skillBonus === undefined
                     ? (item?.coverage.length ?? 0) > 0
                       ? `che ${item?.coverage.length} vùng cơ thể`
@@ -1545,8 +1713,8 @@ function GearStep({ draft, onChange }: StepProps): ReactNode {
           })}
         </div>
 
-        <div className="flex items-center gap-2 border-t border-oak-light pt-2">
-          <Select className="w-40" value={adding} onChange={(event) => setAdding(event.target.value)}>
+        <div className="flex flex-col gap-2 border-t border-oak-light pt-2 sm:flex-row sm:items-center">
+          <Select className="sm:w-40 sm:shrink-0" value={adding} onChange={(event) => setAdding(event.target.value)}>
             {gearKinds().map((kind) => (
               <option key={kind} value={kind}>
                 {kind}
@@ -1594,13 +1762,56 @@ function GearStep({ draft, onChange }: StepProps): ReactNode {
         />
       </Card>
 
+      <PossessionLayersGuide />
       <HoldingsCard draft={draft} onChange={onChange} />
       <FiefsCard draft={draft} onChange={onChange} />
     </div>
   );
 }
 
-/** THÀNH TRÌ — một ĐIỂM: đi bộ hết trong một ngày, có tường và ô đất. */
+function PossessionLayersGuide(): ReactNode {
+  return (
+    <Card title="Ba lớp quyền lực — đừng gộp làm một">
+      <div className="grid grid-cols-1 gap-2 text-xs lg:grid-cols-3">
+        <div className="rounded border border-oak-light bg-ink/30 p-2">
+          <p className="font-semibold text-brass">1. Địa điểm thực tế</p>
+          <p className="mt-1 text-vellum/65">Thôn, làng, trấn, thành hoặc đại thành: có vị trí, dân cư, kho, công trình và quân đồn trú.</p>
+          <p className="mt-1 text-vellum/40">Có thể chiếm, giữ, xây và vây. Không phải nơi nào cũng có tường.</p>
+        </div>
+        <div className="rounded border border-oak-light bg-ink/30 p-2">
+          <p className="font-semibold text-brass">2. Thái ấp / quyền được ban</p>
+          <p className="mt-1 text-vellum/65">Một gói quyền pháp lý: có thể là đất, tô thuế, chức vụ, độc quyền cối xay, bến đò hoặc khoản thu.</p>
+          <p className="mt-1 text-vellum/40">Có thể phong, thừa kế hoặc tước đoạt; nghĩa vụ đi kèm do lệ địa phương định.</p>
+        </div>
+        <div className="rounded border border-oak-light bg-ink/30 p-2">
+          <p className="font-semibold text-brass">3. Tước vị và thực quyền</p>
+          <p className="mt-1 text-vellum/65">Tước là phẩm trật hoặc chức danh; lãnh thổ là vùng mà người giữ thực sự cai trị.</p>
+          <p className="mt-1 text-vellum/40">Có tước chưa chắc có đất; chiếm thành chưa tự động làm tước hợp pháp.</p>
+        </div>
+      </div>
+      <details className="rounded border border-oak-light bg-ink/20 px-2 py-1.5 text-xs text-vellum/55">
+        <summary className="cursor-pointer text-brass/85">Ghi chú lịch sử cho mốc 1444</summary>
+        <div className="mt-2 grid gap-2 lg:grid-cols-2">
+          <p>Không có một “kim tự tháp phong kiến” đồng nhất cho toàn châu Âu. Cùng một tên tước có thể là chức vụ, phẩm trật, quyền tài phán hoặc tước gắn đất tùy vương quốc và tập quán.</p>
+          <p>Trang viên là đơn vị kinh tế–tư pháp và thường không có công sự. Lâu đài vừa là nơi ở, trung tâm hành chính, biểu tượng địa vị, vừa là công trình phòng thủ.</p>
+          <p>Thái ấp không nhất thiết là một khối đất: quyền thu phí, khoản tiền, chức vụ và nguồn lợi cũng có thể được phong. Lời thề và lễ trao quyền làm rõ ai nợ ai.</p>
+          <p>Kế vị không mặc nhiên luôn là trưởng nam. Chia đều, bầu cử, quyền của nữ hệ và tập quán địa phương cùng tồn tại; đến năm 1444 nhiều nghĩa vụ quân sự đã được đổi thành tiền hoặc đội quân hợp đồng.</p>
+        </div>
+      </details>
+    </Card>
+  );
+}
+
+function Fact({ label, value }: { label: string; value: ReactNode }): ReactNode {
+  return (
+    <div className="rounded border border-oak-light/70 bg-ink/25 px-2 py-1.5">
+      <p className="text-[0.6rem] tracking-wider text-vellum/35 uppercase">{label}</p>
+      <div className="mt-0.5 text-xs text-vellum/70">{value}</div>
+    </div>
+  );
+}
+
+/** ĐỊA ĐIỂM — một điểm có tọa độ; chỉ các bậc đủ cao mới là thành có tường. */
 function HoldingsCard({ draft, onChange }: { draft: CharacterDraft; onChange: (draft: CharacterDraft) => void }): ReactNode {
   const set = (index: number, patch: Partial<DraftHolding>): void => {
     const holdings = [...draft.holdings];
@@ -1609,108 +1820,100 @@ function HoldingsCard({ draft, onChange }: { draft: CharacterDraft; onChange: (d
     holdings[index] = { ...current, ...patch };
     onChange({ ...draft, holdings });
   };
-
   const nearby = settlementsWithin(draft.birthRegionId);
 
   return (
-    <Card title="Thành trì đang giữ">
-      <p className="text-xs text-vellum/40">
-        Một ĐIỂM — đi bộ hết trong một ngày, có tường, ô đất, công trình và kho. Ô đất và công trình
-        thật là Phần 12; ở đây chỉ khai ngài đang giữ cái gì và với tư cách gì.
+    <Card title="Địa điểm, cơ nghiệp và thành trì đang giữ">
+      <p className="text-xs text-vellum/55">
+        Khai một <span className="text-parchment">địa điểm có thật trên bản đồ</span>. “Thành trì” ở đây là tên hệ thống;
+        thôn và làng thường để ngỏ hoặc chỉ có hào, bờ đất, hàng rào. Chọn cấp để quyết định quy mô dân và khả năng phòng thủ ban đầu.
       </p>
 
-      {draft.holdings.map((holding, index) => (
-        <div key={holding.id} className="flex flex-col gap-1 rounded border border-oak-light p-2">
-          <div className="flex flex-wrap items-center gap-1.5 text-xs">
-            <TextInput className="max-w-48" value={holding.name} onChange={(event) => set(index, { name: event.target.value })} />
-            <Select className="w-32" value={holding.tier} onChange={(event) => set(index, { tier: event.target.value })}>
-              {settlementTiers().map((tier) => (
-                <option key={tier.id} value={tier.id}>
-                  {tier.level}. {tier.name}
-                </option>
-              ))}
-            </Select>
-            <Select className="w-36" value={holding.role} onChange={(event) => set(index, { role: event.target.value })}>
-              {holdingRoles().map((role) => (
-                <option key={role.id} value={role.id}>
-                  {role.name}
-                </option>
-              ))}
-            </Select>
-            <Button
-              variant="danger"
-              onClick={() => onChange({ ...draft, holdings: draft.holdings.filter((_, i) => i !== index) })}
-            >
-              Bỏ
-            </Button>
-          </div>
-          <div className="flex flex-wrap items-center gap-1.5 text-xs">
-            <span className="text-vellum/50">Nằm ở</span>
-            <Select className="w-56" value={holding.regionId} onChange={(event) => set(index, { regionId: event.target.value })}>
-              <option value="">— chưa rõ —</option>
-              {allRegions()
-                .filter((region) => region.kind !== 'settlement')
-                .map((region) => (
-                  <option key={region.id} value={region.id}>
-                    {region.name}
-                  </option>
-                ))}
-            </Select>
-            <span className="font-mono text-vellum/30">{holding.id}</span>
-          </div>
-        </div>
-      ))}
+      {draft.holdings.length === 0 && <p className="rounded border border-dashed border-oak-light p-3 text-xs text-vellum/40 italic">Nhân vật không trực tiếp giữ địa điểm nào.</p>}
+      {draft.holdings.map((holding, index) => {
+        const tier = settlementTierOf(holding.tier);
+        const role = holdingRoleOf(holding.role);
+        return (
+          <section key={holding.id} className="flex flex-col gap-2 rounded border border-oak-light bg-ink/20 p-3">
+            <div className="flex items-start justify-between gap-3">
+              <p className="text-xs font-semibold text-brass">Địa điểm {index + 1}</p>
+              <Button variant="danger" onClick={() => onChange({ ...draft, holdings: draft.holdings.filter((_, i) => i !== index) })}>Bỏ</Button>
+            </div>
+            <div className="grid grid-cols-1 gap-2 lg:grid-cols-3">
+              <Field label="Tên riêng" hint="Tên địa điểm, không phải tên thái ấp hoặc lãnh thổ">
+                <TextInput value={holding.name} onChange={(event) => set(index, { name: event.target.value })} />
+              </Field>
+              <Field label="Cấp điểm cư trú" hint="Quy mô thực địa, không phải phẩm tước">
+                <Select value={holding.tier} onChange={(event) => set(index, { tier: event.target.value })}>
+                  {settlementTiers().map((entry) => <option key={entry.id} value={entry.id}>{entry.level}. {entry.name}</option>)}
+                </Select>
+              </Field>
+              <Field label="Tư cách đang giữ" hint="Quyền của nhân vật đối với địa điểm này">
+                <Select value={holding.role} onChange={(event) => set(index, { role: event.target.value })}>
+                  {holdingRoles().map((entry) => <option key={entry.id} value={entry.id}>{entry.name}</option>)}
+                </Select>
+              </Field>
+            </div>
+            <div className="grid grid-cols-1 gap-2 lg:grid-cols-3">
+              <Fact label="Dân số điển hình" value={tier?.population ?? 'chưa rõ'} />
+              <Fact label="Hình thái và phòng thủ" value={tier?.note ?? 'Chọn cấp để xem.'} />
+              <Fact label="Hiệu lực pháp lý" value={role?.note ?? 'Chọn tư cách để xem.'} />
+            </div>
+            <div className="grid grid-cols-1 gap-2 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+              <Field label="Nằm trong vùng" hint="Địa điểm thuộc một vùng, nhưng không đồng nhất với vùng đó">
+                <Select value={holding.regionId} onChange={(event) => set(index, { regionId: event.target.value })}>
+                  <option value="">— chưa rõ —</option>
+                  {allRegions().filter((region) => region.kind !== 'settlement').map((region) => <option key={region.id} value={region.id}>{region.name}</option>)}
+                </Select>
+              </Field>
+              <Field label="Hoàn cảnh đang giữ" hint="Ví dụ: của hồi môn, coi sóc thay trẻ vị thành niên, vừa chiếm được, bị anh em tranh chấp">
+                <textarea
+                  value={holding.note}
+                  maxLength={200}
+                  onChange={(event) => set(index, { note: event.target.value })}
+                  className="min-h-16 w-full resize-y rounded border border-oak-light bg-ink px-2 py-1.5 text-sm text-parchment placeholder:text-vellum/30"
+                />
+              </Field>
+            </div>
+            <p className="font-mono text-[0.6rem] text-vellum/25">hồ sơ: {holding.id}</p>
+          </section>
+        );
+      })}
 
       <div className="flex flex-wrap items-center gap-2">
-        <Button
-          onClick={() =>
-            onChange({
-              ...draft,
-              holdings: [
-                ...draft.holdings,
-                {
-                  id: holdingIdFor(`moi-${draft.seed}-${draft.holdings.length}`),
-                  name: UNNAMED,
-                  tier: 'thon',
-                  role: 'chu-so-huu',
-                  regionId: draft.birthRegionId,
-                  note: '',
-                },
-              ],
-            })
-          }
-        >
-          Thêm một thành trì mới
+        <Button onClick={() => onChange({ ...draft, holdings: [...draft.holdings, { id: holdingIdFor(`moi-${draft.seed}-${draft.holdings.length}`), name: UNNAMED, tier: 'thon', role: 'chu-so-huu', regionId: draft.birthRegionId, note: '' }] })}>
+          Tạo một địa điểm mới
         </Button>
-        <Select
-          className="max-w-64"
-          value=""
-          onChange={(event) => {
-            const chosen = nearby.find((entry) => entry.id === event.target.value);
-            if (chosen === undefined) return;
-            if (draft.holdings.some((entry) => entry.id === chosen.id)) return;
-            onChange({
-              ...draft,
-              holdings: [
-                ...draft.holdings,
-                { id: chosen.id, name: chosen.name, tier: 'thanh', role: 'chu-so-huu', regionId: chosen.parentId ?? '', note: '' },
-              ],
-            });
-          }}
-        >
-          <option value="">— hoặc chọn một nơi đã có trong thế giới —</option>
-          {nearby.map((entry) => (
-            <option key={entry.id} value={entry.id}>
-              {entry.name}
-            </option>
-          ))}
+        <Select className="w-full max-w-80" value="" onChange={(event) => {
+          const chosen = nearby.find((entry) => entry.id === event.target.value);
+          if (chosen === undefined || draft.holdings.some((entry) => entry.id === chosen.id)) return;
+          onChange({ ...draft, holdings: [...draft.holdings, { id: chosen.id, name: chosen.name, tier: 'thanh', role: 'chu-so-huu', regionId: chosen.parentId ?? '', note: '' }] });
+        }}>
+          <option value="">— hoặc nhận một địa điểm đã có gần quê quán —</option>
+          {nearby.map((entry) => <option key={entry.id} value={entry.id}>{entry.name}</option>)}
         </Select>
       </div>
     </Card>
   );
 }
 
-/** THÁI ẤP — một TỜ GIẤY có ấn triện: tước vị + quyền + nghĩa vụ. */
+const ACQUISITION = {
+  'duoc-phong': { name: 'Được phong', note: 'Lãnh chúa hoặc cơ quan có thẩm quyền trao bằng nghi lễ/văn thư; chính danh cao nhất.' },
+  'thua-ke': { name: 'Thừa kế', note: 'Quyền chuyển qua hàng kế vị nhưng thường vẫn phải được công nhận, tuyên thệ và nộp phí kế thừa.' },
+  'chiem-doat': { name: 'Chiếm đoạt', note: 'Nắm bằng sức mạnh hoặc thủ đoạn rồi đòi công nhận; giữ được đất chưa có nghĩa là tước đã hợp pháp.' },
+} as const;
+
+const LAND_KIND: Readonly<Record<string, string>> = {
+  khong: 'Không gắn đất', 'trang-vien': 'Trang viên', 'thai-ap-nho': 'Thái ấp nhỏ', huyen: 'Huyện / chức vụ cấp huyện',
+  quan: 'Quận', 'quan-bien': 'Biên trấn / quận biên', 'cong-quoc': 'Công quốc', 'vuong-quoc': 'Vương quốc', 'de-quoc': 'Đế quốc',
+};
+
+const ADVANCEMENT: Readonly<Record<string, string>> = {
+  'the-tap': 'phong hoặc kế tập', 'bau-cu': 'bầu cử', 'nang-luc': 'sát hạch năng lực', 'dong-mau': 'dòng máu',
+  'suc-manh': 'sức mạnh và sự công nhận', 'tay-nghe': 'tay nghề và vốn', 'uy-tin': 'uy tín hội đồng',
+};
+
+/** THÁI ẤP — quan hệ pháp lý; TƯỚC — phẩm trật/chức; LÃNH THỔ — vùng có thực quyền. */
 function FiefsCard({ draft, onChange }: { draft: CharacterDraft; onChange: (draft: CharacterDraft) => void }): ReactNode {
   const set = (index: number, patch: Partial<DraftFief>): void => {
     const fiefs = [...draft.fiefs];
@@ -1719,92 +1922,128 @@ function FiefsCard({ draft, onChange }: { draft: CharacterDraft; onChange: (draf
     fiefs[index] = { ...current, ...patch };
     onChange({ ...draft, fiefs });
   };
+  const ladder = ladderForNation(draft.allegiance.nationId);
+  const ladderTitles = titlesOfLadder(ladder.id);
+  const succession = successionLawOf(ladder.successionDefault);
 
   return (
-    <Card title="Thái ấp và tước vị">
-      <p className="text-xs text-vellum/40">
-        Một TỜ GIẤY có ấn triện — gói pháp lý gồm tước vị, quyền và nghĩa vụ. Nó không phải đất, và
-        cũng không phải thành trì: một hiệp sĩ có thái ấp mà không giữ thành trì nào là chuyện thường.
+    <Card title="Thái ấp, tước vị và thực quyền">
+      <div className="rounded border border-brass/35 bg-brass/5 p-2 text-xs">
+        <p className="text-brass">Truyền thống hiện hành: {ladder.name}</p>
+        <p className="mt-1 text-vellum/60">Lên bậc bằng {ADVANCEMENT[ladder.advancement] ?? ladder.advancement}. {ladder.note}</p>
+        <p className="mt-1 text-vellum/45">Kế vị mặc định: {succession?.name ?? ladder.successionDefault}. {succession?.note ?? ''}</p>
+      </div>
+      <p className="text-xs text-vellum/55">
+        Mỗi mục dưới đây là một <span className="text-parchment">tờ quyền riêng</span>. Một người có thể giữ nhiều tước từ nhiều cấp trên;
+        nghĩa vụ có thể xung đột. Tên tước không tự chứng minh quyền sở hữu một thành cụ thể.
       </p>
 
-      {draft.fiefs.map((fief, index) => (
-        <div key={fief.id} className="flex flex-col gap-1 rounded border border-oak-light p-2">
-          <div className="flex flex-wrap items-center gap-1.5 text-xs">
-            <TextInput className="max-w-48" value={fief.name} onChange={(event) => set(index, { name: event.target.value })} />
-            <Select className="w-36" value={fief.title} onChange={(event) => set(index, { title: event.target.value })}>
-              {fiefTitles().map((title) => (
-                <option key={title.id} value={title.id} title={title.note}>
-                  {title.rank}. {title.name}
-                </option>
-              ))}
-            </Select>
-            <TextInput
-              className="max-w-40"
-              placeholder="thề với ai"
-              value={fief.liege}
-              onChange={(event) => set(index, { liege: event.target.value })}
-            />
-            <Button variant="danger" onClick={() => onChange({ ...draft, fiefs: draft.fiefs.filter((_, i) => i !== index) })}>
-              Bỏ
-            </Button>
-          </div>
-          <div className="flex flex-wrap gap-1">
-            {fiefObligations().map((duty) => {
-              const on = fief.obligations.includes(duty.id);
-              return (
-                <button
-                  key={duty.id}
-                  type="button"
-                  onClick={() =>
-                    set(index, {
-                      obligations: on
-                        ? fief.obligations.filter((entry) => entry !== duty.id)
-                        : [...fief.obligations, duty.id].slice(0, 8),
-                    })
-                  }
-                  className={`rounded border px-1.5 py-0.5 text-[0.65rem] ${
-                    on ? 'border-brass text-brass' : 'border-oak-light text-vellum/50'
-                  }`}
-                >
-                  {duty.name}
-                </button>
-              );
-            })}
-          </div>
-          <p className="text-[0.65rem] text-vellum/40">{fiefTitleOf(fief.title)?.note ?? ''}</p>
-        </div>
-      ))}
+      {draft.fiefs.length === 0 && <p className="rounded border border-dashed border-oak-light p-3 text-xs text-vellum/40 italic">Không có tước hoặc thái ấp nào đang được công nhận.</p>}
+      {draft.fiefs.map((fief, index) => {
+        const title = titleOf(fief.title);
+        const titleLadder = title === null ? null : ladderOf(title.ladderId);
+        const panel = panelFor(fief.title);
+        const path = ACQUISITION[fief.acquisition];
+        const titles = title !== null && !ladderTitles.some((entry) => entry.id === title.id) ? [title, ...ladderTitles] : ladderTitles;
+        const outOfTradition = title !== null && title.ladderId !== ladder.id;
+        return (
+          <section key={fief.id} className="flex flex-col gap-2 rounded border border-oak-light bg-ink/20 p-3">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="text-xs font-semibold text-brass">Tờ quyền {index + 1}</p>
+                {outOfTradition && <p className="mt-0.5 text-[0.65rem] text-amber-300">Tước này thuộc một truyền thống khác với thế lực đang phục vụ; có thể giữ song song, nhưng cần giải thích trong ghi chú.</p>}
+              </div>
+              <Button variant="danger" onClick={() => onChange({ ...draft, fiefs: draft.fiefs.filter((_, i) => i !== index) })}>Bỏ</Button>
+            </div>
+            <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
+              <Field label="Tên thái ấp / văn thư" hint="Ví dụ: Thái ấp Montfort; không nhập lại tên tước vào đây">
+                <TextInput value={fief.name} onChange={(event) => set(index, { name: event.target.value })} />
+              </Field>
+              <Field label="Tước vị hoặc chức danh" hint={`Danh sách theo ${ladder.name}`}>
+                <Select value={fief.title} onChange={(event) => set(index, { title: event.target.value })}>
+                  {titles.map((entry) => <option key={entry.id} value={entry.id}>{entry.rank}. {entry.name}</option>)}
+                </Select>
+              </Field>
+              <Field label="Có được bằng cách nào" hint="Con đường này quyết định chính danh ban đầu">
+                <Select value={fief.acquisition} onChange={(event) => set(index, { acquisition: event.target.value as DraftFief['acquisition'] })}>
+                  {Object.entries(ACQUISITION).map(([id, entry]) => <option key={id} value={id}>{entry.name} · chính danh {startingLegitimacy(id as DraftFief['acquisition'])}/100</option>)}
+                </Select>
+              </Field>
+              <Field label="Lãnh chúa cấp trên" hint="Người nhận lời thề và có trách nhiệm bảo hộ; để trống nếu giữ trực tiếp từ vương quyền">
+                <TextInput placeholder="Ví dụ: Công tước xứ Burgundy" value={fief.liege} onChange={(event) => set(index, { liege: event.target.value })} />
+              </Field>
+            </div>
 
-      <div className="flex flex-wrap items-center gap-2">
-        <Button
-          onClick={() =>
-            onChange({
-              ...draft,
-              fiefs: [
-                ...draft.fiefs,
-                {
-                  id: fiefIdFor(`moi-${draft.seed}-${draft.fiefs.length}`),
-                  name: UNNAMED,
-                  title: 'hiep-si',
-                  liege: '',
-                  obligations: ['quan-dich-40'],
-                  note: '',
-                },
-              ],
-            })
-          }
-        >
-          Thêm một thái ấp
-        </Button>
-        <span className="text-xs text-vellum/50">Với lãnh thổ (một VÙNG):</span>
-        <Select className="w-56" value={draft.realmRole} onChange={(event) => onChange({ ...draft, realmRole: event.target.value })}>
-          {realmRoles().map((role) => (
-            <option key={role.id} value={role.id} title={role.note}>
-              {role.name}
-            </option>
-          ))}
-        </Select>
-      </div>
+            <div className="grid grid-cols-2 gap-2 lg:grid-cols-4">
+              <Fact label="Bậc" value={title === null ? 'Không rõ' : `${title.rank}/9 · ${titleLadder?.name ?? title.ladderId}`} />
+              <Fact label="Quyền gắn đất" value={title === null ? 'Không rõ' : (LAND_KIND[title.landKind] ?? title.landKind)} />
+              <Fact label="Quy mô cai trị" value={title === null || title.provinceCap === 0 ? 'Không có tỉnh riêng' : `tối đa ${title.provinceCap} tỉnh`} />
+              <Fact label="Quyền chỉ huy" value={title === null ? 'Không rõ' : title.commandUnits === 0 ? 'không giới hạn theo bậc' : `${title.commandUnits} đơn vị`} />
+            </div>
+            {title !== null && (
+              <div className="rounded border border-oak-light/70 p-2 text-xs">
+                <p className="text-parchment">{title.note}</p>
+                <p className="mt-1 text-vellum/50">Nghĩa vụ chuẩn: {title.obligations.levyDays} ngày quân dịch · {title.obligations.tribute} đồng cống · {title.obligations.courtDays} lần/ngày chầu mỗi năm.</p>
+                {title.termYears > 0 && <p className="mt-1 text-amber-200">Chức có nhiệm kỳ {title.termYears} năm, không phải quyền vĩnh viễn.</p>}
+                {title.requiresNation !== '' && <p className="mt-1 text-amber-200">Chỉ tồn tại trong {nationName(title.requiresNation)}.</p>}
+              </div>
+            )}
+            <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
+              <Fact label="Quyền mở ra" value={title === null || title.grants.length === 0 ? 'Không có quyền cai trị riêng.' : title.grants.join(' · ')} />
+              <Fact label="Giới hạn / quyền mất đi" value={title === null || title.loses.length === 0 ? 'Không ghi giới hạn riêng.' : title.loses.join(' · ')} />
+            </div>
+            {panel !== null && (
+              <details className="rounded border border-oak-light px-2 py-1.5 text-xs">
+                <summary className="cursor-pointer text-brass/85">Bảng cai trị thực sự mở ở bậc này: {panel.name}</summary>
+                <div className="mt-2 grid gap-2 lg:grid-cols-2">
+                  <Fact label="Sổ theo dõi" value={panel.sections.length === 0 ? 'Không có bảng cai trị.' : panel.sections.map((entry) => entry.name).join(' · ')} />
+                  <Fact label="Hành động được phép" value={panel.actions.length === 0 ? 'Không có hành động cai trị.' : panel.actions.map((entry) => entry.name).join(' · ')} />
+                </div>
+              </details>
+            )}
+            <Fact label={`${path.name} · chính danh ${startingLegitimacy(fief.acquisition)}/100`} value={path.note} />
+
+            <div>
+              <p className="mb-1 text-xs text-vellum/70">Điều khoản nghĩa vụ ghi thêm trên văn thư</p>
+              <div className="grid grid-cols-1 gap-1 lg:grid-cols-2">
+                {fiefObligations().map((duty) => {
+                  const on = fief.obligations.includes(duty.id);
+                  return (
+                    <button key={duty.id} type="button" onClick={() => set(index, { obligations: on ? fief.obligations.filter((entry) => entry !== duty.id) : [...fief.obligations, duty.id].slice(0, 8) })}
+                      className={`rounded border px-2 py-1.5 text-left text-[0.68rem] ${on ? 'border-brass bg-brass/5 text-brass' : 'border-oak-light text-vellum/55'}`}>
+                      <span>{on ? '✓ ' : ''}{duty.name}</span>
+                      {obligationOf(duty.id)?.note !== '' && <span className="mt-0.5 block text-vellum/35">{obligationOf(duty.id)?.note}</span>}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            <Field label="Điều kiện, tranh chấp và ngoại lệ" hint="Ghi người phong, năm phong, đối thủ đòi tước, sự công nhận của Giáo hội hoặc tập quán địa phương">
+              <textarea value={fief.note} maxLength={200} onChange={(event) => set(index, { note: event.target.value })}
+                className="min-h-16 w-full resize-y rounded border border-oak-light bg-ink px-2 py-1.5 text-sm text-parchment placeholder:text-vellum/30" />
+            </Field>
+            <p className="font-mono text-[0.6rem] text-vellum/25">văn thư: {fief.id}</p>
+          </section>
+        );
+      })}
+
+      <Button onClick={() => {
+        const initial = ladderTitles.find((entry) => entry.rank > 0) ?? ladderTitles[0];
+        if (initial === undefined) return;
+        onChange({ ...draft, fiefs: [...draft.fiefs, { id: fiefIdFor(`moi-${draft.seed}-${draft.fiefs.length}`), name: UNNAMED, title: initial.id, acquisition: ladder.hereditary ? 'thua-ke' : 'duoc-phong', liege: '', obligations: [], note: '' }] });
+      }}>Thêm một tước hoặc thái ấp</Button>
+
+      <section className="rounded border border-oak-light bg-ink/20 p-3">
+        <div className="grid grid-cols-1 gap-2 lg:grid-cols-2">
+          <Field label="Thực quyền đối với lãnh thổ" hint="Đây là quyền trên một VÙNG, tách khỏi tước và tách khỏi từng thành">
+            <Select value={draft.realmRole} onChange={(event) => onChange({ ...draft, realmRole: event.target.value })}>
+              {realmRoles().map((role) => <option key={role.id} value={role.id}>{role.name}</option>)}
+            </Select>
+          </Field>
+          <Fact label="Nghĩa của lựa chọn" value={realmRoleOf(draft.realmRole)?.note || 'Nhân vật không đặt thuế, ban luật hay gọi quân cho một vùng nào.'} />
+        </div>
+        <p className="mt-2 text-[0.68rem] text-vellum/40">Một người có thể giữ tước trên giấy nhưng bị lưu vong, hoặc giữ đồn thành cho người khác mà không cai trị vùng xung quanh. Vì vậy ô này không tự suy ra từ hai phần trên.</p>
+      </section>
     </Card>
   );
 }
@@ -1816,16 +2055,20 @@ function FiefsCard({ draft, onChange }: { draft: CharacterDraft; onChange: (draf
 function ConfirmStep({ draft, onChange, rng }: StepProps): ReactNode {
   return (
     <div className="flex flex-col gap-3">
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         <Field label="Tên">
           <TextInput value={draft.givenName} onChange={(event) => onChange({ ...draft, givenName: event.target.value })} />
         </Field>
         <Field label="Họ / gia tộc">
           <TextInput value={draft.familyName} onChange={(event) => onChange({ ...draft, familyName: event.target.value })} />
         </Field>
-        <Field label=" ">
-          <Button onClick={() => onChange(rollNames(draft, rng))}>Đặt tên ngẫu nhiên</Button>
-        </Field>
+        {/* Nút chiếm trọn bề ngang trên điện thoại thay vì nép vào nửa hàng
+            dưới một cái nhãn trống. */}
+        <div className="col-span-2 flex items-end sm:col-span-1">
+          <Button className="w-full" onClick={() => onChange(rollNames(draft, rng))}>
+            Đặt tên ngẫu nhiên
+          </Button>
+        </div>
       </div>
 
       <Field label="Seed của ván chơi" hint="cùng seed + cùng hành động = cùng kết quả cơ học (R3)">
@@ -1845,7 +2088,7 @@ function ConfirmStep({ draft, onChange, rng }: StepProps): ReactNode {
         thế giới thật rồi.
       */}
       <Card title="Cảnh mở đầu">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <Field label="Bắt đầu ở đâu" hint="thành trì có thật trong thế giới">
             <Select
               value={draft.opening.holdingId}

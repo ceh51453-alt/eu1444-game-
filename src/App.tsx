@@ -324,16 +324,18 @@ export function App(): ReactNode {
           onClose={() => setMenuOpen(false)}
         />
       )}
-      <button
-        type="button"
-        onClick={() => setStatusDrawerOpen(true)}
-        aria-expanded={statusDrawerOpen}
-        aria-controls="global-status-drawer"
-        className={`fixed right-3 bottom-3 z-[90] rounded border border-brass bg-oak px-3 py-2 text-xs font-semibold tracking-widest text-brass shadow-2xl hover:bg-oak-light ${fullScreenOpen ? '' : 'xl:hidden'}`}
-      >
-        Trạng thái
-      </button>
-      {statusDrawerOpen && (
+      {!creating && (
+        <button
+          type="button"
+          onClick={() => setStatusDrawerOpen(true)}
+          aria-expanded={statusDrawerOpen}
+          aria-controls="global-status-drawer"
+          className={`fixed right-3 bottom-3 z-[90] rounded border border-brass bg-oak px-3 py-2 text-xs font-semibold tracking-widest text-brass shadow-2xl hover:bg-oak-light ${fullScreenOpen ? '' : 'xl:hidden'}`}
+        >
+          Trạng thái
+        </button>
+      )}
+      {!creating && statusDrawerOpen && (
         <div className="fixed inset-0 z-[100] flex justify-end bg-ink/75" role="dialog" aria-modal="true" aria-label="Bảng trạng thái">
           <button
             type="button"

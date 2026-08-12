@@ -22,11 +22,13 @@ import { regionName } from '@/lore/regions';
 import { seedInto } from '@/systems/items/seed';
 import { createHolding, type OwnershipPath } from '@/systems/holding';
 import { grantTitle, type HeldTitle } from '@/systems/titles';
+import { npcCodexSchema, type CodexState } from '@/systems/codex';
 import { cultureOf, religionOf, suggestedCulture, suggestedReligion } from './beliefs';
 import { carry, gearName, materialName, qualityName, type CarriedGear } from './gear';
 import {
   claimLabel,
   claimsFromHouse,
+  houseName,
   houseOf,
   lorePersonName,
   originHasHouses,
@@ -130,6 +132,8 @@ export interface DraftFief {
   id: string;
   name: string;
   title: string;
+  /** Con đường có tước: được phong, thừa kế, hoặc chiếm đoạt. */
+  acquisition: 'duoc-phong' | 'thua-ke' | 'chiem-doat';
   liege: string;
   obligations: string[];
   note: string;
@@ -143,6 +147,8 @@ export interface DraftOpening {
 
 export interface CharacterDraft {
   seed: string;
+  /** Ảnh chân dung đã thu nhỏ, lưu dưới dạng data URL cùng ván chơi. */
+  portrait: string;
   raceId: string;
   originId: string;
   /** Gia tộc — dây nối vào thế giới đã có. Rỗng với người không có tên tuổi. */
@@ -190,6 +196,7 @@ export function newDraft(seed: string): CharacterDraft {
 
   const draft: CharacterDraft = {
     seed,
+    portrait: '',
     raceId,
     originId: origin?.id ?? '',
     houseId: '',
@@ -420,6 +427,7 @@ function defaultFief(draft: CharacterDraft, title: string, obligations: readonly
     id: fiefIdFor(`${title}-${draft.seed}-${index}`),
     name: UNNAMED,
     title,
+    acquisition: 'thua-ke',
     liege: '',
     obligations: [...obligations],
     note: '',
@@ -664,6 +672,8 @@ export function stepIssues(draft: CharacterDraft, step: CreationStepId): string[
       break;
     case 'the-luc':
       if (draft.secrets.length === 0) issues.push('Chưa có bí mật khởi đầu nào (mục 7 đòi 1–3).');
+      if (draft.secrets.length > 3) issues.push('Có quá 3 bí mật khởi đầu (mục 7 chỉ cho 1–3).');
+      if (draft.secrets.some((secret) => secret.text.trim() === '')) issues.push('Có bí mật khởi đầu chưa viết nội dung.');
       break;
     case 'trang-bi':
       break;
@@ -824,6 +834,7 @@ export function finalize(draft: CharacterDraft): CharacterState {
       id: 'npc_nguoi-choi',
       race: draft.raceId,
       name: fullName(draft),
+      portrait: draft.portrait,
       sex: draft.sex,
       originId: draft.originId,
       birthRegionId: draft.birthRegionId,
@@ -918,7 +929,7 @@ function seedStartingTitles(state: GameState, character: CharacterState): void {
     ...grantTitle({
       titleId: entry.title,
       fiefName: entry.name,
-      path: 'thua-ke',
+      path: entry.acquisition,
       year: state.meta.gameDate.year,
       liege: entry.liege,
       note: [entry.note, entry.obligations.map(obligationName).join(', ')].filter((line) => line !== '').join(' · '),
@@ -928,6 +939,76 @@ function seedStartingTitles(state: GameState, character: CharacterState): void {
     fiefId: entry.id as HeldTitle['fiefId'],
   }));
   Object.assign(target, { held, viewing: held[0]?.fiefId ?? '' });
+}
+
+/**
+ * Biến từng người ở bước Gia đình thành một hồ sơ Codex ngay khi bắt đầu ván.
+ *
+ * `character.family` vẫn là nguồn dữ liệu mô phỏng; Codex là hồ sơ để người chơi xem và để AI
+ * nhận diện thực thể. Vì hai nơi phục vụ hai việc khác nhau, mọi trường có cấu trúc của người thân
+ * đều được chép sang trường tương ứng thay vì chỉ để lại một câu tóm tắt dễ mất thông tin.
+ */
+function seedFamilyCodex(state: GameState, character: CharacterState): void {
+  const target = state['codex'];
+  if (typeof target !== 'object' || target === null) return;
+
+  const codex = target as CodexState;
+  const playerName = character.identity.name;
+  for (const member of Object.values(character.family)) {
+    const relation = familyRelationLabel(member.relation);
+    const race = raceOf(member.race);
+    const memberHouse = member.houseId === '' ? '' : houseName(member.houseId);
+    const life = member.alive ? 'còn sống' : 'đã mất';
+    const family = [
+      `${relation} của ${playerName}`,
+      ...(memberHouse === '' ? [] : [`Thuộc ${memberHouse}`]),
+    ];
+    const notes = [
+      member.note,
+      member.loreEntry === '' ? '' : `Hồ sơ lore: ${member.loreEntry}`,
+    ].filter((line) => line !== '').join(' · ');
+
+    codex.npcs[member.id] = npcCodexSchema.parse({
+      id: member.id,
+      name: member.name,
+      summary: `${relation} của ${playerName}; ${member.age} tuổi; ${life}; ${member.status}. Vai trò: ${member.role}.`,
+      tags: ['gia đình', member.relation, life, member.status, ...(memberHouse === '' ? [] : [memberHouse])],
+      sources: [{ turn: 0, source: 'tạo nhân vật · bước Gia đình', confidence: 100 }],
+      portrait: '',
+      role: member.role,
+      familyRelation: relation,
+      houseId: member.houseId,
+      loreEntry: member.loreEntry,
+      alive: member.alive,
+      status: member.status,
+      sex: member.sex === 'nu' ? 'female' : 'male',
+      gender: member.sex === 'nu' ? 'nữ' : 'nam',
+      age: member.age,
+      adultConfirmed: member.age >= 18,
+      species: race?.name ?? member.race,
+      race: race?.name ?? member.race,
+      personality: { goals: member.goal === '' ? [] : [member.goal] },
+      statistics: member.stats,
+      background: {
+        occupation: member.role,
+        family,
+        affiliations: memberHouse === '' ? [] : [memberHouse],
+        motivations: member.goal === '' ? [] : [member.goal],
+        notes,
+      },
+      relationships: {
+        'npc_nguoi-choi': {
+          targetId: 'npc_nguoi-choi',
+          type: relation,
+          status: member.status,
+          affection: member.attitude,
+          sinceTurn: 0,
+          lastUpdatedTurn: 0,
+          notes: member.note,
+        },
+      },
+    });
+  }
 }
 
 /**
@@ -970,6 +1051,7 @@ export function buildInitialState(draft: CharacterDraft): GameState {
   // đọc một sự thật ngay từ lượt đầu tiên.
   seedStartingHoldings(state as unknown as GameState, character, draft.seed);
   seedStartingTitles(state as unknown as GameState, character);
+  seedFamilyCodex(state as unknown as GameState, character);
 
   const parsed = slices.rootSchema().safeParse(state);
   if (!parsed.success) {

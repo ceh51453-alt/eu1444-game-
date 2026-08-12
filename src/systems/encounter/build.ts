@@ -1,9 +1,9 @@
 /**
  * KIỂM DUYỆT LỜI MỜI, RỒI DỰNG VÁN.
  *
- * Đây là nửa "ENGINE PHÁN QUYẾT" của cửa. AI đã nói xong bốn thứ nó được nói
- * (ai, mạnh cỡ nào, to cỡ nào, ở đâu); từ đây trở đi không một con số nào đến từ
- * model.
+ * Đây là nửa "ENGINE PHÁN QUYẾT" của cửa. AI chép lại sự thật câu chuyện
+ * (ai, mạnh cỡ nào, to cỡ nào, ở đâu, và quân số nếu đã được xác lập); từ đây
+ * engine ưu tiên dữ kiện ấy, rồi mới đọc state/ước lượng cho chỗ còn thiếu.
  *
  * BỐN CỬA KIỂM DUYỆT, đúng thứ tự — cùng khuôn với Phần 7 mục 3:
  *   1. có nhân vật đã chốt chưa
@@ -383,7 +383,7 @@ function foeFighterSpec(request: EncounterRequest, state: GameState): FighterSpe
   const skill = foeSkill(request.power, playerSkill);
 
   const gear: CarriedGear[] = [];
-  for (const id of FOE_GEAR[request.power]) {
+  for (const id of foeGear(request)) {
     const entry = carry(id);
     if (entry !== null) gear.push(entry);
   }
@@ -402,6 +402,44 @@ function foeFighterSpec(request: EncounterRequest, state: GameState): FighterSpe
     gear,
     doctrine: foeDoctrine(request),
   };
+}
+
+const WEAPON_IDS = new Set([
+  'item_kiem-mot-tay', 'item_kiem-dai', 'item_dao-gam', 'item_giao',
+  'item_riu-chien', 'item_bua-chien', 'item_truong-cung', 'item_cung-ngan',
+]);
+const ARMOUR_IDS = new Set([
+  'item_ao-lot-giap', 'item_giap-da', 'item_giap-luoi', 'item_giap-tam',
+  'item_mu-sat', 'item_mu-tru', 'item_khien-tron', 'item_khien-lon',
+]);
+const STORY_GEAR: readonly (readonly [string, string])[] = [
+  ['kiem-dai', 'item_kiem-dai'], ['dao-gam', 'item_dao-gam'], ['giao', 'item_giao'],
+  ['riu', 'item_riu-chien'], ['bua', 'item_bua-chien'], ['truong-cung', 'item_truong-cung'],
+  ['cung-ngan', 'item_cung-ngan'], ['kiem', 'item_kiem-mot-tay'],
+  ['giap-tam', 'item_giap-tam'], ['giap-luoi', 'item_giap-luoi'], ['giap-da', 'item_giap-da'],
+  ['ao-lot-giap', 'item_ao-lot-giap'], ['mu-tru', 'item_mu-tru'], ['mu-sat', 'item_mu-sat'],
+  ['khien-lon', 'item_khien-lon'], ['khien-tron', 'item_khien-tron'], ['khien', 'item_khien-tron'],
+];
+
+/** Vũ khí/giáp được tả trong truyện thắng bộ đồ mẫu của nấc sức mạnh. */
+function foeGear(request: EncounterRequest): string[] {
+  const text = fold(`${request.foe} ${request.description}`);
+  const mentioned = new Set<string>();
+  for (const [word, id] of STORY_GEAR) {
+    if (word === 'kiem' && /kiem-(dai|ban-to)/.test(text)) continue;
+    if (word === 'khien' && /khien-(lon|tron)/.test(text)) continue;
+    if (text.includes(word)) mentioned.add(id);
+  }
+  const unarmed = /tay-khong|khong-vu-khi|khong-mang-vu-khi/.test(text);
+  const weaponSpecified = unarmed || [...mentioned].some((id) => WEAPON_IDS.has(id));
+  const armourSpecified = [...mentioned].some((id) => ARMOUR_IDS.has(id));
+  if (!weaponSpecified && !armourSpecified) return [...FOE_GEAR[request.power]];
+
+  return [
+    ...FOE_GEAR[request.power].filter((id) =>
+      (!weaponSpecified || !WEAPON_IDS.has(id)) && (!armourSpecified || !ARMOUR_IDS.has(id))),
+    ...mentioned,
+  ];
 }
 
 function arenaFor(request: EncounterRequest): string {
@@ -442,10 +480,19 @@ export function buildDuel(request: EncounterRequest, state: GameState, rng: Rng,
  * không đủ người để ra ngoài đánh. Trận nào cũng cân bằng hoàn hảo là trận nào
  * cũng giống nhau.
  */
-function activeLandForce(state: GameState): MilitaryForce | null {
-  return militaryStateOf(state)?.forces.find(
+function activeLandForce(state: GameState, request?: EncounterRequest): MilitaryForce | null {
+  const active = militaryStateOf(state)?.forces.filter(
     (force) => force.kind === 'land' && force.units.some((unit) => unit.strength > 0),
-  ) ?? null;
+  ) ?? [];
+  if (request !== undefined) {
+    const wantedName = fold(request.playerForceName);
+    const wantedCommander = fold(request.commander);
+    const matched = active.find((force) =>
+      (wantedName !== '' && (fold(force.name).includes(wantedName) || wantedName.includes(fold(force.name))))
+      || (wantedCommander !== '' && fold(force.commander) === wantedCommander));
+    if (matched !== undefined) return matched;
+  }
+  return active[0] ?? null;
 }
 
 function forceTroops(force: MilitaryForce | null): number {
@@ -454,7 +501,7 @@ function forceTroops(force: MilitaryForce | null): number {
 
 function ourTroops(request: EncounterRequest, state?: GameState): number {
   if (request.playerTroops !== null) return request.playerTroops;
-  const real = state === undefined ? 0 : forceTroops(activeLandForce(state));
+  const real = state === undefined ? 0 : forceTroops(activeLandForce(state, request));
   if (real > 0) return real;
   const base = TROOPS[request.scale];
   return request.side === 'thu' ? Math.round(base * 0.8) : base;
@@ -538,7 +585,7 @@ function forceComposition(force: MilitaryForce | null): readonly CompositionEntr
 
 export function buildBattle(request: EncounterRequest, state: GameState, rng: Rng, turn: number): BattleState {
   const name = characterOf(state)?.identity.name ?? '';
-  const realForce = activeLandForce(state);
+  const realForce = activeLandForce(state, request);
   const ours = ourTroops(request, state);
   const theirs = foeTroops(request, ours);
   const lordName = request.commander || realForce?.commander || name || 'chủ soái của ngài';
@@ -630,7 +677,7 @@ function withStoryGarrison(fort: Fortification, men: number | null): Fortificati
   next.garrison = existing.map((unit, index) => {
     const share = index === existing.length - 1
       ? men - assigned
-      : Math.max(0, Math.round((unit.men / oldTotal) * men));
+      : Math.max(0, Math.min(men - assigned, Math.round((unit.men / oldTotal) * men)));
     assigned += share;
     return { ...unit, men: share };
   }).filter((unit) => unit.men > 0);
@@ -639,14 +686,17 @@ function withStoryGarrison(fort: Fortification, men: number | null): Fortificati
 
 export function buildSiege(request: EncounterRequest, state: GameState, rng: Rng, turn: number): SiegeState {
   const name = characterOf(state)?.identity.name ?? '';
-  const force = request.side === 'cong' ? activeLandForce(state) : null;
+  const force = request.side === 'cong' ? activeLandForce(state, request) : null;
   const troops = siegeTroops(request, state);
   const templateId = fortTemplate(request);
   const wanted = fold(`${request.foe} ${request.place}`);
   const owned = allHoldings(state);
-  const defended = request.side === 'thu'
-    ? owned.find((holding) => wanted.includes(fold(holding.name))) ?? owned.find((holding) => holding.seat) ?? owned[0]
+  const namedDefended = request.side === 'thu'
+    ? owned.find((holding) => wanted.includes(fold(holding.name)))
     : undefined;
+  const defended = request.side !== 'thu'
+    ? undefined
+    : namedDefended ?? (wanted === '' ? owned.find((holding) => holding.seat) ?? owned[0] : undefined);
   const fortName = defended?.name ?? (request.foe === '' ? 'tòa thành không tên' : request.foe);
   const attackerName = request.side === 'cong'
     ? request.playerForceName || force?.name || (request.commander === '' ? 'Đạo quân của ngài' : `Quân ${request.commander}`)

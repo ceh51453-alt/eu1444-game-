@@ -30,6 +30,7 @@ import {
   regexesOf,
   sillyTavernPresetSchema,
   type PromptEntry,
+  type RegexScriptRaw,
   type SillyTavernPreset,
 } from './schema';
 
@@ -269,6 +270,36 @@ function describeExtensions(preset: SillyTavernPreset): ImportReport['extensions
 }
 
 /**
+ * Gộp hai danh sách regex của preset thành một, theo `id`.
+ *
+ * Bản ĐẦU giữ mẫu và chuỗi thay — hai bản trùng id luôn giống nhau ở hai chỗ
+ * đó. Chỉ `disabled` mới hay lệch, và ở đó quy tắc là: TẮT THẮNG. Chạy nhầm một
+ * mẫu tác giả đã tắt thì thiệt hại không có trần — preset này có một mẫu xóa
+ * trắng cả đoạn văn; bỏ sót một mẫu tác giả đã bật thì cùng lắm mất một khung
+ * trang trí, và người chơi bật lại được ở tab Regex.
+ */
+export function dedupeRegexScripts(scripts: readonly RegexScriptRaw[]): RegexScriptRaw[] {
+  const out: RegexScriptRaw[] = [];
+  const seen = new Map<string, number>();
+
+  for (const script of scripts) {
+    // Mẫu không có id thì không có cách nào biết nó trùng với cái nào — giữ cả.
+    if (script.id === undefined || script.id === '') {
+      out.push(script);
+      continue;
+    }
+    const at = seen.get(script.id);
+    if (at === undefined) {
+      seen.set(script.id, out.length);
+      out.push(script);
+      continue;
+    }
+    if (script.disabled === true) out[at] = { ...out[at] as RegexScriptRaw, disabled: true };
+  }
+  return out;
+}
+
+/**
  * Nạp một preset SillyTavern.
  * Sai schema thì ném lỗi và KHÔNG trả về preset một nửa (R4).
  */
@@ -391,10 +422,20 @@ export function importSillyTavernPreset(raw: unknown, presetName = 'preset'): Im
   const engineInserted = insertLockedBlocks(blocks, warnings);
 
   // --- Regex + tavern_helper ------------------------------------------------
-  const rawRegex = [
+  //
+  // HAI DANH SÁCH NÀY LÀ CÙNG MỘT BỘ REGEX, KHÔNG PHẢI HAI BỘ RỜI.
+  //
+  // Preset thật chép cả bộ vào cả `SPreset.RegexBinding` lẫn `regex_scripts`:
+  // 27 + 23, trùng id gần hết. Nối thẳng hai mảng thì mỗi mẫu chạy HAI LẦN —
+  // đủ để một mẫu bọc HTML bọc chồng lên chính nó — và tệ hơn nhiều: ở chỗ hai
+  // bản KHÔNG khớp nhau về `disabled`, bản đang bật thắng. Trong preset Tawa
+  // có đúng một mẫu như thế, "Ẩn display chathistory": `^([\s\S]*)$` → `""`,
+  // tác giả đã TẮT ở bản này và quên tắt ở bản kia. Bật lên là mọi đoạn văn
+  // hiển thị bị xóa sạch thành chuỗi rỗng.
+  const rawRegex = dedupeRegexScripts([
     ...regexesOf(preset.extensions?.SPreset?.RegexBinding),
     ...(preset.extensions?.regex_scripts ?? []),
-  ];
+  ]);
   const regexScripts = rawRegex.map((script, index) => normalizeRegexScript(script, index));
   const rejectedRegex = regexScripts.filter((script) => script.rejected !== undefined);
   if (rejectedRegex.length > 0) {

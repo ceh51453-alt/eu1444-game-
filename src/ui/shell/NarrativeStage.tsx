@@ -8,6 +8,8 @@
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { applyRegexScripts, type RegexScript } from '@/ai/regex/runner';
+import { scriptHost } from '@/ai/scripts/host';
+import type { TurnEntry } from '@/ai/query';
 import { usePromptStore } from '@/state/prompts';
 import { useSettingsStore } from '@/state/settings';
 import { useGameStore } from '@/state/store';
@@ -17,6 +19,7 @@ import type { BuiltEncounter } from '@/systems/encounter';
 import { EncounterCard } from '@/ui/encounter';
 import { PatchReviewModal } from '@/ui/settings/PatchReviewModal';
 import { Button, Warning } from '@/ui/settings/controls';
+import { Narrative } from './Narrative';
 
 function DiceLine(): ReactNode {
   const last = useTurnStore((state) => state.last);
@@ -107,8 +110,42 @@ function useDisplayText(raw: string): string {
   }, [raw, scripts]);
 }
 
-function Narrative({ text }: { text: string }): ReactNode {
-  return <p className="whitespace-pre-wrap text-parchment/90">{useDisplayText(text)}</p>;
+/**
+ * Kết quả của regex hiển thị thường KHÔNG còn là chữ thuần — 32 trên 50 mẫu
+ * của preset thật thay chữ bằng HTML. `Narrative` biết vẽ cả ba dạng; xem
+ * `narrative-html.ts`.
+ */
+function TurnNarrative({ text }: { text: string }): ReactNode {
+  return <Narrative text={useDisplayText(text)} />;
+}
+
+/**
+ * BỘ CHẠY SCRIPT tavern_helper (Phần 1 mục 6.8).
+ *
+ * `scriptHost` được NẠP từ trước — trình import đọc script ra, tab Script hiện
+ * chúng, nút "Chạy thử" chạy được một cái. Cái thiếu là chỗ chúng chạy THẬT:
+ * `runAll` không được gọi ở đâu trong vòng lặp lượt, nên script duy nhất đang
+ * bật của preset thật (bộ làm đẹp chuỗi tư duy) chưa từng chạy một lần nào.
+ * Bật script lên mà không thấy gì đổi chính là chuyện đó.
+ *
+ * Vì sao ở ĐÂY chứ không ở `turn.ts`: script LOẠI UI cần DOM đã có đoạn văn
+ * mới (mục 6.8 cấm đẩy chúng vào Worker vì Worker không có DOM). Gọi trong
+ * `submit()` là gọi trước khi React vẽ, và script sẽ tìm không thấy gì để trang
+ * trí. Effect này chạy sau khi DOM đã đổi — sớm nhất mà vẫn đúng.
+ *
+ * Chạy lại mỗi lượt là CÓ Ý: script trang trí phải với tới đoạn văn vừa hiện.
+ * Script viết đúng tự chặn lần nạp thứ hai của phần cài đặt (preset thật dùng
+ * một cờ trên `window`), còn script viết sai thì `ScriptHost` bọc try/catch và
+ * ghi log kèm tên, không kéo theo lượt chơi.
+ */
+function useHelperScripts(entries: readonly TurnEntry[], running: boolean): void {
+  useEffect(() => {
+    if (running || scriptHost.list().length === 0) return;
+    void scriptHost.runAll(useGameStore.getState().snapshot(), {
+      turn: entries.at(-1)?.turn ?? 0,
+      narrative: entries.at(-1)?.narrative ?? '',
+    });
+  }, [entries, running]);
 }
 
 export interface NarrativeStageProps {
@@ -140,6 +177,8 @@ export function NarrativeStage({ onPlayEncounter }: NarrativeStageProps = {}): R
   useEffect(() => {
     bottom.current?.scrollIntoView({ behavior: 'smooth' });
   }, [entries, streaming, encounter]);
+
+  useHelperScripts(entries, running);
 
   /** Nhận lời: dựng ván rồi giao cho `App` mở màn hình toàn màn hình. */
   const playEncounter = (): void => {
@@ -205,7 +244,7 @@ export function NarrativeStage({ onPlayEncounter }: NarrativeStageProps = {}): R
                 Lượt {entry.turn} · {entry.action}
                 {entry.outcome === '' ? '' : ` · ${entry.outcome}`}
               </p>
-              <Narrative text={entry.narrative} />
+              <TurnNarrative text={entry.narrative} />
             </article>
           ))}
 

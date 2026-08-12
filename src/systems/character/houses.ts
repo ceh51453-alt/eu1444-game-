@@ -22,6 +22,7 @@
 import { z } from 'zod';
 import housesFile from '@data/houses.json';
 import { seedBooks } from '@/lore/lorebook';
+import type { LoreEntry } from '@/lore/types';
 import { regionName, regionOf } from '@/lore/regions';
 import { useLorebookStore } from '@/state/lorebooks';
 import { fiefTitleOf } from './possessions';
@@ -155,6 +156,39 @@ export interface LorePerson {
   summary: string;
 }
 
+export interface LoreEntryDetails {
+  entry: LoreEntry;
+  bookId: string;
+  bookName: string;
+  bookPriority: number;
+}
+
+function readableLorebooks() {
+  const store = useLorebookStore.getState();
+  return store.loaded && store.books.length > 0 ? store.books : seedBooks().books;
+}
+
+/**
+ * Đọc một entry bất kỳ bằng ID từ đúng kho lorebook đang dùng.
+ *
+ * Nếu nhiều sách cùng khai một ID, bản thuộc sách có priority cao nhất thắng giống hệt trình quét;
+ * nhờ vậy màn tạo nhân vật, Codex và prompt không thể đọc ba phiên bản khác nhau của cùng thực thể.
+ */
+export function loreEntryOf(id: string): LoreEntryDetails | null {
+  let found: LoreEntryDetails | null = null;
+  for (const book of readableLorebooks()) {
+    const entry = book.entries.find((candidate) => candidate.id === id);
+    if (entry === undefined || (found !== null && found.bookPriority >= book.priority)) continue;
+    found = {
+      entry,
+      bookId: book.id,
+      bookName: book.name,
+      bookPriority: book.priority,
+    };
+  }
+  return found;
+}
+
 /**
  * Danh sách nhân vật có thật trong lorebook.
  *
@@ -169,8 +203,7 @@ export interface LorePerson {
  * của SillyTavern mà cổng tri thức sinh ra để chữa.
  */
 export function lorePeople(): LorePerson[] {
-  const store = useLorebookStore.getState();
-  const books = store.loaded && store.books.length > 0 ? store.books : seedBooks().books;
+  const books = readableLorebooks();
   const out: LorePerson[] = [];
   const seen = new Set<string>();
 

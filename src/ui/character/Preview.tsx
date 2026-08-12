@@ -48,6 +48,7 @@ import {
   type StatId,
 } from '@/systems/character';
 import { regionName } from '@/lore/regions';
+import { PortraitImage } from '@/ui/portrait';
 
 function Line({ label, value }: { label: string; value: string }): ReactNode {
   return (
@@ -111,13 +112,22 @@ export function CharacterPreview({ draft }: { draft: CharacterDraft }): ReactNod
   return (
     <div className="flex flex-col">
       <div className="border-b border-oak-light px-4 py-3">
-        <p className="text-[0.65rem] tracking-[0.2em] text-brass uppercase">Phiếu nhân vật</p>
-        <p className="mt-1 truncate text-lg text-parchment">
-          {fullName(draft) === '' ? '(chưa đặt tên)' : fullName(draft)}
-        </p>
-        <p className="text-xs text-vellum/50">
-          {raceName(draft.raceId)} · {originName(draft.originId)} · {draft.sex === 'nam' ? 'nam' : 'nữ'}
-        </p>
+        <div className="flex items-start gap-3">
+          <PortraitImage
+            value={draft.portrait}
+            alt={fullName(draft) === '' ? 'Chân dung nhân vật' : `Chân dung ${fullName(draft)}`}
+            className="aspect-[4/5] w-20 shrink-0"
+          />
+          <div className="min-w-0 flex-1">
+            <p className="text-[0.65rem] tracking-[0.2em] text-brass uppercase">Phiếu nhân vật</p>
+            <p className="mt-1 truncate text-lg text-parchment">
+              {fullName(draft) === '' ? '(chưa đặt tên)' : fullName(draft)}
+            </p>
+            <p className="text-xs text-vellum/50">
+              {raceName(draft.raceId)} · {originName(draft.originId)} · {draft.sex === 'nam' ? 'nam' : 'nữ'}
+            </p>
+          </div>
+        </div>
       </div>
 
       <Section title="Gốc gác">

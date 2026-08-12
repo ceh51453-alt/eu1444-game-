@@ -339,9 +339,9 @@ export function parseEncounterRequests(raw: string): ParsedRequest[] {
 const NARRATIVE_TRIGGERS: readonly { kind: EncounterKind; pattern: RegExp }[] = [
   // Công/thủ thành phải đứng trước dã chiến: một câu "trận công thành" chỉ mở
   // đúng màn vây hãm, không bị chữ "trận" kéo sang dã chiến.
-  { kind: 'siege', pattern: /\b(công thành|vây hãm|vây thành|vây lấy thành|thủ thành|bao vây[^.!?\n]{0,40}(thành|lâu đài|pháo đài)|tổng công[^.!?\n]{0,40}(thành|tường|cổng))\b/iu },
-  { kind: 'duel', pattern: /\b(pvp|quyết đấu|thách đấu|đấu tay đôi|đơn đấu|song đấu)\b/iu },
-  { kind: 'battle', pattern: /\b(trận chiến|trận đánh|dã chiến|giao chiến|hỗn chiến|hai đạo quân[^.!?\n]{0,50}(đối đầu|xung phong|giao tranh))\b/iu },
+  { kind: 'siege', pattern: /(công thành|vây hãm|vây thành|vây lấy thành|thủ thành|bao vây[^.!?\n]{0,40}(thành|lâu đài|pháo đài)|tổng công[^.!?\n]{0,40}(thành|tường|cổng))/iu },
+  { kind: 'duel', pattern: /(pvp|quyết đấu|thách đấu|đấu tay đôi|đơn đấu|song đấu)/iu },
+  { kind: 'battle', pattern: /(trận chiến|trận đánh|dã chiến|giao chiến|hỗn chiến|hai đạo quân[^.!?\n]{0,50}(đối đầu|xung phong|giao tranh))/iu },
 ];
 
 function sentenceAround(text: string, index: number): string {

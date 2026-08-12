@@ -21,6 +21,7 @@ import { useTurnStore } from '@/state/turn';
 import { useGameStore } from '@/state/store';
 import { Button, Field, Select, TextInput, Warning } from '@/ui/settings/controls';
 import { EntryForm } from './EntryForm';
+import { LoreEntryDetails } from './LoreEntryReader';
 
 /**
  * Vùng nhân vật đang đứng, lấy thẳng từ slice `knowledge`.
@@ -442,6 +443,11 @@ export function LorebookManager({ onClose }: { onClose(): void }): ReactNode {
   const pass = useTurnStore((state) => state.lore);
   const [probe, setProbe] = useState('Ngài hỏi thăm về bá tước Reinhard và chợ phiên.');
   const [dryRun, setDryRun] = useState<typeof pass | null>(null);
+  const [entryMode, setEntryMode] = useState<'read' | 'edit'>('read');
+
+  useEffect(() => {
+    setEntryMode('read');
+  }, [bookId, entryId]);
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent): void => {
@@ -516,15 +522,31 @@ export function LorebookManager({ onClose }: { onClose(): void }): ReactNode {
         <BookColumn />
         <EntryColumn />
         {entry === undefined || book === undefined ? (
-          <p className="text-xs text-vellum/40 italic">Chọn một entry ở cột giữa để sửa.</p>
+          <p className="text-xs text-vellum/40 italic">Chọn một entry ở cột giữa để đọc thông tin hoặc chỉnh sửa.</p>
         ) : (
-          <EntryForm
-            key={entry.id}
-            entry={entry}
-            onSave={(next) => store.saveEntry(book.id, next)}
-            onDelete={() => store.deleteEntry(book.id, entry.id)}
-            onDuplicate={() => store.copyEntry(book.id, entry.id)}
-          />
+          <div className="flex min-h-0 flex-col gap-2">
+            <div className="flex items-center gap-1">
+              <Button variant={entryMode === 'read' ? 'primary' : 'normal'} onClick={() => setEntryMode('read')}>
+                Đọc thông tin
+              </Button>
+              <Button variant={entryMode === 'edit' ? 'primary' : 'normal'} onClick={() => setEntryMode('edit')}>
+                Sửa entry
+              </Button>
+            </div>
+            <div className="min-h-0 flex-1 overflow-hidden">
+              {entryMode === 'read' ? (
+                <LoreEntryDetails entry={entry} bookName={book.name} bookId={book.id} />
+              ) : (
+                <EntryForm
+                  key={entry.id}
+                  entry={entry}
+                  onSave={(next) => store.saveEntry(book.id, next)}
+                  onDelete={() => store.deleteEntry(book.id, entry.id)}
+                  onDuplicate={() => store.copyEntry(book.id, entry.id)}
+                />
+              )}
+            </div>
+          </div>
         )}
       </div>
 

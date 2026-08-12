@@ -14,6 +14,7 @@ import { assemblePrompt, checkLockedPlacement } from './assemble';
 import { CHAT_HISTORY_MARKER, LOCKED_BLOCK_IDS, MARKER_TO_GAME_BLOCK } from './blocks';
 import { exportSillyTavernPreset } from './export';
 import { formatImportReport, importSillyTavernPreset, type ImportResult } from './import';
+import { applyRegexScripts } from '../regex/runner';
 
 const DIR = join(import.meta.dirname, '..', '..', '..', 'presets', 'that');
 
@@ -140,11 +141,38 @@ describe('preset thật — regex và script', () => {
     expect(tawa).toBeDefined();
     const { preset, report } = importReal(tawa!);
 
-    // 27 trong SPreset.RegexBinding.regexes + 23 trong extensions.regex_scripts.
-    expect(report.regexScripts.total).toBe(50);
+    // 27 trong SPreset.RegexBinding.regexes, 23 trong extensions.regex_scripts,
+    // nhưng 23 cái sau là BẢN CHÉP của 23 cái đầu — cùng id, cùng mẫu. Nối
+    // thẳng thì mỗi mẫu chạy hai lần; gộp theo id còn đúng 27.
+    expect(report.regexScripts.total).toBe(27);
+    expect(new Set(preset.regexScripts.map((script) => script.id)).size).toBe(27);
     expect(preset.regexScripts.filter((script) => script.rejected === undefined).length).toBeGreaterThan(
-      40,
+      20,
     );
+  });
+
+  /**
+   * Ca hỏng người chơi báo: bật regex lên là đoạn văn biến mất.
+   *
+   * "Ẩn display chathistory" là `^([\s\S]*)$` → `""`. Tác giả tắt nó ở
+   * `RegexBinding` và quên tắt ở `regex_scripts`; bản quên tắt thắng, và mọi
+   * đoạn văn hiển thị bị thay bằng chuỗi rỗng.
+   */
+  it('mẫu xóa trắng đoạn văn phải ở trạng thái TẮT sau khi nạp', () => {
+    const tawa = FILES.find((file) => file.startsWith('Tawa'));
+    const { preset } = importReal(tawa!);
+
+    // Chọn theo HÀNH VI, không theo tên: mẫu nào khớp cả đoạn rồi thay bằng
+    // rỗng thì mẫu đó xóa trắng, dù nó tên gì.
+    const wipes = preset.regexScripts.filter(
+      (script) => script.findSource === '^([\\s\\S]*)$' && script.replace === '',
+    );
+    expect(wipes, 'preset thật phải còn mẫu này để bài kiểm có nghĩa').toHaveLength(1);
+    expect(wipes[0]?.enabled).toBe(false);
+
+    const sample = 'Ta sẽ bệt lại trên chiếu, lười nhác và tao nhã.';
+    const shown = applyRegexScripts(sample, preset.regexScripts, { placement: 2, target: 'display' });
+    expect(shown.text).toContain('bệt lại trên chiếu');
   });
 
   it('mọi mẫu regex thật đều biên dịch được và không bị bộ gác bắt nhầm', () => {

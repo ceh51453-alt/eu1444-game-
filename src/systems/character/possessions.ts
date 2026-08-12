@@ -69,8 +69,12 @@ export function holdingRoles(): HoldingRole[] {
   return [...DATA.holdingRoles];
 }
 
+export function holdingRoleOf(id: string): HoldingRole | null {
+  return DATA.holdingRoles.find((role) => role.id === id) ?? null;
+}
+
 export function holdingRoleName(id: string): string {
-  return DATA.holdingRoles.find((role) => role.id === id)?.name ?? id;
+  return holdingRoleOf(id)?.name ?? id;
 }
 
 export function fiefTitles(): FiefTitle[] {
@@ -99,16 +103,24 @@ export function fiefObligations(): HoldingRole[] {
   return [...DATA.fiefObligations];
 }
 
+export function obligationOf(id: string): HoldingRole | null {
+  return DATA.fiefObligations.find((entry) => entry.id === id) ?? null;
+}
+
 export function obligationName(id: string): string {
-  return DATA.fiefObligations.find((entry) => entry.id === id)?.name ?? id;
+  return obligationOf(id)?.name ?? id;
 }
 
 export function realmRoles(): HoldingRole[] {
   return [...DATA.realmRoles];
 }
 
+export function realmRoleOf(id: string): HoldingRole | null {
+  return DATA.realmRoles.find((role) => role.id === id) ?? null;
+}
+
 export function realmRoleName(id: string): string {
-  return DATA.realmRoles.find((role) => role.id === id)?.name ?? id;
+  return realmRoleOf(id)?.name ?? id;
 }
 
 // ---------------------------------------------------------------------------

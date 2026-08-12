@@ -7,30 +7,57 @@
  */
 
 import { z } from 'zod';
+import { portraitSchema } from '@/core/portrait';
 import type { PatchOp } from '@/state/mvu';
 import { readPath, type GameState, type SliceDefinition } from '@/state/slices';
 
 const shortText = z.string().max(500).default('');
 const longText = z.string().max(5_000).default('');
-const textList = z.array(z.string().max(500)).max(100).default([]);
 const nullableNumber = z.number().nullable().default(null);
 
-export const codexSourceSchema = z.object({
-  turn: z.int().min(0).default(0),
-  source: z.string().max(500).default(''),
-  confidence: z.int().min(0).max(100).default(50),
-});
+/**
+ * Một giá trị lẻ ở chỗ chờ mảng.
+ *
+ * Đây là lỗi hình dạng AI mắc thường xuyên nhất: `"sources": "lượt hiện tại"`
+ * thay vì một mảng. Từ chối cả lô vì chuyện đó là đánh đổi sai — cái AI muốn
+ * nói vẫn rõ, chỉ là nó quên cặp ngoặc vuông.
+ */
+function asList(value: unknown): unknown {
+  if (value === undefined || value === null) return value;
+  return Array.isArray(value) ? value : [value];
+}
+
+const textList = z.preprocess(asList, z.array(z.string().max(500)).max(100)).default([]);
+
+export const codexSourceSchema = z.preprocess(
+  // Nguồn viết bằng một câu — "lượt hiện tại", "lời đồn trong quán" — giữ
+  // nguyên câu đó làm `source` thay vì vứt đi.
+  (value) => (typeof value === 'string' ? { source: value } : value),
+  z.object({
+    turn: z.int().min(0).default(0),
+    source: z.string().max(500).default(''),
+    confidence: z.int().min(0).max(100).default(50),
+  }),
+);
 
 const baseEntityShape = {
-  id: z.string().min(1).max(120),
-  name: z.string().min(1).max(300),
-  aliases: z.array(z.string().min(1).max(300)).max(50).default([]),
+  /**
+   * ID và tên KHÔNG bắt buộc ở tầng schema, và đó là chủ ý.
+   *
+   * Khóa đường dẫn `codex.events.<id>` đã nói đủ để dựng lại cả hai, nên bắt
+   * buộc ở đây chỉ có một tác dụng: một hồ sơ AI gửi thiếu tên làm hỏng CẢ LÔ
+   * cập nhật biến của lượt đó. `reconcileCodexOps` điền chúng trước khi MVU
+   * kiểm, và ràng buộc `codex.id-khop-khoa` là lưới chắn nếu nó điền hụt.
+   */
+  id: z.string().max(120).default(''),
+  name: z.string().max(300).default(''),
+  aliases: z.preprocess(asList, z.array(z.string().max(300)).max(50)).default([]),
   summary: longText,
   tags: textList,
   firstSeenTurn: z.int().min(0).default(0),
   lastSeenTurn: z.int().min(0).default(0),
   lastUpdatedTurn: z.int().min(0).default(0),
-  sources: z.array(codexSourceSchema).max(100).default([]),
+  sources: z.preprocess(asList, z.array(codexSourceSchema).max(100)).default([]),
 };
 
 export const bodyMeasurementsSchema = z.object({
@@ -103,7 +130,15 @@ export const adultDetailSchema = z.object({
 
 export const npcCodexSchema = z.object({
   ...baseEntityShape,
+  /** Ảnh do người chơi gắn vào hồ sơ; không đưa chuỗi ảnh vào prompt AI. */
+  portrait: portraitSchema,
   role: shortText,
+  /** Các trường gốc của người thân/NPC do engine tạo, giữ riêng để không làm mất dữ kiện có cấu trúc. */
+  familyRelation: shortText,
+  houseId: shortText,
+  loreEntry: shortText,
+  alive: z.boolean().nullable().default(null),
+  status: shortText,
   sex: z.enum(['unknown', 'female', 'male', 'intersex']).default('unknown'),
   gender: shortText,
   age: z.int().min(0).max(2_000).nullable().default(null),
@@ -330,6 +365,80 @@ function mergeMemory(current: unknown, incoming: unknown): unknown {
 const CODEX_PATH = /^codex\.(npcs|locations|events|organizations|objects|quests|other)\.([^.]+)$/;
 
 /**
+ * Tên trường AI hay dùng thay cho tên trường của Codex.
+ *
+ * Zod BỎ khóa lạ trong im lặng, nên hồ sơ `{ time, description }` không ánh xạ
+ * sẽ được ghi vào với phần tóm tắt RỖNG: op báo thành công mà mất sạch cái AI
+ * vừa viết — hỏng nặng hơn cả một op bị từ chối, vì không ai nhìn thấy.
+ *
+ * Chỉ ánh xạ khi trường đích còn TRỐNG: một hồ sơ gửi cả `summary` lẫn
+ * `description` thì `summary` mới là cái tác giả cố ý viết.
+ */
+const SHARED_ALIASES: Readonly<Record<string, string>> = {
+  description: 'summary',
+  desc: 'summary',
+  details: 'summary',
+  title: 'name',
+  label: 'name',
+  alias: 'aliases',
+  tag: 'tags',
+  source: 'sources',
+  note: 'summary',
+};
+
+const COLLECTION_ALIASES: Readonly<Record<CodexCollection, Readonly<Record<string, string>>>> = {
+  npcs: { alive: 'alive' },
+  locations: { region: 'regionId', parent: 'parentId' },
+  events: {
+    time: 'dateText',
+    date: 'dateText',
+    when: 'dateText',
+    participants: 'participantIds',
+    location: 'locationIds',
+    locations: 'locationIds',
+    result: 'outcome',
+  },
+  organizations: { members: 'memberIds', leaders: 'leaderIds', headquarters: 'headquartersId' },
+  objects: { owner: 'ownerIds', owners: 'ownerIds', location: 'locationId' },
+  quests: { objective: 'objectives', giver: 'giverId', result: 'outcome', participants: 'participantIds' },
+  other: {},
+};
+
+/** Đưa tên trường của AI về tên trường của Codex. Trả lại giá trị lạ nguyên si. */
+export function normaliseAiEntry(collection: CodexCollection, value: unknown): unknown {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) return value;
+
+  const entry = value as Record<string, unknown>;
+  const aliases = { ...SHARED_ALIASES, ...COLLECTION_ALIASES[collection] };
+  const out: Record<string, unknown> = {};
+  const pending: [string, unknown][] = [];
+
+  for (const [key, field] of Object.entries(entry)) {
+    const target = aliases[key];
+    if (target === undefined || target === key) out[key] = field;
+    else pending.push([target, field]);
+  }
+  for (const [target, field] of pending) {
+    if (out[target] === undefined) out[target] = field;
+  }
+  return out;
+}
+
+/** Tên hiển thị tạm khi AI quên gửi `name`: khóa đường dẫn đọc được là đủ. */
+function nameFromId(id: string): string {
+  const stripped = id.replace(/^(npc|loc|location|event|org|organization|obj|object|quest|other)[_-]/i, '');
+  const words = (stripped === '' ? id : stripped).replace(/[_-]+/g, ' ').trim();
+  return words === '' ? id : words;
+}
+
+function firstNonEmpty(...values: (string | undefined)[]): string {
+  for (const value of values) {
+    if (value !== undefined && value.trim() !== '') return value;
+  }
+  return '';
+}
+
+/**
  * Chuẩn hoá op Codex trước MVU: điền defaults, đóng dấu lượt và chuyển một bản
  * ghi trùng tên/bí danh về ID đã tồn tại. Các op ngoài Codex được giữ nguyên.
  */
@@ -344,7 +453,11 @@ export function reconcileCodexOps(state: GameState, ops: readonly PatchOp[], tur
     const collection = match[1] as CodexCollection;
     const requestedId = match[2] ?? '';
     const schema = COLLECTION_SCHEMAS[collection];
-    const parsed = schema.safeParse(op.to);
+    // Ánh xạ tên trường TRƯỚC khi gộp: gộp bản thô rồi mới ánh xạ thì một
+    // `description` mới sẽ đè lên `summary` cũ ở bước parse, mất phần ký ức
+    // mà `mergeMemory` vừa giữ lại.
+    const raw = normaliseAiEntry(collection, op.to);
+    const parsed = schema.safeParse(raw);
     if (!parsed.success) return { ...op };
 
     const incoming = parsed.data as typeof parsed.data & { id: string; name: string; aliases: string[] };
@@ -356,12 +469,15 @@ export function reconcileCodexOps(state: GameState, ops: readonly PatchOp[], tur
     // Gộp với đầu vào THÔ, không gộp với bản đã điền defaults. Nếu AI chỉ gửi
     // `{ appearance: { hair: ... } }`, các default rỗng không được phép xóa
     // tuổi, trạng thái trưởng thành hay những mảng ký ức cũ.
-    const combined = current === undefined ? incoming : mergeMemory(current, op.to);
+    const combined = current === undefined ? incoming : mergeMemory(current, raw);
     const normalized = schema.safeParse(combined);
     if (!normalized.success) return { ...op };
     const merged = normalized.data as typeof incoming;
 
     merged.id = targetId;
+    // Tên trống không phải lý do để bỏ cả hồ sơ: khóa đường dẫn, bí danh và tên
+    // cũ đều đọc được, và một trong ba luôn có.
+    merged.name = firstNonEmpty(merged.name, current?.name, merged.aliases[0], nameFromId(targetId));
     merged.firstSeenTurn = current?.firstSeenTurn ?? (incoming.firstSeenTurn > 0 ? incoming.firstSeenTurn : turn);
     merged.lastSeenTurn = Math.max(current?.lastSeenTurn ?? 0, incoming.lastSeenTurn, turn);
     merged.lastUpdatedTurn = turn;
@@ -382,6 +498,9 @@ function keyedCorrectly(codex: CodexState): string | null {
   for (const collection of Object.keys(COLLECTION_SCHEMAS) as CodexCollection[]) {
     for (const [key, entry] of Object.entries(codex[collection])) {
       if (entry.id !== key) return `${collection}.${key} có id "${entry.id}" không khớp khóa bản ghi`;
+      // Schema để `name` trống được để một hồ sơ thiếu tên không giết cả lô;
+      // `reconcileCodexOps` luôn điền. Tới được đây là op đã đi đường vòng.
+      if (entry.name.trim() === '') return `${collection}.${key} không có tên`;
     }
   }
   return null;
@@ -426,7 +545,7 @@ export const codexSlice: SliceDefinition = {
 export interface CodexPromptView {
   index: Record<CodexCollection, Array<{ id: string; name: string; aliases: string[]; lastUpdatedTurn: number }>>;
   relevant: {
-    npcs: NpcCodexEntry[];
+    npcs: Array<Omit<NpcCodexEntry, 'portrait'>>;
     locations: CodexState['locations'][string][];
     events: CodexState['events'][string][];
     organizations: CodexState['organizations'][string][];
@@ -456,9 +575,14 @@ export function codexPromptView(
       .map(normaliseIdentity)
       .filter(Boolean),
   );
-  const relevantNpcs = Object.values(codex.npcs).filter((npc) =>
-    [...identitySet(npc), normaliseIdentity(npc.id)].some((term) => npcTerms.has(term)),
-  );
+  const relevantNpcs = Object.values(codex.npcs)
+    .filter((npc) => [...identitySet(npc), normaliseIdentity(npc.id)].some((term) => npcTerms.has(term)))
+    .map((npc) => {
+      // Data URL có thể dài hơn cả prompt; ảnh chỉ dành cho UI, model đã có mô tả chữ.
+      const { portrait, ...promptNpc } = npc;
+      void portrait;
+      return promptNpc;
+    });
   const place = normaliseIdentity(scene.place);
   const relevantLocations = Object.values(codex.locations).filter((location) =>
     place !== '' && [...identitySet(location), normaliseIdentity(location.id)].includes(place),

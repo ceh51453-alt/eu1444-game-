@@ -68,13 +68,18 @@ export function HousePicker({
                 key={house.id}
                 type="button"
                 onClick={() => onChange(house.id)}
-                className={`flex w-full items-baseline gap-2 px-2 py-1.5 text-left text-sm hover:bg-oak-light ${
+                className={`flex w-full flex-col gap-0.5 px-2 py-1.5 text-left text-sm hover:bg-oak-light sm:flex-row sm:items-baseline sm:gap-2 ${
                   house.id === value ? 'bg-oak-light text-brass' : 'text-vellum'
                 }`}
               >
-                <span className="w-44 shrink-0 truncate">{house.name}</span>
-                <span className="w-28 shrink-0 truncate text-xs text-vellum/50">{raceName(house.race)}</span>
-                <span className="flex-1 truncate text-xs text-vellum/40" title={house.note}>
+                {/* Ba cột cố định 300px không nhét vừa màn hình điện thoại, nên
+                    dưới `sm` tên nhà và chủng tộc chung một dòng, người đứng đầu
+                    xuống dòng dưới. `sm:contents` trả lại đúng ba cột cũ. */}
+                <span className="flex items-baseline gap-2 sm:contents">
+                  <span className="min-w-0 flex-1 truncate sm:w-44 sm:flex-none sm:shrink-0">{house.name}</span>
+                  <span className="shrink-0 truncate text-xs text-vellum/50 sm:w-28">{raceName(house.race)}</span>
+                </span>
+                <span className="truncate text-xs text-vellum/40" title={house.note}>
                   {houseHeadName(house.id)}
                   {/* Dấu sao phân biệt nhà có nhân vật THẬT trong lorebook với
                       nhà chỉ có một cái tên sinh ra cho hợp vùng. Người chơi cần

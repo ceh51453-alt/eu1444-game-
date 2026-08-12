@@ -13,6 +13,7 @@ import racesFile from '@data/races.json';
 import { createRng } from '@/core/rng';
 import { computeDerived } from '@/state/derived';
 import { allRegions } from '@/lore/regions';
+import { migrateToCurrent } from '@/state/migrate';
 import { registerGameSlices } from '@/state/register';
 import { canWrite, pathExists, permissionFor, slices, type GameState } from '@/state/slices';
 import { createInitialState } from '@/state/store';
@@ -46,6 +47,7 @@ import {
   housesByGroup,
   housesForOrigin,
   lorePeople,
+  loreEntryOf,
   lorePersonName,
   originOf,
   searchHouses,
@@ -90,6 +92,7 @@ import { STAT_IDS, skillPercent, statContribution } from './stats';
 import { characterOf, type CharacterState } from './slice';
 import { allHoldings } from '@/systems/holding';
 import { heldTitles } from '@/systems/titles';
+import { codexOf } from '@/systems/codex';
 
 const SEED = 'phan-6';
 
@@ -524,6 +527,49 @@ describe('mục 9 — luồng chín bước', () => {
     expect(Object.keys(character.family).length).toBeGreaterThan(0);
   });
 
+  it('chốt nhân vật tạo hồ sơ Codex đầy đủ cho từng người trong gia đình', () => {
+    const state = buildInitialState(draftFor('race_frank', 'origin_hiep-si'));
+    const character = characterOf(state) as CharacterState;
+    const codex = codexOf(state);
+
+    expect(Object.keys(codex.npcs)).toHaveLength(Object.keys(character.family).length);
+    for (const member of Object.values(character.family)) {
+      const npc = codex.npcs[member.id];
+      expect(npc).toBeDefined();
+      expect(npc).toMatchObject({
+        id: member.id,
+        name: member.name,
+        role: member.role,
+        houseId: member.houseId,
+        loreEntry: member.loreEntry,
+        alive: member.alive,
+        status: member.status,
+        age: member.age,
+        statistics: member.stats,
+      });
+      expect(npc?.personality.goals).toEqual(member.goal === '' ? [] : [member.goal]);
+      expect(npc?.relationships['npc_nguoi-choi']?.affection).toBe(member.attitude);
+      expect(npc?.sources[0]?.confidence).toBe(100);
+    }
+  });
+
+  it('mang ảnh chân dung từ bản nháp vào save nhân vật', () => {
+    const portrait = 'data:image/png;base64,iVBORw0KGgo=';
+    const character = finalize({ ...draftFor('race_orc', 'origin_hiep-si'), portrait });
+
+    expect(character.identity.portrait).toBe(portrait);
+    expect(characterOf(buildInitialState({ ...draftFor('race_orc', 'origin_hiep-si'), portrait }))?.identity.portrait)
+      .toBe(portrait);
+  });
+
+  it('save cũ chưa có ảnh vẫn nạp được với chân dung rỗng', () => {
+    const raw = structuredClone(createInitialState('save-cu')) as Record<string, unknown>;
+    const character = raw['character'] as { identity: Record<string, unknown> };
+    delete character.identity['portrait'];
+
+    expect(characterOf(migrateToCurrent(raw))?.identity.portrait).toBe('');
+  });
+
   it('bí mật khởi đầu cắm thẳng vào slice tri thức của Phần 4 (mục 7)', () => {
     const state = stateFor('race_ma-due', 'origin_thuong-nhan');
     const character = characterOf(state) as CharacterState;
@@ -533,6 +579,24 @@ describe('mục 9 — luồng chín bước', () => {
     for (const secret of character.secrets) {
       expect(knowledge.known[secret.id]?.confidence).toBe(100);
     }
+  });
+
+  it('bước 7 chỉ nhận 1–3 bí mật có nội dung', () => {
+    const valid = rollSecrets(newDraft('bi-mat-hop-le'), createRng('bi-mat-hop-le'));
+    expect(stepIssues(valid, 'the-luc')).toEqual([]);
+
+    const blank = { ...valid, secrets: [{ id: 'secret_1', text: '   ', revealed: false }] };
+    expect(stepIssues(blank, 'the-luc')).toContain('Có bí mật khởi đầu chưa viết nội dung.');
+
+    const tooMany = {
+      ...valid,
+      secrets: Array.from({ length: 4 }, (_, index) => ({
+        id: `secret_${index + 1}`,
+        text: `Bí mật ${index + 1}`,
+        revealed: false,
+      })),
+    };
+    expect(stepIssues(tooMany, 'the-luc')).toContain('Có quá 3 bí mật khởi đầu (mục 7 chỉ cho 1–3).');
   });
 
   it('lời nhờ AI viết đoạn mở đầu nêu đủ lựa chọn và ra lệnh không đụng vào số (R1)', () => {
@@ -890,6 +954,16 @@ describe('mục 9 bước 8 — khai báo sở hữu', () => {
     expect(titles[0]?.titleId).toBe('ba-tuoc');
   });
 
+  it('con đường có tước quyết định chính danh ban đầu, không mặc định mọi tước là thừa kế', () => {
+    const base = draftFor('race_frank', 'origin_dai-quy-toc', SEED, 'con-ca');
+    const draft = { ...base, fiefs: base.fiefs.map((fief) => ({ ...fief, acquisition: 'chiem-doat' as const })) };
+    const title = heldTitles(buildInitialState(draft))[0];
+
+    expect(title?.path).toBe('chiem-doat');
+    expect(title?.legitimacy).toBe(22);
+    expect(title?.churchRecognised).toBe(false);
+  });
+
   it('slugify sinh id hợp lệ từ tên tiếng Việt có dấu', () => {
     expect(slugify('Thôn Bạch Dương')).toBe('thon-bach-duong');
     expect(holdingIdFor('Thành Ehrenfeld')).toBe('hold_thanh-ehrenfeld');
@@ -1099,6 +1173,14 @@ describe('gia tộc', () => {
     const people = lorePeople();
     expect(people.length).toBeGreaterThan(50);
     expect(lorePersonName('npc_charlotte-de-valois')).toBe('Charlotte de Valois');
+  });
+
+  it('đọc được nội dung đầy đủ của từng entry lorebook bằng ID', () => {
+    const details = loreEntryOf('npc_charlotte-de-valois');
+    expect(details?.entry.title).toBe('Charlotte de Valois');
+    expect(details?.entry.content.length).toBeGreaterThan(500);
+    expect(details?.bookId).not.toBe('');
+    expect(loreEntryOf('entry-khong-ton-tai')).toBeNull();
   });
 
   it('KHÔNG cho chọn tầng bí mật của lorebook lúc tạo nhân vật', () => {

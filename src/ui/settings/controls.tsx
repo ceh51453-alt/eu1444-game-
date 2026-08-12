@@ -28,12 +28,28 @@ export function Field({
   );
 }
 
+/**
+ * `w-full` là MẶC ĐỊNH, không phải luật.
+ *
+ * Tailwind xếp `w-full` sau các lớp bề rộng cố định trong file CSS xuất ra, nên
+ * một `w-20` người gọi truyền vào sẽ thua ngay cái lớp nằm sẵn trong component —
+ * ô nhập cứ rộng 100% rồi co lại nhờ flex, và trông "gần đúng" trên màn hình
+ * rộng. Trên điện thoại thì không: `w-full` của ô tuổi ăn hết hàng và đẩy thanh
+ * kéo xuống còn 0px. Nên hễ người gọi tự khai bề rộng thì bỏ mặc định đi.
+ *
+ * Chỉ tính lớp `w-*` trần: `max-w-48` và `sm:w-40` là điều kiện thêm chứ không
+ * thay thế bề rộng cơ sở.
+ */
+function baseWidth(className: string): string {
+  return /(?:^|\s)w-/.test(className) ? '' : 'w-full';
+}
+
 export function TextInput(props: React.InputHTMLAttributes<HTMLInputElement>): ReactNode {
   const { className = '', ...rest } = props;
   return (
     <input
       {...rest}
-      className={`w-full rounded border border-oak-light bg-ink px-2 py-1.5 text-sm text-parchment placeholder:text-vellum/30 disabled:cursor-not-allowed disabled:opacity-40 ${className}`}
+      className={`${baseWidth(className)} rounded border border-oak-light bg-ink px-2 py-1.5 text-sm text-parchment placeholder:text-vellum/30 disabled:cursor-not-allowed disabled:opacity-40 ${className}`}
     />
   );
 }
@@ -43,7 +59,7 @@ export function Select(props: React.SelectHTMLAttributes<HTMLSelectElement>): Re
   return (
     <select
       {...rest}
-      className={`w-full rounded border border-oak-light bg-ink px-2 py-1.5 text-sm text-parchment disabled:cursor-not-allowed disabled:opacity-40 ${className}`}
+      className={`${baseWidth(className)} rounded border border-oak-light bg-ink px-2 py-1.5 text-sm text-parchment disabled:cursor-not-allowed disabled:opacity-40 ${className}`}
     />
   );
 }

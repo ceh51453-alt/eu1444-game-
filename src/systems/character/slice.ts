@@ -22,6 +22,7 @@
 
 import { z } from 'zod';
 import { DEFAULT_START_DATE } from '@/core/clock';
+import { portraitSchema } from '@/core/portrait';
 import { gameDateSchema } from '@/state/schema';
 import type { GameState, SliceDefinition } from '@/state/slices';
 import { readPath } from '@/state/slices';
@@ -175,6 +176,8 @@ export const fiefClaimSchema = z.object({
   name: z.string().max(80),
   /** Bậc trong thang tước vị (Phần 13 mục 2). */
   title: z.string().max(40),
+  /** `duoc-phong` · `thua-ke` · `chiem-doat`: con đường pháp lý quyết định chính danh ban đầu. */
+  acquisition: z.enum(['duoc-phong', 'thua-ke', 'chiem-doat']).default('thua-ke'),
   /** Thề với ai — id NPC hoặc tên. Rỗng nghĩa là giữ trực tiếp từ vương quyền. */
   liege: z.string().max(80).default(''),
   obligations: z.array(z.string().max(60)).max(8).default([]),
@@ -201,6 +204,8 @@ export const characterSchema = z.object({
      */
     race: z.string(),
     name: z.string().max(80).default(''),
+    /** Ảnh do người chơi chọn, nhúng thẳng vào save để luôn mang theo nhân vật. */
+    portrait: portraitSchema,
     sex: z.enum(['nam', 'nu']).default('nam'),
     originId: z.string().default(''),
     birthRegionId: z.string().default(''),
@@ -429,6 +434,7 @@ export const characterSlice: SliceDefinition = {
       id: 'npc_nguoi-choi',
       race: 'race_teuton',
       name: '',
+      portrait: '',
       sex: 'nam',
       originId: '',
       birthRegionId: '',
