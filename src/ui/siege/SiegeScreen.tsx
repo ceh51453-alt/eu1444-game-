@@ -248,6 +248,7 @@ export function SiegeScreen({ siege: initial, onClose, onFinish, onCommit }: Sie
             {siege.finished
               ? `Đã xong — ${SIEGE_ENDINGS[siege.ending] ?? siege.ending}`
               : `Tuần ${siege.week} · ${PHASE_LABELS[siege.phase]}`}
+            {siege.setting.place === '' ? '' : ` · ${siege.setting.place}`}
             {siege.stakes === '' ? '' : ` · ${siege.stakes}`}
           </span>
         </div>
@@ -258,7 +259,7 @@ export function SiegeScreen({ siege: initial, onClose, onFinish, onCommit }: Sie
         {/* Bảng bên vây */}
         <aside className="flex w-60 shrink-0 flex-col gap-2 overflow-y-auto border-r border-oak-light px-3 py-3">
           <h3 className="text-[0.65rem] font-semibold tracking-[0.18em] text-brass uppercase">
-            Bên vây {siege.playerSide === 'vay' ? '— ngài' : ''}
+            Bên vây {siege.playerSide === 'vay' ? '— ngài' : ''} · {siege.attacker.name} · {siege.attacker.commanderName}
           </h3>
           <p className="text-[0.55rem] text-parchment/35">chống lại thời gian và dịch bệnh</p>
           <BesiegerPanel siege={siege} />
@@ -465,7 +466,7 @@ export function SiegeScreen({ siege: initial, onClose, onFinish, onCommit }: Sie
         {/* Bảng bên thủ */}
         <aside className="hidden w-60 shrink-0 flex-col gap-2 overflow-y-auto border-l border-oak-light px-3 py-3 lg:flex">
           <h3 className="text-[0.65rem] font-semibold tracking-[0.18em] text-brass uppercase">
-            Bên thủ {siege.playerSide === 'thu' ? '— ngài' : ''}
+            Bên thủ {siege.playerSide === 'thu' ? '— ngài' : ''} · {siege.fort.name} · {siege.defender.commanderName}
           </h3>
           <p className="text-[0.55rem] text-parchment/35">chống lại cái đói và lòng người</p>
           <DefenderPanel siege={siege} />

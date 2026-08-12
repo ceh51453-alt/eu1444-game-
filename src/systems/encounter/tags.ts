@@ -27,6 +27,11 @@ type AttrKey =
   | 'description'
   | 'relation'
   | 'commander'
+  | 'foeCommander'
+  | 'playerForceName'
+  | 'foeForceName'
+  | 'playerTroops'
+  | 'foeTroops'
   | 'power'
   | 'scale'
   | 'side'
@@ -59,6 +64,26 @@ const ATTR_ALIASES: Readonly<Record<string, AttrKey>> = {
   tuong: 'commander',
   commander: 'commander',
   lord: 'commander',
+
+  'chu-soai-dich': 'foeCommander',
+  'tuong-dich': 'foeCommander',
+  'enemy-commander': 'foeCommander',
+
+  'phe-ta': 'playerForceName',
+  'quan-ta-ten': 'playerForceName',
+  'player-force': 'playerForceName',
+
+  'phe-dich': 'foeForceName',
+  'quan-dich-ten': 'foeForceName',
+  'enemy-force': 'foeForceName',
+
+  'quan-ta': 'playerTroops',
+  'so-quan-ta': 'playerTroops',
+  'player-troops': 'playerTroops',
+
+  'quan-dich': 'foeTroops',
+  'so-quan-dich': 'foeTroops',
+  'enemy-troops': 'foeTroops',
 
   'trinh-do': 'power',
   'tuong-quan': 'power',
@@ -197,6 +222,27 @@ export interface ParsedRequest {
   unknown: AttrKey[];
 }
 
+/**
+ * Đọc một quân số do câu chuyện đã nói rõ. Chỉ chấp nhận số nguyên dương và
+ * giới hạn đủ rộng cho chiến dịch; chữ sai không được âm thầm biến thành 0.
+ */
+function troopCountOf(text: string | undefined): number | null | 'invalid' {
+  if (text === undefined || text.trim() === '') return null;
+  const compact = text.trim().replace(/[.,\s]/g, '');
+  if (!/^\d+$/.test(compact)) return 'invalid';
+  const value = Number(compact);
+  if (!Number.isSafeInteger(value) || value < 1 || value > 1_000_000) return 'invalid';
+  return value;
+}
+
+/** Phần văn xuôi thật, không gồm thẻ điều khiển và khối cập nhật biến. */
+function storyTextOf(raw: string): string {
+  return raw
+    .replace(TAG_PATTERN, '')
+    .replace(/<UpdateVariable>[\s\S]*?<\/UpdateVariable>/gi, '')
+    .trim();
+}
+
 function kindOfTag(tag: string): EncounterKind {
   const lowered = tag.toLowerCase();
   if (lowered === 'battle') return 'battle';
@@ -213,6 +259,7 @@ function kindOfTag(tag: string): EncounterKind {
  */
 export function parseEncounterRequests(raw: string): ParsedRequest[] {
   const parsed: ParsedRequest[] = [];
+  const storyText = storyTextOf(raw);
   TAG_PATTERN.lastIndex = 0;
 
   for (let match = TAG_PATTERN.exec(raw); match !== null; match = TAG_PATTERN.exec(raw)) {
@@ -256,14 +303,26 @@ export function parseEncounterRequests(raw: string): ParsedRequest[] {
       else side = read;
     }
 
+    const playerTroopsRead = troopCountOf(found['playerTroops']);
+    const foeTroopsRead = troopCountOf(found['foeTroops']);
+    if (playerTroopsRead === 'invalid') unknown.push('playerTroops');
+    if (foeTroopsRead === 'invalid') unknown.push('foeTroops');
+
     parsed.push({
       request: {
         kind,
+        source: 'tag',
+        sourceText: storyText,
         kindId: (found['kind'] ?? '').trim(),
         foe: (found['foe'] ?? '').trim(),
         description: (found['description'] ?? '').trim(),
         relation: (found['relation'] ?? '').trim(),
         commander: (found['commander'] ?? '').trim(),
+        foeCommander: (found['foeCommander'] ?? '').trim(),
+        playerForceName: (found['playerForceName'] ?? '').trim(),
+        foeForceName: (found['foeForceName'] ?? '').trim(),
+        playerTroops: playerTroopsRead === 'invalid' ? null : playerTroopsRead,
+        foeTroops: foeTroopsRead === 'invalid' ? null : foeTroopsRead,
         power,
         scale,
         side,
@@ -275,6 +334,92 @@ export function parseEncounterRequests(raw: string): ParsedRequest[] {
   }
 
   return parsed;
+}
+
+const NARRATIVE_TRIGGERS: readonly { kind: EncounterKind; pattern: RegExp }[] = [
+  // Công/thủ thành phải đứng trước dã chiến: một câu "trận công thành" chỉ mở
+  // đúng màn vây hãm, không bị chữ "trận" kéo sang dã chiến.
+  { kind: 'siege', pattern: /\b(công thành|vây hãm|vây thành|vây lấy thành|thủ thành|bao vây[^.!?\n]{0,40}(thành|lâu đài|pháo đài)|tổng công[^.!?\n]{0,40}(thành|tường|cổng))\b/iu },
+  { kind: 'duel', pattern: /\b(pvp|quyết đấu|thách đấu|đấu tay đôi|đơn đấu|song đấu)\b/iu },
+  { kind: 'battle', pattern: /\b(trận chiến|trận đánh|dã chiến|giao chiến|hỗn chiến|hai đạo quân[^.!?\n]{0,50}(đối đầu|xung phong|giao tranh))\b/iu },
+];
+
+function sentenceAround(text: string, index: number): string {
+  const start = Math.max(
+    text.lastIndexOf('.', index - 1),
+    text.lastIndexOf('!', index - 1),
+    text.lastIndexOf('?', index - 1),
+    text.lastIndexOf('\n', index - 1),
+  ) + 1;
+  const ends = [text.indexOf('.', index), text.indexOf('!', index), text.indexOf('?', index), text.indexOf('\n', index)]
+    .filter((value) => value >= 0);
+  const end = ends.length === 0 ? text.length : Math.min(...ends) + 1;
+  return text.slice(start, end).trim();
+}
+
+function foeFromSentence(kind: EncounterKind, sentence: string): string {
+  const patterns = kind === 'siege'
+    ? [/(?:thành|lâu đài|pháo đài)\s+([\p{L}\d][\p{L}\d '\-]{1,60})/iu]
+    : [/(?:với|chống lại|đối đầu(?:\s+với)?|thách đấu)\s+([\p{L}\d][^,.;!?\n]{1,60})/iu];
+  for (const pattern of patterns) {
+    const found = pattern.exec(sentence)?.[1]?.trim();
+    if (found !== undefined && found !== '') return found;
+  }
+  return '';
+}
+
+/**
+ * Cửa dự phòng khi model kể ra một trận nhưng quên thẻ `<Request…>`. Nó cố ý
+ * chỉ dùng các tên sự kiện rõ nghĩa; một chữ "đánh" đơn lẻ không đủ để tự mở.
+ */
+export function inferEncounterRequest(raw: string): ParsedRequest | null {
+  const story = storyTextOf(raw);
+  let found: { kind: EncounterKind; index: number } | null = null;
+  for (const trigger of NARRATIVE_TRIGGERS) {
+    trigger.pattern.lastIndex = 0;
+    const match = trigger.pattern.exec(story);
+    if (match === null) continue;
+    if (found === null || match.index < found.index) found = { kind: trigger.kind, index: match.index };
+  }
+  if (found === null) return null;
+
+  const sentence = sentenceAround(story, found.index);
+  // Nhắc lại quá khứ, tin đồn và kế hoạch không phải một cửa vào trận hiện tại.
+  // Prompt cũng nói đúng ranh giới này; bộ dự phòng giữ cùng một nghĩa.
+  if (/\b(kể lại|nhớ lại|hồi tưởng|năm xưa|nghe tin|tin đồn|dự định|kế hoạch|sẽ có|sẽ mở|đã kết thúc)\b/iu.test(sentence)) {
+    return null;
+  }
+  return {
+    request: {
+      kind: found.kind,
+      source: 'narrative',
+      sourceText: sentence,
+      kindId: '',
+      foe: foeFromSentence(found.kind, sentence),
+      description: sentence,
+      relation: '',
+      commander: '',
+      foeCommander: '',
+      playerForceName: '',
+      foeForceName: '',
+      playerTroops: null,
+      foeTroops: null,
+      power: 'ngang-co',
+      scale: 'vua',
+      side: /\b(thủ thành|bị vây|trong tường|phòng thủ)\b/iu.test(sentence) ? 'thu' : 'cong',
+      place: '',
+      stakes: sentence,
+    },
+    unknown: [],
+  };
+}
+
+/** Thẻ là nguồn ưu tiên; nếu model quên thẻ thì chính văn xuôi vẫn mở đúng game. */
+export function encounterRequestsFromOutput(raw: string): ParsedRequest[] {
+  const tagged = parseEncounterRequests(raw);
+  if (tagged.length > 0) return tagged;
+  const inferred = inferEncounterRequest(raw);
+  return inferred === null ? [] : [inferred];
 }
 
 /** Bỏ thẻ khỏi đoạn văn trước khi hiện cho người chơi — họ đọc truyện, không đọc thẻ. */

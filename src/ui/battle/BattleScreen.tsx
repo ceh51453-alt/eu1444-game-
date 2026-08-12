@@ -209,6 +209,7 @@ export function BattleScreen({ battle: initial, onClose, onFinish, onCommit }: B
           <h2 className="text-sm font-semibold tracking-[0.18em] text-brass uppercase">Dã chiến</h2>
           <span className="text-xs text-parchment/55">
             {battle.finished ? `Đã xong — ${ENDINGS[battle.ending] ?? battle.ending}` : `Vòng ${battle.round}`}
+            {battle.setting.place === '' ? '' : ` · ${battle.setting.place}`}
             {battle.stakes === '' ? '' : ` · ${battle.stakes}`}
           </span>
         </div>
@@ -221,7 +222,10 @@ export function BattleScreen({ battle: initial, onClose, onFinish, onCommit }: B
             <h3 className="mb-1 text-[0.65rem] font-semibold tracking-[0.18em] text-brass uppercase">Hai bên</h3>
             {([mine, theirs] as const).map((side) => (
               <div key={side} className="flex items-baseline justify-between gap-2 text-xs">
-                <span className="text-parchment/60">{side === mine ? 'Quân ta' : 'Quân địch'}</span>
+                <span className="text-parchment/60" title={battle.forces[side].commanderName}>
+                  {side === mine ? 'Quân ta' : 'Quân địch'} · {battle.forces[side].name}
+                  {battle.forces[side].commanderName === '' ? '' : ` · ${battle.forces[side].commanderName}`}
+                </span>
                 <span className="font-mono text-parchment">
                   {strengthOf(battle, side)} · sĩ khí {Math.round(averageMorale(battle, side))}
                 </span>

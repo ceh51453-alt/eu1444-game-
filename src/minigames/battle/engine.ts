@@ -350,6 +350,10 @@ export function createBattle(rng: Rng, setup: BattleSetup): BattleState {
     grid,
     weatherId: weather.id,
     timeId: time.id,
+    forces: {
+      a: { name: setup.a.name, commanderName: setup.a.commanderName ?? '', startTroops: setup.a.troops },
+      b: { name: setup.b.name, commanderName: setup.b.commanderName ?? '', startTroops: setup.b.troops },
+    },
     units,
     officers,
     order: [],
@@ -997,7 +1001,7 @@ function forceNote(battle: BattleState, side: SideId): CombatChronicle['forces']
   const commander = battle.officers.find((officer) => officer.side === side && officer.wing === 'trung');
   return {
     side,
-    name: side === 'a' ? 'Đạo quân thứ nhất' : 'Đạo quân thứ hai',
+    name: battle.forces[side].name,
     strength: units.reduce((sum, unit) => sum + unit.maxStrength, 0),
     units: units.length,
     commander: commander?.name ?? '',
@@ -1009,7 +1013,7 @@ export function buildChronicle(battle: BattleState): CombatChronicle {
   const summary =
     battle.winner === ''
       ? 'Hai bên rời nhau trong đêm, không ai giữ được chiến trường.'
-      : `${battle.winner === 'a' ? 'Đạo quân thứ nhất' : 'Đạo quân thứ hai'} giữ được chiến trường sau ${String(battle.rounds.length)} vòng.`;
+      : `${battle.forces[battle.winner].name} giữ được chiến trường sau ${String(battle.rounds.length)} vòng.`;
 
   return {
     kind: 'battle',

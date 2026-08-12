@@ -42,7 +42,9 @@ export {
 } from './resolve';
 
 export {
+  encounterRequestsFromOutput,
   fold,
+  inferEncounterRequest,
   parseEncounterRequests,
   powerOf,
   scaleOf,

@@ -22,7 +22,7 @@ import { createRngHub, type Rng, type RngHubState } from '@/core/rng';
 import type { MechanicalOutcome, RollContext, TurnInput, TurnRecord, TurnStep } from '@/core/turn';
 import { BODY_STREAM, bodyTurn, handleAiText, stripInjuryRequests } from '@/systems/body';
 import {
-  parseEncounterRequests,
+  encounterRequestsFromOutput,
   screenEncounters,
   stripEncounterRequests,
   type EncounterOffer,
@@ -694,7 +694,9 @@ export async function runTurn(
   const narrative = stripMarchOrders(
     stripRecruitmentRequests(stripEncounterRequests(stripInjuryRequests(stripUpdateBlocks(raw)))),
   );
-  const encounterRequests = parseEncounterRequests(raw);
+  // Thẻ là nguồn chính. Nếu model kể rõ một cuộc quyết đấu/dã chiến/vây hãm
+  // nhưng quên thẻ, văn xuôi vẫn là một nguồn sự kiện và phải mở đúng minigame.
+  const encounterRequests = encounterRequestsFromOutput(raw);
 
   // --- Bước 6: VALIDATE ---------------------------------------------------
   let patch: ApplyResult | null = null;

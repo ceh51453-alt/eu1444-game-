@@ -43,7 +43,7 @@ import {
   type ForceSpec,
   type OfficerSpec,
 } from '@/minigames/battle';
-import { createSiege, type SiegeSetup, type SiegeState } from '@/systems/siege';
+import { createSiege, type Fortification, type SiegeSetup, type SiegeState } from '@/systems/siege';
 import { playerFighterSpec, skillLevels } from './player';
 import { allHoldings, fortificationFromHolding } from '@/systems/holding';
 import { militaryStateOf, type MilitaryForce } from '@/systems/military';
@@ -217,6 +217,9 @@ function resolveDuelKind(text: string): string | null {
 function describe(request: EncounterRequest, state: GameState): { title: string; brief: string } {
   const where = request.place === '' ? '' : ` ở ${request.place}`;
   const stakes = request.stakes === '' ? '' : ` Được mất: ${request.stakes}.`;
+  const source = request.source === 'narrative'
+    ? ' Nhận ra trực tiếp từ diễn biến vừa kể.'
+    : ' Dữ kiện lấy từ diễn biến vừa kể; chỗ truyện chưa xác lập mới dùng state/ước lượng.';
 
   if (request.kind === 'duel') {
     const kind = kindOf(request.kindId);
@@ -226,29 +229,35 @@ function describe(request: EncounterRequest, state: GameState): { title: string;
       title: `${kind?.name ?? 'Quyết đấu'}: ${foe}`,
       brief:
         `${foe} — ${POWER_LABELS[request.power]}, kiếm thuật ${String(skill)}/100${where}.` +
-        `${kind?.blunted === true ? ' Vũ khí cùn.' : ' Sắt thật.'}${stakes}`,
+        `${kind?.blunted === true ? ' Vũ khí cùn.' : ' Sắt thật.'}${stakes}${source}`,
     };
   }
 
   if (request.kind === 'battle') {
     const ours = ourTroops(request, state);
-    const theirs = Math.round(ours * FOE_RATIO[request.power]);
-    const foe = request.foe === '' ? 'quân địch' : request.foe;
+    const theirs = foeTroops(request, ours);
+    const foe = request.foeForceName || request.foe || 'quân địch được nhắc trong truyện';
+    const oursSource = request.playerTroops === null ? 'theo quân lực hiện có/ước lượng' : 'đúng quân số trong truyện';
+    const theirsSource = request.foeTroops === null ? 'ước lượng theo tương quan đã kể' : 'đúng quân số trong truyện';
     return {
       title: `Dã chiến: ${foe}`,
       brief:
-        `Khoảng ${String(ours)} quân của phe ngài đối đầu ${String(theirs)} quân ${foe}` +
-        `${where}. Ngài ${request.side === 'thu' ? 'giữ đất' : 'là bên tiến lên'}.${stakes}`,
+        `${String(ours)} quân phe ngài (${oursSource}) đối đầu ${String(theirs)} quân ${foe} (${theirsSource})` +
+        `${where}. Ngài ${request.side === 'thu' ? 'giữ đất' : 'là bên tiến lên'}.${stakes}${source}`,
     };
   }
 
   const fortName = request.foe === '' ? 'tòa thành' : request.foe;
   const troops = siegeTroops(request, state);
+  const garrison = siegeGarrison(request);
+  const attackerSource = request.side === 'cong' ? request.playerTroops : request.foeTroops;
   return {
     title: `Vây hãm: ${fortName}`,
     brief:
-      `Đạo quân vây khoảng ${String(troops)} người, ${fortName} là ${fortLabel(fortTemplate(request))}. ` +
-      `Ngài đứng ${request.side === 'thu' ? 'trong tường' : 'ngoài tường'}${where}.${stakes}`,
+      `Đạo quân vây ${String(troops)} người (${attackerSource === null ? 'theo state/ước lượng' : 'đúng quân số trong truyện'}), ` +
+      `${fortName} là ${fortLabel(fortTemplate(request))}` +
+      `${garrison === null ? '' : ` với ${String(garrison)} quân thủ thành (đúng diễn biến)`}. ` +
+      `Ngài đứng ${request.side === 'thu' ? 'trong tường' : 'ngoài tường'}${where}.${stakes}${source}`,
   };
 }
 
@@ -308,6 +317,12 @@ export function screenEncounters(
     }
     if (item.unknown.includes('side')) {
       screening.log.push('không hiểu bên AI khai — mặc định ngài là bên chủ động');
+    }
+    if (item.unknown.includes('playerTroops')) {
+      screening.log.push('quân số phe ngài trong thẻ không hợp lệ — không dùng con số ấy');
+    }
+    if (item.unknown.includes('foeTroops')) {
+      screening.log.push('quân số phe địch trong thẻ không hợp lệ — không dùng con số ấy');
     }
 
     if (request.kind === 'duel') {
@@ -438,6 +453,7 @@ function forceTroops(force: MilitaryForce | null): number {
 }
 
 function ourTroops(request: EncounterRequest, state?: GameState): number {
+  if (request.playerTroops !== null) return request.playerTroops;
   const real = state === undefined ? 0 : forceTroops(activeLandForce(state));
   if (real > 0) return real;
   const base = TROOPS[request.scale];
@@ -447,7 +463,17 @@ function ourTroops(request: EncounterRequest, state?: GameState): number {
 function siegeTroops(request: EncounterRequest, state: GameState): number {
   // Chỉ dùng quân thật khi người chơi là bên vây. Khi thủ thành, quân vây là
   // đối phương do lời kể mở ra; lấy quân của chính ngài đặt ngoài tường là đảo phe.
-  return request.side === 'cong' ? ourTroops(request, state) : TROOPS[request.scale];
+  if (request.side === 'cong') return ourTroops(request, state);
+  return request.foeTroops ?? TROOPS[request.scale];
+}
+
+function foeTroops(request: EncounterRequest, ours: number): number {
+  return request.foeTroops ?? Math.max(50, Math.round(ours * FOE_RATIO[request.power]));
+}
+
+/** Quân trong tường: phe địch khi ngài công, phe ngài khi ngài thủ. */
+function siegeGarrison(request: EncounterRequest): number | null {
+  return request.side === 'cong' ? request.foeTroops : request.playerTroops;
 }
 
 type HostId = 'phong-kien' | 'cuop' | 'bo-lac';
@@ -514,14 +540,15 @@ export function buildBattle(request: EncounterRequest, state: GameState, rng: Rn
   const name = characterOf(state)?.identity.name ?? '';
   const realForce = activeLandForce(state);
   const ours = ourTroops(request, state);
-  const theirs = Math.max(50, Math.round(ours * FOE_RATIO[request.power]));
+  const theirs = foeTroops(request, ours);
   const lordName = request.commander || realForce?.commander || name || 'chủ soái của ngài';
-  const foeName = request.foe === '' ? 'Quân địch' : request.foe;
+  const foeName = request.foeForceName || request.foe || 'Quân địch được nhắc trong truyện';
+  const foeCommander = request.foeCommander || `Kẻ cầm đầu ${foeName}`;
   const fieldId =
     matchWord(request.place, FIELD_WORDS) ?? (request.side === 'thu' ? 'field_suon-doi' : 'field_dong-trong');
 
   const ourForce: ForceSpec = {
-    name: realForce?.name ?? `Quân của ${lordName}`,
+    name: request.playerForceName || realForce?.name || `Quân của ${lordName}`,
     troops: ours,
     composition: forceComposition(realForce),
     officers: officersFor('Đội trưởng', lordName),
@@ -531,8 +558,8 @@ export function buildBattle(request: EncounterRequest, state: GameState, rng: Rn
     name: foeName,
     troops: theirs,
     composition: hostFor(request),
-    officers: officersFor(`Tay cầm quân của ${foeName},`, `Kẻ cầm đầu ${foeName}`),
-    commanderName: `Kẻ cầm đầu ${foeName}`,
+    officers: officersFor(`Tay cầm quân của ${foeName},`, foeCommander),
+    commanderName: foeCommander,
   };
 
   return createBattle(rng, {
@@ -579,6 +606,37 @@ function enginesFor(scale: ScaleTier): string[] {
   return ['engine_thang', 'engine_xe-huc', 'engine_ballista'];
 }
 
+/** Giữ nguyên tường, kho, dân và tên của thành thật; chỉ đồng bộ quân số truyện. */
+function withStoryGarrison(fort: Fortification, men: number | null): Fortification {
+  if (men === null) return fort;
+  const next = structuredClone(fort);
+  if (men <= 0) {
+    next.garrison = [];
+    return next;
+  }
+  const existing = next.garrison.filter((unit) => unit.men > 0);
+  if (existing.length === 0) {
+    next.garrison = [{
+      id: 'unit_don-tru_truyen',
+      typeId: 'unit_bo-binh-thue',
+      name: 'Quân thủ thành trong diễn biến',
+      men,
+      quality: 3,
+    }];
+    return next;
+  }
+  const oldTotal = existing.reduce((sum, unit) => sum + unit.men, 0);
+  let assigned = 0;
+  next.garrison = existing.map((unit, index) => {
+    const share = index === existing.length - 1
+      ? men - assigned
+      : Math.max(0, Math.round((unit.men / oldTotal) * men));
+    assigned += share;
+    return { ...unit, men: share };
+  }).filter((unit) => unit.men > 0);
+  return next;
+}
+
 export function buildSiege(request: EncounterRequest, state: GameState, rng: Rng, turn: number): SiegeState {
   const name = characterOf(state)?.identity.name ?? '';
   const force = request.side === 'cong' ? activeLandForce(state) : null;
@@ -590,18 +648,23 @@ export function buildSiege(request: EncounterRequest, state: GameState, rng: Rng
     ? owned.find((holding) => wanted.includes(fold(holding.name))) ?? owned.find((holding) => holding.seat) ?? owned[0]
     : undefined;
   const fortName = defended?.name ?? (request.foe === '' ? 'tòa thành không tên' : request.foe);
-  const besieger =
-    request.side === 'cong'
-      ? request.commander === ''
-        ? 'Đạo quân của ngài'
-        : `Quân ${request.commander}`
-      : request.commander === ''
-        ? 'Đạo quân vây'
-        : `Quân ${request.commander}`;
+  const attackerName = request.side === 'cong'
+    ? request.playerForceName || force?.name || (request.commander === '' ? 'Đạo quân của ngài' : `Quân ${request.commander}`)
+    : request.foeForceName || (request.foeCommander === '' ? 'Đạo quân vây được nhắc trong truyện' : `Quân ${request.foeCommander}`);
+  const attackerCommander = request.side === 'cong'
+    ? request.commander || force?.commander || name || 'chủ soái phe ngài'
+    : request.foeCommander || 'chủ soái đạo quân vây';
+  const defenderCommander = request.side === 'thu'
+    ? request.commander || name || 'viên trấn thủ phe ngài'
+    : request.foeCommander || 'viên trấn thủ đối phương';
+  const storyGarrison = siegeGarrison(request);
+  const fort = defended === undefined
+    ? { templateId, name: fortName, ...(storyGarrison === null ? {} : { garrison: storyGarrison }) }
+    : withStoryGarrison(fortificationFromHolding(defended), storyGarrison);
 
   const attacker: SiegeSetup['attacker'] = {
-    name: force?.name ?? besieger,
-    commanderName: request.commander || force?.commander || (request.side === 'cong' ? name : '') || 'chủ soái',
+    name: attackerName,
+    commanderName: attackerCommander,
     troops,
     levy: force?.units.filter((unit) => unit.source === 'levy').reduce((sum, unit) => sum + unit.strength, 0)
       ?? Math.round(troops * 0.45),
@@ -623,9 +686,9 @@ export function buildSiege(request: EncounterRequest, state: GameState, rng: Rng
   };
 
   return createSiege(rng, {
-    fort: defended === undefined ? { templateId, name: fortName } : fortificationFromHolding(defended),
+    fort,
     attacker,
-    defender: { name: fortName, commanderName: request.side === 'thu' ? (name || 'viên trấn thủ') : 'viên trấn thủ' },
+    defender: { name: fortName, commanderName: defenderCommander },
     playerSide: request.side === 'thu' ? 'thu' : 'vay',
     seasonId: seasonFor(state),
     reliefPossible: true,

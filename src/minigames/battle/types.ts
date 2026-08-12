@@ -288,6 +288,9 @@ export interface BattleState {
   weatherId: string;
   timeId: string;
 
+  /** Tên và quân số ban đầu của hai lực lượng — giữ nguyên từ diễn biến. */
+  forces: Record<SideId, { name: string; commanderName: string; startTroops: number }>;
+
   units: BattleUnit[];
   officers: Officer[];
 

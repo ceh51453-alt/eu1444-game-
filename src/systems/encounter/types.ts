@@ -66,6 +66,10 @@ export const KIND_LABELS: Readonly<Record<EncounterKind, string>> = {
 /** Một lời mời đã đọc được từ thẻ, TRƯỚC khi engine kiểm duyệt. */
 export interface EncounterRequest {
   kind: EncounterKind;
+  /** Thẻ do model khai rõ, hay engine nhận ra trực tiếp từ đoạn truyện. */
+  source: 'tag' | 'narrative';
+  /** Câu trong output đã làm trận này xuất hiện; dùng để đối chiếu ở thẻ mời. */
+  sourceText: string;
   /** Loại quyết đấu, id trong `data/arenas.json`. Rỗng với dã chiến và vây hãm. */
   kindId: string;
   /** Tên đối thủ, hoặc tên tòa thành với vây hãm. */
@@ -75,6 +79,17 @@ export interface EncounterRequest {
   relation: string;
   /** Tên chủ soái phe mình, khi người chơi không phải người cầm quân. */
   commander: string;
+  /** Tên chủ soái đối phương, tách riêng để không đảo người khi người chơi thủ thành. */
+  foeCommander: string;
+  /** Tên đúng của hai lực lượng nếu câu chuyện đã thiết lập. */
+  playerForceName: string;
+  foeForceName: string;
+  /**
+   * Quân số đã được câu chuyện xác lập. `null` nghĩa là câu chuyện chưa nói,
+   * lúc ấy engine mới được đọc quân lực thật trong state hoặc dùng ước lượng.
+   */
+  playerTroops: number | null;
+  foeTroops: number | null;
   power: PowerTier;
   scale: ScaleTier;
   side: StandSide;

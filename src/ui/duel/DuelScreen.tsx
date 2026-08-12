@@ -187,6 +187,7 @@ export function DuelScreen({
           </h2>
           <span className="text-xs text-parchment/55">
             {duel.finished ? `Đã xong — ${duel.ending}` : `Hiệp ${duel.round}`}
+            {duel.setting.place === '' ? '' : ` · ${duel.setting.place}`}
             {duel.stakes === '' ? '' : ` · ${duel.stakes}`}
           </span>
         </div>

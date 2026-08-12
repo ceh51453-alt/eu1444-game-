@@ -81,6 +81,9 @@ export function FighterPanel({ fighter, isPlayer, compact = false }: FighterPane
         <p className="text-[0.65rem] leading-tight text-parchment/55">
           {fighter.loadout.weaponName}, {fighter.loadout.armorName}
         </p>
+        {fighter.description !== '' && (
+          <p className="text-[0.62rem] leading-tight text-parchment/45">{fighter.description}</p>
+        )}
       </header>
 
       <Bar label="Thể lực" value={fighter.stamina} max={fighter.staminaMax} color="#7a9a5b" />

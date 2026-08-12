@@ -26,11 +26,18 @@ export interface EncounterCardProps {
 }
 
 export function EncounterCard({ offer, onPlay, onSkip, disabled = false }: EncounterCardProps): ReactNode {
+  const source = offer.request.sourceText.replace(/\s+/g, ' ').trim();
+  const excerpt = source.length <= 240 ? source : `${source.slice(0, 237)}…`;
   return (
     <section className="rounded border border-brass/70 bg-brass/5 px-4 py-3">
       <p className="text-[0.65rem] tracking-[0.2em] text-brass uppercase">{offerTag(offer)}</p>
       <h3 className="mt-1 text-sm font-semibold text-parchment">{offer.title}</h3>
       <p className="mt-1 text-sm text-parchment/80">{offer.brief}</p>
+      {excerpt !== '' && (
+        <p className="mt-2 border-l-2 border-brass/40 pl-2 text-xs italic text-vellum/60">
+          Mini game này xuất hiện vì diễn biến vừa nhắc: “{excerpt}”
+        </p>
+      )}
 
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <Button variant="primary" onClick={onPlay} disabled={disabled}>

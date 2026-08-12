@@ -33,6 +33,7 @@ import { newItem } from '@/systems/items';
 import {
   autoResolve,
   buildEncounter,
+  encounterRequestsFromOutput,
   parseEncounterRequests,
   playerFighterSpec,
   screenEncounters,
@@ -104,6 +105,33 @@ describe('đọc thẻ trong văn bản AI', () => {
   it('thẻ hỏng không làm hỏng gì — không có thẻ nào thì không có lời mời nào', () => {
     expect(parseEncounterRequests('Hắn rút kiếm rồi lại tra vào vỏ.')).toHaveLength(0);
     expect(parseEncounterRequests('<RequestFeast doi-thu="x" />')).toHaveLength(0);
+  });
+
+  it('văn xuôi quên thẻ vẫn mở đúng mini game tương ứng', () => {
+    expect(encounterRequestsFromOutput('Hai đạo quân hạ giáo đối đầu; trận chiến bắt đầu.')[0]?.request.kind).toBe('battle');
+    expect(encounterRequestsFromOutput('Kèn công thành nổi lên trước Lâu đài Montfort.')[0]?.request.kind).toBe('siege');
+    expect(encounterRequestsFromOutput('Ser Aymer đưa găng tay: lời thách đấu đã được nói ra.')[0]?.request.kind).toBe('duel');
+  });
+
+  it('ký ức, tin đồn và kế hoạch không tự mở mini game', () => {
+    expect(encounterRequestsFromOutput('Ông lão kể lại trận chiến năm xưa.')).toHaveLength(0);
+    expect(encounterRequestsFromOutput('Tin đồn nói mùa đông tới sẽ mở cuộc công thành.')).toHaveLength(0);
+  });
+
+  it('đọc đúng quân số, tên lực lượng và hai chủ soái từ diễn biến', () => {
+    const parsed = parseEncounterRequests(
+      'Hai đạo quân chạm mặt.\n' +
+      '<RequestBattle phe-ta="Quân Roussel" phe-dich="Đoàn Sói" chu-soai="Roussel" ' +
+      'chu-soai-dich="Harek" quan-ta="1.320" quan-dich="940" />',
+    )[0]?.request;
+    expect(parsed).toMatchObject({
+      playerForceName: 'Quân Roussel',
+      foeForceName: 'Đoàn Sói',
+      commander: 'Roussel',
+      foeCommander: 'Harek',
+      playerTroops: 1320,
+      foeTroops: 940,
+    });
   });
 });
 
@@ -254,6 +282,23 @@ describe('engine dựng ván từ bốn chữ AI nói', () => {
     expect(theirs / ours).toBeLessThan(1.8);
   });
 
+  it('quân số đã được kể thắng các con số tự ước lượng', () => {
+    const state = playing();
+    const built = buildEncounter(
+      offerFrom('<RequestBattle phe-ta="Quân Roussel" phe-dich="Đoàn Sói" quan-ta="1320" quan-dich="940" />', state),
+      state,
+      createRng('quan-truyen'),
+      1,
+    );
+    if (built.kind !== 'battle') throw new Error('phải là dã chiến');
+    const menOf = (side: 'a' | 'b'): number =>
+      built.battle.units.filter((unit) => unit.side === side).reduce((sum, unit) => sum + unit.strength, 0);
+    expect(menOf('a')).toBe(1320);
+    expect(menOf('b')).toBe(940);
+    expect(built.battle.forces.a.name).toBe('Quân Roussel');
+    expect(built.battle.forces.b.name).toBe('Đoàn Sói');
+  });
+
   it('vây hãm: bên người chơi, bậc tường và MÙA lấy từ lịch ván chơi', () => {
     const state = playing();
     state.meta.gameDate = { ...state.meta.gameDate, month: 1 };
@@ -271,6 +316,26 @@ describe('engine dựng ván từ bốn chữ AI nói', () => {
     // Tên tòa thành nói "lâu đài" nên nó thắng bảng tương quan — truyện tả gì thì dựng nấy.
     expect(built.siege.fort.templateId).toBe('fort_lau-dai-da');
     expect(built.siege.attacker.troops).toBe(5200);
+  });
+
+  it('thủ thành không đảo chủ soái và quân số hai phe', () => {
+    const state = playing();
+    const built = buildEncounter(
+      offerFrom(
+        '<RequestSiege thanh="Lâu đài Montfort" ben="thủ" phe-ta="Đồn Montfort" phe-dich="Đạo quân Harek" ' +
+        'chu-soai="Guillaume" chu-soai-dich="Harek" quan-ta="380" quan-dich="2100" />',
+        state,
+      ),
+      state,
+      createRng('thu-thanh-dung-phe'),
+      1,
+    );
+    if (built.kind !== 'siege') throw new Error('phải là vây hãm');
+    expect(built.siege.attacker.name).toBe('Đạo quân Harek');
+    expect(built.siege.attacker.commanderName).toBe('Harek');
+    expect(built.siege.attacker.troops).toBe(2100);
+    expect(built.siege.defender.commanderName).toBe('Guillaume');
+    expect(built.siege.fort.garrison.reduce((sum, unit) => sum + unit.men, 0)).toBe(380);
   });
 });
 
