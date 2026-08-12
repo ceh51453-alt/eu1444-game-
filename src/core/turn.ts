@@ -50,6 +50,21 @@ export interface TurnInput {
   minigameId?: string;
   /** Lựa chọn đã chọn trong minigame, dạng chưa định — Phần 9 chốt. */
   minigameChoiceId?: string;
+  /** Kỹ năng người chơi chọn cho lượt tự do. Bỏ trống để engine tự nhận diện. */
+  checkSkillId?: string;
+  /** Bậc khó người chơi/chủ cảnh đã chấm. Mặc định là `thuong`. */
+  checkDifficulty?: DifficultyBand;
+  /** Hành động thuần kể chuyện, không có khả năng thất bại nên không tung. */
+  skipCheck?: boolean;
+}
+
+/** Lựa chọn cơ học đi kèm ô hành động tự do của UI. */
+export interface FreeformCheckChoice {
+  /** Bỏ trống để engine tự nhận diện từ hành động. */
+  skillId?: string;
+  difficulty?: DifficultyBand;
+  /** Cảnh thuần kể chuyện: vẫn tốn thời gian nhưng không rút RNG. */
+  skip?: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -133,6 +148,9 @@ export interface CheckResult {
   dc?: number;
   /** Dương = thừa, âm = thiếu. */
   margin: number;
+  /** Năng lực nền trước độ khó và modifier; có nhãn để người chơi biết nó đến từ đâu. */
+  base?: number;
+  baseLabel?: string;
   /** BẮT BUỘC liệt kê ĐỦ — xem `CheckModifierLine`. */
   modifiers: CheckModifierLine[];
   /** Dòng RNG và vị trí đã rút, để tung lại đúng con xúc sắc này (R3). */

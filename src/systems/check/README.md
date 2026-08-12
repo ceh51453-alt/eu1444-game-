@@ -3,8 +3,9 @@
 **Chủ sở hữu:** Phần 5
 **Nhiệm vụ:** Kiểm định: bốn hệ xúc sắc phân miền, thang 5 cấp, REGISTRY MODIFIER.
 
-**Trạng thái:** xong Phần 5. Chỉ số, kỹ năng và thương tích THẬT chưa cắm vào —
-`resolve.ts` còn dùng năng lực nền cố định cho tới Phần 6 và Phần 8.
+**Trạng thái:** hoàn chỉnh. Chỉ số, cấp kỹ năng, nhánh/thế, trang bị và thương
+tích đều đi qua phép kiểm thật. Lượt tự do tự nhận diện kỹ năng và cho phép
+người chơi chọn đè trước khi engine tung.
 
 ## Cửa vào
 

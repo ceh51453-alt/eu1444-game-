@@ -7,6 +7,7 @@
  */
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import type { DifficultyBand, FreeformCheckChoice } from '@/core/turn';
 import { applyRegexScripts, type RegexScript } from '@/ai/regex/runner';
 import { scriptHost } from '@/ai/scripts/host';
 import type { TurnEntry } from '@/ai/query';
@@ -14,11 +15,12 @@ import { usePromptStore } from '@/state/prompts';
 import { useSettingsStore } from '@/state/settings';
 import { useGameStore } from '@/state/store';
 import { useTurnStore } from '@/state/turn';
-import { characterOf, openingSceneAction } from '@/systems/character';
+import { allSkills, characterOf, inferSkillForAction, openingSceneAction, skillName } from '@/systems/character';
+import { DIFFICULTY_LADDER } from '@/systems/check';
 import type { BuiltEncounter } from '@/systems/encounter';
 import { EncounterCard } from '@/ui/encounter';
 import { PatchReviewModal } from '@/ui/settings/PatchReviewModal';
-import { Button, Warning } from '@/ui/settings/controls';
+import { Button, Select, Warning } from '@/ui/settings/controls';
 import { Narrative } from './Narrative';
 
 function DiceLine(): ReactNode {
@@ -165,6 +167,8 @@ export function NarrativeStage({ onPlayEncounter }: NarrativeStageProps = {}): R
   const store = useTurnStore.getState();
 
   const [text, setText] = useState('');
+  const [checkSkill, setCheckSkill] = useState('auto');
+  const [difficulty, setDifficulty] = useState<DifficultyBand>('thuong');
   const bottom = useRef<HTMLDivElement | null>(null);
 
   // Khối prompt phải sẵn sàng trước khi bấm gửi lượt đầu tiên, và save Tầng A
@@ -189,9 +193,17 @@ export function NarrativeStage({ onPlayEncounter }: NarrativeStageProps = {}): R
   const send = (): void => {
     const action = text.trim();
     if (action === '' || running) return;
+    const check: FreeformCheckChoice = checkSkill === 'none'
+      ? { skip: true }
+      : {
+          ...(checkSkill === 'auto' ? {} : { skillId: checkSkill }),
+          difficulty,
+        };
     setText('');
-    void store.submit(action);
+    void store.submit(action, check);
   };
+
+  const inferred = text.trim() === '' ? null : inferSkillForAction(text);
 
   return (
     <>
@@ -291,6 +303,34 @@ export function NarrativeStage({ onPlayEncounter }: NarrativeStageProps = {}): R
             }}
             className="w-full resize-none rounded border border-oak-light bg-ink px-3 py-2 text-sm text-parchment placeholder:text-vellum/30 disabled:cursor-not-allowed"
           />
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            <label className="flex flex-col gap-1 text-xs text-vellum/60">
+              Kỹ năng dùng cho xúc xắc
+              <Select value={checkSkill} disabled={running} onChange={(event) => setCheckSkill(event.target.value)}>
+                <option value="auto">
+                  Tự nhận diện{inferred === null ? '' : ` — ${skillName(inferred.id)}`}
+                </option>
+                <option value="none">Không cần tung xúc xắc</option>
+                {allSkills().map((skill) => (
+                  <option key={skill.id} value={skill.id}>
+                    {skill.name} · {skill.system}
+                  </option>
+                ))}
+              </Select>
+            </label>
+            <label className="flex flex-col gap-1 text-xs text-vellum/60">
+              Độ khó
+              <Select
+                value={difficulty}
+                disabled={running || checkSkill === 'none'}
+                onChange={(event) => setDifficulty(event.target.value as DifficultyBand)}
+              >
+                {DIFFICULTY_LADDER.map((row) => (
+                  <option key={row.band} value={row.band}>{row.label}</option>
+                ))}
+              </Select>
+            </label>
+          </div>
           <div className="flex items-center gap-2">
             <Button variant="primary" onClick={send} disabled={running || text.trim() === ''}>
               Gửi

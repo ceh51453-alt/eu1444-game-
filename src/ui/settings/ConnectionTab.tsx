@@ -21,6 +21,7 @@ import {
   type ProfileId,
   type ProviderId,
 } from '@/ai/provider';
+import { MAX_MODEL_TIMEOUT_MS } from '@/ai/http';
 import { probeCustomTransport } from '@/ai/providers/custom';
 import { LlmError } from '@/ai/errors';
 import { DEV_PROXY_PREFIX, effectiveConfig, PASSWORD_WARNING, useSettingsStore } from '@/state/settings';
@@ -651,11 +652,11 @@ export function ConnectionTab({ profile }: { profile: ProfileId }): ReactNode {
 
       <TokenLimits profile={profile} model={chosen} />
 
-      <Field label="Timeout (ms)">
+      <Field label="Timeout model (ms)" hint="Mặc định 600.000 ms (10 phút); tối đa 30 phút. Nút Dừng vẫn hủy ngay.">
         <TextInput
           type="number"
           min={1000}
-          max={600000}
+          max={MAX_MODEL_TIMEOUT_MS}
           step={1000}
           value={cfg.timeoutMs}
           onChange={(event) => store.patchProfile(profile, { timeoutMs: Number(event.target.value) })}

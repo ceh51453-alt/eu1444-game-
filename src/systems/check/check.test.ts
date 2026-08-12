@@ -606,15 +606,40 @@ describe('mục 12.6 — bước 2 của vòng lặp lượt', () => {
     expect(rng.getState().draws).toBe(before);
   });
 
-  it('hành động thật cho đúng một phép kiểm d100 ở miền có thật', () => {
+  it('tự nhận diện hành động thành đúng kỹ năng và hệ xúc xắc', () => {
     const roll = resolveTurn({ kind: 'freeform', text: 'trèo tường' }, createRng(SEED), state);
     expect(roll.checks).toHaveLength(1);
     expect(roll.checks[0]?.system).toBe('d100');
-    expect(roll.checks[0]?.domain).toBe('skill.chung');
+    expect(roll.checks[0]?.domain).toBe('skill.leo-treo');
+    expect(roll.checks[0]?.baseLabel).toContain('Leo trèo');
     // Miền phải khớp `skill.*`, nếu không thì mọi nguồn của Phần 7/8 sẽ im lặng
     // không bao giờ chạy trong lượt tự do.
     expect(domainMatches('skill.*', roll.checks[0]?.domain ?? '')).toBe(true);
     expect(bucketFor(roll.checks[0]?.domain ?? '')).not.toBeNull();
+  });
+
+  it('cho người chơi chọn đè kỹ năng, hệ 3d6 và độ khó', () => {
+    const roll = resolveTurn({
+      kind: 'freeform',
+      text: 'tổ chức lại cả hệ thống tiếp tế',
+      checkSkillId: 'skill_hau-can',
+      checkDifficulty: 'kho',
+    }, createRng(SEED), state);
+
+    expect(roll.checks[0]?.system).toBe('3d6');
+    expect(roll.checks[0]?.domain).toBe('skill.hau-can');
+    expect(roll.checks[0]?.difficulty).toBe('kho');
+    expect(roll.checks[0]?.raw).toHaveLength(3);
+  });
+
+  it('hành động thuần kể chuyện không rút RNG nhưng vẫn tốn thời gian', () => {
+    const rng = createRng(SEED);
+    const before = rng.getState().draws;
+    const roll = resolveTurn({ kind: 'freeform', text: 'ngồi nghe mưa', skipCheck: true }, rng, state);
+
+    expect(roll.checks).toHaveLength(0);
+    expect(roll.timeCost).toBeGreaterThan(0);
+    expect(rng.getState().draws).toBe(before);
   });
 
   it('nguồn hỏng thành ghi chú cho AI chứ không thành ngoại lệ', () => {

@@ -27,7 +27,7 @@ import {
   registerCharacterSources,
 } from './modifiers';
 import { resetModifierSources, runCheck, type CheckSpec } from '@/systems/check';
-import { freeformSkillFor } from '@/systems/check/resolve';
+import { freeformSkillFor, resolveTurn } from '@/systems/check/resolve';
 import {
   allHouses,
   allOrigins,
@@ -754,6 +754,23 @@ describe('mục 10.8 — ba nhân vật, một kiểm định, modifier khác nh
     }).result;
     const int = (characterOf(state) as CharacterState).stats.int;
     expect(admin.modifiers.find((line) => line.source === STAT_SOURCE_ID)?.value).toBe(int);
+  });
+
+  it('lượt tự do cộng riêng cấp kỹ năng và đúng chỉ số chính trước khi tung', () => {
+    const state = stateFor('race_lun-nui', 'origin_tho-thu-cong');
+    const character = characterOf(state) as CharacterState;
+    character.skills['skill_xay-dung'] = { level: 60 };
+
+    const result = resolveTurn({
+      kind: 'freeform',
+      text: 'Điều công trường xây pháo đài trong nhiều mùa',
+      checkSkillId: 'skill_xay-dung',
+    }, createRng(SEED), state).checks[0];
+
+    expect(result?.system).toBe('3d6');
+    expect(result?.base).toBe(6);
+    expect(result?.baseLabel).toContain('Xây dựng');
+    expect(result?.modifiers.find((line) => line.source === STAT_SOURCE_ID)?.value).toBe(character.stats.int);
   });
 
   it('phép kiểm của một NPC KHÔNG mượn chỉ số của người chơi', () => {

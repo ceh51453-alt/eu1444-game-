@@ -11,7 +11,10 @@ import { classifyThrown, kindForStatus, LlmError } from './errors';
 import { readSse, type SseEvent } from './sse';
 
 export const RETRY_BACKOFF_MS = [1000, 4000, 10000] as const;
-export const DEFAULT_TIMEOUT_MS = 120000;
+/** Model suy luận dài có thể cần vài phút trước chunk đầu tiên. */
+export const DEFAULT_TIMEOUT_MS = 600000;
+/** Trần cấu hình 30 phút; nút Dừng vẫn hủy ngay bằng AbortController. */
+export const MAX_MODEL_TIMEOUT_MS = 1800000;
 
 export interface HttpRequest {
   url: string;

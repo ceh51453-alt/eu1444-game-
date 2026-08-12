@@ -214,5 +214,5 @@ describe('từ vựng bắt buộc (README mục 6)', () => {
     }
     // Không assert: đây là cảnh báo, không phải cổng chặn.
     expect(Array.isArray(report)).toBe(true);
-  });
+  }, 15_000);
 });

@@ -49,6 +49,8 @@ export interface CheckSpec {
    *   pool  số viên xúc sắc trước điều chỉnh (suy từ quy mô đơn vị)
    */
   base: number;
+  /** Nhãn giải thích con số nền trong bảng kết quả. */
+  baseLabel?: string;
   /** Id NPC đang kiểm định. Rỗng là người chơi. */
   actor?: string;
   tags?: readonly string[];
@@ -177,6 +179,8 @@ export function runCheck(rng: Rng, spec: CheckSpec, options?: CheckOptions): Che
     tier,
     raw,
     margin,
+    base: spec.base,
+    baseLabel: spec.baseLabel ?? 'Năng lực nền',
     modifiers,
     seedUsed,
     narrativeHint: narrativeHint(tier, consequence),

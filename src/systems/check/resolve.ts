@@ -6,12 +6,10 @@
  * Cái mới của Phần 5 là kết quả đó bây giờ đi qua đủ bộ máy thật — thang độ
  * khó, registry modifier, thang 5 cấp, và một cái giá do engine chọn.
  *
- * CÒN GIẢ Ở CHỖ NÀO, và vì sao là cố ý: một hành động tự do gõ bằng tiếng Việt
- * thì engine không có cách nào biết nó thuộc miền nào hay cần kỹ năng gì. Suy
- * đoán ý định bằng từ khóa là việc của AI, không phải của engine, và làm ở đây
- * thì sẽ sai theo kiểu không ai sửa được. Nên lượt tự do dùng MỘT phép kiểm
- * d100 ở miền chung. Phần 9–11 không đi qua đường này mà gọi thẳng
- * `runCheck`/`contestedCheck` với miền của chúng.
+ * Lượt tự do được xếp vào kỹ năng TRƯỚC lời gọi AI: người chơi có thể chọn rõ
+ * trên UI, hoặc để bộ nhận diện cơ học chọn và vẫn có thể kiểm tra/đổi lại.
+ * Không để model chọn sau khi đã kể, vì khi ấy nó đã nhìn thấy kết quả và R1
+ * không còn được bảo đảm.
  *
  * PHẦN 6 ĐÃ THAY con số giả: nền bây giờ là điểm rèn luyện thật của kỹ năng
  * `Ứng biến chung`, còn chỉ số chính đi vào qua nguồn `character.chi-so` thành
@@ -24,7 +22,14 @@ import type { RollContext, TurnInput } from '@/core/turn';
 import type { Rng } from '@/core/rng';
 import type { GameState } from '@/state/slices';
 import { characterOf } from '@/systems/character/slice';
-import { freeformBase } from '@/systems/character/base';
+import { domainBase, freeformBase } from '@/systems/character/base';
+import {
+  domainOfSkill,
+  fallbackSkill,
+  inferSkillForAction,
+  skillName,
+  skillOf,
+} from '@/systems/character/skills';
 import { runCheck, type CheckSpec } from './run';
 
 /** Năng lực nền khi state chưa có nhân vật nào. */
@@ -68,11 +73,40 @@ export function resolveTurn(action: TurnInput, rng: Rng, state: GameState): Roll
   if (action.text.trim() === '') {
     return { checks: [], timeCost: 0, notes: [] };
   }
+  if (action.skipCheck === true) {
+    return {
+      checks: [],
+      timeCost: FREEFORM_TIME_COST,
+      notes: ['Người chơi đánh dấu đây là hành động thuần kể chuyện, engine không tung xúc xắc.'],
+    };
+  }
 
-  const run = runCheck(rng, { ...FREEFORM_CHECK, base: freeformSkillFor(state), state });
+  const explicit = action.checkSkillId === undefined ? null : skillOf(action.checkSkillId);
+  const skill = explicit ?? inferSkillForAction(action.text);
+  const domain = domainOfSkill(skill.id);
+  const system = skill.system;
+  const fallback = fallbackSkill().id === skill.id;
+  const base = characterOf(state) === null
+    ? DEFAULT_FREEFORM_SKILL
+    : (fallback ? freeformBase(state) : domainBase(state, domain, system));
+  const run = runCheck(rng, {
+    id: `check.${skill.id.replace(/^skill_/u, '')}`,
+    system,
+    domain,
+    difficulty: action.checkDifficulty ?? FREEFORM_CHECK.difficulty,
+    base,
+    baseLabel: `${skillName(skill.id)} · cấp kỹ năng`,
+    state,
+  });
 
   const notes = run.failures.map(
     (failure) => `Nguồn modifier "${failure.source}" hỏng, phép kiểm chạy thiếu nó: ${failure.error}`,
+  );
+
+  notes.push(
+    explicit === null && !fallback
+      ? `Engine tự nhận diện kỹ năng: ${skillName(skill.id)}. Người chơi có thể chọn đè kỹ năng trước khi gửi.`
+      : `Kỹ năng dùng cho phép kiểm: ${skillName(skill.id)}.`,
   );
 
   return { checks: [run.result], timeCost: FREEFORM_TIME_COST, notes };

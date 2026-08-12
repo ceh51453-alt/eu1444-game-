@@ -14,7 +14,7 @@
  */
 
 import { create } from 'zustand';
-import type { TurnInput, TurnRecord } from '@/core/turn';
+import type { FreeformCheckChoice, TurnInput, TurnRecord } from '@/core/turn';
 import { configuredProfile, effectiveConfig, tokenLimits, useSettingsStore } from '@/state/settings';
 import { getProvider } from '@/ai/provider';
 import { DEFAULT_BUDGET, providerCounter, type BudgetConfig } from '@/ai/budget';
@@ -136,7 +136,7 @@ export interface TurnActions {
   saveSlot(label: string): Promise<string>;
   deleteSlot(slotId: string): Promise<void>;
   refreshSlots(): Promise<void>;
-  submit(text: string): Promise<void>;
+  submit(text: string, check?: FreeformCheckChoice): Promise<void>;
   cancel(): void;
   undo(): void;
   /** Người chơi đã sửa tay xong ở modal tầng 2. */
@@ -610,7 +610,7 @@ export const useTurnStore = create<TurnStore>()((set, get) => ({
     };
   },
 
-  async submit(text) {
+  async submit(text, check = {}) {
     if (get().running) return;
 
     const settings = useSettingsStore.getState();
@@ -634,7 +634,13 @@ export const useTurnStore = create<TurnStore>()((set, get) => ({
     const variablesCfg = effectiveConfig(variablesProfile);
 
     const before = useGameStore.getState().snapshot();
-    const action: TurnInput = { kind: 'freeform', text };
+    const action: TurnInput = {
+      kind: 'freeform',
+      text,
+      ...(check.skillId === undefined ? {} : { checkSkillId: check.skillId }),
+      ...(check.difficulty === undefined ? {} : { checkDifficulty: check.difficulty }),
+      ...(check.skip === true ? { skipCheck: true } : {}),
+    };
 
     // Bước 1: chụp state TRƯỚC khi lượt chạy — lượt hỏng giữa chừng vẫn undo được.
     undoStack.push(before, text === '' ? '(không nhập gì)' : text);

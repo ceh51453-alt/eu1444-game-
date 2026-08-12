@@ -44,6 +44,9 @@ vẫn không được tự sinh ra con số nào.
 
 Phép kiểm: <%= check.id %> · miền <%= check.domain %>
 Hệ: <%= nhanHe[check.system] || check.system %> · độ khó <%= nhanDoKho[check.difficulty] || check.difficulty %>
+<% if (typeof check.base === 'number') { %>
+Năng lực nền: <%= dau(check.base) %> (<%= check.baseLabel || 'Năng lực nền' %>)
+<% } %>
 <% if (check.modifiers.length > 0) { %>
 Điều chỉnh: <%= check.modifiers.map((m) => dau(m.value) + ' (' + m.label + ')').join(', ') %>
 <% } %>

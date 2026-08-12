@@ -41,6 +41,8 @@ const checkResultSchema = z.object({
   target: z.number().optional(),
   dc: z.number().optional(),
   margin: z.number(),
+  base: z.number().optional(),
+  baseLabel: z.string().optional(),
   modifiers: z.array(checkModifierSchema),
   seedUsed: z.string(),
   narrativeHint: z.string(),
@@ -66,6 +68,9 @@ export const turnRecordSchema = z.object({
       text: z.string(),
       minigameId: z.string().optional(),
       minigameChoiceId: z.string().optional(),
+      checkSkillId: z.string().optional(),
+      checkDifficulty: z.enum(['de-dang', 'thuong', 'kho', 'rat-kho', 'cuc-kho', 'gan-bat-kha']).optional(),
+      skipCheck: z.boolean().optional(),
     })
     .loose(),
   outcome: z

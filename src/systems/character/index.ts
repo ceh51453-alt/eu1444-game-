@@ -73,6 +73,7 @@ export {
   domainOfSkill,
   fallbackSkill,
   groupName,
+  inferSkillForAction,
   skillForDomain,
   skillGroups,
   skillName,

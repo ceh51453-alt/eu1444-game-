@@ -78,9 +78,19 @@ export function LastCheckPanel(): ReactNode {
       </div>
 
       <div className="flex flex-col gap-0.5 text-xs">
-        <p className="tracking-[0.15em] text-brass/80 uppercase">Điều chỉnh</p>
+        <p className="tracking-[0.15em] text-brass/80 uppercase">Năng lực và điều chỉnh</p>
+        {check.base !== undefined && (
+          <div className="flex items-baseline justify-between gap-2">
+            <span className="truncate text-vellum/70" title="năng lực nền trước modifier">
+              {check.baseLabel ?? 'Năng lực nền'}
+            </span>
+            <span className="font-mono text-sky-300">
+              {check.base >= 0 ? '+' : ''}{check.base}
+            </span>
+          </div>
+        )}
         {check.modifiers.length === 0 ? (
-          <p className="text-vellum/50 italic">Không có điều chỉnh nào.</p>
+          <p className="text-vellum/50 italic">Không có điều chỉnh thêm.</p>
         ) : (
           check.modifiers.map((line, index) => (
             <div key={`${line.source}-${index}`} className="flex items-baseline justify-between gap-2">

@@ -11,7 +11,7 @@
 
 import { create } from 'zustand';
 import { z } from 'zod';
-import { DEFAULT_TIMEOUT_MS } from '@/ai/http';
+import { DEFAULT_TIMEOUT_MS, MAX_MODEL_TIMEOUT_MS } from '@/ai/http';
 import {
   DEFAULT_CUSTOM_TRANSPORT,
   DEFAULT_MAX_INPUT_TOKENS,
@@ -30,10 +30,10 @@ import { scriptHost } from '@/ai/scripts/host';
 import { loadSettings, saveSettings, settingsAvailable } from '@/persist/settings';
 
 /**
- * 2 — thêm hồ sơ `variables`, cờ `stream` và cấu hình provider `custom`.
- * Bản 1 đọc lên vẫn dùng được: `hydrate` vá phần thiếu thay vì vứt cả file đi.
+ * 4 — nâng timeout model mặc định lên 10 phút và trần lên 30 phút.
+ * Bản cũ đọc lên vẫn dùng được: `hydrate` vá phần thiếu thay vì vứt cả file đi.
  */
-export const SETTINGS_VERSION = 3;
+export const SETTINGS_VERSION = 4;
 
 /** Cảnh báo bắt buộc hiện cạnh ô mật khẩu (Phần 1 mục 8). */
 export const PASSWORD_WARNING =
@@ -54,7 +54,7 @@ const connCfgSchema = z.object({
   password: z.string(),
   model: z.string(),
   params: z.record(z.string(), z.unknown()),
-  timeoutMs: z.number().int().min(1000).max(600000),
+  timeoutMs: z.number().int().min(1000).max(MAX_MODEL_TIMEOUT_MS),
   // Optional: hồ sơ ghi bằng bản 1 chưa có mấy trường này.
   stream: z.boolean().optional(),
   maxInputTokens: z.number().int().min(1000).max(20000000).optional(),
@@ -118,7 +118,7 @@ function blankProfile(providerId: ProviderId): ConnCfg {
  * Một hồ sơ đọc từ đĩa lên, vá đủ những trường bản 1 chưa có.
  * `undefined` (hồ sơ chưa từng tồn tại) trả về một hồ sơ trống.
  */
-function restoreProfile(stored: z.infer<typeof connCfgSchema> | undefined): ConnCfg {
+function restoreProfile(stored: z.infer<typeof connCfgSchema> | undefined, storedVersion = SETTINGS_VERSION): ConnCfg {
   if (stored === undefined) return blankProfile('openai');
   return {
     providerId: stored.providerId,
@@ -126,7 +126,9 @@ function restoreProfile(stored: z.infer<typeof connCfgSchema> | undefined): Conn
     password: stored.password,
     model: stored.model,
     params: stored.params,
-    timeoutMs: stored.timeoutMs,
+    // Bản cũ dùng đúng mặc định 120 giây thì nâng theo mặc định mới. Giá trị
+    // khác là lựa chọn có chủ ý của người chơi nên giữ nguyên.
+    timeoutMs: storedVersion < 4 && stored.timeoutMs === 120000 ? DEFAULT_TIMEOUT_MS : stored.timeoutMs,
     stream: stored.stream ?? true,
     maxInputTokens: stored.maxInputTokens ?? DEFAULT_MAX_INPUT_TOKENS,
     maxOutputTokens: stored.maxOutputTokens ?? DEFAULT_MAX_OUTPUT_TOKENS,
@@ -504,9 +506,9 @@ export const useSettingsStore = create<SettingsStore>()((set, get) => ({
         // được game và có thể nạp lại preset ở tab tương ứng.
       }
       const profiles = {
-        main: restoreProfile(stored.profiles.main),
-        worldtick: restoreProfile(stored.profiles.worldtick),
-        variables: restoreProfile(stored.profiles.variables),
+        main: restoreProfile(stored.profiles.main, stored.version),
+        worldtick: restoreProfile(stored.profiles.worldtick, stored.version),
+        variables: restoreProfile(stored.profiles.variables, stored.version),
       };
       set({
         profiles,
