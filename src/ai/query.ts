@@ -24,6 +24,7 @@ import { bodySummary, injuryViews, type InjuryView } from '@/systems/body';
 // `create.ts` → `/src/nations/*` → cả tám minigame, và một truy vấn prompt không
 // có lý do gì để nạp tám bàn cờ chính trị vào bộ nhớ.
 import { nationsStateOf } from '@/systems/nations/slice';
+import { countryRankEffectiveEffects, countryRankSupportOf, countryStyleOf } from '@/systems/nations/country-rank';
 import { codexPromptView, type CodexPromptView } from '@/systems/codex';
 import { logisticsSummaryOf, militaryResourcesOf, militaryStateOf, recruitmentOptions, summaryOf } from '@/systems/military';
 import { economyOf, economyStateOf } from '@/systems/economy/slice';
@@ -34,6 +35,16 @@ import { attitudeLabel, learnFactor, raceName, raceOf } from '@/systems/characte
 import { traitName } from '@/systems/character/traits';
 import { grantName, ladderOf, landKindName, titleHistoryOf, titleName, titleOf, titlePathName } from '@/systems/titles/data';
 import { heldTitles, primaryTitleOf } from '@/systems/titles/slice';
+import { realmStateOf, vassalsStateOf } from '@/systems/realm/slice';
+import { daysRide, households } from '@/systems/realm/province';
+import { lawName } from '@/systems/realm/data';
+import {
+  factionMemberRankOf,
+  factionMembershipsOf,
+  factionOrganizationTierOf,
+  factionStandingOf,
+  nextFactionRankOf,
+} from '@/systems/factions';
 
 // ---------------------------------------------------------------------------
 // Ngữ cảnh mà `q` đọc
@@ -111,6 +122,7 @@ export interface QueryApi {
   body(): ReturnType<typeof bodySummary>;
   /** Xuất thân + chủng tộc ở dạng chữ đã giải nghĩa, dùng cho lời kể. */
   profile(): unknown | null;
+  factions(): unknown[];
   title(): unknown | null;
   holding(): unknown | null;
   realm(): unknown | null;
@@ -127,7 +139,6 @@ export interface QueryApi {
 /** Hàm còn là stub, kèm phần sẽ điền vào. Bảng tra cứu của editor đọc cái này. */
 export const PENDING_QUERIES: Readonly<Record<string, string>> = {
   holding: 'Phần 12 — thành trì',
-  realm: 'Phần 13 — lãnh thổ',
   skills: 'Phần 8 — kỹ năng & nhánh',
 };
 
@@ -210,6 +221,31 @@ export function createQuery(context: QueryContext): QueryApi {
       };
     },
 
+    factions() {
+      return factionMembershipsOf(context.state).map((membership) => {
+        const rank = factionMemberRankOf(membership.rankId);
+        const standing = factionStandingOf(context.state, membership);
+        const next = nextFactionRankOf(membership.rankId);
+        return {
+          id: membership.id,
+          name: membership.name,
+          kind: membership.kind,
+          powerId: membership.powerId,
+          rankId: rank.id,
+          rank: rank.rank,
+          rankName: rank.name,
+          influence: membership.influence,
+          loyalty: membership.loyalty,
+          standing: standing.total,
+          privileges: rank.privileges,
+          duties: rank.duties,
+          checkBonus: rank.checkBonus,
+          nextRank: next === null ? null : { name: next.name, minStanding: next.minStanding },
+          note: membership.note,
+        };
+      });
+    },
+
     title() {
       const primary = primaryTitleOf(context.state);
       if (primary === null) return null;
@@ -249,7 +285,44 @@ export function createQuery(context: QueryContext): QueryApi {
       return selected === undefined ? null : { ...selected, held: rows };
     },
     holding: () => null,
-    realm: () => null,
+    realm() {
+      const realm = realmStateOf(context.state);
+      if (realm === null || realm.id === '' || realm.name === '') return null;
+      const vassals = vassalsStateOf(context.state);
+      const titles = heldTitles(context.state);
+      const unrest = realm.provinces.length === 0
+        ? 0
+        : Math.round(realm.provinces.reduce((sum, province) => sum + province.unrest, 0) / realm.provinces.length);
+      return {
+        name: realm.name,
+        provinces: realm.provinces.length,
+        spanDays: realm.provinces.reduce((sum, province) => sum + daysRide(province), 0),
+        population: realm.provinces.reduce((sum, province) => sum + households(province) * 5, 0),
+        taxFarm: realm.taxRates['nong-dan'] ?? realm.taxRates['nong'] ?? 0,
+        taxTrade: realm.taxRates['thuong-nhan'] ?? realm.taxRates['thuong'] ?? 0,
+        unrest,
+        vassals: (vassals?.list ?? []).map((vassal) => `${vassal.name} (${titleName(vassal.titleId)})`),
+        factions: (vassals?.factions ?? []).map((faction) => {
+          const tier = factionOrganizationTierOf(faction.tierId);
+          const leader = vassals?.list.find((vassal) => vassal.npcId === faction.leaderId)?.name ?? 'chưa rõ';
+          return {
+            name: faction.name,
+            tier: tier.name,
+            tierRank: tier.rank,
+            members: faction.members.length,
+            leader,
+            cohesion: Math.round(faction.cohesion),
+            influence: Math.round(faction.influence),
+            demand: faction.demand,
+          };
+        }),
+        laws: realm.laws.map(lawName),
+        duties: titles.map((title) =>
+          `${title.fiefName}: ${String(title.obligations.tribute)} đồng, ${String(title.obligations.levyDays)} ngày quân dịch`,
+        ),
+        pending: realm.cases.filter((row) => row.verdictId === '').map((row) => row.summary),
+      };
+    },
     army() {
       const military = militaryStateOf(context.state);
       const realmId = readPath(context.state, 'realm.id');
@@ -357,6 +430,9 @@ export function createQuery(context: QueryContext): QueryApi {
       const economy = economyOf(context.state, id);
       if (registry === null && power === null && economy === null) return null;
       if (power === null) return registry;
+      const countryStyle = countryStyleOf(power);
+      const countrySupport = countryRankSupportOf(power);
+      const countryEffects = countryRankEffectiveEffects(power);
       return {
         ...(registry ?? {}),
         minigame: power.minigame,
@@ -367,6 +443,23 @@ export function createQuery(context: QueryContext): QueryApi {
         military: Math.round(power.military),
         land: power.land,
         fallen: power.fallen,
+        countryRank: {
+          id: countryStyle.rank.id,
+          rank: countryStyle.rank.rank,
+          name: countryStyle.rank.name,
+          label: countryStyle.label,
+          government: countryStyle.form.name,
+          rulerTitle: countryStyle.rulerTitle,
+          address: countryStyle.address,
+          sinceYear: power.rankSinceYear,
+          disputed: power.rankDisputed,
+          support: countrySupport.value,
+          supportLines: countrySupport.lines,
+          basis: countryStyle.basis,
+          rights: countryStyle.rank.rights,
+          burdens: countryStyle.rank.burdens,
+          effects: countryEffects,
+        },
         /** Nhóm dân đang bị đối xử tệ nhất — thứ NPC trong nước ấy sẽ nhắc tới. */
         grievance: [...power.groups]
           .sort((left, right) => right.grievance - left.grievance)

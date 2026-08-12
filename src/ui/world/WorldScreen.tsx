@@ -22,6 +22,10 @@ import { useMemo, useState, type ReactNode } from 'react';
 import {
   accessTierFor,
   clarityFor,
+  countryRankEffectiveEffects,
+  countryRankSupportOf,
+  countryStyleOf,
+  nextCountryRankOf,
   powerName,
   powerRowOf,
   tensionOf,
@@ -191,6 +195,7 @@ export function WorldScreen({
           {nations.powers.map((row) => {
             const clarity = clarityOfPower(row.id);
             const meta = powerRowOf(row.id);
+            const style = countryStyleOf(row);
             return (
               <button
                 key={row.id}
@@ -208,8 +213,9 @@ export function WorldScreen({
                   <span className="text-[9px] uppercase text-vellum/40">{clarity.level === 'biet-ro' ? '' : 'tin đồn'}</span>
                 </div>
                 <p className="truncate text-[10px] text-vellum/40" title={meta?.genre ?? ''}>
-                  {meta?.genre ?? ''}
+                  cấp {style.rank.rank}/6 · {style.label}
                 </p>
+                <p className="truncate text-[9px] text-vellum/30" title={meta?.genre ?? ''}>{meta?.genre ?? ''}</p>
                 <div className="mt-1 space-y-0.5">
                   <Bar value={row.prestige} tone="bg-gold/60" title="uy tín" />
                   <Bar value={row.stability} tone={row.stability < 40 ? 'bg-rust' : 'bg-moss'} title="ổn định" />
@@ -352,12 +358,20 @@ function PowerPanel({
 }): ReactNode {
   const meta = powerRowOf(power.id);
   const clarity = clarityLevel.level;
+  const style = countryStyleOf(power);
+  const support = countryRankSupportOf(power);
+  const effects = countryRankEffectiveEffects(power);
+  const nextRank = nextCountryRankOf(power);
 
   return (
     <section className="space-y-3">
       <header className="flex items-start justify-between gap-3 border-b border-oak pb-2">
         <div>
           <h3 className="text-sm text-parchment">{powerName(power.id)}</h3>
+          <p className="text-[11px] text-gold/80">
+            cấp quốc gia {style.rank.rank}/6 · {style.label}
+            {power.rankDisputed ? ' · ĐỊA VỊ ĐANG BỊ TRANH CHẤP' : ''}
+          </p>
           <p className="text-[11px] italic text-vellum/50">{meta?.genre ?? ''}</p>
           {meta?.threat !== undefined && meta.threat !== '' && (
             <p className="text-[10px] text-vellum/40">mối đe dọa lớn nhất: {meta.threat}</p>
@@ -365,6 +379,61 @@ function PowerPanel({
         </div>
         <TierBadge tier={tier} clarityLabel={clarityLevel.label} />
       </header>
+
+      <details className="rounded border border-gold/30 bg-oak/10 px-3 py-2" open>
+        <summary className="cursor-pointer list-none">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs text-parchment">Địa vị pháp lý & thể chế</p>
+              <p className="text-[10px] text-vellum/50">
+                {style.form.name} · người đứng đầu: {style.rulerTitle} · kính xưng: {style.address}
+              </p>
+            </div>
+            <span className="rounded border border-oak-light px-1.5 py-0.5 text-[9px] text-gold/80">
+              từ năm {power.rankSinceYear}
+            </span>
+          </div>
+        </summary>
+        <div className="mt-2 space-y-2 border-t border-oak/60 pt-2">
+          <div>
+            <div className="mb-0.5 flex justify-between text-[10px] text-vellum/50">
+              <span>Nền tảng giữ cấp</span>
+              <span>{support.value}/100</span>
+            </div>
+            <Bar value={support.value} tone={support.value < 70 ? 'bg-rust' : 'bg-gold/70'} title="độ vững của cấp quốc gia" />
+          </div>
+          <p className="text-[10px] leading-relaxed text-vellum/55">{style.basis || style.form.note}</p>
+          <div className="grid gap-2 md:grid-cols-2">
+            <div className="rounded border border-oak/50 p-2">
+              <p className="text-[9px] uppercase tracking-wide text-vellum/40">Quyền do cấp mang lại</p>
+              <p className="mt-1 text-[10px] leading-relaxed text-emerald-200/70">{style.rank.rights.join(' · ')}</p>
+            </div>
+            <div className="rounded border border-oak/50 p-2">
+              <p className="text-[9px] uppercase tracking-wide text-vellum/40">Gánh nặng của cấp</p>
+              <p className="mt-1 text-[10px] leading-relaxed text-amber-200/70">{style.rank.burdens.join(' · ')}</p>
+            </div>
+          </div>
+          <p className="text-[10px] text-vellum/45">
+            Hiệu lực hiện tại: sức nặng ngoại giao +{effects.diplomaticWeight.toFixed(1)} · chỉ huy chiến tranh +{effects.militaryCommandBonus.toFixed(1)} · thuế ×{effects.taxFactor.toFixed(2)} · hành chính ×{effects.administrationFactor.toFixed(2)} · thương mại ×{effects.tradeFactor.toFixed(2)} · tối đa {effects.treatyCapacity} cam kết và {effects.vassalCapacity} chư hầu phụ thuộc.
+          </p>
+          <details>
+            <summary className="cursor-pointer text-[10px] text-vellum/45">Cấp này đứng vững nhờ đâu?</summary>
+            <div className="mt-1 grid gap-1 sm:grid-cols-2">
+              {support.lines.map((line) => (
+                <div key={line.label} className="flex justify-between gap-2 text-[10px]">
+                  <span className={line.met ? 'text-vellum/55' : 'text-rust'}>{line.label}</span>
+                  <span className="font-mono text-parchment">{line.value}/{line.required}</span>
+                </div>
+              ))}
+            </div>
+          </details>
+          {nextRank !== null && (
+            <p className="text-[10px] text-vellum/45">
+              Cấp kế: {nextRank.name} — cần đất {nextRank.minLand}, uy tín {nextRank.minPrestige}, ổn định {nextRank.minStability}, gắn kết {nextRank.minCohesion}, người trị vì có tước cá nhân bậc {nextRank.minRulerTitleRank}; lễ tuyên xưng tốn {nextRank.elevationTreasury} đồng và {nextRank.elevationPrestige} uy tín.
+            </p>
+          )}
+        </div>
+      </details>
 
       <div className="grid grid-cols-4 gap-2 text-[11px]">
         {(

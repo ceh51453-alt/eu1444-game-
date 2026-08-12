@@ -28,6 +28,10 @@ export function createPowers(): PowerState[] {
   return powerRows().map((row) => ({
     id: row.nationId,
     minigame: row.minigame,
+    countryRankId: row.countryRankId,
+    governmentFormId: row.governmentFormId,
+    rankSinceYear: 1444,
+    rankDisputed: row.rankDisputed,
     treasury: row.state.treasury,
     income: row.state.income,
     prestige: row.state.prestige,

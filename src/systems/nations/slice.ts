@@ -47,6 +47,10 @@ export const populationGroupSchema = z.object({
 export const powerStateSchema = z.object({
   id: z.string().startsWith('nation_'),
   minigame: z.enum(MINIGAME_KINDS),
+  countryRankId: z.string().default(''),
+  governmentFormId: z.string().default(''),
+  rankSinceYear: z.number().int().default(1444),
+  rankDisputed: z.boolean().default(false),
   treasury: z.number(),
   income: z.number(),
   prestige: meter,

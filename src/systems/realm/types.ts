@@ -142,6 +142,16 @@ export interface Faction {
   id: string;
   name: string;
   members: string[];
+  /** Cấp tổ chức: nhóm kết ước → liên minh → đại liên minh → khối quyền lực. */
+  tierId: string;
+  /** 0–100: khả năng cùng hành động thay vì chỉ cùng bất mãn. */
+  cohesion: number;
+  /** 0–100: quân, đất, tước và số người mà phe có thể huy động. */
+  influence: number;
+  /** Người đứng đầu có thật, luôn là một id trong `members`. */
+  leaderId: string;
+  /** Chức vị của từng chư hầu trong phe; không đồng nhất với cấp tổ chức. */
+  memberRanks: Record<string, string>;
   /** Yêu sách chung của cả phe — cái cớ để họ đứng cùng nhau. */
   demand: string;
   formedYear: number;

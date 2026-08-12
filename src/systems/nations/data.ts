@@ -115,8 +115,46 @@ const groupRowSchema = z.object({
   usefulness: meter,
 });
 
+const countryRankSchema = z.object({
+  id: z.string().min(1),
+  rank: z.int().min(1).max(9),
+  name: z.string().min(1),
+  rulerTitle: z.string().min(1),
+  address: z.string().min(1),
+  minLand: z.number().min(0),
+  minPrestige: meter,
+  minStability: meter,
+  minCohesion: meter,
+  minRulerTitleRank: z.int().min(0).max(9),
+  elevationTreasury: z.number().min(0),
+  elevationPrestige: z.number().min(0),
+  treatyCapacity: z.int().min(0),
+  vassalCapacity: z.int().min(0),
+  diplomaticWeight: z.number(),
+  militaryCommandBonus: z.number(),
+  taxFactor: z.number().positive(),
+  administrationFactor: z.number().positive(),
+  tradeFactor: z.number().positive(),
+  tradeCapacityBonus: z.number(),
+  factionPressure: z.number(),
+  rights: z.array(z.string().min(1)),
+  burdens: z.array(z.string().min(1)),
+});
+
+const governmentFormSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  rulerTitle: z.string(),
+  address: z.string(),
+  note: z.string().min(1),
+});
+
 const powerRowSchema = z.object({
   nationId: z.string().startsWith('nation_'),
+  countryRankId: z.string().min(1),
+  governmentFormId: z.string().min(1),
+  rankBasis: z.string().min(1),
+  rankDisputed: z.boolean().default(false),
   minigame: z.enum(MINIGAME_KINDS),
   genre: z.string().min(1),
   threat: z.string().default(''),
@@ -147,7 +185,15 @@ const powerRowSchema = z.object({
 });
 
 const nationsFileSchema = z.object({
-  nations: z.array(z.object({ id: z.string(), name: z.string(), canon: z.boolean().default(false) })).min(1),
+  nations: z.array(z.object({
+    id: z.string(),
+    name: z.string(),
+    countryRankId: z.string().min(1),
+    governmentFormId: z.string().min(1),
+    canon: z.boolean().default(false),
+  })).min(1),
+  countryRanks: z.array(countryRankSchema).min(2),
+  governmentForms: z.array(governmentFormSchema).min(1),
   accessTiers: z.array(accessTierSchema).length(3),
   clarity: z.object({
     levels: z.array(clarityLevelSchema).min(1),
@@ -164,6 +210,8 @@ const nationsFileSchema = z.object({
 });
 
 export type PowerRow = z.infer<typeof powerRowSchema>;
+export type CountryRank = z.infer<typeof countryRankSchema>;
+export type GovernmentForm = z.infer<typeof governmentFormSchema>;
 export type GroupRow = z.infer<typeof groupRowSchema>;
 export type MinorityPolicy = z.infer<typeof minorityPolicySchema>;
 export type RevoltConfig = z.infer<typeof revoltConfigSchema>;
@@ -562,6 +610,10 @@ function parseOrThrow<T>(schema: z.ZodType<T>, file: unknown, name: string): T {
 interface NationData {
   powers: Map<string, PowerRow>;
   nationNames: Map<string, string>;
+  registeredCountryRanks: Map<string, string>;
+  registeredGovernmentForms: Map<string, string>;
+  countryRanks: Map<string, CountryRank>;
+  governmentForms: Map<string, GovernmentForm>;
   accessTiers: AccessTierRow[];
   clarity: ClarityConfig;
   policies: Map<string, MinorityPolicy>;
@@ -605,10 +657,40 @@ function load(): NationData {
 
   // --- 2. thế lực phải có thật và phải canon ------------------------------
   const canon = new Map<string, string>();
-  for (const nation of nations.nations) if (nation.canon) canon.set(nation.id, nation.name);
+  const allNationNames = new Map<string, string>();
+  for (const nation of nations.nations) {
+    allNationNames.set(nation.id, nation.name);
+    if (nation.canon) canon.set(nation.id, nation.name);
+  }
 
   const policies = new Map<string, MinorityPolicy>();
   for (const policy of nations.minorityPolicies.policies) policies.set(policy.id, policy);
+
+  const countryRanks = new Map<string, CountryRank>();
+  const countryRankNumbers = new Set<number>();
+  for (const rank of nations.countryRanks) {
+    if (countryRanks.has(rank.id)) throw new NationDataError(`cấp quốc gia trùng id: ${rank.id}`);
+    if (countryRankNumbers.has(rank.rank)) throw new NationDataError(`hai cấp quốc gia cùng bậc ${String(rank.rank)}`);
+    countryRanks.set(rank.id, rank);
+    countryRankNumbers.add(rank.rank);
+  }
+  const governmentForms = new Map<string, GovernmentForm>();
+  for (const form of nations.governmentForms) {
+    if (governmentForms.has(form.id)) throw new NationDataError(`thể chế quốc gia trùng id: ${form.id}`);
+    governmentForms.set(form.id, form);
+  }
+  const registeredCountryRanks = new Map<string, string>();
+  const registeredGovernmentForms = new Map<string, string>();
+  for (const nation of nations.nations) {
+    if (!countryRanks.has(nation.countryRankId)) {
+      throw new NationDataError(`quốc gia "${nation.id}" dùng cấp "${nation.countryRankId}" chưa khai`);
+    }
+    if (!governmentForms.has(nation.governmentFormId)) {
+      throw new NationDataError(`quốc gia "${nation.id}" dùng thể chế "${nation.governmentFormId}" chưa khai`);
+    }
+    registeredCountryRanks.set(nation.id, nation.countryRankId);
+    registeredGovernmentForms.set(nation.id, nation.governmentFormId);
+  }
 
   const powers = new Map<string, PowerRow>();
   const kinds = new Map<MinigameKind, string>();
@@ -618,6 +700,18 @@ function load(): NationData {
       throw new NationDataError(
         `powers[] trỏ tới "${power.nationId}" mà mảng nations không có thế lực canon nào tên thế — tên thế lực chỉ có một nguồn sự thật`,
       );
+    }
+    if (!countryRanks.has(power.countryRankId)) {
+      throw new NationDataError(`thế lực "${power.nationId}" dùng cấp quốc gia "${power.countryRankId}" chưa khai`);
+    }
+    if (!governmentForms.has(power.governmentFormId)) {
+      throw new NationDataError(`thế lực "${power.nationId}" dùng thể chế "${power.governmentFormId}" chưa khai`);
+    }
+    if (registeredCountryRanks.get(power.nationId) !== power.countryRankId) {
+      throw new NationDataError(`cấp gameplay của "${power.nationId}" không khớp sổ đăng ký quốc gia`);
+    }
+    if (registeredGovernmentForms.get(power.nationId) !== power.governmentFormId) {
+      throw new NationDataError(`thể chế gameplay của "${power.nationId}" không khớp sổ đăng ký quốc gia`);
     }
 
     // --- 1. tám thể loại khác nhau ---------------------------------------
@@ -775,7 +869,11 @@ function load(): NationData {
 
   return {
     powers,
-    nationNames: canon,
+    nationNames: allNationNames,
+    registeredCountryRanks,
+    registeredGovernmentForms,
+    countryRanks,
+    governmentForms,
     accessTiers: nations.accessTiers,
     clarity: nations.clarity,
     policies,
@@ -822,6 +920,30 @@ export function powerRowOf(nationId: string): PowerRow | null {
 
 export function powerName(nationId: string): string {
   return DATA.nationNames.get(nationId) ?? nationId;
+}
+
+export function countryRanks(): CountryRank[] {
+  return [...DATA.countryRanks.values()].sort((left, right) => left.rank - right.rank);
+}
+
+export function countryRankOf(id: string): CountryRank | null {
+  return DATA.countryRanks.get(id) ?? null;
+}
+
+export function governmentForms(): GovernmentForm[] {
+  return [...DATA.governmentForms.values()];
+}
+
+export function governmentFormOf(id: string): GovernmentForm | null {
+  return DATA.governmentForms.get(id) ?? null;
+}
+
+export function registeredCountryRankOf(nationId: string): CountryRank | null {
+  return countryRankOf(DATA.registeredCountryRanks.get(nationId) ?? '');
+}
+
+export function registeredGovernmentFormOf(nationId: string): GovernmentForm | null {
+  return governmentFormOf(DATA.registeredGovernmentForms.get(nationId) ?? '');
 }
 
 export function accessTiers(): AccessTierRow[] {

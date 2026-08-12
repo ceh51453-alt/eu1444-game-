@@ -109,6 +109,14 @@ export interface PowerState {
   /** `nation_*` — id trong mảng `nations` của `data/nations.json`. */
   id: string;
   minigame: MinigameKind;
+  /** Cấp pháp lý của quốc gia, độc lập với tước cá nhân của người đang trị vì. */
+  countryRankId: string;
+  /** Quân chủ, đế chế tuyển cử, giáo quốc, liên bang, hãn quốc… */
+  governmentFormId: string;
+  /** Năm cấp hiện tại được tuyên bố hoặc kế thừa. */
+  rankSinceYear: number;
+  /** Đế/vương hiệu đang bị một phần thế giới phủ nhận. */
+  rankDisputed: boolean;
   treasury: number;
   income: number;
   prestige: number;

@@ -614,6 +614,7 @@ export function RealmScreen({
           {sectionShown('chu-hau') && (
             <VassalPanel
               vassals={vassals.list}
+              factions={vassals.factions}
               legitimacy={title.legitimacy}
               titleId={title.titleId}
               onPersuade={talkTo}

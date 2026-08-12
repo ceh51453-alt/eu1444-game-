@@ -22,6 +22,12 @@ import { makeId, type NpcId } from '@/core/ids';
 import { runCheck } from '@/systems/check';
 import type { GameState } from '@/state/slices';
 import { rankOf, vassalCapFor, vassalConfig } from '@/systems/titles';
+import {
+  factionMemberRankByNumber,
+  factionMemberRankOf,
+  factionOrganizationTierOf,
+  factionOrganizationTiers,
+} from '@/systems/factions';
 import type { Faction, Grievance, Vassal } from './types';
 
 export class RealmVassalError extends Error {
@@ -270,7 +276,12 @@ export interface RebellionRisk {
  * thành nhưng cực mạnh thì không phản, một chư hầu căm ghét nhưng không có quân
  * cũng không phản. Chỉ khi cả ba cùng có thì đám cháy mới bén.
  */
-export function rebellionRisk(vassal: Vassal, liegeLegitimacy: number, alliedRebels = 0): RebellionRisk {
+export function rebellionRisk(
+  vassal: Vassal,
+  liegeLegitimacy: number,
+  alliedRebels = 0,
+  faction: Faction | null = null,
+): RebellionRisk {
   const config = vassalConfig().rebellion;
   const reasons: LoyaltyLine[] = [];
 
@@ -287,8 +298,18 @@ export function rebellionRisk(vassal: Vassal, liegeLegitimacy: number, alliedReb
     reasons.push({ label: `${String(vassal.claims.length)} yêu sách`, value: config.claimBonus });
   }
   if (vassal.factionId !== '') {
-    base += config.factionBonus;
-    reasons.push({ label: 'Đứng trong một phe', value: config.factionBonus });
+    const tier = faction === null ? null : factionOrganizationTierOf(faction.tierId);
+    const memberRank = faction === null ? null : factionMemberRankOf(faction.memberRanks[vassal.npcId] ?? 'thanh-vien-tuyen-the');
+    const factionBonus = faction === null || tier === null
+      ? config.factionBonus
+      : Math.round(tier.rebellionBonus * (0.75 + faction.cohesion / 200) + (memberRank?.rank ?? 0) * 2);
+    base += factionBonus;
+    reasons.push({
+      label: faction === null
+        ? 'Đứng trong một phe chưa rõ tổ chức'
+        : `${memberRank?.name ?? 'Thành viên'} · ${tier?.name ?? faction.tierId}`,
+      value: factionBonus,
+    });
   }
   if (alliedRebels > 0) {
     base += alliedRebels * config.perAlliedRebel;
@@ -325,8 +346,14 @@ export interface RebellionCheck {
  * kiểm định, không có độ khó, không có modifier nào áp vào. Nhét nó vào hệ 5 cấp
  * sẽ tạo ra một "thất bại có giá" của một việc không ai làm.
  */
-export function checkRebellion(rng: Rng, vassal: Vassal, liegeLegitimacy: number, alliedRebels = 0): RebellionCheck {
-  const assessment = rebellionRisk(vassal, liegeLegitimacy, alliedRebels);
+export function checkRebellion(
+  rng: Rng,
+  vassal: Vassal,
+  liegeLegitimacy: number,
+  alliedRebels = 0,
+  faction: Faction | null = null,
+): RebellionCheck {
+  const assessment = rebellionRisk(vassal, liegeLegitimacy, alliedRebels, faction);
   if (!assessment.ready || vassal.rebelling) {
     return { vassal, rebelled: false, risk: assessment.risk, line: '' };
   }
@@ -358,6 +385,46 @@ export function submit(vassal: Vassal, year: number): Vassal {
 // Phe cánh
 // ---------------------------------------------------------------------------
 
+function clampMeter(value: number): number {
+  return Math.max(0, Math.min(100, Math.round(value)));
+}
+
+/** Tính lại cấp, thủ lĩnh và chức vị khi sức mạnh hoặc thành viên đổi. */
+export function refreshFaction(faction: Faction, vassals: readonly Vassal[]): Faction {
+  const members = vassals.filter((vassal) => faction.members.includes(vassal.npcId));
+  if (members.length === 0) return { ...faction, members: [], leaderId: '', memberRanks: {}, influence: 0, cohesion: 0 };
+
+  const cohesion = clampMeter(
+    members.reduce((sum, member) => sum + (100 - member.loyalty) * 0.7 + member.ambition * 0.3, 0) / members.length,
+  );
+  const averagePower = members.reduce((sum, member) => sum + powerOf(member), 0) / members.length;
+  const influence = clampMeter(averagePower * 0.55 + members.length * 4 + cohesion * 0.25);
+  const tier = [...factionOrganizationTiers()]
+    .sort((left, right) => right.rank - left.rank)
+    .find((entry) => members.length >= entry.minMembers && influence >= entry.minInfluence)
+    ?? factionOrganizationTiers()[0]!;
+  const ranked = [...members].sort(
+    (left, right) => (powerOf(right) + right.ambition + (100 - right.loyalty)) - (powerOf(left) + left.ambition + (100 - left.loyalty)),
+  );
+  const leaderId = ranked[0]?.npcId ?? '';
+  const average = members.reduce((sum, member) => sum + powerOf(member), 0) / members.length;
+  const memberRanks: Record<string, string> = {};
+  ranked.forEach((member, index) => {
+    const roleRank = index === 0 ? 4 : index === 1 && members.length >= 3 ? 3 : powerOf(member) >= average ? 2 : 1;
+    memberRanks[member.npcId] = factionMemberRankByNumber(roleRank).id;
+  });
+
+  return {
+    ...faction,
+    members: members.map((member) => member.npcId),
+    tierId: tier.id,
+    cohesion,
+    influence,
+    leaderId,
+    memberRanks,
+  };
+}
+
 /**
  * NHIỀU CHƯ HẦU LIÊN KẾT THÀNH PHE (mục 7).
  *
@@ -373,13 +440,19 @@ export function formFaction(vassals: readonly Vassal[], year: number, name: stri
   const angry = vassals.filter((vassal) => vassal.loyalty < config.loyaltyBelow + 10 && !vassal.rebelling);
   if (angry.length < 2) return { vassals: [...vassals], faction: null };
 
-  const faction: Faction = {
+  const draft: Faction = {
     id: `phe_${String(year)}`,
     name,
     members: angry.map((vassal) => vassal.npcId),
+    tierId: 'nhom-ket-uoc',
+    cohesion: 0,
+    influence: 0,
+    leaderId: '',
+    memberRanks: {},
     demand,
     formedYear: year,
   };
+  const faction = refreshFaction(draft, angry);
 
   return {
     faction,

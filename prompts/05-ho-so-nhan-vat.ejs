@@ -2,6 +2,8 @@
   const c = state.character;
   const profile = q.profile();
   const title = q.title();
+  const factions = q.factions();
+  const nation = c?.allegiance?.nationId ? q.nation(c.allegiance.nationId) : null;
   const band = (hp, maxHp) => {
     const share = maxHp > 0 ? hp / maxHp : 0;
     if (share >= 1) return 'lành lặn';
@@ -50,6 +52,27 @@ TƯỚC VỊ ĐANG NẮM — đây là quyền, nghĩa vụ và cách người k
 <% } %><% if (held.termEndsYear > 0) { %>    Nhiệm kỳ kết thúc năm <%= held.termEndsYear %>.
 <% } %><% } %>
 Khi NPC phản ứng hoặc khi kể hậu quả chính trị, phải xét đúng tước cụ thể, chính danh, đặc quyền và nghĩa vụ ở trên.
+<% } %>
+<% if (factions.length > 0) { %>
+
+PHE PHÁI VÀ HỘI ĐOÀN — cấp bậc là quyền thực, không phải một nhãn xã giao
+<% for (const faction of factions) { %>
+  · <%= faction.name %>: chức vị <%= faction.rank %>/4 — <%= faction.rankName %>; ảnh hưởng riêng <%= faction.influence %>/100; lòng trung <%= faction.loyalty %>/100; sức nặng thăng cấp <%= faction.standing %>/100
+    Quyền: <%= fmt.list(faction.privileges) %>
+    Nghĩa vụ: <%= fmt.list(faction.duties) %>
+<% if (faction.nextRank) { %>    Cấp kế: <%= faction.nextRank.name %>, cần sức nặng <%= faction.nextRank.minStanding %>.
+<% } %><% if (faction.note) { %>    Ghi chú: <%= faction.note %>
+<% } %><% } %>
+Khi phe có mặt trong cảnh, phải xét chức vị, lòng trung, đặc quyền, nghĩa vụ và phản ứng của cấp trên/cấp dưới. Không tự thăng chức nếu state chưa đổi.
+<% } %>
+<% if (nation?.countryRank) { %>
+
+ĐỊA VỊ QUỐC GIA ĐANG PHỤC VỤ
+Thế lực: <%= nation.name ?? c.allegiance.nationId %>
+Cấp: <%= nation.countryRank.rank %>/6 — <%= nation.countryRank.label %>; thể chế <%= nation.countryRank.government %>; người đứng đầu <%= nation.countryRank.rulerTitle %> (<%= nation.countryRank.address %>); nền tảng giữ cấp <%= nation.countryRank.support %>/100<%= nation.countryRank.disputed ? '; ĐỊA VỊ ĐANG BỊ TRANH CHẤP' : '' %>.
+Quyền của cấp: <%= fmt.list(nation.countryRank.rights) %>
+Gánh nặng của cấp: <%= fmt.list(nation.countryRank.burdens) %>
+Khi kể ngoại giao, chiến tranh, thuế, hành chính, phe phái hoặc cách NPC xưng hô, phải xét cấp quốc gia và thể chế này; không gọi chủ tọa liên bang là vua hay Giáo hoàng là quốc vương.
 <% } %>
 <% if (c.flags.length > 0) { %>
 Đã trải qua: <%= fmt.list(c.flags) %>

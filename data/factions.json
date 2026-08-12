@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "memberRanks": [
+    {
+      "id": "nguoi-huong-ung",
+      "rank": 0,
+      "name": "Người hưởng ứng",
+      "minStanding": 0,
+      "checkBonus": 0,
+      "accessRank": 0,
+      "privileges": ["Được nghe lời kêu gọi công khai"],
+      "duties": ["Chưa được dự việc kín hay nhân danh phe"]
+    },
+    {
+      "id": "thanh-vien-tuyen-the",
+      "rank": 1,
+      "name": "Thành viên tuyên thệ",
+      "minStanding": 18,
+      "checkBonus": 2,
+      "accessRank": 1,
+      "privileges": ["Được dự họp thường", "Được xin người trong phe làm chứng hoặc giới thiệu"],
+      "duties": ["Giữ kín việc nội bộ", "Đóng góp tiền, tin tức hoặc công sức khi được gọi"]
+    },
+    {
+      "id": "tru-cot",
+      "rank": 2,
+      "name": "Trụ cột",
+      "minStanding": 38,
+      "checkBonus": 5,
+      "accessRank": 2,
+      "privileges": ["Được biết chương trình kín", "Được bảo trợ người mới", "Có tiếng nói trong phân chia nguồn lực"],
+      "duties": ["Bảo đảm lòng trung của người mình đưa vào", "Gánh một phần chi phí và tai tiếng của phe"]
+    },
+    {
+      "id": "nguoi-giu-an",
+      "rank": 3,
+      "name": "Người giữ ấn",
+      "minStanding": 62,
+      "checkBonus": 8,
+      "accessRank": 3,
+      "privileges": ["Được điều phối thành viên cấp dưới", "Được thương lượng nhân danh phe", "Được tiếp cận sổ người, tiền và cam kết"],
+      "duties": ["Chịu trách nhiệm khi kế hoạch lộ", "Phải thi hành quyết nghị của thủ lĩnh"]
+    },
+    {
+      "id": "thu-linh",
+      "rank": 4,
+      "name": "Thủ lĩnh",
+      "minStanding": 84,
+      "checkBonus": 12,
+      "accessRank": 4,
+      "privileges": ["Đặt chương trình và yêu sách của phe", "Bổ nhiệm chức vụ nội bộ", "Cam kết nguồn lực và đồng minh của phe"],
+      "duties": ["Gánh toàn bộ hậu quả chính trị của phe", "Phải giữ phe thống nhất và đáp lại yêu sách của thành viên"]
+    }
+  ],
+  "organizationTiers": [
+    {
+      "id": "nhom-ket-uoc",
+      "rank": 1,
+      "name": "Nhóm kết ước",
+      "minMembers": 2,
+      "minInfluence": 0,
+      "rebellionBonus": 5,
+      "description": "Một nhóm nhỏ cùng thề giúp nhau; dễ tan nếu mất người cầm đầu."
+    },
+    {
+      "id": "lien-minh",
+      "rank": 2,
+      "name": "Liên minh",
+      "minMembers": 3,
+      "minInfluence": 30,
+      "rebellionBonus": 10,
+      "description": "Đã có người môi giới, liên lạc và một yêu sách chung đủ rõ để ép triều đình nhượng bộ."
+    },
+    {
+      "id": "lien-minh-lon",
+      "rank": 3,
+      "name": "Đại liên minh",
+      "minMembers": 5,
+      "minInfluence": 50,
+      "rebellionBonus": 17,
+      "description": "Một mạng lưới có nhiều đầu mối, đủ sức phối hợp quân, tiền và lời thề ở nhiều tỉnh."
+    },
+    {
+      "id": "khoi-quyen-luc",
+      "rank": 4,
+      "name": "Khối quyền lực",
+      "minMembers": 7,
+      "minInfluence": 70,
+      "rebellionBonus": 25,
+      "description": "Một cực quyền lực song song với lãnh chúa; có thể buộc luật, thuế và kế vị phải đổi theo mình."
+    }
+  ],
+  "standing": {
+    "titleRankWeight": 4,
+    "prestigeDivisor": 8,
+    "relationWeight": 2,
+    "relationCap": 8,
+    "loyaltyPenaltyBelow": 35,
+    "loyaltyPenaltyDivisor": 4,
+    "lowLoyaltyCheckPenalty": -6,
+    "activeDomains": ["skill.dam-phan", "skill.nghi-thuc", "rule.*"]
+  }
+}

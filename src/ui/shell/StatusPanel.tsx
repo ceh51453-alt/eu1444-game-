@@ -47,9 +47,16 @@ import { LiveNewsFeed } from '@/ui/world/NewsFeed';
 import { allHoldings } from '@/systems/holding';
 import { economyOf } from '@/systems/economy';
 import { logisticsSummaryOf, militaryStateOf, summaryOf } from '@/systems/military';
-import { powerName } from '@/systems/nations';
+import { countryStyleOf, nationsStateOf, powerName } from '@/systems/nations';
 import { realmStateOf } from '@/systems/realm';
 import { campaignStateOf, factionName } from '@/systems/campaign';
+import {
+  canPromoteFactionMembership,
+  factionMemberRankOf,
+  factionMembershipsOf,
+  factionStandingOf,
+  nextFactionRankOf,
+} from '@/systems/factions';
 import {
   grantName,
   heldTitles,
@@ -225,6 +232,7 @@ function CreationProfile({ character }: { character: CharacterState }): ReactNod
   const appearance = character.appearance;
   const currentNationAttitude =
     character.allegiance.nationId === '' ? null : (character.allegiance.attitudes[character.allegiance.nationId] ?? 0);
+  const memberships = factionMembershipsOf(state);
 
   return (
     <Panel title="Hồ sơ & tước vị">
@@ -293,6 +301,65 @@ function CreationProfile({ character }: { character: CharacterState }): ReactNod
             <p className="text-[10px] text-vellum/40 italic">
               Xuất thân không khóa trần tước vị; kinh nghiệm và định kiến của nó có thể được tước vị, quan hệ và thành tựu về sau lấn át.
             </p>
+          </div>
+        </details>
+      )}
+
+      {memberships.length > 0 && (
+        <details className="border-t border-oak-light pt-2 text-xs" open>
+          <summary className="cursor-pointer text-brass/80">Phe phái & hội đoàn ({memberships.length})</summary>
+          <div className="mt-2 space-y-2">
+            {memberships.map((membership) => {
+              const rank = factionMemberRankOf(membership.rankId);
+              const standing = factionStandingOf(state, membership);
+              const next = nextFactionRankOf(membership.rankId);
+              const verdict = canPromoteFactionMembership(state, membership);
+              return (
+                <div key={membership.id} className="rounded border border-brass/25 bg-ink/20 px-2.5 py-2">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <p className="text-sm text-parchment">{membership.name}</p>
+                      <p className="text-[10px] text-vellum/50">
+                        chức vị {rank.rank}/4 · {rank.name} · vào phe năm {membership.joinedYear}
+                      </p>
+                    </div>
+                    <span className="rounded border border-oak-light px-1.5 py-0.5 text-[9px] text-brass/80">
+                      sức nặng {standing.total}/100
+                    </span>
+                  </div>
+                  <div className="mt-2 space-y-1 border-t border-oak-light/60 pt-2">
+                    <Row label="Ảnh hưởng riêng" value={`${membership.influence}/100`} />
+                    <Row label="Lòng trung" value={`${membership.loyalty}/100`} />
+                    <Row label="Phạm vi quyền" value={membership.powerId === '' ? 'xuyên biên giới/không khai' : powerName(membership.powerId)} />
+                    <p className="text-[10px] leading-relaxed text-emerald-200/70">
+                      Quyền: {rank.privileges.join(' · ')}
+                    </p>
+                    <p className="text-[10px] leading-relaxed text-amber-200/70">
+                      Nghĩa vụ: {rank.duties.join(' · ')}
+                    </p>
+                    {rank.checkBonus !== 0 && (
+                      <p className="text-[10px] text-vellum/50">
+                        Khi phe này hoạt động: +{rank.checkBonus} trên thang d100 cho đàm phán, nghi thức và cai trị; lòng trung thấp có thể gây phạt ngược.
+                      </p>
+                    )}
+                    {next !== null && (
+                      <p className={`text-[10px] ${verdict.ok ? 'text-emerald-200/75' : 'text-vellum/45'}`}>
+                        Cấp kế: {next.name} (cần {next.minStanding}) · {verdict.reason}
+                      </p>
+                    )}
+                    <details>
+                      <summary className="cursor-pointer text-[10px] text-vellum/45">Sức nặng đến từ đâu?</summary>
+                      <div className="mt-1">
+                        {standing.lines.map((line) => (
+                          <Row key={line.label} label={line.label} value={`${line.value >= 0 ? '+' : ''}${line.value}`} />
+                        ))}
+                      </div>
+                    </details>
+                    {membership.note !== '' && <p className="text-[10px] text-vellum/45 italic">{membership.note}</p>}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </details>
       )}
@@ -454,6 +521,8 @@ function RealmAndResourceSummary({ character }: { character: CharacterState }): 
   const title = primaryTitleOf(state);
   const holdings = allHoldings(state);
   const campaign = campaignStateOf(state);
+  const nation = nationsStateOf(state)?.powers.find((power) => power.id === character.allegiance.nationId) ?? null;
+  const nationStyle = nation === null ? null : countryStyleOf(nation);
   return (
     <Panel title="Tài nguyên & vị thế">
       <Row label="Tiền mang theo" value={`${String(Math.round(character.resources.coins))} đồng`} />
@@ -465,6 +534,12 @@ function RealmAndResourceSummary({ character }: { character: CharacterState }): 
         label="Thế lực"
         value={character.allegiance.nationId === '' ? 'chưa thuộc' : powerName(character.allegiance.nationId)}
       />
+      {nationStyle !== null && (
+        <Row
+          label="Cấp quốc gia"
+          value={`${nationStyle.rank.rank}/6 · ${nationStyle.label}${nation?.rankDisputed ? ' · đang bị tranh chấp' : ''}`}
+        />
+      )}
       <Row
         label="Phe chiến đồ"
         value={campaign?.playerFactionId ? factionName(campaign.playerFactionId) : 'chưa xác định'}

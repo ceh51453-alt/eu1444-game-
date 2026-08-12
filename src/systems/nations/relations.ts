@@ -21,6 +21,12 @@
 import type { Rng } from '@/core/rng';
 import { diplomacyConfig, powerName, relationBandFor, relationSeeds, rippleOf, ripples, treatyOf } from './data';
 import type { PowerState, RelationRow, WorldEvent } from './types';
+import {
+  canAddTreaty,
+  countryRankEffectiveEffects,
+  countryRankSupportOf,
+  countryStyleOf,
+} from './country-rank';
 
 export class RelationError extends Error {
   constructor(message: string) {
@@ -85,9 +91,21 @@ export function adjustRelation(rows: readonly RelationRow[], a: string, b: strin
 }
 
 /** Ký hiệp ước. Hôn ước và triều cống cũng đi qua đây — chúng là hiệp ước có giá. */
-export function signTreaty(rows: readonly RelationRow[], a: string, b: string, treatyId: string): { rows: RelationRow[]; line: string } {
+export function signTreaty(
+  rows: readonly RelationRow[],
+  a: string,
+  b: string,
+  treatyId: string,
+  powers: readonly PowerState[] = [],
+): { rows: RelationRow[]; line: string } {
   const treaty = treatyOf(treatyId);
   if (treaty === null) throw new RelationError(`hiệp ước "${treatyId}" chưa khai trong data/diplomacy.json`);
+  for (const id of [a, b]) {
+    const power = powers.find((entry) => entry.id === id);
+    if (power === undefined) continue;
+    const capacity = canAddTreaty(power, rows);
+    if (!capacity.ok) throw new RelationError(capacity.reason);
+  }
   const [x, y] = orderPair(a, b);
   const next = rows.map((row) =>
     row.a === x && row.b === y
@@ -193,7 +211,10 @@ export function advanceRelationsYear(
 
       // Ai mạnh hơn thì thắng thế trong năm, nhưng không phải năm nào cũng có đất
       // đổi chủ — chiến tranh trung cổ phần lớn là hành quân và vây hãm.
-      const edge = left.military + left.prestige / 4 - (right.military + right.prestige / 4);
+      const leftRank = countryRankEffectiveEffects(left);
+      const rightRank = countryRankEffectiveEffects(right);
+      const edge = left.military + left.prestige / 4 + leftRank.militaryCommandBonus
+        - (right.military + right.prestige / 4 + rightRank.militaryCommandBonus);
       const roll = rng.int(1, 100);
       if (roll <= 30 + Math.abs(edge) / 3) {
         const winner = edge >= 0 ? left : right;
@@ -240,7 +261,8 @@ export function advanceRelationsYear(
       // AI TUYÊN CHIẾN VỚI AI KHÔNG PHẢI CHUYỆN THỨ TỰ CHỮ CÁI. Kẻ mạnh hơn ra tay
       // trước, trừ khi kẻ yếu hơn là kẻ đang giữ yêu sách — một đế quốc hấp hối
       // vẫn đi đòi tỉnh của mình, nhưng nó không đi gây sự với người ngoài.
-      const aggressor = left.military + left.prestige / 3 >= right.military + right.prestige / 3 ? left : right;
+      const aggressor = left.military + left.prestige / 3 + countryRankEffectiveEffects(left).diplomaticWeight
+        >= right.military + right.prestige / 3 + countryRankEffectiveEffects(right).diplomaticWeight ? left : right;
       const defender = aggressor.id === left.id ? right : left;
       lines.push(`${powerName(aggressor.id)} và ${powerName(defender.id)} rơi vào chiến tranh.`);
       events.push({
@@ -393,7 +415,7 @@ export function exportForPart15(
   year: number,
 ): {
   year: number;
-  balance: { powerId: string; name: string; weight: number }[];
+  balance: { powerId: string; name: string; countryRank: string; government: string; rankSupport: number; weight: number }[];
   wars: { a: string; b: string; years: number }[];
   claims: { a: string; b: string }[];
   openRipples: { id: string; event: string }[];
@@ -401,11 +423,17 @@ export function exportForPart15(
   const total = powers.reduce((sum, power) => sum + powerWeight(power), 0) || 1;
   return {
     year,
-    balance: powers.map((power) => ({
-      powerId: power.id,
-      name: powerName(power.id),
-      weight: Math.round((powerWeight(power) / total) * 1000) / 10,
-    })),
+    balance: powers.map((power) => {
+      const style = countryStyleOf(power);
+      return {
+        powerId: power.id,
+        name: powerName(power.id),
+        countryRank: style.rank.name,
+        government: style.form.name,
+        rankSupport: countryRankSupportOf(power).value,
+        weight: Math.round((powerWeight(power) / total) * 1000) / 10,
+      };
+    }),
     wars: rows.filter((row) => row.atWar).map((row) => ({ a: row.a, b: row.b, years: row.warYears })),
     claims: rows.filter((row) => row.claim).map((row) => ({ a: row.a, b: row.b })),
     openRipples: ripples().map((ripple) => ({ id: ripple.id, event: ripple.event })),
@@ -415,7 +443,14 @@ export function exportForPart15(
 /** Sức nặng của một thế lực trong cán cân châu lục. */
 export function powerWeight(power: PowerState): number {
   if (power.fallen) return 0;
-  return Math.max(0, power.land * 6 + power.military * 0.8 + power.income / 60 + power.prestige * 0.3);
+  return Math.max(
+    0,
+    power.land * 6
+      + power.military * 0.8
+      + power.income / 60
+      + power.prestige * 0.3
+      + countryRankEffectiveEffects(power).diplomaticWeight,
+  );
 }
 
 function coreDeltaOf(effects: Readonly<Record<string, unknown>>): CoreDelta {

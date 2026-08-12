@@ -9,6 +9,14 @@
 <% if (r.vassals.length > 0) { %>
 │ Chư hầu: <%= fmt.list(r.vassals) %>
 <% } %>
+<% if (r.factions.length > 0) { %>
+│ Phe chư hầu:
+<% for (const faction of r.factions) { %>
+│   · <%= faction.name %> — cấp tổ chức <%= faction.tierRank %>/4, <%= faction.tier %>; thủ lĩnh <%= faction.leader %>; <%= faction.members %> người; cố kết <%= faction.cohesion %>/100; ảnh hưởng <%= faction.influence %>/100
+│     Yêu sách: <%= faction.demand %>
+<% } %>
+│ Cấp tổ chức làm sức ép nổi loạn mạnh hơn; chức vị từng thành viên quyết định ai ra lệnh, ai môi giới và ai chỉ theo.
+<% } %>
 <% if (r.laws.length > 0) { %>
 │ Luật đang áp: <%= fmt.list(r.laws) %>
 <% } %>

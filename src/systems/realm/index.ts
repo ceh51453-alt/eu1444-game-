@@ -144,6 +144,7 @@ export {
   loyaltyYear,
   persuade,
   powerOf,
+  refreshFaction,
   rebellionRisk,
   submit,
   vassalCapOf,

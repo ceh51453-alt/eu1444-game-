@@ -22,6 +22,7 @@ import { regionName } from '@/lore/regions';
 import { seedInto } from '@/systems/items/seed';
 import { createHolding, type OwnershipPath } from '@/systems/holding';
 import { grantTitle, type HeldTitle } from '@/systems/titles';
+import { seedFactionMemberships } from '@/systems/factions';
 import { npcCodexSchema, type CodexState } from '@/systems/codex';
 import { cultureOf, religionOf, suggestedCulture, suggestedReligion } from './beliefs';
 import { carry, gearName, materialName, qualityName, type CarriedGear } from './gear';
@@ -814,6 +815,11 @@ export function finalize(draft: CharacterDraft): CharacterState {
   // người chơi đè lên. Ghi cả bảng xuống state chứ không tính lại mỗi lần đọc:
   // Phần 13/14 sẽ SỬA những con số này theo diễn biến, nên chúng phải là state.
   const attitudes: Record<string, number> = { ...attitudeTable(draft.raceId), ...draft.allegiance.attitudes };
+  const memberships = seedFactionMemberships(
+    draft.allegiance.guilds,
+    draft.allegiance.nationId,
+    DEFAULT_START_DATE.year,
+  );
 
   // Tên "chưa đặt tên" hữu ích trong UI bản nháp nhưng không được lọt sang các
   // hệ thành trì/tước vị thật: hai cơ nghiệp cùng tên ấy sẽ vi phạm ràng buộc
@@ -863,6 +869,8 @@ export function finalize(draft: CharacterDraft): CharacterState {
       religion: religionOf(draft.allegiance.religionId)?.name ?? '',
       piety: draft.allegiance.piety,
       guilds: [...draft.allegiance.guilds],
+      memberships,
+      activeFactionId: memberships[0]?.id ?? '',
       attitudes,
     },
     holdings,

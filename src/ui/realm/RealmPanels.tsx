@@ -29,9 +29,11 @@ import {
   unrestBandFor,
   vassalCapOf,
   type CourtCase,
+  type Faction,
   type Province,
   type Vassal,
 } from '@/systems/realm';
+import { factionMemberRankOf, factionOrganizationTierOf } from '@/systems/factions';
 import { caseTypeOf } from '@/systems/realm';
 import { courtSeatsFor, heirLine, rankOf, titleName, type HeldTitle, type Kin, type SuccessionLaw } from '@/systems/titles';
 import type { CourtAppointment } from '@/systems/realm';
@@ -172,6 +174,7 @@ export function ProvinceMap({
 
 export interface VassalPanelProps {
   vassals: readonly Vassal[];
+  factions: readonly Faction[];
   /** Chính danh của lãnh chúa — vế thứ tư của công thức nguy cơ (mục 7). */
   legitimacy: number;
   titleId: string;
@@ -186,7 +189,7 @@ export interface VassalPanelProps {
  * TRỰC, và một mối đe dọa thường trực mà người chơi không nhìn thấy đang lớn dần
  * thì nó chỉ là một cú đánh úp.
  */
-export function VassalPanel({ vassals, legitimacy, titleId, onPersuade, onGift }: VassalPanelProps): ReactNode {
+export function VassalPanel({ vassals, factions, legitimacy, titleId, onPersuade, onGift }: VassalPanelProps): ReactNode {
   const cap = vassalCapOf(titleId);
   const rebels = vassals.filter((vassal) => vassal.rebelling).length;
 
@@ -212,8 +215,38 @@ export function VassalPanel({ vassals, legitimacy, titleId, onPersuade, onGift }
 
       {vassals.length === 0 && <p className="text-sm text-vellum/50 italic">Chưa ai thề với ngài.</p>}
 
+      {factions.map((faction) => {
+        const tier = factionOrganizationTierOf(faction.tierId);
+        const leader = vassals.find((vassal) => vassal.npcId === faction.leaderId);
+        return (
+          <details key={faction.id} className="rounded border border-blood/45 bg-blood/5 px-2.5 py-2" open>
+            <summary className="cursor-pointer list-none">
+              <div className="flex items-start justify-between gap-2">
+                <div>
+                  <p className="text-sm text-red-100">{faction.name}</p>
+                  <p className="text-[10px] text-vellum/55">
+                    cấp tổ chức {tier.rank}/4 · {tier.name} · {faction.members.length} người
+                  </p>
+                </div>
+                <span className="rounded border border-blood/40 px-1.5 py-0.5 text-[9px] text-red-200">
+                  ảnh hưởng {Math.round(faction.influence)}/100
+                </span>
+              </div>
+            </summary>
+            <div className="mt-2 space-y-1 border-t border-blood/20 pt-2">
+              <Row label="Thủ lĩnh" value={leader?.name ?? 'chưa rõ'} />
+              <Row label="Cố kết" value={`${String(Math.round(faction.cohesion))}/100`} />
+              <p className="text-[10px] leading-relaxed text-vellum/55">{tier.description}</p>
+              <p className="text-[10px] leading-relaxed text-red-200/70">Yêu sách: {faction.demand}</p>
+            </div>
+          </details>
+        );
+      })}
+
       {vassals.map((vassal) => {
-        const risk = rebellionRisk(vassal, legitimacy, rebels);
+        const faction = factions.find((entry) => entry.id === vassal.factionId) ?? null;
+        const risk = rebellionRisk(vassal, legitimacy, rebels, faction);
+        const factionRank = faction === null ? null : factionMemberRankOf(faction.memberRanks[vassal.npcId] ?? 'thanh-vien-tuyen-the');
         return (
           <div
             key={vassal.npcId}
@@ -249,6 +282,13 @@ export function VassalPanel({ vassals, legitimacy, titleId, onPersuade, onGift }
             </div>
 
             {vassal.rebelling && <p className="text-[10px] text-blood">ĐANG NỔI LOẠN.</p>}
+
+            {faction !== null && factionRank !== null && (
+              <p className="text-[10px] text-red-200/70">
+                {factionRank.name} trong {faction.name}
+                {faction.leaderId === vassal.npcId ? ' · giữ quyền đặt yêu sách và điều phối phe' : ''}.
+              </p>
+            )}
 
             {vassal.claims.length > 0 && (
               <p className="text-[10px] text-vellum/60">Yêu sách: {vassal.claims.join(', ')}.</p>

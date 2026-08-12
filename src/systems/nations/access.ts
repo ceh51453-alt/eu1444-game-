@@ -20,6 +20,7 @@
 import { knowledgeOf } from '@/lore/knowledge';
 import type { GameState } from '@/state/slices';
 import { rankOf, type HeldTitle } from '@/systems/titles';
+import { factionRankForPower } from '@/systems/factions';
 import { accessTiers, clarityConfig, powerRowOf } from './data';
 import type { AccessTier, ClarityLevel } from './types';
 
@@ -29,6 +30,8 @@ export interface AccessInput {
   titles: readonly HeldTitle[];
   /** Thế lực người chơi đang thuộc về (`knowledge.factionId`). */
   factionId: string;
+  /** Cấp nội bộ cao nhất trong một phe hoạt động tại thế lực này (0–4). */
+  factionRank?: number;
 }
 
 export interface ClarityInput {
@@ -57,15 +60,23 @@ export function accessTierFor(input: AccessInput): AccessTier {
   const bestOnLadder = sameLadder.reduce((best, title) => Math.max(best, rankOf(title.titleId)), 0);
   const bestOverall = input.titles.reduce((best, title) => Math.max(best, rankOf(title.titleId)), 0);
 
-  if (bestOnLadder >= row.access.playRank && input.factionId === input.powerId) return 'choi-that';
-  if (bestOverall >= row.access.impactRank) return 'tac-dong';
+  if (
+    input.factionId === input.powerId
+    && (bestOnLadder >= row.access.playRank || (input.factionRank ?? 0) >= 4)
+  ) return 'choi-that';
+  if (bestOverall >= row.access.impactRank || (input.factionRank ?? 0) >= 2) return 'tac-dong';
   return 'quan-sat';
 }
 
 /** Tầng tiếp cận đọc thẳng từ state — tiện cho UI, và chỉ UI mới nên dùng. */
 export function accessTierOf(state: GameState | null, powerId: string, titles: readonly HeldTitle[]): AccessTier {
   const knowledge = state === null ? { factionId: '' } : knowledgeOf(state);
-  return accessTierFor({ powerId, titles, factionId: knowledge.factionId });
+  return accessTierFor({
+    powerId,
+    titles,
+    factionId: knowledge.factionId,
+    factionRank: factionRankForPower(state, powerId),
+  });
 }
 
 export function tierRank(tier: AccessTier): number {

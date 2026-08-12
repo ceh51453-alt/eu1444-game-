@@ -13,6 +13,7 @@ import { registerDuelSources } from './minigames/duel';
 import { registerBattleSources } from './minigames/battle';
 import { registerSiegeSources } from './systems/siege';
 import { registerTitleSources } from './systems/titles';
+import { registerFactionSources } from './systems/factions';
 import './index.css';
 
 // Store dựng lúc import module, slice gameplay đăng ký ở đây — nên phải lấp
@@ -71,6 +72,9 @@ registerSiegeSources();
 // tiếm quyền hỏng liên tục mọi phép kiểm mà không thấy dòng nào nói vì sao thì
 // chỉ có thể kết luận là game ăn gian — và game này không có reroll.
 registerTitleSources();
+// Cấp bậc phe phái chỉ tác động xã giao/cai trị của phe đang hoạt động; mọi
+// khoản cộng và phạt đều hiện thành dòng giải thích trong kết quả kiểm định.
+registerFactionSources();
 
 const container = document.getElementById('root');
 if (container === null) {

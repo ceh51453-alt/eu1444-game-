@@ -44,7 +44,8 @@ import { advanceProjects } from './projects';
 import type { RealmSliceState, VassalsSliceState } from './slice';
 import { averageOverBase, collectTaxes, taxPressure } from './taxes';
 import type { CourtCase, RealmLedger, Vassal } from './types';
-import { checkRebellion, formFaction, loyaltyYear, type LoyaltyLine } from './vassals';
+import { factionOrganizationTierOf } from '@/systems/factions';
+import { checkRebellion, formFaction, loyaltyYear, refreshFaction, type LoyaltyLine } from './vassals';
 
 export interface RealmYearInput {
   realm: RealmSliceState;
@@ -223,20 +224,31 @@ export function advanceRealmYear(rng: Rng, input: RealmYearInput): RealmYearRepo
 
   // Phe cánh hình thành TRƯỚC khi tung nổi loạn: mục 7 nói phe làm mọi thành viên
   // nguy hiểm hơn, nên nếu tung trước thì phe không bao giờ kịp có tác dụng.
-  const factions = [...vassals.factions];
+  let factions = vassals.factions
+    .map((faction) => refreshFaction(faction, updated))
+    .filter((faction) => faction.members.length >= 2);
+  const livingFactionIds = new Set(factions.map((faction) => faction.id));
+  updated = updated.map((vassal) =>
+    vassal.factionId !== '' && !livingFactionIds.has(vassal.factionId) ? { ...vassal, factionId: '' } : vassal,
+  );
   if (!updated.some((vassal) => vassal.factionId !== '')) {
     const formed = formFaction(updated, year, 'Liên minh bất mãn', 'đòi hạ thuế và trả lại quyền tự xử');
     if (formed.faction !== null) {
       updated = formed.vassals;
       factions.push(formed.faction);
-      lines.push(`${String(formed.faction.members.length)} chư hầu lập phe: ${formed.faction.demand}.`);
+      const tier = factionOrganizationTierOf(formed.faction.tierId);
+      const leader = updated.find((vassal) => vassal.npcId === formed.faction?.leaderId)?.name ?? 'chưa rõ';
+      lines.push(
+        `${String(formed.faction.members.length)} chư hầu lập ${tier.name.toLowerCase()}; ${leader} làm thủ lĩnh: ${formed.faction.demand}.`,
+      );
     }
   }
 
   const rebelled: string[] = [];
   let alreadyRebelling = updated.filter((vassal) => vassal.rebelling).length;
   updated = updated.map((vassal) => {
-    const check = checkRebellion(rng, vassal, legitimacy, alreadyRebelling);
+    const faction = factions.find((entry) => entry.id === vassal.factionId) ?? null;
+    const check = checkRebellion(rng, vassal, legitimacy, alreadyRebelling, faction);
     if (check.line !== '') lines.push(check.line);
     if (check.rebelled) {
       rebelled.push(vassal.name);

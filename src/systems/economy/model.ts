@@ -2,6 +2,7 @@ import type { GameDate } from '@/core/clock';
 import type { Rng } from '@/core/rng';
 import { powerName } from '@/systems/nations/data';
 import type { NationsSliceState } from '@/systems/nations/slice';
+import { countryRankEffectiveEffects } from '@/systems/nations/country-rank';
 import { economyConfig, economyGoods, economyProfile } from './data';
 import type { EconomySliceState } from './slice';
 import type {
@@ -218,6 +219,7 @@ export function advanceEconomyMonth(
     const row = working.find((entry) => entry.economy.powerId === power.id);
     if (row === undefined) return power;
     const previous = sourceByPower.get(power.id) ?? seedMarket(power);
+    const countryEffects = countryRankEffectiveEffects(power);
     const tradeBalance = tradeBalances.get(power.id) ?? 0;
     const tariffRevenue = tariffRevenues.get(power.id) ?? 0;
     let weightedPrice = 0;
@@ -297,9 +299,9 @@ export function advanceEconomyMonth(
     const population = Math.max(0, previous.population * (1 + annualPopulationGrowth / 12));
     const workforce = population * clamp(0.45 + previous.urbanization * 0.12, 0.42, 0.58);
 
-    const taxRevenue = (gdp * previous.taxRate) / 12;
-    const tradeRevenue = Math.max(0, tradeBalance) * 0.015;
-    const administration = power.land * config.administrationPerLand;
+    const taxRevenue = ((gdp * previous.taxRate) / 12) * countryEffects.taxFactor;
+    const tradeRevenue = Math.max(0, tradeBalance) * 0.015 * countryEffects.tradeFactor;
+    const administration = power.land * config.administrationPerLand * countryEffects.administrationFactor;
     const militaryExpense = power.military * config.militaryExpensePerPoint;
     const debtService = (previous.debt * previous.interestRate) / 12;
     const relief = shortage > 0.03 ? shortage * (population / 1_000_000) * 4 : 0;
@@ -445,6 +447,7 @@ export function economySummary(economy: EconomySliceState): EconomySummary {
 
 function seedMarket(power: NationsSliceState['powers'][number]): NationalEconomy {
   const profile = economyProfile(power.id);
+  const countryEffects = countryRankEffectiveEffects(power);
   const population = profile?.population ?? Math.max(300_000, power.land * 700_000);
   const urbanization = profile?.urbanization ?? 0.15;
   const productivity = profile?.productivity ?? clamp(power.income / 20, 30, 85);
@@ -469,7 +472,11 @@ function seedMarket(power: NationsSliceState['powers'][number]): NationalEconomy
     interestRate: 0.06,
     creditRating: clamp(60 + power.stability * 0.2 - (profile?.debt ?? 0) / 30, 20, 90),
     infrastructure: profile?.infrastructure ?? clamp(power.stability * 0.8, 20, 80),
-    tradeCapacity: profile?.tradeCapacity ?? clamp(power.cohesion * 0.8, 20, 80),
+    tradeCapacity: clamp(
+      (profile?.tradeCapacity ?? clamp(power.cohesion * 0.8, 20, 80)) + countryEffects.tradeCapacityBonus,
+      0,
+      100,
+    ),
     taxRate: profile?.taxRate ?? 0.18,
     tariffRate: profile?.tariffRate ?? 0.07,
     productionFactors: { ...productionFactors },

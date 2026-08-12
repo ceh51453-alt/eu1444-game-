@@ -44,6 +44,20 @@ export const scarSchema = z.object({
   note: z.string().max(200).default(''),
 });
 
+const factionMembershipSchema = z.object({
+  id: z.string().min(1).max(100),
+  name: z.string().min(1).max(100),
+  /** Hội đoàn, dòng tu, đảng triều đình, hiệp sĩ đoàn… */
+  kind: z.string().min(1).max(60).default('hoi-doan'),
+  /** Thế lực nơi cấp bậc này có giá trị; rỗng nếu xuyên biên giới. */
+  powerId: z.string().max(60).default(''),
+  rankId: z.string().min(1).max(60).default('thanh-vien-tuyen-the'),
+  influence: z.int().min(0).max(100).default(0),
+  loyalty: z.int().min(0).max(100).default(50),
+  joinedYear: z.int().default(1444),
+  note: z.string().max(240).default(''),
+});
+
 export const appearanceSchema = z.object({
   heightCm: z.number().min(30).max(400),
   weightKg: z.number().min(5).max(600),
@@ -302,6 +316,10 @@ export const characterSchema = z.object({
       piety: z.int().min(0).max(100).default(30),
       /** Phường hội, dòng tu, hiệp sĩ đoàn, hội thương nhân, hội trộm. */
       guilds: z.array(z.string().max(80)).max(10).default([]),
+      /** Bản có cấu trúc của hội đoàn: cấp bậc, ảnh hưởng và lòng trung đều có tác dụng. */
+      memberships: z.array(factionMembershipSchema).max(20).default([]),
+      /** Phe đang được dùng khi xét quyền tiếp cận và kiểm định chính trị. */
+      activeFactionId: z.string().max(100).default(''),
       /** Thái độ với từng thế lực, tính từ chủng tộc + xuất thân rồi sửa tay được. */
       attitudes: z.record(z.string(), z.int().min(-100).max(100)).default({}),
     })
@@ -313,6 +331,8 @@ export const characterSchema = z.object({
       religion: '',
       piety: 30,
       guilds: [],
+      memberships: [],
+      activeFactionId: '',
       attitudes: {},
     }),
 
@@ -462,6 +482,8 @@ export const characterSlice: SliceDefinition = {
       religion: '',
       piety: 30,
       guilds: [],
+      memberships: [],
+      activeFactionId: '',
       attitudes: {},
     },
     holdings: [],
@@ -528,6 +550,9 @@ export const characterSlice: SliceDefinition = {
     // 13/14, không phải một lời kể.
     'allegiance.attitudes': 'engine',
     'allegiance.attitudes.*': 'engine',
+    'allegiance.memberships': 'engine',
+    'allegiance.memberships.*': 'engine',
+    'allegiance.activeFactionId': 'engine',
     'personality.*': 'ai',
     flags: 'ai',
     'notes.*': 'ai',
