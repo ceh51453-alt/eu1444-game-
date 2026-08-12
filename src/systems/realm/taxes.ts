@@ -119,7 +119,12 @@ export function collectTaxes(
   rng: Rng,
   provinces: readonly Province[],
   rates: Readonly<Record<string, number>>,
-  options: { base: number; revenueFactor?: number; state?: GameState | null } = { base: 10 },
+  options: {
+    base: number;
+    revenueFactor?: number;
+    revenueFactorForProvince?: (province: Province) => number;
+    state?: GameState | null;
+  } = { base: 10 },
 ): RevenueResult {
   const config = taxConfig();
   const pressure = taxPressure(rates);
@@ -138,7 +143,8 @@ export function collectTaxes(
       rateFactor += (rate / 100) * group.share * group.yieldPerPoint;
     }
 
-    potential += perProvince * rateFactor * yieldFactor(province);
+    const provinceFactor = options.revenueFactorForProvince?.(province) ?? 1;
+    potential += perProvince * rateFactor * yieldFactor(province) * provinceFactor;
   }
 
   potential *= Math.max(0, 1 - pressure.merchantFlight);

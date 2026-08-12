@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { AppShell } from '@/ui/shell/AppShell';
 import { NarrativeStage } from '@/ui/shell/NarrativeStage';
 import { StatusPanel } from '@/ui/shell/StatusPanel';
@@ -12,7 +12,7 @@ import { createSparringDuel } from '@/ui/duel/spar';
 import { BattleScreen, createFieldBattle } from '@/ui/battle';
 import { SiegeScreen, createCastleSiege } from '@/ui/siege';
 import { HoldingScreen, openHoldings } from '@/ui/holding';
-import { RealmScreen, openRealm, type OpenRealm } from '@/ui/realm';
+import { RealmScreen, createJudicialDuel, openRealm, type OpenRealm } from '@/ui/realm';
 import { EventCards, WorldScreen, openWorld, useWorld, type OpenWorld } from '@/ui/world';
 import { knowledgeOf } from '@/lore/knowledge';
 import { worldStateOf } from '@/sim';
@@ -25,6 +25,7 @@ import { DUEL_STREAM, type DuelState } from '@/minigames/duel';
 import { BATTLE_STREAM, type BattleState } from '@/minigames/battle';
 import { SIEGE_STREAM, type SiegeSide, type SiegeState } from '@/systems/siege';
 import { characterOf } from '@/systems/character';
+import type { JudicialDuelRequest } from '@/systems/realm';
 import { usePromptStore } from '@/state/prompts';
 import { useSettingsStore } from '@/state/settings';
 import {
@@ -58,6 +59,7 @@ export function App(): ReactNode {
   // Màn hình đấu của Phần 9 mục 11, cùng lý do: một lưới 9×9 kèm bảng hành động
   // và nhật ký hiệp không nhét vừa cột phải.
   const [duel, setDuel] = useState<DuelState | null>(null);
+  const judicialResolverRef = useRef<((winnerId: string) => void) | null>(null);
   // Màn hình dã chiến của Phần 10 mục 14 — cùng lý do: một lưới tới 50×50 kèm
   // bảng khởi động và bảng tướng không nhét vừa cột phải.
   const [battle, setBattle] = useState<BattleState | null>(null);
@@ -158,6 +160,13 @@ export function App(): ReactNode {
     setRealm(openRealm(useGameStore.getState().snapshot()));
   };
 
+  const openJudicialDuel = (request: JudicialDuelRequest, onResult: (winnerId: string) => void): void => {
+    const snapshot = useGameStore.getState().snapshot();
+    const hub = createRngHub(snapshot.meta.seed, snapshot.meta.rng);
+    judicialResolverRef.current = onResult;
+    setDuel(createJudicialDuel(request, snapshot, hub.stream(DUEL_STREAM), snapshot.meta.turn));
+  };
+
   /**
    * Mở tab Thế giới. KHÔNG có dòng xúc sắc nào ở đây, khác năm cửa trên: mở bảng
    * để NHÌN thì không tung gì cả. Một năm của châu lục chạy ở `advanceWorldYear`
@@ -244,8 +253,26 @@ export function App(): ReactNode {
         <DuelScreen
           duel={duel}
           playerSide="a"
-          onCommit={(done) => reportCombat(duelSummary(done, 'a'))}
-          onClose={() => setDuel(null)}
+          hideCommit={judicialResolverRef.current !== null}
+          onFinish={(done) => {
+            const resolve = judicialResolverRef.current;
+            if (resolve === null || done.winner === '') return;
+            reportCombat(duelSummary(done, 'a'));
+            const store = useGameStore.getState();
+            const snapshot = store.snapshot();
+            store.commitRng({
+              streams: { ...snapshot.meta.rng.streams, [DUEL_STREAM]: done.rngState },
+            });
+            resolve(done.winner === 'a' ? done.a.id : done.b.id);
+            judicialResolverRef.current = null;
+          }}
+          onCommit={(done) => {
+            if (judicialResolverRef.current === null) reportCombat(duelSummary(done, 'a'));
+          }}
+          onClose={() => {
+            judicialResolverRef.current = null;
+            setDuel(null);
+          }}
         />
       )}
       {battle !== null && !creating && !skillsOpen && siege === null && (
@@ -277,6 +304,7 @@ export function App(): ReactNode {
           date={realm.date}
           military={realm.military}
           militaryResources={realm.militaryResources}
+          onJudicialDuel={openJudicialDuel}
           onClose={() => setRealm(null)}
         />
       )}

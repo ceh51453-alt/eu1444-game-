@@ -609,6 +609,7 @@ export function StatusPanel({
   const player = useGameStore((state) => state.player);
   const character = useGameStore((state) => characterOf(state));
   const ready = character !== null && character.identity.finalized;
+  const hasRealm = useGameStore((state) => heldTitles(state).length > 0 || (characterOf(state)?.fiefs.length ?? 0) > 0);
 
   return (
     <div className="flex flex-col">
@@ -699,7 +700,7 @@ export function StatusPanel({
             được gộp (Phụ lục A mục 1). Một cái là ĐIỂM để XÂY, cái kia là VÙNG
             để CAI TRỊ.
           */}
-          {onOpenRealm !== undefined && ready && (
+          {onOpenRealm !== undefined && ready && hasRealm && (
             <button
               type="button"
               onClick={onOpenRealm}

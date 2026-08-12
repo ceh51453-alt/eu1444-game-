@@ -20,24 +20,29 @@
  * actor `engine`.
  */
 
-import { useMemo, useState, type ReactNode } from 'react';
+import { useMemo, useRef, useState, type ReactNode } from 'react';
 import { addMonths, type GameDate } from '@/core/clock';
-import { createRngHub } from '@/core/rng';
+import { createRngHub, type RngHub } from '@/core/rng';
 import { applyPatch } from '@/state/mvu';
 import type { PatchOp } from '@/state/mvu-parse';
 import { useGameStore } from '@/state/store';
 import { characterOf } from '@/systems/character';
 import {
   REALM_STREAM,
+  adjustVassalLoyalty,
   advanceRealmYear,
+  applyOneOffLaw,
+  applyDuelVerdict,
   callHost,
   canIssue,
   canStart,
+  courtEffects,
   giftCost,
   applyLoyaltyEvent,
   issueLaw,
   judge,
   judicialDuelRequest,
+  lawOf,
   lawLabel,
   lawsAvailable,
   persuade,
@@ -85,7 +90,10 @@ export interface RealmScreenProps {
   militaryResources: MilitaryResources;
   onClose: () => void;
   /** Cửa sang Phần 9. Không truyền thì lời yêu cầu chỉ vào nhật ký. */
-  onJudicialDuel?: (request: ReturnType<typeof judicialDuelRequest>) => void;
+  onJudicialDuel?: (
+    request: ReturnType<typeof judicialDuelRequest>,
+    onResult: (winnerId: string) => void,
+  ) => void;
 }
 
 export function RealmScreen({
@@ -109,6 +117,11 @@ export function RealmScreen({
   const [openCaseId, setOpenCaseId] = useState('');
   const [log, setLog] = useState<string[]>([]);
   const [committed, setCommitted] = useState(false);
+  const rngHubRef = useRef<RngHub | null>(null);
+  if (rngHubRef.current === null) {
+    const snapshot = useGameStore.getState().snapshot();
+    rngHubRef.current = createRngHub(snapshot.meta.seed, snapshot.meta.rng);
+  }
 
   const family = useGameStore((state) => characterOf(state)?.family ?? {}) as Readonly<Record<string, Kin>>;
 
@@ -117,6 +130,7 @@ export function RealmScreen({
   const title = titles.find((row) => row.fiefId === viewing) ?? titles[0] ?? null;
   const rank = title === null ? 0 : rankOf(title.titleId);
   const panel = useMemo(() => (title === null ? null : panelFor(title.titleId)), [title]);
+  const selected = realm.provinces.find((row) => row.id === province) ?? realm.provinces[0] ?? null;
 
   const say = (...lines: string[]): void => {
     setLog((rows) => [...lines.filter((line) => line !== ''), ...rows].slice(0, 80));
@@ -139,10 +153,9 @@ export function RealmScreen({
   const has = (id: string): boolean => panel.actions.some((action) => action.id === id);
   const sectionShown = (id: string): boolean => panel.sections.some((section) => section.id === id);
 
-  /** Dòng xúc sắc RIÊNG của tầng cai trị, khôi phục ở mỗi lần bấm (R3). */
+  /** Dòng xúc sắc RIÊNG của tầng cai trị, sống suốt phiên mở màn hình (R3). */
   const rngFor = (): ReturnType<ReturnType<typeof createRngHub>['stream']> => {
-    const snapshot = useGameStore.getState().snapshot();
-    return createRngHub(snapshot.meta.seed, snapshot.meta.rng).stream(REALM_STREAM);
+    return rngHubRef.current!.stream(REALM_STREAM);
   };
 
   // -------------------------------------------------------------------------
@@ -219,19 +232,58 @@ export function RealmScreen({
   };
 
   const ban = (lawId: string): void => {
-    const verdict = canIssue(lawId, rank, realm.treasury, realm.laws);
+    const law = lawOf(lawId);
+    if (law === null) {
+      say(`Không có điều luật "${lawId}".`);
+      return;
+    }
+    if (law.scope === 'province' && selected === null) {
+      say(`${law.name} cần một tỉnh được chọn.`);
+      return;
+    }
+    const active = law.scope === 'province' ? (selected?.laws ?? []) : realm.laws;
+    const verdict = canIssue(lawId, rank, realm.treasury, active);
     if (!verdict.ok) {
       say(verdict.reason);
       return;
     }
-    const result = issueLaw(realm.laws, lawId);
-    setRealm((current) => ({ ...current, laws: result.laws, treasury: current.treasury - result.cost }));
+    const result = issueLaw(active, lawId);
+    if (result.oneOff) {
+      const applied = applyOneOffLaw(realm.provinces, lawId, selected?.id ?? '');
+      setRealm((current) => ({
+        ...current,
+        provinces: applied.provinces,
+        treasury: current.treasury - result.cost,
+      }));
+      if (applied.legitimacy !== 0) {
+        setTitles((current) => current.map((row) => row.fiefId === title.fiefId
+          ? { ...row, legitimacy: Math.max(0, Math.min(100, row.legitimacy + applied.legitimacy)) }
+          : row));
+      }
+      say(result.line, applied.line);
+      return;
+    }
+    setRealm((current) => ({
+      ...current,
+      laws: law.scope === 'realm' ? result.laws : current.laws,
+      provinces: law.scope === 'province'
+        ? current.provinces.map((row) => row.id === selected?.id ? { ...row, laws: result.laws } : row)
+        : current.provinces,
+      treasury: current.treasury - result.cost,
+    }));
     say(result.line);
   };
 
-  const repeal = (lawId: string): void => {
-    const result = repealLaw(realm.laws, lawId);
-    setRealm((current) => ({ ...current, laws: result.laws }));
+  const repeal = (lawId: string, scope: 'realm' | 'province'): void => {
+    const active = scope === 'realm' ? realm.laws : (selected?.laws ?? []);
+    const result = repealLaw(active, lawId);
+    setRealm((current) => ({
+      ...current,
+      laws: scope === 'realm' ? result.laws : current.laws,
+      provinces: scope === 'province'
+        ? current.provinces.map((row) => row.id === selected?.id ? { ...row, laws: result.laws } : row)
+        : current.provinces,
+    }));
     say(result.line);
   };
 
@@ -291,7 +343,21 @@ export function RealmScreen({
     setRealm((current) => ({
       ...current,
       cases: current.cases.map((row) => (row.id === courtCase.id ? result.case : row)),
+      provinces: current.provinces.map((row) => row.id === courtCase.provinceId
+        ? { ...row, unrest: Math.max(0, Math.min(100, row.unrest + result.unrest)) }
+        : row),
       treasury: current.treasury + result.revenue,
+    }));
+    const favouredId = result.verdict.favours === 'a'
+      ? courtCase.plaintiff
+      : result.verdict.favours === 'b' ? courtCase.defendant : '';
+    setVassals((current) => ({
+      ...current,
+      list: current.list.map((row) => {
+        if (row.npcId !== courtCase.plaintiff && row.npcId !== courtCase.defendant) return row;
+        const delta = favouredId !== '' && row.npcId === favouredId ? result.loyaltyFavoured : result.loyaltyOther;
+        return adjustVassalLoyalty(row, delta, `Phán quyết vụ ${courtCase.id}`, date.year, delta <= -10);
+      }),
     }));
     setTitles((current) =>
       current.map((row) =>
@@ -303,7 +369,32 @@ export function RealmScreen({
 
     if (result.opensDuel) {
       const request = judicialDuelRequest(courtCase);
-      if (onJudicialDuel !== undefined) onJudicialDuel(request);
+      if (onJudicialDuel !== undefined) {
+        onJudicialDuel(request, (winnerId) => {
+          const duelResult = applyDuelVerdict(courtCase, winnerId, true);
+          const loserId = winnerId === courtCase.plaintiff ? courtCase.defendant : courtCase.plaintiff;
+          setRealm((current) => ({
+            ...current,
+            cases: current.cases.map((row) => row.id === courtCase.id ? duelResult.case : row),
+          }));
+          setTitles((current) => current.map((row) => row.fiefId === title.fiefId
+            ? { ...row, legitimacy: Math.max(0, Math.min(100, row.legitimacy + duelResult.legitimacy)) }
+            : row));
+          setVassals((current) => ({
+            ...current,
+            list: current.list.map((row) => {
+              if (row.npcId === winnerId) {
+                return adjustVassalLoyalty(row, duelResult.winnerLoyalty, 'Thắng quyết đấu tư pháp', date.year);
+              }
+              if (row.npcId === loserId) {
+                return adjustVassalLoyalty(row, duelResult.loserLoyalty, 'Thua quyết đấu tư pháp', date.year, true);
+              }
+              return row;
+            }),
+          }));
+          say(duelResult.line);
+        });
+      }
       say(
         ...result.lines,
         `Quyết đấu tư pháp: ${request.challengerName} đấu ${request.defenderName} ở ${request.arenaId}. Kết quả LÀ phán quyết.`,
@@ -315,7 +406,15 @@ export function RealmScreen({
   };
 
   const summonHost = (): void => {
-    const host = callHost({ titles, vassals: vassals.list, laws: realm.laws, wantedDays: 60 });
+    const host = callHost({
+      titles,
+      vassals: vassals.list,
+      laws: realm.laws,
+      wantedDays: 60,
+      year: date.year,
+      levyFactor: courtEffects(realm.court, rank).levyFactor,
+    });
+    setVassals((current) => ({ ...current, list: host.vassals }));
     say(...host.lines, `Con số Phần 11 nhận khi đi vây: ${String(host.days)} ngày.`);
   };
 
@@ -328,6 +427,7 @@ export function RealmScreen({
       { op: 'set', path: 'titles.held', to: titles, reason: 'Phần 13: chính danh và nghĩa vụ của các thái ấp', source: 'json' },
       { op: 'set', path: 'military', to: military, reason: 'quân số, đạo quân và hàng tuyển theo tháng', source: 'json' },
       { op: 'set', path: 'meta.gameDate', to: date, reason: 'thời gian cai trị và tuyển quân đã trôi', source: 'json' },
+      { op: 'set', path: `meta.rng.streams.${REALM_STREAM}`, to: rngFor().getState(), reason: 'vị trí dòng xúc sắc cai trị', source: 'json' },
     ];
     // `realm.name` và `held[*].fiefName` là `locked` (mục 10) — ghi cả slice sẽ
     // đụng vào chúng, nên lô này đi với `skipPermissions`: đây là engine ghi kết
@@ -341,7 +441,6 @@ export function RealmScreen({
     setLog((rows) => [`Chốt thất bại: ${result.failures.map((row) => row.message).join('; ')}`, ...rows]);
   };
 
-  const selected = realm.provinces.find((row) => row.id === province) ?? realm.provinces[0] ?? null;
   const holderNames: Record<string, string> = {};
   for (const vassal of vassals.list) holderNames[vassal.npcId] = vassal.name;
   const openCase = realm.cases.find((row) => row.id === openCaseId) ?? null;
@@ -472,22 +571,39 @@ export function RealmScreen({
           {has('ban-luat') && (
             <section className="flex flex-col gap-2">
               <h3 className="text-xs tracking-[0.2em] text-brass uppercase">Luật lệ</h3>
-              <p className="text-[10px] text-vellum/50">Đang áp: {lawLabel(realm.laws)}.</p>
+              <p className="text-[10px] text-vellum/50">Toàn vùng: {lawLabel(realm.laws)}.</p>
+              {selected !== null && (
+                <p className="text-[10px] text-vellum/50">{provinceName(selected)}: {lawLabel(selected.laws)}.</p>
+              )}
               <div className="flex flex-wrap gap-1.5">
                 {realm.laws.map((id) => (
                   <button
                     key={id}
                     type="button"
-                    onClick={() => repeal(id)}
+                    onClick={() => repeal(id, 'realm')}
                     className="rounded border border-brass px-2 py-0.5 text-[10px] text-brass hover:bg-brass/10"
                     title="bãi luật này"
                   >
                     ✕ {id}
                   </button>
                 ))}
+                {(selected?.laws ?? []).map((id) => (
+                  <button
+                    key={`${selected?.id ?? ''}-${id}`}
+                    type="button"
+                    onClick={() => repeal(id, 'province')}
+                    className="rounded border border-vellum/50 px-2 py-0.5 text-[10px] text-vellum hover:bg-oak-light"
+                    title="bãi luật ở tỉnh đang chọn"
+                  >
+                    ✕ {id} · tỉnh
+                  </button>
+                ))}
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {lawsAvailable(rank, realm.laws).map((law) => (
+                {lawsAvailable(rank, []).filter((law) => {
+                  const active = law.scope === 'realm' ? realm.laws : (selected?.laws ?? []);
+                  return !active.includes(law.id) && (law.scope === 'realm' || selected !== null);
+                }).map((law) => (
                   <button
                     key={law.id}
                     type="button"
@@ -495,7 +611,7 @@ export function RealmScreen({
                     className="rounded border border-oak-light px-2 py-0.5 text-[10px] text-vellum hover:bg-oak-light"
                     title={law.note}
                   >
-                    {law.name}
+                    {law.name}{law.scope === 'province' ? ' · tỉnh' : ''}
                     {law.cost > 0 ? ` · ${String(law.cost)}đ` : ''}
                   </button>
                 ))}

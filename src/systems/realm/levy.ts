@@ -23,6 +23,7 @@ import type { Tribute } from '@/systems/holding/interfaces';
 import { obligationConfig, type HeldTitle } from '@/systems/titles';
 import { foldLaws } from './laws';
 import type { Vassal } from './types';
+import { addGrievance } from './vassals';
 
 export interface Contingent {
   /** Ai mang cánh quân này tới. */
@@ -44,6 +45,8 @@ export interface HostCall {
   weakest: string;
   /** Gọi vượt hạn khế ước: họ vẫn đi, và họ ghi một mối hận (mục 7). */
   broke: string[];
+  /** Trạng thái chư hầu sau khi ghi số ngày đã bị triệu tập và mọi mối hận do bẻ khế ước. */
+  vassals: Vassal[];
   lines: string[];
 }
 
@@ -57,6 +60,10 @@ export interface CallHostInput {
   laws?: readonly string[];
   /** Số ngày muốn gọi. Vượt hạn khế ước thì `broke` có tên. */
   wantedDays?: number;
+  /** Năm hiện tại, dùng để ghi mối hận khi gọi quá hạn. */
+  year?: number;
+  /** Năng lực điều quân của triều đình; chỉ nhân số người tới, không đổi hạn khế ước. */
+  levyFactor?: number;
 }
 
 /**
@@ -78,20 +85,37 @@ export function callHost(input: CallHostInput): HostCall {
 
   const contingents: Contingent[] = [];
   const broke: string[] = [];
+  const vassals: Vassal[] = [];
   const lines: string[] = [];
 
   for (const vassal of input.vassals) {
     if (vassal.rebelling) {
       lines.push(`${vassal.name} đang phản — không cánh quân nào tới từ đó.`);
+      vassals.push(vassal);
       continue;
     }
     // LÒNG TRUNG quyết định bao nhiêu người thật sự ra trình diện. Một chư hầu
     // giận vẫn phải đi — khế ước là khế ước — nhưng ông ta đi muộn và đi ít.
     const turnout = Math.max(0.2, Math.min(1, vassal.loyalty / 70));
     const days = Math.max(0, vassal.obligations.levyDays + laws.levyDays);
-    const men = Math.round(vassal.levyMen * turnout);
+    const men = Math.round(vassal.levyMen * turnout * Math.max(0, input.levyFactor ?? 1));
 
-    if (wanted > days) broke.push(vassal.name);
+    const called = vassal.obligations.levyDaysCalled + Math.max(0, wanted);
+    let nextVassal: Vassal = {
+      ...vassal,
+      obligations: { ...vassal.obligations, levyDaysCalled: called },
+    };
+    if (called > days) {
+      broke.push(vassal.name);
+      const over = called - days;
+      nextVassal = addGrievance(
+        nextVassal,
+        `Bị gọi quân quá hạn ${String(Math.round(over))} ngày`,
+        Math.min(12, 3 + Math.ceil(over / 10)),
+        input.year ?? 0,
+      );
+    }
+    vassals.push(nextVassal);
 
     contingents.push({
       source: vassal.npcId,
@@ -125,6 +149,7 @@ export function callHost(input: CallHostInput): HostCall {
       contingents: [],
       weakest: '',
       broke: [],
+      vassals,
       lines: ['Không chư hầu nào tới. Đạo quân là ngài và những người ăn cơm nhà ngài.'],
     };
   }
@@ -147,7 +172,7 @@ export function callHost(input: CallHostInput): HostCall {
     lines.push(`Gọi quá ${String(config.levyOverCallDays)} ngày trong một năm là bẻ khế ước, kể cả với người trung thành nhất.`);
   }
 
-  return { days: weakest.days, men, contingents, weakest: weakest.name, broke, lines };
+  return { days: weakest.days, men, contingents, weakest: weakest.name, broke, vassals, lines };
 }
 
 /**

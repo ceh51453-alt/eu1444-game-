@@ -43,6 +43,7 @@ import {
 } from '@/systems/titles';
 import {
   advanceRealmYear,
+  applyOneOffLaw,
   callHost,
   createRealm,
   createVassal,
@@ -549,6 +550,147 @@ describe('Phần 13 mục 12.11 — TEST A: tăng thuế 5 năm PHẢI dẫn t�
     expect(host.weakest).toContain('Reinhard');
     expect(host.contingents.some((row) => row.name.includes('Otto'))).toBe(false);
     expect(host.lines.some((line) => line.includes('đang phản'))).toBe(true);
+  });
+
+  it('năng lực triều đình đổi số quân tới nhưng không tự kéo dài khế ước', () => {
+    const start = aCounty();
+    const plain = callHost({ titles: start.titles, vassals: start.vassals.list });
+    const organised = callHost({ titles: start.titles, vassals: start.vassals.list, levyFactor: 1.25 });
+    expect(organised.men).toBeGreaterThan(plain.men);
+    expect(organised.days).toBe(plain.days);
+  });
+});
+
+describe('Phần 13 — hồi quy hợp đồng và mô phỏng năm', () => {
+  it('một số dư không thể trả hai nghĩa vụ khác nhau', () => {
+    const first = grantTitle({ titleId: 'nam-tuoc', fiefName: 'Thái ấp Một', path: 'duoc-phong', year: 1444 });
+    const second = grantTitle({ titleId: 'nam-tuoc', fiefName: 'Thái ấp Hai', path: 'duoc-phong', year: 1444 });
+    first.obligations.attendedThisYear = true;
+    second.obligations.attendedThisYear = true;
+    const realm = createRealm({ slug: 'so-du', name: 'Thái ấp Số Dư', treasury: 150 });
+
+    const report = advanceRealmYear(createRng('so-du-chay'), {
+      realm,
+      vassals: { list: [], factions: [], rumours: [] },
+      titles: [first, second],
+      year: 1445,
+    });
+
+    expect(report.ledger.tributeOut).toBe(120);
+    expect(report.titles.map((row) => row.obligations.arrearsYears)).toEqual([0, 1]);
+  });
+
+  it('ghi nhận hầu triều trước khi đặt lại cờ năm mới và thực sự tước đất khi nợ quá hạn', () => {
+    const attended = grantTitle({ titleId: 'nam-tuoc', fiefName: 'Thái ấp Hầu Triều', path: 'duoc-phong', year: 1444 });
+    attended.obligations.attendedThisYear = true;
+    attended.obligations.tribute = 0;
+    const safe = advanceRealmYear(createRng('hau-trieu'), {
+      realm: createRealm({ slug: 'hau-trieu', name: 'Thái ấp Hầu Triều' }),
+      vassals: { list: [], factions: [], rumours: [] },
+      titles: [attended],
+      year: 1445,
+    });
+    expect(safe.legitimacyLog.some((row) => row.reason.includes('Không hầu triều'))).toBe(false);
+
+    const seized = grantTitle({ titleId: 'nam-tuoc', fiefName: 'Thái ấp Bị Tước', path: 'duoc-phong', year: 1444 });
+    seized.obligations.arrearsYears = 3;
+    seized.obligations.attendedThisYear = true;
+    const lost = advanceRealmYear(createRng('tuoc-dat'), {
+      realm: createRealm({ slug: 'tuoc-dat', name: 'Thái ấp Bị Tước' }),
+      vassals: { list: [], factions: [], rumours: [] },
+      titles: [seized],
+      year: 1445,
+    });
+    expect(lost.titles).toHaveLength(0);
+    expect(lost.lines.some((line) => line.includes('bị tước'))).toBe(true);
+  });
+
+  it('chính danh hằng năm cộng vào đúng tước cao nhất dù danh sách không xếp hạng', () => {
+    const low = grantTitle({ titleId: 'nam-tuoc', fiefName: 'Thái ấp Thấp', path: 'duoc-phong', year: 1444 });
+    const high = grantTitle({ titleId: 'ba-tuoc', fiefName: 'Thái ấp Cao', path: 'duoc-phong', year: 1444 });
+    for (const title of [low, high]) {
+      title.obligations.tribute = 0;
+      title.obligations.attendedThisYear = true;
+    }
+    const realm = { ...createRealm({ slug: 'chinh-danh-nam', name: 'Bá quốc Chính Danh' }), laws: ['luat_thap-phan-bat-buoc'] };
+    const report = advanceRealmYear(createRng('chinh-danh-nam'), {
+      realm,
+      vassals: { list: [], factions: [], rumours: [] },
+      titles: [low, high],
+      year: 1445,
+    });
+    const annual = report.legitimacyLog.find((row) => row.reason.includes('Luật'));
+    expect(annual?.fiefId).toBe(high.fiefId);
+  });
+
+  it('luật cấp tỉnh chỉ tác động tỉnh ấy, tính đúng duy trì và làm đường', () => {
+    const start = aCounty();
+    const provinces = start.realm.provinces.map((row, index) => ({
+      ...row,
+      roads: 0,
+      laws: index === 0 ? ['luat_cam-san-rung', 'luat_lao-dich-duong-xa'] : [],
+    }));
+    start.titles[0]!.obligations.attendedThisYear = true;
+    start.titles[0]!.obligations.tribute = 0;
+    const report = advanceRealmYear(createRng('luat-tinh'), {
+      realm: { ...start.realm, provinces },
+      vassals: { list: [], factions: [], rumours: [] },
+      titles: start.titles,
+      year: 1445,
+    });
+    expect(report.realm.provinces[0]?.roads).toBe(1);
+    expect(report.realm.provinces[1]?.roads).toBe(0);
+    expect(report.ledger.lawUpkeep).toBe(10);
+  });
+
+  it('tòa lưu động giảm án tồn thay vì tạo thêm vụ án', () => {
+    const start = aCounty();
+    const title = start.titles[0]!;
+    title.obligations.attendedThisYear = true;
+    title.obligations.tribute = 0;
+    const baseRealm = { ...start.realm, provinces: start.realm.provinces.slice(0, 1), cases: [], treasury: 1_000 };
+    const plain = advanceRealmYear(createRng('toa-luu-dong'), {
+      realm: baseRealm,
+      vassals: { list: [], factions: [], rumours: [] },
+      titles: [title],
+      year: 1445,
+    });
+    const mobile = advanceRealmYear(createRng('toa-luu-dong'), {
+      realm: { ...baseRealm, laws: ['luat_toa-an-luu-dong'] },
+      vassals: { list: [], factions: [], rumours: [] },
+      titles: [title],
+      year: 1445,
+    });
+    expect(plain.realm.cases).toHaveLength(1);
+    expect(mobile.realm.cases).toHaveLength(0);
+  });
+
+  it('gọi quân nhiều lần cộng dồn ngày và ghi mối hận khi vượt khế ước', () => {
+    const start = aCounty();
+    const first = callHost({ titles: start.titles, vassals: start.vassals.list, wantedDays: 30, year: 1445 });
+    const second = callHost({ titles: start.titles, vassals: first.vassals, wantedDays: 30, year: 1445 });
+    expect(first.broke).toEqual([]);
+    expect(second.broke.length).toBe(start.vassals.list.length);
+    expect(second.vassals.every((row) => row.obligations.levyDaysCalled === 60)).toBe(true);
+    expect(second.vassals.every((row) => row.grievances.length > 0)).toBe(true);
+  });
+
+  it('ân xá tác động ngay nhưng không trở thành luật thường trực', () => {
+    const start = aCounty();
+    const issued = issueLaw([], 'luat_an-xa');
+    const applied = applyOneOffLaw(start.realm.provinces, 'luat_an-xa');
+    expect(issued.oneOff).toBe(true);
+    expect(issued.laws).toEqual([]);
+    expect(applied.provinces[0]!.unrest).toBeLessThan(start.realm.provinces[0]!.unrest);
+    expect(applied.legitimacy).toBe(-2);
+  });
+
+  it('thu nghĩa vụ chư hầu đi vào sổ thu', () => {
+    const start = aCounty();
+    start.titles[0]!.obligations.attendedThisYear = true;
+    start.titles[0]!.obligations.tribute = 0;
+    const report = advanceRealmYear(createRng('thue-chu-hau'), { ...start, year: 1445 });
+    expect(report.ledger.tributeIn).toBeGreaterThan(0);
   });
 });
 

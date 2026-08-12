@@ -125,7 +125,14 @@ export interface Vassal {
   personality: string;
   /** Yêu sách với đất của người khác — kể cả của chính lãnh chúa. */
   claims: string[];
-  obligations: { tax: number; levyDays: number; courtAttendance: number };
+  obligations: {
+    tax: number;
+    levyDays: number;
+    courtAttendance: number;
+    paidThisYear: boolean;
+    attendedThisYear: boolean;
+    levyDaysCalled: number;
+  };
   grievances: Grievance[];
   /** Đang phản. Một khi bật lên thì đây không còn là một cái tên trong danh sách. */
   rebelling: boolean;

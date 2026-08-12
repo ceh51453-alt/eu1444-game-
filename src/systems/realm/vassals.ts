@@ -66,7 +66,12 @@ export function createVassal(options: CreateVassalOptions): Vassal {
     ambition: options.ambition ?? 40,
     personality: options.personality ?? '',
     claims: options.claims ?? [],
-    obligations: options.obligations ?? { tax: 0.2, levyDays: 40, courtAttendance: 2 },
+    obligations: {
+      ...(options.obligations ?? { tax: 0.2, levyDays: 40, courtAttendance: 2 }),
+      paidThisYear: false,
+      attendedThisYear: false,
+      levyDaysCalled: 0,
+    },
     grievances: [],
     rebelling: false,
     factionId: '',
@@ -249,6 +254,22 @@ export function applyLoyaltyEvent(vassal: Vassal, event: LoyaltyEvent, year: num
   if (event === 'thua-tran') next = addGrievance(next, 'Theo lãnh chúa ra trận rồi thua', 3, year);
 
   return { vassal: next, line: { label: EVENT_LABELS[event], value } };
+}
+
+/** Áp một thay đổi lòng trung đã được hệ thống khác tính sẵn (ví dụ kết quả xử án). */
+export function adjustVassalLoyalty(
+  vassal: Vassal,
+  delta: number,
+  reason: string,
+  year: number,
+  remember = false,
+): Vassal {
+  let next: Vassal = {
+    ...vassal,
+    loyalty: Math.max(0, Math.min(100, Math.round((vassal.loyalty + delta) * 10) / 10)),
+  };
+  if (remember && delta < 0) next = addGrievance(next, reason, Math.min(12, Math.max(1, Math.abs(delta) / 2)), year);
+  return next;
 }
 
 /** Giá tiền của một điểm lòng trung mua bằng quà. */

@@ -119,6 +119,7 @@ export {
 
 export {
   RealmLawError,
+  applyOneOffLaw,
   canIssue,
   foldLaws,
   issueLaw,
@@ -130,11 +131,13 @@ export {
   repealLaw,
   type IssueResult,
   type LawVerdict,
+  type OneOffLawResult,
 } from './laws';
 
 export {
   RealmVassalError,
   addGrievance,
+  adjustVassalLoyalty,
   applyLoyaltyEvent,
   checkRebellion,
   createVassal,

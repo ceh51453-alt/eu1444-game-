@@ -190,6 +190,7 @@ const nationsFileSchema = z.object({
     name: z.string(),
     countryRankId: z.string().min(1),
     governmentFormId: z.string().min(1),
+    regions: z.array(z.string().min(1)).default([]),
     canon: z.boolean().default(false),
   })).min(1),
   countryRanks: z.array(countryRankSchema).min(2),
@@ -610,6 +611,7 @@ function parseOrThrow<T>(schema: z.ZodType<T>, file: unknown, name: string): T {
 interface NationData {
   powers: Map<string, PowerRow>;
   nationNames: Map<string, string>;
+  nationRegions: Map<string, string[]>;
   registeredCountryRanks: Map<string, string>;
   registeredGovernmentForms: Map<string, string>;
   countryRanks: Map<string, CountryRank>;
@@ -658,8 +660,10 @@ function load(): NationData {
   // --- 2. thế lực phải có thật và phải canon ------------------------------
   const canon = new Map<string, string>();
   const allNationNames = new Map<string, string>();
+  const nationRegions = new Map<string, string[]>();
   for (const nation of nations.nations) {
     allNationNames.set(nation.id, nation.name);
+    nationRegions.set(nation.id, [...nation.regions]);
     if (nation.canon) canon.set(nation.id, nation.name);
   }
 
@@ -870,6 +874,7 @@ function load(): NationData {
   return {
     powers,
     nationNames: allNationNames,
+    nationRegions,
     registeredCountryRanks,
     registeredGovernmentForms,
     countryRanks,
@@ -920,6 +925,11 @@ export function powerRowOf(nationId: string): PowerRow | null {
 
 export function powerName(nationId: string): string {
   return DATA.nationNames.get(nationId) ?? nationId;
+}
+
+/** Các vùng lãnh thổ được đăng ký cho một quốc gia, theo thứ tự ưu tiên trong dữ liệu. */
+export function nationRegionsOf(nationId: string): string[] {
+  return (DATA.nationRegions.get(nationId) ?? []).filter((id) => id.startsWith('realm_'));
 }
 
 export function countryRanks(): CountryRank[] {

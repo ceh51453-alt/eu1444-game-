@@ -33,6 +33,7 @@ export interface CreateRealmOptions {
 }
 
 export function createRealm(options: CreateRealmOptions): RealmSliceState {
+  const id = makeId('realm', options.slug) as RealmId;
   const rows: ProvinceRow[] =
     options.fromRealmId === undefined || options.fromRealmId === ''
       ? []
@@ -41,9 +42,12 @@ export function createRealm(options: CreateRealmOptions): RealmSliceState {
         );
 
   return {
-    id: makeId('realm', options.slug) as RealmId,
+    id,
     name: options.name,
-    provinces: rows.map((row) => createProvince(row, options.fiefId ?? '')),
+    provinces: rows.map((row) => ({
+      ...createProvince(row, options.fiefId ?? ''),
+      parentRealmId: id,
+    })),
     taxRates: defaultRates(),
     laws: [],
     projects: [],

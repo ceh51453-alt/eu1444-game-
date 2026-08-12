@@ -38,6 +38,7 @@ import {
   fitOf,
   gapsOf,
   itemName,
+  knownItemIds,
   maintenancePlan,
   newItem,
   recognitionOf,
@@ -488,6 +489,7 @@ describe('chế tạo và giá cả (mục 7, 11, 12)', () => {
     const dagger = newItem('item_dao-gam');
     const harness = newItem('item_giap-tam');
     const warhorse = newItem('item_ngua-chien');
+    expect(knownItemIds()).toContain(warhorse.templateId);
 
     printTable('MỤC 12 — thang giá, quy ra SỐ NĂM thu nhập của một nông dân tự do', [
       ['món', 'giá', 'bằng bao nhiêu năm của một nông dân'],

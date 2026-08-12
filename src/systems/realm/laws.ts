@@ -52,6 +52,7 @@ export interface IssueResult {
   cost: number;
   /** Luật một lần (ân xá) KHÔNG vào danh sách đang áp — nó là một sự kiện. */
   oneOff: boolean;
+  law: Law;
   line: string;
 }
 
@@ -69,7 +70,41 @@ export function issueLaw(active: readonly string[], lawId: string): IssueResult 
     laws: law.oneOff ? [...active] : [...new Set([...active, lawId])],
     cost: law.cost,
     oneOff: law.oneOff,
-    line: `${law.name} có hiệu lực trong toàn vùng kể từ hôm nay.`,
+    law,
+    line: law.oneOff
+      ? `${law.name} được thi hành ngay.`
+      : `${law.name} có hiệu lực ${law.scope === 'province' ? 'trong tỉnh đã chọn' : 'trong toàn vùng'} kể từ hôm nay.`,
+  };
+}
+
+export interface OneOffLawResult {
+  provinces: Province[];
+  legitimacy: number;
+  line: string;
+}
+
+/** Thi hành hiệu quả tức thời của một luật một lần; luật đó không được lưu vào danh sách đang áp. */
+export function applyOneOffLaw(
+  provinces: readonly Province[],
+  lawId: string,
+  provinceId = '',
+): OneOffLawResult {
+  const law = lawOf(lawId);
+  if (law === null || !law.oneOff) throw new RealmLawError(`"${lawId}" không phải luật một lần`);
+  const applies = (province: Province): boolean => law.scope === 'realm' || province.id === provinceId;
+  return {
+    provinces: provinces.map((province) =>
+      applies(province)
+        ? {
+            ...province,
+            unrest: Math.max(0, Math.min(100, province.unrest + law.effects.unrest)),
+            banditry: Math.max(0, Math.min(100, province.banditry + law.effects.banditry)),
+            development: Math.max(0, Math.min(100, province.development + law.effects.development)),
+          }
+        : province,
+    ),
+    legitimacy: law.effects.legitimacyPerYear,
+    line: `${law.name} đã tác động ngay tới ${law.scope === 'realm' ? 'toàn vùng' : 'tỉnh đã chọn'}.`,
   };
 }
 

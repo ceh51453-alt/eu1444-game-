@@ -13,6 +13,7 @@
 import type { GameState } from '@/state/slices';
 import type { GameDate } from '@/core/clock';
 import { characterOf } from '@/systems/character/slice';
+import { nationRegionsOf } from '@/systems/nations';
 import { grantTitle, heldTitles, titleOf, type HeldTitle } from '@/systems/titles';
 import {
   createRealm,
@@ -40,11 +41,6 @@ export interface OpenRealm {
   militaryResources: MilitaryResources;
 }
 
-/** Thế lực nào thì lấy tỉnh của thế lực ấy. Chưa khai thì mặc định Đế quốc. */
-const REALM_BY_NATION: Readonly<Record<string, string>> = {
-  nation_hre: 'realm_hre',
-};
-
 export function openRealm(state: GameState): OpenRealm | null {
   const date = state.meta.gameDate;
   const baseMilitary = militaryStateOf(state);
@@ -57,7 +53,8 @@ export function openRealm(state: GameState): OpenRealm | null {
   const existingRealm = realmStateOf(state);
   const existingVassals = vassalsStateOf(state);
 
-  if (existingTitles.length > 0 && existingRealm !== null && existingVassals !== null) {
+  const hasInitializedRealm = existingRealm !== null && existingRealm.id !== '' && existingRealm.name !== '';
+  if (existingTitles.length > 0 && hasInitializedRealm && existingVassals !== null) {
     return { realm: existingRealm, vassals: existingVassals, titles: existingTitles, date, military, militaryResources };
   }
 
@@ -65,22 +62,25 @@ export function openRealm(state: GameState): OpenRealm | null {
   // vật. Dựng tờ giấy thật từ đó — `duoc-phong` vì một khai báo lúc tạo nhân vật
   // là một thứ đã có sẵn, không phải một thứ vừa đoạt được.
   const declared = character?.fiefs ?? [];
-  const titles: HeldTitle[] = declared
-    .filter((fief) => titleOf(fief.title) !== null)
-    .map((fief) =>
-      grantTitle({
-        titleId: fief.title,
-        fiefName: fief.name === '' ? `Thái ấp ${titleOf(fief.title)?.name ?? fief.title}` : fief.name,
-        path: 'duoc-phong',
-        year: date.year,
-        liege: fief.liege,
-        note: fief.note,
-      }),
-    );
+  const titles: HeldTitle[] = existingTitles.length > 0
+    ? existingTitles
+    : declared
+        .filter((fief) => titleOf(fief.title) !== null)
+        .map((fief) =>
+          grantTitle({
+            titleId: fief.title,
+            fiefName: fief.name === '' ? `Thái ấp ${titleOf(fief.title)?.name ?? fief.title}` : fief.name,
+            path: 'duoc-phong',
+            year: date.year,
+            liege: fief.liege,
+            note: fief.note,
+          }),
+        );
 
   if (titles.length === 0) return null;
 
   const nationId = character?.allegiance.nationId ?? '';
+  const sourceRealmId = nationRegionsOf(nationId)[0];
   const highest = titles.reduce((best, row) => ((titleOf(row.titleId)?.rank ?? 0) > (titleOf(best.titleId)?.rank ?? 0) ? row : best));
   const provinceCap = titleOf(highest.titleId)?.provinceCap ?? 0;
 
@@ -91,7 +91,7 @@ export function openRealm(state: GameState): OpenRealm | null {
           slug: 'khoi-dau',
           // LUÔN kèm loại từ, và KHÔNG trùng tên thành trì nào (Phụ lục A mục 9a, 9c).
           name: `${titleOf(highest.titleId)?.name ?? 'Thái ấp'} quốc Khởi Đầu`,
-          fromRealmId: REALM_BY_NATION[nationId] ?? 'realm_hre',
+          ...(sourceRealmId === undefined ? {} : { fromRealmId: sourceRealmId }),
           fiefId: highest.fiefId,
           treasury: 400,
         });

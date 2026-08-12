@@ -72,6 +72,7 @@ export {
   knownReligion,
   migrationConfig,
   minorityPolicies,
+  nationRegionsOf,
   policyOf,
   powerName,
   powerRowOf,

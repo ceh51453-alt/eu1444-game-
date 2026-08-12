@@ -35,9 +35,9 @@ import {
   type HeldTitle,
   type LegitimacyEntry,
 } from '@/systems/titles';
-import { justiceConfig } from './data';
+import { justiceConfig, roadLevels } from './data';
 import { courtBonus, courtEffects, blunder, skim } from './court';
-import { foldLaws } from './laws';
+import { foldLaws, lawsOn } from './laws';
 import { backlogUnrest, openCase, rollCaseType } from './justice';
 import { advanceProvinceYear } from './province';
 import { advanceProjects } from './projects';
@@ -45,7 +45,7 @@ import type { RealmSliceState, VassalsSliceState } from './slice';
 import { averageOverBase, collectTaxes, taxPressure } from './taxes';
 import type { CourtCase, RealmLedger, Vassal } from './types';
 import { factionOrganizationTierOf } from '@/systems/factions';
-import { checkRebellion, formFaction, loyaltyYear, refreshFaction, type LoyaltyLine } from './vassals';
+import { checkRebellion, formFaction, loyaltyYear, powerOf, refreshFaction, type LoyaltyLine } from './vassals';
 
 export interface RealmYearInput {
   realm: RealmSliceState;
@@ -114,13 +114,19 @@ export function advanceRealmYear(rng: Rng, input: RealmYearInput): RealmYearRepo
   const revenue = collectTaxes(rng, realm.provinces, realm.taxRates, {
     base: ruleSkill + courtBonus(realm.court, 'quan-gia'),
     revenueFactor: court.revenueFactor * (1 + laws.revenueFactor) * (mistakes.seatIds.includes('quan-gia') ? 0.75 : 1),
+    revenueFactorForProvince: (province) => Math.max(0, 1 + foldLaws(province.laws).revenueFactor),
     state: input.state ?? null,
   });
   lines.push(...revenue.lines);
 
   // Cống nộp của thành trì — nguồn tiền THỨ HAI, và nó là một động từ khác. Thành
   // trì NỘP NGHĨA VỤ, dân thì bị THU THUẾ (Phụ lục A mục 4, cụm sai số 2).
-  const tributeIn = (input.tributes ?? []).reduce((sum, row) => sum + (row.paid ? row.tribute : 0), 0);
+  const holdingTributeIn = (input.tributes ?? []).reduce((sum, row) => sum + (row.paid ? row.tribute : 0), 0);
+  const vassalTributeIn = vassals.list.reduce((sum, vassal) => {
+    if (vassal.rebelling) return sum;
+    return sum + Math.max(0, Math.round(powerOf(vassal) * vassal.obligations.tax * 5));
+  }, 0);
+  const tributeIn = holdingTributeIn + vassalTributeIn;
   const unpaid = (input.tributes ?? []).filter((row) => !row.paid);
   if (unpaid.length > 0) {
     lines.push(`${String(unpaid.length)} thành trì không nộp đủ nghĩa vụ năm nay.`);
@@ -132,24 +138,34 @@ export function advanceRealmYear(rng: Rng, input: RealmYearInput): RealmYearRepo
 
   // --- 4. CHI -------------------------------------------------------------
   let tributeOut = 0;
+  let available = Math.max(0, realm.treasury + revenue.amount + tributeIn - skimming.skimmed);
   const titles: HeldTitle[] = [];
   for (const title of input.titles) {
     const owed = title.obligations;
-    const canPay = realm.treasury + revenue.amount + tributeIn >= owed.tribute;
-    tributeOut += canPay ? owed.tribute : 0;
+    const canPay = available >= owed.tribute;
+    if (canPay) {
+      tributeOut += owed.tribute;
+      available -= owed.tribute;
+    }
 
-    const paid: HeldTitle = { ...title, obligations: { ...owed, paidThisYear: canPay } };
+    let paid: HeldTitle = { ...title, obligations: { ...owed, paidThisYear: canPay } };
+    if (!owed.attendedThisYear && owed.courtDays > 0) {
+      const moved = adjustLegitimacy(paid, obligationConfig().courtAbsenceLegitimacy, 'Không hầu triều', year);
+      paid = moved.title;
+      legitimacyLog.push(moved.entry);
+    }
+
     const rolled = resetYear(paid);
     const verdict = arrearsVerdict(rolled);
     if (verdict.line !== '') lines.push(`${title.fiefName}: ${verdict.line}`);
-    tributeOut += verdict.fine;
-
-    if (!rolled.obligations.attendedThisYear && owed.courtDays > 0) {
-      const config = obligationConfig();
-      const moved = adjustLegitimacy(rolled, config.courtAbsenceLegitimacy, 'Không hầu triều', year);
-      titles.push(moved.title);
-      legitimacyLog.push(moved.entry);
+    if (verdict.action === 'tuoc-dat') {
       continue;
+    }
+    if (verdict.fine > 0 && available >= verdict.fine) {
+      tributeOut += verdict.fine;
+      available -= verdict.fine;
+    } else if (verdict.fine > 0) {
+      lines.push(`${title.fiefName}: kho không đủ trả khoản phạt ${String(verdict.fine)} đồng.`);
     }
     titles.push(rolled);
   }
@@ -159,7 +175,7 @@ export function advanceRealmYear(rng: Rng, input: RealmYearInput): RealmYearRepo
     taxRevenue: revenue.amount,
     tributeIn,
     tributeOut,
-    lawUpkeep: laws.upkeep,
+    lawUpkeep: laws.upkeep + realm.provinces.reduce((sum, province) => sum + foldLaws(province.laws).upkeep, 0),
     courtSalary: court.salary,
     projectSpend,
     skimmed: skimming.skimmed,
@@ -175,15 +191,20 @@ export function advanceRealmYear(rng: Rng, input: RealmYearInput): RealmYearRepo
   );
 
   let provinces = realm.provinces.map((province) => {
+    const provinceLaws = foldLaws(lawsOn(province, realm.laws));
     const result = advanceProvinceYear(province, {
-      lawUnrest: laws.unrest,
-      lawBanditry: laws.banditry,
-      lawDevelopment: laws.development,
+      lawUnrest: provinceLaws.unrest + court.unrest,
+      lawBanditry: provinceLaws.banditry,
+      lawDevelopment: provinceLaws.development,
       taxUnrest: pressure.unrest,
       rebelling: rebellingProvinces.has(province.id),
     });
     lines.push(...result.lines);
-    return result.province;
+    const roadCap = Math.max(0, ...roadLevels().map((row) => row.level));
+    return {
+      ...result.province,
+      roads: Math.min(roadCap, result.province.roads + Math.max(0, Math.round(provinceLaws.roadsPerYear))),
+    };
   });
 
   // --- 6. DỰ ÁN -----------------------------------------------------------
@@ -202,9 +223,19 @@ export function advanceRealmYear(rng: Rng, input: RealmYearInput): RealmYearRepo
 
   const vassalRows: VassalYearRow[] = [];
   let updated: Vassal[] = vassals.list.map((vassal) => {
-    const result = loyaltyYear(vassal, {
+    const paidThisYear = !vassal.rebelling;
+    const attendedThisYear = !vassal.rebelling && (vassal.obligations.courtAttendance <= 0 || vassal.loyalty >= 25);
+    if (!paidThisYear) lines.push(`${vassal.name} không nộp nghĩa vụ chư hầu năm nay.`);
+    if (!attendedThisYear && vassal.obligations.courtAttendance > 0) {
+      lines.push(`${vassal.name} không hầu triều đủ ${String(vassal.obligations.courtAttendance)} ngày.`);
+    }
+    const contracted: Vassal = {
+      ...vassal,
+      obligations: { ...vassal.obligations, paidThisYear, attendedThisYear },
+    };
+    const result = loyaltyYear(contracted, {
       tax: taxOver,
-      levyDaysOver: Math.max(0, vassal.obligations.levyDays - obligationConfig().levyOverCallDays),
+      levyDaysOver: Math.max(0, vassal.obligations.levyDaysCalled - (vassal.obligations.levyDays + laws.levyDays)),
       liegeLegitimacy: legitimacy,
       law: laws.vassalLoyalty,
       visited: visited.has(vassal.npcId),
@@ -219,7 +250,15 @@ export function advanceRealmYear(rng: Rng, input: RealmYearInput): RealmYearRepo
       rebelling: result.vassal.rebelling,
       lines: result.lines,
     });
-    return result.vassal;
+    return {
+      ...result.vassal,
+      obligations: {
+        ...result.vassal.obligations,
+        paidThisYear: false,
+        attendedThisYear: false,
+        levyDaysCalled: 0,
+      },
+    };
   });
 
   // Phe cánh hình thành TRƯỚC khi tung nổi loạn: mục 7 nói phe làm mọi thành viên
@@ -265,7 +304,10 @@ export function advanceRealmYear(rng: Rng, input: RealmYearInput): RealmYearRepo
   // --- 8. TÒA ÁN ----------------------------------------------------------
   const justice = justiceConfig();
   const cases: CourtCase[] = realm.cases.filter((row) => row.verdictId === '');
-  const newCases = Math.floor(provinces.length * justice.casesPerYearPerProvince + laws.casesPerYear);
+  const routineCases = Math.floor(provinces.length * justice.casesPerYearPerProvince);
+  const handledByLaw = Math.min(routineCases, Math.max(0, Math.floor(laws.casesPerYear)));
+  const newCases = routineCases - handledByLaw;
+  if (handledByLaw > 0) lines.push(`Tòa lưu động xử ${String(handledByLaw)} vụ thường lệ trước khi thành án tồn.`);
   for (let index = 0; index < newCases; index++) {
     const type = rollCaseType(rng);
     const province = provinces[rng.int(0, Math.max(0, provinces.length - 1))];
@@ -299,9 +341,9 @@ export function advanceRealmYear(rng: Rng, input: RealmYearInput): RealmYearRepo
   const legitimacyDelta =
     laws.legitimacyPerYear + court.legitimacyPerYear + pressure.legitimacy + backlog.legitimacy;
 
-  const finalTitles = titles.map((title, index) => {
+  const finalTitles = titles.map((title) => {
     let next = driftLegitimacy(title);
-    if (index === 0 && Math.abs(legitimacyDelta) >= 0.05) {
+    if (title.fiefId === primary?.fiefId && Math.abs(legitimacyDelta) >= 0.05) {
       const moved = adjustLegitimacy(next, legitimacyDelta, 'Luật, triều đình, thuế và tòa án trong năm', year);
       next = moved.title;
       legitimacyLog.push(moved.entry);

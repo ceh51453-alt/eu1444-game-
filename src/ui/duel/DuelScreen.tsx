@@ -179,7 +179,7 @@ export function DuelScreen({
   const shown = replay === null ? duel : replayAt(duel, replay);
 
   return (
-    <div className="fixed inset-0 z-40 flex flex-col overflow-hidden bg-ink text-parchment">
+    <div className="fixed inset-0 z-50 flex flex-col overflow-hidden bg-ink text-parchment">
       <header className="flex shrink-0 items-center justify-between border-b border-oak-light bg-oak px-4 py-2">
         <div className="flex items-baseline gap-3">
           <h2 className="text-sm font-semibold tracking-[0.18em] text-brass uppercase">

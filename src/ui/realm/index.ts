@@ -24,3 +24,4 @@ export {
   type VassalPanelProps,
 } from './RealmPanels';
 export { openRealm, type OpenRealm } from './realm';
+export { createJudicialDuel } from './judicial';

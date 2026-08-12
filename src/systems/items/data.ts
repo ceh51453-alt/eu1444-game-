@@ -27,7 +27,7 @@ import enchantmentsFile from '@data/enchantments.json';
 import templatesFile from '@data/item-templates.json';
 import { causeOf } from '@/systems/body/catalog';
 import { regionOf } from '@/systems/body/regions';
-import { gearMaterials, gearOf } from '@/systems/character/gear';
+import { allGear, gearMaterials, gearOf } from '@/systems/character/gear';
 import { skillOf } from '@/systems/character/skills';
 
 export class ItemDataError extends Error {
@@ -961,6 +961,7 @@ export function allTemplates(): ItemTemplate[] {
 /** Mọi id vật phẩm Phần 16 biết tới: mẫu riêng cộng catalog của Phần 6. */
 export function knownItemIds(): string[] {
   const ids = new Set<string>(DATA.templates.keys());
+  for (const item of allGear()) ids.add(item.id);
   for (const id of DATA.weapons.keys()) ids.add(id);
   for (const id of DATA.pieces.keys()) ids.add(id);
   for (const id of DATA.shields.keys()) ids.add(id);
