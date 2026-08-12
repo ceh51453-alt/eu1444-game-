@@ -9,7 +9,7 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { DifficultyBand, FreeformCheckChoice } from '@/core/turn';
 import { applyRegexScripts, type RegexScript } from '@/ai/regex/runner';
-import { scriptHost } from '@/ai/scripts/host';
+import { scriptHost, type HelperScript } from '@/ai/scripts/host';
 import type { TurnEntry } from '@/ai/query';
 import { usePromptStore } from '@/state/prompts';
 import { useSettingsStore } from '@/state/settings';
@@ -93,6 +93,7 @@ function EncounterIssues(): ReactNode {
 }
 
 const NO_SCRIPTS: readonly RegexScript[] = [];
+const NO_HELPER_SCRIPTS: readonly HelperScript[] = [];
 
 /**
  * Regex phía HIỂN THỊ (Phần 1 mục 6.7).
@@ -141,6 +142,7 @@ function TurnNarrative({ text }: { text: string }): ReactNode {
  * ghi log kèm tên, không kéo theo lượt chơi.
  */
 function useHelperScripts(entries: readonly TurnEntry[], running: boolean): void {
+  const helpers = useSettingsStore((state) => state.preset?.helperScripts ?? NO_HELPER_SCRIPTS);
   useEffect(() => {
     if (running || scriptHost.list().length === 0) return;
     scriptHost.setNarrativeMessages(entries.map((entry, id) => ({ id, text: entry.narrative })));
@@ -148,7 +150,7 @@ function useHelperScripts(entries: readonly TurnEntry[], running: boolean): void
       turn: entries.at(-1)?.turn ?? 0,
       narrative: entries.at(-1)?.narrative ?? '',
     });
-  }, [entries, running]);
+  }, [entries, running, helpers]);
 }
 
 export interface NarrativeStageProps {
@@ -254,21 +256,21 @@ export function NarrativeStage({ onPlayEncounter }: NarrativeStageProps = {}): R
           {entries.map((entry, index) => {
             const tavernAttributes = { mesid: String(index) };
             return (
-            <article
-              key={`${String(entry.turn)}-${String(index)}`}
-              {...tavernAttributes}
-              className="mes flex flex-col gap-2"
-            >
-              <p className="text-xs text-brass/70">
-                Lượt {entry.turn} · {entry.action}
-                {entry.outcome === '' ? '' : ` · ${entry.outcome}`}
-              </p>
-              <div className="mes_block">
-                <div className="mes_text">
-                  <TurnNarrative text={entry.narrative} />
+              <article
+                key={`${String(entry.turn)}-${String(index)}`}
+                {...tavernAttributes}
+                className="mes flex flex-col gap-2"
+              >
+                <p className="text-xs text-brass/70">
+                  Lượt {entry.turn} · {entry.action}
+                  {entry.outcome === '' ? '' : ` · ${entry.outcome}`}
+                </p>
+                <div className="mes_block">
+                  <div className="mes_text">
+                    <TurnNarrative text={entry.narrative} />
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
             );
           })}
 
