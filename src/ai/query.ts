@@ -28,6 +28,12 @@ import { codexPromptView, type CodexPromptView } from '@/systems/codex';
 import { logisticsSummaryOf, militaryResourcesOf, militaryStateOf, recruitmentOptions, summaryOf } from '@/systems/military';
 import { economyOf, economyStateOf } from '@/systems/economy/slice';
 import { marchableArmies } from '@/systems/campaign';
+import { characterOf } from '@/systems/character/slice';
+import { originOf } from '@/systems/character/origins';
+import { attitudeLabel, learnFactor, raceName, raceOf } from '@/systems/character/races';
+import { traitName } from '@/systems/character/traits';
+import { grantName, ladderOf, landKindName, titleHistoryOf, titleName, titleOf, titlePathName } from '@/systems/titles/data';
+import { heldTitles, primaryTitleOf } from '@/systems/titles/slice';
 
 // ---------------------------------------------------------------------------
 // Ngữ cảnh mà `q` đọc
@@ -103,6 +109,8 @@ export interface QueryApi {
   injuries(): InjuryView[];
   /** Năm thanh của bảng "Cơ thể": máu, đau, sốt, thể lực, ý thức (Phần 7 mục 10). */
   body(): ReturnType<typeof bodySummary>;
+  /** Xuất thân + chủng tộc ở dạng chữ đã giải nghĩa, dùng cho lời kể. */
+  profile(): unknown | null;
   title(): unknown | null;
   holding(): unknown | null;
   realm(): unknown | null;
@@ -118,7 +126,6 @@ export interface QueryApi {
 
 /** Hàm còn là stub, kèm phần sẽ điền vào. Bảng tra cứu của editor đọc cái này. */
 export const PENDING_QUERIES: Readonly<Record<string, string>> = {
-  title: 'Phần 13 — tước vị & thái ấp',
   holding: 'Phần 12 — thành trì',
   realm: 'Phần 13 — lãnh thổ',
   skills: 'Phần 8 — kỹ năng & nhánh',
@@ -171,9 +178,76 @@ export function createQuery(context: QueryContext): QueryApi {
     // hiện trên bản đồ cơ thể.
     injuries: () => injuryViews(context.state),
     body: () => bodySummary(context.state),
+    profile() {
+      const character = characterOf(context.state);
+      if (character === null) return null;
+      const race = raceOf(character.identity.race);
+      const origin = originOf(character.identity.originId);
+      const nationId = character.allegiance.nationId;
+      const attitude = nationId === '' ? null : (character.allegiance.attitudes[nationId] ?? 0);
+      return {
+        race: {
+          id: character.identity.race,
+          name: raceName(character.identity.race),
+          standing: race?.standing ?? '',
+          church: race?.church ?? '',
+          lifespan: race?.lifespan ?? null,
+          learnFactor: learnFactor(character.identity.race),
+          traits: (race?.traits ?? []).map(traitName),
+          spread: race?.spread ?? [],
+          spreadNote: race?.spreadNote ?? '',
+          currentNationAttitude: attitude,
+          currentNationAttitudeLabel: attitude === null ? '' : attitudeLabel(attitude),
+        },
+        origin: {
+          id: character.identity.originId,
+          name: origin?.name ?? character.identity.originId,
+          description: origin?.description ?? '',
+          history: origin?.history ?? '',
+          privileges: origin?.privileges ?? [],
+          burdens: origin?.burdens ?? [],
+        },
+      };
+    },
 
-    // --- Stub: phần sở hữu sẽ thay bằng hàm thật ---------------------------
-    title: () => null,
+    title() {
+      const primary = primaryTitleOf(context.state);
+      if (primary === null) return null;
+      const rows = heldTitles(context.state).map((held) => {
+        const definition = titleOf(held.titleId);
+        const history = titleHistoryOf(held.titleId);
+        return {
+          id: held.titleId,
+          name: titleName(held.titleId),
+          fiefName: held.fiefName,
+          ladder: ladderOf(held.ladderId)?.name ?? held.ladderId,
+          rank: definition?.rank ?? 0,
+          address: history?.address ?? '',
+          legalCharacter: history?.legalCharacter ?? landKindName(definition?.landKind ?? 'khong'),
+          path: titlePathName(held.path),
+          grantedYear: held.sinceYear,
+          legitimacy: Math.round(held.legitimacy),
+          churchRecognised: held.churchRecognised,
+          liege: held.liege,
+          rivalClaimant: held.rivalClaimant,
+          termEndsYear: held.termEndsYear,
+          grants: (definition?.grants ?? []).map(grantName),
+          loses: (definition?.loses ?? []).map(grantName),
+          obligations: {
+            levyDays: held.obligations.levyDays,
+            levyDaysCalled: held.obligations.levyDaysCalled,
+            tribute: held.obligations.tribute,
+            paidThisYear: held.obligations.paidThisYear,
+            courtDays: held.obligations.courtDays,
+            attendedThisYear: held.obligations.attendedThisYear,
+            arrearsYears: held.obligations.arrearsYears,
+          },
+          note: held.note || definition?.note || '',
+        };
+      });
+      const selected = rows.find((row) => row.id === primary.titleId && row.fiefName === primary.fiefName) ?? rows[0];
+      return selected === undefined ? null : { ...selected, held: rows };
+    },
     holding: () => null,
     realm: () => null,
     army() {

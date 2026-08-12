@@ -223,6 +223,47 @@ const courtConfigSchema = z.object({
 
 export type CourtConfig = z.infer<typeof courtConfigSchema>;
 
+const influenceEffectSchema = z.object({
+  label: z.string().min(1),
+  domains: z.array(z.string().min(1)).min(1),
+  value: z.number(),
+});
+
+const influenceSchema = z.object({
+  rankAuthority: z.object({
+    label: z.string().min(1),
+    domains: z.array(z.string().min(1)).min(1),
+    valuePerRank: z.number(),
+  }),
+  grants: z.record(z.string(), influenceEffectSchema).default({}),
+  pressures: z.object({
+    churchUnrecognised: influenceEffectSchema,
+    rivalClaimant: influenceEffectSchema,
+    arrearsPerYear: influenceEffectSchema,
+    expiringTerm: influenceEffectSchema,
+  }),
+});
+
+export type TitleInfluenceEffect = z.infer<typeof influenceEffectSchema>;
+export type TitleInfluenceConfig = z.infer<typeof influenceSchema>;
+
+const titleHistoryProfileSchema = z.object({
+  address: z.string().default(''),
+  historicalBasis: z.string().default(''),
+  legalCharacter: z.string().default(''),
+  privileges: z.array(z.string()).default([]),
+  tensions: z.array(z.string()).default([]),
+});
+
+const historySchema = z.object({
+  ladders: z.record(z.string(), z.string()).default({}),
+  titles: z.record(z.string(), titleHistoryProfileSchema).default({}),
+  landKinds: z.record(z.string(), z.string()).default({}),
+  paths: z.record(z.string(), z.string()).default({}),
+});
+
+export type TitleHistoryProfile = z.infer<typeof titleHistoryProfileSchema>;
+
 const titlesFileSchema = z.object({
   version: z.number(),
   config: z.object({
@@ -230,7 +271,9 @@ const titlesFileSchema = z.object({
     legitimacy: legitimacySchema,
     obligations: obligationConfigSchema,
     vassal: vassalConfigSchema,
+    influence: influenceSchema,
   }),
+  history: historySchema,
   panels: z.array(panelSchema).min(1),
   ladders: z.array(ladderSchema).min(1),
   titles: z.array(titleSchema).min(1),
@@ -333,6 +376,8 @@ interface TitleData {
   legitimacy: LegitimacyConfig;
   obligations: ObligationConfig;
   vassal: VassalConfig;
+  influence: TitleInfluenceConfig;
+  history: z.infer<typeof historySchema>;
   panels: Map<string, TitlePanel>;
   ladders: Map<string, TitleLadder>;
   titles: Map<string, Title>;
@@ -459,6 +504,8 @@ function load(): TitleData {
     legitimacy: file.config.legitimacy,
     obligations: file.config.obligations,
     vassal: file.config.vassal,
+    influence: file.config.influence,
+    history: file.history,
     panels,
     ladders,
     titles,
@@ -491,6 +538,30 @@ export function obligationConfig(): ObligationConfig {
 
 export function vassalConfig(): VassalConfig {
   return DATA.vassal;
+}
+
+export function titleInfluenceConfig(): TitleInfluenceConfig {
+  return DATA.influence;
+}
+
+export function titleHistoryOf(titleId: string): TitleHistoryProfile | null {
+  return DATA.history.titles[titleId] ?? null;
+}
+
+export function ladderHistoryOf(ladderId: string): string {
+  return DATA.history.ladders[ladderId] ?? DATA.ladders.get(ladderId)?.note ?? '';
+}
+
+export function landKindName(id: string): string {
+  return DATA.history.landKinds[id] ?? id;
+}
+
+export function titlePathName(id: string): string {
+  return DATA.history.paths[id] ?? id;
+}
+
+export function grantName(id: string): string {
+  return DATA.influence.grants[id]?.label ?? id.replaceAll('-', ' ');
 }
 
 export function courtConfig(): CourtConfig {

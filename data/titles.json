@@ -105,6 +105,108 @@
         "8": 24,
         "9": 40
       }
+    },
+
+    "influence": {
+      "$comment": "TƯỚC VỊ ẢNH HƯỞNG THEO QUYỀN CỤ THỂ, không chỉ theo bậc. Bậc tạo uy thế nền; từng `grant` mở đúng miền mà tờ giấy cho phép. Mọi giá trị ở thang d100 và được registry quy đổi sang hệ kiểm định.",
+      "rankAuthority": {
+        "label": "Uy thế của phẩm trật",
+        "domains": ["skill.nghi-thuc", "rule.giu-chu-hau", "rule.ngoai-giao"],
+        "valuePerRank": 2
+      },
+      "grants": {
+        "giu-trang-vien": { "label": "Quyền giữ trang viên", "domains": ["rule.thu-thue"], "value": 5 },
+        "chi-huy-mot-don-vi": { "label": "Quyền chỉ huy một đơn vị", "domains": ["rule.goi-quan"], "value": 5 },
+        "giu-thanh-tri": { "label": "Quyền giữ thành trì", "domains": ["rule.dep-loan", "rule.goi-quan"], "value": 10 },
+        "thu-thue-tho": { "label": "Quyền thu tô và thuế thô", "domains": ["rule.thu-thue"], "value": 10 },
+        "so-thue-huyen": { "label": "Sổ thuế huyện", "domains": ["rule.thu-thue"], "value": 10 },
+        "hanh-chinh-thay-mat": { "label": "Ủy quyền hành chính", "domains": ["rule.bo-nhiem", "rule.xu-an"], "value": 10 },
+        "chu-hau": { "label": "Quyền nhận chư hầu", "domains": ["rule.giu-chu-hau"], "value": 15 },
+        "dat-thue-suat": { "label": "Quyền định thuế suất", "domains": ["rule.thu-thue"], "value": 15 },
+        "ban-luat": { "label": "Quyền ban luật", "domains": ["rule.ban-luat"], "value": 15 },
+        "toa-an": { "label": "Quyền tài phán", "domains": ["rule.xu-an"], "value": 15 },
+        "cap-phep-xay": { "label": "Quyền cấp phép xây", "domains": ["rule.du-an"], "value": 10 },
+        "goi-quan": { "label": "Quyền gọi quân dịch", "domains": ["rule.goi-quan"], "value": 15 },
+        "du-an-vung": { "label": "Quyền khởi công dự án vùng", "domains": ["rule.du-an"], "value": 10 },
+        "tu-khai-chien-ngoai-bang": { "label": "Đặc quyền chiến tranh biên giới", "domains": ["rule.ngoai-giao", "rule.goi-quan"], "value": 15 },
+        "thuong-mai-bien-gioi": { "label": "Đặc quyền thương mại biên giới", "domains": ["rule.thu-thue", "rule.ngoai-giao"], "value": 10 },
+        "mua-chuoc-bo-lac": { "label": "Quỹ giao thiệp biên cương", "domains": ["rule.ngoai-giao"], "value": 10 },
+        "hoi-dong": { "label": "Hội đồng công quốc", "domains": ["rule.bo-nhiem", "rule.giu-chu-hau"], "value": 10 },
+        "luat-rieng": { "label": "Quyền giữ luật riêng", "domains": ["rule.ban-luat", "rule.xu-an"], "value": 15 },
+        "duc-tien": { "label": "Quyền đúc tiền", "domains": ["rule.thu-thue"], "value": 10 },
+        "bo-nhiem-ba-tuoc": { "label": "Quyền bổ nhiệm bá tước", "domains": ["rule.bo-nhiem", "rule.giu-chu-hau"], "value": 15 },
+        "hon-nhan-chinh-tri": { "label": "Mạng hôn nhân chính trị", "domains": ["rule.ngoai-giao"], "value": 10 },
+        "la-phieu-bau-hoang-de": { "label": "Lá phiếu tuyển đế", "domains": ["rule.ngoai-giao", "rule.bo-nhiem"], "value": 20 },
+        "tuyen-chien": { "label": "Đặc quyền tuyên chiến", "domains": ["rule.ngoai-giao", "rule.goi-quan"], "value": 15 },
+        "ngoai-giao": { "label": "Tư cách ngoại giao tối cao", "domains": ["rule.ngoai-giao"], "value": 20 },
+        "tai-chinh-quoc-gia": { "label": "Quyền tài chính quốc gia", "domains": ["rule.thu-thue"], "value": 20 },
+        "phong-cong-tuoc": { "label": "Quyền phong công tước", "domains": ["rule.bo-nhiem", "rule.giu-chu-hau"], "value": 20 },
+        "cai-cach-de-che": { "label": "Quyền cải cách đế chế", "domains": ["rule.ban-luat", "rule.giu-chu-hau"], "value": 20 },
+        "phong-vuong": { "label": "Quyền phong vương", "domains": ["rule.bo-nhiem", "rule.ngoai-giao"], "value": 20 },
+        "dieu-quan-doan": { "label": "Ấn điều động quân đoàn", "domains": ["rule.goi-quan"], "value": 20 },
+        "thap-phan": { "label": "Quyền thu thập phân", "domains": ["rule.thu-thue"], "value": 15 },
+        "toa-an-giao-hoi": { "label": "Tòa án Giáo hội", "domains": ["rule.xu-an", "rule.ngoai-giao"], "value": 15 },
+        "phieu-bau-giao-hoang": { "label": "Phiếu bầu Giáo hoàng", "domains": ["rule.bo-nhiem", "rule.ngoai-giao"], "value": 20 },
+        "ra-va-tuyet-thong": { "label": "Quyền ra vạ và tuyệt thông", "domains": ["rule.giu-chu-hau", "rule.ngoai-giao"], "value": 20 },
+        "cong-nhan-tuoc-vi": { "label": "Quyền công nhận tước vị", "domains": ["rule.bo-nhiem", "rule.ngoai-giao"], "value": 20 },
+        "thue-condottiero": { "label": "Quyền thuê condottieri", "domains": ["rule.goi-quan"], "value": 15 },
+        "chia-chien-loi-pham": { "label": "Quyền chia chiến lợi phẩm", "domains": ["rule.giu-chu-hau", "rule.goi-quan"], "value": 15 },
+        "mo-tuyen-buon": { "label": "Quyền mở tuyến buôn", "domains": ["rule.thu-thue", "rule.ngoai-giao"], "value": 10 },
+        "cam-van-thuong-mai": { "label": "Quyền cấm vận thương mại", "domains": ["rule.thu-thue", "rule.ngoai-giao"], "value": 15 }
+      },
+      "pressures": {
+        "churchUnrecognised": { "label": "Tước chưa được Giáo hội công nhận", "domains": ["rule.giu-chu-hau", "rule.ngoai-giao"], "value": -10 },
+        "rivalClaimant": { "label": "Có người tranh cùng tước", "domains": ["rule.giu-chu-hau", "rule.bo-nhiem"], "value": -15 },
+        "arrearsPerYear": { "label": "Nợ nghĩa vụ với lãnh chúa", "domains": ["rule.*"], "value": -5 },
+        "expiringTerm": { "label": "Nhiệm kỳ sắp hết", "domains": ["rule.bo-nhiem", "rule.giu-chu-hau"], "value": -10 }
+      }
+    }
+  },
+
+  "history": {
+    "$comment": "Ghi chú dùng ngôn ngữ lịch sử có điều kiện: phẩm trật và quyền thay đổi theo vùng, thời điểm và văn thư cụ thể. Thang Tây Âu trong game là mô hình chơi được, không phải tuyên bố rằng toàn châu Âu năm 1444 có một bảng phẩm hàm thống nhất.",
+    "ladders": {
+      "tay-au": "Lấy cảm hứng từ mạng lãnh chúa–chư hầu của Tây Âu cuối Trung đại. Tước có thể là chức vụ, danh vị, thái ấp hoặc cả ba; cùng một người thường giữ nhiều danh hiệu và quyền thực tế phụ thuộc văn thư, gia sản cùng chư hầu.",
+      "orc": "Thang giả tưởng lấy cảm hứng từ nhà nước phục vụ Ottoman: thăng bằng huấn luyện, chức vụ và sự tín nhiệm của quân chủ, không phải một hệ quý tộc cha truyền con nối kiểu Tây Âu.",
+      "lun": "Thang giả tưởng dựa trên truyền thống bang hội và liên bang đô thị: ghế có nhiệm kỳ, chịu hội đồng giám sát và mất đi khi mãn nhiệm.",
+      "cao-tien": "Thang giả tưởng Đông La Mã pha phẩm trật cung đình, chức tổng đốc và huyết thống cổ; tuổi cùng dòng máu là nguồn chính danh nhưng chức vụ vẫn cần triều đình trao.",
+      "giao-hoi": "Giáo hội là một trục quyền lực song song: giáo sĩ có giáo luật, tòa án, đất và mạng bổ nhiệm riêng. Giám mục có thể đồng thời là chư hầu thế tục; Hồng y là phẩm vị bầu Giáo hoàng chứ không tự động là cấp trên cai quản mọi giám mục.",
+      "thanh-bang": "Lấy cảm hứng từ công xã và thành bang Ý: chức quan do bầu/chọn, nhiệm kỳ ngắn, làm việc qua hội đồng; quyền công cộng không được thừa kế như một thái ấp.",
+      "han-quoc": "Lấy cảm hứng từ chính trị thảo nguyên: huyết thống giúp tạo yêu sách, nhưng sự công nhận của thủ lĩnh, đoàn tùy tùng và khả năng chia chiến lợi phẩm mới giữ được ngôi.",
+      "thuong-hoi": "Dựa trên lộ trình học việc–thợ bạn–thợ cả và quyền lực đô thị của phường hội. Tiền và tay nghề tạo ảnh hưởng kinh tế, không tự sinh quyền gọi quân dịch hay cai lãnh thổ.",
+      "baltic": "Đây là uy tín trong hội đồng, không phải tước phong kiến. Quyền đến từ việc được cộng đồng nghe và có thể mất khi danh tiếng suy sụp."
+    },
+    "landKinds": {
+      "khong": "không gắn đất phong",
+      "trang-vien": "trang viên",
+      "thai-ap-nho": "thái ấp nhỏ",
+      "huyen": "huyện hành chính",
+      "quan": "quận/hạt",
+      "quan-bien": "biên trấn",
+      "cong-quoc": "công quốc hoặc đại thái ấp",
+      "vuong-quoc": "vương quốc",
+      "de-quoc": "đế chế"
+    },
+    "paths": {
+      "duoc-phong": "được thụ phong bằng văn thư và lời thề",
+      "thua-ke": "thừa kế theo luật và sự công nhận",
+      "chiem-doat": "đoạt lấy rồi phải xây lại chính danh"
+    },
+    "titles": {
+      "thuong-dan": { "address": "không có kính xưng phẩm trật", "historicalBasis": "Thường dân gồm nhiều thân phận pháp lý khác nhau; không có tước không đồng nghĩa không có tài sản, quyền công dân hay ảnh hưởng.", "legalCharacter": "không giữ công quyền bằng tước", "privileges": [], "tensions": ["phụ thuộc luật địa phương và người bảo trợ"] },
+      "hiep-si": { "address": "ngài/hiệp sĩ", "historicalBasis": "Hiệp sĩ trước hết là phẩm vị chiến binh và quan hệ phục vụ; nhiều người chỉ có trang viên hoặc bổng lộc, không có lãnh thổ để cai như một bá tước.", "legalCharacter": "phẩm vị quân sự có thể kèm thái ấp nhỏ", "privileges": ["mang huy hiệu", "dự tòa và chiến dịch với tư cách võ sĩ"], "tensions": ["chi phí ngựa giáp", "lời thề với lãnh chúa"] },
+      "nam-tuoc": { "address": "ngài Nam tước", "historicalBasis": "Baron trong văn cảnh phong kiến có thể chỉ một đại chư hầu trực tiếp hoặc về sau là phẩm thấp; quyền thực phụ thuộc thái ấp và văn thư hơn tên gọi.", "legalCharacter": "lãnh chúa trực tiếp của một thái ấp nhỏ", "privileges": ["thu tô", "giữ tòa cấp thấp", "duy trì thành trì nếu văn thư cho phép"], "tensions": ["bị kẹp giữa dân địa phương và lãnh chúa cấp trên"] },
+      "tu-tuoc": { "address": "ngài Tử tước", "historicalBasis": "Viscount khởi đầu như vicarius/comtes phó—người thay mặt bá tước thi hành hành chính và tư pháp—rồi mới dần thành danh vị thế tập ở nhiều nơi.", "legalCharacter": "chức phó hoặc phẩm vị hành chính dưới bá tước", "privileges": ["giữ sổ huyện", "xử việc thay mặt"], "tensions": ["quyền vay từ cấp trên nên dễ bị thu hồi"] },
+      "ba-tuoc": { "address": "ngài Bá tước", "historicalBasis": "Count/earl quản một hạt nhưng đến cuối Trung đại quyền hạt có thể đã phân mảnh. Game dùng đây làm ngưỡng đầu tiên có chư hầu thật và tòa vùng.", "legalCharacter": "tước lãnh thổ cấp quận", "privileges": ["thu thuế", "tài phán", "gọi quân", "nhận chư hầu"], "tensions": ["phải cai qua nam tước và quan lại", "yêu sách chồng lấn"] },
+      "hau-tuoc": { "address": "ngài Hầu tước", "historicalBasis": "Margrave/marchio có gốc là người giữ biên khu; nhiệm vụ quân sự và ngoại giao biên giới tạo quyền tự chủ lớn hơn một bá tước nội địa.", "legalCharacter": "bá tước biên cương với đặc quyền quân sự", "privileges": ["phòng thủ biên giới", "giao thiệp và chiến tranh hạn chế bên kia biên"], "tensions": ["chiến tranh liên miên", "dễ vượt quyền vương quyền"] },
+      "cong-tuoc": { "address": "Điện hạ/Đức Công", "historicalBasis": "Duke có gốc quân sự và đến cuối Trung đại thường đứng đầu một đại thái ấp. Quyền đến từ chức, quan hệ phong kiến và đất riêng, ba nguồn không luôn trùng nhau.", "legalCharacter": "thân vương lãnh thổ cấp cao", "privileges": ["hội đồng riêng", "luật và tiền tệ nếu đặc ân cho phép", "bổ nhiệm cấp dưới"], "tensions": ["các bá tước là đồng minh có điều kiện", "vương quyền lo sợ ly khai"] },
+      "tuyen-hau": { "address": "Điện hạ Tuyển hầu", "historicalBasis": "Sau Kim Sắc Chiếu 1356, bảy Tuyển hầu của Đế quốc có quyền bầu Vua La Mã. Đây là phẩm vị/đặc quyền chồng lên thái ấp sẵn có, không phải bậc phổ quát giữa Công tước và Vương.", "legalCharacter": "đặc quyền hiến chế của một số thân vương Đế quốc", "privileges": ["lá phiếu tuyển đế", "địa vị ưu tiên trong Đại hội Đế quốc"], "tensions": ["mua chuộc bầu cử", "xung đột lợi ích giữa Đế quốc và vùng cai trị"] },
+      "vuong": { "address": "Bệ hạ", "historicalBasis": "Vương quyền dựa vào đăng quang, luật kế vị, giáo hội, đại quý tộc và khả năng duy trì hòa bình. Một vương quốc không phải chuỗi mệnh lệnh tuyệt đối.", "legalCharacter": "chủ quyền tối cao trong vương quốc, vẫn bị luật tục và đặc quyền ràng buộc", "privileges": ["ngoại giao", "tuyên chiến", "phong đại quý tộc", "tài chính vương quốc"], "tensions": ["khủng hoảng kế vị", "đại quý tộc và hội đồng chống đối"] },
+      "hoang-de": { "address": "Bệ hạ Hoàng đế", "historicalBasis": "Hoàng đế cai một cấu trúc nhiều vương quốc và thân vương. Riêng Đế quốc La Mã Thần thánh, quyền bầu cử của Tuyển hầu khiến chính danh đế vị khác mô hình thừa kế đơn giản.", "legalCharacter": "nguyên thủ đế chế nhiều tầng quyền lực", "privileges": ["cải cách đế chế", "công nhận hoặc phong vương trong trật tự của mình"], "tensions": ["khoảng cách giữa danh nghĩa phổ quát và năng lực cưỡng chế thật"] },
+      "giao-giam-muc": { "address": "Đức Cha", "historicalBasis": "Giám mục cai một giáo phận bằng giáo quyền; nơi giữ đất thế tục, họ còn có nghĩa vụ như một thân vương hoặc chư hầu.", "legalCharacter": "chức thánh và chức cai giáo phận, có thể kèm lãnh quyền", "privileges": ["tòa giáo hội", "thập phân", "mạng giáo sĩ"], "tensions": ["hai bề trung thành với giáo quyền và thế quyền"] },
+      "giao-hong-y": { "address": "Đức Hồng y", "historicalBasis": "Từ năm 1059, Hồng y trở thành các đại cử tri độc quyền của Giáo hoàng; phẩm Hồng y là vai trò trong Giáo hội Rôma, không tự động đi kèm đất phong.", "legalCharacter": "phẩm vị cố vấn và tuyển cử Giáo hoàng", "privileges": ["bầu Giáo hoàng", "tham dự cơ chế trung ương Giáo hội"], "tensions": ["phe phái giáo triều", "lợi ích gia tộc và giáo phận"] },
+      "giao-hoang": { "address": "Đức Thánh Cha", "historicalBasis": "Giáo hoàng kết hợp thẩm quyền tối cao của Giáo hội Latin với quyền cai trị lãnh thổ Giáo triều; công nhận, tuyệt thông và bổ nhiệm đều có hệ quả chính trị.", "legalCharacter": "giáo quyền tối cao và quân chủ của Giáo triều", "privileges": ["bổ nhiệm/công nhận giáo phẩm", "ra vạ tuyệt thông", "công nhận chính danh"], "tensions": ["công đồng, Hồng y, quân chủ thế tục và các gia tộc Rôma"] },
+      "latin-tong-doc": { "address": "Ngài Tổng đốc", "historicalBasis": "Các công xã Ý dùng quan chức được chọn và hội đồng; podestà thường giữ nhiệm kỳ ngắn, thi hành quyền công thay vì sở hữu nó như thái ấp.", "legalCharacter": "chức vụ công cộng có nhiệm kỳ", "privileges": ["điều hành hội đồng", "ngoại giao đô thị", "thuê quân chuyên nghiệp"], "tensions": ["phe phái thương nhân", "nguy cơ biến cộng hòa thành cơ nghiệp cá nhân"] }
     }
   },
 

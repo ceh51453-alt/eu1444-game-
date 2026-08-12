@@ -40,6 +40,7 @@ import {
   type CharacterDraft,
   type CreationStepId,
 } from '@/systems/character';
+import { AssistBar } from './Assist';
 import { CharacterPreview } from './Preview';
 import { StepBody } from './steps';
 
@@ -195,6 +196,11 @@ export function CharacterCreator({ onClose }: { onClose?: (() => void) | undefin
         </div>
 
         <div className="flex flex-1 flex-col gap-3 overflow-y-auto px-4 py-4 md:px-6">
+          {/* Nhờ AI điền giúp. Đứng ĐẦU thân bước chứ không nép xuống chân trang:
+              người mở trình tạo nhân vật lần đầu phải thấy ngay rằng mình không
+              bắt buộc phải tự nghĩ ra chín bước. */}
+          <AssistBar draft={draft} step={step} rng={rng} onApply={setDraft} />
+
           {/* Nhắc nhở KHÔNG chặn — khác hẳn danh sách lỗi ở footer. Chúng nói ra
               thứ người chơi thường quên là mình chọn được. */}
           {stepHints(draft, step).map((hint) => (

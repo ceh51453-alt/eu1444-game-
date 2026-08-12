@@ -34,8 +34,11 @@ export {
   courtSeatsFor,
   heirRelation,
   isRuleDomain,
+  grantName,
+  ladderHistoryOf,
   ladderForNation,
   ladderOf,
+  landKindName,
   legitimacyConfig,
   noHeirRules,
   obligationConfig,
@@ -47,7 +50,10 @@ export {
   successionLawOf,
   successionLaws,
   titleName,
+  titleHistoryOf,
+  titleInfluenceConfig,
   titleOf,
+  titlePathName,
   titlesOfLadder,
   vassalCapFor,
   vassalConfig,
@@ -62,10 +68,19 @@ export {
   type SuccessionConfig,
   type SuccessionLaw,
   type Title,
+  type TitleHistoryProfile,
+  type TitleInfluenceConfig,
+  type TitleInfluenceEffect,
   type TitleLadder,
   type TitlePanel,
   type VassalConfig,
 } from './data';
+
+export {
+  TITLE_INFLUENCE_SOURCE,
+  registerTitleInfluenceSource,
+  titleInfluenceSource,
+} from './influence';
 
 export {
   LEGITIMACY_SOURCE,

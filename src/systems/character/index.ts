@@ -248,12 +248,16 @@ export {
   AGE_SOURCE_ID,
   CULTURE_SOURCE_ID,
   GEAR_SOURCE_ID,
+  ORIGIN_SOURCE_ID,
+  RACE_STANDING_SOURCE_ID,
   RELIGION_SOURCE_ID,
   STAT_SOURCE_ID,
   TRAIT_SOURCE_ID,
   ageSource,
   cultureSource,
   gearSource,
+  originSource,
+  raceStandingSource,
   registerCharacterSources,
   religionSource,
   statSource,
@@ -274,6 +278,20 @@ export {
   type OutsideRelation,
   type Sex,
 } from './generate';
+
+export {
+  applyAssist,
+  assistPrompt,
+  assistSuggestionSchema,
+  assistTargetLabel,
+  parseAssist,
+  type AssistChange,
+  type AssistOutcome,
+  type AssistParse,
+  type AssistPrompt,
+  type AssistSuggestion,
+  type AssistTarget,
+} from './assist';
 
 export {
   CREATION_STEPS,

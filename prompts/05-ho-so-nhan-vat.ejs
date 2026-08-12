@@ -1,5 +1,7 @@
 <%
   const c = state.character;
+  const profile = q.profile();
+  const title = q.title();
   const band = (hp, maxHp) => {
     const share = maxHp > 0 ? hp / maxHp : 0;
     if (share >= 1) return 'lành lặn';
@@ -20,8 +22,35 @@
 HỒ SƠ NHÂN VẬT NGƯỜI CHƠI
 Tên: <%= state.player.name === '' ? '(chưa đặt tên)' : state.player.name %>
 <% if (c) { %>
-Chủng tộc: <%= c.identity.race %>
+Chủng tộc: <%= profile?.race?.name ?? c.identity.race %><% if (profile?.race?.standing) { %> — <%= profile.race.standing %><% } %>
+<% if (profile?.race?.traits?.length > 0) { %>
+Đặc tính chủng tộc: <%= fmt.list(profile.race.traits) %>
+<% } %>
+<% if (profile?.race?.currentNationAttitude !== null && profile?.race?.currentNationAttitude !== undefined) { %>
+Vị thế chủng tộc trong thế lực hiện tại: <%= profile.race.currentNationAttitudeLabel %> (<%= profile.race.currentNationAttitude %>)
+<% } %>
+Xuất thân: <%= profile?.origin?.name ?? c.identity.originId %><% if (profile?.origin?.description) { %> — <%= profile.origin.description %><% } %>
+<% if (profile?.origin?.privileges?.length > 0) { %>
+Thuận lợi do xuất thân: <%= fmt.list(profile.origin.privileges) %>
+<% } %>
+<% if (profile?.origin?.burdens?.length > 0) { %>
+Gánh nặng do xuất thân: <%= fmt.list(profile.origin.burdens) %>
+<% } %>
 Thể trạng: <%= band(c.stats.hp, c.stats.maxHp) %>
+<% if (title?.held?.length > 0) { %>
+
+TƯỚC VỊ ĐANG NẮM — đây là quyền, nghĩa vụ và cách người khác đối xử, không phải đồ trang sức
+<% for (const held of title.held) { %>
+  · <%= held.name %> của <%= held.fiefName %> (bậc <%= held.rank %>, <%= held.path %>, chính danh <%= held.legitimacy %>/100)
+    Kính xưng: <%= held.address || held.name %> · pháp lý: <%= held.legalCharacter %>
+    Đặc quyền: <%= held.grants.length === 0 ? 'không có đặc quyền cai trị riêng' : fmt.list(held.grants) %>
+    Nghĩa vụ: quân dịch <%= held.obligations.levyDaysCalled %>/<%= held.obligations.levyDays %> ngày; cống <%= held.obligations.tribute %> đồng; triều kiến <%= held.obligations.courtDays %> ngày; nợ <%= held.obligations.arrearsYears %> năm
+<% if (!held.churchRecognised) { %>    CẢNH BÁO: Giáo hội chưa công nhận.
+<% } %><% if (held.rivalClaimant) { %>    CẢNH BÁO: <%= held.rivalClaimant %> đang tranh tước.
+<% } %><% if (held.termEndsYear > 0) { %>    Nhiệm kỳ kết thúc năm <%= held.termEndsYear %>.
+<% } %><% } %>
+Khi NPC phản ứng hoặc khi kể hậu quả chính trị, phải xét đúng tước cụ thể, chính danh, đặc quyền và nghĩa vụ ở trên.
+<% } %>
 <% if (c.flags.length > 0) { %>
 Đã trải qua: <%= fmt.list(c.flags) %>
 <% } %>

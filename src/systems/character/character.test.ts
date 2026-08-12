@@ -19,6 +19,8 @@ import { canWrite, pathExists, permissionFor, slices, type GameState } from '@/s
 import { createInitialState } from '@/state/store';
 import {
   GEAR_SOURCE_ID,
+  ORIGIN_SOURCE_ID,
+  RACE_STANDING_SOURCE_ID,
   RELIGION_SOURCE_ID,
   STAT_SOURCE_ID,
   TRAIT_SOURCE_ID,
@@ -846,6 +848,39 @@ describe('mục 7 — tôn giáo và văn hóa', () => {
 
     expect(character.allegiance.attitudes['nation_ottoman']).toBe(25);
     expect(character.allegiance.attitudes['nation_giao-trieu']).toBe(40);
+  });
+
+  it('xuất thân còn tác động sau màn tạo nhân vật bằng dòng nghề quen đọc được', () => {
+    const merchant = stateFor('race_frank', 'origin_thuong-nhan');
+    const serf = stateFor('race_frank', 'origin_nong-no');
+
+    const check = (state: GameState) => runCheck(createRng(SEED), spec(state, 'skill.ke-toan')).result;
+    const merchantLine = check(merchant).modifiers.find((line) => line.source === ORIGIN_SOURCE_ID);
+    const serfLine = check(serf).modifiers.find((line) => line.source === ORIGIN_SOURCE_ID);
+
+    expect(merchantLine?.label).toContain('nghề quen từ nhỏ');
+    expect(merchantLine?.value).toBe(originOf('origin_thuong-nhan')?.favouredSkillBonus);
+    expect(serfLine).toBeUndefined();
+  });
+
+  it('vị thế chủng tộc trong thế lực đổi trực tiếp kiểm định xã hội và đổi được theo diễn biến', () => {
+    const state = stateFor('race_orc', 'origin_hiep-si');
+    const character = characterOf(state) as CharacterState;
+    character.allegiance.nationId = 'nation_ottoman';
+    character.allegiance.attitudes['nation_ottoman'] = 25;
+
+    const favoured = runCheck(createRng(SEED), spec(state, 'rule.ngoai-giao')).result.modifiers.find(
+      (line) => line.source === RACE_STANDING_SOURCE_ID,
+    );
+    expect(favoured?.value).toBe(5);
+
+    // Phần 14 có thể đổi con số này bằng đàn áp/cải cách; nguồn phải đọc state
+    // hiện tại chứ không đóng băng thái độ lúc tạo nhân vật.
+    character.allegiance.attitudes['nation_ottoman'] = -60;
+    const persecuted = runCheck(createRng(SEED), spec(state, 'rule.ngoai-giao')).result.modifiers.find(
+      (line) => line.source === RACE_STANDING_SOURCE_ID,
+    );
+    expect(persecuted?.value).toBe(-12);
   });
 });
 

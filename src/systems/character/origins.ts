@@ -1,15 +1,17 @@
 /**
  * XUẤT THÂN (Phần 6 mục 3) — nạp từ `/data/origins.json` theo R5.
  *
- * LUẬT CỨNG của mục 3: xuất thân CHỈ quyết định vạch xuất phát. Không hàm nào ở
- * đây trả về một trần tước vị, và không phần nào sau này được đọc file này để
- * chặn một tước vị — một nông nô về lý thuyết vẫn lên tới hoàng đế được. Nếu
- * Phần 13 cần một điều kiện thăng tiến thì điều kiện đó là uy tín, đất và quan
- * hệ ở thời điểm hiện tại, không phải chỗ nhân vật sinh ra.
+ * LUẬT CỨNG của mục 3: xuất thân KHÔNG đặt trần tước vị. Một nông nô về lý
+ * thuyết vẫn lên tới hoàng đế được; Phần 13 xét uy tín, đất và quan hệ hiện tại,
+ * không xét chỗ sinh. Tuy vậy, nghề đã học, cửa đã quen và định kiến xã hội
+ * không biến mất sau màn tạo nhân vật: `favouredSkillBonus` cùng `effects` giữ
+ * các dấu ấy thành những dòng modifier đọc được, để xuất thân không chỉ là một
+ * gói tiền và điểm dùng đúng một lần.
  */
 
 import { z } from 'zod';
 import originsFile from '@data/origins.json';
+import { effectSchema } from './effects';
 
 export const pointBuySchema = z.object({
   baseStat: z.int(),
@@ -47,6 +49,17 @@ export const originSchema = z.object({
   relations: z.int(),
   assetNote: z.string().default(''),
   favouredSkills: z.array(z.string()).default([]),
+  /**
+   * Dấu nghề còn theo nhân vật sau bước tạo: đây là kinh nghiệm xã hội và nghề
+   * nghiệp đã ăn vào cách làm việc, KHÔNG phải một trần thăng tiến theo dòng dõi.
+   */
+  favouredSkillBonus: z.number().default(5),
+  /** Bối cảnh lịch sử-xã hội để UI và người kể chuyện hiểu vì sao xuất thân này tồn tại. */
+  history: z.string().default(''),
+  privileges: z.array(z.string()).default([]),
+  burdens: z.array(z.string()).default([]),
+  /** Ảnh hưởng xã hội/nghề nghiệp còn hiệu lực trong lúc chơi. */
+  effects: z.array(effectSchema).default([]),
   /** Trang bị mang theo — id trong `data/gear.json`. */
   gear: z.array(originGearSchema).default([]),
   /**

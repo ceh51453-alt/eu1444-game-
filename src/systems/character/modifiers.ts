@@ -31,8 +31,9 @@ import { scaleToSystem } from '@/systems/check/sources';
 import { beliefEffects, cultureOf, religionOf } from './beliefs';
 import { effectApplies, scaleIntensity, type Effect } from './effects';
 import { DEFAULT_QUALITY, gearEffect, gearName, qualityName } from './gear';
-import { ageStageOf, traitsOf } from './races';
-import { statForDomain } from './skills';
+import { originOf } from './origins';
+import { ageStageOf, nationName, raceName, traitsOf } from './races';
+import { domainOfSkill, statForDomain } from './skills';
 import { characterOf } from './slice';
 import { STATS, statContribution } from './stats';
 import { traitOf } from './traits';
@@ -43,6 +44,8 @@ export const RELIGION_SOURCE_ID = 'character.ton-giao';
 export const CULTURE_SOURCE_ID = 'character.van-hoa';
 export const GEAR_SOURCE_ID = 'character.trang-bi';
 export const AGE_SOURCE_ID = 'character.tuoi-tac';
+export const ORIGIN_SOURCE_ID = 'character.xuat-than';
+export const RACE_STANDING_SOURCE_ID = 'character.vi-the-chung-toc';
 
 /**
  * Phép kiểm này có phải của NHÂN VẬT NGƯỜI CHƠI không.
@@ -191,6 +194,84 @@ export const traitSource: ModifierSource = {
 };
 
 /**
+ * XUẤT THÂN — dấu nghề và vốn xã hội còn lại sau lúc tạo nhân vật.
+ *
+ * Nó không khóa một hành động hay một tước vị. Người sinh nông nô vẫn làm mọi
+ * phép kiểm như người khác; họ chỉ không có cùng thói quen nghề nghiệp và cửa
+ * xã hội với người lớn lên ở triều đình. Tất cả khoản cộng/trừ đều đi từ data
+ * ra bảng modifier, nên người chơi luôn đọc được nguyên nhân.
+ */
+export const originSource: ModifierSource = {
+  id: ORIGIN_SOURCE_ID,
+  domains: ['skill.*', 'rule.*'],
+  compute(ctx) {
+    const character = characterOf(ctx.state);
+    if (character === null) return null;
+    if (!isPlayerActor(ctx.actor, character.identity.id)) return null;
+
+    const origin = originOf(character.identity.originId);
+    if (origin === null) return null;
+
+    const lines = linesFrom(origin.effects, ctx, origin.name, ORIGIN_SOURCE_ID);
+    if (
+      origin.favouredSkillBonus !== 0 &&
+      origin.favouredSkills.some((skillId) => domainOfSkill(skillId) === ctx.domain)
+    ) {
+      lines.push({
+        label: `${origin.name} · nghề quen từ nhỏ`,
+        source: ORIGIN_SOURCE_ID,
+        ...scaleToSystem(ctx.system, origin.favouredSkillBonus),
+      });
+    }
+    return lines.length === 0 ? null : lines;
+  },
+};
+
+/** Những miền mà định kiến/chỗ đứng của một tộc trong thế lực thật sự tác động. */
+const RACE_SOCIAL_DOMAINS = new Set([
+  'skill.dam-phan',
+  'skill.gay-thien-cam',
+  'skill.uy-hiep',
+  'skill.nghi-thuc',
+  'rule.giu-chu-hau',
+  'rule.bo-nhiem',
+  'rule.ngoai-giao',
+]);
+
+/**
+ * VỊ THẾ CHỦNG TỘC — nối bảng thái độ vốn đã lưu trong state vào phép kiểm.
+ *
+ * Đặc tính bẩm sinh ở `traitSource`; nguồn này chỉ nói tới xã hội. Vì đọc con
+ * số trong state nên một cuộc cải cách, đàn áp hay hòa nhập ở Phần 14 có thể
+ * đổi ảnh hưởng ngay, không phải sửa lại chủng tộc gốc.
+ */
+export const raceStandingSource: ModifierSource = {
+  id: RACE_STANDING_SOURCE_ID,
+  domains: [...RACE_SOCIAL_DOMAINS],
+  compute(ctx) {
+    if (!RACE_SOCIAL_DOMAINS.has(ctx.domain)) return null;
+    const character = characterOf(ctx.state);
+    if (character === null) return null;
+    if (!isPlayerActor(ctx.actor, character.identity.id)) return null;
+
+    const nationId = character.allegiance.nationId;
+    if (nationId === '') return null;
+    const attitude = character.allegiance.attitudes[nationId] ?? 0;
+    // 25 (tộc cai trị) = +5 d100; -60 (bị truy bức) = -12 d100. Đủ nặng để
+    // cảm nhận, nhưng tước vị và chính danh vẫn có thể bù hoặc đảo chiều.
+    const value = Math.round(attitude / 5);
+    if (value === 0) return null;
+    return [
+      {
+        label: `${nationName(nationId)} nhìn ${raceName(character.identity.race)}: ${attitude >= 0 ? 'được trọng dụng' : 'bị định kiến'}`,
+        source: RACE_STANDING_SOURCE_ID,
+        ...scaleToSystem(ctx.system, value),
+      },
+    ];
+  },
+};
+
+/**
  * Tôn giáo, nhân với mức sùng đạo.
  *
  * Nhân CẢ vế tốt lẫn vế xấu: người sùng đạo vừa được nhiều hơn từ đức tin vừa
@@ -283,7 +364,16 @@ export function previewEffects(id: string): readonly Effect[] {
  */
 export function registerCharacterSources(): void {
   const already = new Set(modifierSources().map((source) => source.id));
-  for (const source of [statSource, ageSource, traitSource, religionSource, cultureSource, gearSource]) {
+  for (const source of [
+    statSource,
+    ageSource,
+    traitSource,
+    originSource,
+    raceStandingSource,
+    religionSource,
+    cultureSource,
+    gearSource,
+  ]) {
     if (already.has(source.id)) continue;
     registerModifierSource(source);
   }

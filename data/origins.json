@@ -1,5 +1,5 @@
 {
-  "$comment": "XUẤT THÂN (Phần 6 mục 3). LUẬT CỨNG: xuất thân chỉ quyết định VẠCH XUẤT PHÁT, không khóa trần tước vị — một nông nô về lý thuyết vẫn lên tới hoàng đế được, và không chỗ nào trong code được phép đọc file này để chặn một tước vị. Bảng `pointBuy` nằm ở đây chứ không nằm trong code vì nó là luật cân bằng, và cân bằng phải sửa được mà không build lại.",
+  "$comment": "XUẤT THÂN (Phần 6 mục 3). LUẬT CỨNG: xuất thân không khóa trần tước vị — một nông nô về lý thuyết vẫn lên tới hoàng đế được, và không chỗ nào được đọc file này để chặn tước. Xuất thân đặt VẠCH XUẤT PHÁT, đồng thời nghề quen và vị thế xã hội còn theo nhân vật qua `favouredSkillBonus`/`effects`; chúng là modifier có thể bị thành tựu, tước vị và diễn biến về sau lấn át, không phải định mệnh. Bảng `pointBuy` nằm ở data để cân bằng mà không build lại.",
   "version": 2,
   "pointBuy": {
     "$comment": "12 chỉ số đều bắt đầu ở `baseStat`, rồi tiêu `statPoints` của giai tầng. Giá lũy tiến để điểm cuối cùng đắt gấp ba điểm đầu — nhờ vậy không ai dồn hết vào một ô. `maxAtCreation` là trần LÚC TẠO, thấp hơn trần chủng tộc: 16 là 'xuất chúng' theo mục 1, và một người mười tám tuổi chưa nên đứng ở đó nhờ mấy điểm phân bổ.",
@@ -79,6 +79,13 @@
         "skill_chiu-dung",
         "skill_san-ban"
       ],
+      "history": "Nông nô Tây Âu thế kỷ XV không phải nô lệ có thể bán rời khỏi đất, nhưng thân phận, tô dịch và quyền rời đất của chủ phụ thuộc tập quán cùng tòa lãnh chúa. Kinh nghiệm sống còn của họ đến từ lao động, mùa vụ và mạng tương trợ trong làng.",
+      "privileges": ["hiểu nhịp mùa vụ và đường làng", "dễ hòa vào dân nghèo và phu dịch"],
+      "burdens": ["ít giấy tờ bảo hộ", "bị tầng có đất xem nhẹ", "có thể bị đòi tô dịch hoặc giấy phép đi lại"],
+      "effects": [
+        { "domains": ["rule.thu-thue"], "value": 5 },
+        { "domains": ["skill.nghi-thuc", "rule.bo-nhiem"], "value": -10 }
+      ],
       "gear": [
         {
           "item": "item_dao-gam",
@@ -112,6 +119,12 @@
         "skill_sinh-ton",
         "skill_san-ban",
         "skill_moc"
+      ],
+      "history": "Nông dân tự do giữ đất bằng tập quán, khế ước hoặc quyền công dân địa phương. Họ vẫn chịu thuế và quân dịch, nhưng có tư cách kiện tụng, mua bán và truyền lại tài sản rõ hơn nông nô.",
+      "privileges": ["có giấy tờ hoặc nhân chứng về quyền đất", "có tiếng nói trong việc làng"],
+      "burdens": ["thuế, tô và quân dịch vẫn đè trực tiếp", "quyền lợi thay đổi mạnh theo từng vùng cai trị"],
+      "effects": [
+        { "domains": ["rule.thu-thue", "rule.xu-an"], "value": 5 }
       ],
       "gear": [
         {
@@ -157,6 +170,13 @@
         "skill_che-tac",
         "skill_mac-ca"
       ],
+      "history": "Thợ thành thị trưởng thành qua học việc, làm thợ bạn rồi mới được phường hội công nhận là thợ cả. Phường giữ chuẩn nghề, giá, danh tiếng và có thể trở thành một thế lực chính trị của đô thị.",
+      "privileges": ["được mạng phường hội bảo lãnh", "tiếp cận xưởng, dụng cụ và bí quyết nghề"],
+      "burdens": ["chịu kỷ luật phường", "mất uy tín nghề có thể mất cả sinh kế"],
+      "effects": [
+        { "domains": ["rule.du-an"], "value": 10 },
+        { "domains": ["rule.bo-nhiem"], "value": 5 }
+      ],
       "gear": [
         {
           "item": "item_do-ren"
@@ -196,6 +216,13 @@
         "skill_ke-toan",
         "skill_ngon-ngu",
         "skill_doc-nguoi"
+      ],
+      "history": "Thương nhân cuối Trung đại dựa vào tín dụng, thư từ, đại lý và luật đô thị nhiều không kém hàng hóa. Của cải mở cửa triều đình nhưng không tự động biến thành huyết thống quý tộc.",
+      "privileges": ["mạng tín dụng và người môi giới", "quen luật chợ, hợp đồng và đường buôn"],
+      "burdens": ["dễ bị đánh thuế đặc biệt hoặc tịch biên", "giới quý tộc cần tiền nhưng vẫn khinh nghề buôn"],
+      "effects": [
+        { "domains": ["rule.thu-thue", "rule.ngoai-giao"], "value": 10 },
+        { "domains": ["rule.goi-quan"], "value": -5 }
       ],
       "gear": [
         {
@@ -244,6 +271,12 @@
         "skill_giang-dao",
         "skill_luat-le"
       ],
+      "history": "Giáo sĩ thuộc một hệ quyền lực song song với lãnh chúa thế tục: giáo luật, tòa giáo hội, giáo khu và mạng thư tín riêng. Biết chữ khiến họ thường làm thư lại, sứ giả và cố vấn ngay cả ngoài nhà thờ.",
+      "privileges": ["tiếp cận thư tịch và người biết chữ", "có cửa vào tòa giáo hội và giới giáo phẩm"],
+      "burdens": ["bị ràng bởi giáo luật và lời khấn", "xung đột giữa lãnh chúa thế tục với bề trên giáo hội"],
+      "effects": [
+        { "domains": ["rule.xu-an", "rule.ngoai-giao", "rule.ban-luat"], "value": 10 }
+      ],
       "gear": [
         {
           "item": "item_ao-dong"
@@ -286,6 +319,13 @@
         "skill_cuoi-ngua",
         "skill_thuong-kich",
         "skill_nghi-thuc"
+      ],
+      "history": "Hiệp sĩ là tầng chiến binh có ngựa, giáp và lời thề phục vụ; không phải hiệp sĩ nào cũng giàu hay giữ lãnh thổ. Danh dự, tùy tùng và khả năng đáp lời gọi quân quan trọng ngang tài sản.",
+      "privileges": ["được nhìn nhận là chiến binh có danh dự", "quen nghi thức phong kiến và mạng võ sĩ"],
+      "burdens": ["nợ quân dịch và trung thành cá nhân", "ngựa, giáp và tùy tùng cực tốn kém"],
+      "effects": [
+        { "domains": ["rule.goi-quan", "rule.giu-chu-hau"], "value": 10 },
+        { "domains": ["rule.thu-thue"], "value": -5 }
       ],
       "gear": [
         {
@@ -343,6 +383,12 @@
         "skill_cai-tri",
         "skill_kiem-thuat",
         "skill_luat-le"
+      ],
+      "history": "Quý tộc nhỏ cai quản bằng sự hiện diện trực tiếp: thu tô, xử tranh chấp, giữ trang viên và đưa một nhóm võ trang nhỏ theo lãnh chúa. Quyền lực có thật nhưng rất địa phương.",
+      "privileges": ["có ấn, tên họ và quyền lãnh chúa địa phương", "được dự tòa cấp trên với tư cách người có đất"],
+      "burdens": ["phụ thuộc mạnh vào một lãnh chúa lớn", "một vụ mùa xấu hoặc tranh chấp kế vị đủ làm cả nhà suy sụp"],
+      "effects": [
+        { "domains": ["rule.xu-an", "rule.giu-chu-hau", "rule.thu-thue"], "value": 10 }
       ],
       "gear": [
         {
@@ -407,6 +453,13 @@
         "skill_cai-tri",
         "skill_ngoai-giao",
         "skill_nghi-thuc"
+      ],
+      "history": "Đại quý tộc không chỉ sở hữu đất mà còn cai trị qua chư hầu, hội đồng, hôn nhân và tòa án. Quyền của họ là một mạng nghĩa vụ chồng lấn, không phải mệnh lệnh tuyệt đối từ trên xuống.",
+      "privileges": ["có chư hầu, hội đồng và mạng hôn nhân chính trị", "được thương lượng trực tiếp với vương quyền và giáo hội"],
+      "burdens": ["mọi nhánh trong nhà đều có thể thành phe", "phải giữ cân bằng giữa vua, giáo hội và chư hầu"],
+      "effects": [
+        { "domains": ["rule.giu-chu-hau", "rule.bo-nhiem", "rule.ngoai-giao"], "value": 15 },
+        { "domains": ["rule.dep-loan"], "value": -5 }
       ],
       "gear": [
         {
@@ -477,6 +530,13 @@
         "skill_ngoai-giao",
         "skill_muu-luoc",
         "skill_nghi-thuc"
+      ],
+      "history": "Vương thất thế kỷ XV là một thể chế sống: huyết thống, lễ đăng quang, giáo hội, hội đồng và sự công nhận của các đại quý tộc cùng tạo nên quyền cai trị. Máu hoàng gia cho yêu sách, không bảo đảm ngai vàng.",
+      "privileges": ["quyền tiếp cận triều đình cao nhất", "huyết thống tạo yêu sách và hôn ước cấp quốc gia"],
+      "burdens": ["bị giám sát từ lúc sinh", "là mục tiêu của bắt cóc, hôn nhân cưỡng ép và tranh chấp kế vị"],
+      "effects": [
+        { "domains": ["rule.ngoai-giao", "rule.giu-chu-hau", "rule.bo-nhiem"], "value": 20 },
+        { "domains": ["rule.dep-loan"], "value": -10 }
       ],
       "gear": [
         {

@@ -25,6 +25,7 @@ import { bonusFor } from '@/systems/check/sources';
 import { legitimacyConfig } from './data';
 import { primaryTitleOf } from './slice';
 import type { HeldTitle, LegitimacyEntry, TitlePath } from './types';
+import { registerTitleInfluenceSource } from './influence';
 
 export const LEGITIMACY_SOURCE = 'titles.chinh-danh';
 
@@ -123,6 +124,8 @@ export const legitimacySource: ModifierSource = {
 
 /** Đăng ký một lần lúc khởi động. Gọi lại lần nữa không nổ. */
 export function registerTitleSources(): void {
-  if (modifierSources().some((source) => source.id === LEGITIMACY_SOURCE)) return;
-  registerModifierSource(legitimacySource);
+  if (!modifierSources().some((source) => source.id === LEGITIMACY_SOURCE)) {
+    registerModifierSource(legitimacySource);
+  }
+  registerTitleInfluenceSource();
 }

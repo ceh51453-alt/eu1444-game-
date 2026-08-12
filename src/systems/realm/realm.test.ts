@@ -26,6 +26,7 @@ import { registerCheckSources } from '@/systems/check/sources';
 import { applyRealmOrder } from '@/systems/holding';
 import { createHolding } from '@/systems/holding';
 import {
+  TITLE_INFLUENCE_SOURCE,
   canTake,
   grantTitle,
   heirLine,
@@ -207,6 +208,48 @@ describe('Phần 13 mục 5 — chính danh là chỉ số trung tâm', () => {
     });
 
     expect(run.result.modifiers.some((row) => row.source === 'titles.chinh-danh')).toBe(false);
+    expect(run.result.modifiers.some((row) => row.source === TITLE_INFLUENCE_SOURCE)).toBe(false);
+  });
+
+  it('tước tạo thẩm quyền đúng miền — quyền định thuế không phải một khoản cộng trang trí', () => {
+    const title = grantTitle({ titleId: 'ba-tuoc', fiefName: 'Thái ấp Thuế', path: 'duoc-phong', year: 1444 });
+    const state = { ...createInitialState('tham-quyen'), titles: { held: [title], viewing: '', successionLawId: 'truong-nam', designatedHeir: '', legitimacyLog: [] } };
+
+    const tax = runCheck(createRng('tham-quyen'), {
+      id: 'check.thu-thue',
+      system: '3d6',
+      domain: 'rule.thu-thue',
+      difficulty: 'thuong',
+      base: 10,
+      state,
+    }).result.modifiers.filter((row) => row.source === TITLE_INFLUENCE_SOURCE);
+
+    expect(tax.some((row) => row.label.includes('Quyền định thuế suất') && row.value > 0)).toBe(true);
+    expect(tax.some((row) => row.label.includes('Quyền tài phán'))).toBe(false);
+  });
+
+  it('người tranh tước, Giáo hội chưa công nhận và nợ nghĩa vụ đều để lại dòng phạt riêng', () => {
+    const seized = usurp({
+      titleId: 'ba-tuoc',
+      fiefName: 'Thái ấp Tranh Chấp',
+      year: 1444,
+      rivalClaimant: 'Bá tước Otto',
+    }).title;
+    seized.obligations.arrearsYears = 2;
+    const state = { ...createInitialState('suc-ep'), titles: { held: [seized], viewing: '', successionLawId: 'truong-nam', designatedHeir: '', legitimacyLog: [] } };
+
+    const lines = runCheck(createRng('suc-ep'), {
+      id: 'check.giu-chu-hau',
+      system: '3d6',
+      domain: 'rule.giu-chu-hau',
+      difficulty: 'thuong',
+      base: 10,
+      state,
+    }).result.modifiers.filter((row) => row.source === TITLE_INFLUENCE_SOURCE);
+
+    expect(lines.some((row) => row.label.includes('Giáo hội') && row.value < 0)).toBe(true);
+    expect(lines.some((row) => row.label.includes('tranh cùng tước') && row.value < 0)).toBe(true);
+    expect(lines.some((row) => row.label.includes('Nợ nghĩa vụ') && row.value < 0)).toBe(true);
   });
 });
 

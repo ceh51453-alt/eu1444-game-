@@ -19,20 +19,26 @@ import {
   STATS,
   STAT_GROUPS,
   ageStageOf,
+  attitudeLabel,
   birthOrderOf,
   characterOf,
   cultureName,
   fiefTitleName,
   houseName,
   lineageStateOf,
+  nationName,
   obligationName,
   originName,
+  originOf,
   raceName,
+  raceOf,
   realmRoleName,
   religionName,
   settlementTierName,
   holdingRoleName,
   skillName,
+  traitName,
+  learnFactor,
   statsIn,
   type CharacterState,
 } from '@/systems/character';
@@ -44,7 +50,20 @@ import { logisticsSummaryOf, militaryStateOf, summaryOf } from '@/systems/milita
 import { powerName } from '@/systems/nations';
 import { realmStateOf } from '@/systems/realm';
 import { campaignStateOf, factionName } from '@/systems/campaign';
-import { heldTitles, legitimacyLabel, primaryTitleOf, titleName } from '@/systems/titles';
+import {
+  grantName,
+  heldTitles,
+  ladderHistoryOf,
+  ladderOf,
+  landKindName,
+  legitimacyLabel,
+  primaryTitleOf,
+  rankOf,
+  titleHistoryOf,
+  titleName,
+  titleOf,
+  titlePathName,
+} from '@/systems/titles';
 import { regionName } from '@/lore/regions';
 import { equipmentOf, itemsOf, packedItems, valueOf, weightOfItem, wornItems, type Item } from '@/systems/items';
 import { Panel } from './AppShell';
@@ -113,6 +132,87 @@ function CharacterRows({ character }: { character: CharacterState }): ReactNode 
   );
 }
 
+function TitleCard({ held, currentYear }: { held: ReturnType<typeof heldTitles>[number]; currentYear: number }): ReactNode {
+  const title = titleOf(held.titleId);
+  const ladder = ladderOf(held.ladderId);
+  const history = titleHistoryOf(held.titleId);
+  const rank = rankOf(held.titleId);
+  const grants = title?.grants ?? [];
+  const loses = title?.loses ?? [];
+  const owed = held.obligations;
+
+  return (
+    <details className="rounded border border-brass/30 bg-ink/25 px-2.5 py-2" open={rank >= 4}>
+      <summary className="cursor-pointer list-none">
+        <div className="flex items-start justify-between gap-2">
+          <div className="min-w-0">
+            <p className="truncate text-sm text-parchment">
+              {titleName(held.titleId)} · {held.fiefName}
+            </p>
+            <p className="text-[10px] text-vellum/50">
+              bậc {rank}/9 · {legitimacyLabel(held.legitimacy)} ({Math.round(held.legitimacy)}/100)
+            </p>
+          </div>
+          <span className="shrink-0 rounded border border-oak-light px-1.5 py-0.5 text-[9px] text-brass/80">
+            {held.termEndsYear > 0 ? `đến ${held.termEndsYear}` : 'thế tập/không hạn'}
+          </span>
+        </div>
+      </summary>
+
+      <div className="mt-2 space-y-1 border-t border-oak-light/70 pt-2">
+        {history?.address && <Row label="Kính xưng" value={history.address} />}
+        <Row label="Thang quyền lực" value={ladder?.name ?? held.ladderId} />
+        <Row label="Căn cứ nắm tước" value={titlePathName(held.path)} />
+        <Row label="Thụ phong từ" value={String(held.sinceYear)} />
+        <Row label="Tính chất pháp lý" value={history?.legalCharacter || landKindName(title?.landKind ?? 'khong')} />
+        <Row
+          label="Lãnh chúa cấp trên"
+          value={held.liege === '' ? 'giữ trực tiếp/không khai' : held.liege}
+        />
+        <Row
+          label="Giáo hội"
+          value={held.churchRecognised ? 'đã công nhận' : 'chưa công nhận — ảnh hưởng chính danh và ngoại giao'}
+        />
+        {held.rivalClaimant !== '' && <Row label="Người tranh tước" value={held.rivalClaimant} />}
+        {held.termEndsYear > 0 && (
+          <Row
+            label="Nhiệm kỳ"
+            value={`${held.termEndsYear - currentYear} năm còn lại · hết năm ${held.termEndsYear}`}
+          />
+        )}
+
+        <div className="mt-1 rounded border border-oak-light/60 px-2 py-1.5">
+          <p className="text-[9px] tracking-widest text-vellum/40 uppercase">Nghĩa vụ trên văn thư</p>
+          <p className="text-[10px] text-vellum/65">
+            Quân dịch {owed.levyDaysCalled}/{owed.levyDays} ngày · cống {owed.tribute} đồng ({owed.paidThisYear ? 'đã nộp' : 'chưa nộp'}) · triều kiến {owed.courtDays} ngày ({owed.attendedThisYear ? 'đã hầu' : 'chưa hầu'})
+          </p>
+          {owed.arrearsYears > 0 && <p className="text-[10px] text-red-300">Đang nợ {owed.arrearsYears} năm — mọi kiểm định cai trị chịu phạt.</p>}
+        </div>
+
+        {grants.length > 0 && (
+          <div>
+            <p className="text-[9px] tracking-widest text-vellum/40 uppercase">Đặc quyền đang có hiệu lực</p>
+            <p className="text-[10px] leading-relaxed text-emerald-200/75">{grants.map(grantName).join(' · ')}</p>
+          </div>
+        )}
+        {loses.length > 0 && (
+          <div>
+            <p className="text-[9px] tracking-widest text-vellum/40 uppercase">Quyền phải giao xuống dưới</p>
+            <p className="text-[10px] leading-relaxed text-amber-200/70">{loses.map(grantName).join(' · ')}</p>
+          </div>
+        )}
+        {history?.historicalBasis && (
+          <p className="text-[10px] leading-relaxed text-vellum/55">{history.historicalBasis}</p>
+        )}
+        {(history?.tensions.length ?? 0) > 0 && (
+          <p className="text-[10px] leading-relaxed text-red-200/60">Sức ép: {history?.tensions.join(' · ')}</p>
+        )}
+        {title?.note && <p className="text-[10px] leading-relaxed text-vellum/45 italic">{title.note}</p>}
+      </div>
+    </details>
+  );
+}
+
 /** Những lựa chọn đã chốt ở chín bước tạo nhân vật — đọc từ state, không giữ bản UI riêng. */
 function CreationProfile({ character }: { character: CharacterState }): ReactNode {
   const state = useGameStore((store) => store as unknown as GameState);
@@ -120,7 +220,11 @@ function CreationProfile({ character }: { character: CharacterState }): ReactNod
   const primary = primaryTitleOf(state);
   const order = birthOrderOf(character.identity.birthOrderId);
   const lineage = lineageStateOf(character.identity.lineageStateId);
+  const origin = originOf(character.identity.originId);
+  const race = raceOf(character.identity.race);
   const appearance = character.appearance;
+  const currentNationAttitude =
+    character.allegiance.nationId === '' ? null : (character.allegiance.attitudes[character.allegiance.nationId] ?? 0);
 
   return (
     <Panel title="Hồ sơ & tước vị">
@@ -140,18 +244,65 @@ function CreationProfile({ character }: { character: CharacterState }): ReactNod
         value={primary === null ? 'thường dân' : `${titleName(primary.titleId)} · chính danh ${String(Math.round(primary.legitimacy))}/100`}
       />
 
+      {race !== null && (
+        <details className="border-t border-oak-light pt-2 text-xs">
+          <summary className="cursor-pointer text-brass/80">Chủng tộc ảnh hưởng thế nào?</summary>
+          <div className="mt-2 space-y-1">
+            <p className="text-[10px] leading-relaxed text-vellum/60">{race.standing}</p>
+            <Row label="Tuổi thọ điển hình" value={race.lifespan === null ? 'không già đi' : `${race.lifespan} năm`} />
+            <Row label="Tải thời gian học" value={`×${learnFactor(race.id)} · cao hơn là học chậm hơn`} />
+            <Row label="Giáo hội nhìn nhận" value={race.church || 'chưa phân định'} />
+            {currentNationAttitude !== null && (
+              <Row
+                label="Vị thế trong thế lực"
+                value={`${currentNationAttitude >= 0 ? '+' : ''}${currentNationAttitude} · ${attitudeLabel(currentNationAttitude)}`}
+              />
+            )}
+            {race.traits.length > 0 && <Row label="Đặc tính bẩm sinh" value={race.traits.map(traitName).join(', ')} />}
+            {race.spreadNote !== '' && <p className="text-[10px] leading-relaxed text-vellum/50">{race.spreadNote}</p>}
+            {race.spread.length > 0 && (
+              <div>
+                <p className="text-[9px] tracking-widest text-vellum/40 uppercase">Hiện diện trong thế giới</p>
+                <ul className="mt-0.5 space-y-0.5 text-[10px] text-vellum/55">
+                  {race.spread.map((entry) => (
+                    <li key={`${entry.nation}-${entry.role}`}>· {nationName(entry.nation)} — {entry.role}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <p className="text-[10px] text-vellum/40 italic">
+              Đặc tính tác động thể chất/kỹ năng; thái độ của thế lực tác động đàm phán, nghi thức, bổ nhiệm và cai trị.
+            </p>
+          </div>
+        </details>
+      )}
+
+      {origin !== null && (
+        <details className="border-t border-oak-light pt-2 text-xs">
+          <summary className="cursor-pointer text-brass/80">Xuất thân để lại những gì?</summary>
+          <div className="mt-2 space-y-1">
+            <p className="text-[10px] leading-relaxed text-vellum/60">{origin.history || origin.description}</p>
+            <Row label="Nghề quen" value={origin.favouredSkills.map(skillName).join(', ')} />
+            <Row label="Thưởng nghề quen" value={`+${origin.favouredSkillBonus} trên thang d100`} />
+            {origin.privileges.length > 0 && (
+              <p className="text-[10px] leading-relaxed text-emerald-200/70">Thuận lợi: {origin.privileges.join(' · ')}</p>
+            )}
+            {origin.burdens.length > 0 && (
+              <p className="text-[10px] leading-relaxed text-amber-200/70">Gánh nặng: {origin.burdens.join(' · ')}</p>
+            )}
+            <p className="text-[10px] text-vellum/40 italic">
+              Xuất thân không khóa trần tước vị; kinh nghiệm và định kiến của nó có thể được tước vị, quan hệ và thành tựu về sau lấn át.
+            </p>
+          </div>
+        </details>
+      )}
+
       {titles.length > 0 && (
         <details className="border-t border-oak-light pt-2 text-xs">
-          <summary className="cursor-pointer text-brass/80">Tất cả thái ấp ({titles.length})</summary>
+          <summary className="cursor-pointer text-brass/80">Tước vị đang nắm ({titles.length})</summary>
           <div className="mt-2 space-y-2">
-            {titles.map((title) => (
-              <div key={title.fiefId} className="rounded border border-oak-light/70 px-2 py-1.5">
-                <p className="text-parchment">{titleName(title.titleId)} · {title.fiefName}</p>
-                <p className="text-[10px] text-vellum/50">
-                  {legitimacyLabel(title.legitimacy)} · quân dịch {title.obligations.levyDays} ngày · triều kiến {title.obligations.courtDays} ngày
-                </p>
-              </div>
-            ))}
+            {primary !== null && <p className="text-[10px] leading-relaxed text-vellum/50">{ladderHistoryOf(primary.ladderId)}</p>}
+            {titles.map((title) => <TitleCard key={title.fiefId} held={title} currentYear={state.meta.gameDate.year} />)}
           </div>
         </details>
       )}
