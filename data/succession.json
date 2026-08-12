@@ -1,0 +1,128 @@
+{
+  "$comment": "THỪA KẾ — Phần 13 mục 9. Sáu luật kế vị, mỗi phe một luật khác (mục 3 khai thang, file này khai cách chuyển thang từ người này sang người kia). KHÔNG CÓ NGƯỜI THỪA KẾ = KHỦNG HOẢNG, và hàng xóm nhảy vào tranh — nên `noHeir` là một mục có thật ở đây chứ không phải một nhánh if trong code. Khi NHÂN VẬT NGƯỜI CHƠI CHẾT: chơi tiếp bằng người thừa kế, kế thừa ĐẤT và TƯỚC nhưng KHÔNG kế thừa kỹ năng và quan hệ (mục 9) — `inherits` dưới đây là danh sách đóng, và nó là toàn bộ hợp đồng của cơ chế chơi dài hạn.",
+  "version": 1,
+
+  "config": {
+    "inherits": ["fiefs", "holdings", "provinces", "vassals", "obligations", "claims", "houseId"],
+    "$inheritsComment": "Đúng bảy khóa, và không có `skills`, không có `relations`, không có `body`. Người thừa kế là một NGƯỜI KHÁC: cùng dòng máu, cùng giấy tờ, không cùng bàn tay và không cùng bạn bè.",
+    "resets": ["skills", "relations", "body", "reputation.personal", "prestige"],
+    "legitimacyOnSuccession": {
+      "clean": -4,
+      "disputed": -18,
+      "usurped": -30,
+      "$comment": "Cả một cuộc kế vị SẠCH cũng mất chính danh: chư hầu thề với NGƯỜI, không thề với cái ghế. Ai vừa lên cũng phải đi thề lại một vòng."
+    },
+    "vassalLoyaltyOnSuccession": {
+      "clean": -8,
+      "disputed": -20,
+      "usurped": -35,
+      "reswearYears": 3,
+      "$comment": "Đây là lý do một triều đại đổi chủ hai lần trong mười năm thì rã. Lòng trung hồi lại theo `reswearYears`, nếu người mới sống nổi tới đó."
+    },
+    "minorAge": 16,
+    "regencyLoyaltyPerYear": -3,
+    "regentSkimShare": 0.2,
+    "crisisYears": 2,
+    "crisisNeighbourClaimChance": 45,
+    "crisisUnrest": 18,
+    "electionCampaignCostPerVote": 220,
+    "electionCheck": "rule.ngoai-giao",
+    "duelChallengeCheck": "rule.giu-chu-hau"
+  },
+
+  "laws": [
+    {
+      "id": "truong-nam",
+      "name": "Trưởng nam",
+      "kind": "the-tap",
+      "order": ["con-trai-lon-nhat", "con-trai-khac", "con-gai-lon-nhat", "anh-em-trai", "chau-trai", "ho-hang-gan"],
+      "splits": false,
+      "genderBias": "nam",
+      "effects": { "vassalLoyalty": 0, "unrest": 0, "realmSplit": 0 },
+      "note": "Gọn, tập trung quyền. Con thứ không được gì và biết rõ điều đó — đó là nguồn của phần lớn các cuộc nội chiến."
+    },
+    {
+      "id": "chia-deu",
+      "name": "Chia đều",
+      "kind": "the-tap",
+      "order": ["moi-con", "anh-em-trai", "ho-hang-gan"],
+      "splits": true,
+      "genderBias": "nam",
+      "effects": { "vassalLoyalty": 4, "unrest": -2, "realmSplit": 1 },
+      "note": "Chia đất cho các con — Đế quốc rã dần, rất đúng lịch sử. Người chơi giữ phần lớn nhất, phần còn lại thành chư hầu của chính anh em mình."
+    },
+    {
+      "id": "bau-cu",
+      "name": "Bầu cử",
+      "kind": "bau-cu",
+      "order": ["ung-vien-duoc-bau"],
+      "splits": false,
+      "genderBias": "khong",
+      "electorate": "chu-hau",
+      "minElectors": 3,
+      "effects": { "vassalLoyalty": 8, "unrest": -2, "realmSplit": 0 },
+      "note": "Quý tộc bầu, mở đường mua phiếu. Con ngài có thể ra ứng cử, và có thể thua."
+    },
+    {
+      "id": "manh-nhat",
+      "name": "Mạnh nhất",
+      "kind": "thach-dau",
+      "order": ["nguoi-thang-thach-dau"],
+      "splits": false,
+      "genderBias": "khong",
+      "opensDuel": true,
+      "duelKind": "dau-sinh-tu",
+      "effects": { "vassalLoyalty": 2, "unrest": 6, "realmSplit": 0 },
+      "note": "Thảo nguyên và một số bộ lạc: thách đấu giành ngôi — chuyển thẳng sang Phần 9, và người thua thì chết thật."
+    },
+    {
+      "id": "theo-dong-me",
+      "name": "Theo dòng mẹ",
+      "kind": "the-tap",
+      "order": ["con-gai-lon-nhat", "con-gai-khac", "chi-em-gai", "chau-gai-ben-me", "ho-hang-ben-me"],
+      "splits": false,
+      "genderBias": "nu",
+      "effects": { "vassalLoyalty": 0, "unrest": 0, "realmSplit": 0 },
+      "note": "Một số chủng tộc. Ai là cha thì còn cãi được, ai là mẹ thì không."
+    },
+    {
+      "id": "theo-nang-luc",
+      "name": "Theo năng lực",
+      "kind": "hoi-dong-chon",
+      "order": ["nguoi-gioi-nhat"],
+      "splits": false,
+      "genderBias": "khong",
+      "electorate": "hoi-dong",
+      "ignoresBlood": true,
+      "effects": { "vassalLoyalty": 10, "unrest": -4, "realmSplit": 0 },
+      "note": "Đế quốc Orc: hội đồng chọn người giỏi nhất. Con ngài KHÔNG có lợi thế nào, và người thừa kế có thể không cùng họ."
+    }
+  ],
+
+  "relations": [
+    { "id": "con-trai-lon-nhat", "name": "Con trai lớn nhất", "weight": 100 },
+    { "id": "con-trai-khac", "name": "Con trai thứ", "weight": 85 },
+    { "id": "con-gai-lon-nhat", "name": "Con gái lớn nhất", "weight": 80 },
+    { "id": "con-gai-khac", "name": "Con gái thứ", "weight": 70 },
+    { "id": "moi-con", "name": "Mọi người con", "weight": 90 },
+    { "id": "anh-em-trai", "name": "Anh em trai", "weight": 60 },
+    { "id": "chi-em-gai", "name": "Chị em gái", "weight": 55 },
+    { "id": "chau-trai", "name": "Cháu trai", "weight": 45 },
+    { "id": "chau-gai-ben-me", "name": "Cháu gái bên mẹ", "weight": 42 },
+    { "id": "ho-hang-gan", "name": "Họ hàng gần", "weight": 25 },
+    { "id": "ho-hang-ben-me", "name": "Họ hàng bên mẹ", "weight": 22 },
+    { "id": "ung-vien-duoc-bau", "name": "Ứng viên được bầu", "weight": 0 },
+    { "id": "nguoi-thang-thach-dau", "name": "Người thắng thách đấu", "weight": 0 },
+    { "id": "nguoi-gioi-nhat", "name": "Người giỏi nhất", "weight": 0 }
+  ],
+
+  "noHeir": {
+    "$comment": "Không có người thừa kế = KHỦNG HOẢNG, hàng xóm nhảy vào tranh (mục 9). Ba lối thoát, và cả ba đều phải trả giá — nếu có một lối miễn phí thì việc lấy vợ sinh con sẽ không còn là một quyết định.",
+    "options": [
+      { "id": "nhan-con-nuoi", "name": "Nhận con nuôi", "cost": 400, "legitimacy": -10, "vassalLoyalty": -12, "requiresRank": 2 },
+      { "id": "de-lai-cho-giao-hoi", "name": "Để lại cho Giáo hội", "cost": 0, "legitimacy": 6, "vassalLoyalty": -20, "losesRealm": true },
+      { "id": "chi-dinh-chu-hau", "name": "Chỉ định một chư hầu", "cost": 0, "legitimacy": -6, "vassalLoyalty": -8, "requiresVassals": 1 }
+    ],
+    "ifNothing": { "crisis": true, "unrest": 25, "neighbourClaims": 2, "legitimacy": -25 }
+  }
+}

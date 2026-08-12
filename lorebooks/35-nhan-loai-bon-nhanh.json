@@ -1,0 +1,70 @@
+{
+  "kind": "eu1444-lorebook",
+  "schemaVersion": 1,
+  "exportedAt": 0,
+  "books": [
+    {
+      "id": "book-nhan-loai-nhanh",
+      "name": "Europa 1444 · Bốn nhánh Nhân loại",
+      "version": 1,
+      "scope": { "kind": "global" },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 0,
+      "entries": [
+        {
+          "id": "race_frank",
+          "title": "Nhánh Frank",
+          "type": "custom",
+          "content": "## Thông tin cốt lõi của nhánh Frank:\n- Định nghĩa: Nhánh Nhân loại ở phía Tây lục địa, nắm quyền tại Vương quốc Pháp, Công quốc Burgundy và các triều đình có gốc gác Norman.\n- Phân loại: Nhánh Nhân loại, giai tầng quý tộc phong kiến chủ đạo.\n- Trạng thái/Cấp độ: Chiếm giữ gần như toàn bộ ngạch kỵ binh bọc thép của Tây Âu; đang trong quá trình bị ngai vàng Paris thu gom quyền lực.\n\n## Vị thế và lối sống của nhánh Frank:\nTrật tự phong kiến của họ chặt hơn bất cứ nhánh nào khác: mỗi mảnh đất có một chủ, mỗi chủ có một chủ trên nữa, và toàn bộ chuỗi đó được ghi thành khế ước có ấn triện. Người Frank kiện tụng về đất đai nhiều tới mức nghề chép khế ước là một nghề nuôi được cả dòng họ.\n\nHọ nuôi ngựa chiến từ đời ông sang đời cháu và coi việc mất ngựa là mất danh dự chứ không phải mất của. Một hiệp sĩ Frank cưỡi ngựa nặng, mặc giáp toàn thân, và được dạy từ bé rằng lao thẳng vào giữa hàng ngũ là cách đúng đắn để giải quyết mọi việc.\n\n## Quan hệ với Giáo hội và với các tộc khác:\nChính thống tới mức cứng nhắc. Vua Frank tự xưng \"Nhà Vua Ngoan đạo nhất\", và mối quan hệ với Rome vừa là chỗ dựa vừa là sợi dây trói.\n\nHọ chấp nhận dị tộc làm lính đánh thuê nhưng gần như không bao giờ chấp nhận dị tộc làm chư hầu có đất. Một Bán Tiên có thể chỉ huy một đại đội cho triều đình Paris cả đời mà vẫn không được phong nam tước — và cả hai bên đều biết luật ngầm đó, dù không ai viết nó ra.",
+          "summary": "Nhánh Frank: Nhân loại phía Tây, nắm quyền ở Vương quốc Pháp và Burgundy, giữ gần hết ngạch kỵ binh bọc thép Tây Âu. Trật tự phong kiến chặt và ghi thành khế ước; kiện tụng đất đai nuôi được cả một nghề. Chính thống cứng nhắc, nhận dị tộc làm lính đánh thuê nhưng gần như không bao giờ cho dị tộc làm chư hầu có đất.",
+          "keys": ["Frank", "người Frank", "quý tộc Frank", "hiệp sĩ Frank", "nhánh Frank"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "weight": 10,
+          "budgetPriority": 7
+        },
+        {
+          "id": "race_teuton",
+          "title": "Nhánh Teuton",
+          "type": "custom",
+          "content": "## Thông tin cốt lõi của nhánh Teuton:\n- Định nghĩa: Nhánh Nhân loại ở Trung Âu, cầm quyền trong Đế quốc La Mã Thần thánh và trong hầu hết các Thành phố Tự do nói tiếng Đức.\n- Phân loại: Nhánh Nhân loại, giai tầng đế quốc và phường hội thợ thủ công.\n- Trạng thái/Cấp độ: Phân tán thành hàng trăm quyền lực nhỏ, nhưng nắm giữ nghề luyện kim, in khắc và phường hội chặt nhất lục địa.\n\n## Vị thế và lối sống của nhánh Teuton:\nKhác người Frank, người Teuton không coi đất là thước đo duy nhất. Một thợ cả phường hội ở Nuremberg giàu hơn và có tiếng nói hơn nhiều nam tước, và ông ta biết điều đó.\n\nĐời sống của họ xoay quanh điều lệ: điều lệ phường hội, điều lệ thành bang, đặc quyền hoàng gia. Ai thuộc điều lệ thì sống được; ai không thuộc thì bị đẩy ra ngoài tường trước khi kịp cãi. Chính vì thế người Teuton là nhánh Nhân loại làm việc trôi chảy nhất với tộc Lùn — hai bên hiểu nhau qua văn bản chứ không qua lòng tin.\n\n## Quan hệ với Giáo hội và với các tộc khác:\nChính thống nhưng hay cãi. Ba Tuyển hầu quốc Giáo sĩ nằm trong tay họ, và cũng chính đất của họ đã đẻ ra phong trào Hussite ở Bohemia.\n\nCác thành bang Teuton dễ nhận dị tộc nhất lục địa — miễn là dị tộc đó đóng lệ và vào phường. Bán Nhân trong bếp, Gnome trong xưởng đồng hồ, Lùn trong lò rèn, Thử Nhân dưới cống. Đó không phải lòng khoan dung; đó là sổ sách.",
+          "summary": "Nhánh Teuton: Nhân loại Trung Âu, cầm quyền trong Đế quốc La Mã Thần thánh và các Thành phố Tự do. Đất không phải thước đo duy nhất — một thợ cả Nuremberg có tiếng nói hơn nhiều nam tước. Đời sống xoay quanh điều lệ và văn bản, nên họ làm việc trôi chảy với tộc Lùn và nhận dị tộc dễ nhất lục địa, miễn là đóng lệ và vào phường.",
+          "keys": ["người Teuton", "tộc Teuton", "dân Teuton", "nhánh Teuton"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "weight": 10,
+          "budgetPriority": 7
+        },
+        {
+          "id": "race_latin",
+          "title": "Nhánh Latin",
+          "type": "custom",
+          "content": "## Thông tin cốt lõi của nhánh Latin:\n- Định nghĩa: Nhánh Nhân loại ở Bán đảo Ý và ven Địa Trung Hải, nắm giữ Giáo triều, các nhà băng và các thành bang thương mại lớn nhất lục địa.\n- Phân loại: Nhánh Nhân loại, giai tầng thương nhân, chủ ngân hàng và giáo sĩ.\n- Trạng thái/Cấp độ: Ít đất, ít quân, nhiều tiền — và vì nhiều tiền nên có mặt trong mọi cuộc chiến mà họ không tham gia.\n\n## Vị thế và lối sống của nhánh Latin:\nHọ không đếm sức mạnh bằng số kỵ sĩ mà bằng số con nợ. Một gia tộc Latin cho ba vua vay cùng lúc thì ba vua đó không đánh nhau được quá lâu.\n\nChiến tranh với họ là một khoản chi có thể thuê ngoài, và họ thuê thật — đó là gốc của lề lối Condottieri. Người Latin coi việc tự cầm gươm là thất bại trong tính toán.\n\nHọ viết mọi thứ, giữ mọi thứ, và tra lại được mọi thứ. Một tranh chấp năm mươi năm trước vẫn còn nguyên trong sổ, và người ta lôi nó ra đúng lúc nó có giá nhất.\n\n## Quan hệ với Giáo hội và với các tộc khác:\nHọ không đối đầu với Giáo hội vì phần lớn Giáo hội chính là họ. Hồng y, chủ nhà băng và tổng trấn thường cùng một dòng họ, đôi khi cùng một người.\n\nVới dị tộc, họ thực dụng tới lạnh lùng: Miêu Nhân làm mật thám, Hải Tộc làm hoa tiêu, Cao Tiên làm học giả — ai bán được gì thì mua thứ đó, và không ai hỏi về linh hồn chừng nào hàng còn về đúng hẹn.",
+          "summary": "Nhánh Latin: Nhân loại Bán đảo Ý và ven Địa Trung Hải, nắm Giáo triều, nhà băng và các thành bang thương mại. Đếm sức mạnh bằng số con nợ chứ không bằng số kỵ sĩ; chiến tranh là khoản chi thuê ngoài, đó là gốc của lề lối Condottieri. Hồng y, chủ nhà băng và tổng trấn thường cùng một dòng họ. Với dị tộc họ thực dụng tới lạnh lùng.",
+          "keys": ["người Latin", "nhánh Latin", "tộc Latin", "dân Latin"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "weight": 10,
+          "budgetPriority": 7
+        },
+        {
+          "id": "race_rus",
+          "title": "Nhánh Rus",
+          "type": "custom",
+          "content": "## Thông tin cốt lõi của nhánh Rus:\n- Định nghĩa: Nhánh Nhân loại ở phương Đông, sống trong các công quốc và thành bang từ Novgorod xuống tới biên giới Thảo nguyên hoang.\n- Phân loại: Nhánh Nhân loại, giai tầng biên cương — kỵ binh nhẹ, thợ săn lông thú, dân phòng thủ.\n- Trạng thái/Cấp độ: Vừa thoát khỏi cái bóng của Kim Trướng Hãn Quốc chưa được bao lâu, và vẫn nộp cống ở nhiều nơi.\n\n## Vị thế và lối sống của nhánh Rus:\nHọ sống giữa rừng và thảo nguyên, nghĩa là sống giữa hai kiểu chết khác nhau. Làng Rus dựng gần rừng để có gỗ và có chỗ trốn; xa rừng quá thì kỵ binh thảo nguyên tới, gần rừng quá thì thứ khác tới.\n\nMùa đông không phải kẻ thù mà là đồng minh: đất đóng băng thì sông thành đường, và hàng lông thú đi được. Nhưng đất đóng băng cũng là lúc ngựa thảo nguyên qua được đầm lầy, nên mọi mùa đông đều là một canh bạc.\n\nGiàu có của họ nằm trong da thú: chồn, hải ly, cáo bạc, và da của ma thú vùng Taiga — thứ mà cả lục địa muốn mua và không nơi nào khác có.\n\n## Quan hệ với Giáo hội và với các tộc khác:\nHọ theo Chính thống giáo phương Đông, nên với Rome họ là kẻ ly giáo — không phải dị giáo, nhưng cũng không phải người nhà. Hiệp sĩ Teuton và Liên bang Livonia đã đánh họ nhiều lần với danh nghĩa Thập Tự Chinh.\n\nVới thảo nguyên, quan hệ không phải thù hay bạn mà là giá cả: cống nạp, thuê kỵ binh, gả con gái, và thỉnh thoảng là chiến tranh. Với Lang Nhân vùng Taiga thì nhiều làng Rus có giao ước riêng — chia phần săn được, đổi lại được báo trước khi có người lạ vào rừng.",
+          "summary": "Nhánh Rus: Nhân loại phương Đông, sống giữa rừng và thảo nguyên, vừa thoát bóng Kim Trướng Hãn Quốc và nhiều nơi vẫn nộp cống. Mùa đông vừa là đường sông vừa là lúc ngựa thảo nguyên qua được đầm lầy. Giàu có nằm trong da thú và da ma thú vùng Taiga. Theo Chính thống giáo nên với Rome là kẻ ly giáo, và đã bị Teuton lẫn Livonia đánh nhân danh Thập Tự Chinh.",
+          "keys": ["người Rus", "nhánh Rus", "tộc Rus", "dân Rus", "công quốc Rus"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "weight": 10,
+          "budgetPriority": 7
+        }
+      ]
+    }
+  ]
+}

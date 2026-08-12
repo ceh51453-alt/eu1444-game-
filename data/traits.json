@@ -1,0 +1,427 @@
+{
+  "$comment": "ĐẶC TÍNH BẨM SINH (Phần 6 mục 2). Races trong races.json chỉ giữ danh sách id trỏ vào đây, nên thêm một tộc mới không phải sửa code, và sửa cân bằng một đặc tính chỉ phải sửa đúng một dòng. Mỗi `effects` biến thành MỘT DÒNG trong CheckResult.modifiers qua registry của Phần 5 — không đặc tính nào được tính ngầm ở nơi khác (README mục 8.4). `value` luôn theo THANG d100 và dương là dễ hơn; nguồn tự quy đổi sang d20/3d6/pool, y như penaltyFor của Phần 5. `whenAnyTag` rỗng hoặc vắng nghĩa là luôn áp. `kind` mặc định là `flat`; `dieShift` dịch cấp kết quả và phải rất hiếm.",
+  "version": 1,
+  "traits": [
+    {
+      "id": "trait_ky-binh-boc-thep",
+      "name": "Kỵ binh bọc thép",
+      "description": "Lớn lên trên yên ngựa với giáp nặng trên người. Ngồi vững khi va chạm, và biết dùng đà ngựa thay cho sức tay.",
+      "effects": [
+        { "domains": ["skill.cuoi-ngua", "combat.*"], "value": 15, "whenAnyTag": ["tren-ngua"] }
+      ]
+    },
+    {
+      "id": "trait_giao-duc-phong-kien",
+      "name": "Giáo dục phong kiến",
+      "description": "Thuộc nằm lòng thang tước vị, nghi thức triều đình và ai nợ ai lời thề nào.",
+      "effects": [
+        { "domains": ["skill.luat-le", "skill.nghi-thuc", "admin.*"], "value": 10 }
+      ]
+    },
+    {
+      "id": "trait_ban-tay-tho",
+      "name": "Bàn tay thợ",
+      "description": "Ba đời trong phường hội. Cầm búa và đục thấy quen tay hơn cầm bút.",
+      "effects": [{ "domains": ["skill.ren-sat", "skill.moc", "skill.xay-cat"], "value": 12 }]
+    },
+    {
+      "id": "trait_ky-luat-doi-hinh",
+      "name": "Kỷ luật đội hình",
+      "description": "Giữ hàng khi người bên cạnh ngã xuống. Đây là thứ phân biệt quân chính quy với đám đông có vũ khí.",
+      "effects": [{ "domains": ["combat.*", "skill.chi-huy"], "value": 15, "whenAnyTag": ["doi-hinh"] }]
+    },
+    {
+      "id": "trait_dau-oc-so-sach",
+      "name": "Đầu óc sổ sách",
+      "description": "Nhẩm được cột số dài trong đầu và nhớ chỗ nào không khớp.",
+      "effects": [{ "domains": ["admin.*", "skill.ke-toan"], "value": 12 }]
+    },
+    {
+      "id": "trait_luoi-thuong-nhan",
+      "name": "Lưỡi thương nhân",
+      "description": "Biết lúc nào nên im, và biết cái giá đầu tiên không bao giờ là cái giá cuối.",
+      "effects": [{ "domains": ["skill.mac-ca", "skill.dam-phan"], "value": 12 }]
+    },
+    {
+      "id": "trait_chiu-lanh",
+      "name": "Chịu lạnh",
+      "description": "Sinh ra ở nơi mùa đông dài hơn mùa hè. Rét cắt da không làm tay run.",
+      "effects": [{ "domains": ["*"], "value": 20, "whenAnyTag": ["gia-lanh", "mua-dong"] }]
+    },
+    {
+      "id": "trait_cuoi-ngua-tu-be",
+      "name": "Cưỡi ngựa từ bé",
+      "description": "Biết ngồi trên lưng ngựa trước khi biết đi vững.",
+      "effects": [{ "domains": ["skill.cuoi-ngua"], "value": 15 }]
+    },
+    {
+      "id": "trait_mat-trong-da",
+      "name": "Mắt trong đá",
+      "description": "Đọc được thớ đá, ngửi được khí độc, và biết đường hầm nào sắp sập.",
+      "effects": [
+        { "domains": ["skill.xay-cat", "skill.dao-ham", "skill.sinh-ton"], "value": 15, "whenAnyTag": ["trong-ham", "duoi-long-dat"] },
+        { "domains": ["skill.tham-do"], "value": 10, "whenAnyTag": ["trong-ham", "duoi-long-dat"] }
+      ]
+    },
+    {
+      "id": "trait_gan-ly-tri",
+      "name": "Gan lì trí",
+      "description": "Sợ thì vẫn sợ, nhưng chân không tự bước lùi.",
+      "effects": [{ "domains": ["*"], "value": 20, "whenAnyTag": ["kinh-hoang", "khiep-so"] }]
+    },
+    {
+      "id": "trait_chan-tru",
+      "name": "Chân trụ",
+      "description": "Trọng tâm thấp. Đẩy ngã một người như thế tốn công gấp đôi.",
+      "effects": [{ "domains": ["combat.*"], "value": 15, "whenAnyTag": ["giang-co", "bi-day"] }]
+    },
+    {
+      "id": "trait_mat-trong-toi",
+      "name": "Mắt trong tối",
+      "description": "Thấy được trong thứ ánh sáng mà người khác gọi là bóng tối hoàn toàn.",
+      "effects": [{ "domains": ["*"], "value": 25, "whenAnyTag": ["ban-dem", "trong-ham"] }]
+    },
+    {
+      "id": "trait_da-day-sat",
+      "name": "Da dày sát",
+      "description": "Lớp da và mỡ dưới da đủ dày để một nhát chém nông không tới thịt.",
+      "effects": [{ "domains": ["combat.*"], "value": 12, "whenAnyTag": ["chiu-don"] }]
+    },
+    {
+      "id": "trait_so-anh-sang",
+      "name": "Sợ ánh sáng",
+      "description": "Nắng gắt làm mắt chảy nước và đầu nhức. Cả ngày dài dưới trời trong là một cực hình.",
+      "effects": [{ "domains": ["*"], "value": -20, "whenAnyTag": ["nang-gat", "giua-trua"] }]
+    },
+    {
+      "id": "trait_ngon-tay-tinh-xao",
+      "name": "Ngón tay tinh xảo",
+      "description": "Làm được thứ nhỏ hơn cái người khác nhìn thấy rõ.",
+      "effects": [{ "domains": ["skill.che-tac", "skill.co-khi", "skill.mo-khoa"], "value": 15 }]
+    },
+    {
+      "id": "trait_dau-oc-co-khi",
+      "name": "Đầu óc cơ khí",
+      "description": "Nhìn một cỗ máy là hiểu ngay bánh răng nào kéo bánh răng nào.",
+      "effects": [
+        { "domains": ["skill.co-khi", "skill.gia-kim"], "value": 15 },
+        { "domains": ["siege.*"], "value": 10 }
+      ]
+    },
+    {
+      "id": "trait_voc-nho",
+      "name": "Vóc nhỏ",
+      "description": "Chui lọt chỗ người thường phải phá tường, nhưng đòn đánh thiếu sức nặng.",
+      "effects": [
+        { "domains": ["skill.len-lut", "skill.tron-nap"], "value": 15 },
+        { "domains": ["combat.*"], "value": -10, "whenAnyTag": ["giang-co", "vu-khi-nang"] }
+      ]
+    },
+    {
+      "id": "trait_luon-trong-hang",
+      "name": "Luồn trong hang",
+      "description": "Chật, tối và không có lối quay đầu — đó là nơi dễ chịu chứ không phải nơi đáng sợ.",
+      "effects": [{ "domains": ["*"], "value": 15, "whenAnyTag": ["trong-ham", "cho-chat"] }]
+    },
+    {
+      "id": "trait_bay-dan",
+      "name": "Bầy đàn",
+      "description": "Đánh giỏi hẳn lên khi có đồng loại bên cạnh, và mất tinh thần nhanh khi còn một mình.",
+      "effects": [
+        { "domains": ["combat.*"], "value": 15, "whenAnyTag": ["danh-theo-bay", "co-dong-doi"] },
+        { "domains": ["combat.*"], "value": -10, "whenAnyTag": ["mot-minh"] }
+      ]
+    },
+    {
+      "id": "trait_cam-ung-huyen-nang",
+      "name": "Cảm ứng huyền năng",
+      "description": "Cảm được chỗ nào thế giới mỏng đi, trước khi nhìn thấy bất cứ dấu hiệu nào.",
+      "effects": [{ "domains": ["arcane.*", "skill.huyen-thuat", "skill.cam-ung"], "value": 15 }]
+    },
+    {
+      "id": "trait_tri-nho-the-ky",
+      "name": "Trí nhớ thế kỷ",
+      "description": "Nhớ nguyên văn thứ đã đọc từ trước khi ông cố của người đối diện ra đời.",
+      "effects": [{ "domains": ["skill.hoc-van", "skill.ngon-ngu", "skill.su-ky"], "value": 15 }]
+    },
+    {
+      "id": "trait_mat-cung-thu",
+      "name": "Mắt cung thủ",
+      "description": "Ước lượng khoảng cách và gió gần như không cần nghĩ.",
+      "effects": [{ "domains": ["skill.cung-no", "combat.ban-xa"], "value": 15 }]
+    },
+    {
+      "id": "trait_buoc-khong-tieng",
+      "name": "Bước không tiếng",
+      "description": "Lá khô dưới chân không kêu.",
+      "effects": [{ "domains": ["skill.len-lut"], "value": 15 }]
+    },
+    {
+      "id": "trait_boi-doc",
+      "name": "Bồi độc",
+      "description": "Biết cây nào giết người và bao nhiêu thì đủ. Cũng có nghĩa là khó bị đầu độc.",
+      "effects": [
+        { "domains": ["skill.doc-duoc"], "value": 15 },
+        { "domains": ["*"], "value": 20, "whenAnyTag": ["trung-doc"] }
+      ]
+    },
+    {
+      "id": "trait_luoi-da-ngu",
+      "name": "Lưỡi đa ngữ",
+      "description": "Bắt được nhịp một thứ tiếng lạ sau vài ngày nghe.",
+      "effects": [{ "domains": ["skill.ngon-ngu", "skill.dam-phan"], "value": 15 }]
+    },
+    {
+      "id": "trait_hai-dong-mau",
+      "name": "Hai dòng máu",
+      "description": "Không bên nào nhận là người nhà, nhưng bên nào cũng chịu ngồi nói chuyện.",
+      "effects": [
+        { "domains": ["skill.dam-phan"], "value": 12, "whenAnyTag": ["giua-hai-phe"] },
+        { "domains": ["skill.gay-thien-cam"], "value": -8, "whenAnyTag": ["trieu-dinh"] }
+      ]
+    },
+    {
+      "id": "trait_mui-thinh",
+      "name": "Mũi thính",
+      "description": "Đánh hơi được người vừa đi qua đây hai canh giờ trước.",
+      "effects": [{ "domains": ["skill.truy-dau", "skill.tham-do", "skill.san-ban"], "value": 15 }]
+    },
+    {
+      "id": "trait_con-cuong",
+      "name": "Cơn cuồng",
+      "description": "Máu chảy thì đau biến mất và tay nặng hẳn lên — nhưng lúc đó không ai gọi lại được.",
+      "effects": [
+        { "domains": ["combat.*"], "value": 20, "whenAnyTag": ["bi-thuong"] },
+        { "domains": ["skill.dam-phan", "skill.gay-thien-cam"], "value": -12, "whenAnyTag": ["bi-thuong"] }
+      ]
+    },
+    {
+      "id": "trait_suc-vam-vo",
+      "name": "Sức vạm vỡ",
+      "description": "Nâng được thứ mà người thường phải gọi thêm hai người.",
+      "effects": [{ "domains": ["skill.the-luc", "combat.*"], "value": 12, "whenAnyTag": ["dung-suc", "vu-khi-nang"] }]
+    },
+    {
+      "id": "trait_ngu-dong",
+      "name": "Ngủ đông",
+      "description": "Giữa mùa lạnh, cơ thể đòi ngủ chứ không đòi đánh nhau.",
+      "effects": [{ "domains": ["*"], "value": -15, "whenAnyTag": ["mua-dong"] }]
+    },
+    {
+      "id": "trait_tiep-dat-nhe",
+      "name": "Tiếp đất nhẹ",
+      "description": "Rơi từ độ cao hai người vẫn đứng dậy đi tiếp.",
+      "effects": [{ "domains": ["skill.leo-treo", "skill.nhao-lon"], "value": 15 }]
+    },
+    {
+      "id": "trait_mat-tu-tren-cao",
+      "name": "Mắt từ trên cao",
+      "description": "Quen nhìn địa hình như nhìn một tấm bản đồ trải ra.",
+      "effects": [
+        { "domains": ["skill.tham-do", "skill.do-duong"], "value": 15 },
+        { "domains": ["battle.*"], "value": 10, "whenAnyTag": ["trinh-sat"] }
+      ]
+    },
+    {
+      "id": "trait_diem-bao",
+      "name": "Điềm báo",
+      "description": "Biết trước một nhịp, không đủ để tránh nhưng đủ để kịp quay đầu.",
+      "effects": [{ "domains": ["*"], "value": 12, "whenAnyTag": ["bat-ngo", "phuc-kich"] }]
+    },
+    {
+      "id": "trait_xuong-rong",
+      "name": "Xương rỗng",
+      "description": "Nhẹ và nhanh, nhưng một cú đập trúng là gãy chứ không phải bầm.",
+      "effects": [
+        { "domains": ["skill.leo-treo", "skill.nhao-lon"], "value": 12 },
+        { "domains": ["combat.*"], "value": -12, "whenAnyTag": ["chiu-don"] }
+      ]
+    },
+    {
+      "id": "trait_khang-dich-benh",
+      "name": "Kháng dịch bệnh",
+      "description": "Sống qua thứ đã quét sạch cả một khu phố.",
+      "effects": [{ "domains": ["*"], "value": 25, "whenAnyTag": ["dich-benh", "nhiem-trung"] }]
+    },
+    {
+      "id": "trait_ban-cung-tren-ngua",
+      "name": "Bắn cung trên ngựa",
+      "description": "Bắn vào lúc bốn vó rời đất — nhịp mà không ai dạy được cho người lớn.",
+      "effects": [{ "domains": ["skill.cung-no", "combat.ban-xa"], "value": 20, "whenAnyTag": ["tren-ngua"] }]
+    },
+    {
+      "id": "trait_suc-ben-thao-nguyen",
+      "name": "Sức bền thảo nguyên",
+      "description": "Đi được nhiều ngày với rất ít nước và rất ít lời than.",
+      "effects": [{ "domains": ["skill.sinh-ton", "logistics.*"], "value": 15, "whenAnyTag": ["hanh-quan", "kho-han"] }]
+    },
+    {
+      "id": "trait_cham-hieu",
+      "name": "Chậm hiểu",
+      "description": "Hiểu được thì hiểu rất chắc, nhưng phải cho thời gian.",
+      "effects": [{ "domains": ["skill.hoc-van", "skill.muu-luoc", "admin.*"], "value": -15 }]
+    },
+    {
+      "id": "trait_tam-voc-do-so",
+      "name": "Tầm vóc đồ sộ",
+      "description": "Với xa hơn một tầm tay, và người ta phải ngước lên để nhìn mặt.",
+      "effects": [
+        { "domains": ["combat.*"], "value": 15, "whenAnyTag": ["can-chien"] },
+        { "domains": ["skill.len-lut", "skill.tron-nap"], "value": -20 }
+      ]
+    },
+    {
+      "id": "trait_tai-sinh",
+      "name": "Tái sinh",
+      "description": "Thịt liền lại trong lúc còn đang đánh. Trừ chỗ nào đã bị lửa liếm qua.",
+      "effects": [{ "domains": ["*"], "value": 25, "whenAnyTag": ["hoi-phuc", "bi-thuong"] }]
+    },
+    {
+      "id": "trait_so-lua",
+      "name": "Sợ lửa",
+      "description": "Vết bỏng không liền lại như vết chém, và cả thân người biết điều đó.",
+      "effects": [{ "domains": ["*"], "value": -25, "whenAnyTag": ["lua", "hoa-hoan"] }]
+    },
+    {
+      "id": "trait_suc-ben-hanh-quan",
+      "name": "Sức bền hành quân",
+      "description": "Ngày thứ mười vẫn đi được đúng quãng đường của ngày đầu.",
+      "effects": [{ "domains": ["logistics.*", "skill.the-luc"], "value": 12, "whenAnyTag": ["hanh-quan"] }]
+    },
+    {
+      "id": "trait_uy-ap-huyet-thong",
+      "name": "Uy áp huyết thống",
+      "description": "Có thứ trong giọng nói khiến người ta muốn lùi nửa bước mà không hiểu vì sao.",
+      "effects": [{ "domains": ["skill.chi-huy", "skill.uy-hiep"], "value": 15 }]
+    },
+    {
+      "id": "trait_hoi-tho-nong",
+      "name": "Hơi thở nóng",
+      "description": "Dòng máu cổ còn giữ lại chút lửa, đủ cho một lần trong một trận.",
+      "effects": [{ "domains": ["combat.*"], "value": 15, "whenAnyTag": ["can-chien"] }]
+    },
+    {
+      "id": "trait_vay-cung",
+      "name": "Vảy cứng",
+      "description": "Từng mảng vảy dọc lưng và cánh tay, cứng hơn da thuộc dày.",
+      "effects": [{ "domains": ["combat.*"], "value": 12, "whenAnyTag": ["chiu-don"] }]
+    },
+    {
+      "id": "trait_luoi-doi-tra",
+      "name": "Lưỡi dối trá",
+      "description": "Nói dối trơn tru đến mức chính mình cũng suýt tin.",
+      "effects": [{ "domains": ["skill.lua-doi", "skill.gia-dang"], "value": 15 }]
+    },
+    {
+      "id": "trait_bi-ghe-so",
+      "name": "Bị ghê sợ",
+      "description": "Người lạ né ánh mắt và đổi chỗ ngồi. Rất tiện khi cần dọa, rất phiền khi cần nhờ.",
+      "effects": [
+        { "domains": ["skill.uy-hiep"], "value": 15 },
+        { "domains": ["skill.gay-thien-cam", "skill.dam-phan"], "value": -15, "whenAnyTag": ["nguoi-la", "dam-dong"] }
+      ]
+    },
+    {
+      "id": "trait_giong-giang-dao",
+      "name": "Giọng giảng đạo",
+      "description": "Đám đông im xuống khi giọng đó cất lên, kể cả đám đông không tin gì.",
+      "effects": [{ "domains": ["skill.giang-dao", "skill.kich-dong"], "value": 15 }]
+    },
+    {
+      "id": "trait_hao-quang-an-lanh",
+      "name": "Hào quang an lành",
+      "description": "Người bệnh nằm cạnh ngủ được, và vết thương ít mưng hơn.",
+      "effects": [{ "domains": ["skill.y-thuat", "skill.an-ui"], "value": 15 }]
+    },
+    {
+      "id": "trait_than-the-da",
+      "name": "Thân thể đá",
+      "description": "Không mệt như thịt mệt, không lạnh như thịt lạnh.",
+      "effects": [
+        { "domains": ["*"], "value": 20, "whenAnyTag": ["moi-met", "gia-lanh"] },
+        { "domains": ["combat.*"], "value": 12, "whenAnyTag": ["chiu-don"] }
+      ]
+    },
+    {
+      "id": "trait_khong-linh-hon",
+      "name": "Chưa phân định linh hồn",
+      "description": "Giáo hội chưa quyết thứ này có linh hồn hay không, và mọi giáo sĩ đều nhớ điều đó.",
+      "effects": [{ "domains": ["skill.dam-phan", "skill.gay-thien-cam"], "value": -20, "whenAnyTag": ["giao-si", "nha-tho"] }]
+    },
+    {
+      "id": "trait_boi-nhu-ca",
+      "name": "Bơi như cá",
+      "description": "Nước là chỗ về nhà chứ không phải chỗ chết đuối.",
+      "effects": [{ "domains": ["*"], "value": 25, "whenAnyTag": ["duoi-nuoc", "tren-thuyen"] }]
+    },
+    {
+      "id": "trait_nin-tho-lau",
+      "name": "Nín thở lâu",
+      "description": "Ở dưới mặt nước lâu hơn thời gian một người bình thường hoảng loạn.",
+      "effects": [{ "domains": ["*"], "value": 20, "whenAnyTag": ["nghet-tho", "duoi-nuoc"] }]
+    },
+    {
+      "id": "trait_kho-da",
+      "name": "Khô da",
+      "description": "Xa nước quá lâu thì da nứt và người rã ra.",
+      "effects": [{ "domains": ["*"], "value": -15, "whenAnyTag": ["kho-han", "sa-mac"] }]
+    },
+    {
+      "id": "trait_khong-so-do-cao",
+      "name": "Không sợ độ cao",
+      "description": "Đứng mép vực cũng như đứng giữa sân.",
+      "effects": [{ "domains": ["*"], "value": 20, "whenAnyTag": ["tren-cao", "vach-da"] }]
+    },
+    {
+      "id": "trait_phoi-nui-cao",
+      "name": "Phổi núi cao",
+      "description": "Thở được thứ không khí mỏng làm người dưới đồng bằng ngã quỵ.",
+      "effects": [{ "domains": ["*"], "value": 20, "whenAnyTag": ["nui-cao", "khong-khi-loang"] }]
+    },
+    {
+      "id": "trait_so-nong",
+      "name": "Sợ nóng",
+      "description": "Nắng phương nam làm đầu quay và tay chậm lại.",
+      "effects": [{ "domains": ["*"], "value": -15, "whenAnyTag": ["nong-buc", "giua-trua"] }]
+    },
+    {
+      "id": "trait_noi-voi-cay",
+      "name": "Nói với cây",
+      "description": "Rừng già không giấu gì với thứ nó coi là người nhà.",
+      "effects": [{ "domains": ["*"], "value": 20, "whenAnyTag": ["trong-rung"] }]
+    },
+    {
+      "id": "trait_hung-huc-lao-toi",
+      "name": "Hùng hục lao tới",
+      "description": "Một khi đã lấy đà thì rất khó chặn, và cũng rất khó dừng.",
+      "effects": [
+        { "domains": ["combat.*", "battle.*"], "value": 20, "whenAnyTag": ["xung-phong"] },
+        { "domains": ["combat.*"], "value": -10, "whenAnyTag": ["rut-lui"] }
+      ]
+    },
+    {
+      "id": "trait_may-man-ky-la",
+      "name": "May mắn kỳ lạ",
+      "description": "Không giải thích được, nhưng thứ đáng lẽ hỏng thì thường không hỏng.",
+      "effects": [{ "domains": ["*"], "value": 5 }]
+    },
+    {
+      "id": "trait_luoi-sanh-an",
+      "name": "Lưỡi sành ăn",
+      "description": "Một bữa ăn tử tế mở được cánh cửa mà lời lẽ không mở nổi.",
+      "effects": [{ "domains": ["skill.nau-an", "skill.gay-thien-cam"], "value": 12 }]
+    },
+    {
+      "id": "trait_chiu-dau",
+      "name": "Chịu đau",
+      "description": "Ngưỡng đau bị đẩy lên rất cao bởi thứ không ai muốn kể lại.",
+      "effects": [{ "domains": ["*"], "value": 20, "whenAnyTag": ["bi-thuong", "tra-tan"] }]
+    },
+    {
+      "id": "trait_hoi-phuc-huyet",
+      "name": "Hồi phục trong đêm",
+      "description": "Thứ mất đi ban ngày lấy lại được sau khi mặt trời lặn — với một cái giá phải trả ở chỗ khác.",
+      "effects": [{ "domains": ["*"], "value": 20, "whenAnyTag": ["ban-dem", "hoi-phuc"] }]
+    }
+  ]
+}

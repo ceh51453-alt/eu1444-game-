@@ -1,0 +1,40 @@
+<%
+  const c = state.character;
+  const band = (hp, maxHp) => {
+    const share = maxHp > 0 ? hp / maxHp : 0;
+    if (share >= 1) return 'lành lặn';
+    if (share >= 0.75) return 'xây xát nhẹ';
+    if (share >= 0.5) return 'có thương tích, còn đi đứng được';
+    if (share >= 0.25) return 'trọng thương, đi lại khó nhọc';
+    if (share > 0) return 'thoi thóp';
+    return 'bất tỉnh';
+  };
+  const trustWord = (trust) => {
+    if (trust <= -60) return 'thù ghét';
+    if (trust <= -20) return 'cảnh giác';
+    if (trust < 20) return 'dửng dưng';
+    if (trust < 60) return 'có thiện cảm';
+    return 'tin cậy';
+  };
+%>
+HỒ SƠ NHÂN VẬT NGƯỜI CHƠI
+Tên: <%= state.player.name === '' ? '(chưa đặt tên)' : state.player.name %>
+<% if (c) { %>
+Chủng tộc: <%= c.identity.race %>
+Thể trạng: <%= band(c.stats.hp, c.stats.maxHp) %>
+<% if (c.flags.length > 0) { %>
+Đã trải qua: <%= fmt.list(c.flags) %>
+<% } %>
+<% const names = Object.keys(c.relations); if (names.length > 0) { %>
+
+QUAN HỆ ĐÃ CÓ — đây là trí nhớ của nhân vật, phải tôn trọng
+<% for (const name of names) { const r = c.relations[name]; %>
+  · <%= name %>: <%= trustWord(r.trust) %><% if (r.note !== '') { %> — <%= r.note %><% } %>
+<% } %>
+<% } %>
+<% } else { %>
+(Chưa tạo nhân vật.)
+<% } %>
+
+Chỉ số thật của nhân vật do engine giữ và engine tính. Bạn thấy thể trạng bằng
+lời chứ không thấy con số, và đó là cố ý: bạn không cần con số để kể chuyện.

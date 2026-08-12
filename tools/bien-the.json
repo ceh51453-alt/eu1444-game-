@@ -1,0 +1,94 @@
+{
+  "$ghi-chu": "BIẾN THỂ THEO GÓC NHÌN — Phần 4 mục 6, hướng dẫn mục 9. `chuyen-lorebook.mjs` gắn từng khối vào đúng entry. CHỈ dùng cho entry SINH TỰ ĐỘNG; biến thể của entry viết tay nằm thẳng trong file sách của nó. `audience` phải là id có thật trong data/nations.json hoặc data/races.json — engine so khớp nguyên văn, sai một chữ là biến thể im lặng không bao giờ được chọn. Biến thể THAY THẾ toàn bộ `content`, không phải nối thêm, nên mỗi bản phải đứng một mình đọc được. Không khớp phe nào thì dùng `content` gốc, nên bản gốc phải viết ở giọng trung lập.",
+  "variants": {
+    "org_chinh-thong-giao": [
+      {
+        "audience": "nation_giao-trieu",
+        "content": "## Vụ ly giáo phương Đông, theo Giáo triều La Mã:\n\nNăm 1054 không phải một cuộc chia tay giữa hai giáo hội ngang hàng. Đó là ngày các Thượng phụ phương Đông bỏ đi khỏi Giáo hội duy nhất, vì kiêu ngạo và vì không chịu nổi việc Đấng kế vị Thánh Phêrô có tiếng nói cuối cùng.\n\nHọ giữ đúng bí tích, đúng phẩm trật, đúng lễ nghi — và chính vì thế họ nguy hiểm hơn kẻ ngoại đạo. Một tín đồ đi qua Constantinople không nhận ra mình đang dự một thánh lễ vô hiệu.\n\nHiệp ước Florence bảy năm trước đã kéo họ về. Hoàng đế của họ đã ký, Thượng phụ của họ đã ký. Rồi họ về nhà, và dân chúng ném đá các giám mục đã ký. Đó là toàn bộ vấn đề của phương Đông: họ hứa bằng miệng hoàng đế và nuốt lời bằng miệng đám đông.\n\nGiờ họ lại xin quân. Rome sẽ gửi quân khi Constantinople đọc kinh Tin Kính đúng như Rome đọc, không sớm hơn một ngày."
+      },
+      {
+        "audience": "nation_dong-la-ma",
+        "content": "## Chính thống giáo, theo Constantinople:\n\nChúng ta không ly khai khỏi ai cả. Chúng ta ở nguyên chỗ mình đã ở từ thời các Công đồng. Rome mới là bên tự thêm một chữ vào kinh Tin Kính mà không hỏi bốn Tòa Thượng phụ còn lại, rồi đòi cả thế giới nhận cái chữ thêm ấy là truyền thống.\n\nGiám mục Rome là anh cả trong năm anh em, không phải cha của bốn người kia. Đó là điều các Công đồng đã định, và không một sắc chỉ nào sửa được điều các Công đồng đã định.\n\nHiệp ước Florence là thứ hoàng đế ký trong lúc thành sắp mất, dưới sức ép của cái đói và của hạm đội Ý. Dân chúng không nhận, và dân chúng đúng. Có kẻ ở đây nói thẳng: thà thấy khăn xếp của Sultan trong thành còn hơn thấy mũ hồng y La Mã.\n\nHọ nói câu đó vì họ nhớ năm 1204, khi quân Thập Tự đến giúp chúng ta và ở lại cướp phá thành suốt ba ngày."
+      },
+      {
+        "audience": "race_rus",
+        "content": "## Chính thống giáo, theo các công quốc Rus:\n\nĐức tin đến với chúng ta từ Constantinople, và suốt bốn thế kỷ Thượng phụ ở đó phong giám mục cho chúng ta. Rồi ông ta ký với La Mã ở Florence, và mọi thứ vỡ.\n\nMoscow không nhận hiệp ước ấy. Vị giáo chủ mang nó về từ Ý đã bị tống giam rồi phải bỏ trốn. Từ đó chúng ta tự phong giám mục lấy, không xin phép ai.\n\nĐiều đó có nghĩa gì thì mỗi người hiểu một cách. Có người bảo chúng ta mồ côi. Có người bảo Constantinople đã bán đức tin để đổi lấy quân — và nếu Đấng Sáng Tạo vì thế mà bỏ mặc họ, thì ngọn đèn thật đã chuyển về phương Bắc, và chúng ta là kẻ giữ đèn.\n\nCác giáo sĩ chưa dám nói to điều thứ hai. Các đại công tước thì đã nghĩ tới nó rồi."
+      }
+    ],
+
+    "org_toa-an-di-giao": [
+      {
+        "audience": "nation_giao-trieu",
+        "content": "## Tòa án Dị giáo, theo Giáo triều:\n\nĐây là cơ quan chữa bệnh, không phải cơ quan giết người. Dị giáo lây như dịch hạch, và một xứ đạo bỏ mặc một năm là một xứ đạo mất hẳn — Bohemia đã chứng minh điều đó bằng năm cuộc Thập Tự thất bại.\n\nTrình tự có luật: thời hạn ân xá để tự thú, hai nhân chứng, biên bản ghi lại từng lời. Phần lớn án là hành hương, đeo thánh giá vải, hoặc nộp phạt. Bó củi là ngoại lệ, và chỉ dành cho kẻ tái phạm sau khi đã chối tội một lần.\n\nCái người ta không nói là: mỗi vụ đều kèm tịch thu, và phần tịch thu chia ba giữa tòa, lãnh chúa và kẻ tố giác. Giáo triều biết điều đó. Giáo triều cũng biết rằng không có phần chia ấy thì không ai chịu làm thẩm vấn viên ở những nơi cần họ nhất."
+      },
+      {
+        "audience": "race_lam-tien",
+        "content": "## Tòa án Dị giáo, theo tộc Lâm Tiên:\n\nHọ không đến vì đức tin. Họ đến vì gỗ.\n\nHai trăm năm nay, cứ mỗi lần một tu viện hoặc một bá tước muốn mở rộng ruộng vào rừng già, thì trước đó sáu tháng sẽ có một thẩm vấn viên tới làng dưới chân núi và bắt đầu hỏi về \"những kẻ thờ cây\". Sau đó là một sắc lệnh, sau đó là lính, sau đó là những chiếc rìu.\n\nHọ gọi giao ước của chúng ta với tinh linh cây cỏ là khế ước với ma quỷ. Chúng ta đã giữ giao ước ấy từ trước khi có nhà thờ đầu tiên trên lục địa này.\n\nCó một điều nên nhớ về họ: họ ghi chép. Mọi lời khai đều nằm trong sổ, và sổ thì để trong tu viện. Ai đọc được sổ của họ thì biết trước sáu tháng nữa rìu sẽ hạ xuống chỗ nào."
+      },
+      {
+        "audience": "race_ma-due",
+        "content": "## Tòa án Dị giáo, theo Ma Duệ:\n\nVới người khác, đó là một phiên tòa. Với chúng ta, đó là một cuộc nhận dạng.\n\nKhông ai phải chứng minh chúng ta làm gì sai. Cặp sừng là bằng chứng, màu mắt là bằng chứng, cái bóng đổ không đúng hướng là bằng chứng. Trình tự có luật của họ bắt đầu bằng câu hỏi \"ngươi đã làm gì\", còn với chúng ta nó bắt đầu bằng câu \"ngươi là cái gì\", và câu đó thì không cãi được.\n\nVì thế Ma Duệ nào sống lâu cũng học đúng ba việc: đội mũ trùm, có sẵn một lãnh chúa thế tục cần mình hơn cần Giáo hội, và biết một con đường ra khỏi thành không đi qua cổng.\n\nMột số kẻ trong bọn chúng ta thì làm việc cho chính Tòa án. Họ ngửi được ma lực Ám hệ ở khoảng cách xa hơn bất cứ tu sĩ nào — và không ai đốt con chó săn tốt nhất của mình."
+      }
+    ],
+
+    "concept_co-che-tuyen-de-hau": [
+      {
+        "audience": "nation_hre",
+        "content": "## Cơ chế Tuyển Đế Hầu, theo các Đẳng cấp Đế quốc:\n\nĐạo luật Vàng là thứ giữ cho Đế quốc không thành một vương quốc. Nếu ngai vàng cha truyền con nối, thì trong ba đời nữa toàn bộ đất đai của chúng ta sẽ là đất của một gia tộc, và chúng ta sẽ là quản gia trong nhà mình.\n\nBảy lá phiếu không phải bảy đặc quyền — chúng là bảy cái chốt. Muốn làm hoàng đế thì phải thương lượng với bảy người, và thương lượng thì phải nhượng bộ, và mỗi lần nhượng bộ là một tờ đặc quyền nữa cho một Đẳng cấp nào đó.\n\nVì thế mọi kỳ bầu cử đều đắt và đều chậm. Chậm là tính năng, không phải hỏng hóc.\n\nĐiều đang lo lúc này: Gia tộc Habsburg có nhiều bạc tới mức họ mua được cả bảy cái chốt cùng lúc. Bảy chốt mua được thì không còn là chốt."
+      },
+      {
+        "audience": "nation_giao-trieu",
+        "content": "## Cơ chế Tuyển Đế Hầu, theo Giáo triều:\n\nBảy vị hầu bầu ra một Vua của người La Mã. Họ không bầu ra một Hoàng đế. Hoàng đế là do Giáo hoàng đội vương miện, và cho tới lúc đội thì người ấy chỉ là một ông vua Đức có nhiều đất.\n\nĐạo luật Vàng năm 1356 cố tình bỏ qua chỗ này, và Rome cố tình chưa bao giờ công nhận việc bỏ qua ấy. Ba trong bảy vị hầu là Tổng giám mục, tức là người của Giáo hội, tức là Giáo hội cầm sẵn ba phiếu trong bảy — và ba phiếu thì chặn được bất cứ ai chỉ có bốn.\n\nCái Rome cần ở mỗi kỳ bầu cử không phải là ai thắng. Cái Rome cần là ứng viên nào cũng phải tới hỏi Rome trước, và cho tới nay chưa ai dám không hỏi."
+      },
+      {
+        "audience": "race_lun-nui",
+        "content": "## Cơ chế Tuyển Đế Hầu, theo các bang tộc Lùn:\n\nBảy người trên mặt đất cãi nhau bằng bạc, và bạc đó ra từ mỏ của chúng ta.\n\nMỗi kỳ bầu cử, phường hội ngân hàng dưới Alps cho vay cả bảy phía. Không phải vì chúng ta không chọn được phe — vì chọn phe là dại. Kẻ thắng trả nợ bằng đặc quyền khai mỏ, kẻ thua trả nợ bằng đất cầm cố. Cả hai đường đều về một chỗ.\n\nHọ gọi đó là bầu cử thiêng liêng của Đế quốc. Ở dưới này người ta gọi nó là mùa cho vay, và người ta chuẩn bị cho nó từ ba năm trước như chuẩn bị cho một mùa gặt.\n\nChỉ có một luật chúng ta không phá: không bao giờ cho vay quá nửa số bạc trong kho cho một phía. Bang nào phá luật đó đã mất bang từ hai trăm năm trước."
+      }
+    ],
+
+    "concept_ban-giay-xa-toi": [
+      {
+        "audience": "nation_giao-trieu",
+        "content": "## Giấy xá tội, theo Giáo triều:\n\nGiấy xá tội không bán ơn tha thứ. Ơn tha thứ đến từ xưng tội và ăn năn, và không đồng tiền nào mua được nó. Cái giấy này giảm phần đền tội ở Luyện ngục, rút từ Kho tàng Công nghiệp mà các thánh đã tích lại — và Giáo hội có quyền phân phát kho ấy.\n\nCủa dâng đi kèm là một việc lành, giống như bố thí. Nó xây nhà thờ, nuôi bệnh viện, trả tiền cho hạm đội chống Ottoman. Ai chê nó thì hãy nói xem lấy gì trả cho những thứ đó.\n\nChỗ hỏng nằm ở các sứ giả đi rao. Họ ăn hoa hồng, nên họ hứa nhiều hơn sắc chỉ cho phép, và có kẻ đã rao rằng đồng tiền vừa kêu leng keng là linh hồn vừa bay khỏi lửa. Giáo triều đã cấm câu đó ba lần. Người ta vẫn rao."
+      },
+      {
+        "audience": "nation_hre",
+        "content": "## Giấy xá tội, theo các Đẳng cấp Đế quốc:\n\nMỗi năm có một dòng bạc chảy từ đất Đức về Ý, và nó không chảy ngược lại bao giờ.\n\nMột sứ giả bán giấy xá tội đi qua một tỉnh trong ba tháng có thể lấy đi nhiều bạc hơn cả năm thuế của tỉnh ấy. Bạc đó không xây nhà thờ ở đây — nó xây nhà thờ ở Rome, trả cho thợ đá Ý, và nuôi họ hàng của Giáo hoàng.\n\nCác lãnh chúa đã học cách chặn: đòi chia phần trước khi cho sứ giả vào đất mình, hoặc đơn giản là đóng cổng. Chia phần thì thành đồng phạm, đóng cổng thì bị dọa vạ. Phần lớn chọn chia phần.\n\nDân chúng thì không có lựa chọn nào cả. Họ mua, vì người bên cạnh mua, và vì cha xứ đọc tên người mua ở nhà thờ ngày chủ nhật."
+      },
+      {
+        "audience": "race_lam-tien",
+        "content": "## Giấy xá tội, nhìn từ ngoài đức tin ấy:\n\nHọ bán một tờ giấy để đổi lấy thời gian trong một nơi họ chưa từng thấy, cho một linh hồn họ không đo được, theo giá do một người sống ấn định.\n\nĐiều lạ không phải là có kẻ bán. Điều lạ là có kẻ mua, và mua rất nhiều, và mua bằng tiền lẽ ra để qua mùa đông.\n\nCó một chỗ đáng học ở đây, và các bô lão của chúng ta nhắc nó mỗi khi có kẻ trẻ tuổi coi thường Nhân loại: giống loài này biến nỗi sợ chết thành một món hàng, rồi dựng cả một mạng lưới nhà băng quanh món hàng ấy. Chúng ta sống lâu gấp năm họ và chưa bao giờ nghĩ ra thứ gì giống thế."
+      }
+    ],
+
+    "concept_rut-phep-thong-cong": [
+      {
+        "audience": "nation_giao-trieu",
+        "content": "## Vạ tuyệt thông, theo Giáo triều:\n\nĐây là thứ vũ khí cuối cùng, và giá trị của nó nằm ở chỗ ít khi rút ra.\n\nKẻ bị vạ không được dự thánh lễ, không được chôn trong đất thánh, và mọi lời thề trung thành với hắn đều tan. Vế cuối mới là vế thật: một bá tước bị vạ thì chư hầu của hắn được phép bỏ hắn mà không mang tội bội thề. Không cần một người lính nào, quân của hắn tự tan.\n\nNặng hơn là lệnh cấm đặt lên cả một xứ: nhà thờ đóng cửa, chuông im, trẻ con không được rửa tội. Nó không nhắm vào lãnh chúa mà nhắm vào dân của lãnh chúa, để dân ép lãnh chúa quy phục.\n\nGiáo triều biết rõ điều này: dùng ba lần trong một đời Giáo hoàng thì nó là sấm sét; dùng ba mươi lần thì nó là tiếng ồn."
+      },
+      {
+        "audience": "nation_hre",
+        "content": "## Vạ tuyệt thông, theo các lãnh chúa Đế quốc:\n\nHỏi bất cứ ai đã sống qua thời Canossa: một tờ sắc chỉ có thể lột sạch quân của ngài trong hai tuần mà không cần một mũi tên.\n\nNhưng nó đã cùn đi nhiều. Trong một trăm năm qua có quá nhiều vạ được ban vì tranh chấp tiền bạc và tranh chấp bổ nhiệm, tới mức bây giờ dân chúng hỏi lại: vạ này vì đức tin hay vì Rome chưa nhận đủ tiền?\n\nCách chống thì ai cũng biết. Kháng nghị lên một Công đồng chung — vì Công đồng đứng trên Giáo hoàng, ít nhất là theo phe Basel. Giữ vài giám mục trong đất mình chịu tiếp tục làm lễ. Và trên hết, đừng bị vạ một mình: bốn lãnh chúa cùng bị vạ thì đó không còn là hình phạt, đó là một cuộc chiến."
+      },
+      {
+        "audience": "nation_dong-la-ma",
+        "content": "## Vạ tuyệt thông, theo Constantinople:\n\nGiám mục Rome ban vạ cho Thượng phụ của chúng ta, Thượng phụ ban vạ lại cho ông ta. Đó là năm 1054, và bốn thế kỷ trôi qua chẳng ai chết vì nó.\n\nĐiều đó cho thấy vũ khí ấy chỉ có sức mạnh bên trong bầy của nó. Với người ngoài, nó là một tờ giấy.\n\nCái đáng sợ với chúng ta không phải là vạ. Cái đáng sợ là điều đi kèm nó: khi Rome tuyên bố một dân tộc nằm ngoài Giáo hội, thì tài sản của dân tộc ấy không còn được luật Cơ đốc bảo vệ, và hạm đội của Venice hiểu điều đó rất nhanh. Năm 1204 họ đã hiểu nó một lần rồi."
+      }
+    ],
+
+    "prov_transylvania": [
+      {
+        "audience": "nation_hungary",
+        "content": "## Transylvania, theo triều đình Buda:\n\nTrên giấy tờ, đó là ba tòa lãnh thổ thuộc Vương miện Thánh Stephen, có voivode do nhà vua bổ nhiệm, có nghĩa vụ góp quân biên phòng.\n\nTrên thực tế, voivode chúng ta cử lên đó về báo cáo mỗi năm một lần, và mỗi năm ông ta gầy hơn.\n\nBuda không phủ nhận có chuyện gì đó trong những thung lũng ấy. Buda chỉ nói rằng khi Ottoman đứng ở bờ nam sông Danube thì không ai đủ quân để mở hai mặt trận, và các bá tước trên núi ấy — dù họ là cái gì đi nữa — chưa bao giờ để một lá cờ Ottoman nào đi qua đèo của họ.\n\nĐó là một thỏa thuận không ai ký. Nó sẽ giữ được chừng nào Ottoman còn ở đó."
+      },
+      {
+        "audience": "nation_giao-trieu",
+        "content": "## Transylvania, theo Giáo triều:\n\nMột vùng đã mất, và mất theo cách tệ nhất: không có ai để rút phép thông công.\n\nCác gia tộc trên đó vẫn dự lễ, vẫn cúng dâng, vẫn xây nhà nguyện. Giấy tờ của họ sạch sẽ. Ba đoàn thanh tra đã lên và cả ba đều về với cùng một báo cáo dài, lễ độ và rỗng.\n\nĐiều Giáo triều nắm chắc là những con số: dân số các thung lũng ấy giảm đều một phần bốn mươi mỗi năm suốt sáu chục năm, trong khi không có dịch, không có nạn đói, không có chiến tranh nào được ghi.\n\nChưa ai ở Rome viết ra chữ đó trong một văn bản chính thức. Viết ra là phải làm gì đó, và hiện chưa ai biết phải làm gì."
+      },
+      {
+        "audience": "race_huyet-toc",
+        "content": "## Transylvania, theo các gia tộc trên núi:\n\nNgười ta gọi đây là vùng đất bị nguyền rủa. Bọn họ nói thế về mọi nơi họ không vào được.\n\nChúng ta cai trị ở đây lâu hơn bất cứ triều đại Nhân loại nào từng cai trị bất cứ đâu trên lục địa này. Không có nội chiến kế vị, vì không ai chết già. Không có mùa đói, vì chúng ta biết đếm — một đàn bị vắt kiệt là một đàn mất, và tổ tiên đã mất hai thung lũng theo đúng cách đó vào thế kỷ trước.\n\nPhần mười của mùa được tính toán kỹ hơn bất cứ khoản thuế nào của Buda. Các làng biết con số đó. Họ không thích nó. Nhưng khi kỵ binh Akinji tràn qua đèo năm ngoái, chính các làng ấy đã đốt lửa hiệu gọi chúng ta xuống.\n\nHọ sợ chúng ta. Họ sợ thứ ở bên kia núi hơn."
+      }
+    ]
+  }
+}

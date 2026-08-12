@@ -1,0 +1,323 @@
+{
+  "$comment": "CÔNG SỰ NHIỀU LỚP VÀ NHỊP MỘT TUẦN VÂY HÃM — Phần 11 mục 2, 3, 6. Mỗi lớp là một CHỐT CHẶN: mất tường ngoài chưa phải mất thành. Đối tượng `Fortification` ở đây được ĐIỀN LẠI từ nhóm công trình phòng thủ của Phần 12; mấy khuôn mẫu dưới đây là bản dựng sẵn để Phần 11 chạy được trước khi thành trì thật tồn tại. Mọi số điều chỉnh khai theo thang d100, DƯƠNG LÀ LỢI, và đi qua `scaleToSystem` của Phần 5.",
+  "version": 1,
+
+  "config": {
+    "daysPerWeek": 7,
+    "maxWeeks": 104,
+
+    "$rationsComment": "QUYẾT ĐỊNH CỐT LÕI CỦA BÊN THỦ (mục 3). `factor` là phần khẩu phần đầy đủ thật sự phát ra — nó vừa kéo dài kho lương vừa ăn mòn sĩ khí và sức khỏe. Bảng phải có nhiều mức để đây là một cái núm xoay chứ không phải một công tắc.",
+    "rations": [
+      { "id": "day-du", "name": "Đầy đủ", "factor": 1, "morale": 0, "health": 0, "note": "không ai kêu ca, kho lương cạn đúng theo lịch" },
+      { "id": "tiet-kiem", "name": "Tiết kiệm", "factor": 0.8, "morale": -3, "health": -1, "note": "bớt bánh, giữ thịt cho lính gác" },
+      { "id": "nua-phan", "name": "Nửa phần", "factor": 0.55, "morale": -8, "health": -4, "note": "dân bắt đầu đếm ngày" },
+      { "id": "cam-hoi", "name": "Cầm hơi", "factor": 0.35, "morale": -15, "health": -9, "note": "người già chết trước, không ai nói ra" },
+      { "id": "an-ngua", "name": "Ăn cả ngựa", "factor": 0.2, "morale": -24, "health": -16, "note": "giết ngựa chiến là tuyên bố rằng sẽ không có cuộc đột kích nào nữa" }
+    ],
+
+    "consumption": {
+      "$comment": "Đơn vị là PHẦN LƯƠNG một người một tuần. Ngựa ăn phần của ba người.",
+      "foodPerManWeek": 1,
+      "fodderPerHorseWeek": 3,
+      "waterPerManWeek": 1,
+      "campSupplyPerManWeek": 1,
+      "$haulComment": "Đạo quân vây phải TẢI TỪ XA. Con số này là trần lý thuyết của đoàn xe, chưa trừ mùa và chưa trừ cướp đường.",
+      "haulBase": 2400,
+      "haulPerCircumvallation": -220,
+      "starvingMorale": -12,
+      "starvingLossShare": 0.02,
+      "$smuggleComment": "Vòng vây hở thì đêm nào cũng có người lọt qua với một bao thóc. Đây là lý do 'dựng vòng vây' đáng mấy tuần công sức: mỗi bậc kín thêm là một phần ba số lương lậu ấy mất đi.",
+      "smuggledPerWeek": 520
+    },
+
+    "$diseaseComment": "MỐI ĐE DỌA SỐ MỘT (mục 3). Kiết lỵ giết nhiều lính vây hơn cả tên đạn, nên nó phải là một phép kiểm CHẠY MỖI TUẦN chứ không phải một sự kiện hiếm. Hệ 3d6 theo Phần 5 mục 2: đây là năng lực dài hạn của trại — vệ sinh, nước sạch, kỷ luật hố xí — không phải một pha đụng độ.",
+    "disease": {
+      "checkId": "siege.benh-dich",
+      "hygieneStart": 72,
+      "hygieneDrainPerWeek": 3.5,
+      "crowdingPer1000": 4,
+      "crowdingBand": [
+        { "upTo": 800, "band": "de-dang" },
+        { "upTo": 2500, "band": "thuong" },
+        { "upTo": 6000, "band": "kho" },
+        { "upTo": 15000, "band": "rat-kho" }
+      ],
+      "crowdingAboveBand": "cuc-kho",
+      "deathShare": {
+        "critSuccess": 0,
+        "success": 0.002,
+        "costlySuccess": 0.008,
+        "fail": 0.025,
+        "critFail": 0.055
+      },
+      "outbreakOnCritFail": true,
+      "outbreakWeeks": 3,
+      "outbreakExtraShare": 0.02,
+      "hygieneOnCritSuccess": 4,
+      "hygieneOnCritFail": -12,
+      "wetMoatPenalty": -8,
+      "corpseThrowPenalty": -22,
+      "corpseThrowChurch": -14,
+      "moralePerDeathPercent": 1.6,
+      "$insideComment": "Bên trong tường cũng bệnh, và bệnh nặng hơn khi nhồi cả dân vào một khoảnh sân — nhưng họ có giếng và có nhà, nên nền của họ tốt hơn trại.",
+      "insideHygieneBonus": 14,
+      "insideCrowdingPer1000": 9
+    },
+
+    "$serviceComment": "HẾT HẠN NGHĨA VỤ (mục 3). Chư hầu chỉ phải phục vụ số ngày nhất định — mặc định 40. Hết hạn là họ có quyền về nhà, và giữ họ lại phải TRẢ TIỀN. Số ngày này Phần 13 sẽ nối vào thang tước vị thật.",
+    "service": {
+      "defaultDays": 40,
+      "payPerManPerWeek": 1.2,
+      "leaveShare": 1,
+      "moraleOnLeave": -10,
+      "$mercComment": "Lính đánh thuê hết hợp đồng: không trả thì bỏ đi HOẶC quay sang cướp phá — hai cửa, và cửa thứ hai đắt hơn nhiều.",
+      "mercenaryPayPerManPerWeek": 2.5,
+      "mercenaryMutinyShare": 0.5,
+      "mercenaryPillageChance": 40
+    },
+
+    "desertion": {
+      "moraleBelow": 40,
+      "baseShare": 0.004,
+      "hungryShare": 0.02,
+      "unpaidShare": 0.015,
+      "perMoralePointBelow": 0.0006,
+      "winterExtra": 0.008,
+      "insideFactor": 0.35
+    },
+
+    "$seasonsComment": "Mùa đông làm thương vong PHI CHIẾN ĐẤU tăng vọt (mục 3). Bốn mùa xoay vòng theo tuần, bắt đầu từ mùa người gọi khai.",
+    "seasons": [
+      { "id": "xuan", "name": "Mùa xuân", "weeks": 13, "disease": -4, "attrition": 0, "morale": 2, "haul": 1, "note": "đường lầy nhưng có cỏ" },
+      { "id": "ha", "name": "Mùa hè", "weeks": 13, "disease": -14, "attrition": 0.002, "morale": 0, "haul": 1.15, "note": "ruồi, nước tù, và kiết lỵ" },
+      { "id": "thu", "name": "Mùa thu", "weeks": 13, "disease": 0, "attrition": 0, "morale": 4, "haul": 1.3, "note": "mùa gặt — dễ cướp lương nhất trong năm" },
+      { "id": "dong", "name": "Mùa đông", "weeks": 13, "disease": -8, "attrition": 0.012, "morale": -8, "haul": 0.6, "note": "rét cóng trong lều, ngựa chết đứng" }
+    ],
+
+    "morale": {
+      "checkId": "siege.si-khi",
+      "checkBelow": 45,
+      "garrisonBase": 70,
+      "populationBase": 60,
+      "besiegerBase": 68,
+      "$weekComment": "Nhịp bào mòn của một tuần vây hãm. Hai bên mòn theo hai kiểu khác nhau, đúng thế bất đối xứng của mục 1.",
+      "besiegerPerWeek": -1.6,
+      "defenderPerWeek": -1.1,
+      "wallBreach": -18,
+      "towerFell": -9,
+      "gateFell": -14,
+      "layerLost": -22,
+      "bombardedPerWeek": -3,
+      "reliefHope": 12,
+      "reliefCrushed": -20,
+      "sermon": 7,
+      "execution": 6,
+      "executionPopulation": -11,
+      "expelCivilians": -14,
+      "sortieBurnedEngine": 14,
+      "sortieFailed": -9,
+      "starving": -14,
+      "thirsty": -26,
+      "surrenderBelow": 22,
+      "$surrenderComment": "Dưới ngưỡng này, đám quân đồn trú tự nó đòi mở cổng — và đó là cách phần lớn thành trì đổi chủ (mục 1), không phải qua một cuộc tổng công."
+    },
+
+    "$repairComment": "Sửa tường ban đêm (mục 3): hồi integrity, tốn vật liệu và SỨC DÂN. Sức dân là vế người ta hay quên — một thành sửa tường suốt sáu tuần là một thành có dân không ngủ.",
+    "repair": {
+      "integrityPerWeek": 9,
+      "materialsPerPoint": 12,
+      "populationMorale": -4,
+      "requiresPopulation": 40
+    },
+
+    "water": {
+      "$comment": "Cắt nguồn nước CỰC MẠNH nếu thành không có giếng riêng (mục 3). Có giếng thì cắt suối chỉ làm phiền; không giếng thì đếm ngày.",
+      "weeksWithoutWater": 2,
+      "cutMoralePerWeek": -18,
+      "cutLossShare": 0.06,
+      "wellFailChance": 8
+    },
+
+    "$assaultComment": "TỔNG CÔNG (mục 6) — lưới CÓ CHIỀU CAO. `frontage` là số quân cờ đánh qua được cùng lúc, và nó LÀ chỗ thắt cổ chai: hai người một hàng trên mặt tường nghĩa là hai trăm người giữ được hai nghìn. `exposure` nhân thẳng vào thương vong bên tấn công.",
+    "assault": {
+      "maxRounds": 24,
+      "waveShare": 0.22,
+      "$bandComment": "Bậc độ khó khai bằng TÊN, không bằng số — luật cứng của Phần 5 mục 8. `defence` bên cạnh chỉ là con số để in ra bảng giải thích cho người chơi đọc; thứ quyết định số thành công cần là `band`.",
+      "layers": [
+        { "id": "duoi-hao", "name": "Dưới hào", "frontage": 6, "defence": 3, "band": "thuong", "exposure": 2, "note": "chậm, phơi mình trước tên đạn suốt quãng lội" },
+        { "id": "chan-tuong", "name": "Chân tường", "frontage": 5, "defence": 4, "band": "kho", "exposure": 1.7, "note": "đá, vôi và nước sôi đổ thẳng xuống đầu" },
+        { "id": "mat-tuong", "name": "Mặt tường", "frontage": 2, "defence": 8, "band": "cuc-kho", "exposure": 1.2, "duel": true, "note": "hai người một hàng — lợi thế thuộc bên thủ tuyệt đối" },
+        { "id": "san-trong", "name": "Sân trong", "frontage": 8, "defence": 2, "band": "thuong", "exposure": 0.7, "note": "chỗ duy nhất bên tấn công dùng được quân số" },
+        { "id": "thap-chinh", "name": "Tháp chính", "frontage": 2, "defence": 7, "band": "rat-kho", "exposure": 1.1, "duel": true, "note": "một cầu thang xoáy, đánh ngược lên" }
+      ],
+      "$methodsComment": "Cách vượt một lớp. `requiresEngine` trỏ sang `siege-engines.json` và được kiểm tham chiếu lúc nạp.",
+      "methods": [
+        {
+          "id": "vuot-hao",
+          "name": "Vượt hào",
+          "layer": "duoi-hao",
+          "requiresEngine": "",
+          "attack": -8,
+          "exposure": 1.4,
+          "roundsPerLayer": 2,
+          "note": "lấp bằng bó rào và xác người, không có cách nào nhanh"
+        },
+        {
+          "id": "bac-thang",
+          "name": "Bắc thang",
+          "layer": "mat-tuong",
+          "requiresEngine": "engine_thang",
+          "attack": -18,
+          "exposure": 2.4,
+          "roundsPerLayer": 1,
+          "note": "rẻ, nhanh, thương vong khủng khiếp"
+        },
+        {
+          "id": "thap-cong-thanh",
+          "name": "Tháp công thành",
+          "layer": "mat-tuong",
+          "requiresEngine": "engine_thap-cong-thanh",
+          "attack": 14,
+          "exposure": 0.8,
+          "roundsPerLayer": 2,
+          "keepsFormation": true,
+          "note": "đắt, chậm, nhưng đổ quân lên tường THEO HÀNG NGŨ"
+        },
+        {
+          "id": "pha-cong",
+          "name": "Phá cổng",
+          "layer": "chan-tuong",
+          "requiresEngine": "engine_xe-huc",
+          "attack": -6,
+          "exposure": 1.9,
+          "roundsPerLayer": 2,
+          "targetsGate": true,
+          "note": "dưới cơn mưa đá và dầu sôi từ lỗ châu mai"
+        },
+        {
+          "id": "dot-pha-cho-sap",
+          "name": "Đột phá qua chỗ sập",
+          "layer": "chan-tuong",
+          "requiresEngine": "",
+          "requiresBreach": true,
+          "attack": 10,
+          "exposure": 1,
+          "roundsPerLayer": 1,
+          "note": "chỉ mở ra nếu đã bắn thủng hoặc đào sập"
+        }
+      ],
+      "$forlornComment": "ĐỘI TIÊN PHONG (mục 6): nhóm xung phong đầu tiên. Thương vong khủng khiếp, vinh quang và phần thưởng cực lớn nếu sống sót. Người chơi tự dẫn thì chuyển sang Phần 9.",
+      "forlornHope": {
+        "share": 0.05,
+        "attack": 22,
+        "casualtyMultiplier": 2.6,
+        "moraleIfHolds": 16,
+        "moraleIfWiped": -14,
+        "reputation": 30,
+        "loot": 240
+      },
+      "$defenceComment": "Vế làm nên lý do tồn tại của thành trì. Mật độ phòng thủ tăng khi bên thủ lùi vào lớp nhỏ hơn, và đó là toàn bộ ý nghĩa của việc lùi.",
+      "defenderDensityPerLayer": 9,
+      "boilingOil": 18,
+      "murderHoleBonus": 12,
+      "heightPerMeter": 2.4,
+      "$casualtyComment": "Nhân dồn với `exposure` của lớp VÀ của cách đánh VÀ hệ số cấp kết quả — nên một con số trông nhỏ ở đây thành rất lớn ở chân tường: bắc thang dưới hào là 0.05 × 2 × 2.4 × 1.7, tức là gần một nửa đợt nằm lại trong một hiệp. Đặt cao hơn thì cả đạo quân bốc hơi trong hai hiệp, và một cuộc tổng công hỏng phải để lại một đạo quân tơi tả chứ không để lại một bãi trống.",
+      "casualtyBase": 0.05,
+      "$shareComment": "Bên thủ cũng chết, nhưng ÍT HƠN HẲN — và tỷ lệ ấy LÀ lý do tồn tại của thành trì (mục 6). Một con số cao ở đây làm cuộc tổng công thành một cuộc đổi mạng ngang giá, và khi ấy bên đông quân luôn thắng, tức là bức tường không còn nghĩa gì.",
+      "defenderCasualtyShare": 0.07,
+      "$breakOffComment": "Một đợt gãy thì TỤT XUỐNG, không đứng lại cho tới người cuối cùng. Không có ngưỡng này thì một cuộc tổng công hỏng sẽ xóa sổ trọn vẹn cả đạo quân — điều chưa từng xảy ra, vì người ta bỏ chạy trước khi chết hết.",
+      "breakOffShare": 0.45,
+      "dicePerHundred": 1.1,
+      "maxDice": 14,
+      "qualityCenter": 3,
+      "$easeComment": "Hai cửa duy nhất làm một cuộc tổng công bớt tự sát, và cả hai đều phải MUA bằng nhiều tuần vây hãm: một lỗ thủng trên tường, và một đám đồn trú đã mỏng đi.",
+      "breachEasesBand": 1,
+      "thinGarrisonShare": 0.35,
+      "thinGarrisonEasesBand": 1
+    }
+  },
+
+  "$templatesComment": "Năm bậc khu định cư của Phần 12 mục 3 nhìn từ phía một đạo quân đứng ngoài. Phần 12 sẽ SINH RA đối tượng này từ công trình thật; tới lúc ấy mấy dòng dưới đây thành khuôn dự phòng cho những thành trì Phần 15 mô phỏng ngầm.",
+  "templates": [
+    {
+      "id": "fort_dinh-lang",
+      "name": "Đình làng có rào",
+      "tier": 1,
+      "moat": null,
+      "outerWall": { "name": "Rào gỗ", "integrity": 40, "height": 3, "thickness": 1, "towers": 0, "towerIntegrity": 20 },
+      "gatehouse": { "integrity": 30, "drawbridge": false, "portcullis": false, "murderHoles": false },
+      "bailey": { "area": 2, "buildings": ["kho thóc", "chuồng ngựa"] },
+      "innerWall": null,
+      "keep": { "integrity": 45, "capacity": 80, "stores": 900 },
+      "wells": 1,
+      "garrison": 40,
+      "population": 260,
+      "supplies": { "food": 2400, "water": 999, "fodder": 300, "materials": 200 },
+      "note": "một cuộc vây hãm ở đây kéo dài ba tuần là cùng"
+    },
+    {
+      "id": "fort_thap-canh",
+      "name": "Tháp canh biên",
+      "tier": 2,
+      "moat": { "width": 4, "wet": false },
+      "outerWall": { "name": "Tường đá thấp", "integrity": 90, "height": 6, "thickness": 2, "towers": 2, "towerIntegrity": 55 },
+      "gatehouse": { "integrity": 70, "drawbridge": true, "portcullis": false, "murderHoles": true },
+      "bailey": { "area": 3, "buildings": ["kho", "lò rèn", "nhà nguyện nhỏ"] },
+      "innerWall": null,
+      "keep": { "integrity": 120, "capacity": 120, "stores": 3000 },
+      "wells": 1,
+      "garrison": 90,
+      "population": 300,
+      "supplies": { "food": 7800, "water": 999, "fodder": 900, "materials": 700 },
+      "note": "giữ một khúc đường, không giữ một vùng"
+    },
+    {
+      "id": "fort_lau-dai-da",
+      "name": "Lâu đài đá trên mỏm",
+      "tier": 3,
+      "moat": { "width": 9, "wet": true },
+      "outerWall": { "name": "Tường ngoài", "integrity": 220, "height": 9, "thickness": 3, "towers": 5, "towerIntegrity": 90 },
+      "gatehouse": { "integrity": 150, "drawbridge": true, "portcullis": true, "murderHoles": true },
+      "bailey": { "area": 6, "buildings": ["kho lương", "giếng lớn", "lò rèn", "chuồng ngựa", "nhà nguyện"] },
+      "innerWall": { "name": "Tường trong", "integrity": 160, "height": 11, "thickness": 3, "towers": 2, "towerIntegrity": 80 },
+      "keep": { "integrity": 260, "capacity": 220, "stores": 9000 },
+      "wells": 2,
+      "garrison": 200,
+      "population": 400,
+      "supplies": { "food": 19800, "water": 999, "fodder": 2400, "materials": 2600 },
+      "note": "hai trăm người giữ được ở đây rất lâu, và đó chính là bài test của mục 11"
+    },
+    {
+      "id": "fort_thanh-tri-kep",
+      "name": "Thành trì tường kép",
+      "tier": 4,
+      "moat": { "width": 14, "wet": true },
+      "outerWall": { "name": "Tường ngoài", "integrity": 320, "height": 10, "thickness": 4, "towers": 8, "towerIntegrity": 110 },
+      "gatehouse": { "integrity": 210, "drawbridge": true, "portcullis": true, "murderHoles": true },
+      "bailey": { "area": 12, "buildings": ["hai kho lương", "giếng lớn", "xưởng cung", "trại lính", "nhà thờ"] },
+      "innerWall": { "name": "Tường trong", "integrity": 250, "height": 13, "thickness": 4, "towers": 4, "towerIntegrity": 100 },
+      "keep": { "integrity": 340, "capacity": 400, "stores": 16000 },
+      "wells": 3,
+      "garrison": 500,
+      "population": 1800,
+      "supplies": { "food": 62000, "water": 999, "fodder": 6000, "materials": 7000 },
+      "note": "lùi được hai lần trước khi hết chỗ lùi"
+    },
+    {
+      "id": "fort_dai-thanh",
+      "name": "Đại thành có tường vòng",
+      "tier": 5,
+      "moat": { "width": 18, "wet": true },
+      "outerWall": { "name": "Tường vòng ngoài", "integrity": 520, "height": 12, "thickness": 5, "towers": 16, "towerIntegrity": 130 },
+      "gatehouse": { "integrity": 300, "drawbridge": true, "portcullis": true, "murderHoles": true },
+      "bailey": { "area": 40, "buildings": ["chợ", "bốn kho lương", "nhiều giếng", "xưởng đúc", "tu viện", "khu thợ"] },
+      "innerWall": { "name": "Tường thành nội", "integrity": 380, "height": 14, "thickness": 5, "towers": 6, "towerIntegrity": 120 },
+      "keep": { "integrity": 420, "capacity": 900, "stores": 40000 },
+      "wells": 9,
+      "garrison": 1400,
+      "population": 12000,
+      "supplies": { "food": 240000, "water": 999, "fodder": 16000, "materials": 22000 },
+      "note": "vây một chỗ như thế này là một chiến dịch, không phải một mùa"
+    }
+  ]
+}

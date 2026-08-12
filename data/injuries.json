@@ -1,0 +1,573 @@
+{
+  "$comment": "MÔ HÌNH THƯƠNG TÍCH — Phần 7 mục 2, 7, 8, 9. Mọi con số cân bằng của hệ cơ thể nằm ở đây, không nằm trong code (R5). LUẬT CỨNG của mục 9: KHÔNG có thanh máu tổng. `blood` là lượng máu CÒN LẠI, và chết chỉ đến qua một nguyên nhân cụ thể sau ít nhất một chuỗi biến chứng — một lần đại thất bại không bao giờ giết ngay (Phần 5 mục 5). Đơn vị thời gian của mọi tốc độ ở đây là MỘT LƯỢT CƠ THỂ, quy ước bằng một ngày: y học thế kỷ 14 đo bằng ngày, không đo bằng phút.",
+  "version": 1,
+
+  "$severitiesComment": "Năm mức của mục 2. bleed là điểm máu mất ở lượt ĐẦU (sau đó tự đông lại theo clot); infectionGrowth là tốc độ nhiễm trùng mỗi lượt khi vết còn hở; pain là điểm đau gốc; healTurns là số lượt lành tự nhiên nếu không có biến chứng.",
+  "severities": [
+    { "level": 1, "name": "Xây xát", "bleed": 0.5, "infectionGrowth": 0.6, "pain": 6, "healTurns": 3, "color": "#d9c98a" },
+    { "level": 2, "name": "Nhẹ", "bleed": 1.5, "infectionGrowth": 1.6, "pain": 16, "healTurns": 8, "color": "#d9a441" },
+    { "level": 3, "name": "Vừa", "bleed": 3.5, "infectionGrowth": 3.2, "pain": 34, "healTurns": 18, "color": "#d2762a" },
+    { "level": 4, "name": "Nặng", "bleed": 7, "infectionGrowth": 5.5, "pain": 58, "healTurns": 40, "color": "#b8332b" },
+    { "level": 5, "name": "Chí mạng", "bleed": 12, "infectionGrowth": 7.5, "pain": 82, "healTurns": 80, "color": "#6d1712" }
+  ],
+
+  "$typesComment": "Mười loại của mục 2. Hệ số nhân vào con số gốc của mức độ, rồi nhân tiếp hệ số vùng. `dirty` là vết bẩn — điều kiện của uốn ván ở mục 7.",
+  "types": [
+    {
+      "id": "blunt",
+      "name": "Đòn tù",
+      "verb": "bị đập",
+      "bleedFactor": 0.3,
+      "infectionFactor": 0.5,
+      "painFactor": 1.1,
+      "healFactor": 1.0,
+      "dirty": false,
+      "open": false,
+      "note": "Chảy máu trong nhiều hơn ngoài. Chùy và gậy để lại loại này."
+    },
+    {
+      "id": "laceration",
+      "name": "Vết rách",
+      "verb": "bị chém rách",
+      "bleedFactor": 1.5,
+      "infectionFactor": 1.0,
+      "painFactor": 0.9,
+      "healFactor": 1.0,
+      "dirty": false,
+      "open": true,
+      "note": "Chảy máu nhiều, khâu lại thì cầm nhanh."
+    },
+    {
+      "id": "puncture",
+      "name": "Vết đâm",
+      "verb": "bị đâm thủng",
+      "bleedFactor": 1.1,
+      "infectionFactor": 1.6,
+      "painFactor": 0.9,
+      "healFactor": 1.2,
+      "dirty": true,
+      "open": true,
+      "note": "Miệng nhỏ, đường sâu, bẩn. Loại vết thương giết người nhiều ngày sau trận."
+    },
+    {
+      "id": "fracture",
+      "name": "Gãy xương",
+      "verb": "bị gãy",
+      "bleedFactor": 0.4,
+      "infectionFactor": 0.6,
+      "painFactor": 1.3,
+      "healFactor": 1.8,
+      "dirty": false,
+      "open": false,
+      "needsSplint": true,
+      "note": "Không nẹp là liền lệch, và liền lệch là vĩnh viễn."
+    },
+    {
+      "id": "burn",
+      "name": "Bỏng",
+      "verb": "bị bỏng",
+      "bleedFactor": 0.2,
+      "infectionFactor": 1.4,
+      "painFactor": 1.5,
+      "healFactor": 1.6,
+      "dirty": false,
+      "open": true,
+      "note": "Đau dai dẳng và rất dễ nhiễm trùng."
+    },
+    {
+      "id": "crush",
+      "name": "Dập nát",
+      "verb": "bị dập nát",
+      "bleedFactor": 1.0,
+      "infectionFactor": 1.3,
+      "painFactor": 1.4,
+      "healFactor": 1.6,
+      "dirty": true,
+      "open": true,
+      "note": "Thịt chết trong vết thương là mồi của hoại tử."
+    },
+    {
+      "id": "dislocation",
+      "name": "Trật khớp",
+      "verb": "bị trật khớp",
+      "bleedFactor": 0.1,
+      "infectionFactor": 0.2,
+      "painFactor": 1.2,
+      "healFactor": 0.8,
+      "dirty": false,
+      "open": false,
+      "needsSetting": true,
+      "note": "Nắn lại được thì rất nhanh khỏi; không nắn thì cứng khớp."
+    },
+    {
+      "id": "concussion",
+      "name": "Chấn động",
+      "verb": "bị chấn động",
+      "bleedFactor": 0.1,
+      "infectionFactor": 0.1,
+      "painFactor": 1.0,
+      "healFactor": 1.2,
+      "dirty": false,
+      "open": false,
+      "stunning": true,
+      "note": "Không chảy máu mà vẫn có thể chết — ý thức là thứ bị đánh."
+    },
+    {
+      "id": "internal",
+      "name": "Nội thương",
+      "verb": "bị nội thương",
+      "bleedFactor": 1.3,
+      "infectionFactor": 0.8,
+      "painFactor": 1.0,
+      "healFactor": 1.7,
+      "dirty": false,
+      "open": false,
+      "hidden": true,
+      "note": "Thầy thuốc thế kỷ 14 gần như không chẩn được. Đây là cái bẫy im lặng."
+    },
+    {
+      "id": "amputation",
+      "name": "Cụt chi",
+      "verb": "bị chặt đứt",
+      "bleedFactor": 2.6,
+      "infectionFactor": 1.8,
+      "painFactor": 1.6,
+      "healFactor": 2.0,
+      "dirty": true,
+      "open": true,
+      "permanent": true,
+      "note": "Cầm được máu thì sống, không cầm được thì chết trong lượt."
+    }
+  ],
+
+  "$causesComment": "Nguyên nhân → phân phối loại thương tích. `keywords` để engine đọc được câu mô tả của AI (mục 3) mà không bắt AI phải biết id nội bộ. Trọng số cộng lại không cần bằng 100 — engine tự chuẩn hóa.",
+  "causes": [
+    {
+      "id": "luoi-kiem",
+      "name": "Lưỡi kiếm",
+      "keywords": ["kiếm", "gươm", "đao", "chém", "lưỡi"],
+      "weights": { "laceration": 60, "puncture": 20, "fracture": 10, "blunt": 10 }
+    },
+    {
+      "id": "mui-nhon",
+      "name": "Mũi nhọn",
+      "keywords": ["giáo", "thương", "kích", "dao găm", "mũi", "đâm", "xiên", "cọc"],
+      "weights": { "puncture": 70, "laceration": 20, "internal": 10 }
+    },
+    {
+      "id": "bua-riu",
+      "name": "Búa và rìu",
+      "keywords": ["rìu", "búa", "phủ việt"],
+      "weights": { "crush": 30, "fracture": 30, "laceration": 30, "blunt": 10 }
+    },
+    {
+      "id": "chuy-gay",
+      "name": "Chùy và gậy",
+      "keywords": ["chùy", "gậy", "roi sắt", "đập", "vụt"],
+      "weights": { "blunt": 40, "fracture": 35, "concussion": 15, "internal": 10 }
+    },
+    {
+      "id": "ten-no",
+      "name": "Tên và nỏ",
+      "keywords": ["tên", "mũi tên", "nỏ", "cung", "quarrel"],
+      "weights": { "puncture": 80, "laceration": 20 }
+    },
+    {
+      "id": "nga",
+      "name": "Ngã",
+      "keywords": ["ngã", "rơi", "trượt", "lăn", "hất"],
+      "weights": { "fracture": 35, "blunt": 30, "dislocation": 20, "concussion": 15 }
+    },
+    {
+      "id": "lua",
+      "name": "Lửa",
+      "keywords": ["lửa", "cháy", "bỏng", "dầu sôi", "than"],
+      "weights": { "burn": 100 }
+    },
+    {
+      "id": "da-tang",
+      "name": "Đá tảng",
+      "keywords": ["đá", "máy bắn đá", "tảng", "sập", "đè"],
+      "weights": { "crush": 45, "fracture": 30, "internal": 25 }
+    },
+    {
+      "id": "mong-ngua",
+      "name": "Móng ngựa",
+      "keywords": ["ngựa", "móng", "giẫm", "xéo"],
+      "weights": { "crush": 30, "fracture": 30, "blunt": 40 }
+    },
+    {
+      "id": "tay-khong",
+      "name": "Tay không",
+      "keywords": ["đấm", "vật", "tay không", "cùi chỏ", "đầu gối"],
+      "weights": { "blunt": 60, "concussion": 20, "dislocation": 10, "fracture": 10 }
+    },
+    {
+      "id": "khong-ro",
+      "name": "Không rõ",
+      "keywords": [],
+      "default": true,
+      "weights": { "laceration": 30, "blunt": 30, "puncture": 20, "fracture": 20 }
+    }
+  ],
+
+  "$aiSeverityComment": "Mục 3: AI chỉ được nói NHẸ / VỪA / NẶNG. Engine tự tung trong khoảng, không lấy nguyên lời AI. Trần `nặng` là 4 chứ không phải 5 — mức chí mạng chỉ đến từ cơ học chiến đấu, không đến từ một câu văn.",
+  "aiSeverity": {
+    "nhẹ": [1, 2],
+    "vừa": [2, 3],
+    "nặng": [3, 4]
+  },
+  "aiRequestsPerTurn": 2,
+
+  "$tierComment": "Cấp kết quả của phép kiểm (Phần 5) → mức thương tích khi engine gây vết từ một CheckResult. Người thua một pha đối kháng ăn đòn nặng hơn.",
+  "tierSeverity": {
+    "critFail": [3, 5],
+    "fail": [2, 4],
+    "costlySuccess": [1, 2],
+    "success": [1, 1],
+    "critSuccess": [1, 1]
+  },
+
+  "$toanThanComment": "Trạng thái toàn thân của mục 2 và mức phạt của mục 5. Mọi giá trị phạt khai theo THANG d100 và dương-là-dễ-hơn, đúng hợp đồng của scaleToSystem ở Phần 5 — nên chỗ này chỉ khai độ lớn, không khai dấu.",
+  "toanThan": {
+    "bloodMax": 100,
+    "bloodRegenPerTurn": 1.2,
+    "bloodRegenBlockedAtFever": 60,
+    "clotFlat": 1.0,
+    "clotVitDivisor": 8,
+    "clotFraction": 0.25,
+    "bloodPenaltyLadder": [
+      { "below": 80, "penalty": 5 },
+      { "below": 60, "penalty": 12 },
+      { "below": 45, "penalty": 22 },
+      { "below": 35, "penalty": 34 },
+      { "below": 25, "penalty": 48 },
+      { "below": 15, "penalty": 65 }
+    ],
+    "painFactor": 0.4,
+    "painWilReference": 12,
+    "painWilFloor": 2,
+    "feverFromInfection": 0.9,
+    "feverStep": 8,
+    "feverNecrosisBonus": 20,
+    "feverPenaltyFactor": 0.35,
+    "feverPenaltyFloor": 25,
+    "shockPainWeight": 0.5,
+    "shockBloodWeight": 0.5,
+    "shockFreshTurns": 3,
+    "shockFreshPerSeverity": 6,
+    "consciousness": [
+      { "id": "tinh", "name": "tỉnh" },
+      { "id": "choang", "name": "choáng", "bloodBelow": 40, "painAtLeast": 65, "feverAtLeast": 80, "shockAtLeast": 55 },
+      { "id": "lo-mo", "name": "lơ mơ", "bloodBelow": 30, "painAtLeast": 82, "feverAtLeast": 92, "shockAtLeast": 75 },
+      { "id": "hon-me", "name": "hôn mê", "bloodBelow": 20, "painAtLeast": 95, "feverAtLeast": 100, "shockAtLeast": 92 }
+    ],
+    "mobilityPerSeverity": 16,
+    "mobilityBloodWeight": 0.35,
+    "gripPerSeverity": 16,
+    "staminaPerSeverity": 12,
+    "staminaBloodWeight": 0.6,
+    "staminaFeverWeight": 0.5,
+    "regionPenaltyPerSeverity": 5,
+    "regionPenaltyGripFactor": 0.6,
+    "mobilityPenaltyFactor": 0.35
+  },
+
+  "$complicationsComment": "Mục 7. Mỗi lượt, với mỗi thương tích chưa lành, tung 3d6 vs VIT theo phân miền của Phần 5 (năng lực dài hạn). `trigger.kind` là một trong: infection · blood · wound · fracture · dislocation · immobile · spine · artery — engine đọc đúng tám loại đó và không nhiều hơn.",
+  "complications": [
+    {
+      "id": "nhiem-trung",
+      "name": "Nhiễm trùng",
+      "trigger": { "kind": "infection", "atLeast": 40 },
+      "difficulty": "thuong",
+      "perTurn": { "pain": 4, "feverTarget": 10 },
+      "escalatesTo": "hoai-tu",
+      "note": "Vết đỏ tấy, nóng, và mùi. Mật ong với rượu còn cứu được ở giai đoạn này."
+    },
+    {
+      "id": "hoai-tu",
+      "name": "Hoại tử",
+      "trigger": { "kind": "infection", "atLeast": 85 },
+      "difficulty": "rat-kho",
+      "perTurn": { "pain": 8, "feverTarget": 25, "infection": 3 },
+      "spreadTurns": 4,
+      "forcesAmputation": true,
+      "lethalInTrunkAfter": 3,
+      "permanentOnResolve": "cut-chan",
+      "note": "Thịt đen lại và lan ra. Ở chi thì còn đổi được bằng một nhát cưa; lan vào thân mình thì hết cửa."
+    },
+    {
+      "id": "mat-mau-cap",
+      "name": "Mất máu cấp",
+      "trigger": { "kind": "blood", "atMost": 35 },
+      "difficulty": "kho",
+      "perTurn": { "pain": 3 },
+      "note": "Da lạnh, môi trắng, tai ù. Dưới 20 là hôn mê, tới 0 là chết."
+    },
+    {
+      "id": "dut-dong-mach",
+      "name": "Đứt động mạch",
+      "trigger": { "kind": "artery", "minSeverity": 5, "types": ["puncture", "laceration", "amputation"] },
+      "difficulty": "rat-kho",
+      "clotResist": true,
+      "perTurn": { "bleeding": 2 },
+      "note": "Máu phun theo nhịp tim. Không đốt hoặc không buộc được thì tính bằng lượt, không tính bằng ngày."
+    },
+    {
+      "id": "uon-van",
+      "name": "Uốn ván",
+      "trigger": { "kind": "wound", "dirty": true, "types": ["puncture", "crush", "amputation"], "minSeverity": 3, "chancePerTurn": 5, "afterTurns": 3 },
+      "difficulty": "rat-kho",
+      "perTurn": { "pain": 12, "feverTarget": 20 },
+      "lethalAfter": 6,
+      "note": "Hàm cứng lại trước, rồi tới lưng. Thế kỷ 14 không có gì chữa được nó."
+    },
+    {
+      "id": "lien-lech",
+      "name": "Liền lệch",
+      "trigger": { "kind": "fracture", "afterTurns": 4, "unlessTreatments": ["nep-xuong"] },
+      "difficulty": "thuong",
+      "permanentOnResolve": "lien-xuong-lech",
+      "note": "Xương tự tìm chỗ liền, và nó tìm sai. Sau lượt này thì nắn lại cũng vô ích."
+    },
+    {
+      "id": "cung-khop-dan",
+      "name": "Cứng khớp dần",
+      "trigger": { "kind": "dislocation", "afterTurns": 3, "unlessTreatments": ["nan-khop"] },
+      "difficulty": "thuong",
+      "permanentOnResolve": "cung-khop",
+      "note": "Khớp không được nắn lại thì đóng cứng ở tư thế nó đang nằm."
+    },
+    {
+      "id": "liet",
+      "name": "Tổn thương cột sống",
+      "trigger": { "kind": "spine", "minSeverity": 4 },
+      "difficulty": "cuc-kho",
+      "perTurn": { "pain": 6 },
+      "permanentOnResolve": "liet-nua-nguoi",
+      "note": "Cột sống không lành lại. Kiểm định này chỉ quyết định liệt tới đâu."
+    },
+    {
+      "id": "loet-nam",
+      "name": "Loét nằm",
+      "trigger": { "kind": "immobile", "belowMobility": 25, "afterTurns": 6 },
+      "difficulty": "thuong",
+      "perTurn": { "infection": 4, "pain": 3 },
+      "note": "Nằm một chỗ quá lâu thì chính cái giường thành vết thương."
+    },
+    {
+      "id": "teo-co",
+      "name": "Teo cơ",
+      "trigger": { "kind": "immobile", "belowMobility": 35, "afterTurns": 12 },
+      "difficulty": "de-dang",
+      "note": "Cơ không dùng thì tiêu đi. Hồi lại được, nhưng phải mất chừng ấy thời gian nữa."
+    }
+  ],
+
+  "$permanentComment": "Mục 8 — tàn phế VĨNH VIỄN, modifier không bao giờ gỡ. `effects` dùng đúng khuôn hiệu ứng chung của Phần 6 (domains / value / kind / whenAnyTag), nên chúng đi qua cùng một đường quy đổi hệ với đặc tính chủng tộc và trang bị.",
+  "permanent": [
+    {
+      "id": "cut-tay",
+      "name": "Cụt tay",
+      "scarCause": "cụt tay",
+      "mobilityPenalty": 5,
+      "gripLoss": 100,
+      "prosthetic": "tay-sat",
+      "effects": [
+        { "domains": ["skill.kiem-thuat", "skill.thuong-kich", "skill.riu-bua", "skill.dao-gam", "skill.nem-lao", "combat.*"], "value": -35 },
+        { "domains": ["skill.khien", "skill.cung-no", "skill.hoa-khi"], "value": -60 },
+        { "domains": ["skill.thu-phap", "skill.che-tac", "skill.moc", "skill.co-khi", "skill.ren-sat", "skill.phau-thuat"], "value": -40 },
+        { "domains": ["skill.cuoi-ngua", "skill.leo-treo", "skill.boi-loi"], "value": -25 }
+      ],
+      "note": "Một hiệp sĩ mất tay phải không cầm kiếm được nữa. Phần 8 mục 7 là chỗ mở đường đi tiếp — không bắt tạo lại nhân vật."
+    },
+    {
+      "id": "cut-chan",
+      "name": "Cụt chân",
+      "scarCause": "cụt chân",
+      "mobilityPenalty": 55,
+      "prosthetic": "chan-gia",
+      "effects": [
+        { "domains": ["skill.the-luc", "skill.nhao-lon", "skill.leo-treo", "skill.len-lut", "skill.tron-nap", "combat.*", "admin.hanh-quan"], "value": -40 },
+        { "domains": ["skill.cuoi-ngua"], "value": -20 },
+        { "domains": ["skill.boi-loi"], "value": -30 }
+      ],
+      "note": "Còn cưỡi ngựa được — đó là lý do rất nhiều hiệp sĩ cụt chân vẫn ra trận."
+    },
+    {
+      "id": "cut-ngon",
+      "name": "Cụt ngón",
+      "scarCause": "cụt ngón tay",
+      "gripLoss": 25,
+      "effects": [
+        { "domains": ["skill.thu-phap", "skill.che-tac", "skill.mo-khoa", "skill.moc-tui", "skill.co-khi", "skill.phau-thuat"], "value": -20 },
+        { "domains": ["skill.kiem-thuat", "skill.cung-no", "skill.dao-gam"], "value": -10 }
+      ],
+      "note": "Ít ai chết vì mất một ngón, nhưng thợ khảm thì mất nghề."
+    },
+    {
+      "id": "mu-mot-mat",
+      "name": "Mù một mắt",
+      "scarCause": "mất một mắt",
+      "prosthetic": "bit-mat",
+      "effects": [
+        { "domains": ["skill.cung-no", "skill.hoa-khi", "skill.nem-lao"], "value": -25 },
+        { "domains": ["skill.san-ban", "skill.truy-dau", "skill.tham-do", "skill.do-duong"], "value": -15 },
+        { "domains": ["combat.*"], "value": -12 }
+      ],
+      "note": "Mất chiều sâu thị giác. Bắn cung là thứ hỏng nặng nhất."
+    },
+    {
+      "id": "mu-hai-mat",
+      "name": "Mù hai mắt",
+      "scarCause": "mù cả hai mắt",
+      "mobilityPenalty": 35,
+      "effects": [
+        { "domains": ["*"], "value": -30 },
+        { "domains": ["combat.*", "skill.cung-no", "skill.san-ban", "skill.truy-dau", "skill.tham-do", "skill.do-duong", "skill.thu-phap", "skill.hoc-van"], "value": -55 },
+        { "domains": ["skill.an-ui", "skill.giang-dao", "skill.doc-nguoi"], "value": 5 }
+      ],
+      "note": "Một dòng CỘNG có chủ ý: người mù nghe ra thứ người khác bỏ sót, và đời sống tôn giáo là con đường còn mở."
+    },
+    {
+      "id": "diec",
+      "name": "Điếc",
+      "scarCause": "điếc",
+      "effects": [
+        { "domains": ["skill.dam-phan", "skill.mac-ca", "skill.gay-thien-cam", "skill.doc-nguoi", "skill.nghi-thuc", "social.*"], "value": -20 },
+        { "domains": ["skill.do-tham", "skill.phan-gian", "skill.truy-dau"], "value": -25 },
+        { "domains": ["combat.*"], "value": -10 }
+      ],
+      "note": "Không nghe được lệnh là mất luôn chỗ trong hàng ngũ."
+    },
+    {
+      "id": "liet-nua-nguoi",
+      "name": "Liệt nửa người",
+      "scarCause": "liệt nửa người",
+      "mobilityPenalty": 60,
+      "gripLoss": 70,
+      "prosthetic": "xe-lan",
+      "effects": [
+        { "domains": ["*"], "value": -20 },
+        { "domains": ["combat.*", "skill.the-luc", "skill.nhao-lon", "skill.leo-treo", "skill.cuoi-ngua", "skill.boi-loi", "admin.hanh-quan"], "value": -55 }
+      ],
+      "note": "Con đường chiến binh đóng lại. Con đường cai trị thì không."
+    },
+    {
+      "id": "liet-hai-chan",
+      "name": "Liệt hai chân",
+      "scarCause": "liệt hai chân",
+      "mobilityPenalty": 85,
+      "prosthetic": "xe-lan",
+      "effects": [
+        { "domains": ["combat.*", "skill.the-luc", "skill.nhao-lon", "skill.leo-treo", "skill.len-lut", "skill.tron-nap", "admin.hanh-quan"], "value": -60 },
+        { "domains": ["skill.cuoi-ngua"], "value": -45 }
+      ],
+      "note": ""
+    },
+    {
+      "id": "cung-khop",
+      "name": "Cứng khớp",
+      "scarCause": "cứng khớp",
+      "gripLoss": 20,
+      "effects": [
+        { "domains": ["skill.kiem-thuat", "skill.thuong-kich", "skill.riu-bua", "skill.khien", "skill.cung-no", "combat.*"], "value": -15 },
+        { "domains": ["skill.che-tac", "skill.thu-phap", "skill.phau-thuat"], "value": -12 }
+      ],
+      "note": "Trời trở là biết trước một ngày."
+    },
+    {
+      "id": "dau-kinh-nien",
+      "name": "Đau kinh niên",
+      "scarCause": "đau kinh niên",
+      "effects": [
+        { "domains": ["*"], "value": -8 },
+        { "domains": ["*"], "value": -10, "whenAnyTag": ["mua-lon", "gia-ret", "troi-tro"] },
+        { "domains": ["skill.chiu-dung", "skill.tru-ta"], "value": 5 }
+      ],
+      "note": "Cái giá dài nhất của nghề binh. Nó không giết ai, nó chỉ làm mọi thứ khó hơn mãi mãi."
+    },
+    {
+      "id": "bien-dang-mat",
+      "name": "Biến dạng mặt",
+      "scarCause": "vết chém ngang mặt",
+      "effects": [
+        { "domains": ["social.*", "skill.gay-thien-cam", "skill.an-ui", "skill.nghi-thuc", "skill.dam-phan"], "value": -20 },
+        { "domains": ["skill.uy-hiep", "skill.chi-huy"], "value": 12, "whenAnyTag": ["gioi-quan-nhan", "linh-trang", "trai-linh"] },
+        { "domains": ["skill.giang-dao", "skill.an-ui", "skill.nghi-thuc"], "value": -12, "whenAnyTag": ["gioi-tang-lu", "nha-tho", "tu-vien"] }
+      ],
+      "note": "Mục 5: sẹo chiến trận có thể LÀM MẠNH ngài trước lính, và làm yếu ngài trước tăng lữ. Cùng một khuôn mặt, hai thế giới đọc khác nhau."
+    },
+    {
+      "id": "lien-xuong-lech",
+      "name": "Liền xương lệch",
+      "scarCause": "xương liền lệch",
+      "mobilityPenalty": 15,
+      "gripLoss": 15,
+      "effects": [
+        { "domains": ["combat.*", "skill.the-luc", "skill.leo-treo", "skill.nhao-lon"], "value": -14 },
+        { "domains": ["skill.kiem-thuat", "skill.thuong-kich", "skill.riu-bua", "skill.che-tac"], "value": -12 }
+      ],
+      "note": "Hậu quả của việc không nẹp xương. Thầy lang dở để lại nhiều cái này hơn cả chiến trận."
+    }
+  ],
+
+  "$prostheticsComment": "Mục 8 — chân giả, tay sắt, bịt mắt, nạng, xe lăn thô sơ. Giảm bớt phạt chứ không xóa; cần thợ rèn giỏi và rất nhiều tiền.",
+  "prosthetics": [
+    { "id": "chan-gia", "name": "Chân giả", "for": ["cut-chan"], "relief": 0.35, "price": 240, "requiresCraft": "skill_moc", "note": "Gỗ và da, buộc vào mỏm cụt. Đi được, chạy thì không." },
+    { "id": "tay-sat", "name": "Tay sắt", "for": ["cut-tay"], "relief": 0.3, "price": 600, "requiresCraft": "skill_ren-sat", "note": "Kẹp được dây cương và khiên. Không cầm được kiếm." },
+    { "id": "bit-mat", "name": "Bịt mắt", "for": ["mu-mot-mat"], "relief": 0.1, "price": 4, "note": "Không giúp nhìn, giúp người khác đỡ nhìn." },
+    { "id": "nang", "name": "Nạng", "for": ["cut-chan", "lien-xuong-lech"], "relief": 0.2, "price": 12, "note": "" },
+    { "id": "xe-lan", "name": "Xe lăn thô sơ", "for": ["liet-hai-chan", "liet-nua-nguoi"], "relief": 0.25, "price": 180, "requiresCraft": "skill_moc", "note": "Ghế có bánh, cần người đẩy. Chỉ dùng được trong nhà và trên sân lát đá." }
+  ],
+
+  "$diseasesComment": "MÓC SẴN CHO PHẦN 15 (mục 7). Slice body phải có chỗ cho bệnh lây từ MÔI TRƯỜNG chứ không chỉ từ vũ khí — nên `diseases` là một mảng riêng, không phải một loại Injury. Phần 7 KHÔNG tự sinh ra bệnh nào; nó chỉ nuôi sốt và mức phạt cho những gì Phần 15 gieo vào.",
+  "diseases": [
+    {
+      "id": "dich-hach",
+      "name": "Dịch hạch",
+      "owner": "Phần 15",
+      "vector": "moi-truong",
+      "contagious": true,
+      "incubationTurns": 4,
+      "feverTarget": 95,
+      "painPerTurn": 6,
+      "lethalAfter": 8,
+      "difficulty": "cuc-kho",
+      "note": "Hạch ở bẹn và nách, rồi sốt. Phần 15 quyết định nó tới làng nào và khi nào."
+    },
+    {
+      "id": "thuong-han",
+      "name": "Thương hàn",
+      "owner": "Phần 15",
+      "vector": "nuoc-ban",
+      "contagious": true,
+      "incubationTurns": 6,
+      "feverTarget": 70,
+      "painPerTurn": 3,
+      "lethalAfter": 14,
+      "difficulty": "rat-kho",
+      "note": "Bệnh của trại lính đóng lâu một chỗ và của thành bị vây."
+    }
+  ],
+
+  "$silverComment": "VŨ KHÍ BẠC (Phần 16 mục 6, Phần 14b mục D). Bạc yếu về cơ học nhưng là thứ DUY NHẤT gây thương tích KHÔNG TỰ LÀNH cho những chủng tộc khai ở đây: vết do bạc gây ra đứng yên ở mức nó vừa gây ra, không nhích một điểm nào, cho tới khi có người chữa bằng tay. Luật sống ở file này chứ không ở Phần 16 vì nó là luật HỒI PHỤC, và mọi luật hồi phục đều thuộc Phần 7 — Phần 16 chỉ đánh dấu vết nào do bạc gây ra.",
+  "silver": { "racesAffected": ["race_huyet-toc"], "healFactor": 0, "note": "Chữa tay vẫn được: vết bạc không tự lành, nhưng nó không phải một bản án." },
+
+  "$deathComment": "Mục 9 — chết KHÔNG do một thanh máu về 0. Đúng năm cửa, không có cửa thứ sáu.",
+  "death": {
+    "bloodAtOrBelow": 0,
+    "feverAtLeast": 100,
+    "feverTurnsAllowed": 3,
+    "vitalOrganDestroyedAtSeverity": 5,
+    "necrosisInTrunkTurns": 3,
+    "causes": {
+      "mat-mau": "mất máu tới cạn",
+      "tang-phu": "tạng chí mạng bị phá hủy",
+      "sot": "sốt cao kéo dài",
+      "hoai-tu": "hoại tử lan vào thân mình",
+      "uon-van": "uốn ván",
+      "benh": "bệnh dịch"
+    }
+  }
+}

@@ -1,0 +1,334 @@
+{
+  "kind": "eu1444-lorebook",
+  "schemaVersion": 1,
+  "exportedAt": 0,
+  "books": [
+    {
+      "id": "book-su-kien-luat",
+      "name": "Europa 1444 · Sự kiện và luật",
+      "version": 1,
+      "scope": { "kind": "global" },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 1,
+      "entries": [
+        {
+          "id": "event_varna-1444",
+          "title": "Thảm bại Varna, ngày 10 tháng 11 năm 1444",
+          "type": "event",
+          "content": "Năm ngày trước, liên quân Thập Tự do Vua Władysław III dẫn đầu bị nghiền nát trên bình nguyên ven Biển Đen. Sultan Murad II đã dụ được kỵ binh Ba Lan lao vào giữa hai cánh Janissary, rồi khép lại.\n\nVua tử trận. Không ai tìm thấy xác — chỉ tìm thấy chiếc mũ trụ.\n\nAi hưởng lợi: Đế chế Ottoman, hiển nhiên. Nhưng còn hai kẻ nữa. Gia tộc Habsburg vừa mất đối thủ mạnh nhất trong cuộc đua ngai vàng Đế quốc; và Vương quốc Ba Lan lẫn Hungary cùng lúc trống ngai, nghĩa là mọi công tước có một giọt máu hoàng gia đều đang đếm lại phả hệ nhà mình.\n\nTin này lan về phía Tây bằng tốc độ ngựa, và mỗi lần kể lại nó đổi một chi tiết.",
+          "summary": "Ngày 10/11/1444, liên quân Thập Tự của Władysław III bị Sultan Murad II nghiền nát tại Varna. Vua tử trận, xác không tìm thấy. Ba Lan và Hungary cùng lúc trống ngai; Habsburg mất đối thủ mạnh nhất trong cuộc đua ngai vàng Đế quốc.",
+          "variants": [
+            {
+              "audience": "nation_ottoman",
+              "content": "Ngày mười tháng mười một, trên bình nguyên ven Biển Đen, Sultan Murad II dạy cho phương Tây một bài mà họ sẽ mất năm chục năm để quên.\n\nHọ đến sau khi đã ký hòa ước ở Szeged và thề trên sách thánh của chính họ. Rồi hồng y đặc sứ bảo rằng lời thề với kẻ ngoại đạo không ràng buộc, và họ xé nó. Sultan cho cắm bản hòa ước lên đầu ngọn giáo và giương nó lên trước hàng quân — đó là toàn bộ bài diễn văn trước trận.\n\nVua của họ lao vào giữa hai cánh Janissary. Đó là điều một người dũng cảm sẽ làm và là điều một người biết đánh trận sẽ không làm.\n\nGiờ Balkan im lặng, Constantinople không còn ai cứu, và không một vương quốc Cơ đốc nào dám gọi Thập Tự lần nữa trong đời này."
+            },
+            {
+              "audience": "nation_hungary",
+              "content": "Chúng ta mất một vị vua và mất luôn thế hệ quý tộc đi cùng ông.\n\nĐừng nghe cái cách người Đức kể chuyện này. Không ai bán đứng ai cả. Hạm đội đáng lẽ chặn eo biển đã không chặn, vì có kẻ trả tiền để nó không chặn, và người trả tiền không nói tiếng Hung.\n\nĐiều thật sự đáng sợ không phải trận thua. Là hai ngai vàng cùng trống một lúc — Ba Lan và Hungary — và mọi công tước trong hai vương quốc đang lật lại phả hệ nhà mình thay vì lo canh biên giới phía nam.\n\nMạng lưới pháo đài Végvár vẫn đứng. Nhưng nó cần người trên tường, và những người đó đang nằm ở Varna."
+            },
+            {
+              "audience": "nation_baltic",
+              "content": "Vua Władysław đi đánh một cuộc chiến không phải của Ba Lan, vì lời hứa của một hồng y người Ý, và ông ta không về.\n\nHội nghị Quốc dân đã can. Giới Szlachta đã nói thẳng rằng Hungary có ngai của Hungary và Ba Lan có biên giới phía đông phải giữ. Nhà vua nghe hồng y.\n\nBài học được rút ra và sẽ được nhắc trong mọi kỳ họp Sejm suốt trăm năm tới: vua nào đem quân đi vì một lời thề với Rome mà không có sự đồng ý của giới quý tộc, thì vua ấy đem quân đi một mình.\n\nGiờ ngai trống, và lần này Sejm sẽ ra giá trước khi trao nó cho ai."
+            }
+          ],
+          "keys": ["Trận Varna", "Varna", "thảm bại Varna", "Władysław III", "Murad II", "liên quân Thập Tự", "Thập Tự Chinh Varna"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "validFrom": { "year": 1444, "month": 11, "day": 10, "hour": 12 },
+          "validUntil": { "year": 1446, "month": 6, "day": 1, "hour": 0 },
+          "weight": 14,
+          "budgetPriority": 9,
+          "triggers": [
+            {
+              "when": "onFirstActivate",
+              "emit": {
+                "event": "lore.knowledge.gain",
+                "payload": { "id": "fact_varna-that-bai", "source": "chuyện cả lục địa đang bàn", "confidence": 85 }
+              }
+            }
+          ],
+          "triggerOnce": true
+        },
+        {
+          "id": "event_wladyslaw-mat-tich",
+          "title": "Không ai tìm thấy xác nhà vua",
+          "type": "event",
+          "content": "Người Ottoman bêu một cái đầu ở Edirne và bảo đó là đầu vua. Người Ba Lan bảo cái đầu đó râu sai màu.\n\nTừ đó trở đi, cứ vài tháng lại có một người đàn ông xuất hiện ở đâu đó — Bồ Đào Nha, đảo Rhodes, một tu viện vùng núi — nói rằng mình là Władysław sống sót, mang lời thề chuộc tội. Có kẻ bị treo cổ, có kẻ được một bà bá tước cho ăn ở suốt mùa đông.\n\nChừng nào chưa có xác thì ngai Ba Lan chưa thể trao cho ai một cách sạch sẽ, và mọi kẻ nhiếp chính đều biết điều đó.",
+          "summary": "Không tìm thấy xác Władysław III sau Varna. Ottoman bêu một cái đầu ở Edirne, người Ba Lan bảo râu sai màu. Cứ vài tháng lại có kẻ tự xưng là vua sống sót — nên ngai Ba Lan chưa thể trao cho ai một cách sạch sẽ.",
+          "keys": ["xác nhà vua", "Władysław sống sót", "kẻ mạo danh", "ngai Ba Lan bỏ trống", "vua giả"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "validFrom": { "year": 1444, "month": 11, "day": 20, "hour": 0 },
+          "weight": 10,
+          "budgetPriority": 6,
+          "probability": 70,
+          "triggers": [
+            {
+              "when": "onFirstActivate",
+              "emit": {
+                "event": "lore.rumor.spread",
+                "payload": { "text": "Người ta đồn nhà vua Ba Lan không chết ở Varna mà đang ẩn trong một tu viện vùng núi." }
+              }
+            }
+          ],
+          "triggerOnce": true
+        },
+        {
+          "id": "event_tin-varna-den-phuong-tay",
+          "title": "Tin Varna về tới phương Tây, méo đi ba lần",
+          "type": "event",
+          "content": "Ở Buda người ta biết trong mười ngày. Ở Vienna, ba tuần. Ở lưu vực sông Rhine, gần hai tháng — và bản tới nơi thì đã khác hẳn bản gốc.\n\nBản Hungary: vua tử trận vì kỵ binh xông lên quá sớm, lỗi ở nhà vua.\nBản Đế quốc: quân Thập Tự bị phản bội bởi người Venice, những kẻ đã nhận tiền để canh eo biển rồi thả quân Ottoman qua.\nBản Giáo triều: đó là hình phạt cho việc phá lời thề hòa ước với kẻ ngoại đạo, và người phá lời thề là hồng y đặc sứ.\n\nCả ba bản đều có người tin. Chọn bản nào là chọn phe.",
+          "summary": "Tin Varna mất mười ngày để tới Buda, ba tuần tới Vienna, gần hai tháng tới sông Rhine — và méo đi ở mỗi chặng. Bản Hungary đổ lỗi cho nhà vua, bản Đế quốc đổ lỗi cho Venice bán đứng, bản Giáo triều gọi đó là hình phạt cho việc bội thề. Tin bản nào là chọn phe.",
+          "keys": ["tin từ Varna", "tin đồn Varna", "Venice phản bội", "bội thề hòa ước", "hồng y đặc sứ"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "regions": ["realm_hre", "realm_france", "realm_burgundy"],
+          "includeAdjacent": true,
+          "validFrom": { "year": 1444, "month": 11, "day": 25, "hour": 0 },
+          "validUntil": { "year": 1445, "month": 6, "day": 1, "hour": 0 },
+          "weight": 12,
+          "budgetPriority": 7,
+          "triggers": [
+            {
+              "when": "onEnterRegion",
+              "emit": {
+                "event": "lore.notify",
+                "payload": { "title": "Tin từ phương Đông", "body": "Người ta đang kể ba bản khác nhau về trận Varna, và không bản nào giống bản nào." }
+              }
+            }
+          ],
+          "triggerCooldown": 40
+        },
+        {
+          "id": "event_constantinople-bi-co-lap",
+          "title": "Constantinople bị siết lại sau Varna",
+          "type": "event",
+          "content": "Liên quân Thập Tự là hy vọng cuối của Hoàng đế Đông La Mã. Nó chết ở Varna.\n\nGiờ Constantinople nằm gọn giữa hai nửa Đế chế Ottoman, và tuyến tiếp tế duy nhất là đường biển do Genoa và Venice cầm — hai thành bang vừa mới đổ lỗi cho nhau về chuyện Varna.\n\nTrong thành, giá lúa mì tăng gấp đôi trong một tháng. Hội đồng Hoàng gia chia làm hai phe: phe chịu hợp nhất giáo hội với La Mã để đổi lấy quân, và phe thà đội khăn xếp Ottoman còn hơn đội mũ hồng y.\n\nBức tường Theodosian vẫn đứng. Nhưng người trên tường đã ít hơn số lỗ châu mai.",
+          "summary": "Sau Varna, hy vọng cứu viện của Đông La Mã tắt. Constantinople kẹt giữa hai nửa Ottoman, chỉ còn tiếp tế đường biển qua Genoa và Venice. Giá lúa mì tăng gấp đôi; triều đình chia phe hợp nhất giáo hội và phe thà theo Ottoman còn hơn theo La Mã.",
+          "keys": ["Constantinople bị vây", "phong tỏa Constantinople", "hợp nhất giáo hội", "Bức tường Theodosian", "cứu viện Byzantine"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "validFrom": { "year": 1444, "month": 11, "day": 15, "hour": 0 },
+          "weight": 12,
+          "budgetPriority": 8
+        },
+        {
+          "id": "event_dinh-chien-tours",
+          "title": "Đình chiến Tours — hai năm ngừng bắn giữa Anh và Pháp",
+          "type": "event",
+          "content": "Ký tháng năm vừa rồi, có hiệu lực tới mùa xuân năm 1446, kèm một cuộc hôn nhân hoàng gia làm vật thế chấp.\n\nĐình chiến không có nghĩa là hòa bình. Nó có nghĩa là hai vương quốc cùng lúc thải ra hàng vạn lính đánh thuê không còn ai trả lương — và họ vẫn còn giáp, còn ngựa, còn thói quen.\n\nCác đại đội đó tự gọi mình là quân tự do. Người bị họ ghé thăm gọi họ là Écorcheurs, bọn lột da. Triều đình Paris đang cố đẩy họ về phía đông, sang đất Đế quốc và sang Thụy Sĩ, vì đẩy đi rẻ hơn nuôi.",
+          "summary": "Đình chiến Tours ký tháng 5/1444, hiệu lực tới xuân 1446, kèm một cuộc hôn nhân làm vật thế chấp. Hệ quả: hàng vạn lính đánh thuê mất lương nhưng còn giáp và ngựa, tự gọi là quân tự do, dân gọi là Écorcheurs. Paris đang đẩy họ sang đất Đế quốc và Thụy Sĩ.",
+          "variants": [
+            {
+              "audience": "nation_frank",
+              "content": "Đình chiến là thứ triều đình Paris cần và đã mua bằng một cuộc hôn nhân.\n\nHai năm này không phải để nghỉ. Chúng dùng để làm ba việc: dựng xong các đại đội thường trực, đúc xong loạt pháo mới của anh em nhà Bureau, và đẩy hết đám quân tự do sang phía đông trước khi chúng ăn hết nốt vùng nông thôn của chính chúng ta.\n\nVề khoản thứ ba thì không cần giấu: đẩy chúng qua sông Rhine rẻ hơn nuôi chúng, và nếu chúng làm phiền Đế quốc trong lúc đó thì càng hay.\n\nKhi hai năm hết, quân Anh sẽ đối diện một đội quân khác hẳn đội quân họ từng đánh."
+            },
+            {
+              "audience": "nation_anh-quoc",
+              "content": "Đình chiến là thứ triều đình London bị ép ký, và ai cũng biết là bị ép.\n\nĐổi lại một cuộc hôn nhân, chúng ta nhượng vùng Maine mà không hỏi ý người đang giữ nó. Tin đó chưa được công bố, và khi nó lộ ra thì sẽ có người mất đầu vì nó.\n\nCái giá thật nằm chỗ khác: quân đội đóng ở Normandy hai năm không đánh trận là quân đội hết lương và hết kỷ luật. Còn bên kia thì đang đúc pháo.\n\nCó những người ở London đã tính rằng hòa hoãn là thua chậm, và họ đang chuẩn bị cho việc đổ lỗi hơn là cho việc đánh."
+            },
+            {
+              "audience": "nation_hre",
+              "content": "Hai vương quốc phía tây thôi đánh nhau, và món quà họ gửi cho chúng ta là hai vạn kẻ có giáp mà không có lương.\n\nChúng gọi mình là quân tự do. Ở Alsace người ta gọi chúng là bọn lột da, và đã có ba làng bị đốt sạch từ tháng tám.\n\nĐiều đáng nói là Paris không giấu việc mình đang lùa chúng về hướng này. Đó không phải sơ suất, đó là chính sách — và Đại hội Đế quốc sẽ phải bàn xem chúng ta trả lời bằng cách nào, nếu Đại hội chịu họp.\n\nCác thành bang thì không đợi Đại hội. Họ đang gom tiền thuê trung đoàn Thụy Sĩ."
+            }
+          ],
+          "keys": ["Đình chiến Tours", "hòa ước Tours", "ngừng bắn Anh Pháp", "Écorcheurs", "quân tự do", "đại đội lang thang"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "validFrom": { "year": 1444, "month": 5, "day": 28, "hour": 0 },
+          "validUntil": { "year": 1446, "month": 4, "day": 1, "hour": 0 },
+          "weight": 12,
+          "budgetPriority": 8
+        },
+        {
+          "id": "event_ecorcheurs-tran-vao-alsace",
+          "title": "Écorcheurs tràn qua sông Rhine",
+          "type": "event",
+          "content": "Mùa hè vừa rồi họ đã qua sông một lần và bị đánh bật. Mùa này họ qua lần nữa, đông hơn, và lần này có cả pháo nhẹ kéo theo.\n\nDấu hiệu nhận ra trước khi thấy mặt: gia súc trong làng bên cạnh biến mất trong một đêm; nhà thờ đổ chuông sai giờ; và người chăn cừu không xuống núi nữa.\n\nHọ không vây thành — vây thành tốn thời gian và họ không được trả lương để chờ. Họ đốt kho lúa ngoài tường, bắt người có họ hàng khá giả, rồi đi trước khi quân của thành bang kịp tập hợp.\n\nMười Thành phố Tự do vùng Alsace đang họp về việc góp tiền thuê lính Thụy Sĩ. Họ họp đã ba lần và chưa lần nào chia xong phần đóng góp.",
+          "summary": "Các đại đội Écorcheurs đã qua sông Rhine lần thứ hai, lần này có pháo nhẹ. Dấu hiệu: gia súc mất trong một đêm, chuông nhà thờ đổ sai giờ, người chăn cừu không xuống núi. Họ đốt kho lúa ngoài tường và bắt người có họ hàng khá giả chứ không vây thành. Liên minh Decapole họp ba lần vẫn chưa chia xong tiền thuê lính.",
+          "keys": ["Écorcheurs", "quân cướp phá", "đại đội Armagnac", "Armagnac", "cướp phá biên giới"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "regions": ["prov_alsace", "prov_baden", "prov_rung-den"],
+          "includeAdjacent": true,
+          "validFrom": { "year": 1444, "month": 8, "day": 1, "hour": 0 },
+          "validUntil": { "year": 1445, "month": 6, "day": 1, "hour": 0 },
+          "weight": 14,
+          "budgetPriority": 8,
+          "triggers": [
+            {
+              "when": "onEnterRegion",
+              "emit": {
+                "event": "lore.knowledge.gain",
+                "payload": { "id": "fact_ecorcheurs-vuot-rhine", "source": "dân làng dọc đường kể", "confidence": 70 }
+              }
+            }
+          ],
+          "triggerOnce": true
+        },
+        {
+          "id": "event_mua-dong-1444",
+          "title": "Mùa đông năm 1444 đóng các con đèo",
+          "type": "event",
+          "content": "Tuyết xuống sớm hơn thường lệ nửa tháng. Đèo Mont Cenis đóng, đèo Gotthard chỉ còn dân dẫn đường tộc Lùn qua được, và giá dẫn đường đã tăng gấp bốn.\n\nHàng của Venice và Milan đi lên phía bắc phải vòng đường biển, nghĩa là qua tay Genoa — và Genoa đang tính lãi trên nỗi khổ đó.\n\nMọi đạo quân đều đã về trại đông. Ai còn ngoài đồng lúc này thì hoặc là đang chạy trốn, hoặc là đang săn kẻ chạy trốn.",
+          "summary": "Tuyết xuống sớm nửa tháng. Mont Cenis đóng, Gotthard chỉ còn người dẫn đường tộc Lùn qua được với giá gấp bốn. Hàng Bắc Ý phải vòng đường biển qua tay Genoa. Quân đội đã về trại đông; ai còn ngoài đồng thì đang chạy trốn hoặc đang săn kẻ chạy trốn.",
+          "keys": ["mùa đông", "đèo đóng", "trại đông", "tuyết xuống", "đèo Mont Cenis", "đèo Gotthard"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "validFrom": { "year": 1444, "month": 11, "day": 1, "hour": 0 },
+          "validUntil": { "year": 1445, "month": 3, "day": 20, "hour": 0 },
+          "weight": 10,
+          "budgetPriority": 7
+        },
+        {
+          "id": "event_dai-hoi-de-quoc-1445",
+          "title": "Đại hội Đế quốc được triệu tập",
+          "type": "event",
+          "content": "Thư triệu tập đi từ Mainz vào cuối mùa đông, đóng ấn Tể tướng Đế quốc, hẹn các Đẳng cấp Đế quốc về họp khi đường mở.\n\nTrên giấy, ba việc: góp quân chống Ottoman, dẹp các đại đội lang thang, và xử vụ tranh chấp thừa kế vùng Alsace.\n\nThực tế, một việc: đếm xem ai còn nghe lời hoàng đế.\n\nAi hưởng lợi từ việc kéo dài: những kẻ chưa quyết được đứng về đâu. Mỗi tuần trì hoãn là một tuần nữa để nhận quà từ cả hai phía. Đại hội của mười năm trước họp mười một tháng rồi giải tán mà không ra được một quyết nghị nào.",
+          "summary": "Thư triệu tập Đại hội Đế quốc đi từ Mainz cuối mùa đông. Ba việc trên giấy: góp quân chống Ottoman, dẹp đại đội lang thang, xử tranh chấp thừa kế Alsace. Việc thật: đếm xem ai còn nghe lời hoàng đế. Kẻ chưa chọn phe được lợi từ mỗi tuần trì hoãn.",
+          "keys": ["Đại hội Đế quốc", "Reichstag", "thư triệu tập", "kỳ họp Đế quốc"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "validFrom": { "year": 1445, "month": 3, "day": 1, "hour": 0 },
+          "validUntil": { "year": 1445, "month": 10, "day": 1, "hour": 0 },
+          "weight": 12,
+          "budgetPriority": 7
+        },
+        {
+          "id": "event_chien-tranh-zurich",
+          "title": "Chiến tranh Zürich Cũ vẫn chưa dứt",
+          "type": "event",
+          "content": "Bốn năm rồi. Zürich đứng về phía Gia tộc Habsburg và thuê lính Armagnac của Pháp; phần còn lại của Cựu Liên minh Thụy Sĩ đứng về phía nhau.\n\nCái mới của cuộc chiến này không phải ai thắng, mà là nó chứng minh được hai điều: bộ binh trường thương của nông dân tự do đánh tan được kỵ binh bọc thép trên đất dốc, và một hiệp ước phong kiến không giữ được người ta khi các thành bang ngầm tộc Lùn chịu cho vay.\n\nMọi lãnh chúa từ Milan tới Burgundy đều đang cho người đi xem và đều đang tính giá thuê một trung đoàn Thụy Sĩ.",
+          "summary": "Chiến tranh Zürich Cũ sang năm thứ tư: Zürich theo Habsburg và thuê lính Armagnac, phần còn lại của Cựu Liên minh chống lại. Nó chứng minh trường thương nông dân đánh tan được kỵ binh bọc thép trên đất dốc, và hiệp ước phong kiến không giữ nổi người khi tộc Lùn chịu cho vay. Lãnh chúa khắp nơi đang hỏi giá thuê lính Thụy Sĩ.",
+          "keys": ["Chiến tranh Zürich Cũ", "Zürich", "lính trường thương Thụy Sĩ", "trung đoàn Thụy Sĩ", "Old Zürich War"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "validFrom": { "year": 1440, "month": 1, "day": 1, "hour": 0 },
+          "validUntil": { "year": 1450, "month": 1, "day": 1, "hour": 0 },
+          "weight": 12,
+          "budgetPriority": 7
+        },
+        {
+          "id": "law_dao-luat-vang",
+          "title": "Đạo luật Vàng năm 1356",
+          "type": "law",
+          "content": "Hiến chương tối cao của Đế quốc. Nó ấn định đúng bảy người có quyền bầu hoàng đế, ấn định nơi bầu là Frankfurt, nơi đăng quang là Aachen, và ấn định rằng bốn phiếu là đủ.\n\nNó cũng cho mỗi tuyển hầu quyền đúc tiền, quyền khai mỏ, quyền thu thuế cầu đường và quyền xử án cuối cùng trong đất mình — nghĩa là bảy nhà nước độc lập nằm ngay trong lòng Đế quốc.\n\nAi được lợi: bảy người đó, mãi mãi.\n\nAi lách được: hoàng đế. Ông ta không sửa được luật, nhưng ông ta cưới, ông ta cho vay, và ông ta mua. Habsburg đã dùng đúng ba cách đó suốt bảy chục năm, và giờ họ đang đếm xem cần thêm bao nhiêu vàng để có phiếu thứ tư.",
+          "summary": "Hiến chương 1356 ấn định bảy tuyển hầu, bầu ở Frankfurt, đăng quang ở Aachen, bốn phiếu là đủ. Mỗi tuyển hầu được quyền đúc tiền, khai mỏ, thu thuế cầu đường và xử án cuối cùng — tức bảy nhà nước độc lập trong lòng Đế quốc. Hoàng đế không sửa được luật nên phải cưới, cho vay và mua phiếu.",
+          "variants": [
+            {
+              "audience": "nation_hre",
+              "content": "Đạo luật Vàng là bản khế ước giữa hoàng đế và bảy người, và nó đứng trên ý muốn của cả hai bên.\n\nNó cho mỗi tuyển hầu quyền đúc tiền, khai mỏ, thu thuế cầu đường và xử án cuối cùng — nghĩa là bảy nhà nước hoàn chỉnh nằm trong lòng Đế quốc, và không hoàng đế nào lấy lại được những quyền ấy mà không phá cả bản hiến chương.\n\nAi lách: chính hoàng đế. Ông ta không sửa luật, ông ta cưới, ông ta cho vay, ông ta mua. Habsburg đã dùng đúng ba cách đó suốt bảy chục năm.\n\nCâu hỏi của kỳ bầu cử tới không phải ai xứng đáng. Là phiếu thứ tư giá bao nhiêu."
+            },
+            {
+              "audience": "nation_giao-trieu",
+              "content": "Đạo luật Vàng có một chỗ trống, và chỗ trống ấy là chỗ Rome đứng.\n\nBảy vị hầu bầu ra Vua của người La Mã. Vương miện Hoàng đế thì do Giáo hoàng đội, và văn bản năm 1356 lặng thinh về việc đó — lặng thinh một cách cố ý, và Rome chưa bao giờ ký nhận sự lặng thinh ấy.\n\nBa trong bảy vị hầu là Tổng giám mục. Ba phiếu chặn được bất cứ ai chỉ gom nổi bốn, và đó là lý do mọi ứng viên trong chín chục năm qua đều cử người tới Rome trước khi cử người tới Frankfurt.\n\nAi lách được luật này thì lách. Chưa ai lách được chỗ trống của nó."
+            },
+            {
+              "audience": "nation_frank",
+              "content": "Người Đức tự hào về bản hiến chương biến đế quốc của họ thành bảy mảnh, và họ gọi đó là tự do.\n\nParis nhìn nó theo cách khác: mỗi kỳ bầu cử là một mùa mà toàn bộ miền đông bận rộn mua phiếu lẫn nhau, và trong mùa ấy không ai rảnh để nhìn về phía tây.\n\nMột hoàng đế phải xin bảy người mới cai trị được thì đó không phải một vương quốc, đó là một hội đồng có vương miện. Ngai vàng Pháp truyền thẳng từ cha sang con, và đó là lý do chúng ta gom được quân thường trực còn họ thì không.\n\nMột lời khuyên cũ ở triều đình: đừng bao giờ mua cả bảy phiếu. Mua đúng ba là đủ để không ai được bầu."
+            }
+          ],
+          "keys": ["Đạo luật Vàng", "Golden Bull", "hiến chương Đế quốc", "quyền bầu hoàng đế"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "validFrom": { "year": 1356, "month": 1, "day": 10, "hour": 0 },
+          "weight": 12,
+          "budgetPriority": 8
+        },
+        {
+          "id": "law_hoa-binh-de-quoc",
+          "title": "Lệnh cấm tư chiến trong Đế quốc",
+          "type": "law",
+          "content": "Trên giấy, mọi lãnh chúa trong Đế quốc bị cấm tự đem quân đi đòi nợ máu. Tranh chấp phải đưa ra tòa Đế quốc, và kẻ vi phạm bị đặt ngoài vòng pháp luật — ai giết cũng được, tài sản ai lấy cũng được.\n\nAi được lợi: thành bang tự do và thương nhân, vì đường bộ an toàn hơn thì hàng đi được xa hơn.\n\nAi lách được, và lách bằng cách nào: gửi thư báo thù đúng ba ngày trước khi ra tay thì về mặt lệ vẫn là tư chiến hợp thức, không phải cướp. Hoặc thuê một hiệp sĩ không có đất, không có gì để bị tịch thu, rồi công khai chối bỏ hắn. Tòa Đế quốc mỗi năm nhận hàng trăm vụ và xử xong chừng vài chục — phần còn lại chết già trong hồ sơ, và đó cũng là một cách lách.",
+          "summary": "Lệnh cấm lãnh chúa tự đem quân đòi nợ máu trong Đế quốc; tranh chấp phải ra tòa Đế quốc, kẻ vi phạm bị đặt ngoài vòng pháp luật. Lách bằng thư báo thù gửi trước ba ngày, hoặc thuê hiệp sĩ không đất rồi chối bỏ. Tòa nhận hàng trăm vụ mỗi năm và xử xong vài chục.",
+          "keys": ["cấm tư chiến", "hòa bình Đế quốc", "Landfrieden", "nợ máu", "thư báo thù", "đặt ngoài vòng pháp luật", "tòa Đế quốc"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "validFrom": { "year": 1431, "month": 2, "day": 1, "hour": 0 },
+          "weight": 12,
+          "budgetPriority": 8
+        },
+        {
+          "id": "law_cam-ban-vu-khi-cho-ngoai-dao",
+          "title": "Sắc chỉ cấm bán vũ khí cho kẻ ngoại đạo",
+          "type": "law",
+          "content": "Giáo hoàng cấm mọi tín đồ Cơ đốc bán vũ khí, sắt, gỗ đóng tàu, dây thừng và ma thạch cho Đế chế Ottoman. Vi phạm thì rút phép thông công, và hàng bị tịch thu cho Giáo triều.\n\nAi được lợi: về danh nghĩa là toàn bộ Cơ đốc giáo. Trên thực tế là những kẻ có giấy miễn trừ.\n\nAi lách được, và lách bằng cách nào: Genoa và Venice bán qua trung gian ở Caffa và các cảng Crimea — hàng rời cảng Ý là hàng đi Kaffa, tới nơi thì thành hàng đi đâu không ai ghi. Tộc Lùn bán \"phôi sắt\" chứ không bán \"vũ khí\", và phôi sắt không nằm trong sắc chỉ. Còn ai bị bắt thì mua một tờ xá miễn với giá bằng một phần lợi nhuận chuyến hàng.\n\nSắc chỉ được nhắc lại bốn lần trong ba mươi năm. Người ta nhắc lại một lệnh cấm khi nó không hiệu nghiệm.",
+          "summary": "Giáo hoàng cấm bán vũ khí, sắt, gỗ đóng tàu và ma thạch cho Ottoman; vi phạm thì bị rút phép thông công. Genoa và Venice lách bằng trung gian ở Caffa, tộc Lùn lách bằng cách bán phôi sắt chứ không bán vũ khí, kẻ bị bắt thì mua xá miễn. Sắc chỉ đã phải nhắc lại bốn lần trong ba mươi năm.",
+          "variants": [
+            {
+              "audience": "nation_giao-trieu",
+              "content": "Bán một thanh gươm cho kẻ ngoại đạo là bán trước cái chết của một tín đồ, và Giáo hội gọi đúng tên nó như thế trong bốn sắc chỉ liên tiếp.\n\nHình phạt là vạ tuyệt thông và tịch thu, phần tịch thu về Giáo triều. Nghe thì tiện cho Giáo triều, nhưng ai đã thử tịch thu hàng của một galley Genoa ngoài khơi Crimea đều biết con số thu về gần bằng không.\n\nVấn đề thật là các thành bang Ý. Họ ký mọi tuyên bố chống Ottoman, rồi chở gỗ đóng tàu tới Gallipoli trong cùng một mùa. Rome không đủ tàu để chặn họ, nên Rome chặn bằng thứ mình có: giấy, và nỗi sợ.\n\nCả hai thứ đó đang mất giá."
+            },
+            {
+              "audience": "nation_thanh-bang-latin",
+              "content": "Sắc chỉ ấy được viết bởi những người sống bằng tô ruộng, dành cho những người sống bằng chuyến hàng.\n\nHãy thử tính. Không có tuyến Levant thì không có tiêu, không có lụa, không có phèn nhuộm — mà không có phèn thì cả ngành len Flanders chết, và Rome mất luôn khoản thu từ Flanders. Cấm vận triệt để là tự siết cổ mình để dọa hàng xóm.\n\nVì thế chúng ta làm điều duy nhất hợp lý: xin miễn trừ khi xin được, đi qua Caffa khi không xin được, và trả tiền phạt như một khoản chi phí có thể tính trước.\n\nGenoa và Venice chửi nhau về mọi thứ trừ chuyện này. Về chuyện này thì cả hai im lặng theo cùng một cách."
+            },
+            {
+              "audience": "nation_ottoman",
+              "content": "Người Cơ đốc cấm bán sắt cho chúng ta. Người Cơ đốc bán sắt cho chúng ta.\n\nHai câu trên đều đúng, và khoảng cách giữa chúng là chỗ mà Đế chế đã đóng xong hạm đội Gallipoli.\n\nHọ bán qua Caffa, qua đảo Chios, qua các thương nhân người Do Thái và người Armenia mà chính họ khinh. Tộc Lùn bán \"phôi\" chứ không bán \"gươm\", và một cái phôi thì rèn thành gì là việc của người mua.\n\nĐiều Sultan rút ra không phải là họ tham. Là họ không có một chỉ huy duy nhất. Một lệnh cấm mà mười một thành bang phải cùng tuân thì nó không phải lệnh cấm, nó là một lời gợi ý."
+            }
+          ],
+          "keys": ["cấm bán vũ khí", "buôn lậu sắt", "sắc chỉ cấm vận", "cấm vận Ottoman", "phôi sắt", "giấy miễn trừ"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "validFrom": { "year": 1439, "month": 7, "day": 6, "hour": 0 },
+          "weight": 12,
+          "budgetPriority": 7
+        },
+        {
+          "id": "law_le-vay-thanh",
+          "title": "Lệ vây thành: quyền được hàng và quyền cướp phá",
+          "type": "law",
+          "content": "Lệ chung của cả lục địa, không ai ký mà ai cũng theo.\n\nKhi quân vây tới, thành được mời hàng một lần. Hàng lúc đó thì giữ được mạng, giữ được nhà thờ, và trả một khoản chuộc. Sau khi đại bác đã nổ phát đầu tiên, lời mời hết hiệu lực. Sau khi tường thủng, thành thuộc về lính trong ba ngày — và trong ba ngày đó chỉ có nhà thờ là bất khả xâm phạm, trên lý thuyết.\n\nAi được lợi: cả hai bên. Kẻ vây đỡ tốn người, kẻ thủ đỡ mất tất cả.\n\nAi lách được: viên chỉ huy nào cũng biết rằng nếu hắn kéo dài đúng một tuần nữa thì lính hắn được ba ngày cướp phá thay vì một khoản chuộc chia đều. Đó là lý do nhiều thành đáng lẽ hàng được lại không hàng — sứ giả mang lời mời không bao giờ tới nơi.",
+          "summary": "Lệ chung không ai ký: thành được mời hàng một lần trước phát đại bác đầu tiên; hàng thì giữ mạng và trả tiền chuộc. Tường thủng thì thành thuộc về lính ba ngày, chỉ nhà thờ được miễn trên lý thuyết. Chỉ huy vây thành có động cơ để sứ giả mang lời mời không bao giờ tới nơi.",
+          "keys": ["lệ vây thành", "mời hàng", "quyền cướp phá", "ba ngày cướp phá", "tiền chuộc thành", "phá tường"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "weight": 12,
+          "budgetPriority": 8
+        },
+        {
+          "id": "law_hoa-uoc-alps",
+          "title": "Hòa ước Alps giữa Giáo hội và tộc Lùn",
+          "type": "law",
+          "content": "Ký cách đây hơn hai trăm năm, sau khi ba đoàn Thập Tự tiến vào các đường hầm dưới dãy Alps và không đoàn nào ra.\n\nĐiều khoản: Giáo hội công nhận tộc Lùn có linh hồn và không truy bức tín ngưỡng lò rèn của họ. Đổi lại, tộc Lùn không truyền đạo lên mặt đất, không bán vũ khí cho kẻ đã bị rút phép thông công, và mỗi năm nộp cho Giáo triều một khoản gọi là \"lễ vật của núi\".\n\nAi được lợi: cả hai, và cả hai đều biết mình được lợi, nên hòa ước này bền hơn mọi hiệp ước giữa các vương quốc.\n\nAi lách được: khoản \"không bán cho kẻ bị rút phép thông công\" chỉ ràng buộc phường hội, không ràng buộc từng thợ cả. Và tộc Lùn có rất nhiều thợ cả.",
+          "summary": "Hòa ước hơn hai trăm năm tuổi: Giáo hội công nhận tộc Lùn có linh hồn và không truy bức tín ngưỡng lò rèn; đổi lại tộc Lùn không truyền đạo lên mặt đất, không bán vũ khí cho kẻ bị rút phép thông công, và nộp lễ vật của núi hằng năm. Điều khoản cấm bán chỉ ràng buộc phường hội chứ không ràng buộc từng thợ cả.",
+          "variants": [
+            {
+              "audience": "nation_lien-bang-nui",
+              "content": "Ba đoàn Thập Tự đi vào các đường hầm. Không đoàn nào ra. Đó là chương đầu, và các bô lão bắt mọi thợ học việc thuộc lòng nó.\n\nChương hai là chương đáng học hơn: sau khi thắng, chúng ta vẫn ngồi vào bàn và vẫn ký. Vì thắng ba đoàn thì được, thắng ba mươi đoàn thì hết đá để bịt hầm.\n\nHòa ước đổi lấy điều duy nhất chúng ta cần: họ công nhận chúng ta có linh hồn. Không có dòng chữ đó thì mọi lò rèn dưới Alps là tài sản vô chủ, ai chiếm cũng được.\n\nKhoản \"lễ vật của núi\" hằng năm thì cứ trả. Nó rẻ hơn một cuộc chiến, và một khoản chi rẻ hơn chiến tranh không bao giờ là một khoản nhục."
+            },
+            {
+              "audience": "nation_giao-trieu",
+              "content": "Hòa ước ấy là một trong những việc khôn ngoan nhất Giáo hội từng làm, và cũng là việc ít được nhắc tới nhất.\n\nMột tộc không thể cải đạo, ở dưới lòng đất, giữ trong tay toàn bộ nghề rèn của lục địa — với thứ đó, lựa chọn không phải giữa cải đạo và tiêu diệt. Lựa chọn là giữa một hàng xóm có ràng buộc và một kẻ thù có vũ khí tốt hơn mình.\n\nHọ được công nhận có linh hồn. Đổi lại họ không giảng đạo trên mặt đất, và họ không bán cho kẻ bị vạ.\n\nVế thứ hai bị vi phạm mỗi mùa. Rome biết. Rome cũng biết rằng nhắc tới nó là mở lại toàn bộ hòa ước, nên Rome không nhắc."
+            },
+            {
+              "audience": "race_lun-vuc-sau",
+              "content": "Các bang trên đó ký một tờ giấy với những kẻ chưa từng xuống quá tầng thứ hai, và trong tờ giấy ấy có một điều khoản không được viết ra.\n\nĐiều khoản là: bịt tầng dưới cùng. Không phải Giáo hội đòi. Chính các bang đòi, vì họ sợ cái mà chúng tôi không sợ, và vì họ cần một cái cớ để cắt chúng tôi khỏi mặt đất.\n\nHai trăm năm nay họ gọi chúng tôi là nhánh dị hình. Họ quên mất rằng mạch quặng tốt nhất nằm dưới chỗ đã bịt, và họ đang đào tới nó từ phía trên với tốc độ của những kẻ nghĩ mình còn nhiều thời gian."
+            }
+          ],
+          "keys": ["Hòa ước Alps", "lễ vật của núi", "tín ngưỡng lò rèn", "hòa ước với tộc Lùn"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "weight": 12,
+          "budgetPriority": 7
+        }
+      ]
+    }
+  ]
+}

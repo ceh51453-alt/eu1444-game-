@@ -1,0 +1,105 @@
+{
+  "$comment": "PHÙ PHÉP & VẬT PHẨM HIẾM (Phần 16 mục 14). PHẢI HIẾM. KHÔNG CÓ TIỆM BÁN ĐỒ PHÙ PHÉP — đó là câu đầu tiên của mục 14 và là ràng buộc cứng của cả file: không mục nào ở đây có `buyable: true`, và không được thêm. Mỗi hiệu ứng chỉ đến từ MỘT nguồn, và nguồn nào cũng là một chuyến đi hoặc một quan hệ chính trị chứ không phải một túi tiền.",
+  "version": 1,
+
+  "$loreComment": "Mỗi vật phẩm phù phép NÊN LÀ MỘT ENTRY LOREBOOK (mục 14, nối Phần 4) với `knowledge='gated'`: người chơi phải BIẾT về nó trước khi có thể đi tìm. `loreEntry` là khóa entry; `gated` bật cổng tri thức của Phần 4 mục 5. Không có entry thì món ấy không bao giờ xuất hiện trong một câu gợi ý nào của AI.",
+
+  "$effectComment": "Hiệu ứng đăng ký qua REGISTRY MODIFIER của Phần 5 (mục 1d) — không tính riêng ở đâu cả. `kind` là bốn kiểu của Phần 5 mục 7: flat · dc · pool · dieShift. `domains` là mẫu miền; `armor`/`weapon` là mức cộng thẳng vào ba trục chống và ba trục xuyên của mục 3.",
+
+  "enchantments": [
+    {
+      "id": "ench_rune-lun",
+      "name": "Rune Lùn",
+      "source": "nation_lien-bang-nui",
+      "origin": "Khắc bởi xưởng rune trong Liên bang Núi (`bld_xuong-khac-rune`).",
+      "material": "thep-rune",
+      "durable": true,
+      "loreEntry": "rune-lun",
+      "gated": true,
+      "rarity": "hiem",
+      "weapon": { "chem": 8, "dam": 8, "dap": 8 },
+      "armor": { "chem": 6, "dam": 6, "dap": 6 },
+      "modifiers": [
+        { "label": "Rune Lùn", "value": 5, "kind": "flat", "domains": ["combat.*", "skill.kiem-thuat", "skill_riu-bua"] }
+      ],
+      "conditionDecay": 0.4,
+      "note": "HIỆU ỨNG BỀN VỮNG (mục 14) — rune không phai theo thời gian, và đó là điều khiến nó khác mọi thứ khác trong danh sách này. Đổi lại: một xưởng rune không nhận đơn hàng của người lạ."
+    },
+    {
+      "id": "ench_det-tien",
+      "name": "Dệt Tiên",
+      "source": "",
+      "origin": "Áo và cung của Cao Tiên. Không bán; được TẶNG, và người tặng nhớ mình đã tặng.",
+      "loreEntry": "det-tien",
+      "gated": true,
+      "rarity": "rat-hiem",
+      "weightFactor": 0.55,
+      "armor": { "chem": 10, "dam": 8, "dap": 2 },
+      "modifiers": [
+        { "label": "Dệt Tiên — nhẹ phi lý", "value": 6, "kind": "flat", "domains": ["skill.nhao-lon", "skill.len-lut", "combat.ne-tranh"] }
+      ],
+      "conditionDecay": 0.2,
+      "note": "NHẸ VÀ BỀN PHI LÝ (mục 14). Một tấm áo dệt Tiên nặng bằng một cái áo sơ mi và chặn được đường kiếm — và ai nhìn kỹ đều biết ngài đã đứng rất gần một Cao Tiên."
+    },
+    {
+      "id": "ench_thanh-vat",
+      "name": "Thánh vật Giáo hội",
+      "source": "nation_giao-trieu",
+      "origin": "CHỈ Giáo triều cấp, và cấp là MỘT HÀNH ĐỘNG CHÍNH TRỊ (mục 14, nối Phần 13 và 14).",
+      "loreEntry": "thanh-vat",
+      "gated": true,
+      "rarity": "rat-hiem",
+      "versus": ["huyet-toc", "ta-thuat"],
+      "weapon": { "chem": 0, "dam": 0, "dap": 0 },
+      "versusPower": { "chem": 20, "dam": 20, "dap": 20 },
+      "modifiers": [
+        { "label": "Ban phước", "value": 8, "kind": "flat", "domains": ["skill.tru-ta", "skill.nghi-thuc"] },
+        { "label": "Thánh vật trước tà thuật", "value": 1, "kind": "dieShift", "domains": ["skill.huyen-thuat"], "whenAnyTag": ["ta-thuat", "huyet-toc"] }
+      ],
+      "silverLike": true,
+      "note": "BAN PHƯỚC, hiệu quả với Huyết Tộc và tà thuật (mục 14). Với mọi thứ khác thì nó là một hộp gỗ đựng một mẩu xương — và giá trị xã hội của nó thì đúng bằng lời hứa mà Giáo triều gắn vào lúc trao."
+    },
+    {
+      "id": "ench_ren-huyet-long",
+      "name": "Rèn huyết long",
+      "source": "",
+      "origin": "Long Duệ. Máu rồng tôi vào thép lúc còn đỏ.",
+      "material": "vay-long-due",
+      "loreEntry": "ren-huyet-long",
+      "gated": true,
+      "rarity": "cuc-hiem",
+      "weapon": { "chem": 14, "dam": 14, "dap": 10 },
+      "armor": { "chem": 12, "dam": 10, "dap": 6 },
+      "fireproof": true,
+      "modifiers": [
+        { "label": "Rèn huyết long", "value": 10, "kind": "flat", "domains": ["combat.*"] },
+        { "label": "Không cháy", "value": 2, "kind": "dieShift", "domains": ["skill.chiu-dung"], "whenAnyTag": ["lua"] }
+      ],
+      "conditionDecay": 0.3,
+      "note": "CỰC HIẾM (mục 14). Một thanh rèn huyết long trong tay một người không phải Long Duệ là một câu chuyện mà cả châu lục sẽ hỏi cho ra."
+    },
+    {
+      "id": "ench_vat-bi-nguyen",
+      "name": "Vật bị nguyền",
+      "source": "",
+      "origin": "Không ai làm ra nó có chủ ý. Người ta NHẶT ĐƯỢC, thường là từ một cái xác.",
+      "loreEntry": "vat-bi-nguyen",
+      "gated": true,
+      "rarity": "hiem",
+      "cursed": true,
+      "hiddenUntilTurns": 12,
+      "weapon": { "chem": 18, "dam": 18, "dap": 18 },
+      "armor": { "chem": 14, "dam": 14, "dap": 14 },
+      "modifiers": [
+        { "label": "Sức mạnh không rõ nguồn", "value": 12, "kind": "flat", "domains": ["combat.*"] },
+        { "label": "Cái giá phải trả", "value": -10, "kind": "flat", "domains": ["skill.an-ui", "skill.gay-thien-cam", "skill.nghi-thuc"] }
+      ],
+      "curse": {
+        "id": "khong-roi-tay-duoc",
+        "revealAfterTurns": 12,
+        "note": "MẠNH NHƯNG CÓ GIÁ PHẢI TRẢ, VÀ THƯỜNG KHÔNG BIẾT TRƯỚC (mục 14). Dòng modifier âm chỉ hiện lên sau khi lời nguyền lộ ra — trước đó người chơi chỉ thấy mọi người xung quanh lạnh nhạt dần mà không hiểu vì sao."
+      },
+      "note": "Đây là mục DUY NHẤT trong file có `cursed`. Nếu có ngày danh sách này dài ra thì nó vẫn phải là mục duy nhất được giấu hiệu ứng: hai món giấu hiệu ứng là người chơi ngừng nhặt đồ."
+    }
+  ]
+}

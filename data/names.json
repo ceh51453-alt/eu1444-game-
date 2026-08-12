@@ -1,0 +1,66 @@
+{
+  "$comment": "Kho tên cho việc sinh gia tộc và NPC bằng seeded RNG (Phần 6 mục 6). Tra theo thứ tự: id chủng tộc → id nhóm chủng tộc → `mac-dinh`. Nhờ vậy thêm một tộc mới mà chưa có kho tên riêng thì vẫn chạy, chỉ là tên nghe chung chung — chứ không nổ.",
+  "version": 1,
+  "pools": {
+    "race_frank": {
+      "male": ["Guillaume", "Thibaut", "Renaud", "Aimery", "Gauthier", "Hugues", "Baudouin", "Enguerrand", "Foulques", "Raoul", "Girard", "Anselme"],
+      "female": ["Aliénor", "Mahaut", "Isabeau", "Blanche", "Ermengarde", "Adélaïde", "Sibylle", "Jeanne", "Agnès", "Constance", "Yolande", "Béatrix"],
+      "family": ["de Courcy", "de Vaudreuil", "d'Aubigné", "de Montfort", "de Beaufort", "de Lussac", "de Rochefort", "d'Anglure", "de Brienne", "de Sancerre"]
+    },
+    "race_teuton": {
+      "male": ["Konrad", "Dietrich", "Ulrich", "Gerhard", "Albrecht", "Wolfram", "Heinrich", "Otto", "Berthold", "Siegmund", "Reinhard", "Kuno"],
+      "female": ["Adelheid", "Kunigunde", "Mechthild", "Irmgard", "Hedwig", "Brunhild", "Gisela", "Walburg", "Adelgund", "Ermentrude", "Sieglinde", "Hildegard"],
+      "family": ["von Ehrenfeld", "von Steinbach", "von Falkenau", "zu Wolfsegg", "von Hohenberg", "von Rabenstein", "zu Dornburg", "von Ammerthal", "von Greifenau", "zu Bärenfels"]
+    },
+    "race_latin": {
+      "male": ["Ludovico", "Bartolomeo", "Cosimo", "Gregorio", "Ottaviano", "Ferrante", "Nicolò", "Silvestro", "Giacomo", "Amadeo", "Rinaldo", "Ambrogio"],
+      "female": ["Bianca", "Lucrezia", "Ginevra", "Costanza", "Fiammetta", "Ippolita", "Caterina", "Simonetta", "Beatrice", "Orsina", "Laudomia", "Vittoria"],
+      "family": ["Malatesta", "Contarini", "Grimaldi", "Baglioni", "Trevisan", "Della Rovere", "Foscari", "Sanseverino", "Buondelmonti", "Vitelli"]
+    },
+    "race_rus": {
+      "male": ["Vsevolod", "Yaropolk", "Mstislav", "Dobrynya", "Rostislav", "Izyaslav", "Bogdan", "Vyacheslav", "Ratmir", "Svyatoslav", "Gleb", "Lyubim"],
+      "female": ["Predslava", "Miroslava", "Zabava", "Yaroslava", "Vseslava", "Lyubava", "Dobrava", "Rogneda", "Milada", "Zvenislava", "Bratislava", "Cherna"],
+      "family": ["Tverskoy", "Belozersky", "Yaroslavich", "Vyazemsky", "Starodubsky", "Obolensky", "Rostovsky", "Zvenigorodsky", "Kholmsky", "Mozhaysky"]
+    },
+    "nhan-loai": {
+      "male": ["Marek", "Iancu", "Tomas", "Andras", "Pavlo", "Erik", "Janos", "Stefan", "Dragan", "Kasper"],
+      "female": ["Zofia", "Ilona", "Marta", "Katalin", "Vesna", "Ingrid", "Anka", "Dorotea", "Ruzena", "Elska"],
+      "family": ["Nagy", "Kovac", "Zoric", "Vlašić", "Baran", "Horvat", "Dobrev", "Kalmar", "Radic", "Bielski"]
+    },
+    "tien": {
+      "male": ["Aelthiron", "Cirandel", "Valethas", "Ithuriel", "Maelorin", "Sylvaeth", "Aurelith", "Thandriel", "Elyvor", "Nerathil"],
+      "female": ["Lythienne", "Aerivel", "Sylwen", "Maerith", "Ithariel", "Caeleth", "Vaeloria", "Anthiel", "Serelith", "Thaeryn"],
+      "family": ["Nhánh Bạch Dương", "Nhánh Sương Sớm", "Nhà Ánh Tà", "Nhà Vọng Cổ", "Nhánh Rễ Sâu", "Nhà Tro Bạc", "Nhánh Gió Tây", "Nhà Đêm Dài", "Nhánh Sao Lặn", "Nhà Kim Tuyến"]
+    },
+    "lun": {
+      "male": ["Borin", "Thrandur", "Grimnar", "Dvalin", "Hrothgar", "Kazrik", "Baldrun", "Fjalar", "Onnur", "Durgan"],
+      "female": ["Hilda", "Brynja", "Thorgunn", "Ragnhild", "Dagny", "Sigrun", "Astrid", "Grimhild", "Halla", "Ulfhild"],
+      "family": ["Búa Sắt", "Đe Đỏ", "Mạch Sâu", "Cột Đá", "Lò Ba Đời", "Vỉa Bạc", "Then Cửa", "Rìu Cùn", "Đá Vôi", "Hầm Bảy"]
+    },
+    "nguoi-thu": {
+      "male": ["Gharzul", "Rakko", "Ferran", "Muzir", "Torvak", "Ashkar", "Bael", "Sorrek", "Nazim", "Kell"],
+      "female": ["Shara", "Nikko", "Vessa", "Ilka", "Ruma", "Tazira", "Ossa", "Meru", "Kavi", "Zhenna"],
+      "family": ["Thị tộc Sói Xám", "Thị tộc Đồng Cỏ", "Thị tộc Nanh Gãy", "Thị tộc Suối Cạn", "Thị tộc Trăng Khuyết", "Thị tộc Bờ Đá", "Thị tộc Gió Bắc", "Thị tộc Lửa Trại", "Thị tộc Móng Đen", "Thị tộc Sương Muối"]
+    },
+    "khong-lo": {
+      "male": ["Gormok", "Ulgrath", "Bruzh", "Skarnak", "Hodrek", "Marzul", "Tharok", "Vunder", "Grulk", "Ozmar"],
+      "female": ["Ygrash", "Sulka", "Bragna", "Ormhild", "Zurra", "Halgra", "Muzka", "Trenva", "Skalda", "Ghorna"],
+      "family": ["Đỉnh Sấm", "Vai Núi", "Chân Băng", "Tảng Lớn", "Cột Trời", "Hàm Đá", "Bóng Vực", "Rễ Núi", "Sườn Gió", "Đầu Sói"]
+    },
+    "huyet-due": {
+      "male": ["Vlaicu", "Mircea", "Radu", "Alexandru", "Bogdan", "Neagoe", "Serban", "Iancu", "Dragos", "Constantin"],
+      "female": ["Ilinca", "Ruxandra", "Stanca", "Voica", "Chiajna", "Anca", "Maria", "Zamfira", "Neacsa", "Despina"],
+      "family": ["Báthory", "Dracsan", "Corvinus", "Vlădescu", "Székely", "Bethlen", "Cantacuzino", "Rákóczi", "Movilă", "Basarab"]
+    },
+    "nguyen-to": {
+      "male": ["Thalor", "Nereus", "Bavrin", "Sylnar", "Ormund", "Kaelis", "Vorden", "Tessek", "Aluin", "Grivar"],
+      "female": ["Nerith", "Sylva", "Ombra", "Kessa", "Vaela", "Thrina", "Alvara", "Morwen", "Isolde", "Brenna"],
+      "family": ["Lùm Thiêng", "Vân Đá", "Sóng Ngầm", "Tro Nguội", "Rễ Cổ", "Mạch Ngầm", "Sương Xám", "Băng Vỡ", "Nhựa Đen", "Cát Trắng"]
+    },
+    "mac-dinh": {
+      "male": ["Aldric", "Bertran", "Corvin", "Dain", "Edrik", "Falk", "Goran", "Halvar", "Ivar", "Jorund"],
+      "female": ["Alina", "Bera", "Cova", "Dagna", "Elka", "Fenna", "Greta", "Halla", "Ilva", "Jora"],
+      "family": ["Nhà Bờ Sông", "Nhà Cổng Bắc", "Nhà Đồi Thấp", "Nhà Bến Cũ", "Nhà Ba Cây", "Nhà Đá Xám", "Nhà Ruộng Muối", "Nhà Ngã Ba", "Nhà Rừng Thưa", "Nhà Chợ Dưới"]
+    }
+  }
+}

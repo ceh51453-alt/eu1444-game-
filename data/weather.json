@@ -1,0 +1,93 @@
+{
+  "$comment": "THỜI TIẾT VÀ THỜI ĐIỂM TRONG NGÀY — Phần 10 mục 9 và 9b. Mục 9b là bản vá bắt buộc của Phần 14b: không có luật chiến trận ban đêm thì quân Huyết Tộc không ra trận được. Số điều chỉnh theo thang d100, dương là lợi.",
+  "version": 1,
+
+  "weather": [
+    {
+      "id": "quang-dang",
+      "name": "Trời quang",
+      "default": true,
+      "note": "Không ai được gì, không ai mất gì."
+    },
+    {
+      "id": "mua",
+      "name": "Mưa",
+      "ranged": -25,
+      "sightFactor": 0.8,
+      "cohesionDrain": 1,
+      "moraleDrain": 1,
+      "note": "Dây cung ẩm — mục 9 gọi thẳng tên: giảm mạnh cung thủ."
+    },
+    {
+      "id": "mua-lon",
+      "name": "Mưa lớn",
+      "ranged": -45,
+      "sightFactor": 0.55,
+      "commandFactor": 0.8,
+      "moveExtra": 1,
+      "cohesionDrain": 2,
+      "moraleDrain": 2,
+      "note": "Trường cung gần như vô dụng, và đất dưới chân biến thành bùn."
+    },
+    {
+      "id": "suong-mu",
+      "name": "Sương mù",
+      "ranged": -35,
+      "sightFactor": 0.3,
+      "commandFactor": 0.45,
+      "note": "Giảm tầm nhìn và tầm lệnh (mục 9). Đánh sườn dễ hơn vì không ai thấy gì."
+    },
+    {
+      "id": "tuyet",
+      "name": "Tuyết",
+      "ranged": -30,
+      "sightFactor": 0.5,
+      "commandFactor": 0.7,
+      "moveExtra": 1,
+      "fatigueExtra": 3,
+      "moraleDrain": 3,
+      "note": "Mệt nhanh, lạnh, và không ai muốn đứng yên chờ."
+    },
+    {
+      "id": "nang-gat",
+      "name": "Nắng gắt",
+      "fatigueExtra": 3,
+      "heavyFatigueExtra": 4,
+      "note": "Mệt nhanh trong giáp (mục 9). Người mặc giáp tấm trả giá gấp đôi."
+    }
+  ],
+
+  "timesOfDay": [
+    {
+      "id": "rang-dong",
+      "name": "Rạng đông",
+      "default": true,
+      "dawn": true,
+      "sightFactor": 0.7,
+      "note": "Bình minh: cửa đóng lại của quân Huyết Tộc (mục 9b). Truy kích của họ dừng ở đây."
+    },
+    { "id": "ban-ngay", "name": "Ban ngày", "note": "Không phạt gì." },
+    {
+      "id": "hoang-hon",
+      "name": "Hoàng hôn",
+      "sightFactor": 0.6,
+      "initiative": -1,
+      "commandFactor": 0.8,
+      "note": "Trận chưa xong mà trời sắp tối — truy kích sẽ không trọn vẹn."
+    },
+    {
+      "id": "ban-dem",
+      "name": "Ban đêm",
+      "night": true,
+      "sightFactor": 0.22,
+      "initiative": -3,
+      "commandFactor": 0.4,
+      "ranged": -40,
+      "cohesionDrain": 4,
+      "note": "Mục 9b: phạt tầm nhìn nặng, phạt điểm khởi động, tầm lệnh rút ngắn, đội hình dễ vỡ. Đơn vị mang nhãn `nhin-dem` KHÔNG chịu mức phạt nào ở đây."
+    }
+  ],
+
+  "nightVisionTag": "nhin-dem",
+  "noDaylightPursuitTag": "khong-truy-kich-ban-ngay"
+}

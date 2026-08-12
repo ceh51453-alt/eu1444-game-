@@ -1,0 +1,15 @@
+export {
+  EMPTY_CODEX,
+  adultDetailSchema,
+  codexOf,
+  codexPromptView,
+  codexSchema,
+  codexSlice,
+  npcCodexSchema,
+  npcRelationshipSchema,
+  reconcileCodexOps,
+  type CodexCollection,
+  type CodexPromptView,
+  type CodexState,
+  type NpcCodexEntry,
+} from './slice';

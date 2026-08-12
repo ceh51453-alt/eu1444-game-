@@ -1,0 +1,8 @@
+<% const far = history.slice(0, Math.max(0, history.length - 8)); %>
+CHUYỆN ĐÃ QUA — tóm tắt, không phải nguyên văn
+<% for (const entry of far) { %>
+· Lượt <%= entry.turn %> (<%= fmt.date(entry.gameDate) %>): <%= entry.action %><% if (entry.outcome !== '') { %> → <%= entry.outcome %><% } %>
+<% } %>
+
+Đây là trí nhớ xa. Chi tiết đã mờ, nhưng SỰ VIỆC thì có thật: nhân vật nào đã
+gặp, lời hứa nào đã trót nói, kẻ nào đã nhớ mặt. Đừng mâu thuẫn với chúng.

@@ -1,0 +1,388 @@
+{
+  "$comment": "GIÁP TRỤ (Phần 16 mục 3, 4, 8, 9). THAY BẢN TỐI GIẢN CỦA PHẦN 9. Khác biệt lớn nhất so với bản cũ: giáp không còn khai 'che ô nào' theo ô giáp thô của `data/gear.json` mà khai CHE VÙNG CƠ THỂ NÀO VÀ CHE ĐƯỢC BAO NHIÊU PHẦN TRĂM — trên đúng 20 vùng của Phần 7. Vùng nào cộng dồn chưa đủ 100 là còn khe, và khe là cơ chế trung tâm của cả phần này (mục 4).",
+  "version": 2,
+
+  "$protectionComment": "BA GIÁ TRỊ RIÊNG, KHÔNG GỘP THÀNH MỘT SỐ (mục 3, README mục 8.5). `chem` chống chém · `dam` chống đâm · `dap` chống đập. Một tấm thép chặn lưỡi gần như tuyệt đối mà chặn lực thì kém — gộp ba con số ấy lại là xóa luôn lý do cây búa chiến tồn tại. Thang 0–100, đo bằng thép tôi (`thep`) ở chất lượng `thuong` và tình trạng 100; vật liệu và tay nghề nhân vào sau.",
+
+  "$classesComment": "Bốn loại giữ NGUYÊN từ Phần 9: `rank` chọn loại nặng nhất khi nhiều món chồng lên nhau, và `plate` bật nhãn `dich-giap-tam` mà node Thế nửa kiếm của Phần 8 đã khai trong `whenAnyTag`. Chúng KHÔNG còn quyết định thương tích — mục 4 làm việc đó bằng ba con số chống ở trên. Loại chỉ còn là cách gọi tên và cách tra `armorRules` cho mức khó của cú tung TRƯỚC khi trúng.",
+  "classes": [
+    { "id": "khong-giap", "name": "Không giáp", "rank": 0, "plate": false },
+    { "id": "giap-da", "name": "Giáp da và áo lót", "rank": 1, "plate": false },
+    { "id": "giap-luoi", "name": "Giáp lưới", "rank": 2, "plate": false },
+    { "id": "giap-tam", "name": "Giáp tấm", "rank": 3, "plate": true }
+  ],
+
+  "$layeringComment": "CHỒNG LỚP — đây là chỗ 'áo lót độn là NỀN CỦA MỌI BỘ' của mục 3 thành cơ học. Trên mỗi vùng, giá trị chống của một trục lấy món TỐT NHẤT rồi cộng thêm một phần của món thứ hai và thứ ba. Giáp lưới một mình chống đập 18 — gần như vô dụng; mặc lên trên áo lót độn (chống đập 42, và vật liệu `vai-don` nhân thêm 1.15) thì con số thật là 48 + 0.35×16 ≈ 54. Đó là toàn bộ lý do không ai mặc giáp lưới trần. TẤM THÉP VẪN PHẢI HƠN VẢI trên chính trục ấy: 52 so với 42, nếu không thì mặc thêm giáp tấm lên áo độn là một quyết định vô nghĩa trước cây chùy.",
+  "layering": { "second": 0.35, "third": 0.15, "max": 97 },
+
+  "$resolutionComment": "BỐN KHẢ NĂNG CỦA MỤC 4, xếp theo `pen` = sức xuyên của đòn trừ đi sức chống của vùng trúng trên ĐÚNG trục của đòn ấy. Đọc từ trên xuống, lấy dòng đầu tiên khớp. Trúng vào KHE HỞ thì không dòng nào áp: vết đi thẳng qua như không có giáp, và đó là toàn bộ giá trị của một mũi dao rondel vào nách.",
+  "resolution": {
+    "bands": [
+      { "id": "xuyen", "minPen": 20, "severityCap": 5, "note": "Xuyên qua giáp — thương tích đầy đủ. Búa chiến trước giáp tấm nằm ở đây." },
+      { "id": "xuyen-nong", "minPen": 0, "severityCap": 4, "note": "Vào được, nhưng không vào sâu." },
+      { "id": "dap-xuyen", "minPen": -12, "severityCap": 3, "forceType": "blunt", "note": "ĐẬP XUYÊN QUA: giáp chặn lưỡi nhưng KHÔNG chặn lực. Vết hở thành chấn thương kín; vũ khí có `crush` thì thành gãy xương." },
+      { "id": "chan", "minPen": -1000, "severityCap": 0, "note": "Bị giáp chặn. Không vết thương nào — cái nó để lại là mệt (`wounds.absorbedStamina` của Phần 9)." }
+    ],
+    "crushForceType": "fracture",
+    "$gapSeekComment": "Đòn NHẮM vào khe hở gỡ được phần lớn mức che phủ của vùng ấy — nhưng phải trả bằng một cú tung khó hơn hẳn (`armorRules.gapOnly` của Phần 9) và bằng một node kỹ thuật của Phần 8. `gapAimBias` nhân trọng số trúng đòn của những vùng CÒN HỞ; `gapRelief` là phần che phủ bị gỡ khi đã nhắm đúng.",
+    "gapAimBias": 4,
+    "gapRelief": 0.75
+  },
+
+  "$fitComment": "VỪA NGƯỜI (mục 8) — chi tiết lịch sử mà hầu hết game bỏ qua, và nó đổi hẳn cách xử lý chiến lợi phẩm. `do-may` phải đo may cho từng người: cướp được thì chủ yếu để BÁN hoặc ĐEM VỀ SỬA. `co-gian` là ưu thế thật của giáp lưới ở đầu thế kỷ và là lý do lính đánh thuê chuộng nó.",
+  "fit": {
+    "modes": [
+      { "id": "do-may", "name": "phải đo may", "note": "Giáp tấm. Mỗi tấm uốn theo đúng một bộ xương." },
+      { "id": "co-gian", "name": "co giãn", "note": "Giáp lưới và áo độn. Ai mặc cũng tạm được." },
+      { "id": "khong-can", "name": "không cần đo", "note": "Áo choàng, mũ vải, đai." }
+    ],
+    "$gradeComment": "Bốn mức của mục 8, tra theo chênh lệch vóc dáng giữa người mặc và `fitTo`. `agi` và `speed` là dòng modifier đăng ký vào registry Phần 5; `stamina` cộng vào mức tiêu hao mỗi hiệp của Phần 9; `jointLock` là số khớp không cử động hết tầm.",
+    "grades": [
+      { "id": "vua", "name": "vừa người", "agi": 0, "speed": 0, "stamina": 0, "jointLock": 0, "note": "Đo may cho đúng người này." },
+      { "id": "gan-vua", "name": "cùng vóc dáng, khác người", "agi": -6, "speed": -1, "stamina": 0.5, "jointLock": 0, "note": "Mặc được, và biết là không phải của mình." },
+      { "id": "khac-voc", "name": "khác vóc dáng", "agi": -18, "speed": -3, "stamina": 1.6, "jointLock": 2, "note": "Phạt nặng, mệt rất nhanh, một số khớp không cử động hết tầm." },
+      { "id": "khong-mac-duoc", "name": "không mặc được", "agi": 0, "speed": 0, "stamina": 0, "jointLock": 0, "wearable": false, "note": "Khác chủng tộc. Lùn và Ogre không thể đổi giáp cho nhau." }
+    ],
+    "$toleranceComment": "Ngưỡng đo bằng chênh lệch chiều cao (cm) và cân nặng (%) so với người được đo may. Chủng tộc khác nhau thì xét `raceStrict` trước mọi con số: khung xương khác thì không có mức chênh nào cứu được.",
+    "tolerance": { "heightCm": 4, "weightPct": 8, "farHeightCm": 12, "farWeightPct": 22 },
+    "raceStrict": true,
+    "$refitComment": "Sửa lại cho vừa: cần thợ giáp giỏi, tốn tiền và tốn nhiều tuần (mục 8). Tuần và giá tính theo giá trị món.",
+    "refit": { "skill": "skill_ren-sat", "skillMin": 45, "weeks": 3, "costPct": 0.12, "building": "bld_lo-ren" }
+  },
+
+  "$carryComment": "TRỌNG LƯỢNG CÓ PHÂN BỔ (mục 9). Không chỉ tính tổng cân nặng: giáp tấm vừa người trải đều lên toàn thân nên người mặc vẫn chạy, leo, lăn được; giáp lưới dài treo TOÀN BỘ trên vai nên mệt nhanh hơn dù nhẹ hơn. `fatiguePerKg` là điểm thể lực mất thêm mỗi hiệp trên mỗi cân.",
+  "carry": {
+    "modes": [
+      { "id": "toan-than", "name": "trải đều toàn thân", "fatiguePerKg": 0.028, "note": "Giáp tấm vừa người, có đai và móc treo." },
+      { "id": "vai", "name": "treo trên vai", "fatiguePerKg": 0.062, "note": "Giáp lưới dài. Nhẹ hơn mà mệt hơn." },
+      { "id": "dau", "name": "đội trên đầu", "fatiguePerKg": 0.075, "note": "Cổ chịu, và cổ mỏi trước tất cả." },
+      { "id": "chi", "name": "buộc vào tay chân", "fatiguePerKg": 0.045, "note": "Đúng chỗ cần vung nhanh nhất." }
+    ],
+    "$beltComment": "Không có đai và móc treo thì giáp tấm cũng treo lên vai. Đây là chỗ 'đeo lệch, thiếu đai → phạt thêm' của mục 9.",
+    "unbeltedPenalty": 0.4,
+    "$shoulderComment": "Vai bị thương mà mang tải treo vai thì phạt CHỒNG (mục 9, nối Phần 7).",
+    "hurtShoulderFactor": 1.5,
+    "$swimComment": "Bơi qua sông thì gần như chắc chắn chìm (mục 9). Mỗi cân giáp cộng vào độ khó phép kiểm bơi.",
+    "swimPenaltyPerKg": 2.5
+  },
+
+  "$piecesComment": "BẢNG CHE PHỦ CỦA MỤC 3, khai theo VÙNG chứ không theo ô giáp. Con số `coverage` là phần trăm diện tích vùng ấy thật sự có kim loại: 100 là kín, và mọi số nhỏ hơn 100 chính là những khe hở điển hình của giáp tấm thế kỷ 14 — nách, bẹn, sau đầu gối, khuỷu trong, khe mắt, lòng bàn tay.",
+  "pieces": [
+    {
+      "id": "item_ao-lot-giap",
+      "class": "giap-da",
+      "covers": [
+        { "region": "chest", "coverage": 100 },
+        { "region": "abdomen", "coverage": 100 },
+        { "region": "upperArmL", "coverage": 100 },
+        { "region": "upperArmR", "coverage": 100 },
+        { "region": "thighL", "coverage": 100 },
+        { "region": "thighR", "coverage": 100 }
+      ],
+      "protection": { "chem": 40, "dam": 30, "dap": 42 },
+      "carry": "toan-than",
+      "fit": "co-gian",
+      "staminaPerRound": 0.4,
+      "base": true,
+      "note": "NỀN CỦA MỌI BỘ. Hai mươi lớp vải chần, rẻ, và ăn được nhiều hơn người ta tưởng. Không có nó thì giáp lưới gần như vô dụng trước đòn đập."
+    },
+    {
+      "id": "item_giap-da",
+      "class": "giap-da",
+      "covers": [
+        { "region": "chest", "coverage": 95 },
+        { "region": "abdomen", "coverage": 90 },
+        { "region": "upperBack", "coverage": 95 },
+        { "region": "lowerBack", "coverage": 85 },
+        { "region": "upperArmL", "coverage": 80 },
+        { "region": "upperArmR", "coverage": 80 }
+      ],
+      "protection": { "chem": 55, "dam": 35, "dap": 30 },
+      "carry": "vai",
+      "fit": "co-gian",
+      "staminaPerRound": 0.8,
+      "note": "Da luộc cứng. Chống được đường cắt, không chống được lực."
+    },
+    {
+      "id": "item_giap-luoi",
+      "class": "giap-luoi",
+      "covers": [
+        { "region": "chest", "coverage": 100 },
+        { "region": "abdomen", "coverage": 100 },
+        { "region": "upperBack", "coverage": 100 },
+        { "region": "lowerBack", "coverage": 100 },
+        { "region": "shoulderL", "coverage": 92 },
+        { "region": "shoulderR", "coverage": 92 },
+        { "region": "upperArmL", "coverage": 90 },
+        { "region": "upperArmR", "coverage": 90 },
+        { "region": "thighL", "coverage": 70 },
+        { "region": "thighR", "coverage": 70 },
+        { "region": "hips", "coverage": 80 }
+      ],
+      "protection": { "chem": 68, "dam": 62, "dap": 18 },
+      "carry": "vai",
+      "fit": "co-gian",
+      "staminaPerRound": 1,
+      "eraFrom": 1300,
+      "note": "RỘNG NHƯNG MỎNG (mục 3). Mười lăm cân treo hết trên vai. Lưới không cho lưỡi vào, nhưng cú đập tới đủ — và vì nó co giãn nên ai mặc cũng tạm được, đó là ưu thế thật của nó ở đầu thế kỷ."
+    },
+    {
+      "id": "item_ao-giap-manh",
+      "class": "giap-luoi",
+      "covers": [
+        { "region": "chest", "coverage": 100 },
+        { "region": "abdomen", "coverage": 100 },
+        { "region": "upperBack", "coverage": 100 }
+      ],
+      "protection": { "chem": 85, "dam": 75, "dap": 35 },
+      "carry": "toan-than",
+      "fit": "co-gian",
+      "staminaPerRound": 0.7,
+      "eraFrom": 1300,
+      "eraTo": 1380,
+      "note": "Áo giáp mảnh: những tấm sắt nhỏ tán vào trong lớp vải. Cách người ta mặc tấm TRƯỚC khi biết gò tấm lớn — và nó biến mất khi họ biết. `eraTo` chồng lên đúng năm yếm giáp tấm lan ra, vì hai kiểu ấy giải cùng một bài toán và không ai làm cả hai."
+    },
+    {
+      "id": "item_yem-giap-tam",
+      "class": "giap-tam",
+      "covers": [{ "region": "chest", "coverage": 100 }],
+      "protection": { "chem": 92, "dam": 90, "dap": 52 },
+      "carry": "toan-than",
+      "fit": "do-may",
+      "staminaPerRound": 0.35,
+      "eraFrom": 1360,
+      "note": "Yếm giáp tấm: một tấm thép gò cong đúng lồng ngực MỘT người. Cái làm nó chặn được mũi kiếm là độ cong, và độ cong ấy không dùng lại được cho người khác."
+    },
+    {
+      "id": "item_giap-lung",
+      "class": "giap-tam",
+      "covers": [
+        { "region": "upperBack", "coverage": 100 },
+        { "region": "lowerBack", "coverage": 95 }
+      ],
+      "protection": { "chem": 92, "dam": 90, "dap": 52 },
+      "carry": "toan-than",
+      "fit": "do-may",
+      "staminaPerRound": 0.3,
+      "eraFrom": 1370,
+      "note": "Giáp lưng. Người đủ tự tin thì không mua — và người đủ tự tin thì thỉnh thoảng chết vì chuyện đó."
+    },
+    {
+      "id": "item_giap-vai",
+      "class": "giap-tam",
+      "covers": [
+        { "region": "shoulderL", "coverage": 95 },
+        { "region": "shoulderR", "coverage": 95 }
+      ],
+      "protection": { "chem": 92, "dam": 88, "dap": 50 },
+      "carry": "chi",
+      "fit": "do-may",
+      "staminaPerRound": 0.25,
+      "eraFrom": 1370,
+      "note": "NÁCH VẪN PHẢI HỞ — cánh tay còn phải giơ lên. Năm phần trăm ấy là chỗ mũi dao rondel đi vào, và cả Phần 9 xoay quanh nó."
+    },
+    {
+      "id": "item_giap-canh-tay",
+      "class": "giap-tam",
+      "covers": [
+        { "region": "upperArmL", "coverage": 90 },
+        { "region": "upperArmR", "coverage": 90 }
+      ],
+      "protection": { "chem": 90, "dam": 86, "dap": 48 },
+      "carry": "chi",
+      "fit": "do-may",
+      "staminaPerRound": 0.2,
+      "eraFrom": 1350,
+      "note": "Ống thép trên cánh tay. Khuỷu trong để hở cho khớp gập được."
+    },
+    {
+      "id": "item_giap-cang-tay",
+      "class": "giap-tam",
+      "covers": [
+        { "region": "forearmL", "coverage": 95 },
+        { "region": "forearmR", "coverage": 95 }
+      ],
+      "protection": { "chem": 90, "dam": 86, "dap": 48 },
+      "carry": "chi",
+      "fit": "do-may",
+      "staminaPerRound": 0.15,
+      "eraFrom": 1340,
+      "note": "Cẳng tay là chỗ người ta đỡ bằng, nên nó được bọc sớm."
+    },
+    {
+      "id": "item_gang-sat",
+      "class": "giap-tam",
+      "covers": [
+        { "region": "handL", "coverage": 90 },
+        { "region": "handR", "coverage": 90 }
+      ],
+      "protection": { "chem": 88, "dam": 82, "dap": 46 },
+      "carry": "chi",
+      "fit": "do-may",
+      "staminaPerRound": 0.1,
+      "eraFrom": 1330,
+      "note": "LÒNG BÀN TAY để hở — không cầm nổi chuôi nếu bọc kín. Bàn tay là chỗ bị đánh nhiều nhất trong đấu thật, nên nó được bọc sớm nhất trong lịch sử."
+    },
+    {
+      "id": "item_vay-giap",
+      "class": "giap-tam",
+      "covers": [{ "region": "hips", "coverage": 85 }],
+      "protection": { "chem": 90, "dam": 86, "dap": 50 },
+      "carry": "toan-than",
+      "fit": "do-may",
+      "staminaPerRound": 0.2,
+      "eraFrom": 1370,
+      "note": "BẸN PHẢI HỞ cho người ta ngồi lên ngựa được. Mười lăm phần trăm ấy là chỗ một hiệp sĩ ngã ngựa bị kết liễu."
+    },
+    {
+      "id": "item_giap-dui",
+      "class": "giap-tam",
+      "covers": [
+        { "region": "thighL", "coverage": 90 },
+        { "region": "thighR", "coverage": 90 }
+      ],
+      "protection": { "chem": 90, "dam": 86, "dap": 48 },
+      "carry": "chi",
+      "fit": "do-may",
+      "staminaPerRound": 0.25,
+      "eraFrom": 1350,
+      "note": "Mặt trong đùi để hở cho người cưỡi ngựa."
+    },
+    {
+      "id": "item_ghet-sat",
+      "class": "giap-tam",
+      "covers": [
+        { "region": "shinL", "coverage": 95 },
+        { "region": "shinR", "coverage": 95 }
+      ],
+      "protection": { "chem": 90, "dam": 86, "dap": 48 },
+      "carry": "chi",
+      "fit": "do-may",
+      "staminaPerRound": 0.2,
+      "eraFrom": 1320,
+      "note": "SAU ĐẦU GỐI hở. Đó là lý do bộ binh chém vào khoeo chân kỵ sĩ đã ngã."
+    },
+    {
+      "id": "item_mu-sat",
+      "class": "giap-luoi",
+      "covers": [{ "region": "skull", "coverage": 100 }],
+      "protection": { "chem": 80, "dam": 70, "dap": 40 },
+      "carry": "dau",
+      "fit": "co-gian",
+      "staminaPerRound": 0.4,
+      "note": "Che sọ, để hở mặt. Món giáp phổ biến nhất châu lục, vì nó là món rẻ nhất còn cứu được mạng."
+    },
+    {
+      "id": "item_mu-bascinet",
+      "class": "giap-tam",
+      "covers": [{ "region": "skull", "coverage": 100 }],
+      "protection": { "chem": 94, "dam": 90, "dap": 60 },
+      "carry": "dau",
+      "fit": "do-may",
+      "staminaPerRound": 0.35,
+      "eraFrom": 1340,
+      "note": "Mũ bascinet: chóp nhọn để lưỡi kiếm trượt đi thay vì dừng lại. Mặt vẫn hở — tấm che mặt là một món riêng."
+    },
+    {
+      "id": "item_tam-che-mat",
+      "class": "giap-tam",
+      "covers": [{ "region": "face", "coverage": 90 }],
+      "protection": { "chem": 92, "dam": 86, "dap": 52 },
+      "carry": "dau",
+      "fit": "do-may",
+      "staminaPerRound": 0.2,
+      "sightPenalty": 5,
+      "requires": "item_mu-bascinet",
+      "eraFrom": 1350,
+      "note": "KHE MẮT là mười phần trăm còn lại, và người ta chết vì đúng mười phần trăm ấy. Lật lên được khi không có ai trước mặt."
+    },
+    {
+      "id": "item_mang-luoi-co",
+      "class": "giap-luoi",
+      "covers": [
+        { "region": "neck", "coverage": 100 },
+        { "region": "shoulderL", "coverage": 40 },
+        { "region": "shoulderR", "coverage": 40 }
+      ],
+      "protection": { "chem": 70, "dam": 60, "dap": 20 },
+      "carry": "dau",
+      "fit": "co-gian",
+      "staminaPerRound": 0.25,
+      "eraFrom": 1330,
+      "note": "Màng lưới treo từ vành mũ xuống, che cổ và một phần vai. Cổ không có nó thì mọi bộ giáp còn lại chỉ là trang trí."
+    },
+    {
+      "id": "item_mu-tru",
+      "class": "giap-tam",
+      "covers": [
+        { "region": "skull", "coverage": 100 },
+        { "region": "face", "coverage": 95 },
+        { "region": "neck", "coverage": 60 }
+      ],
+      "protection": { "chem": 92, "dam": 86, "dap": 56 },
+      "carry": "dau",
+      "fit": "co-gian",
+      "staminaPerRound": 0.4,
+      "sightPenalty": 12,
+      "perPenalty": 18,
+      "eraTo": 1380,
+      "note": "ĐẠI MŨ TRỤ: kín hết, kể cả mặt, và PHẠT PER RẤT NẶNG (mục 3). Không nghe rõ, nhìn được đúng một khe ngang. Cuối thế kỷ không ai đội nữa, và họ có lý."
+    },
+    {
+      "id": "item_giap-tam",
+      "class": "giap-tam",
+      "covers": [
+        { "region": "skull", "coverage": 100 },
+        { "region": "face", "coverage": 90 },
+        { "region": "neck", "coverage": 100 },
+        { "region": "chest", "coverage": 100 },
+        { "region": "abdomen", "coverage": 100 },
+        { "region": "upperBack", "coverage": 100 },
+        { "region": "lowerBack", "coverage": 100 },
+        { "region": "shoulderL", "coverage": 95 },
+        { "region": "shoulderR", "coverage": 95 },
+        { "region": "upperArmL", "coverage": 90 },
+        { "region": "upperArmR", "coverage": 90 },
+        { "region": "forearmL", "coverage": 95 },
+        { "region": "forearmR", "coverage": 95 },
+        { "region": "handL", "coverage": 90 },
+        { "region": "handR", "coverage": 90 },
+        { "region": "hips", "coverage": 85 },
+        { "region": "thighL", "coverage": 90 },
+        { "region": "thighR", "coverage": 90 },
+        { "region": "shinL", "coverage": 95 },
+        { "region": "shinR", "coverage": 95 }
+      ],
+      "protection": { "chem": 92, "dam": 88, "dap": 52 },
+      "carry": "toan-than",
+      "fit": "do-may",
+      "staminaPerRound": 1.2,
+      "sightPenalty": 4,
+      "eraFrom": 1380,
+      "note": "BỘ GIÁP TẤM ĐẦY ĐỦ — đáng giá bằng một trang viên (mục 1c), và phải đặt trước nhiều tháng. Bảy khe hở còn lại là bảy chỗ duy nhất giết được người mặc nó, và chúng nằm ĐÚNG chỗ mà cơ thể phải cử động."
+    }
+  ],
+
+  "$shieldComment": "Khiên KHÔNG phải giáp: nó không che theo vùng cố định mà theo hướng và theo hành động, nên nó không có mặt trong bản đồ che phủ. `coverBonus` là mức che thêm mà `nup-khien` của Phần 9 mở ra.",
+  "shields": [
+    { "id": "item_khien-tron", "staminaPerRound": 0.6, "weightFactor": 1.04, "coverBonus": 6, "carry": "chi" },
+    { "id": "item_khien-lon", "staminaPerRound": 1.2, "weightFactor": 1.08, "coverBonus": 10, "carry": "chi" }
+  ],
+
+  "$gapNamesComment": "Tên tiếng Việt của những khe hở điển hình (mục 4), để UI và biên niên gọi đúng chữ thay vì nói 'vùng shoulderL còn hở 5%'.",
+  "gapNames": {
+    "shoulderL": "nách trái",
+    "shoulderR": "nách phải",
+    "hips": "bẹn",
+    "face": "khe mắt",
+    "handL": "lòng bàn tay trái",
+    "handR": "lòng bàn tay phải",
+    "forearmL": "khuỷu trong trái",
+    "forearmR": "khuỷu trong phải",
+    "shinL": "sau đầu gối trái",
+    "shinR": "sau đầu gối phải",
+    "thighL": "mặt trong đùi trái",
+    "thighR": "mặt trong đùi phải",
+    "neck": "khe che cổ"
+  }
+}

@@ -1,0 +1,7 @@
+<% const recent = history.slice(-8); %>
+LỊCH SỬ GẦN — nguyên văn, để bạn nối tiếp đúng mạch
+<% for (const entry of recent) { %>
+
+[Lượt <%= entry.turn %>] Người chơi: <%= entry.action %>
+<%= entry.narrative %>
+<% } %>

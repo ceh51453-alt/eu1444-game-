@@ -1,0 +1,604 @@
+{
+  "$comment": "PHẦN 8 mục 6 — ĐỒ THỊ NHÁNH. Không phải cây theo tầng: người chơi mở BẤT KỲ node nào thỏa điều kiện, và một node có thể đòi nhiều đường khác nhau (`nodes` là AND, `anyOfNodes` là OR). Ba kỹ năng làm đủ để test — một chiến đấu (Kiếm thuật), một quản trị (Cai trị), một xã giao (Đàm phán). Mọi kỹ năng còn lại nhận XƯƠNG SỐNG từ `templates` bên dưới, nên không kỹ năng nào có đồ thị rỗng và không chỗ nào phải hardcode một danh sách 76 dòng.",
+  "version": 1,
+
+  "$kindsComment": "Năm loại của mục 6. `breakthrough` KHÔNG mua được bằng nút bấm — engine cấp khi điều kiện cực hạn xảy ra (mục 8). `secret` không hiện trên UI cho tới khi người chơi biết về nó.",
+  "kinds": [
+    { "id": "technique", "name": "Chiêu thức", "note": "một chiêu chủ động dùng trong đấu hoặc chiến trận" },
+    { "id": "stance", "name": "Thế", "note": "bật lên là được cái này mất cái kia" },
+    { "id": "passive", "name": "Thường trực", "note": "hiệu ứng luôn bật" },
+    { "id": "breakthrough", "name": "Đột phá", "note": "nâng trần kỹ năng, cần thầy và một sự kiện cực hạn" },
+    { "id": "secret", "name": "Bí truyền", "note": "phải tìm ra người giữ nó trước đã" }
+  ],
+
+  "$usableInComment": "Mục 9: mỗi chiêu PHẢI khai dùng được ở đâu. Một chiêu đấu tay đôi không được tự động dùng được ở chiến trận quy mô lớn.",
+  "usableIn": [
+    { "id": "duel", "name": "Đấu tay đôi" },
+    { "id": "battle", "name": "Dã chiến" },
+    { "id": "siege", "name": "Công thủ thành" },
+    { "id": "social", "name": "Xã giao" },
+    { "id": "admin", "name": "Quản trị" },
+    { "id": "field", "name": "Ngoài đồng, đi đường" }
+  ],
+
+  "$templatesComment": "Xương sống chung, nở ra cho MỌI kỹ năng lúc nạp. `$self` trong `domains` được thay bằng miền của chính kỹ năng đó (`skill.kiem-thuat`…). Node đột phá nằm ở đây chứ không nằm trong từng đồ thị vì mọi kỹ năng đều phải có một cửa lên bậc Tông sư — thiếu nó thì kỹ năng nào chưa ai viết nhánh sẽ vĩnh viễn chạm trần ở 88.",
+  "templates": [
+    {
+      "id": "co-ban",
+      "name": "Nền tảng",
+      "kind": "passive",
+      "cost": 2,
+      "description": "Những năm đầu tay nghề đã thành phản xạ: tay biết trước khi đầu kịp nghĩ.",
+      "prereq": { "skillLevel": 20 },
+      "usableIn": ["duel", "battle", "siege", "social", "admin", "field"],
+      "effects": [{ "domains": ["$self"], "value": 5 }]
+    },
+    {
+      "id": "thuan-thuc",
+      "name": "Thuần thục",
+      "kind": "passive",
+      "cost": 4,
+      "description": "Làm được cả khi mệt, khi tối, khi tay run — thứ chỉ đến sau hàng nghìn lần lặp.",
+      "prereq": { "skillLevel": 45, "nodes": ["co-ban"] },
+      "usableIn": ["duel", "battle", "siege", "social", "admin", "field"],
+      "effects": [{ "domains": ["$self"], "value": 8 }]
+    },
+    {
+      "id": "pha-tran",
+      "name": "Vượt ngưỡng",
+      "kind": "breakthrough",
+      "cost": 8,
+      "description": "Cái ngưỡng mà luyện thêm không qua được nữa. Phải có Tông sư dẫn đường, và phải xảy ra một chuyện đủ lớn.",
+      "prereq": { "skillLevel": 76, "nodes": ["thuan-thuc"], "teacherRequired": true },
+      "usableIn": ["duel", "battle", "siege", "social", "admin", "field"],
+      "effects": [{ "domains": ["$self"], "value": 5 }]
+    }
+  ],
+
+  "nodes": [
+    {
+      "$block": "KIẾM THUẬT — nhánh chiến đấu làm đủ để test (mục 12.2)",
+      "id": "node_kiem-thuat_the-thu",
+      "skillId": "skill_kiem-thuat",
+      "name": "Thế thủ Vom Tag",
+      "kind": "stance",
+      "cost": 2,
+      "description": "Mũi kiếm dựng cao trên vai. Đòn xuống nặng và nhanh, nhưng sườn dưới bỏ ngỏ.",
+      "prereq": { "skillLevel": 15 },
+      "usableIn": ["duel", "battle"],
+      "effects": [
+        { "domains": ["skill.kiem-thuat"], "value": 8, "whenAnyTag": ["tan-cong"] },
+        { "domains": ["skill.kiem-thuat", "combat.ne-tranh"], "value": -6, "whenAnyTag": ["phong-thu"] }
+      ],
+      "mechanics": { "stance": "vom-tag", "initiative": 1, "guardZone": "tren" }
+    },
+    {
+      "id": "node_kiem-thuat_the-treo",
+      "skillId": "skill_kiem-thuat",
+      "name": "Thế treo Ochs",
+      "kind": "stance",
+      "cost": 2,
+      "description": "Chuôi ngang thái dương, mũi chĩa thẳng mặt đối thủ. Thế của người đợi kẻ khác ra đòn trước.",
+      "prereq": { "skillLevel": 25, "nodes": ["node_kiem-thuat_the-thu"] },
+      "usableIn": ["duel"],
+      "effects": [
+        { "domains": ["skill.kiem-thuat"], "value": 10, "whenAnyTag": ["phan-don"] },
+        { "domains": ["skill.kiem-thuat"], "value": -5, "whenAnyTag": ["tan-cong"] }
+      ],
+      "mechanics": { "stance": "ochs", "counter": true, "guardZone": "giua" }
+    },
+    {
+      "id": "node_kiem-thuat_don-nhanh",
+      "skillId": "skill_kiem-thuat",
+      "name": "Đòn Zornhau",
+      "kind": "technique",
+      "cost": 2,
+      "description": "Nhát chém chéo từ vai xuống, vừa gạt đường kiếm địch vừa đi tới. Đòn đầu tiên mọi trường kiếm đều dạy.",
+      "prereq": { "skillLevel": 20 },
+      "usableIn": ["duel", "battle"],
+      "effects": [{ "domains": ["skill.kiem-thuat"], "value": 5, "whenAnyTag": ["tan-cong"] }],
+      "mechanics": { "strike": "zornhau", "opens": ["binding"], "reach": 1 }
+    },
+    {
+      "id": "node_kiem-thuat_binh-tinh",
+      "skillId": "skill_kiem-thuat",
+      "name": "Giữ nhịp thở",
+      "kind": "passive",
+      "cost": 3,
+      "description": "Không phải đánh nhanh hơn, mà là không hoảng khi đối thủ nhanh hơn.",
+      "prereq": { "skillLevel": 25, "stats": { "wil": 10 } },
+      "usableIn": ["duel", "battle"],
+      "effects": [
+        { "domains": ["skill.kiem-thuat"], "value": 6, "whenAnyTag": ["moi-met", "bi-vay"] },
+        { "domains": ["combat.si-khi"], "value": 4 }
+      ]
+    },
+    {
+      "id": "node_kiem-thuat_khoa-kiem",
+      "skillId": "skill_kiem-thuat",
+      "name": "Khóa kiếm và tước vũ khí",
+      "kind": "technique",
+      "cost": 3,
+      "description": "Khi hai lưỡi đã dính vào nhau thì trận đấu đổi luật: ai đọc được lực của người kia trước, người đó thắng.",
+      "prereq": { "skillLevel": 35, "nodes": ["node_kiem-thuat_don-nhanh"] },
+      "usableIn": ["duel"],
+      "effects": [{ "domains": ["skill.kiem-thuat"], "value": 12, "whenAnyTag": ["giap-la-ca"] }],
+      "mechanics": { "strike": "winden", "requiresBind": true, "disarmChance": "contest" }
+    },
+    {
+      "id": "node_kiem-thuat_nua-kiem",
+      "skillId": "skill_kiem-thuat",
+      "name": "Thế nửa kiếm",
+      "kind": "technique",
+      "cost": 4,
+      "description": "Nắm hẳn vào lưỡi mà đâm. Cách duy nhất để một thanh kiếm còn nói được gì trước giáp tấm.",
+      "prereq": {
+        "skillLevel": 45,
+        "nodes": ["node_kiem-thuat_don-nhanh"],
+        "anyOfNodes": ["node_kiem-thuat_the-treo", "node_kiem-thuat_khoa-kiem"],
+        "teacherRequired": true
+      },
+      "usableIn": ["duel", "battle"],
+      "effects": [
+        { "domains": ["skill.kiem-thuat"], "value": 25, "whenAnyTag": ["dich-giap-tam"] },
+        { "domains": ["skill.kiem-thuat"], "value": -8, "unlessAnyTag": ["dich-giap-tam", "giap-la-ca"] }
+      ],
+      "mechanics": { "strike": "halbschwert", "armorPiercing": true, "targetsGaps": true }
+    },
+    {
+      "id": "node_kiem-thuat_dam-khe-giap",
+      "skillId": "skill_kiem-thuat",
+      "name": "Đâm khe giáp",
+      "kind": "technique",
+      "cost": 5,
+      "description": "Nách, bẹn, khe che cổ. Ba chỗ mà bộ giáp đắt nhất châu Âu vẫn phải để hở cho người ta cử động được.",
+      "prereq": { "skillLevel": 60, "nodes": ["node_kiem-thuat_nua-kiem"], "stats": { "per": 12 } },
+      "usableIn": ["duel"],
+      "effects": [{ "domains": ["skill.kiem-thuat"], "value": 15, "whenAnyTag": ["dich-giap-tam"] }],
+      "mechanics": { "strike": "mortschlag-thrust", "targetsGaps": true, "severityBonus": 1 }
+    },
+    {
+      "id": "node_kiem-thuat_duong-kiem-hac-hoa",
+      "skillId": "skill_kiem-thuat",
+      "name": "Đường kiếm Hắc Hỏa",
+      "kind": "secret",
+      "cost": 6,
+      "description": "Lối đánh của đội đánh thuê Hắc Hỏa: nhận một vết để lấy một mạng. Không sách nào chép, và người dạy nó chỉ dạy cho kẻ đã cùng mình sống sót một trận.",
+      "prereq": {
+        "skillLevel": 65,
+        "nodes": ["node_kiem-thuat_dam-khe-giap"],
+        "teacherRequired": true,
+        "teacherNodeRequired": "node_kiem-thuat_duong-kiem-hac-hoa",
+        "knowledge": ["npc_isolde-rieng-tu"]
+      },
+      "source": { "npc": "npc_isolde", "organization": "Đội lính đánh thuê Hắc Hỏa" },
+      "usableIn": ["duel", "battle"],
+      "effects": [
+        { "domains": ["skill.kiem-thuat"], "value": 18, "whenAnyTag": ["lieu-mang"] },
+        { "domains": ["combat.ne-tranh"], "value": -10, "whenAnyTag": ["lieu-mang"] }
+      ],
+      "mechanics": { "strike": "doppelschlag", "tradesHitForHit": true }
+    },
+    {
+      "$block": "KIẾM THUẬT — nghịch cảnh (mục 7)",
+      "id": "node_kiem-thuat_tay-trai",
+      "skillId": "skill_kiem-thuat",
+      "name": "Kiếm tay trái",
+      "kind": "passive",
+      "cost": 3,
+      "description": "Dạy lại từ đầu cho bàn tay còn lại. Chậm hơn, xấu hơn, và không ai trong hàng ngũ dám cười.",
+      "prereq": { "skillLevel": 20, "bodyCondition": ["cut-tay", "liet-nua-nguoi"] },
+      "usableIn": ["duel", "battle"],
+      "effects": [
+        { "domains": ["skill.kiem-thuat", "skill.dao-gam"], "value": 20 },
+        { "domains": ["combat.doi-khang"], "value": 6, "whenAnyTag": ["lan-dau-gap"] }
+      ]
+    },
+    {
+      "id": "node_kiem-thuat_tay-sat",
+      "skillId": "skill_kiem-thuat",
+      "name": "Tay sắt",
+      "kind": "passive",
+      "cost": 4,
+      "description": "Một cái móc thợ rèn bắt vào mỏm cụt. Không cầm được kiếm, nhưng gạt được, và đỡ được cái khiên đã tuột.",
+      "prereq": { "skillLevel": 30, "bodyCondition": ["cut-tay"], "nodes": ["node_kiem-thuat_tay-trai"] },
+      "usableIn": ["duel", "battle", "field"],
+      "effects": [
+        { "domains": ["skill.kiem-thuat", "skill.khien"], "value": 12 },
+        { "domains": ["skill.uy-hiep"], "value": 8 }
+      ]
+    },
+    {
+      "id": "node_kiem-thuat_cam-giac-can-chien",
+      "skillId": "skill_kiem-thuat",
+      "name": "Cận chiến bằng cảm giác",
+      "kind": "passive",
+      "cost": 3,
+      "description": "Mất chiều sâu thị giác thì phải đánh ở cự ly mà chiều sâu không còn nghĩa gì: sát người, tay chạm tay.",
+      "prereq": { "skillLevel": 25, "bodyCondition": ["mu-mot-mat", "mu-hai-mat"] },
+      "usableIn": ["duel"],
+      "effects": [
+        { "domains": ["skill.kiem-thuat", "skill.dao-gam", "skill.tay-khong"], "value": 15, "whenAnyTag": ["giap-la-ca"] },
+        { "domains": ["combat.doi-khang"], "value": 8, "whenAnyTag": ["ban-dem"] }
+      ]
+    },
+    {
+      "id": "node_cung-no_ban-tam-xa",
+      "skillId": "skill_cung-no",
+      "name": "Bắn tầm xa",
+      "kind": "technique",
+      "cost": 3,
+      "description": "Ước lượng gió và độ rơi ở hai trăm bước. Việc của hai con mắt, không phải một.",
+      "prereq": { "skillLevel": 40, "stats": { "per": 12 } },
+      "lockedBy": ["mu-mot-mat", "mu-hai-mat"],
+      "usableIn": ["battle", "siege", "field"],
+      "effects": [{ "domains": ["skill.cung-no"], "value": 15, "whenAnyTag": ["tam-xa"] }],
+      "mechanics": { "range": "long", "volley": true }
+    },
+    {
+      "$block": "CAI TRỊ — nhánh quản trị làm đủ để test",
+      "id": "node_cai-tri_so-sach",
+      "skillId": "skill_cai-tri",
+      "name": "Sổ sách ba quyển",
+      "kind": "passive",
+      "cost": 2,
+      "description": "Một quyển cho mình, một cho quản gia, một cho người thu thuế — và ba quyển đó phải khớp nhau.",
+      "prereq": { "skillLevel": 20 },
+      "usableIn": ["admin"],
+      "effects": [
+        { "domains": ["skill.cai-tri", "skill.thu-thue", "skill.ke-toan"], "value": 6 }
+      ]
+    },
+    {
+      "id": "node_cai-tri_toa-an-lang",
+      "skillId": "skill_cai-tri",
+      "name": "Tòa án làng",
+      "kind": "technique",
+      "cost": 3,
+      "description": "Xử ngay tại chỗ, trước mặt cả làng. Chậm hơn sai một người, nhưng nhanh hơn nhiều so với để oán tích lại.",
+      "prereq": { "skillLevel": 30, "nodes": ["node_cai-tri_so-sach"] },
+      "usableIn": ["admin", "social"],
+      "effects": [
+        { "domains": ["skill.xu-an"], "value": 10 },
+        { "domains": ["skill.cai-tri"], "value": 8, "whenAnyTag": ["dan-bat-man"] }
+      ],
+      "mechanics": { "session": "toa-lang", "unrestRelief": 1 }
+    },
+    {
+      "id": "node_cai-tri_kho-du-tru",
+      "skillId": "skill_cai-tri",
+      "name": "Kho dự trữ ba mùa",
+      "kind": "passive",
+      "cost": 3,
+      "description": "Giữ lại phần ăn của một mùa mất trắng. Ai cũng biết phải làm, ít người chịu nổi tiếng keo để làm.",
+      "prereq": { "skillLevel": 35, "nodes": ["node_cai-tri_so-sach"], "stats": { "wil": 11 } },
+      "usableIn": ["admin"],
+      "effects": [
+        { "domains": ["skill.hau-can", "skill.cai-tri"], "value": 10, "whenAnyTag": ["mat-mua", "bi-vay"] }
+      ]
+    },
+    {
+      "id": "node_cai-tri_giu-chu-hau",
+      "skillId": "skill_cai-tri",
+      "name": "Giữ chư hầu",
+      "kind": "passive",
+      "cost": 4,
+      "description": "Biết đúng ai đang tính đường khác, và mời người đó ăn tối trước khi họ kịp viết thư.",
+      "prereq": {
+        "skillLevel": 50,
+        "anyOfNodes": ["node_cai-tri_toa-an-lang", "node_cai-tri_kho-du-tru"],
+        "stats": { "pre": 12 }
+      },
+      "usableIn": ["admin", "social"],
+      "effects": [
+        { "domains": ["skill.cai-tri", "skill.ngoai-giao"], "value": 12, "whenAnyTag": ["chu-hau"] },
+        { "domains": ["skill.tinh-bao"], "value": 6 }
+      ]
+    },
+    {
+      "id": "node_cai-tri_luat-thanh-van",
+      "skillId": "skill_cai-tri",
+      "name": "Luật thành văn",
+      "kind": "technique",
+      "cost": 5,
+      "description": "Chép luật xuống giấy và niêm ở cổng thành. Từ đó ngài mất quyền đổi ý — và đổi lại, không ai đổi ý thay ngài được nữa.",
+      "prereq": {
+        "skillLevel": 60,
+        "nodes": ["node_cai-tri_giu-chu-hau"],
+        "teacherRequired": true,
+        "knowledge": []
+      },
+      "usableIn": ["admin"],
+      "effects": [
+        { "domains": ["skill.cai-tri", "skill.xu-an", "skill.thu-thue"], "value": 12 },
+        { "domains": ["skill.cai-tri"], "value": -8, "whenAnyTag": ["pha-le"] }
+      ],
+      "mechanics": { "charter": true, "unrestPerYear": -1 }
+    },
+    {
+      "id": "node_cai-tri_ban-tay-giao-trieu",
+      "skillId": "skill_cai-tri",
+      "name": "Bàn tay Giáo triều",
+      "kind": "secret",
+      "cost": 6,
+      "description": "Cách Giáo triều cai trị những vùng chưa bao giờ thuộc về mình: không đóng quân, chỉ nắm lấy người xưng tội của từng lãnh chúa.",
+      "prereq": {
+        "skillLevel": 65,
+        "nodes": ["node_cai-tri_luat-thanh-van"],
+        "teacherRequired": true,
+        "teacherNodeRequired": "node_cai-tri_ban-tay-giao-trieu",
+        "knowledge": ["npc_lucrezia-orsini-rieng-tu"]
+      },
+      "source": { "npc": "npc_lucrezia-orsini", "organization": "Giáo triều La Mã" },
+      "usableIn": ["admin", "social"],
+      "effects": [
+        { "domains": ["skill.cai-tri", "skill.tinh-bao"], "value": 15, "whenAnyTag": ["giao-hoi"] },
+        { "domains": ["skill.ngoai-giao"], "value": 10, "whenAnyTag": ["giao-hoi"] }
+      ]
+    },
+    {
+      "id": "node_cai-tri_quan-tri-tai-cho",
+      "skillId": "skill_cai-tri",
+      "name": "Cai trị tại chỗ",
+      "kind": "passive",
+      "cost": 3,
+      "description": "Không đi tuần được nữa thì bắt cả vùng đến với mình. Một cái ghế đặt đúng chỗ cũng là một cách chiếm đất.",
+      "prereq": { "skillLevel": 25, "bodyCondition": ["liet-hai-chan", "liet-nua-nguoi", "cut-chan"] },
+      "usableIn": ["admin"],
+      "effects": [
+        { "domains": ["skill.cai-tri", "skill.xu-an", "skill.ke-toan"], "value": 12 },
+        { "domains": ["skill.uy-hiep"], "value": 5 }
+      ]
+    },
+    {
+      "$block": "ĐÀM PHÁN — nhánh xã giao làm đủ để test",
+      "id": "node_dam-phan_nghe-truoc",
+      "skillId": "skill_dam-phan",
+      "name": "Nghe trước, nói sau",
+      "kind": "passive",
+      "cost": 2,
+      "description": "Ai nói trước là người đã ra giá trước.",
+      "prereq": { "skillLevel": 20 },
+      "usableIn": ["social", "admin"],
+      "effects": [
+        { "domains": ["skill.dam-phan", "skill.mac-ca"], "value": 6 },
+        { "domains": ["skill.doc-nguoi"], "value": 4 }
+      ]
+    },
+    {
+      "id": "node_dam-phan_the-nhuong",
+      "skillId": "skill_dam-phan",
+      "name": "Thế nhượng bộ",
+      "kind": "stance",
+      "cost": 3,
+      "description": "Cho đi thứ mình không cần, và làm nó trông như một vết cắt.",
+      "prereq": { "skillLevel": 30, "nodes": ["node_dam-phan_nghe-truoc"] },
+      "usableIn": ["social"],
+      "effects": [
+        { "domains": ["skill.dam-phan"], "value": 12, "whenAnyTag": ["ben-manh-hon"] },
+        { "domains": ["skill.uy-hiep"], "value": -10 }
+      ],
+      "mechanics": { "stance": "nhuong-bo", "concedes": "minor" }
+    },
+    {
+      "id": "node_dam-phan_the-cung",
+      "skillId": "skill_dam-phan",
+      "name": "Thế cứng",
+      "kind": "stance",
+      "cost": 3,
+      "description": "Một điều kiện duy nhất, nói một lần, rồi im. Hỏng thì hỏng hẳn.",
+      "prereq": { "skillLevel": 30, "nodes": ["node_dam-phan_nghe-truoc"], "stats": { "wil": 11 } },
+      "usableIn": ["social"],
+      "effects": [
+        { "domains": ["skill.dam-phan", "skill.uy-hiep"], "value": 12, "whenAnyTag": ["ben-yeu-hon"] },
+        { "domains": ["skill.gay-thien-cam"], "value": -12 }
+      ],
+      "mechanics": { "stance": "cung-ran", "concedes": "none", "breakRisk": true }
+    },
+    {
+      "id": "node_dam-phan_con-tin-danh-du",
+      "skillId": "skill_dam-phan",
+      "name": "Con tin danh dự",
+      "kind": "technique",
+      "cost": 4,
+      "description": "Gửi con mình sang nhà đối phương nuôi. Bản hòa ước nào ở thế kỷ này cũng có một đứa trẻ đứng bảo lãnh.",
+      "prereq": {
+        "skillLevel": 45,
+        "anyOfNodes": ["node_dam-phan_the-nhuong", "node_dam-phan_the-cung"]
+      },
+      "usableIn": ["social", "admin"],
+      "effects": [{ "domains": ["skill.dam-phan", "skill.ngoai-giao"], "value": 15, "whenAnyTag": ["hoa-uoc"] }],
+      "mechanics": { "pledge": "hostage", "bindsYears": 5 }
+    },
+    {
+      "id": "node_dam-phan_ba-ban-hop-dong",
+      "skillId": "skill_dam-phan",
+      "name": "Ba bản hợp đồng",
+      "kind": "technique",
+      "cost": 5,
+      "description": "Một bản cho hai bên đọc, một bản cho luật sư, và một bản chỉ có hiệu lực nếu bản thứ nhất bị xé.",
+      "prereq": { "skillLevel": 60, "nodes": ["node_dam-phan_con-tin-danh-du"], "teacherRequired": true },
+      "usableIn": ["social", "admin"],
+      "effects": [
+        { "domains": ["skill.dam-phan", "skill.mac-ca"], "value": 14 },
+        { "domains": ["skill.luat-le"], "value": 8 }
+      ]
+    },
+    {
+      "id": "node_dam-phan_so-cai-medici",
+      "skillId": "skill_dam-phan",
+      "name": "Sổ cái Medici",
+      "kind": "secret",
+      "cost": 6,
+      "description": "Không phải cách ghi sổ, mà là cách dùng một khoản nợ chưa đòi làm dây cương. Nhà Medici không cho vay tiền — họ cho vay quyền được nợ họ.",
+      "prereq": {
+        "skillLevel": 65,
+        "nodes": ["node_dam-phan_ba-ban-hop-dong"],
+        "teacherRequired": true,
+        "teacherNodeRequired": "node_dam-phan_so-cai-medici",
+        "knowledge": ["npc_cosima-de-medici-rieng-tu"]
+      },
+      "source": { "npc": "npc_cosima-de-medici", "organization": "Ngân hàng Medici" },
+      "usableIn": ["social", "admin"],
+      "effects": [
+        { "domains": ["skill.dam-phan", "skill.mac-ca", "skill.ke-toan"], "value": 15, "whenAnyTag": ["no-nan"] },
+        { "domains": ["skill.tinh-bao"], "value": 8, "whenAnyTag": ["thuong-nhan"] }
+      ]
+    },
+    {
+      "$block": "NGHỊCH CẢNH — mục 7 đòi MỌI tàn phế vĩnh viễn phải mở ra ít nhất một con đường mới. Có bài test gác luật này.",
+      "id": "node_chi-huy_chi-tu-hau-quan",
+      "skillId": "skill_chi-huy",
+      "name": "Chỉ huy từ hậu quân",
+      "kind": "passive",
+      "cost": 3,
+      "description": "Không xung phong được nữa thì đứng chỗ nhìn được cả trận. Nhiều tướng giỏi bắt đầu đúng từ ngày họ mất một cánh tay.",
+      "prereq": { "skillLevel": 25, "bodyCondition": ["cut-tay", "cut-chan", "liet-nua-nguoi", "liet-hai-chan"] },
+      "usableIn": ["battle", "siege"],
+      "effects": [
+        { "domains": ["skill.chi-huy", "skill.muu-luoc"], "value": 12 },
+        { "domains": ["battle.si-khi"], "value": 6 }
+      ]
+    },
+    {
+      "id": "node_cuoi-ngua_chien-dau-tren-yen",
+      "skillId": "skill_cuoi-ngua",
+      "name": "Chiến đấu trên yên",
+      "kind": "technique",
+      "cost": 3,
+      "description": "Buộc đùi vào yên và để con ngựa làm hai chân. Rất nhiều hiệp sĩ cụt chân vẫn ra trận đúng theo cách này.",
+      "prereq": { "skillLevel": 30, "bodyCondition": ["cut-chan", "liet-hai-chan", "lien-xuong-lech"] },
+      "usableIn": ["duel", "battle"],
+      "effects": [
+        { "domains": ["skill.cuoi-ngua"], "value": 15 },
+        { "domains": ["combat.doi-khang"], "value": 10, "whenAnyTag": ["tren-ngua"] }
+      ],
+      "mechanics": { "mounted": true, "strapped": true }
+    },
+    {
+      "id": "node_muu-luoc_muu-si",
+      "skillId": "skill_muu-luoc",
+      "name": "Mưu sĩ sau màn",
+      "kind": "passive",
+      "cost": 3,
+      "description": "Cái đầu vẫn đi được tới chỗ mà đôi chân không tới nổi.",
+      "prereq": { "skillLevel": 25, "bodyCondition": ["liet-hai-chan", "liet-nua-nguoi", "cung-khop"] },
+      "usableIn": ["battle", "siege", "admin"],
+      "effects": [
+        { "domains": ["skill.muu-luoc", "skill.tinh-bao"], "value": 14 },
+        { "domains": ["skill.hau-can"], "value": 8 }
+      ]
+    },
+    {
+      "id": "node_uy-hiep_khuon-mat-ac-mong",
+      "skillId": "skill_uy-hiep",
+      "name": "Khuôn mặt người ta không quên",
+      "kind": "passive",
+      "cost": 2,
+      "description": "Cái mà triều đình không chịu nổi thì lính đánh thuê và chủ nợ lại rất sợ.",
+      "prereq": { "skillLevel": 15, "bodyCondition": ["bien-dang-mat"] },
+      "usableIn": ["social", "battle"],
+      "effects": [
+        { "domains": ["skill.uy-hiep"], "value": 20 },
+        { "domains": ["skill.gay-thien-cam", "skill.nghi-thuc"], "value": -8 }
+      ]
+    },
+    {
+      "id": "node_nghi-thuc_dung-truoc-ngai",
+      "skillId": "skill_nghi-thuc",
+      "name": "Đứng trước ngai",
+      "kind": "passive",
+      "cost": 3,
+      "description": "Mười hai bước, ba lần cúi, và không bao giờ quay lưng lại. Triều đình đọc dáng người trước khi nghe lời nói.",
+      "prereq": { "skillLevel": 35, "stats": { "pre": 11 } },
+      "lockedBy": ["bien-dang-mat"],
+      "usableIn": ["social", "admin"],
+      "effects": [{ "domains": ["skill.nghi-thuc", "skill.ngoai-giao"], "value": 12, "whenAnyTag": ["trieu-dinh"] }]
+    },
+    {
+      "id": "node_chiu-dung_song-cung-con-dau",
+      "skillId": "skill_chiu-dung",
+      "name": "Sống cùng cơn đau",
+      "kind": "passive",
+      "cost": 3,
+      "description": "Cơn đau không hết. Chỉ có người mang nó là đổi.",
+      "prereq": { "skillLevel": 20, "bodyCondition": ["dau-kinh-nien", "lien-xuong-lech", "cung-khop"] },
+      "usableIn": ["duel", "battle", "siege", "social", "admin", "field"],
+      "effects": [
+        { "domains": ["skill.chiu-dung"], "value": 18 },
+        { "domains": ["skill.tru-ta", "skill.xu-an", "skill.giang-dao"], "value": 8 },
+        { "domains": ["*"], "value": 4, "whenAnyTag": ["dau-don"] }
+      ]
+    },
+    {
+      "id": "node_che-tac_ban-tay-con-lai",
+      "skillId": "skill_che-tac",
+      "name": "Bàn tay còn lại",
+      "kind": "passive",
+      "cost": 3,
+      "description": "Đóng lại đồ nghề cho vừa với số ngón còn lại. Chậm hơn hẳn, nhưng vẫn là nghề.",
+      "prereq": { "skillLevel": 25, "bodyCondition": ["cut-ngon", "cung-khop"] },
+      "usableIn": ["field", "admin"],
+      "effects": [
+        { "domains": ["skill.che-tac", "skill.moc", "skill.ren-sat"], "value": 15 },
+        { "domains": ["skill.co-khi"], "value": 8 }
+      ]
+    },
+    {
+      "id": "node_giang-dao_tieng-noi-trong-toi",
+      "skillId": "skill_giang-dao",
+      "name": "Tiếng nói trong tối",
+      "kind": "passive",
+      "cost": 3,
+      "description": "Người mù nghe ra thứ người khác bỏ sót, và cả một đời sống tôn giáo mở ra từ chỗ đó.",
+      "prereq": { "skillLevel": 20, "bodyCondition": ["mu-hai-mat", "mu-mot-mat"] },
+      "usableIn": ["social"],
+      "effects": [
+        { "domains": ["skill.giang-dao", "skill.an-ui", "skill.doc-nguoi"], "value": 15 },
+        { "domains": ["skill.cam-ung"], "value": 10 }
+      ]
+    },
+    {
+      "id": "node_doc-nguoi_doc-khau-hinh",
+      "skillId": "skill_doc-nguoi",
+      "name": "Đọc khẩu hình",
+      "kind": "passive",
+      "cost": 3,
+      "description": "Không nghe được thì nhìn. Và nhìn thì thấy cả những câu người ta nói lúc tưởng mình không nghe được.",
+      "prereq": { "skillLevel": 25, "bodyCondition": ["diec"] },
+      "usableIn": ["social", "admin"],
+      "effects": [
+        { "domains": ["skill.doc-nguoi"], "value": 18 },
+        { "domains": ["skill.do-tham", "skill.phan-gian"], "value": 10, "whenAnyTag": ["nhin-thay"] }
+      ]
+    },
+    {
+      "id": "node_luat-le_ngoi-mot-cho-ma-xu",
+      "skillId": "skill_luat-le",
+      "name": "Ngồi một chỗ mà xử",
+      "kind": "passive",
+      "cost": 3,
+      "description": "Khớp cứng lại thì chữ vẫn còn mềm. Luật là nghề của người ngồi.",
+      "prereq": { "skillLevel": 25, "bodyCondition": ["cung-khop", "lien-xuong-lech", "liet-hai-chan"] },
+      "usableIn": ["admin", "social"],
+      "effects": [
+        { "domains": ["skill.luat-le", "skill.xu-an"], "value": 14 },
+        { "domains": ["skill.su-ky", "skill.hoc-van"], "value": 6 }
+      ]
+    },
+    {
+      "id": "node_the-luc_buoc-di-le",
+      "skillId": "skill_the-luc",
+      "name": "Bước đi lệch",
+      "kind": "passive",
+      "cost": 2,
+      "description": "Xương liền lệch thì cả người phải học lại cách dồn trọng tâm. Học xong thì không ai đoán được ngài sẽ đổ về bên nào.",
+      "prereq": { "skillLevel": 20, "bodyCondition": ["lien-xuong-lech", "cut-ngon", "dau-kinh-nien"] },
+      "usableIn": ["duel", "field"],
+      "effects": [
+        { "domains": ["skill.the-luc"], "value": 12 },
+        { "domains": ["combat.ne-tranh"], "value": 6, "whenAnyTag": ["lan-dau-gap"] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "$comment": "ĐỊA HÌNH CHIẾN TRƯỜNG — Phần 10 mục 9. KHÔNG phải data/arenas.json: ô ở đó rộng chừng một mét (đấu tay đôi), ô ở đây rộng hàng chục mét. Mọi con số điều chỉnh theo thang d100, DƯƠNG LÀ LỢI, và đi qua scaleToSystem của Phần 5 mục 7 để đổi sang số viên xúc sắc.",
+  "version": 1,
+
+  "grid": {
+    "$comment": "Mục 2 nói thẳng: 'Bảng này là CÔNG THỨC, KHÔNG hardcode bậc.' Ba nhóm hằng số dưới đây là tham số của ba hàm liên tục ở grid.ts, khớp với bảng của mục 2 ở cả bốn mốc. Bất biến CỨNG là số quân cờ mỗi bên nằm trong 8–30; số quân trên một đơn vị là hệ quả, không phải đầu vào.",
+    "sideBase": 15,
+    "sideRefTroops": 150,
+    "sideExponent": 0.235,
+    "sideMin": 15,
+    "sideMax": 50,
+
+    "cellBaseMeters": 20,
+    "cellExponent": 1.5,
+    "cellMinMeters": 20,
+    "cellMaxMeters": 200,
+
+    "piecesBase": 7,
+    "piecesRefTroops": 175,
+    "piecesExponent": 0.22,
+    "piecesMin": 8,
+    "piecesMax": 30,
+
+    "$deploy": "Hai đạo quân dàn trận cách nhau chừng ngần này mét, KHÔNG phải ở hai mép lưới. Lưới co giãn theo quy mô, nên hai mép của một trận ba nghìn người cách nhau gần hai cây số — quãng ấy không đạo quân nào chịu đi bộ dưới mưa tên, và một trận đánh mở màn bằng hai mươi vòng hành quân là hai mươi vòng không có gì xảy ra.",
+    "deployMeters": 800
+  },
+
+  "terrain": [
+    {
+      "id": "dong-bang",
+      "name": "Đồng bằng",
+      "moveCost": 1,
+      "note": "Đất trống, khô, bằng. Đây là chỗ kỵ binh nặng muốn đánh và bộ binh không muốn gặp."
+    },
+    {
+      "id": "duong",
+      "name": "Đường cái",
+      "moveCost": 1,
+      "moveBonus": 1,
+      "note": "Hành quân nhanh nhưng đội hình kéo dài — đi đường thì tới sớm, đánh thì không."
+    },
+    {
+      "id": "ruong",
+      "name": "Ruộng",
+      "moveCost": 1,
+      "cohesionDrain": 2,
+      "note": "Luống cày và bờ ruộng làm hàng lối xô lệch dần."
+    },
+    {
+      "id": "doi",
+      "name": "Sườn đồi",
+      "moveCost": 2,
+      "attack": 6,
+      "defence": 6,
+      "ranged": 10,
+      "elevation": 1,
+      "note": "Cao điểm: +tấn công, +tầm bắn, và kỵ binh xuống dốc mạnh hơn hẳn (mục 9)."
+    },
+    {
+      "id": "doi-cao",
+      "name": "Đỉnh đồi",
+      "moveCost": 2,
+      "attack": 10,
+      "defence": 10,
+      "ranged": 18,
+      "elevation": 2,
+      "note": "Chỗ ai cũng muốn chiếm trước khi trận bắt đầu."
+    },
+    {
+      "id": "rung",
+      "name": "Rừng",
+      "moveCost": 2,
+      "defence": 10,
+      "ranged": -25,
+      "cavalry": -35,
+      "cohesionDrain": 6,
+      "concealment": 70,
+      "note": "Phá đội hình, khắc kỵ binh, lợi cho phục kích (mục 9)."
+    },
+    {
+      "id": "bun",
+      "name": "Bùn nhão",
+      "moveCost": 2,
+      "cavalry": -35,
+      "heavy": -30,
+      "staminaExtra": 4,
+      "note": "Kỵ binh nặng và bộ binh giáp gần như tê liệt."
+    },
+    {
+      "id": "dam-lay",
+      "name": "Đầm lầy",
+      "moveCost": 3,
+      "defence": -10,
+      "cavalry": -45,
+      "heavy": -35,
+      "staminaExtra": 7,
+      "cohesionDrain": 4,
+      "note": "Nặng hơn bùn một bậc, và không ai giữ được hàng lối trong đó."
+    },
+    {
+      "id": "song",
+      "name": "Sông",
+      "moveCost": 9,
+      "passable": false,
+      "note": "Không qua được ở đây. Phải tìm chỗ lội hoặc cầu."
+    },
+    {
+      "id": "cho-loi",
+      "name": "Chỗ lội",
+      "moveCost": 3,
+      "defence": -15,
+      "cavalry": -25,
+      "heavy": -20,
+      "frontage": 1,
+      "staminaExtra": 5,
+      "note": "Thắt cổ chai: một đơn vị giữ được cả đạo quân (mục 9)."
+    },
+    {
+      "id": "cau",
+      "name": "Cầu",
+      "moveCost": 1,
+      "defence": -10,
+      "frontage": 1,
+      "note": "Thắt cổ chai khô chân. Qua nhanh hơn chỗ lội, nhưng vẫn chỉ một hàng."
+    },
+    {
+      "id": "lang",
+      "name": "Làng",
+      "moveCost": 2,
+      "defence": 18,
+      "ranged": -10,
+      "cavalry": -30,
+      "cohesionDrain": 4,
+      "concealment": 45,
+      "note": "Nhà và hàng rào: bộ binh cố thủ trong làng rất khó đuổi, nhưng đội hình vỡ vụn ngay khi bước vào."
+    }
+  ],
+
+  "fields": [
+    {
+      "id": "field_dong-trong",
+      "name": "Đồng trống",
+      "default": true,
+      "weights": { "dong-bang": 72, "ruong": 20, "duong": 5, "doi": 3 },
+      "note": "Không ai có lợi thế địa hình. Trận đánh thuần túy về binh chủng và sĩ khí."
+    },
+    {
+      "id": "field_suon-doi",
+      "name": "Sườn đồi",
+      "weights": { "dong-bang": 62, "ruong": 20, "doi": 15, "rung": 3 },
+      "features": [
+        { "kind": "band", "terrain": "doi", "edge": "bac", "depth": 0.22 },
+        { "kind": "band", "terrain": "doi-cao", "edge": "bac", "depth": 0.08 }
+      ],
+      "note": "Một bên có cao điểm. Ai lên trước thì đánh xuống."
+    },
+    {
+      "id": "field_khuc-song",
+      "name": "Khúc sông",
+      "weights": { "dong-bang": 70, "ruong": 22, "rung": 8 },
+      "features": [
+        { "kind": "river", "terrain": "song", "crossingTerrain": "cho-loi", "crossings": 1 }
+      ],
+      "note": "Một chỗ lội duy nhất. Cả trận đánh xoay quanh đúng một ô."
+    },
+    {
+      "id": "field_bia-rung",
+      "name": "Bìa rừng",
+      "weights": { "dong-bang": 58, "ruong": 18, "rung": 24 },
+      "features": [{ "kind": "patch", "terrain": "rung", "count": 3, "radius": 0.16 }],
+      "note": "Kỵ binh mất đất, phục kích có chỗ nấp."
+    },
+    {
+      "id": "field_dat-lay",
+      "name": "Ruộng lầy sau mưa",
+      "weights": { "bun": 46, "ruong": 30, "dong-bang": 18, "dam-lay": 6 },
+      "features": [{ "kind": "patch", "terrain": "dam-lay", "count": 2, "radius": 0.14 }],
+      "note": "Giáp nặng lún tới mắt cá. Trận đánh của người đi bộ nhẹ."
+    },
+    {
+      "id": "field_deo-nui",
+      "name": "Đèo núi",
+      "weights": { "dong-bang": 40, "doi": 40, "doi-cao": 12, "rung": 8 },
+      "features": [
+        { "kind": "band", "terrain": "doi-cao", "edge": "tay", "depth": 0.2 },
+        { "kind": "band", "terrain": "doi-cao", "edge": "dong", "depth": 0.2 }
+      ],
+      "note": "Hai sườn cao kẹp một lối đi. Chỗ khối giáo Lùn không thể thua (Phần 14 mục 2.3)."
+    },
+    {
+      "id": "field_lang-mac",
+      "name": "Làng mạc",
+      "weights": { "dong-bang": 52, "ruong": 26, "lang": 14, "duong": 8 },
+      "features": [{ "kind": "patch", "terrain": "lang", "count": 2, "radius": 0.12 }],
+      "note": "Mấy cụm nhà thành ổ đề kháng. Cướp phá bắt đầu trước khi trận kết thúc."
+    }
+  ]
+}

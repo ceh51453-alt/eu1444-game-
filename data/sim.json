@@ -1,0 +1,160 @@
+{
+  "$comment": "MÔ PHỎNG NGẦM — Phần 15 mục 2, 3, 4, 5, 9. Ba độ phân giải NPC, danh mục mục tiêu và hành động, cây quyết định của tầng B, bảng xác suất của tầng C, trần biến động và trần chi phí. MỌI con số cân bằng của mô phỏng nằm ở đây; code chỉ đọc (R5). Đặc biệt `cost.maxRequestsPerMonth` — README mục 8.7 nói không có trần này thì chơi một năm trong game tốn hàng chục đô tiền proxy.",
+  "version": 1,
+
+  "tiers": {
+    "$comment": "MỤC 2. Tầng của một NPC được tính lại MỖI THÁNG theo khoảng cách tới người chơi và mức liên quan, và người chơi KHÔNG BAO GIỜ thấy sự chuyển tầng ấy. `maxA` là 8–12 của mục 2 — vượt trần thì người có điểm thấp nhất rơi xuống tầng B, không phải bị bỏ mặc.",
+    "$nguong": "`promoteAbove` CỐ Ý THẤP, và `maxA` mới là thứ giữ hoá đơn. Ngưỡng cao thì gần như không ai lọt vào tầng A — một lãnh chúa ở ngay cạnh người chơi cũng chỉ được 40 điểm khoảng cách cộng chút quyền lực — và tầng LLM sẽ im lặng không bao giờ chạy, mà không có phép kiểm nào bắt được chuyện đó. Ngưỡng thấp cộng trần cứng thì đúng 8–12 người liên quan nhất được nghĩ hộ, và đó chính là điều mục 2 mô tả.",
+    "maxA": 12,
+    "maxB": 400,
+    "nearKm": 120,
+    "farKm": 1600,
+    "weights": {
+      "khoangCach": 40,
+      "lienQuan": 34,
+      "quyenLuc": 16,
+      "mocQuanTrong": 10
+    },
+    "promoteAbove": 42,
+    "demoteBelow": 22,
+    "$moc": "MỐC QUAN TRỌNG — 'thức dậy' của mục 2. Một NPC tầng C đạt một trong những mốc này thì được kéo lên bất kể ở đâu.",
+    "wakeMilestones": ["ke-vi", "chet", "phan-loan", "len-hong-y", "hon-nhan", "sup-do"]
+  },
+
+  "personality": {
+    "$comment": "Năm trục, mỗi trục 0–100. Không có trục nào 'tốt' — chúng chỉ nói nhân vật ấy sẽ với tay tới hành động nào trước. Cây quyết định của tầng B đọc thẳng chúng.",
+    "axes": [
+      { "id": "hung-hang", "name": "hung hãn", "low": "nhẫn nhịn", "high": "ưa dùng vũ lực" },
+      { "id": "trung-thanh", "name": "trung thành", "low": "sẵn sàng trở mặt", "high": "giữ lời thề tới cùng" },
+      { "id": "tham-lam", "name": "tham lam", "low": "đủ là được", "high": "không bao giờ đủ" },
+      { "id": "mo-dao", "name": "mộ đạo", "low": "đời là đời", "high": "sợ Chúa hơn sợ vua" },
+      { "id": "than-trong", "name": "thận trọng", "low": "làm rồi tính", "high": "tính mãi không làm" }
+    ]
+  },
+
+  "goals": {
+    "$comment": "MỤC 3, danh sách mục tiêu. `horizonMonths` là bao lâu thì agent bỏ cuộc nếu không nhích được — không có nó thì một bá tước sẽ đuổi theo một ngôi vị suốt sáu chục năm và không bao giờ làm gì khác. `progressPerAction` là mức nhích cơ bản, còn nhích thật bao nhiêu thì `magnitude` quyết.",
+    "kinds": [
+      { "id": "chiem-thanh-tri", "name": "chiếm một thành trì", "horizonMonths": 60, "priorityBase": 70, "actions": ["chieu-binh", "vay-ham", "danh-le", "cau-vien", "cho-thoi-co"] },
+      { "id": "cuoi-mot-nguoi", "name": "cưới một người", "horizonMonths": 36, "priorityBase": 55, "actions": ["cau-hon", "danh-le", "van-dong", "cho-thoi-co"] },
+      { "id": "leo-tuoc-vi", "name": "leo lên một tước vị", "horizonMonths": 96, "priorityBase": 75, "actions": ["van-dong", "danh-le", "cau-vien", "vu-cao", "phan-boi", "cho-thoi-co"] },
+      { "id": "tra-thu", "name": "trả thù", "horizonMonths": 120, "priorityBase": 80, "actions": ["am-sat", "vu-cao", "chieu-binh", "cau-vien", "cho-thoi-co"] },
+      { "id": "tich-tien", "name": "tích tiền", "horizonMonths": 48, "priorityBase": 45, "actions": ["tich-tien", "xay-dung", "danh-le", "cho-thoi-co"] },
+      { "id": "bao-ve-con-cai", "name": "bảo vệ con cái", "horizonMonths": 240, "priorityBase": 85, "actions": ["bao-ve-con-cai", "cau-hon", "cau-vien", "giau-bi-mat", "cho-thoi-co"] },
+      { "id": "len-hong-y", "name": "lên hồng y", "horizonMonths": 120, "priorityBase": 70, "actions": ["van-dong", "danh-le", "hanh-huong", "vu-cao", "cho-thoi-co"] },
+      { "id": "che-giau-bi-mat", "name": "che giấu một bí mật", "horizonMonths": 180, "priorityBase": 65, "actions": ["giau-bi-mat", "am-sat", "danh-le", "cho-thoi-co"] },
+      { "id": "tim-co-vat", "name": "tìm một cổ vật", "horizonMonths": 72, "priorityBase": 50, "actions": ["tim-co-vat", "hanh-huong", "danh-le", "cho-thoi-co"] }
+    ]
+  },
+
+  "actions": {
+    "$comment": "DANH MỤC HÀNH ĐỘNG ĐÓNG. Tầng A (LLM) chỉ được chọn trong danh sách này, và chọn ra ngoài thì quyết định bị vứt — đây là chỗ R1 được giữ ở tầng mô phỏng: LLM đề xuất Ý ĐỊNH, engine tra bảng này để biết ý định ấy tốn bao nhiêu, khó tới đâu, và loan ra thành biến cố gì. `dc` là bậc khó của thang chuẩn hoá Phần 5 mục 8.",
+    "catalogue": [
+      { "id": "chieu-binh", "name": "chiêu binh", "cost": 120, "dc": "thuong", "progress": 14, "eventKind": "tran-danh", "importance": 2, "noisy": true },
+      { "id": "vay-ham", "name": "vây một toà thành", "cost": 260, "dc": "kho", "progress": 34, "eventKind": "vay-ham", "importance": 4, "noisy": true },
+      { "id": "danh-le", "name": "đánh lễ", "cost": 90, "dc": "de-dang", "progress": 11, "eventKind": "khac", "importance": 1, "noisy": false },
+      { "id": "cau-hon", "name": "cầu hôn", "cost": 150, "dc": "thuong", "progress": 30, "eventKind": "hon-nhan", "importance": 3, "noisy": true },
+      { "id": "vu-cao", "name": "vu cáo", "cost": 60, "dc": "thuong", "progress": 16, "eventKind": "am-muu", "importance": 2, "noisy": false },
+      { "id": "am-sat", "name": "ám sát", "cost": 200, "dc": "rat-kho", "progress": 55, "eventKind": "chet", "importance": 4, "noisy": false },
+      { "id": "tich-tien", "name": "tích tiền", "cost": 0, "dc": "de-dang", "progress": 10, "eventKind": "khac", "importance": 1, "noisy": false },
+      { "id": "xay-dung", "name": "xây dựng", "cost": 180, "dc": "de-dang", "progress": 13, "eventKind": "khac", "importance": 1, "noisy": true },
+      { "id": "van-dong", "name": "vận động", "cost": 110, "dc": "thuong", "progress": 17, "eventKind": "am-muu", "importance": 2, "noisy": false },
+      { "id": "cau-vien", "name": "cầu viện", "cost": 70, "dc": "thuong", "progress": 15, "eventKind": "khac", "importance": 2, "noisy": true },
+      { "id": "phan-boi", "name": "trở mặt với chủ", "cost": 40, "dc": "kho", "progress": 42, "eventKind": "phan-loan", "importance": 4, "noisy": true },
+      { "id": "giau-bi-mat", "name": "giấu một bí mật", "cost": 50, "dc": "thuong", "progress": 12, "eventKind": "khac", "importance": 1, "noisy": false },
+      { "id": "hanh-huong", "name": "hành hương", "cost": 100, "dc": "de-dang", "progress": 14, "eventKind": "khac", "importance": 2, "noisy": true },
+      { "id": "tim-co-vat", "name": "lùng một cổ vật", "cost": 130, "dc": "kho", "progress": 20, "eventKind": "khac", "importance": 2, "noisy": false },
+      { "id": "bao-ve-con-cai", "name": "che chở con cái", "cost": 80, "dc": "de-dang", "progress": 12, "eventKind": "khac", "importance": 1, "noisy": false },
+      { "id": "cho-thoi-co", "name": "chờ thời cơ", "cost": 0, "dc": "de-dang", "progress": 3, "eventKind": "khac", "importance": 1, "noisy": false }
+    ],
+    "$magnitude": "MỨC ĐỘ → SỐ. LLM chỉ được nói ba chữ này (mục 5 B2); engine nhân chúng vào `progress` và `cost` của bảng trên. Đây là toàn bộ đường mà một ý định của LLM biến thành một con số, và nó chỉ có một cửa.",
+    "magnitude": { "nho": 0.6, "vua": 1.0, "lon": 1.7 }
+  },
+
+  "tierB": {
+    "$comment": "MỤC 2, TẦNG B: cây quyết định TẤT ĐỊNH dựa trên mục tiêu, tính cách, nguồn lực. Duyệt từ trên xuống, luật đầu tiên khớp thì thắng — nên thứ tự trong mảng này LÀ độ ưu tiên. Không có luật nào khớp thì rơi vào `fallback`, và một agent chờ thời cơ vẫn là một agent hợp lý.",
+    "rules": [
+      { "id": "b_tra-thu-hung-hang", "goal": "tra-thu", "minTrait": { "axis": "hung-hang", "value": 60 }, "minResources": 200, "action": "am-sat", "magnitude": "lon" },
+      { "id": "b_tra-thu-am-tham", "goal": "tra-thu", "minTrait": { "axis": "than-trong", "value": 55 }, "action": "vu-cao", "magnitude": "vua" },
+      { "id": "b_tra-thu-thuong", "goal": "tra-thu", "minResources": 120, "action": "chieu-binh", "magnitude": "vua" },
+
+      { "id": "b_chiem-du-quan", "goal": "chiem-thanh-tri", "minResources": 260, "minTrait": { "axis": "hung-hang", "value": 45 }, "action": "vay-ham", "magnitude": "lon" },
+      { "id": "b_chiem-gom-quan", "goal": "chiem-thanh-tri", "minResources": 120, "action": "chieu-binh", "magnitude": "vua" },
+      { "id": "b_chiem-mua-chuoc", "goal": "chiem-thanh-tri", "action": "danh-le", "magnitude": "nho" },
+
+      { "id": "b_tuoc-vi-tro-mat", "goal": "leo-tuoc-vi", "maxTrait": { "axis": "trung-thanh", "value": 25 }, "minResources": 60, "action": "phan-boi", "magnitude": "lon" },
+      { "id": "b_tuoc-vi-van-dong", "goal": "leo-tuoc-vi", "minResources": 110, "action": "van-dong", "magnitude": "vua" },
+      { "id": "b_tuoc-vi-cho", "goal": "leo-tuoc-vi", "action": "cho-thoi-co", "magnitude": "nho" },
+
+      { "id": "b_hong-y-mo-dao", "goal": "len-hong-y", "minTrait": { "axis": "mo-dao", "value": 60 }, "minResources": 100, "action": "hanh-huong", "magnitude": "vua" },
+      { "id": "b_hong-y-mua", "goal": "len-hong-y", "minResources": 110, "action": "van-dong", "magnitude": "vua" },
+
+      { "id": "b_cuoi-du-cua", "goal": "cuoi-mot-nguoi", "minResources": 150, "action": "cau-hon", "magnitude": "lon" },
+      { "id": "b_cuoi-gom-cua", "goal": "cuoi-mot-nguoi", "action": "tich-tien", "magnitude": "vua" },
+
+      { "id": "b_tien-tham", "goal": "tich-tien", "minTrait": { "axis": "tham-lam", "value": 55 }, "minResources": 180, "action": "xay-dung", "magnitude": "vua" },
+      { "id": "b_tien-thuong", "goal": "tich-tien", "action": "tich-tien", "magnitude": "vua" },
+
+      { "id": "b_con-cai-cuoi", "goal": "bao-ve-con-cai", "minResources": 150, "action": "cau-hon", "magnitude": "vua" },
+      { "id": "b_con-cai-che-cho", "goal": "bao-ve-con-cai", "action": "bao-ve-con-cai", "magnitude": "vua" },
+
+      { "id": "b_bi-mat-doa", "goal": "che-giau-bi-mat", "maxTrait": { "axis": "trung-thanh", "value": 35 }, "minResources": 200, "action": "am-sat", "magnitude": "vua" },
+      { "id": "b_bi-mat-giau", "goal": "che-giau-bi-mat", "action": "giau-bi-mat", "magnitude": "vua" },
+
+      { "id": "b_co-vat-lung", "goal": "tim-co-vat", "minResources": 130, "action": "tim-co-vat", "magnitude": "vua" },
+      { "id": "b_co-vat-di", "goal": "tim-co-vat", "action": "hanh-huong", "magnitude": "nho" }
+    ],
+    "fallback": { "action": "cho-thoi-co", "magnitude": "nho" }
+  },
+
+  "tierC": {
+    "$comment": "MỤC 2, TẦNG C: chỉ tiến triển bằng bảng xác suất rẻ. Không agent nào ở tầng này ra quyết định — họ già đi, cưới, chết, đổi chức, giàu lên nghèo đi. Xác suất tính THEO THÁNG. Ai chạm một mốc trong `tiers.wakeMilestones` thì được kéo lên tầng B ngay tháng ấy.",
+    "monthly": {
+      "chet": [
+        { "maxAge": 5, "chance": 0.004 },
+        { "maxAge": 15, "chance": 0.0008 },
+        { "maxAge": 40, "chance": 0.0012 },
+        { "maxAge": 55, "chance": 0.0035 },
+        { "maxAge": 65, "chance": 0.0085 },
+        { "maxAge": 75, "chance": 0.019 },
+        { "maxAge": 200, "chance": 0.045 }
+      ],
+      "cuoi": { "minAge": 14, "maxAge": 45, "chance": 0.012 },
+      "doiChuc": { "chance": 0.004 },
+      "giauLen": { "chance": 0.02, "factor": 1.12 },
+      "ngheoDi": { "chance": 0.025, "factor": 0.9 }
+    }
+  },
+
+  "drift": {
+    "$comment": "CHỐNG TRÔI DẠT — mục 9. TRẦN BIẾN ĐỘNG: một tháng KHÔNG thể làm một quốc gia mất quá ngần này lãnh thổ, trừ khi có chiến tranh thật đã mô phỏng (`warExempt`). Không có trần này thì sáu mươi năm mô phỏng sẽ ra một châu Âu mà không ai nhận ra, và không ai chỉ được chỗ nó bắt đầu hỏng.",
+    "maxLandLossPct": 8,
+    "maxLandGainPct": 8,
+    "maxMeterDelta": 15,
+    "maxTreasuryFactor": 0.35,
+    "warExempt": true,
+    "logLimit": 400
+  },
+
+  "invariants": {
+    "$comment": "KIỂM TRA BẤT BIẾN SAU MỖI TICK SÂU — mục 9. Vi phạm thì GHI LOG, TỰ SỬA về trạng thái hợp lệ gần nhất, và KHÔNG im lặng bỏ qua. Danh sách này là danh sách của mục 9 viết thành id để nhật ký tra ngược được.",
+    "checks": [
+      { "id": "inv_dan-so-khong-am", "note": "dân số và tài nguyên không âm" },
+      { "id": "inv_mot-tuoc-mot-nguoi", "note": "không ai giữ hai lần cùng một tước" },
+      { "id": "inv_quoc-gia-co-dat", "note": "không có quốc gia còn sống mà không đất" },
+      { "id": "inv_nguoi-chet-khong-hanh-dong", "note": "người chết không hành động" },
+      { "id": "inv_tin-khong-di-nguoc-thoi-gian", "note": "tin không tới trước lúc sự kiện xảy ra" },
+      { "id": "inv_do-tin-cay-trong-khoang", "note": "độ tin cậy nằm trong 0–100" },
+      { "id": "inv_agent-co-tang", "note": "mọi agent phải thuộc đúng một tầng A/B/C" }
+    ]
+  },
+
+  "cost": {
+    "$comment": "TRẦN CHI PHÍ BẮT BUỘC — mục 5, và là chỗ dễ hỏng thứ bảy của README. `maxRequestsPerMonth` mặc định 3: vượt trần thì phần dư RƠI XUỐNG TẦNG B chứ không xếp hàng chờ tháng sau. `llmEnabled` tắt được hẳn, và game vẫn phải chạy bình thường — chỉ là thế giới kém bất ngờ hơn.",
+    "maxRequestsPerMonth": 3,
+    "llmEnabledDefault": true,
+    "agentsPerRequest": 12,
+    "eventsPerTextRequest": 6,
+    "maxTextRequestsPerMonth": 1
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "$comment": "CẢI CÁCH ĐẾ CHẾ — Phần 14 mục 2.5. Thể loại của minigame này là BỎ PHIẾU VÀ MẶC CẢ, nên toàn bộ file là một bảng phiếu chứ không phải một bảng chỉ số: mỗi dự luật có giá của nó tính bằng phiếu, và mỗi lá phiếu có giá của nó tính bằng đất, tước, nợ, hoặc một cuộc hôn nhân. Mỗi dự luật TĂNG QUYỀN UY ĐẾ CHẾ và GIẢM TỰ DO CHƯ HẦU — chư hầu càng mạnh càng chống, nên bảng `opposition` đọc theo sức mạnh chứ không theo tính cách. Thất bại của thế lực này không phải bị chinh phục mà là RÃ DẦN thành các quốc gia riêng.",
+  "version": 1,
+  "config": {
+    "dietEveryYears": 3,
+    "$dietComment": "Đế hội họp định kỳ. Ba năm một kỳ là đủ chậm để một nhiệm kỳ hoàng đế chỉ có vài lần thử, và đủ nhanh để 60 năm mô phỏng của mục 10.15 có tới hai chục kỳ.",
+    "authorityStart": 28,
+    "authorityMax": 100,
+    "authorityDriftPerYear": -0.7,
+    "$driftComment": "Không làm gì thì quyền uy TỰ RƠI. Đế quốc là thế lực duy nhất mà đứng yên đồng nghĩa với thua — cùng logic với 'cỗ máy không có chế độ nghỉ' của Orc, nhưng ở đây nó im lặng hơn nhiều.",
+    "collapseBelowAuthority": 8,
+    "collapseYears": 6,
+    "secessionRiskPerFreedomPoint": 0.35,
+    "vote": {
+      "electorMajority": 4,
+      "$electorComment": "Bốn trên bảy. Tuyển hầu bầu hoàng đế, nên mất họ là mất cả ngôi lẫn dự luật.",
+      "princeShareNeeded": 0.5,
+      "abstainCountsAgainst": true,
+      "leanToVoteAt": 55,
+      "swingPerBargain": 18,
+      "swingPerIntimidation": 12,
+      "intimidationBacklash": 9,
+      "intimidationCheck": "de-doa-chu-hau",
+      "difficulty": "kho"
+    },
+    "bargains": [
+      { "id": "ban-dat", "name": "Ban đất", "cost": 180, "authorityCost": 2, "swing": 22, "note": "Mua được phiếu chắc nhất, và mỗi lần mua là đế quốc nhỏ đi một chút." },
+      { "id": "ban-tuoc", "name": "Ban tước", "cost": 60, "authorityCost": 1, "swing": 16, "prestigeCost": 1 },
+      { "id": "tha-no", "name": "Tha nợ", "cost": 120, "authorityCost": 0, "swing": 14 },
+      { "id": "hon-nhan", "name": "Hôn nhân", "cost": 40, "authorityCost": 0, "swing": 20, "oncePerHouse": true, "note": "Rẻ và mạnh, nhưng mỗi nhà chỉ dùng được một lần và nó ràng buộc ngược lại người ban." },
+      { "id": "doa-nat", "name": "Dọa nạt", "cost": 0, "authorityCost": 0, "swing": 12, "backlash": 9, "requiresCheck": true },
+      { "id": "chia-re", "name": "Chia rẽ phe đối lập", "cost": 90, "authorityCost": 0, "swing": 0, "splitsFaction": true, "note": "Không đổi được một phiếu nào, nhưng làm phe đối lập bỏ phiếu rời rạc." }
+    ],
+    "papacy": {
+      "$comment": "Liên minh với Giáo hoàng hoặc chống lại Giáo hoàng — cả hai đều là công cụ (mục 2.5), và cả hai đều đắt.",
+      "allyAuthorityPerYear": 0.6,
+      "allyPrinceSwing": 10,
+      "allyChurchDemand": "bỏ dự luật thuế đế chế đánh vào đất nhà thờ",
+      "defyPrinceSwing": -14,
+      "defyElectorSwing": -18,
+      "excommunicationAuthority": -12,
+      "excommunicationFreedom": 15,
+      "$excommComment": "Vạ tuyệt thông với Hoàng đế CỞI LỜI THỀ của chư hầu — đây chính là dòng đầu tiên của chuỗi dội sang nhau ở mục 6."
+    }
+  },
+  "electors": [
+    { "id": "elect_mainz", "name": "Tổng giám mục Mainz", "kind": "giao-si", "lean": 58, "price": "quyền thu thuế thập phân ở ba giáo phận", "faction": "giao-hoi", "raceId": "race_thien-due" },
+    { "id": "elect_koln", "name": "Tổng giám mục Köln", "kind": "giao-si", "lean": 46, "price": "một ghế trong hội đồng đế chế", "faction": "giao-hoi", "raceId": "race_teuton" },
+    { "id": "elect_trier", "name": "Tổng giám mục Trier", "kind": "giao-si", "lean": 51, "price": "tha nợ cũ", "faction": "giao-hoi", "raceId": "race_teuton" },
+    { "id": "elect_bohemia", "name": "Vua xứ Bohemia", "kind": "the-tuc", "lean": 62, "price": "công nhận quyền tự trị của Đế hội xứ mình", "faction": "hoang-de", "raceId": "race_teuton", "strength": 78 },
+    { "id": "elect_pfalz", "name": "Bá tước Pfalz", "kind": "the-tuc", "lean": 34, "price": "đất bên sông Rhein", "faction": "tu-do", "raceId": "race_teuton", "strength": 61 },
+    { "id": "elect_sachsen", "name": "Công tước Sachsen", "kind": "the-tuc", "lean": 40, "price": "độc quyền mỏ bạc", "faction": "tu-do", "raceId": "race_gnome", "strength": 66 },
+    { "id": "elect_brandenburg", "name": "Bá tước Brandenburg", "kind": "the-tuc", "lean": 37, "price": "quyền chinh phạt phương đông", "faction": "tu-do", "raceId": "race_teuton", "strength": 58 }
+  ],
+  "princes": [
+    { "id": "prince_bayern", "name": "Công quốc Bayern", "strength": 74, "lean": 32, "faction": "tu-do", "seats": 3 },
+    { "id": "prince_wurttemberg", "name": "Bá quốc Württemberg", "strength": 52, "lean": 44, "faction": "tu-do", "seats": 2 },
+    { "id": "prince_habsburg", "name": "Nhà Habsburg", "strength": 81, "lean": 70, "faction": "hoang-de", "seats": 3 },
+    { "id": "prince_thanh-pho-tu-do", "name": "Liên minh thành phố tự do", "strength": 63, "lean": 66, "faction": "thanh-pho", "seats": 4, "raceId": "race_gnome", "note": "Thành phố ỦNG HỘ cải cách: hòa bình đế chế và tiền tệ thống nhất là điều kiện sống của thương mại. Đây là phe duy nhất mà quyền uy đế chế mạnh lên lại có lợi." },
+    { "id": "prince_dong-tu-teuton", "name": "Nhà nước Dòng tu Teuton", "strength": 57, "lean": 48, "faction": "giao-hoi", "seats": 2 },
+    { "id": "prince_bruns", "name": "Các công quốc Bắc Đức", "strength": 49, "lean": 38, "faction": "tu-do", "seats": 3 },
+    { "id": "prince_lun-nam", "name": "Các bang Lùn Vực Sâu phía nam", "strength": 44, "lean": 29, "faction": "tu-do", "seats": 2, "raceId": "race_lun-vuc-sau" }
+  ],
+  "factions": [
+    { "id": "hoang-de", "name": "Phe hoàng đế", "wants": "quyền uy đế chế mạnh, một tòa án, một đồng tiền" },
+    { "id": "tu-do", "name": "Phe tự do chư hầu", "wants": "giữ quyền tư chiến, giữ thuế của mình, không đăng ký thái ấp" },
+    { "id": "giao-hoi", "name": "Phe giáo hội", "wants": "miễn thuế đất nhà thờ, và một hoàng đế không cãi Giáo hoàng" },
+    { "id": "thanh-pho", "name": "Phe thành phố", "wants": "đường an toàn, tiền tệ thống nhất, tòa án xử được nợ" }
+  ],
+  "reforms": [
+    {
+      "id": "reform_hoa-binh",
+      "name": "Hòa bình đế chế",
+      "summary": "Cấm tư chiến. Ai cầm quân đánh láng giềng thì bị cả đế quốc xử.",
+      "order": 1,
+      "authority": 12,
+      "freedom": -14,
+      "requiresPassed": [],
+      "opposedByFaction": ["tu-do"],
+      "favouredByFaction": ["thanh-pho", "giao-hoi"],
+      "opposePerStrengthPoint": 0.22,
+      "effects": { "internalWarChance": -0.55, "tradeIncome": 0.12, "stability": 6 },
+      "note": "Dự luật đầu tiên và dễ nhất. Cũng là dự luật mà quý tộc mạnh ghét nhất, vì tư chiến chính là cách họ lớn lên."
+    },
+    {
+      "id": "reform_toa-an",
+      "name": "Tòa án đế chế",
+      "summary": "Một tòa tối cao xử tranh chấp giữa chư hầu, phán quyết có hiệu lực khắp đế quốc.",
+      "order": 2,
+      "authority": 14,
+      "freedom": -12,
+      "requiresPassed": ["reform_hoa-binh"],
+      "opposedByFaction": ["tu-do"],
+      "favouredByFaction": ["thanh-pho", "hoang-de"],
+      "opposePerStrengthPoint": 0.2,
+      "effects": { "disputeResolution": 0.5, "authorityPerYear": 0.4 }
+    },
+    {
+      "id": "reform_thue",
+      "name": "Thuế đế chế chung",
+      "summary": "Một khoản đóng góp cố định theo đầu chư hầu, nộp thẳng về ngân khố đế chế.",
+      "order": 3,
+      "authority": 18,
+      "freedom": -20,
+      "requiresPassed": ["reform_toa-an"],
+      "opposedByFaction": ["tu-do", "giao-hoi"],
+      "favouredByFaction": ["hoang-de"],
+      "opposePerStrengthPoint": 0.3,
+      "effects": { "incomePerYear": 320, "unrest": 4 },
+      "note": "Dự luật đắt phiếu nhất trong sáu cái. Phe giáo hội chống vì đất nhà thờ sẽ bị đánh thuế — trừ khi hoàng đế đã mua Giáo hoàng bằng một nhượng bộ khác."
+    },
+    {
+      "id": "reform_quan-doi",
+      "name": "Quân đội đế chế thường trực",
+      "summary": "Một đạo quân ăn lương của đế chế, không phải quân dịch 40 ngày của chư hầu.",
+      "order": 4,
+      "authority": 20,
+      "freedom": -24,
+      "requiresPassed": ["reform_thue"],
+      "opposedByFaction": ["tu-do"],
+      "favouredByFaction": ["hoang-de", "thanh-pho"],
+      "opposePerStrengthPoint": 0.34,
+      "effects": { "standingArmy": 12000, "upkeepPerYear": 240, "levyIndependence": 0.6 },
+      "note": "Đây là dự luật biến đế quốc thành một quốc gia thật. Chư hầu biết thế, nên đây cũng là dự luật họ sẵn sàng nổi dậy để chặn."
+    },
+    {
+      "id": "reform_dang-ky",
+      "name": "Đăng ký thái ấp",
+      "summary": "Mọi thái ấp phải khai vào sổ đế chế: ai giữ gì, do ai phong, nợ nghĩa vụ bao nhiêu.",
+      "order": 5,
+      "authority": 10,
+      "freedom": -10,
+      "requiresPassed": ["reform_toa-an"],
+      "opposedByFaction": ["tu-do"],
+      "favouredByFaction": ["hoang-de"],
+      "opposePerStrengthPoint": 0.16,
+      "effects": { "claimClarity": 0.7, "vassalLoyalty": -3 },
+      "note": "Nghe vô hại nhất và là dự luật nguy hiểm nhất với chư hầu: một khi đã có sổ thì mọi yêu sách mập mờ đều biến mất, mà quá nửa quý tộc sống nhờ chỗ mập mờ ấy."
+    },
+    {
+      "id": "reform_tien-te",
+      "name": "Thống nhất tiền tệ",
+      "summary": "Một đồng tiền, một trọng lượng bạc, cấm đúc riêng.",
+      "order": 6,
+      "authority": 8,
+      "freedom": -8,
+      "requiresPassed": [],
+      "opposedByFaction": ["tu-do"],
+      "favouredByFaction": ["thanh-pho"],
+      "opposePerStrengthPoint": 0.14,
+      "effects": { "tradeIncome": 0.18, "incomePerYear": 90 },
+      "note": "Dự luật rẻ nhất và là chỗ hoàng đế mới nên bắt đầu — thành phố trả tiền vận động giúp."
+    }
+  ]
+}

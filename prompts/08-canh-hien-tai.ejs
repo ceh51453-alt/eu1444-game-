@@ -1,0 +1,30 @@
+CẢNH HIỆN TẠI
+Thời gian: <%= fmt.date(now) %>, <%= q.calendar().weekday %>, <%= now.hour %> giờ<% if (scene.timeOfDay !== '') { %> (<%= scene.timeOfDay %>)<% } %>
+Nơi chốn: <%= scene.place === '' ? '(chưa xác định — bạn dựng lấy, rồi giữ nguyên ở các lượt sau)' : scene.place %>
+<% if (scene.weather !== '') { %>
+Thời tiết: <%= scene.weather %>
+<% } %>
+<% if (scene.npcs.length > 0) { %>
+
+ĐANG CÓ MẶT
+<% for (const npc of scene.npcs) { const rel = q.relation(npc.id); %>
+· <%= npc.name %><% if (npc.role !== '') { %> — <%= npc.role %><% } %><% if (rel) { %> · đã quen: <%= rel.note %><% } %>
+<% } %>
+<% } else { %>
+
+Không có ai khác trong cảnh.
+<% } %>
+<% if (scene.notes.length > 0) { %>
+
+Ghi chú của engine về cảnh:
+<% for (const note of scene.notes) { %>
+· <%= note %>
+<% } %>
+<% } %>
+<% const rumors = q.rumors(); if (rumors.length > 0) { %>
+
+Tin đồn nhân vật đang nghe được:
+<% for (const rumor of rumors.slice(-5)) { %>
+· <%= rumor %>
+<% } %>
+<% } %>

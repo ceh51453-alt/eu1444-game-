@@ -1,0 +1,3235 @@
+{
+  "$schema": "./races.schema.json",
+  "$comment": "Chủng tộc (Phần 6 mục 2, sửa vị thế xã hội ở Phần 14 và 14b). KHÔNG chỗ nào trong code được viết cứng số lượng tộc — danh sách sẽ còn dài thêm. Node có isGroupNode=true là node nhóm, không chọn được lúc tạo nhân vật. `stats` là mod cộng vào chỉ số nền, tổng của mỗi tộc LUÔN bằng 0: chỗ khác nhau giữa các tộc nằm ở phân bổ và ở `traits`, không ở tổng. `statCaps` chỉ khai chỗ THẤP hơn trần chung; trần chung nằm ở `statCapDefault`. `traits` trỏ sang data/traits.json và được đăng ký vào registry modifier của Phần 5 — không đặc tính nào được tính cứng trong code. `lifespan: null` nghĩa là không già đi (Huyết Tộc) hoặc chưa ai đo được (Thạch Duệ, Tộc Tro Tàn). `attitudes` CHỈ khai chỗ lệch; nền suy từ data/nations.json. `spread` là Phần 14 mục 3 và mục 8: tộc này có mặt ở thế lực nào và với vai trò gì.",
+  "version": 3,
+  "groups": [
+    {
+      "id": "nhan-loai",
+      "name": "Nhân loại"
+    },
+    {
+      "id": "tien",
+      "name": "Tiên tộc"
+    },
+    {
+      "id": "lun",
+      "name": "Tộc Lùn và họ hàng"
+    },
+    {
+      "id": "nguoi-thu",
+      "name": "Tộc Người Thú"
+    },
+    {
+      "id": "khong-lo",
+      "name": "Nhánh khổng lồ"
+    },
+    {
+      "id": "huyet-due",
+      "name": "Nhánh huyết duệ"
+    },
+    {
+      "id": "nguyen-to",
+      "name": "Nhánh nguyên tố và dị biến"
+    }
+  ],
+  "races": [
+    {
+      "id": "race_nhan-loai",
+      "name": "Nhân loại",
+      "englishName": "Humanity",
+      "group": "nhan-loai",
+      "isGroupNode": true,
+      "playable": false,
+      "standing": "chủng tộc đông dân nhất, cai trị phần lớn Tây và Trung Europa",
+      "church": "chính thống",
+      "lifespan": 70,
+      "homelands": [
+        "reg_europa"
+      ],
+      "loreEntry": "race_nhan-loai",
+      "note": "Node nhóm. Lúc tạo nhân vật phải chọn một trong bốn nhánh bên dưới."
+    },
+    {
+      "id": "race_frank",
+      "name": "Frank",
+      "englishName": "Frankish humans",
+      "group": "nhan-loai",
+      "parentRace": "race_nhan-loai",
+      "playable": true,
+      "standing": "quý tộc phong kiến chủ đạo, kỵ binh bọc thép",
+      "church": "chính thống",
+      "lifespan": 70,
+      "homelands": [
+        "realm_france",
+        "realm_burgundy",
+        "realm_england"
+      ],
+      "loreEntry": "race_frank",
+      "stats": {
+        "pre": 2,
+        "elo": 1,
+        "arc": -2,
+        "gui": -1
+      },
+      "statCaps": {
+        "arc": 16
+      },
+      "traits": [
+        "trait_ky-binh-boc-thep",
+        "trait_giao-duc-phong-kien"
+      ],
+      "language": "Tiếng Frank",
+      "appearance": {
+        "heightCm": [
+          165,
+          185
+        ],
+        "weightKg": [
+          60,
+          92
+        ],
+        "musclePct": [
+          32,
+          50
+        ],
+        "fatPct": [
+          10,
+          22
+        ],
+        "builds": [
+          "gầy",
+          "cân đối",
+          "vạm vỡ"
+        ],
+        "skin": [
+          "trắng ngà",
+          "hồng nhạt",
+          "rám nắng"
+        ],
+        "hair": [
+          "vàng rơm",
+          "nâu hạt dẻ",
+          "nâu sẫm",
+          "hung đỏ"
+        ],
+        "eyes": [
+          "xanh lam",
+          "xám",
+          "nâu",
+          "lục nhạt"
+        ],
+        "features": [
+          "gương mặt xương",
+          "cằm vuông",
+          "sống mũi thẳng"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_frank",
+          "role": "cai-tri"
+        },
+        {
+          "nation": "nation_burgundy",
+          "role": "cai-tri"
+        }
+      ],
+      "spreadNote": "Tầng quý tộc phong kiến và kỵ binh nặng ở Tây Âu."
+    },
+    {
+      "id": "race_teuton",
+      "name": "Teuton",
+      "englishName": "Teutonic humans",
+      "group": "nhan-loai",
+      "parentRace": "race_nhan-loai",
+      "playable": true,
+      "standing": "đế quốc, phường hội thợ thủ công, thành bang tự do",
+      "church": "chính thống",
+      "lifespan": 70,
+      "homelands": [
+        "realm_hre",
+        "realm_teutonic",
+        "realm_livonia"
+      ],
+      "loreEntry": "race_teuton",
+      "stats": {
+        "str": 2,
+        "vit": 1,
+        "elo": -2,
+        "gui": -1
+      },
+      "statCaps": {
+        "gui": 16
+      },
+      "traits": [
+        "trait_ban-tay-tho",
+        "trait_ky-luat-doi-hinh"
+      ],
+      "language": "Tiếng Teuton",
+      "appearance": {
+        "heightCm": [
+          168,
+          190
+        ],
+        "weightKg": [
+          68,
+          100
+        ],
+        "musclePct": [
+          36,
+          55
+        ],
+        "fatPct": [
+          12,
+          24
+        ],
+        "builds": [
+          "cân đối",
+          "vạm vỡ",
+          "đồ sộ"
+        ],
+        "skin": [
+          "trắng ngà",
+          "hồng nhạt"
+        ],
+        "hair": [
+          "vàng rơm",
+          "vàng tro",
+          "nâu sẫm"
+        ],
+        "eyes": [
+          "xanh lam",
+          "xám thép",
+          "nâu nhạt"
+        ],
+        "features": [
+          "vai rộng",
+          "quai hàm nặng",
+          "bàn tay chai"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_hre",
+          "role": "cai-tri"
+        },
+        {
+          "nation": "nation_lien-bang-nui",
+          "role": "tho-thu-cong"
+        },
+        {
+          "nation": "nation_burgundy",
+          "role": "tho-thu-cong"
+        },
+        {
+          "nation": "nation_teuton",
+          "role": "cai-tri"
+        },
+        {
+          "nation": "nation_hanse",
+          "role": "cai-tri"
+        }
+      ],
+      "spreadNote": "Xương sống thợ thủ công và bộ binh của đế quốc."
+    },
+    {
+      "id": "race_latin",
+      "name": "Latin",
+      "englishName": "Latin humans",
+      "group": "nhan-loai",
+      "parentRace": "race_nhan-loai",
+      "playable": true,
+      "standing": "thương nhân, chủ ngân hàng, giáo sĩ",
+      "church": "trung tâm",
+      "lifespan": 70,
+      "homelands": [
+        "realm_papal",
+        "realm_venice",
+        "realm_genoa",
+        "realm_florence",
+        "realm_milan",
+        "realm_naples"
+      ],
+      "loreEntry": "race_latin",
+      "stats": {
+        "int": 2,
+        "elo": 1,
+        "str": -2,
+        "vit": -1
+      },
+      "statCaps": {
+        "str": 18
+      },
+      "traits": [
+        "trait_dau-oc-so-sach",
+        "trait_luoi-thuong-nhan",
+        "trait_luoi-da-ngu"
+      ],
+      "language": "Tiếng Latin tục",
+      "appearance": {
+        "heightCm": [
+          160,
+          180
+        ],
+        "weightKg": [
+          55,
+          85
+        ],
+        "musclePct": [
+          28,
+          45
+        ],
+        "fatPct": [
+          12,
+          26
+        ],
+        "builds": [
+          "gầy",
+          "cân đối"
+        ],
+        "skin": [
+          "ô liu",
+          "nâu nhạt",
+          "trắng ngà"
+        ],
+        "hair": [
+          "đen",
+          "nâu sẫm"
+        ],
+        "eyes": [
+          "nâu sẫm",
+          "nâu hạt dẻ",
+          "đen"
+        ],
+        "features": [
+          "mũi cao",
+          "gò má rõ",
+          "môi mỏng"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_giao-trieu",
+          "role": "cai-tri"
+        },
+        {
+          "nation": "nation_dong-la-ma",
+          "role": "thuong-nhan"
+        },
+        {
+          "nation": "nation_thanh-bang-latin",
+          "role": "cai-tri"
+        }
+      ],
+      "spreadNote": "Thương nhân, giáo sĩ và quan lại thành bang."
+    },
+    {
+      "id": "race_rus",
+      "name": "Rus",
+      "englishName": "Rus humans",
+      "group": "nhan-loai",
+      "parentRace": "race_nhan-loai",
+      "playable": true,
+      "standing": "biên cương, kỵ binh nhẹ, thợ săn lông thú",
+      "church": "ly giáo",
+      "lifespan": 70,
+      "homelands": [
+        "realm_muscovy",
+        "realm_novgorod",
+        "realm_pskov",
+        "realm_tver",
+        "realm_ryazan"
+      ],
+      "loreEntry": "race_rus",
+      "stats": {
+        "vit": 2,
+        "per": 1,
+        "elo": -2,
+        "int": -1
+      },
+      "statCaps": {},
+      "traits": [
+        "trait_chiu-lanh",
+        "trait_cuoi-ngua-tu-be"
+      ],
+      "language": "Tiếng Rus",
+      "appearance": {
+        "heightCm": [
+          166,
+          186
+        ],
+        "weightKg": [
+          65,
+          95
+        ],
+        "musclePct": [
+          34,
+          52
+        ],
+        "fatPct": [
+          14,
+          28
+        ],
+        "builds": [
+          "cân đối",
+          "vạm vỡ"
+        ],
+        "skin": [
+          "trắng ngà",
+          "hồng tái"
+        ],
+        "hair": [
+          "vàng tro",
+          "nâu nhạt",
+          "hung đỏ"
+        ],
+        "eyes": [
+          "xám",
+          "xanh lam nhạt",
+          "nâu"
+        ],
+        "features": [
+          "gương mặt rộng",
+          "gò má cao",
+          "râu rậm"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_dong-la-ma",
+          "role": "binh-si"
+        },
+        {
+          "nation": "nation_han-quoc",
+          "role": "binh-si"
+        },
+        {
+          "nation": "nation_baltic",
+          "role": "binh-si"
+        },
+        {
+          "nation": "nation_teuton",
+          "role": "binh-si"
+        },
+        {
+          "nation": "nation_rus",
+          "role": "cai-tri"
+        }
+      ],
+      "spreadNote": "Kỵ binh nhẹ biên cương và dân định cư vùng rừng phương bắc."
+    },
+    {
+      "id": "race_lun-nui",
+      "name": "Lùn Núi",
+      "englishName": "Mountain Dwarves",
+      "group": "lun",
+      "playable": true,
+      "standing": "liên bang các bang tự trị, luyện kim và phường hội ngân hàng",
+      "church": "hòa ước",
+      "lifespan": 250,
+      "homelands": [
+        "prov_alps",
+        "prov_thanh-bang-ngam-lun",
+        "prov_bohemia"
+      ],
+      "loreEntry": "race_lun-nui",
+      "stats": {
+        "str": 2,
+        "vit": 1,
+        "agi": -2,
+        "elo": -1
+      },
+      "statCaps": {
+        "agi": 16
+      },
+      "traits": [
+        "trait_mat-trong-da",
+        "trait_gan-ly-tri",
+        "trait_chan-tru"
+      ],
+      "language": "Tiếng Lùn miền núi",
+      "appearance": {
+        "heightCm": [
+          128,
+          150
+        ],
+        "weightKg": [
+          65,
+          100
+        ],
+        "musclePct": [
+          45,
+          62
+        ],
+        "fatPct": [
+          16,
+          30
+        ],
+        "builds": [
+          "vạm vỡ",
+          "đồ sộ"
+        ],
+        "skin": [
+          "nâu đất",
+          "hồng sạm",
+          "xám nhạt"
+        ],
+        "hair": [
+          "nâu sẫm",
+          "đen",
+          "hung đỏ",
+          "bạc"
+        ],
+        "eyes": [
+          "nâu sẫm",
+          "hổ phách",
+          "xám đá"
+        ],
+        "features": [
+          "râu tết dài",
+          "vai cực rộng",
+          "bàn tay to bè"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_hre",
+          "role": "tho-thu-cong"
+        },
+        {
+          "nation": "nation_lien-bang-nui",
+          "role": "cai-tri"
+        }
+      ],
+      "spreadNote": "Liên bang các bang tự trị; thợ mỏ, thợ rèn và bộ binh trường thương đánh thuê."
+    },
+    {
+      "id": "race_lun-vuc-sau",
+      "name": "Lùn Vực Sâu",
+      "englishName": "Deep Dwarves",
+      "group": "lun",
+      "playable": true,
+      "standing": "khép kín, dị hình, sống dưới các khe nứt địa chất",
+      "church": "nghi kỵ",
+      "lifespan": 300,
+      "homelands": [
+        "prov_alps",
+        "prov_carpathian"
+      ],
+      "loreEntry": "race_lun-vuc-sau",
+      "stats": {
+        "vit": 2,
+        "wil": 1,
+        "pre": -2,
+        "emp": -1
+      },
+      "statCaps": {
+        "pre": 16,
+        "emp": 16
+      },
+      "traits": [
+        "trait_mat-trong-toi",
+        "trait_da-day-sat",
+        "trait_so-anh-sang"
+      ],
+      "language": "Tiếng Lùn vực sâu",
+      "appearance": {
+        "heightCm": [
+          124,
+          146
+        ],
+        "weightKg": [
+          62,
+          98
+        ],
+        "musclePct": [
+          44,
+          60
+        ],
+        "fatPct": [
+          18,
+          32
+        ],
+        "builds": [
+          "vạm vỡ",
+          "đồ sộ"
+        ],
+        "skin": [
+          "xám tro",
+          "trắng bệch",
+          "xanh chì"
+        ],
+        "hair": [
+          "trắng",
+          "xám",
+          "đen tuyền"
+        ],
+        "eyes": [
+          "trắng đục",
+          "đỏ nhạt",
+          "vàng lợt"
+        ],
+        "features": [
+          "mắt không con ngươi rõ",
+          "dị hình bẩm sinh",
+          "da không bắt nắng"
+        ]
+      },
+      "attitudes": {
+        "nation_hre": -20,
+        "nation_giao-trieu": -30
+      },
+      "spread": [],
+      "spreadNote": "Khép kín dưới lòng đất; ra mặt rất hiếm và hầu như chỉ để đổi hàng."
+    },
+    {
+      "id": "race_gnome",
+      "name": "Gnome",
+      "englishName": "Gnomes",
+      "group": "lun",
+      "playable": true,
+      "standing": "cơ khí, giả kim, chế tác đồng hồ và hỏa khí",
+      "church": "bị nghi tà thuật",
+      "lifespan": 180,
+      "homelands": [
+        "realm_hre",
+        "prov_bo-bien-baltic",
+        "realm_genoa"
+      ],
+      "loreEntry": "race_gnome",
+      "stats": {
+        "int": 2,
+        "wit": 1,
+        "str": -2,
+        "pre": -1
+      },
+      "statCaps": {
+        "str": 14
+      },
+      "traits": [
+        "trait_ngon-tay-tinh-xao",
+        "trait_dau-oc-co-khi",
+        "trait_voc-nho"
+      ],
+      "language": "Tiếng Gnome",
+      "appearance": {
+        "heightCm": [
+          100,
+          120
+        ],
+        "weightKg": [
+          28,
+          45
+        ],
+        "musclePct": [
+          24,
+          38
+        ],
+        "fatPct": [
+          12,
+          24
+        ],
+        "builds": [
+          "gầy",
+          "cân đối"
+        ],
+        "skin": [
+          "nâu nhạt",
+          "hồng nhạt",
+          "ngả vàng"
+        ],
+        "hair": [
+          "trắng",
+          "xám",
+          "nâu",
+          "cam nhạt"
+        ],
+        "eyes": [
+          "hổ phách",
+          "lục",
+          "nâu"
+        ],
+        "features": [
+          "tai nhọn nhỏ",
+          "mũi to",
+          "nếp nhăn quanh mắt từ sớm"
+        ]
+      },
+      "attitudes": {
+        "nation_giao-trieu": -25,
+        "nation_iberia": -25
+      },
+      "spread": [
+        {
+          "nation": "nation_ottoman",
+          "role": "tho-thu-cong"
+        },
+        {
+          "nation": "nation_hre",
+          "role": "tho-thu-cong"
+        },
+        {
+          "nation": "nation_thanh-bang-latin",
+          "role": "tho-thu-cong"
+        },
+        {
+          "nation": "nation_burgundy",
+          "role": "tho-thu-cong"
+        },
+        {
+          "nation": "nation_hanse",
+          "role": "cai-tri"
+        }
+      ],
+      "spreadNote": "Cơ khí, giả kim, đồng hồ và sổ sách; rải khắp các thành thị lớn."
+    },
+    {
+      "id": "race_kobold",
+      "name": "Kobold",
+      "englishName": "Kobolds",
+      "group": "lun",
+      "playable": true,
+      "standing": "lao dịch hầm mỏ, bị khinh",
+      "church": "ngoài lề",
+      "lifespan": 40,
+      "homelands": [
+        "realm_hre",
+        "prov_bohemia"
+      ],
+      "loreEntry": "race_kobold",
+      "stats": {
+        "agi": 2,
+        "per": 1,
+        "pre": -2,
+        "str": -1
+      },
+      "statCaps": {
+        "str": 14,
+        "pre": 12
+      },
+      "traits": [
+        "trait_luon-trong-hang",
+        "trait_bay-dan",
+        "trait_voc-nho"
+      ],
+      "language": "Tiếng Kobold",
+      "appearance": {
+        "heightCm": [
+          95,
+          118
+        ],
+        "weightKg": [
+          22,
+          38
+        ],
+        "musclePct": [
+          22,
+          36
+        ],
+        "fatPct": [
+          8,
+          18
+        ],
+        "builds": [
+          "gầy",
+          "cân đối"
+        ],
+        "skin": [
+          "nâu đất",
+          "xám xanh",
+          "đỏ gạch"
+        ],
+        "hair": [
+          "không có",
+          "lông tơ thưa"
+        ],
+        "eyes": [
+          "vàng",
+          "cam",
+          "đen"
+        ],
+        "features": [
+          "mõm ngắn",
+          "vảy nhỏ trên sống lưng",
+          "đuôi ngắn"
+        ]
+      },
+      "attitudes": {
+        "nation_hre": -15,
+        "nation_hanse": -20
+      },
+      "spread": [
+        {
+          "nation": "nation_hre",
+          "role": "lao-dich"
+        }
+      ],
+      "spreadNote": "Lao dịch hầm mỏ và công binh; bị khinh ở gần như mọi thế lực có mặt."
+    },
+    {
+      "id": "race_cao-tien",
+      "name": "Cao Tiên",
+      "englishName": "High Elves",
+      "group": "tien",
+      "playable": true,
+      "standing": "hoàng tộc Đông La Mã, học giả bí thuật",
+      "church": "đối địch ngầm",
+      "lifespan": 600,
+      "homelands": [
+        "realm_byzantine",
+        "hold_constantinople",
+        "prov_morea"
+      ],
+      "loreEntry": "race_cao-tien",
+      "stats": {
+        "arc": 2,
+        "int": 1,
+        "str": -2,
+        "vit": -1
+      },
+      "statCaps": {
+        "str": 16
+      },
+      "traits": [
+        "trait_cam-ung-huyen-nang",
+        "trait_tri-nho-the-ky"
+      ],
+      "language": "Tiếng Tiên cổ",
+      "appearance": {
+        "heightCm": [
+          172,
+          192
+        ],
+        "weightKg": [
+          55,
+          80
+        ],
+        "musclePct": [
+          26,
+          42
+        ],
+        "fatPct": [
+          8,
+          18
+        ],
+        "builds": [
+          "gầy",
+          "cân đối"
+        ],
+        "skin": [
+          "trắng ngọc",
+          "ngà nhạt",
+          "ánh vàng nhạt"
+        ],
+        "hair": [
+          "bạch kim",
+          "vàng nhạt",
+          "đen tuyền"
+        ],
+        "eyes": [
+          "vàng kim",
+          "tím nhạt",
+          "xám bạc"
+        ],
+        "features": [
+          "tai dài nhọn",
+          "gương mặt không tuổi",
+          "ngón tay dài"
+        ]
+      },
+      "attitudes": {
+        "nation_giao-trieu": -30,
+        "nation_ottoman": -30
+      },
+      "spread": [
+        {
+          "nation": "nation_dong-la-ma",
+          "role": "cai-tri"
+        }
+      ],
+      "spreadNote": "Hoàng tộc và tầng quan lại cao của Đông La Mã."
+    },
+    {
+      "id": "race_lam-tien",
+      "name": "Lâm Tiên",
+      "englishName": "Wood Elves",
+      "group": "tien",
+      "playable": true,
+      "standing": "cung thủ tự do, thị tộc rừng sâu",
+      "church": "ngoại đạo",
+      "lifespan": 400,
+      "homelands": [
+        "prov_rung-den",
+        "prov_bohemia",
+        "realm_lithuania",
+        "realm_england"
+      ],
+      "loreEntry": "race_lam-tien",
+      "stats": {
+        "per": 2,
+        "agi": 1,
+        "str": -2,
+        "pre": -1
+      },
+      "statCaps": {
+        "str": 16
+      },
+      "traits": [
+        "trait_mat-cung-thu",
+        "trait_buoc-khong-tieng"
+      ],
+      "language": "Tiếng Tiên rừng",
+      "appearance": {
+        "heightCm": [
+          168,
+          186
+        ],
+        "weightKg": [
+          52,
+          75
+        ],
+        "musclePct": [
+          28,
+          44
+        ],
+        "fatPct": [
+          8,
+          17
+        ],
+        "builds": [
+          "gầy",
+          "cân đối"
+        ],
+        "skin": [
+          "nâu ô liu",
+          "ngà rám",
+          "lục nhạt"
+        ],
+        "hair": [
+          "nâu rêu",
+          "đen",
+          "vàng lá khô"
+        ],
+        "eyes": [
+          "lục",
+          "nâu hạt dẻ",
+          "hổ phách"
+        ],
+        "features": [
+          "tai nhọn vừa",
+          "hình xăm thảo mộc",
+          "thân hình dây"
+        ]
+      },
+      "attitudes": {
+        "nation_giao-trieu": -20,
+        "nation_teuton": -30
+      },
+      "spread": [
+        {
+          "nation": "nation_hre",
+          "role": "binh-si"
+        },
+        {
+          "nation": "nation_anh-quoc",
+          "role": "cai-tri"
+        },
+        {
+          "nation": "nation_baltic",
+          "role": "cai-tri"
+        },
+        {
+          "nation": "nation_teuton",
+          "role": "binh-si"
+        }
+      ],
+      "spreadNote": "Cung thủ tự do, thợ săn, và tư tế của tín ngưỡng cũ."
+    },
+    {
+      "id": "race_am-tien",
+      "name": "Ám Tiên",
+      "englishName": "Dark Elves",
+      "group": "tien",
+      "playable": true,
+      "standing": "lưu vong dưới lòng đất, bị gọi là dị giáo",
+      "church": "bị truy bức",
+      "lifespan": 450,
+      "homelands": [
+        "prov_carpathian",
+        "prov_alps"
+      ],
+      "loreEntry": "race_am-tien",
+      "stats": {
+        "gui": 2,
+        "arc": 1,
+        "pre": -2,
+        "vit": -1
+      },
+      "statCaps": {
+        "pre": 16
+      },
+      "traits": [
+        "trait_mat-trong-toi",
+        "trait_boi-doc",
+        "trait_so-anh-sang"
+      ],
+      "language": "Tiếng Tiên ám",
+      "appearance": {
+        "heightCm": [
+          166,
+          184
+        ],
+        "weightKg": [
+          50,
+          74
+        ],
+        "musclePct": [
+          26,
+          42
+        ],
+        "fatPct": [
+          8,
+          16
+        ],
+        "builds": [
+          "gầy",
+          "cân đối"
+        ],
+        "skin": [
+          "xám tro",
+          "tím than",
+          "đen nhạt"
+        ],
+        "hair": [
+          "trắng",
+          "bạc",
+          "đen tuyền"
+        ],
+        "eyes": [
+          "đỏ",
+          "tím",
+          "trắng đục"
+        ],
+        "features": [
+          "tai dài nhọn",
+          "da không bắt nắng",
+          "giọng rất khẽ"
+        ]
+      },
+      "attitudes": {
+        "nation_giao-trieu": -60,
+        "nation_iberia": -50,
+        "nation_teuton": -40
+      },
+      "spread": [
+        {
+          "nation": "nation_hungary",
+          "role": "ngoai-le"
+        }
+      ],
+      "spreadNote": "Bị tuyên dị giáo và truy bức; sống trong bóng các thành thị hoặc dưới đất."
+    },
+    {
+      "id": "race_ban-tien",
+      "name": "Bán Tiên",
+      "englishName": "Half-Elves",
+      "group": "tien",
+      "playable": true,
+      "standing": "thông ngôn, quan lại, sứ giả",
+      "church": "lửng lơ",
+      "lifespan": 150,
+      "homelands": [
+        "reg_europa"
+      ],
+      "loreEntry": "race_ban-tien",
+      "stats": {
+        "wit": 2,
+        "emp": 1,
+        "str": -2,
+        "wil": -1
+      },
+      "statCaps": {},
+      "traits": [
+        "trait_luoi-da-ngu",
+        "trait_hai-dong-mau"
+      ],
+      "language": "Tiếng bản địa nơi sinh",
+      "appearance": {
+        "heightCm": [
+          165,
+          183
+        ],
+        "weightKg": [
+          55,
+          82
+        ],
+        "musclePct": [
+          30,
+          46
+        ],
+        "fatPct": [
+          10,
+          22
+        ],
+        "builds": [
+          "gầy",
+          "cân đối"
+        ],
+        "skin": [
+          "trắng ngà",
+          "ô liu",
+          "nâu nhạt"
+        ],
+        "hair": [
+          "nâu",
+          "đen",
+          "vàng nhạt"
+        ],
+        "eyes": [
+          "lục nhạt",
+          "nâu",
+          "xám"
+        ],
+        "features": [
+          "tai hơi nhọn",
+          "gương mặt trẻ hơn tuổi",
+          "không giống hẳn bên nào"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_frank",
+          "role": "quan-lai"
+        },
+        {
+          "nation": "nation_giao-trieu",
+          "role": "quan-lai"
+        },
+        {
+          "nation": "nation_dong-la-ma",
+          "role": "quan-lai"
+        },
+        {
+          "nation": "nation_han-quoc",
+          "role": "quan-lai"
+        },
+        {
+          "nation": "nation_thanh-bang-latin",
+          "role": "quan-lai"
+        },
+        {
+          "nation": "nation_baltic",
+          "role": "quan-lai"
+        }
+      ],
+      "spreadNote": "Thông ngôn, quan lại và người trung gian ở gần như mọi thế lực."
+    },
+    {
+      "id": "race_phong-tien",
+      "name": "Phong Tiên",
+      "englishName": "Wind Elves",
+      "group": "tien",
+      "playable": true,
+      "standing": "thị tộc vùng núi cao, cung thủ và trinh sát",
+      "church": "ngoại đạo",
+      "lifespan": 200,
+      "homelands": [
+        "prov_alps",
+        "prov_carpathian",
+        "realm_scotland"
+      ],
+      "loreEntry": "race_phong-tien",
+      "stats": {
+        "agi": 2,
+        "wit": 1,
+        "str": -2,
+        "vit": -1
+      },
+      "statCaps": {
+        "str": 16
+      },
+      "traits": [
+        "trait_khong-so-do-cao",
+        "trait_phoi-nui-cao",
+        "trait_xuong-rong"
+      ],
+      "language": "Tiếng Phong Tiên",
+      "appearance": {
+        "heightCm": [
+          160,
+          178
+        ],
+        "weightKg": [
+          42,
+          62
+        ],
+        "musclePct": [
+          24,
+          38
+        ],
+        "fatPct": [
+          6,
+          14
+        ],
+        "builds": [
+          "gầy"
+        ],
+        "skin": [
+          "trắng xanh",
+          "ngà nhạt",
+          "xám nhạt"
+        ],
+        "hair": [
+          "trắng",
+          "xanh nhạt",
+          "vàng bạc"
+        ],
+        "eyes": [
+          "xanh nhạt",
+          "trắng bạc",
+          "xám"
+        ],
+        "features": [
+          "lông tơ như lông chim ở cẳng tay",
+          "xương nhẹ",
+          "giọng cao"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_ottoman",
+          "role": "thieu-so"
+        },
+        {
+          "nation": "nation_anh-quoc",
+          "role": "thieu-so"
+        },
+        {
+          "nation": "nation_kalmar",
+          "role": "thieu-so"
+        }
+      ],
+      "spreadNote": "Thị tộc vùng núi cao, làm liên lạc và trinh sát cho các thế lực dưới đồng bằng."
+    },
+    {
+      "id": "race_lang-nhan",
+      "name": "Lang Nhân",
+      "englishName": "Werewolves",
+      "group": "nguoi-thu",
+      "playable": true,
+      "standing": "thị tộc rừng và thảo nguyên, trinh sát",
+      "church": "ngoại đạo",
+      "lifespan": 60,
+      "homelands": [
+        "realm_lithuania",
+        "realm_scotland",
+        "realm_aragon",
+        "prov_carpathian"
+      ],
+      "loreEntry": "race_lang-nhan",
+      "stats": {
+        "str": 2,
+        "per": 1,
+        "int": -2,
+        "elo": -1
+      },
+      "statCaps": {
+        "int": 16
+      },
+      "traits": [
+        "trait_mui-thinh",
+        "trait_bay-dan",
+        "trait_con-cuong"
+      ],
+      "language": "Tiếng thị tộc Lang",
+      "appearance": {
+        "heightCm": [
+          172,
+          195
+        ],
+        "weightKg": [
+          72,
+          108
+        ],
+        "musclePct": [
+          42,
+          60
+        ],
+        "fatPct": [
+          10,
+          20
+        ],
+        "builds": [
+          "cân đối",
+          "vạm vỡ"
+        ],
+        "skin": [
+          "lông xám",
+          "lông nâu",
+          "lông đen",
+          "lông trắng"
+        ],
+        "hair": [
+          "bờm xám",
+          "bờm nâu sẫm",
+          "bờm đen"
+        ],
+        "eyes": [
+          "vàng",
+          "hổ phách",
+          "lục"
+        ],
+        "features": [
+          "mõm dài",
+          "tai dựng",
+          "đuôi rậm",
+          "nanh lộ"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_han-quoc",
+          "role": "binh-si"
+        },
+        {
+          "nation": "nation_baltic",
+          "role": "binh-si"
+        },
+        {
+          "nation": "nation_hungary",
+          "role": "binh-si"
+        },
+        {
+          "nation": "nation_rus",
+          "role": "binh-si"
+        },
+        {
+          "nation": "nation_iberia",
+          "role": "binh-si"
+        }
+      ],
+      "spreadNote": "Thị tộc rừng và thảo nguyên; lính đánh thuê và trinh sát."
+    },
+    {
+      "id": "race_hung-nhan",
+      "name": "Hùng Nhân",
+      "englishName": "Werebears",
+      "group": "nguoi-thu",
+      "playable": true,
+      "standing": "lính đánh thuê, tù trưởng phương Bắc",
+      "church": "dửng dưng",
+      "lifespan": 80,
+      "homelands": [
+        "realm_norway",
+        "realm_sweden",
+        "realm_scotland",
+        "realm_swiss"
+      ],
+      "loreEntry": "race_hung-nhan",
+      "stats": {
+        "str": 2,
+        "vit": 1,
+        "agi": -2,
+        "gui": -1
+      },
+      "statCaps": {
+        "agi": 16
+      },
+      "traits": [
+        "trait_suc-vam-vo",
+        "trait_da-day-sat",
+        "trait_ngu-dong"
+      ],
+      "language": "Tiếng thị tộc Hùng",
+      "appearance": {
+        "heightCm": [
+          185,
+          215
+        ],
+        "weightKg": [
+          110,
+          170
+        ],
+        "musclePct": [
+          48,
+          66
+        ],
+        "fatPct": [
+          20,
+          34
+        ],
+        "builds": [
+          "vạm vỡ",
+          "đồ sộ"
+        ],
+        "skin": [
+          "lông nâu sẫm",
+          "lông đen",
+          "lông nâu vàng"
+        ],
+        "hair": [
+          "bờm nâu",
+          "bờm đen"
+        ],
+        "eyes": [
+          "nâu sẫm",
+          "đen",
+          "hổ phách"
+        ],
+        "features": [
+          "vai như tảng đá",
+          "móng vuốt cùn",
+          "giọng trầm rền"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_lien-bang-nui",
+          "role": "binh-si"
+        },
+        {
+          "nation": "nation_anh-quoc",
+          "role": "binh-si"
+        },
+        {
+          "nation": "nation_kalmar",
+          "role": "binh-si"
+        }
+      ],
+      "spreadNote": "Lính đánh thuê hạng nặng; đắt, ít, và rất được săn đón."
+    },
+    {
+      "id": "race_mieu-nhan",
+      "name": "Miêu Nhân",
+      "englishName": "Feline Beastmen",
+      "group": "nguoi-thu",
+      "playable": true,
+      "standing": "thương nhân, đạo chích, mật thám",
+      "church": "ngoại đạo",
+      "lifespan": 65,
+      "homelands": [
+        "realm_florence",
+        "realm_granada",
+        "realm_ottoman"
+      ],
+      "loreEntry": "race_mieu-nhan",
+      "stats": {
+        "agi": 2,
+        "gui": 1,
+        "wil": -2,
+        "str": -1
+      },
+      "statCaps": {
+        "wil": 16
+      },
+      "traits": [
+        "trait_tiep-dat-nhe",
+        "trait_mat-trong-toi"
+      ],
+      "language": "Tiếng Miêu",
+      "appearance": {
+        "heightCm": [
+          155,
+          178
+        ],
+        "weightKg": [
+          48,
+          72
+        ],
+        "musclePct": [
+          30,
+          46
+        ],
+        "fatPct": [
+          8,
+          18
+        ],
+        "builds": [
+          "gầy",
+          "cân đối"
+        ],
+        "skin": [
+          "lông vàng vằn",
+          "lông đen",
+          "lông tam thể",
+          "lông xám khói"
+        ],
+        "hair": [
+          "bờm ngắn cùng màu lông"
+        ],
+        "eyes": [
+          "vàng lục",
+          "xanh lam",
+          "hổ phách"
+        ],
+        "features": [
+          "tai mèo xoay được",
+          "đuôi dài",
+          "bước không tiếng"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_ottoman",
+          "role": "thuong-nhan"
+        },
+        {
+          "nation": "nation_thanh-bang-latin",
+          "role": "thuong-nhan"
+        },
+        {
+          "nation": "nation_iberia",
+          "role": "thuong-nhan"
+        }
+      ],
+      "spreadNote": "Thương nhân đường dài và đạo chích thành thị, chủ yếu quanh Địa Trung Hải."
+    },
+    {
+      "id": "race_qua-nhan",
+      "name": "Quạ Nhân",
+      "englishName": "Ravenfolk",
+      "group": "nguoi-thu",
+      "playable": true,
+      "standing": "sứ giả, do thám, thầy bói",
+      "church": "bị nghi bói toán",
+      "lifespan": 90,
+      "homelands": [
+        "reg_europa",
+        "prov_alps",
+        "prov_carpathian"
+      ],
+      "loreEntry": "race_qua-nhan",
+      "stats": {
+        "wit": 2,
+        "per": 1,
+        "str": -2,
+        "vit": -1
+      },
+      "statCaps": {
+        "str": 16,
+        "vit": 16
+      },
+      "traits": [
+        "trait_mat-tu-tren-cao",
+        "trait_diem-bao",
+        "trait_xuong-rong"
+      ],
+      "language": "Tiếng Quạ",
+      "appearance": {
+        "heightCm": [
+          158,
+          180
+        ],
+        "weightKg": [
+          42,
+          62
+        ],
+        "musclePct": [
+          24,
+          38
+        ],
+        "fatPct": [
+          6,
+          15
+        ],
+        "builds": [
+          "gầy"
+        ],
+        "skin": [
+          "lông đen ánh xanh",
+          "lông xám tro",
+          "lông đen ánh tím"
+        ],
+        "hair": [
+          "lông cổ dựng"
+        ],
+        "eyes": [
+          "đen bóng",
+          "vàng nhạt",
+          "xám bạc"
+        ],
+        "features": [
+          "mỏ thay mũi và miệng",
+          "cẳng chân chim",
+          "lông cánh ở cẳng tay"
+        ]
+      },
+      "spread": [],
+      "spreadNote": "Sứ giả, do thám và thầy bói; ai cũng thuê, không ai tin hẳn."
+    },
+    {
+      "id": "race_thu-nhan",
+      "name": "Thử Nhân",
+      "englishName": "Ratmen",
+      "group": "nguoi-thu",
+      "playable": true,
+      "standing": "ổ chuột thành thị, buôn lậu",
+      "church": "bị ghê tởm",
+      "lifespan": 45,
+      "homelands": [
+        "hold_cologne",
+        "hold_hamburg",
+        "realm_venice",
+        "realm_genoa"
+      ],
+      "loreEntry": "race_thu-nhan",
+      "stats": {
+        "agi": 2,
+        "gui": 1,
+        "pre": -2,
+        "str": -1
+      },
+      "statCaps": {
+        "pre": 12,
+        "str": 14
+      },
+      "traits": [
+        "trait_luon-trong-hang",
+        "trait_khang-dich-benh",
+        "trait_voc-nho"
+      ],
+      "language": "Tiếng lóng ổ chuột",
+      "appearance": {
+        "heightCm": [
+          128,
+          152
+        ],
+        "weightKg": [
+          32,
+          50
+        ],
+        "musclePct": [
+          22,
+          36
+        ],
+        "fatPct": [
+          8,
+          18
+        ],
+        "builds": [
+          "gầy"
+        ],
+        "skin": [
+          "lông nâu xám",
+          "lông đen",
+          "lông trắng bẩn"
+        ],
+        "hair": [
+          "lông thưa"
+        ],
+        "eyes": [
+          "đen hạt",
+          "đỏ nhạt"
+        ],
+        "features": [
+          "mõm nhọn",
+          "đuôi trần dài",
+          "răng cửa dài"
+        ]
+      },
+      "attitudes": {
+        "nation_hanse": -20,
+        "nation_thanh-bang-latin": -20,
+        "nation_hre": -20
+      },
+      "spread": [
+        {
+          "nation": "nation_hre",
+          "role": "lao-dich"
+        },
+        {
+          "nation": "nation_thanh-bang-latin",
+          "role": "lao-dich"
+        },
+        {
+          "nation": "nation_hanse",
+          "role": "lao-dich"
+        }
+      ],
+      "spreadNote": "Ổ chuột thành thị, cống ngầm và đường dây buôn lậu."
+    },
+    {
+      "id": "race_ma-nhan",
+      "name": "Mã Nhân",
+      "englishName": "Equine Beastmen",
+      "group": "nguoi-thu",
+      "playable": true,
+      "standing": "cầm đầu các hãn quốc thảo nguyên",
+      "church": "ngoại đạo",
+      "lifespan": 70,
+      "homelands": [
+        "realm_great-horde",
+        "realm_crimea",
+        "realm_kazan",
+        "prov_steppe-pontic"
+      ],
+      "loreEntry": "race_ma-nhan",
+      "stats": {
+        "per": 2,
+        "agi": 1,
+        "int": -2,
+        "arc": -1
+      },
+      "statCaps": {},
+      "traits": [
+        "trait_ban-cung-tren-ngua",
+        "trait_cuoi-ngua-tu-be",
+        "trait_suc-ben-thao-nguyen"
+      ],
+      "language": "Tiếng thảo nguyên",
+      "appearance": {
+        "heightCm": [
+          170,
+          192
+        ],
+        "weightKg": [
+          70,
+          105
+        ],
+        "musclePct": [
+          38,
+          55
+        ],
+        "fatPct": [
+          10,
+          20
+        ],
+        "builds": [
+          "cân đối",
+          "vạm vỡ"
+        ],
+        "skin": [
+          "lông hạt dẻ",
+          "lông đen",
+          "lông xám tro",
+          "lông hung"
+        ],
+        "hair": [
+          "bờm dài tết",
+          "bờm cắt ngắn"
+        ],
+        "eyes": [
+          "nâu sẫm",
+          "đen",
+          "hổ phách"
+        ],
+        "features": [
+          "chân móng guốc",
+          "đuôi ngựa",
+          "thân người từ hông trở lên"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_han-quoc",
+          "role": "cai-tri"
+        },
+        {
+          "nation": "nation_rus",
+          "role": "cai-tri"
+        }
+      ],
+      "spreadNote": "Cầm đầu các hãn quốc thảo nguyên; kỵ xạ là toàn bộ nền quân sự của họ."
+    },
+    {
+      "id": "race_nguu-nhan",
+      "name": "Mục Nhân",
+      "aliases": [
+        "Ngưu Nhân"
+      ],
+      "englishName": "Bovine Beastmen",
+      "group": "nguoi-thu",
+      "playable": true,
+      "standing": "xương sống bộ binh thảo nguyên, đấu sĩ và thủ lĩnh bộ lạc",
+      "church": "ngoài lề",
+      "lifespan": 70,
+      "homelands": [
+        "prov_steppe-pontic",
+        "realm_great-horde",
+        "realm_albania",
+        "realm_byzantine"
+      ],
+      "loreEntry": "race_nguu-nhan",
+      "note": "Lorebook gọi tộc này là Mục Nhân; tài liệu thiết kế cũ gọi là Ngưu Nhân. Hai tên chỉ cùng một tộc.",
+      "stats": {
+        "str": 2,
+        "pre": 1,
+        "agi": -2,
+        "int": -1
+      },
+      "statCaps": {
+        "agi": 16
+      },
+      "traits": [
+        "trait_suc-vam-vo",
+        "trait_hung-huc-lao-toi",
+        "trait_tam-voc-do-so"
+      ],
+      "language": "Tiếng thị tộc Mục",
+      "appearance": {
+        "heightCm": [
+          190,
+          220
+        ],
+        "weightKg": [
+          110,
+          180
+        ],
+        "musclePct": [
+          48,
+          66
+        ],
+        "fatPct": [
+          14,
+          26
+        ],
+        "builds": [
+          "vạm vỡ",
+          "đồ sộ"
+        ],
+        "skin": [
+          "lông đen",
+          "lông nâu đỏ",
+          "lông trắng đốm"
+        ],
+        "hair": [
+          "bờm ngắn",
+          "bờm tết"
+        ],
+        "eyes": [
+          "nâu sẫm",
+          "đen"
+        ],
+        "features": [
+          "sừng cong",
+          "mõm bò",
+          "vai và cổ rất dày"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_ottoman",
+          "role": "binh-si"
+        },
+        {
+          "nation": "nation_dong-la-ma",
+          "role": "binh-si"
+        },
+        {
+          "nation": "nation_han-quoc",
+          "role": "binh-si"
+        },
+        {
+          "nation": "nation_hungary",
+          "role": "cai-tri"
+        }
+      ],
+      "spreadNote": "Xương sống bộ binh thảo nguyên và Balkan; đấu sĩ và thủ lĩnh thị tộc."
+    },
+    {
+      "id": "race_ban-nhan",
+      "name": "Bán Nhân",
+      "aliases": [
+        "Halfling"
+      ],
+      "englishName": "Halflings",
+      "group": "nguoi-thu",
+      "playable": true,
+      "standing": "nông dân, đầu bếp, tình báo",
+      "church": "chính thống",
+      "lifespan": 90,
+      "homelands": [
+        "realm_hre",
+        "prov_bo-bien-baltic"
+      ],
+      "loreEntry": "race_ban-nhan",
+      "stats": {
+        "emp": 2,
+        "agi": 1,
+        "str": -2,
+        "pre": -1
+      },
+      "statCaps": {
+        "str": 14
+      },
+      "traits": [
+        "trait_voc-nho",
+        "trait_may-man-ky-la",
+        "trait_luoi-sanh-an"
+      ],
+      "language": "Tiếng bản địa nơi sinh",
+      "appearance": {
+        "heightCm": [
+          105,
+          128
+        ],
+        "weightKg": [
+          30,
+          50
+        ],
+        "musclePct": [
+          24,
+          38
+        ],
+        "fatPct": [
+          16,
+          30
+        ],
+        "builds": [
+          "cân đối",
+          "béo"
+        ],
+        "skin": [
+          "hồng nhạt",
+          "nâu nhạt",
+          "rám nắng"
+        ],
+        "hair": [
+          "nâu xoăn",
+          "vàng xoăn",
+          "hung"
+        ],
+        "eyes": [
+          "nâu",
+          "lục",
+          "xanh lam"
+        ],
+        "features": [
+          "bàn chân to có lông",
+          "má tròn",
+          "cười rất dễ"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_hre",
+          "role": "thieu-so"
+        },
+        {
+          "nation": "nation_frank",
+          "role": "thieu-so"
+        },
+        {
+          "nation": "nation_anh-quoc",
+          "role": "thieu-so"
+        },
+        {
+          "nation": "nation_burgundy",
+          "role": "thieu-so"
+        },
+        {
+          "nation": "nation_hanse",
+          "role": "thieu-so"
+        }
+      ],
+      "spreadNote": "Nông dân, đầu bếp và — rất thường xuyên — tai mắt mà không ai để ý tới."
+    },
+    {
+      "id": "race_orc",
+      "name": "Orc",
+      "englishName": "Orcs",
+      "group": "khong-lo",
+      "playable": true,
+      "standing": "giai cấp cai trị của Đế chế Ottoman, quân chính quy",
+      "church": "thù địch",
+      "lifespan": 55,
+      "homelands": [
+        "realm_ottoman",
+        "prov_anatolia",
+        "prov_rumelia"
+      ],
+      "loreEntry": "race_orc",
+      "stats": {
+        "str": 2,
+        "wil": 1,
+        "emp": -2,
+        "arc": -1
+      },
+      "statCaps": {
+        "emp": 16
+      },
+      "traits": [
+        "trait_ky-luat-doi-hinh",
+        "trait_gan-ly-tri",
+        "trait_suc-ben-hanh-quan"
+      ],
+      "language": "Tiếng Orc miền nam",
+      "appearance": {
+        "heightCm": [
+          180,
+          205
+        ],
+        "weightKg": [
+          90,
+          140
+        ],
+        "musclePct": [
+          46,
+          64
+        ],
+        "fatPct": [
+          12,
+          24
+        ],
+        "builds": [
+          "vạm vỡ",
+          "đồ sộ"
+        ],
+        "skin": [
+          "lục xám",
+          "lục ô liu",
+          "nâu xám"
+        ],
+        "hair": [
+          "đen",
+          "đen tết",
+          "cạo trọc"
+        ],
+        "eyes": [
+          "đỏ sẫm",
+          "vàng",
+          "nâu"
+        ],
+        "features": [
+          "nanh dưới lộ",
+          "tai nhọn cụp",
+          "sẹo nghi lễ trên mặt"
+        ]
+      },
+      "attitudes": {
+        "nation_giao-trieu": -80,
+        "nation_dong-la-ma": -70,
+        "nation_hungary": -60,
+        "nation_thanh-bang-latin": -40
+      },
+      "spread": [
+        {
+          "nation": "nation_ottoman",
+          "role": "cai-tri"
+        }
+      ],
+      "spreadNote": "Bộ máy nhà nước và quân chính quy của đế quốc phương nam."
+    },
+    {
+      "id": "race_ogre",
+      "name": "Ogre",
+      "englishName": "Ogres",
+      "group": "khong-lo",
+      "playable": true,
+      "standing": "pháo binh siêu nặng, kỹ sư công thành, lính đánh thuê",
+      "church": "ngoài lề",
+      "lifespan": 60,
+      "homelands": [
+        "realm_ottoman",
+        "prov_anatolia"
+      ],
+      "loreEntry": "race_ogre",
+      "stats": {
+        "str": 2,
+        "vit": 1,
+        "int": -2,
+        "wit": -1
+      },
+      "statCaps": {
+        "int": 12,
+        "wit": 14,
+        "arc": 10
+      },
+      "traits": [
+        "trait_suc-vam-vo",
+        "trait_da-day-sat",
+        "trait_cham-hieu"
+      ],
+      "language": "Tiếng Ogre",
+      "appearance": {
+        "heightCm": [
+          220,
+          265
+        ],
+        "weightKg": [
+          180,
+          300
+        ],
+        "musclePct": [
+          50,
+          68
+        ],
+        "fatPct": [
+          22,
+          38
+        ],
+        "builds": [
+          "đồ sộ",
+          "béo"
+        ],
+        "skin": [
+          "xám xanh",
+          "nâu bùn",
+          "vàng bệch"
+        ],
+        "hair": [
+          "đen bết",
+          "không có"
+        ],
+        "eyes": [
+          "vàng đục",
+          "nâu bùn"
+        ],
+        "features": [
+          "hàm dưới nhô",
+          "nanh dưới lộ",
+          "da sần dày"
+        ]
+      },
+      "attitudes": {
+        "nation_giao-trieu": -25,
+        "nation_thanh-bang-latin": -20
+      },
+      "spread": [
+        {
+          "nation": "nation_ottoman",
+          "role": "binh-si"
+        }
+      ],
+      "spreadNote": "Lính đánh thuê hạng nặng và phu khuân vác công thành."
+    },
+    {
+      "id": "race_ban-khong-lo",
+      "name": "Bán Khổng Lồ",
+      "englishName": "Half-Giants",
+      "group": "khong-lo",
+      "playable": true,
+      "standing": "thị tộc núi cao",
+      "church": "ngoại đạo",
+      "lifespan": 150,
+      "homelands": [
+        "prov_alps",
+        "prov_carpathian",
+        "realm_norway"
+      ],
+      "loreEntry": "race_ban-khong-lo",
+      "stats": {
+        "str": 2,
+        "pre": 1,
+        "agi": -2,
+        "gui": -1
+      },
+      "statCaps": {
+        "agi": 14
+      },
+      "traits": [
+        "trait_tam-voc-do-so",
+        "trait_suc-vam-vo",
+        "trait_chiu-lanh"
+      ],
+      "language": "Tiếng Khổng Lồ cổ",
+      "appearance": {
+        "heightCm": [
+          230,
+          280
+        ],
+        "weightKg": [
+          190,
+          320
+        ],
+        "musclePct": [
+          52,
+          70
+        ],
+        "fatPct": [
+          18,
+          32
+        ],
+        "builds": [
+          "đồ sộ"
+        ],
+        "skin": [
+          "xám đá",
+          "nâu đồng",
+          "trắng tuyết"
+        ],
+        "hair": [
+          "trắng",
+          "nâu sẫm",
+          "xám"
+        ],
+        "eyes": [
+          "xám nhạt",
+          "xanh băng",
+          "nâu"
+        ],
+        "features": [
+          "xương mặt rất lớn",
+          "giọng vang như trống",
+          "bàn tay bằng cả đầu người"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_lien-bang-nui",
+          "role": "thieu-so"
+        }
+      ],
+      "spreadNote": "Thị tộc núi cao; xuống đồng bằng làm vệ sĩ hoặc đô vật ăn tiền."
+    },
+    {
+      "id": "race_troll-da",
+      "name": "Troll Đá",
+      "englishName": "Stone Trolls",
+      "group": "khong-lo",
+      "playable": true,
+      "standing": "hoang dã, bị coi là quái vật, tái sinh và sợ lửa",
+      "church": "quái vật",
+      "lifespan": 400,
+      "homelands": [
+        "prov_alps",
+        "prov_carpathian",
+        "realm_norway"
+      ],
+      "loreEntry": "race_troll-da",
+      "stats": {
+        "vit": 2,
+        "str": 1,
+        "int": -2,
+        "elo": -1
+      },
+      "statCaps": {
+        "int": 12,
+        "elo": 12,
+        "arc": 14
+      },
+      "traits": [
+        "trait_tai-sinh",
+        "trait_so-lua",
+        "trait_da-day-sat"
+      ],
+      "language": "Tiếng Troll",
+      "appearance": {
+        "heightCm": [
+          240,
+          300
+        ],
+        "weightKg": [
+          220,
+          400
+        ],
+        "musclePct": [
+          50,
+          68
+        ],
+        "fatPct": [
+          16,
+          30
+        ],
+        "builds": [
+          "đồ sộ"
+        ],
+        "skin": [
+          "xám granit",
+          "nâu đá ong",
+          "xanh rêu"
+        ],
+        "hair": [
+          "rêu mọc thay tóc",
+          "không có"
+        ],
+        "eyes": [
+          "đen tuyền",
+          "vàng đục"
+        ],
+        "features": [
+          "da như vỏ đá",
+          "vết thương cũ liền thành sẹo đá",
+          "cử động rất chậm khi lạnh"
+        ]
+      },
+      "attitudes": {
+        "nation_giao-trieu": -50,
+        "nation_hre": -30,
+        "nation_thanh-bang-latin": -30
+      },
+      "spread": [
+        {
+          "nation": "nation_kalmar",
+          "role": "ngoai-le"
+        }
+      ],
+      "spreadNote": "Bị xếp vào quái vật ở phần lớn nơi; vài thị tộc bắc Âu chịu nhận làm lính."
+    },
+    {
+      "id": "race_long-due",
+      "name": "Long Duệ",
+      "englishName": "Dragonborn",
+      "group": "huyet-due",
+      "playable": true,
+      "standing": "vương thất cổ vùng Balkan và rìa Đông Âu",
+      "church": "kính nể xa cách",
+      "lifespan": 300,
+      "homelands": [
+        "realm_wallachia",
+        "prov_transylvania",
+        "realm_byzantine",
+        "realm_aragon"
+      ],
+      "loreEntry": "race_long-due",
+      "stats": {
+        "pre": 2,
+        "arc": 1,
+        "emp": -2,
+        "agi": -1
+      },
+      "statCaps": {
+        "emp": 16
+      },
+      "traits": [
+        "trait_uy-ap-huyet-thong",
+        "trait_hoi-tho-nong",
+        "trait_vay-cung"
+      ],
+      "language": "Tiếng Long cổ",
+      "appearance": {
+        "heightCm": [
+          175,
+          198
+        ],
+        "weightKg": [
+          75,
+          115
+        ],
+        "musclePct": [
+          40,
+          58
+        ],
+        "fatPct": [
+          10,
+          20
+        ],
+        "builds": [
+          "cân đối",
+          "vạm vỡ"
+        ],
+        "skin": [
+          "đồng ánh vảy",
+          "đỏ sẫm",
+          "vàng nhạt",
+          "đen ánh xanh"
+        ],
+        "hair": [
+          "đen",
+          "đỏ đồng",
+          "vàng kim"
+        ],
+        "eyes": [
+          "vàng kim con ngươi dọc",
+          "đỏ",
+          "lục ánh vàng"
+        ],
+        "features": [
+          "vảy dọc gò má và cẳng tay",
+          "sừng ngắn sau thái dương",
+          "hơi thở nóng"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_dong-la-ma",
+          "role": "cai-tri"
+        },
+        {
+          "nation": "nation_hungary",
+          "role": "cai-tri"
+        }
+      ],
+      "spreadNote": "Các dòng vương thất cổ vùng Balkan; ít người, chính danh rất cao."
+    },
+    {
+      "id": "race_ma-due",
+      "name": "Ma Duệ",
+      "englishName": "Tieflings",
+      "group": "huyet-due",
+      "playable": true,
+      "standing": "bị truy bức khắp nơi, lính đánh thuê và mật vụ",
+      "church": "dị giáo",
+      "lifespan": 90,
+      "homelands": [
+        "reg_europa"
+      ],
+      "loreEntry": "race_ma-due",
+      "stats": {
+        "gui": 2,
+        "arc": 1,
+        "emp": -2,
+        "vit": -1
+      },
+      "statCaps": {
+        "emp": 14
+      },
+      "traits": [
+        "trait_luoi-doi-tra",
+        "trait_cam-ung-huyen-nang",
+        "trait_bi-ghe-so"
+      ],
+      "language": "Tiếng bản địa nơi sinh",
+      "appearance": {
+        "heightCm": [
+          165,
+          188
+        ],
+        "weightKg": [
+          58,
+          88
+        ],
+        "musclePct": [
+          30,
+          48
+        ],
+        "fatPct": [
+          8,
+          18
+        ],
+        "builds": [
+          "gầy",
+          "cân đối"
+        ],
+        "skin": [
+          "đỏ tía",
+          "xám tro",
+          "trắng bệch"
+        ],
+        "hair": [
+          "đen tuyền",
+          "đỏ sẫm",
+          "trắng"
+        ],
+        "eyes": [
+          "đen không lòng trắng",
+          "đỏ",
+          "vàng lửa"
+        ],
+        "features": [
+          "sừng cong sau tai",
+          "đuôi mảnh",
+          "bóng đổ không khớp"
+        ]
+      },
+      "attitudes": {
+        "nation_giao-trieu": -70,
+        "nation_iberia": -60,
+        "nation_teuton": -50
+      },
+      "spread": [
+        {
+          "nation": "nation_frank",
+          "role": "ngoai-le"
+        }
+      ],
+      "spreadNote": "Bị truy bức khắp nơi; ẩn trong các thành thị lớn và trong chính giới ngầm."
+    },
+    {
+      "id": "race_thien-due",
+      "name": "Thiên Duệ",
+      "englishName": "Aasimar",
+      "group": "huyet-due",
+      "playable": true,
+      "standing": "hàng giáo phẩm cấp cao, thánh kỵ sĩ",
+      "church": "trung tâm",
+      "lifespan": 120,
+      "homelands": [
+        "realm_papal",
+        "realm_poland",
+        "realm_castile"
+      ],
+      "loreEntry": "race_thien-due",
+      "stats": {
+        "elo": 2,
+        "wil": 1,
+        "gui": -2,
+        "agi": -1
+      },
+      "statCaps": {
+        "gui": 14
+      },
+      "traits": [
+        "trait_giong-giang-dao",
+        "trait_hao-quang-an-lanh"
+      ],
+      "language": "Tiếng Latin nhà thờ",
+      "appearance": {
+        "heightCm": [
+          170,
+          190
+        ],
+        "weightKg": [
+          62,
+          92
+        ],
+        "musclePct": [
+          32,
+          48
+        ],
+        "fatPct": [
+          10,
+          20
+        ],
+        "builds": [
+          "cân đối"
+        ],
+        "skin": [
+          "trắng sáng",
+          "ngà vàng",
+          "nâu ánh vàng"
+        ],
+        "hair": [
+          "vàng kim",
+          "trắng bạc",
+          "nâu sáng"
+        ],
+        "eyes": [
+          "vàng nhạt",
+          "xanh rất nhạt",
+          "trắng bạc"
+        ],
+        "features": [
+          "ánh sáng rất mờ quanh da khi tối",
+          "giọng vang bất thường",
+          "không có bóng rõ nét"
+        ]
+      },
+      "attitudes": {
+        "nation_ottoman": -40
+      },
+      "spread": [
+        {
+          "nation": "nation_giao-trieu",
+          "role": "cai-tri"
+        },
+        {
+          "nation": "nation_baltic",
+          "role": "tang-lu"
+        },
+        {
+          "nation": "nation_iberia",
+          "role": "cai-tri"
+        }
+      ],
+      "spreadNote": "Hàng giáo phẩm cấp cao; gần như độc quyền các chức vụ trung tâm của Giáo hội."
+    },
+    {
+      "id": "race_huyet-toc",
+      "name": "Huyết Tộc",
+      "englishName": "Vampires",
+      "group": "huyet-due",
+      "playable": true,
+      "standing": "lãnh chúa hắc ám vùng Carpathian, sống bằng thuế máu",
+      "church": "bị nguyền rủa",
+      "lifespan": null,
+      "homelands": [
+        "prov_transylvania",
+        "prov_carpathian"
+      ],
+      "loreEntry": "race_huyet-toc",
+      "note": "Lorebook chưa có entry [Chủng tộc] riêng — nội dung nằm ở entry địa danh Transylvania và nhân vật Carmilla Báthory. Tuổi thọ để null: Huyết Tộc không già đi, chỉ chết vì bị giết.",
+      "stats": {
+        "pre": 2,
+        "gui": 2,
+        "wil": 1,
+        "vit": 1,
+        "emp": -4,
+        "str": -2
+      },
+      "statCaps": {
+        "emp": 12
+      },
+      "traits": [
+        "trait_mat-trong-toi",
+        "trait_hoi-phuc-huyet",
+        "trait_so-anh-sang"
+      ],
+      "language": "Tiếng Magyar quý tộc",
+      "appearance": {
+        "heightCm": [
+          168,
+          190
+        ],
+        "weightKg": [
+          55,
+          82
+        ],
+        "musclePct": [
+          28,
+          46
+        ],
+        "fatPct": [
+          6,
+          14
+        ],
+        "builds": [
+          "gầy",
+          "cân đối"
+        ],
+        "skin": [
+          "trắng bệch",
+          "xám ngà"
+        ],
+        "hair": [
+          "đen tuyền",
+          "trắng bạc",
+          "nâu sẫm"
+        ],
+        "eyes": [
+          "đỏ sẫm",
+          "xám bạc",
+          "đen"
+        ],
+        "features": [
+          "nanh trên dài",
+          "da lạnh",
+          "không già đi"
+        ]
+      },
+      "attitudes": {
+        "nation_giao-trieu": -90,
+        "nation_teuton": -70,
+        "nation_baltic": -50,
+        "nation_hre": -40
+      },
+      "spread": [
+        {
+          "nation": "nation_hungary",
+          "role": "cai-tri"
+        }
+      ],
+      "spreadNote": "Các nhà quý tộc bất tử vùng Carpath; quyền lực tích lũy qua nhiều thế kỷ vì họ không chết già."
+    },
+    {
+      "id": "race_thach-due",
+      "name": "Thạch Duệ",
+      "englishName": "Stoneborn",
+      "group": "nguyen-to",
+      "playable": true,
+      "standing": "nhân tạo hoặc cộng hưởng Thổ hệ, tranh cãi về linh hồn",
+      "church": "chưa phân định",
+      "lifespan": null,
+      "homelands": [
+        "prov_alps",
+        "realm_pskov",
+        "realm_savoy",
+        "realm_granada"
+      ],
+      "loreEntry": "race_thach-due",
+      "stats": {
+        "vit": 2,
+        "str": 1,
+        "emp": -2,
+        "wit": -1
+      },
+      "statCaps": {
+        "emp": 14,
+        "arc": 14
+      },
+      "traits": [
+        "trait_than-the-da",
+        "trait_khong-linh-hon",
+        "trait_da-day-sat"
+      ],
+      "language": "Tiếng của người tạo ra mình",
+      "appearance": {
+        "heightCm": [
+          175,
+          205
+        ],
+        "weightKg": [
+          120,
+          220
+        ],
+        "musclePct": [
+          50,
+          68
+        ],
+        "fatPct": [
+          4,
+          10
+        ],
+        "builds": [
+          "vạm vỡ",
+          "đồ sộ"
+        ],
+        "skin": [
+          "đá xám",
+          "đá vôi trắng",
+          "bazan đen",
+          "cẩm thạch vân"
+        ],
+        "hair": [
+          "không có",
+          "tinh thể mọc thay tóc"
+        ],
+        "eyes": [
+          "tinh thể sáng",
+          "đá đục không con ngươi"
+        ],
+        "features": [
+          "khớp nối thấy rõ",
+          "vết nứt cũ trên thân",
+          "không cần thở đều"
+        ]
+      },
+      "attitudes": {
+        "nation_giao-trieu": -35,
+        "nation_teuton": -25
+      },
+      "spread": [
+        {
+          "nation": "nation_rus",
+          "role": "lao-dich"
+        },
+        {
+          "nation": "nation_iberia",
+          "role": "lao-dich"
+        }
+      ],
+      "spreadNote": "Nhân tạo hoặc cộng hưởng Thổ hệ; làm lao dịch nặng và vệ sĩ, địa vị pháp lý chưa ai chốt."
+    },
+    {
+      "id": "race_hai-toc",
+      "name": "Hải Tộc",
+      "englishName": "Merfolk",
+      "group": "nguyen-to",
+      "playable": true,
+      "standing": "thương mại ven biển, thủy thủ và hoa tiêu",
+      "church": "hòa ước",
+      "lifespan": 120,
+      "homelands": [
+        "realm_venice",
+        "prov_bo-bien-baltic",
+        "realm_ottoman",
+        "realm_portugal"
+      ],
+      "loreEntry": "race_hai-toc",
+      "stats": {
+        "agi": 2,
+        "vit": 1,
+        "wil": -2,
+        "int": -1
+      },
+      "statCaps": {},
+      "traits": [
+        "trait_boi-nhu-ca",
+        "trait_nin-tho-lau",
+        "trait_kho-da"
+      ],
+      "language": "Tiếng Hải Tộc",
+      "appearance": {
+        "heightCm": [
+          162,
+          185
+        ],
+        "weightKg": [
+          58,
+          88
+        ],
+        "musclePct": [
+          34,
+          50
+        ],
+        "fatPct": [
+          12,
+          24
+        ],
+        "builds": [
+          "gầy",
+          "cân đối"
+        ],
+        "skin": [
+          "xanh lục nhạt",
+          "xám bạc",
+          "lam sẫm"
+        ],
+        "hair": [
+          "rong biển sẫm",
+          "trắng bọt",
+          "lam đen"
+        ],
+        "eyes": [
+          "lục biển",
+          "đen bóng",
+          "bạc"
+        ],
+        "features": [
+          "màng giữa ngón tay",
+          "khe mang sau tai",
+          "vảy nhỏ ở cẳng chân"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_ottoman",
+          "role": "thuong-nhan"
+        },
+        {
+          "nation": "nation_dong-la-ma",
+          "role": "thuong-nhan"
+        },
+        {
+          "nation": "nation_thanh-bang-latin",
+          "role": "thuong-nhan"
+        },
+        {
+          "nation": "nation_kalmar",
+          "role": "thuong-nhan"
+        },
+        {
+          "nation": "nation_iberia",
+          "role": "thuong-nhan"
+        },
+        {
+          "nation": "nation_hanse",
+          "role": "thuong-nhan"
+        }
+      ],
+      "spreadNote": "Thương mại ven biển, hoa tiêu và thủy thủ ở mọi hải cảng lớn."
+    },
+    {
+      "id": "race_bang-toc",
+      "name": "Băng Tộc",
+      "englishName": "Frostborn",
+      "group": "nguyen-to",
+      "playable": true,
+      "standing": "thị tộc cực bắc, hiệp sĩ dòng tu phương Bắc",
+      "church": "ngoại đạo",
+      "lifespan": 140,
+      "homelands": [
+        "realm_sweden",
+        "realm_norway",
+        "realm_denmark",
+        "realm_teutonic"
+      ],
+      "loreEntry": "race_bang-toc",
+      "stats": {
+        "vit": 2,
+        "wil": 1,
+        "elo": -2,
+        "agi": -1
+      },
+      "statCaps": {},
+      "traits": [
+        "trait_chiu-lanh",
+        "trait_suc-ben-hanh-quan",
+        "trait_so-nong"
+      ],
+      "language": "Tiếng Băng Tộc",
+      "appearance": {
+        "heightCm": [
+          175,
+          200
+        ],
+        "weightKg": [
+          78,
+          120
+        ],
+        "musclePct": [
+          40,
+          58
+        ],
+        "fatPct": [
+          18,
+          32
+        ],
+        "builds": [
+          "cân đối",
+          "vạm vỡ"
+        ],
+        "skin": [
+          "trắng xanh",
+          "xám băng"
+        ],
+        "hair": [
+          "trắng",
+          "bạc",
+          "vàng rất nhạt"
+        ],
+        "eyes": [
+          "xanh băng",
+          "trắng bạc",
+          "xám"
+        ],
+        "features": [
+          "hơi thở luôn thấy sương",
+          "sương giá bám ở tóc",
+          "da rất lạnh"
+        ]
+      },
+      "spread": [
+        {
+          "nation": "nation_kalmar",
+          "role": "cai-tri"
+        },
+        {
+          "nation": "nation_teuton",
+          "role": "cai-tri"
+        },
+        {
+          "nation": "nation_rus",
+          "role": "cai-tri"
+        }
+      ],
+      "spreadNote": "Thị tộc cực bắc; nắm các liên minh và dòng tu phương bắc."
+    },
+    {
+      "id": "race_moc-toc",
+      "name": "Mộc Tộc",
+      "englishName": "Plant-kin",
+      "group": "nguyen-to",
+      "playable": true,
+      "standing": "lùm thiêng, tín ngưỡng cổ, tư tế Đa thần giáo",
+      "church": "ngoại đạo",
+      "lifespan": 800,
+      "homelands": [
+        "realm_lithuania",
+        "prov_rung-den"
+      ],
+      "loreEntry": "race_moc-toc",
+      "stats": {
+        "arc": 2,
+        "emp": 1,
+        "agi": -2,
+        "gui": -1
+      },
+      "statCaps": {
+        "agi": 16
+      },
+      "traits": [
+        "trait_noi-voi-cay",
+        "trait_cam-ung-huyen-nang",
+        "trait_so-lua"
+      ],
+      "language": "Tiếng lùm thiêng",
+      "appearance": {
+        "heightCm": [
+          168,
+          195
+        ],
+        "weightKg": [
+          55,
+          90
+        ],
+        "musclePct": [
+          30,
+          48
+        ],
+        "fatPct": [
+          6,
+          16
+        ],
+        "builds": [
+          "gầy",
+          "cân đối"
+        ],
+        "skin": [
+          "vỏ cây nâu",
+          "lục rêu",
+          "xám bạch dương"
+        ],
+        "hair": [
+          "lá",
+          "rêu",
+          "cành nhỏ"
+        ],
+        "eyes": [
+          "lục sẫm",
+          "hổ phách",
+          "nâu nhựa"
+        ],
+        "features": [
+          "thớ gỗ dưới da",
+          "lá đổi màu theo mùa",
+          "rễ nhỏ ở gót chân"
+        ]
+      },
+      "attitudes": {
+        "nation_giao-trieu": -35,
+        "nation_teuton": -45
+      },
+      "spread": [
+        {
+          "nation": "nation_baltic",
+          "role": "cai-tri"
+        },
+        {
+          "nation": "nation_teuton",
+          "role": "tang-lu"
+        }
+      ],
+      "spreadNote": "Tư tế của tín ngưỡng cổ; giữ các lùm thiêng ở Baltic và rừng phương đông."
+    },
+    {
+      "id": "race_tro-tan",
+      "name": "Tộc Tro Tàn",
+      "englishName": "Ashen-kin",
+      "group": "nguyen-to",
+      "playable": true,
+      "standing": "sinh sau đại dịch, bị xua đuổi, gây sợ hãi",
+      "church": "bị xua đuổi",
+      "lifespan": null,
+      "homelands": [
+        "reg_europa"
+      ],
+      "loreEntry": "race_tro-tan",
+      "stats": {
+        "wil": 2,
+        "vit": 1,
+        "pre": -2,
+        "emp": -1
+      },
+      "statCaps": {
+        "pre": 14
+      },
+      "traits": [
+        "trait_khang-dich-benh",
+        "trait_bi-ghe-so",
+        "trait_chiu-dau"
+      ],
+      "language": "Tiếng bản địa nơi sinh",
+      "appearance": {
+        "heightCm": [
+          160,
+          185
+        ],
+        "weightKg": [
+          50,
+          80
+        ],
+        "musclePct": [
+          28,
+          46
+        ],
+        "fatPct": [
+          6,
+          16
+        ],
+        "builds": [
+          "gầy",
+          "cân đối"
+        ],
+        "skin": [
+          "xám tro",
+          "trắng bệch có vệt sẫm",
+          "nâu xỉn"
+        ],
+        "hair": [
+          "xám",
+          "trắng",
+          "rụng từng mảng"
+        ],
+        "eyes": [
+          "trắng đục",
+          "xám",
+          "đen sâu"
+        ],
+        "features": [
+          "vết dịch cũ thành hoa văn trên da",
+          "tóc thưa",
+          "không toát mồ hôi"
+        ]
+      },
+      "attitudes": {
+        "nation_giao-trieu": -40,
+        "nation_thanh-bang-latin": -35,
+        "nation_hanse": -35,
+        "nation_iberia": -30
+      },
+      "spread": [],
+      "spreadNote": "Sinh sau đại dịch, bị xua đuổi khỏi phần lớn khu định cư; sống ở rìa mọi thế lực."
+    }
+  ],
+  "statCapDefault": 20,
+  "ageTemplate": {
+    "$comment": "Giai đoạn tuổi khai theo TỈ LỆ tuổi thọ chứ không theo số năm, nên một tộc sống 600 năm và một tộc sống 40 năm dùng chung một bảng. `statShift` là mức chỉ số dịch đi khi nhân vật đứng ở giai đoạn đó; nó KHÔNG ghi đè vào `character.stats` mà đi qua nguồn modifier `character.tuoi-tac` của Phần 5 — nhân vật già đi trong lúc chơi thì con số tự đổi theo, và người chơi đọc được đúng một dòng nói vì sao tay mình chậm hơn năm ngoái.",
+    "stages": [
+      {
+        "id": "au-tho",
+        "name": "Ấu thơ",
+        "from": 0,
+        "to": 0.07,
+        "statShift": {
+          "str": -4,
+          "vit": -3,
+          "int": -2,
+          "wil": -2,
+          "pre": -3
+        }
+      },
+      {
+        "id": "thieu-nien",
+        "name": "Thiếu niên",
+        "from": 0.07,
+        "to": 0.18,
+        "statShift": {
+          "str": -2,
+          "vit": -1,
+          "wil": -1,
+          "pre": -1
+        }
+      },
+      {
+        "id": "thanh-nien",
+        "name": "Thanh niên",
+        "from": 0.18,
+        "to": 0.35,
+        "statShift": {}
+      },
+      {
+        "id": "trung-nien",
+        "name": "Trung niên",
+        "from": 0.35,
+        "to": 0.6,
+        "statShift": {
+          "str": -1,
+          "agi": -1,
+          "int": 1,
+          "wil": 1,
+          "pre": 1
+        }
+      },
+      {
+        "id": "lao-nien",
+        "name": "Lão niên",
+        "from": 0.6,
+        "to": 0.85,
+        "statShift": {
+          "str": -3,
+          "agi": -3,
+          "vit": -2,
+          "per": -1,
+          "int": 1,
+          "wil": 2,
+          "pre": 1
+        }
+      },
+      {
+        "id": "dai-lao",
+        "name": "Đại lão",
+        "from": 0.85,
+        "to": 1,
+        "statShift": {
+          "str": -5,
+          "agi": -5,
+          "vit": -4,
+          "per": -3,
+          "int": 1,
+          "wil": 2
+        }
+      }
+    ],
+    "agelessStage": "thanh-nien",
+    "startAgeRatio": [
+      0.25,
+      0.38
+    ],
+    "$creationAgeRatioComment": "Khoảng tuổi CHỌN ĐƯỢC lúc tạo nhân vật, rộng hơn hẳn `startAgeRatio` (khoảng gợi ý mặc định). Người chơi phải dựng được cả một tân binh mười sáu lẫn một lão tướng sáu mươi — hai người đó chơi khác nhau hoàn toàn: tuổi đổi điểm kỹ năng khởi đầu (Phần 6 mục 3), đổi chỉ số theo giai đoạn (nguồn `character.tuoi-tac`), và đổi tốc độ học của Phần 8 mục 5. Trần trên dừng ở cuối bậc Lão niên: Đại lão là chỗ để nhân vật GIÀ ĐI tới, không phải chỗ để bắt đầu.",
+    "creationAgeRatio": [
+      0.18,
+      0.85
+    ],
+    "agelessReferenceLifespan": 70,
+    "minStartAge": 16,
+    "$learningComment": "PHẦN 8 mục 5 — đòn bẩy cân bằng chủng tộc. Tộc sống lâu học chậm hơn mỗi năm nhưng có hàng thế kỷ để bù: hệ số = (tuổi thọ / tuổi thọ tham chiếu) ^ exponent. Với exponent 0.5 thì Cao Tiên 600 năm ra đúng ~3 lần chậm hơn như mục 5 viết, còn Kobold 40 năm học nhanh hơn người thường. Suy từ tuổi thọ chứ không khai tay từng tộc: thêm một tộc mới là có ngay hệ số hợp lý, không phải nhớ điền thêm một bảng nữa. Tộc nào lệch khỏi luật này thì khai `learnRate` của riêng nó.",
+    "learning": {
+      "exponent": 0.5,
+      "agelessLifespan": 500,
+      "min": 0.6,
+      "max": 4
+    }
+  },
+  "appearanceCommon": {
+    "$comment": "Phần chung mọi tộc, để mỗi tộc chỉ phải khai chỗ thật sự khác nhau. Nút \"ngẫu nhiên theo chủng tộc\" của mục 4 rút từ đây cộng với phần riêng của tộc.",
+    "heightFemaleShiftCm": -8,
+    "weightFemaleShiftPct": -0.12,
+    "hairStyles": [
+      "cắt ngắn",
+      "ngang vai",
+      "dài buộc sau",
+      "tết nhiều bím",
+      "cạo trọc",
+      "rối bù",
+      "vấn cao"
+    ],
+    "beards": [
+      "nhẵn nhụi",
+      "râu quai nón",
+      "râu cằm ngắn",
+      "râu dài tết",
+      "ria mép",
+      "lởm chởm mấy ngày"
+    ],
+    "eyeShapes": [
+      "xếch",
+      "tròn to",
+      "hẹp dài",
+      "trũng sâu",
+      "cách xa nhau"
+    ],
+    "faceFeatures": [
+      "sống mũi gãy",
+      "cằm chẻ",
+      "gò má cao",
+      "môi dày",
+      "trán rộng",
+      "quai hàm bạnh",
+      "mặt gầy hóp"
+    ],
+    "voices": [
+      "trầm khàn",
+      "vang rõ",
+      "nhẹ và khẽ",
+      "the thé",
+      "đều đều không cảm xúc",
+      "hơi lắp khi gấp"
+    ],
+    "gaits": [
+      "sải dài",
+      "bước ngắn nhanh",
+      "khập khiễng nhẹ",
+      "lừ đừ",
+      "không tiếng động",
+      "ưỡn ngực"
+    ],
+    "mannerisms": [
+      "xoay nhẫn khi nghĩ",
+      "nhìn thẳng quá lâu",
+      "gõ ngón tay",
+      "hay ngoái lại",
+      "cắn môi dưới",
+      "chắp tay sau lưng",
+      "không bao giờ ngồi quay lưng ra cửa"
+    ],
+    "marks": [
+      "không có",
+      "bớt sẫm ở cổ",
+      "hình xăm thị tộc trên cẳng tay",
+      "dấu nung của chủ cũ",
+      "nốt ruồi lớn trên má",
+      "vết chàm ở lưng"
+    ],
+    "scarSites": [
+      "mặt",
+      "cổ",
+      "ngực",
+      "lưng",
+      "cánh tay trái",
+      "cánh tay phải",
+      "bàn tay trái",
+      "bàn tay phải",
+      "đùi trái",
+      "đùi phải"
+    ],
+    "scarCauses": [
+      "vết chém cũ",
+      "vết bỏng",
+      "vết đâm",
+      "vết móng vuốt",
+      "sẹo mổ",
+      "vết roi"
+    ]
+  }
+}

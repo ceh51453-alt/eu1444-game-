@@ -1,0 +1,23 @@
+{
+  "$comment": "Preset mẫu TỔNG HỢP: hoàn toàn không có prompt_order. Mọi khối phải thành mồ côi và mặc định tắt, engine vẫn phải chèn đủ bốn khối [LOCKED].",
+  "temperature": 1,
+  "openai_max_tokens": 4096,
+  "stream_openai": true,
+  "prompts": [
+    {
+      "identifier": "main",
+      "name": "Lời dẫn",
+      "enabled": true,
+      "role": "system",
+      "content": "Kể chuyện ngắn gọn."
+    },
+    {
+      "identifier": "chatHistory",
+      "name": "Lịch sử",
+      "enabled": true,
+      "role": "user",
+      "content": "",
+      "marker": true
+    }
+  ]
+}

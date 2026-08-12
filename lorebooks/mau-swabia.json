@@ -1,0 +1,249 @@
+{
+  "kind": "eu1444-lorebook",
+  "schemaVersion": 1,
+  "exportedAt": 0,
+  "books": [
+    {
+      "id": "book-chung",
+      "name": "Tri thức chung",
+      "version": 1,
+      "scope": { "kind": "global" },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 0,
+      "entries": [
+        {
+          "id": "giao-hoi",
+          "title": "Giáo hội và sắc chỉ",
+          "type": "faction",
+          "content": "Giáo hội chi phối đời sống thường ngày: lịch làm ăn theo ngày lễ, hôn nhân và di chúc đều cần cha xứ, và một sắc chỉ từ Rome có thể đảo lộn một tỉnh trong vòng một mùa. Người thường sợ vạ tuyệt thông hơn sợ lính.",
+          "summary": "Giáo hội chi phối lịch, hôn nhân, di chúc. Vạ tuyệt thông đáng sợ hơn lính.",
+          "keys": [],
+          "constant": true,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 8
+        },
+        {
+          "id": "duong-xa",
+          "title": "Đi đường trong đế quốc",
+          "type": "concept",
+          "content": "Đường lát đá chỉ còn từng đoạn của người La Mã. Mùa mưa thì xe bò lún tới trục. Lữ khách đi theo đoàn buôn để tránh cướp, và mỗi cầu mỗi bến đều có kẻ đứng thu tiền qua lại.",
+          "keys": ["đường", "lữ hành", "đi xa", "đoàn buôn"],
+          "matchMode": "plain",
+          "knowledge": "public",
+          "weight": 8
+        },
+        {
+          "id": "dich-hach",
+          "title": "Dịch hạch quay lại",
+          "type": "event",
+          "content": "Có tin từ các cảng phía nam: bệnh dịch lại bùng lên. Thành nào cũng bắt đầu đóng cổng với người lạ, và thầy thuốc thì bảo nhau đốt hương ngải.",
+          "keys": ["dịch", "bệnh", "chết dịch"],
+          "validFrom": { "year": 1444, "month": 6, "day": 1, "hour": 0 },
+          "knowledge": "public",
+          "weight": 12,
+          "triggers": [
+            {
+              "when": "onDateReached",
+              "emit": {
+                "event": "lore.notify",
+                "payload": { "title": "Dịch hạch", "body": "Tin dịch bệnh đã lan tới vùng này." }
+              }
+            }
+          ],
+          "triggerOnce": true
+        },
+        {
+          "id": "tin-don-thue-muoi",
+          "title": "Tin đồn về thuế muối",
+          "type": "event",
+          "content": "Ngoài chợ người ta rỉ tai nhau rằng Giáo hoàng sắp ra sắc chỉ về thuế muối. Chưa ai thấy văn bản, nhưng lái buôn muối đã bắt đầu găm hàng.",
+          "keys": ["muối", "thuế muối"],
+          "knowledge": "public",
+          "weight": 9,
+          "triggers": [
+            {
+              "when": "onFirstActivate",
+              "emit": {
+                "event": "lore.rumor.spread",
+                "payload": { "text": "Giáo hoàng sắp ra sắc chỉ về thuế muối" }
+              }
+            }
+          ],
+          "triggerOnce": true
+        },
+        {
+          "id": "phep-thuat",
+          "title": "Phép thuật bị nhìn bằng con mắt nghi ngờ",
+          "type": "concept",
+          "content": "Phép thuật có thật nhưng hiếm và đắt. Kẻ nào công khai dùng nó ở nơi đông người đều phải chuẩn bị sẵn một lời giải thích cho cha xứ.",
+          "keys": ["phép", "phù thuỷ", "ma thuật", "bùa"],
+          "probability": 60,
+          "knowledge": "public",
+          "weight": 7
+        },
+        {
+          "id": "hoi-cho-champagne",
+          "title": "Hội chợ Champagne",
+          "type": "place",
+          "content": "Sáu kỳ hội chợ luân phiên trong năm ở Champagne là nơi tiền của cả châu Âu đổi tay. Thương nhân Ý mang lụa và hồ tiêu, người Flanders mang len.",
+          "keys": ["hội chợ", "Champagne", "Troyes"],
+          "regions": ["prov_champagne"],
+          "knowledge": "public",
+          "weight": 10
+        }
+      ]
+    },
+    {
+      "id": "book-swabia",
+      "name": "Tỉnh Swabia",
+      "version": 1,
+      "scope": { "kind": "region", "refId": "prov_swabia" },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 5,
+      "entries": [
+        {
+          "id": "thanh-ehrenfeld",
+          "title": "Thành Ehrenfeld",
+          "type": "place",
+          "content": "Ehrenfeld ngồi trên một mỏm đá nhìn xuống khúc sông cạn. Tường gỗ và đất, cổng nam mở ra chợ phiên. Người trong thành gọi bá tước Reinhard là \"ông chủ cũ\" vì ông ít khi về.",
+          "keys": ["Ehrenfeld"],
+          "regions": ["prov_swabia"],
+          "knowledge": "public",
+          "weight": 12,
+          "related": [{ "id": "ba-tuoc-reinhard", "pullWeight": 0.8 }]
+        },
+        {
+          "id": "ba-tuoc-reinhard",
+          "title": "Bá tước Reinhard",
+          "type": "person",
+          "content": "Reinhard cai trị Swabia từ năm 1437, tính keo và hay kiện. Ông đang vướng một vụ tranh chấp ranh giới rừng Ehr với nam tước Otto, và vụ đó ăn hết thời gian của ông.",
+          "keys": ["Reinhard", "bá tước"],
+          "regions": ["prov_swabia"],
+          "knowledge": "public",
+          "weight": 12,
+          "recurse": true
+        },
+        {
+          "id": "tranh-chap-rung-ehr",
+          "title": "Tranh chấp rừng Ehr",
+          "type": "law",
+          "content": "Rừng Ehr nằm giữa hai vùng săn. Bá tước Reinhard đòi quyền săn bắn toàn phần, nam tước Otto đòi chia đôi theo lệ cũ. Vụ này đã qua ba lần xử mà chưa xong, và dân hai làng vẫn đánh nhau vì củi.",
+          "summary": "Reinhard và Otto tranh nhau quyền săn ở rừng Ehr, đã ba lần xử chưa xong.",
+          "keys": ["rừng Ehr", "tranh chấp", "Otto"],
+          "regions": ["prov_swabia"],
+          "knowledge": "public",
+          "weight": 10
+        },
+        {
+          "id": "lang-brogg",
+          "title": "Làng Brogg",
+          "type": "place",
+          "content": "Brogg có bốn mươi nóc nhà, một cối xay nước và một cha xứ già điếc một bên tai. Làng nợ Ehrenfeld hai mươi ngày công mỗi năm.",
+          "keys": ["Brogg"],
+          "regions": ["hold_brogg"],
+          "knowledge": "public",
+          "weight": 9
+        },
+        {
+          "id": "cho-phien-swabia",
+          "title": "Chợ phiên Swabia",
+          "type": "place",
+          "content": "Chợ họp ngoài cổng nam vào ngày thứ ba hằng tuần. Muối, sắt, len, và tin tức — thứ cuối cùng là hàng rẻ nhất và lan nhanh nhất.",
+          "keys": ["chợ", "chợ phiên"],
+          "regions": ["prov_swabia"],
+          "includeAdjacent": true,
+          "knowledge": "public",
+          "weight": 8
+        },
+        {
+          "id": "mo-sat-bi-mat",
+          "title": "Mỏ sắt giấu trong rừng Ehr",
+          "type": "place",
+          "content": "Dưới sườn bắc rừng Ehr có một mạch sắt lộ thiên mà chưa ai khai. Reinhard biết, và đó mới là lý do thật ông không chịu chia rừng.",
+          "keys": ["mỏ sắt", "sắt", "rừng Ehr"],
+          "regions": ["prov_swabia"],
+          "knowledge": "secret",
+          "weight": 15
+        },
+        {
+          "id": "am-muu-reinhard",
+          "title": "Reinhard tính phản Đế quốc",
+          "type": "event",
+          "content": "Reinhard đã gửi thư cho sứ giả Pháp hai lần trong mùa đông. Nếu chuyện lộ ra, đó là tội phản nghịch.",
+          "keys": ["âm mưu", "phản", "sứ giả Pháp"],
+          "regions": ["prov_swabia"],
+          "knowledge": "gated",
+          "requiresKnowledge": ["biet-thu-cua-reinhard"],
+          "weight": 14
+        },
+        {
+          "id": "hiep-uoc-swabia",
+          "title": "Hiệp ước Swabia năm 1431",
+          "type": "law",
+          "content": "Năm 1431 các thành trong tỉnh ký một hiệp ước giữ hòa bình nội bộ và chia nhau phí bảo vệ đường.",
+          "variants": [
+            {
+              "audience": "nation_hre",
+              "content": "Hiệp ước Swabia 1431 là bằng chứng các thành tự lo được cho mình — Hoàng đế coi đó là mẫu mực và ép các tỉnh khác làm theo."
+            },
+            {
+              "audience": "nation_giao-trieu",
+              "content": "Hiệp ước Swabia 1431 là các thành tự ý lập ước mà không hỏi Giáo hội. Rome vẫn nhớ chuyện đó."
+            }
+          ],
+          "keys": ["hiệp ước", "1431"],
+          "regions": ["prov_swabia"],
+          "knowledge": "public",
+          "weight": 9
+        },
+        {
+          "id": "cong-thanh-swabia",
+          "title": "Vây thành ở Swabia thì trông thế nào",
+          "type": "concept",
+          "content": "Không ai tổng công ngay. Vây thành ở đây là ngồi ngoài tường chờ kho lương trong thành cạn, trong lúc quân vây tự chết dần vì bệnh và vì đói.",
+          "keys": ["vây", "vây hãm", "công thành"],
+          "regions": ["prov_swabia"],
+          "placement": { "depth": 2 },
+          "role": "system",
+          "knowledge": "public",
+          "weight": 11
+        }
+      ]
+    },
+    {
+      "id": "book-champagne",
+      "name": "Tỉnh Champagne",
+      "version": 1,
+      "scope": { "kind": "region", "refId": "prov_champagne" },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 5,
+      "entries": [
+        {
+          "id": "thanh-troyes",
+          "title": "Thành Troyes",
+          "type": "place",
+          "content": "Troyes là thành lớn nhất Champagne, sống bằng hội chợ và bằng nghề dệt. Cân Troyes là chuẩn cân mà cả châu Âu dùng để đong vàng.",
+          "keys": ["Troyes", "hội chợ", "cân Troyes"],
+          "regions": ["prov_champagne"],
+          "knowledge": "public",
+          "weight": 12
+        },
+        {
+          "id": "tho-det-troyes",
+          "title": "Phường thợ dệt Troyes",
+          "type": "faction",
+          "content": "Phường dệt giữ độc quyền nhuộm trong thành và không cho người ngoài mở khung cửi. Ai phá lệ thì hàng bị đốt giữa chợ.",
+          "keys": ["thợ dệt", "phường dệt", "khung cửi"],
+          "regions": ["prov_champagne"],
+          "knowledge": "public",
+          "weight": 10
+        }
+      ]
+    }
+  ]
+}

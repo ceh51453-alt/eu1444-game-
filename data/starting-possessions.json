@@ -1,0 +1,53 @@
+{
+  "$comment": "LỚP KHAI BÁO SỞ HỮU lúc tạo nhân vật (Phần 6). Đây KHÔNG phải hệ thành trì hay hệ tước vị — Phần 12 sở hữu thành trì (data/buildings.json), Phần 13 sở hữu tước vị và thái ấp (data/titles.json), và hai file đó ĐANG RỖNG CÓ CHỦ Ý. Chỗ này chỉ giữ đủ TỪ VỰNG để bước 8 hỏi được 'ngài đang giữ cái gì', rồi ghi câu trả lời vào state dưới dạng Phần 12/13 đọc thẳng được. Bảng cấp và bảng tước ở dưới chép id + tên từ Phần 12 mục 3 và Phần 13 mục 2 để hai bên không lệch nhau; mọi con số cơ học (dân số, lưới ô, quyền hạn) vẫn thuộc về hai phần đó. BA TẦNG KHÔNG ĐƯỢC LẪN (README mục 6, Phụ lục A): THÀNH TRÌ là một ĐIỂM đi bộ hết trong một ngày, có tường và ô đất — dùng `holdings`. LÃNH THỔ là một VÙNG cưỡi ngựa nhiều ngày, gồm nhiều tỉnh — dùng `realmRoles`. THÁI ẤP là một TỜ GIẤY có ấn triện, gói tước vị và nghĩa vụ — dùng `fiefTitles`. Ba khóa riêng trong state chính là lớp phòng thủ chống lẫn tầng ở ngay khâu khai báo. Xem thêm bài test từ vựng ở src/core/vocabulary.test.ts, nó gác luôn cả file này.",
+  "version": 1,
+
+  "settlementTiers": [
+    { "id": "thon", "level": 1, "name": "Thôn", "population": "dưới 100", "note": "Không tường. Nông trại, giếng, nhà gỗ." },
+    { "id": "lang", "level": 2, "name": "Làng", "population": "100–500", "note": "Hàng rào gỗ. Cối xay, lò rèn, nhà nguyện." },
+    { "id": "tran", "level": 3, "name": "Trấn", "population": "500–2.000", "note": "Tường gỗ hoặc đất. Chợ, xưởng nghề, doanh trại." },
+    { "id": "thanh", "level": 4, "name": "Thành", "population": "2.000–8.000", "note": "Tường đá. Nhà thờ, tòa án, xưởng lớn." },
+    { "id": "dai-thanh", "level": 5, "name": "Đại thành", "population": "trên 8.000", "note": "Tường đá nhiều lớp. Đại giáo đường, thư viện, xưởng đúc." }
+  ],
+
+  "holdingRoles": [
+    { "id": "chu-so-huu", "name": "Chủ sở hữu", "note": "Ngài giữ nó, và giấy tờ mang tên ngài." },
+    { "id": "duoc-uy-thac", "name": "Được ủy thác", "note": "Coi sóc hộ người khác. Mất là phải đền, được cũng không phải của mình." },
+    { "id": "dong-so-huu", "name": "Đồng sở hữu", "note": "Chia với anh em hoặc với một phường hội. Mọi quyết định phải bàn." },
+    { "id": "thua-ke-cho", "name": "Thừa kế chờ", "note": "Sẽ là của ngài khi người đang giữ chết. Người đó biết điều đó." },
+    { "id": "dang-tranh-chap", "name": "Đang tranh chấp", "note": "Ngài đòi, người khác cũng đòi, và tòa chưa xử." },
+    { "id": "don-tru", "name": "Đồn trú", "note": "Ngài chỉ huy quân ở đó, không sở hữu gì cả." }
+  ],
+
+  "fiefTitles": [
+    { "id": "thuong-dan", "rank": 0, "name": "Thường dân", "note": "Không có bảng trạng thái cai trị." },
+    { "id": "hiep-si", "rank": 1, "name": "Hiệp sĩ", "note": "Giữ được một trang viên, KHÔNG phải lãnh thổ." },
+    { "id": "nam-tuoc", "rank": 2, "name": "Nam tước", "note": "Một thái ấp nhỏ: vài làng và một thành trì." },
+    { "id": "tu-tuoc", "rank": 3, "name": "Tử tước", "note": "Phó của bá tước, coi một huyện, chưa có chư hầu riêng." },
+    { "id": "ba-tuoc", "rank": 4, "name": "Bá tước", "note": "Một quận. Ngưỡng quan trọng: lần đầu có chư hầu thật." },
+    { "id": "hau-tuoc", "rank": 5, "name": "Hầu tước", "note": "Quận biên cương, quyền quân sự lớn hơn." },
+    { "id": "cong-tuoc", "rank": 6, "name": "Công tước", "note": "Một công quốc gồm nhiều quận." },
+    { "id": "tuyen-hau", "rank": 7, "name": "Tuyển hầu", "note": "Chỉ trong Đế quốc: quyền bầu hoàng đế." },
+    { "id": "vuong", "rank": 8, "name": "Vương", "note": "Một vương quốc." },
+    { "id": "hoang-de", "rank": 9, "name": "Hoàng đế", "note": "Một đế quốc." }
+  ],
+
+  "fiefObligations": [
+    { "id": "quan-dich-40", "name": "Quân dịch 40 ngày mỗi năm" },
+    { "id": "quan-dich-60", "name": "Quân dịch 60 ngày mỗi năm" },
+    { "id": "cung-ky-si", "name": "Cung cấp một số kỵ sĩ có giáp khi được gọi" },
+    { "id": "cong-nap", "name": "Cống nạp hằng năm bằng tiền hoặc hiện vật" },
+    { "id": "chau-trieu", "name": "Chầu triều mỗi năm một lần" },
+    { "id": "thap-phan", "name": "Nộp thập phân cho Giáo hội" },
+    { "id": "giu-duong", "name": "Giữ một đoạn đường hoặc một bến đò" },
+    { "id": "khong-co", "name": "Không nghĩa vụ nào — hiếm, và thường là vì có người đã trả hộ" }
+  ],
+
+  "realmRoles": [
+    { "id": "khong-co", "name": "Không cai trị vùng nào" },
+    { "id": "chu-hau", "name": "Chư hầu", "note": "Cai trị một phần, và thề với người trên." },
+    { "id": "cai-tri", "name": "Cai trị trực tiếp" },
+    { "id": "nhiep-chinh", "name": "Nhiếp chính", "note": "Cai trị thay một người chưa đủ tuổi hoặc đang vắng mặt." },
+    { "id": "luu-vong", "name": "Bị tước đoạt", "note": "Trên giấy vẫn là của ngài. Trên thực địa thì không." }
+  ]
+}

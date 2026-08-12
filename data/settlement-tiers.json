@@ -1,0 +1,274 @@
+{
+  "$comment": "NĂM CẤP KHU ĐỊNH CƯ — Phần 12 mục 3, cộng dân số và lòng dân của mục 8. ĐÂY LÀ TẦNG THÀNH TRÌ: mọi con số ở file này là con số CHÍNH XÁC của MỘT ĐIỂM (Phụ lục A mục 5–6). Không phần trăm dân số, không tỉnh, không chư hầu, không thuế suất — những thứ đó thuộc data của Phần 13. Mỗi cấp trỏ sang một khuôn trong data/fortifications.json để nhóm công trình phòng thủ đổ được vào Fortification của Phần 11.",
+  "version": 1,
+
+  "config": {
+    "$comment": "Hằng số dùng chung cho cả năm cấp. Tuần là đơn vị thời gian của thành trì (Phụ lục A mục 5); một năm 52 tuần, khớp 4 mùa × 13 tuần của data/fortifications.json.",
+    "weeksPerYear": 52,
+
+    "$foodComment": "PHẦN LƯƠNG một người một tuần — cùng đơn vị với consumption.foodPerManWeek của data/fortifications.json, để kho của thành trì đi thẳng vào cuộc vây hãm mà không phải quy đổi.",
+    "foodPerPersonWeek": 1,
+
+    "$growthComment": "Tăng dân theo NĂM rồi chia cho 52. Sinh tự nhiên thời trung cổ rất thấp; phần lớn tăng trưởng của một thị trấn đến từ người NHẬP CƯ, và nhập cư chỉ xảy ra khi còn chỗ ở, còn việc làm và còn lương. Đó là lý do nuôi một thôn lên đại thành mất hàng chục năm chứ không phải hàng chục mùa.",
+    "naturalGrowthPerYear": 0.009,
+    "immigrationPerYear": 0.05,
+    "immigrationMoraleFloor": 45,
+    "immigrationSlackFloor": 0.04,
+    "naturalGrowthMoraleFloor": 30,
+
+    "$declineComment": "Vượt sức chứa thì dân KHÔNG chết ngay, họ bỏ đi trước. Đói mới giết.",
+    "overCapacityLeavePerYear": 0.22,
+    "starvationDeathPerWeek": 0.006,
+    "starvationLeavePerWeek": 0.004,
+    "plagueDeathPerWeek": 0.02,
+    "sackDeathShare": 0.18,
+
+    "$moraleComment": "LÒNG DÂN 0–100 (mục 8). Mỗi tuần trôi về `target` một đoạn chứ không nhảy: một nạn đói kéo dài mới làm dân nổi loạn, một tuần thiếu lương thì không.",
+    "moraleStart": 55,
+    "moraleDriftPerWeek": 0.12,
+    "moraleFactors": {
+      "$comment": "Cộng vào mốc 50. Mọi giá trị theo thang lòng dân 0–100, không phải thang d100 của Phần 5 — đây là một con số của thành trì, không phải một điều chỉnh kiểm định.",
+      "foodSurplusFull": 12,
+      "foodShort": -30,
+      "starving": -45,
+      "housingShort": -18,
+      "jobShort": -10,
+      "unemployedShare": -22,
+      "chapelPresent": 6,
+      "churchPresent": 10,
+      "justicePresent": 8,
+      "beautyPerPoint": 0.5,
+      "beautyCap": 14,
+      "garrisonSafety": 9,
+      "noGarrison": -8,
+      "besieged": -14,
+      "plague": -20,
+      "levyPerTenPercent": -3,
+      "lordCrueltyPer10": -2,
+      "lordMercyPer10": 1.5,
+      "lordMaimed": -4,
+      "legitimacyPer10": 1.2,
+      "raceTensionPerPoint": -0.6,
+      "conqueredHatred": -25,
+      "conqueredHatredDecayPerYear": 2.5
+    },
+
+    "$unrestComment": "thấp → sản lượng giảm → trộm cắp → bạo loạn → bỏ trốn hàng loạt (mục 8).",
+    "unrestLadder": [
+      { "upTo": 15, "id": "bo-tron", "name": "bỏ trốn hàng loạt", "outputFactor": 0.35, "fleePerWeek": 0.012, "riotChance": 45 },
+      { "upTo": 30, "id": "bao-loan", "name": "bạo loạn", "outputFactor": 0.55, "fleePerWeek": 0.004, "riotChance": 22 },
+      { "upTo": 45, "id": "trom-cap", "name": "trộm cắp", "outputFactor": 0.8, "fleePerWeek": 0.001, "riotChance": 6 },
+      { "upTo": 70, "id": "yen", "name": "yên", "outputFactor": 1.0, "fleePerWeek": 0, "riotChance": 0 },
+      { "upTo": 100, "id": "mot-long", "name": "một lòng", "outputFactor": 1.12, "fleePerWeek": 0, "riotChance": 0 }
+    ],
+
+    "$strataComment": "THÀNH PHẦN DÂN CƯ (mục 8). `share` là tỉ lệ mặc định lúc dựng thành; nó dịch theo công trình có trong thành, không cố định. `moraleWeight` quyết định nhóm nào kéo lòng dân chung mạnh hơn — nông nô đông nhưng ít tiếng nói, thương nhân ít mà ồn ào.",
+    "strata": [
+      {
+        "id": "nong-no",
+        "name": "Nông nô",
+        "share": 0.62,
+        "moraleWeight": 0.8,
+        "workforceShare": 0.5,
+        "wants": ["luong-thuc", "an-ninh"],
+        "hatesTax": 1.4,
+        "note": "Không được rời thành trì. Đói là mất tất cả."
+      },
+      {
+        "id": "dan-tu-do",
+        "name": "Dân tự do",
+        "share": 0.2,
+        "moraleWeight": 1.0,
+        "workforceShare": 0.52,
+        "wants": ["viec-lam", "cong-ly"],
+        "hatesTax": 1.0,
+        "note": "Đi được. Lòng dân thấp là họ đi thật."
+      },
+      {
+        "id": "tho",
+        "name": "Thợ",
+        "share": 0.1,
+        "moraleWeight": 1.3,
+        "workforceShare": 0.6,
+        "wants": ["viec-lam", "nguyen-lieu"],
+        "hatesTax": 1.1,
+        "grows": ["bld_lo-ren", "bld_xuong-moc", "bld_thuoc-da", "bld_det", "bld_lo-gom"],
+        "note": "Nguồn thợ lành nghề. Không có phường thợ thì công trình lớn không xây được."
+      },
+      {
+        "id": "thuong-nhan",
+        "name": "Thương nhân",
+        "share": 0.04,
+        "moraleWeight": 1.6,
+        "workforceShare": 0.3,
+        "wants": ["cho", "duong-xa", "an-ninh"],
+        "hatesTax": 1.8,
+        "grows": ["bld_cho", "bld_quan-tro", "bld_kho-bac"],
+        "note": "Mang tiền vào. Thuế nặng là họ chuyển thành khác."
+      },
+      {
+        "id": "giao-si",
+        "name": "Giáo sĩ",
+        "share": 0.03,
+        "moraleWeight": 1.4,
+        "workforceShare": 0.15,
+        "wants": ["ton-giao"],
+        "hatesTax": 0.6,
+        "grows": ["bld_nha-nguyen", "bld_nha-tho", "bld_tu-vien", "bld_dai-giao-duong"],
+        "note": "Ổn định lòng dân, nhưng không cày ruộng."
+      },
+      {
+        "id": "quy-toc-nho",
+        "name": "Quý tộc nhỏ",
+        "share": 0.01,
+        "moraleWeight": 2.0,
+        "workforceShare": 0.05,
+        "wants": ["danh-du", "quan-su"],
+        "hatesTax": 2.2,
+        "grows": ["bld_sanh-lanh-chua", "bld_doanh-trai", "bld_chuong-ngua"],
+        "note": "Ít người, nhiều tiếng nói. Nguồn kỵ binh của Phần 10."
+      }
+    ],
+
+    "$raceComment": "CĂNG THẲNG CHỦNG TỘC (mục 8). Bảng quan hệ của Phần 6 khai thái độ tộc → QUỐC GIA, không khai tộc → tộc; nên căng thẳng trong một thành trì suy ra từ hai thứ Phần 6 CÓ khai: `group` (cùng nhóm thì hiểu nhau) và `church` (đứng khác phía Giáo hội là nguồn xích mích thật của thế kỷ 14). Phần 14 mục 3 sẽ thay bảng này bằng PowerDemographics; tới lúc ấy đổi số ở đây, không đổi code.",
+    "raceTension": {
+      "sameGroup": 0,
+      "differentGroup": 4,
+      "sameChurch": 0,
+      "differentChurch": 7,
+      "outcastChurch": 14,
+      "outcastChurchIds": ["ngoại giáo", "bị nguyền", "vô thần"],
+      "$minorityComment": "Một tộc thiểu số quá nhỏ thì bị bắt nạt chứ không gây căng thẳng; đông ngang nhau mới là chỗ hai bên đủ sức va vào nhau.",
+      "balanceWeight": 4,
+      "perPairCap": 18,
+      "totalCap": 45,
+      "toleranceBuildings": { "bld_cho": -4, "bld_quan-tro": -3, "bld_toa-an": -5, "bld_nha-tam": -2 },
+      "$outputComment": "Căng thẳng ăn thẳng vào sản lượng, ngoài phần nó ăn vào lòng dân.",
+      "outputPerPoint": 0.004
+    },
+
+    "$informalJobComment": "Phần nhân lực KHÔNG cần một chỗ làm do công trình cấp: người gánh nước, người đánh xe, người giúp việc, người làm thuê theo ngày, người bán rong. Ở một thị trấn thế kỷ 14 đó là phần lớn những người không cày ruộng. Nếu bắt mọi nhân công phải có một chỗ làm khai trong data thì một thành tám nghìn dân cần hơn ba nghìn chỗ làm khai sẵn, và việc làm trở thành nút thắt duy nhất của cả trò chơi — nút thắt ấy không đúng với thế kỷ 14 và cũng không thú vị.",
+    "informalJobShare": 0.35,
+
+    "$baseCapacityComment": "`baseHousing` và `baseJobs` của mỗi cấp là những túp lều và những mảnh ruộng phần ĐÃ CÓ SẴN — thứ dân tự dựng lấy mà không ai quy hoạch. Không có chúng thì một khu định cư mới lập có sức chứa bằng 0 và dân bỏ đi hết trước khi căn nhà đầu tiên xây xong, tức là Phần 12 có một vòng khoá chết ngay ở tuần thứ nhất. Con số cố ý đặt chỉ NHỈNH HƠN ngưỡng vào cấp một chút: vào được cấp thì sống được, nhưng muốn lớn lên trong cấp thì phải xây.",
+
+    "$hinterlandComment": "RUỘNG NGOÀI TƯỜNG. Mục 6 nói nguồn tài nguyên là 'ô địa hình QUANH thành trì' — vẫn là tầng thành trì, vì đi bộ tới được trong một ngày. Đây KHÔNG phải tỉnh: tỉnh là đơn vị chia nhỏ của lãnh thổ và nó CHỨA các thành trì (Phụ lục A mục 9d).",
+    "$hinterlandScaleComment": "Số ô ruộng phải lớn nhanh hơn LƯỚI, vì ngưỡng dân số lớn nhanh hơn nhiều (0 → 100 → 500 → 2.000 → 8.000). Nếu ruộng chỉ lớn theo lưới thì tới cấp 4 người chơi phải lát gần kín thành bằng nông trại mới đủ ăn, và không còn ô nào cho những công trình mà chính cấp 5 đòi — một nút thắt không phải do quy hoạch dở mà do bảng số đặt sai.",
+    "hinterlandPerTier": [8, 16, 40, 100, 190]
+  },
+
+  "tiers": [
+    {
+      "id": "thon",
+      "name": "Thôn",
+      "rank": 1,
+      "article": "thôn",
+      "population": { "min": 0, "max": 99 },
+      "wall": "không",
+      "grid": 4,
+      "baseHousing": 95,
+      "baseJobs": 62,
+      "fortTemplate": "fort_dinh-lang",
+      "highlights": ["bld_nong-trai", "bld_gieng", "bld_nha-go"],
+      "maxProjects": 1,
+      "baseBeauty": 0,
+      "note": "Vài chục nóc nhà quanh một cái giếng. Không tường, không ai canh."
+    },
+    {
+      "id": "lang",
+      "name": "Làng",
+      "rank": 2,
+      "article": "làng",
+      "population": { "min": 100, "max": 500 },
+      "wall": "hàng rào gỗ",
+      "grid": 6,
+      "baseHousing": 130,
+      "baseJobs": 88,
+      "fortTemplate": "fort_thap-canh",
+      "highlights": ["bld_coi-xay", "bld_lo-ren", "bld_nha-nguyen"],
+      "maxProjects": 2,
+      "baseBeauty": 2,
+      "upgrade": {
+        "populationAtLeast": 100,
+        "requiresBuildings": ["bld_gieng", "bld_nha-go", "bld_nong-trai"],
+        "cost": { "tien": 90, "go": 70 },
+        "weeks": 6,
+        "requiresPermit": true,
+        "checkDifficulty": "de-dang"
+      },
+      "note": "Đã có cái để mất, nên đã có hàng rào."
+    },
+    {
+      "id": "tran",
+      "name": "Trấn",
+      "rank": 3,
+      "article": "trấn",
+      "population": { "min": 500, "max": 2000 },
+      "wall": "tường gỗ và đất",
+      "grid": 9,
+      "baseHousing": 620,
+      "baseJobs": 520,
+      "fortTemplate": "fort_lau-dai-da",
+      "highlights": ["bld_cho", "bld_xuong-nghe", "bld_doanh-trai"],
+      "maxProjects": 3,
+      "baseBeauty": 5,
+      "upgrade": {
+        "populationAtLeast": 500,
+        "requiresBuildings": ["bld_coi-xay", "bld_lo-ren", "bld_nha-nguyen", "bld_day-nha-o"],
+        "cost": { "tien": 420, "go": 260, "da": 120 },
+        "weeks": 14,
+        "requiresPermit": true,
+        "checkDifficulty": "thuong"
+      },
+      "note": "Có chợ là có tin tức, có tin tức là có người lạ."
+    },
+    {
+      "id": "thanh",
+      "name": "Thành",
+      "rank": 4,
+      "article": "thành",
+      "population": { "min": 2000, "max": 8000 },
+      "wall": "tường đá",
+      "grid": 12,
+      "baseHousing": 2400,
+      "baseJobs": 1550,
+      "fortTemplate": "fort_thanh-tri-kep",
+      "highlights": ["bld_nha-tho", "bld_toa-an", "bld_xuong-lon"],
+      "maxProjects": 4,
+      "baseBeauty": 9,
+      "upgrade": {
+        "populationAtLeast": 2000,
+        "requiresBuildings": ["bld_cho", "bld_doanh-trai", "bld_xuong-nghe", "bld_tuong-go", "bld_sanh-lanh-chua"],
+        "cost": { "tien": 2100, "go": 700, "da": 1500, "sat": 180 },
+        "weeks": 34,
+        "requiresPermit": true,
+        "checkDifficulty": "kho"
+      },
+      "note": "Tường đá là một tuyên bố chính trị. Xây nó mà không xin phép là tội."
+    },
+    {
+      "id": "dai-thanh",
+      "name": "Đại thành",
+      "rank": 5,
+      "article": "đại thành",
+      "population": { "min": 8000, "max": 200000 },
+      "wall": "tường đá nhiều lớp",
+      "grid": 16,
+      "baseHousing": 9000,
+      "baseJobs": 5800,
+      "fortTemplate": "fort_dai-thanh",
+      "highlights": ["bld_dai-giao-duong", "bld_thu-vien", "bld_xuong-duc", "bld_thap-chinh"],
+      "maxProjects": 6,
+      "baseBeauty": 14,
+      "upgrade": {
+        "populationAtLeast": 8000,
+        "requiresBuildings": ["bld_nha-tho", "bld_toa-an", "bld_tuong-da", "bld_xuong-lon", "bld_khu-nha-gach"],
+        "cost": { "tien": 9000, "go": 2200, "da": 7000, "sat": 900 },
+        "weeks": 70,
+        "requiresPermit": true,
+        "checkDifficulty": "rat-kho"
+      },
+      "note": "Ở cấp này thành trì tự nó là một thế lực, và lãnh chúa cấp trên biết điều đó."
+    }
+  ]
+}

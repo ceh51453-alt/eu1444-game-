@@ -1,0 +1,74 @@
+{
+  "$comment": "NỀN KINH TẾ THẾ GIỚI — quy mô quốc gia, hàng hóa, cung cầu và thương mại. Mọi lượng hàng là đơn vị trừu tượng theo tháng; dân số là người; tiền dùng cùng thang với ngân khố Phần 14.",
+  "version": 1,
+  "config": {
+    "populationGrowthAnnual": 0.008,
+    "populationDeclineFloor": -0.025,
+    "stockpileTargetMonths": 3,
+    "priceMinFactor": 0.35,
+    "priceMaxFactor": 4,
+    "priceAdjustment": 0.18,
+    "warProductionFactor": 0.86,
+    "warTradeFactor": 0.35,
+    "tradeRelationFloor": -55,
+    "routeLoss": 0.04,
+    "militaryExpensePerPoint": 0.22,
+    "administrationPerLand": 1.4,
+    "debtCrisisRatio": 1.8,
+    "faminePriceFactor": 2.15,
+    "historyMonths": 36
+  },
+  "goods": [
+    { "id": "luong-thuc", "name": "Lương thực", "group": "thiet-yeu", "basePrice": 1, "demandPerThousand": 12, "volatility": 0.42, "weight": 0.34, "seasonal": true },
+    { "id": "gia-suc", "name": "Gia súc", "group": "thiet-yeu", "basePrice": 2.4, "demandPerThousand": 2.8, "volatility": 0.27, "weight": 0.13, "seasonal": true },
+    { "id": "muoi", "name": "Muối", "group": "thiet-yeu", "basePrice": 3.5, "demandPerThousand": 0.72, "volatility": 0.18, "weight": 0.08, "seasonal": false },
+    { "id": "go", "name": "Gỗ", "group": "nguyen-lieu", "basePrice": 3.2, "demandPerThousand": 1.35, "volatility": 0.22, "weight": 0.08, "seasonal": false },
+    { "id": "sat", "name": "Sắt", "group": "nguyen-lieu", "basePrice": 7.2, "demandPerThousand": 0.52, "volatility": 0.3, "weight": 0.08, "seasonal": false },
+    { "id": "vai", "name": "Vải vóc", "group": "che-tao", "basePrice": 5.4, "demandPerThousand": 1.4, "volatility": 0.2, "weight": 0.13, "seasonal": false },
+    { "id": "ngua", "name": "Ngựa", "group": "quan-su", "basePrice": 18, "demandPerThousand": 0.12, "volatility": 0.34, "weight": 0.06, "seasonal": true },
+    { "id": "hang-xa-xi", "name": "Hàng xa xỉ", "group": "xa-xi", "basePrice": 26, "demandPerThousand": 0.1, "volatility": 0.36, "weight": 0.06, "seasonal": false },
+    { "id": "tinh-the-ma-thuat", "name": "Tinh thể ma thuật", "group": "ma-thuat", "basePrice": 34, "demandPerThousand": 0.035, "volatility": 0.5, "weight": 0.04, "seasonal": false }
+  ],
+  "profiles": [
+    {
+      "powerId": "nation_ottoman", "population": 11500000, "urbanization": 0.18, "productivity": 62,
+      "taxRate": 0.2, "tariffRate": 0.07, "infrastructure": 61, "tradeCapacity": 72, "debt": 210,
+      "production": { "luong-thuc": 1.12, "gia-suc": 1.08, "muoi": 1.05, "go": 0.94, "sat": 1.08, "vai": 1.04, "ngua": 1.16, "hang-xa-xi": 0.78, "tinh-the-ma-thuat": 0.7 }
+    },
+    {
+      "powerId": "nation_dong-la-ma", "population": 2300000, "urbanization": 0.3, "productivity": 54,
+      "taxRate": 0.24, "tariffRate": 0.12, "infrastructure": 48, "tradeCapacity": 58, "debt": 390,
+      "production": { "luong-thuc": 0.78, "gia-suc": 0.72, "muoi": 0.95, "go": 0.6, "sat": 0.55, "vai": 1.08, "ngua": 0.5, "hang-xa-xi": 1.22, "tinh-the-ma-thuat": 1.15 }
+    },
+    {
+      "powerId": "nation_lien-bang-nui", "population": 1650000, "urbanization": 0.22, "productivity": 71,
+      "taxRate": 0.14, "tariffRate": 0.08, "infrastructure": 67, "tradeCapacity": 66, "debt": 55,
+      "production": { "luong-thuc": 0.72, "gia-suc": 1.16, "muoi": 0.45, "go": 1.2, "sat": 1.7, "vai": 0.92, "ngua": 0.52, "hang-xa-xi": 0.88, "tinh-the-ma-thuat": 1.28 }
+    },
+    {
+      "powerId": "nation_han-quoc", "population": 6900000, "urbanization": 0.08, "productivity": 43,
+      "taxRate": 0.1, "tariffRate": 0.03, "infrastructure": 31, "tradeCapacity": 54, "debt": 20,
+      "production": { "luong-thuc": 0.88, "gia-suc": 1.62, "muoi": 0.72, "go": 0.5, "sat": 0.58, "vai": 0.55, "ngua": 2.3, "hang-xa-xi": 0.42, "tinh-the-ma-thuat": 0.82 }
+    },
+    {
+      "powerId": "nation_hre", "population": 14800000, "urbanization": 0.2, "productivity": 68,
+      "taxRate": 0.16, "tariffRate": 0.09, "infrastructure": 64, "tradeCapacity": 74, "debt": 260,
+      "production": { "luong-thuc": 1.05, "gia-suc": 1.02, "muoi": 1.1, "go": 1.25, "sat": 1.48, "vai": 1.16, "ngua": 0.88, "hang-xa-xi": 1.08, "tinh-the-ma-thuat": 1.05 }
+    },
+    {
+      "powerId": "nation_frank", "population": 12600000, "urbanization": 0.16, "productivity": 60,
+      "taxRate": 0.22, "tariffRate": 0.08, "infrastructure": 57, "tradeCapacity": 65, "debt": 430,
+      "production": { "luong-thuc": 1.2, "gia-suc": 1.12, "muoi": 0.8, "go": 1.05, "sat": 0.78, "vai": 1.18, "ngua": 1.04, "hang-xa-xi": 1.08, "tinh-the-ma-thuat": 0.78 }
+    },
+    {
+      "powerId": "nation_giao-trieu", "population": 2100000, "urbanization": 0.34, "productivity": 58,
+      "taxRate": 0.18, "tariffRate": 0.1, "infrastructure": 55, "tradeCapacity": 62, "debt": 170,
+      "production": { "luong-thuc": 0.74, "gia-suc": 0.68, "muoi": 0.82, "go": 0.56, "sat": 0.45, "vai": 1.02, "ngua": 0.44, "hang-xa-xi": 1.36, "tinh-the-ma-thuat": 1.45 }
+    },
+    {
+      "powerId": "nation_thanh-bang-latin", "population": 5100000, "urbanization": 0.46, "productivity": 82,
+      "taxRate": 0.13, "tariffRate": 0.11, "infrastructure": 78, "tradeCapacity": 96, "debt": 520,
+      "production": { "luong-thuc": 0.62, "gia-suc": 0.58, "muoi": 1.42, "go": 0.48, "sat": 0.52, "vai": 1.62, "ngua": 0.4, "hang-xa-xi": 1.82, "tinh-the-ma-thuat": 1.32 }
+    }
+  ]
+}

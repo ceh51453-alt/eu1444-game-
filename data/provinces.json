@@ -1,0 +1,192 @@
+{
+  "$comment": "TỈNH VÀ DỰ ÁN CẤP VÙNG — Phần 13 mục 6. Ba tầng là LÃNH THỔ > TỈNH > THÀNH TRÌ (Phụ lục A mục 9d): một tỉnh KHÔNG PHẢI một thành trì, nó CHỨA các thành trì. Vì thế file này KHÔNG có lưới ô, KHÔNG có toạ độ, KHÔNG có công trình nào — thứ gì có toạ độ thì thuộc data/buildings.json. Tỉnh không khai `name`: tên lấy từ `regions.json` qua `regionId`, để một địa danh chỉ có ĐÚNG MỘT nguồn sự thật và không bao giờ lệch nhau. `holdingIds` cũng không khai ở đây — nó là state lúc chạy, và nó TRỎ sang Phần 12 chứ không sao chép dữ liệu (mục 6).",
+  "version": 1,
+
+  "config": {
+    "development": {
+      "$comment": "PHÁT TRIỂN của một vùng: đo bằng điểm, không đo bằng công trình. Một tỉnh phát triển 60 không có nghĩa là nó có sáu cái chợ — nghĩa là đi qua nó thì thấy đường tốt, quán trọ, và ít ruộng bỏ hoang.",
+      "min": 0,
+      "max": 100,
+      "growthPerYear": 0.6,
+      "unrestStallAbove": 45,
+      "banditryStallAbove": 30,
+      "householdsPerPoint": 130,
+      "$householdsComment": "Số HỘ ƯỚC CHỪNG, đúng đơn vị của Phụ lục A mục 5. Con số chính xác chỉ tồn tại ở tầng thành trì, và Phần 13 không được giữ một bản sao của nó."
+    },
+
+    "banditry": {
+      "min": 0,
+      "max": 100,
+      "settle": 8,
+      "roadPenaltyPerLevel": -3,
+      "patrolCheck": "rule.dep-loan",
+      "patrolDifficulty": "thuong",
+      "patrolDrop": 14,
+      "patrolCostPerProvince": 120,
+      "bands": [
+        { "upTo": 10, "id": "sach", "name": "Sạch", "revenueFactor": 1.0, "tradeFactor": 1.0 },
+        { "upTo": 30, "id": "lac-dac", "name": "Lác đác", "revenueFactor": 0.96, "tradeFactor": 0.92 },
+        { "upTo": 60, "id": "nhieu", "name": "Nhiều", "revenueFactor": 0.85, "tradeFactor": 0.7 },
+        { "upTo": 100, "id": "duong-bi-cat", "name": "Đường bị cắt", "revenueFactor": 0.6, "tradeFactor": 0.3 }
+      ]
+    },
+
+    "roads": {
+      "$comment": "Đường là DỰ ÁN CẤP VÙNG, không phải công trình cấp thành trì (mục 1: 'con đường nối hai trấn → LÃNH THỔ'). Bậc đường quyết định số TUẦN ĐƯỜNG mà `Shipment` của Phần 12 nhận vào — đó là toàn bộ cách hai tầng gặp nhau ở đây.",
+      "levels": [
+        { "level": 0, "name": "Lối mòn", "weeksPerDayRide": 1.6, "tradeFactor": 0.7 },
+        { "level": 1, "name": "Đường đất", "weeksPerDayRide": 1.2, "tradeFactor": 0.85 },
+        { "level": 2, "name": "Đường rải đá", "weeksPerDayRide": 0.9, "tradeFactor": 1.0 },
+        { "level": 3, "name": "Đường lát đá", "weeksPerDayRide": 0.7, "tradeFactor": 1.15 },
+        { "level": 4, "name": "Đường quan", "weeksPerDayRide": 0.55, "tradeFactor": 1.3 }
+      ]
+    },
+
+    "infrastructure": {
+      "$comment": "TẬP ĐÓNG. Một khóa gõ sai sẽ chạy êm và không làm gì cả, còn người cân bằng thì tin là nó có làm — cùng lý do với khóa hiệu ứng kề nhau của Phần 12.",
+      "keys": ["duong", "cau", "cho-phien", "don-bien", "kenh-thao-nuoc", "dat-khai-hoang", "tuyen-thuong-mai"]
+    },
+
+    "terrains": [
+      { "id": "dong-bang", "name": "Đồng bằng", "revenueFactor": 1.1, "levyFactor": 1.0, "banditryBase": 6, "daysRidePerArea": 1.0 },
+      { "id": "doi", "name": "Đồi", "revenueFactor": 0.95, "levyFactor": 1.05, "banditryBase": 10, "daysRidePerArea": 1.2 },
+      { "id": "nui", "name": "Núi", "revenueFactor": 0.7, "levyFactor": 1.15, "banditryBase": 18, "daysRidePerArea": 1.8 },
+      { "id": "rung", "name": "Rừng", "revenueFactor": 0.85, "levyFactor": 0.95, "banditryBase": 16, "daysRidePerArea": 1.4 },
+      { "id": "dam-lay", "name": "Đầm lầy", "revenueFactor": 0.6, "levyFactor": 0.8, "banditryBase": 12, "daysRidePerArea": 1.6 },
+      { "id": "bo-bien", "name": "Bờ biển", "revenueFactor": 1.15, "levyFactor": 0.9, "banditryBase": 8, "daysRidePerArea": 1.0 },
+      { "id": "thao-nguyen", "name": "Thảo nguyên", "revenueFactor": 0.8, "levyFactor": 1.3, "banditryBase": 14, "daysRidePerArea": 2.2 }
+    ],
+
+    "climates": [
+      { "id": "on-hoa", "name": "Ôn hòa", "revenueFactor": 1.0 },
+      { "id": "lanh", "name": "Lạnh", "revenueFactor": 0.9 },
+      { "id": "am-uot", "name": "Ẩm ướt", "revenueFactor": 0.95 },
+      { "id": "kho-han", "name": "Khô hạn", "revenueFactor": 0.85 },
+      { "id": "nui-cao", "name": "Núi cao", "revenueFactor": 0.75 }
+    ],
+
+    "levy": {
+      "$comment": "SỐ QUÂN một tỉnh gọi được — con số ƯỚC CHỪNG của tầng vùng. Quân THẬT, đếm từng người, vẫn là `garrisonOf` của Phần 12; hai con số không được phép mâu thuẫn nên cái ở đây chỉ dùng để lập kế hoạch, và UI phải nói rõ 'ước chừng'.",
+      "menPerDevelopmentPoint": 9,
+      "unrestPenaltyPerPoint": 0.006,
+      "loyaltyFloor": 0.3
+    }
+  },
+
+  "projects": [
+    {
+      "id": "duan_duong",
+      "name": "Mở đường",
+      "kind": "roads",
+      "requiresRank": 3,
+      "cost": 320,
+      "years": 2,
+      "check": "rule.du-an",
+      "difficulty": "thuong",
+      "effects": { "roads": 1, "development": 2, "banditry": -2, "unrest": 0, "tradeFactor": 0 },
+      "note": "Con đường nối hai trấn — ví dụ mẫu của mục 1 về thứ THUỘC LÃNH THỔ. Nó không có ô nào để đặt."
+    },
+    {
+      "id": "duan_cau",
+      "name": "Bắc cầu",
+      "kind": "infrastructure",
+      "key": "cau",
+      "requiresRank": 3,
+      "cost": 420,
+      "years": 2,
+      "check": "rule.du-an",
+      "difficulty": "kho",
+      "effects": { "roads": 0, "development": 4, "banditry": -1, "unrest": 0, "tradeFactor": 0.08 },
+      "requiresTerrain": ["dong-bang", "doi", "dam-lay", "bo-bien"]
+    },
+    {
+      "id": "duan_khai-hoang",
+      "name": "Khai hoang",
+      "kind": "infrastructure",
+      "key": "dat-khai-hoang",
+      "requiresRank": 2,
+      "cost": 260,
+      "years": 3,
+      "check": "rule.du-an",
+      "difficulty": "thuong",
+      "effects": { "roads": 0, "development": 6, "banditry": 1, "unrest": 2, "tradeFactor": 0 },
+      "requiresTerrain": ["rung", "doi", "dong-bang"],
+      "note": "Thêm ruộng, bớt rừng — và bớt chỗ trốn của cả thú lẫn người."
+    },
+    {
+      "id": "duan_thao-nuoc",
+      "name": "Tháo nước đầm lầy",
+      "kind": "infrastructure",
+      "key": "kenh-thao-nuoc",
+      "requiresRank": 4,
+      "cost": 620,
+      "years": 4,
+      "check": "rule.du-an",
+      "difficulty": "rat-kho",
+      "effects": { "roads": 0, "development": 9, "banditry": -2, "unrest": 0, "tradeFactor": 0.05 },
+      "requiresTerrain": ["dam-lay"],
+      "changesTerrainTo": "dong-bang",
+      "note": "Dự án đắt nhất và cũng là dự án duy nhất ĐỔI ĐỊA HÌNH của cả một tỉnh."
+    },
+    {
+      "id": "duan_tuyen-thuong-mai",
+      "name": "Mở tuyến thương mại",
+      "kind": "infrastructure",
+      "key": "tuyen-thuong-mai",
+      "requiresRank": 4,
+      "cost": 500,
+      "years": 2,
+      "check": "rule.ngoai-giao",
+      "difficulty": "kho",
+      "effects": { "roads": 0, "development": 5, "banditry": 0, "unrest": -1, "tradeFactor": 0.2 },
+      "requiresRoadLevel": 2,
+      "note": "Đòi đường ít nhất bậc 2 — một tuyến buôn trên lối mòn là một đoàn xe bị cướp."
+    },
+    {
+      "id": "duan_cho-phien",
+      "name": "Lập chợ phiên",
+      "kind": "infrastructure",
+      "key": "cho-phien",
+      "requiresRank": 3,
+      "cost": 180,
+      "years": 1,
+      "check": "rule.du-an",
+      "difficulty": "de-dang",
+      "effects": { "roads": 0, "development": 3, "banditry": 1, "unrest": -2, "tradeFactor": 0.1 },
+      "note": "CHỢ PHIÊN là một quyền được ban cho cả vùng, khác hẳn cái CHỢ có mái nằm ở một ô đất trong thành trì (data/buildings.json). Hai thứ cùng tên, hai tầng, và đây đúng là chỗ dễ lẫn nhất của cả phần."
+    },
+    {
+      "id": "duan_don-bien",
+      "name": "Dựng đồn biên",
+      "kind": "infrastructure",
+      "key": "don-bien",
+      "requiresRank": 5,
+      "cost": 700,
+      "years": 3,
+      "check": "rule.du-an",
+      "difficulty": "kho",
+      "effects": { "roads": 0, "development": 1, "banditry": -8, "unrest": -2, "tradeFactor": 0 },
+      "borderOnly": true,
+      "note": "Chỉ tỉnh biên giới. Đồn biên KHÔNG phải một thành trì: nó không có dân, không có kho, không lên cấp — nó là một điểm trên sổ của hầu tước."
+    }
+  ],
+
+  "provinces": [
+    { "id": "prov_swabia", "regionId": "prov_swabia", "realmId": "realm_hre", "terrain": "doi", "climate": "on-hoa", "area": 3, "development": 42, "unrest": 10, "banditry": 12, "roads": 2, "infrastructure": ["cho-phien"], "cultureMix": [{ "id": "cul_de-quoc-teuton", "share": 0.7 }, { "id": "cul_phong-kien-tay", "share": 0.3 }], "raceMix": [{ "id": "race_teuton", "share": 0.62 }, { "id": "race_ban-nhan", "share": 0.18 }, { "id": "race_lun-nui", "share": 0.12 }, { "id": "race_gnome", "share": 0.08 }], "resources": ["luong-thuc", "go", "len"] },
+    { "id": "prov_bayern", "regionId": "prov_bayern", "realmId": "realm_hre", "terrain": "doi", "climate": "lanh", "area": 4, "development": 38, "unrest": 12, "banditry": 14, "roads": 1, "infrastructure": [], "cultureMix": [{ "id": "cul_de-quoc-teuton", "share": 0.85 }, { "id": "cul_ham-mo", "share": 0.15 }], "raceMix": [{ "id": "race_teuton", "share": 0.7 }, { "id": "race_lun-nui", "share": 0.16 }, { "id": "race_kobold", "share": 0.14 }], "resources": ["luong-thuc", "go", "muoi"] },
+    { "id": "prov_franken", "regionId": "prov_franken", "realmId": "realm_hre", "terrain": "dong-bang", "climate": "on-hoa", "area": 3, "development": 46, "unrest": 8, "banditry": 9, "roads": 2, "infrastructure": ["cho-phien", "cau"], "cultureMix": [{ "id": "cul_de-quoc-teuton", "share": 0.9 }, { "id": "cul_phong-kien-tay", "share": 0.1 }], "raceMix": [{ "id": "race_teuton", "share": 0.74 }, { "id": "race_gnome", "share": 0.14 }, { "id": "race_ban-nhan", "share": 0.12 }], "resources": ["luong-thuc", "sat", "vai"] },
+    { "id": "prov_wurttemberg", "regionId": "prov_wurttemberg", "realmId": "realm_hre", "terrain": "doi", "climate": "on-hoa", "area": 2, "development": 40, "unrest": 9, "banditry": 10, "roads": 2, "infrastructure": [], "cultureMix": [{ "id": "cul_de-quoc-teuton", "share": 1.0 }], "raceMix": [{ "id": "race_teuton", "share": 0.8 }, { "id": "race_ban-nhan", "share": 0.2 }], "resources": ["luong-thuc", "len"] },
+    { "id": "prov_baden", "regionId": "prov_baden", "realmId": "realm_hre", "terrain": "doi", "climate": "on-hoa", "area": 2, "development": 44, "unrest": 8, "banditry": 8, "roads": 3, "infrastructure": ["cau", "tuyen-thuong-mai"], "cultureMix": [{ "id": "cul_de-quoc-teuton", "share": 0.6 }, { "id": "cul_phong-kien-tay", "share": 0.4 }], "raceMix": [{ "id": "race_teuton", "share": 0.6 }, { "id": "race_frank", "share": 0.22 }, { "id": "race_gnome", "share": 0.18 }], "resources": ["len", "go", "luong-thuc"] },
+    { "id": "prov_rung-den", "regionId": "prov_rung-den", "realmId": "realm_hre", "terrain": "rung", "climate": "am-uot", "area": 2, "development": 22, "unrest": 16, "banditry": 26, "roads": 0, "infrastructure": [], "cultureMix": [{ "id": "cul_rung-gia", "share": 0.65 }, { "id": "cul_de-quoc-teuton", "share": 0.35 }], "raceMix": [{ "id": "race_lam-tien", "share": 0.44 }, { "id": "race_teuton", "share": 0.3 }, { "id": "race_kobold", "share": 0.26 }], "resources": ["go", "da-thu", "than"] },
+    { "id": "prov_alsace", "regionId": "prov_alsace", "realmId": "realm_hre", "terrain": "dong-bang", "climate": "on-hoa", "area": 2, "development": 52, "unrest": 14, "banditry": 8, "roads": 3, "infrastructure": ["cho-phien", "tuyen-thuong-mai"], "cultureMix": [{ "id": "cul_phong-kien-tay", "share": 0.55 }, { "id": "cul_de-quoc-teuton", "share": 0.45 }], "raceMix": [{ "id": "race_frank", "share": 0.44 }, { "id": "race_teuton", "share": 0.4 }, { "id": "race_gnome", "share": 0.16 }], "resources": ["len", "luong-thuc", "vai"] },
+    { "id": "prov_palatinate", "regionId": "prov_palatinate", "realmId": "realm_hre", "terrain": "doi", "climate": "on-hoa", "area": 2, "development": 50, "unrest": 10, "banditry": 9, "roads": 3, "infrastructure": ["cau", "cho-phien"], "cultureMix": [{ "id": "cul_de-quoc-teuton", "share": 0.8 }, { "id": "cul_phong-kien-tay", "share": 0.2 }], "raceMix": [{ "id": "race_teuton", "share": 0.72 }, { "id": "race_frank", "share": 0.16 }, { "id": "race_gnome", "share": 0.12 }], "resources": ["len", "luong-thuc"] },
+    { "id": "prov_mainz", "regionId": "prov_mainz", "realmId": "realm_hre", "terrain": "dong-bang", "climate": "on-hoa", "area": 1, "development": 56, "unrest": 7, "banditry": 6, "roads": 3, "infrastructure": ["cau", "cho-phien", "tuyen-thuong-mai"], "cultureMix": [{ "id": "cul_de-quoc-teuton", "share": 0.9 }, { "id": "cul_ham-mo", "share": 0.1 }], "raceMix": [{ "id": "race_teuton", "share": 0.7 }, { "id": "race_thien-due", "share": 0.16 }, { "id": "race_gnome", "share": 0.14 }], "resources": ["len", "vai", "vai"] },
+    { "id": "prov_trier", "regionId": "prov_trier", "realmId": "realm_hre", "terrain": "doi", "climate": "on-hoa", "area": 2, "development": 45, "unrest": 9, "banditry": 11, "roads": 2, "infrastructure": ["cho-phien"], "cultureMix": [{ "id": "cul_de-quoc-teuton", "share": 0.7 }, { "id": "cul_phong-kien-tay", "share": 0.3 }], "raceMix": [{ "id": "race_teuton", "share": 0.62 }, { "id": "race_frank", "share": 0.24 }, { "id": "race_thien-due", "share": 0.14 }], "resources": ["len", "go"] },
+    { "id": "prov_cologne", "regionId": "prov_cologne", "realmId": "realm_hre", "terrain": "dong-bang", "climate": "am-uot", "area": 2, "development": 58, "unrest": 11, "banditry": 7, "roads": 3, "infrastructure": ["cau", "cho-phien", "tuyen-thuong-mai"], "cultureMix": [{ "id": "cul_de-quoc-teuton", "share": 0.75 }, { "id": "cul_hai-cang", "share": 0.25 }], "raceMix": [{ "id": "race_teuton", "share": 0.6 }, { "id": "race_gnome", "share": 0.22 }, { "id": "race_thien-due", "share": 0.18 }], "resources": ["vai", "sat", "luong-thuc"] },
+    { "id": "prov_hessen", "regionId": "prov_hessen", "realmId": "realm_hre", "terrain": "rung", "climate": "on-hoa", "area": 3, "development": 34, "unrest": 13, "banditry": 18, "roads": 1, "infrastructure": [], "cultureMix": [{ "id": "cul_de-quoc-teuton", "share": 0.8 }, { "id": "cul_rung-gia", "share": 0.2 }], "raceMix": [{ "id": "race_teuton", "share": 0.66 }, { "id": "race_lam-tien", "share": 0.2 }, { "id": "race_thu-nhan", "share": 0.14 }], "resources": ["go", "sat", "da-thu"] },
+    { "id": "prov_saxony", "regionId": "prov_saxony", "realmId": "realm_hre", "terrain": "doi", "climate": "lanh", "area": 3, "development": 48, "unrest": 10, "banditry": 12, "roads": 2, "infrastructure": ["cho-phien"], "cultureMix": [{ "id": "cul_de-quoc-teuton", "share": 0.95 }, { "id": "cul_ham-mo", "share": 0.05 }], "raceMix": [{ "id": "race_teuton", "share": 0.68 }, { "id": "race_lun-nui", "share": 0.2 }, { "id": "race_gnome", "share": 0.12 }], "resources": ["sat", "sat", "luong-thuc"] },
+    { "id": "prov_bohemia", "regionId": "prov_bohemia", "realmId": "realm_hre", "terrain": "nui", "climate": "lanh", "area": 4, "development": 44, "unrest": 26, "banditry": 20, "roads": 1, "infrastructure": ["don-bien"], "cultureMix": [{ "id": "cul_de-quoc-teuton", "share": 0.5 }, { "id": "cul_ham-mo", "share": 0.5 }], "raceMix": [{ "id": "race_teuton", "share": 0.44 }, { "id": "race_lun-nui", "share": 0.34 }, { "id": "race_kobold", "share": 0.22 }], "resources": ["sat", "than", "go"], "note": "Bất ổn cao từ đầu ván: vùng vừa qua chiến tranh tôn giáo. Đây là tỉnh dùng để thử mọi cơ chế dẹp loạn." },
+    { "id": "prov_ao", "regionId": "prov_ao", "realmId": "realm_hre", "terrain": "nui", "climate": "nui-cao", "area": 3, "development": 40, "unrest": 9, "banditry": 15, "roads": 1, "infrastructure": ["don-bien"], "cultureMix": [{ "id": "cul_de-quoc-teuton", "share": 0.85 }, { "id": "cul_carpath", "share": 0.15 }], "raceMix": [{ "id": "race_teuton", "share": 0.6 }, { "id": "race_lun-nui", "share": 0.28 }, { "id": "race_ban-khong-lo", "share": 0.12 }], "resources": ["muoi", "sat", "go"] },
+    { "id": "prov_luu-vuc-rhine", "regionId": "prov_luu-vuc-rhine", "realmId": "realm_hre", "terrain": "dong-bang", "climate": "am-uot", "area": 2, "development": 60, "unrest": 8, "banditry": 6, "roads": 4, "infrastructure": ["cau", "cho-phien", "tuyen-thuong-mai"], "cultureMix": [{ "id": "cul_de-quoc-teuton", "share": 0.7 }, { "id": "cul_hai-cang", "share": 0.3 }], "raceMix": [{ "id": "race_teuton", "share": 0.56 }, { "id": "race_gnome", "share": 0.26 }, { "id": "race_frank", "share": 0.18 }], "resources": ["len", "vai", "sat"], "note": "Tỉnh giàu nhất và dễ đi nhất — cũng là tỉnh mà mọi hàng xóm đều muốn." }
+  ]
+}

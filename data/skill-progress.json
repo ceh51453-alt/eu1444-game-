@@ -1,0 +1,130 @@
+{
+  "$comment": "PHẦN 8 — mọi con số của tiến bộ kỹ năng. Tách khỏi `skill-nodes.json` vì file kia là NỘI DUNG (đồ thị nhánh, còn dài thêm mãi) còn file này là CÂN BẰNG (một bảng, sửa cả game từ đây). Trộn hai thứ vào một file là mỗi lần thêm một chiêu thức lại phải cuộn qua bảng cân bằng, và ngược lại.",
+  "version": 1,
+
+  "$tiersComment": "Bảy bậc của mục 2. `selfStudy` nói tự học tới đâu: `free` thoải mái, `half` được nhưng ngưỡng nhân đôi, `teacher` bắt buộc có thầy ở bậc `teacherTier` trở lên, `breakthrough` còn cần thêm một sự kiện đột phá (mục 8). `rank` là số bình phương lên trong công thức ngưỡng — nó là BẬC, không phải chỉ số mảng.",
+  "tiers": [
+    { "id": "chua-biet", "name": "Chưa biết", "from": 0, "to": 0, "rank": 0, "selfStudy": "free" },
+    { "id": "so-hoc", "name": "Sơ học", "from": 1, "to": 20, "rank": 1, "selfStudy": "free" },
+    { "id": "hoc-viec", "name": "Học việc", "from": 21, "to": 40, "rank": 2, "selfStudy": "free" },
+    { "id": "thanh-thao", "name": "Thành thạo", "from": 41, "to": 60, "rank": 3, "selfStudy": "half" },
+    {
+      "id": "lao-luyen",
+      "name": "Lão luyện",
+      "from": 61,
+      "to": 75,
+      "rank": 4,
+      "selfStudy": "teacher",
+      "teacherTier": "bac-thay"
+    },
+    {
+      "id": "bac-thay",
+      "name": "Bậc thầy",
+      "from": 76,
+      "to": 88,
+      "rank": 5,
+      "selfStudy": "teacher",
+      "teacherTier": "tong-su"
+    },
+    {
+      "id": "tong-su",
+      "name": "Tông sư",
+      "from": 89,
+      "to": 95,
+      "rank": 6,
+      "selfStudy": "breakthrough",
+      "teacherTier": "tong-su"
+    }
+  ],
+
+  "$hardCapComment": "Trần cứng 95 khớp clamp d100 của Phần 5 mục 7: luôn còn 5% thất bại, không có hành động nào auto-thành-công (R6).",
+  "hardCap": 95,
+
+  "$statCapComment": "Trần theo chỉ số chính — mục 2: 'trần chỉ số có thể hạ thấp con số này'. Một người Sức mạnh 4 không bao giờ thành bậc thầy búa chiến, dù luyện bao lâu. Sàn giữ ở 40 để chỉ số kém không khóa luôn cả bậc Thành thạo.",
+  "statCap": { "perStatPoint": 8, "floor": 40 },
+
+  "$practiceComment": "Mục 3. Điểm theo CẤP KẾT QUẢ, và thất bại dạy nhiều nhất — người chơi tiến bộ nhanh nhất khi làm việc khó, không phải khi lặp việc dễ.",
+  "practice": {
+    "points": { "critFail": 4, "fail": 3, "costlySuccess": 2, "success": 1, "critSuccess": 2 },
+
+    "$thresholdComment": "Ngưỡng lên 1 điểm kỹ năng = thresholdBase × rank². Nhân thêm `halfSpeed` khi bậc chỉ tự học được nửa tốc độ, rồi nhân hệ số chậm của tải học tập, tuổi tác và chủng tộc.",
+    "thresholdBase": 0.8,
+    "halfSpeed": 2,
+
+    "$easyComment": "Việc quá dễ so với trình độ hiện tại cho 0 điểm. Đo bằng NGƯỠNG CUỐI sau độ khó và mọi điều chỉnh, chứ không đo bằng bậc độ khó: một việc 'Khó' với người mới vẫn là việc dễ với bậc thầy, và đó chính là chỗ cày máy móc chui vào.",
+    "easyTarget": { "d100": 85, "3d6": 14 },
+
+    "$antiGrindComment": "Chống cày máy móc (mục 3). Cùng một kỹ năng dùng cho cùng một loại việc quá `freeRepeats` lần trong `windowTurns` lượt thì điểm tụt dần về 0 sau `fadeSpan` lần nữa. Phải ĐỔI HOÀN CẢNH, không phải đợi hết giờ.",
+    "antiGrind": { "windowTurns": 20, "freeRepeats": 3, "fadeSpan": 5 }
+  },
+
+  "$loadComment": "Tải học tập (mục 5): load = số node đã mở + số kỹ năng từ bậc `masteryTier` trở lên. Không có trần cứng — người chơi tự chọn đánh đổi giữa rộng và nhanh.",
+  "load": {
+    "freeSlots": 6,
+    "perExtra": 0.12,
+    "masteryTier": "thanh-thao",
+    "$warnComment": "Trên mức này thì khung 'Tải học tập' của mục 11 hiện cảnh báo.",
+    "warnFactor": 1.5
+  },
+
+  "$ageComment": "Hệ số tuổi tác (mục 5), đọc theo TUỔI HIỆU DỤNG của Phần 6 — nhờ vậy một Cao Tiên 180 tuổi và một Frank 26 tuổi so được với nhau bằng cùng một bảng.",
+  "ageFactors": [
+    { "upTo": 25, "factor": 0.85, "label": "còn trẻ, học nhanh" },
+    { "upTo": 45, "factor": 1, "label": "chính độ" },
+    { "upTo": 60, "factor": 1.25, "label": "đã đứng tuổi" },
+    { "upTo": 9999, "factor": 1.6, "label": "tuổi già, học chậm" }
+  ],
+
+  "$xpComment": "Mục 4. KHÔNG có nguồn nào là giết lẻ tẻ — đây không phải game đếm xác. Điểm KN chỉ dùng để mở node, không mua thẳng được con số kỹ năng.",
+  "xp": {
+    "sources": [
+      { "id": "song-sot-bien-co", "name": "Sống sót qua một biến cố lớn", "amount": 3 },
+      { "id": "thang-tran", "name": "Thắng một trận đánh", "amount": 4 },
+      { "id": "hoan-thanh-muc-tieu", "name": "Hoàn thành một mục tiêu dài hạn", "amount": 5 },
+      { "id": "chung-kien-hiem", "name": "Chứng kiến một sự kiện hiếm", "amount": 2 },
+      { "id": "doc-sach-quy", "name": "Đọc một quyển sách quý", "amount": 2 },
+      { "id": "that-bai-tham", "name": "Thất bại thảm hại nhưng sống sót", "amount": 2 }
+    ],
+    "$perTurnCapComment": "Trần điểm KN một lượt: một lượt hỗn loạn không được biến thành một mùa tu luyện.",
+    "perTurnCap": 6
+  },
+
+  "$teacherComment": "Mục 8. Thầy PHÁ TRẦN — không có thầy thì mãi mãi dừng ở ngưỡng của bậc. Dạy tốn THỜI GIAN TRONG GAME thật, và giá thường không phải là tiền.",
+  "teacher": {
+    "$minLeadComment": "Thầy phải hơn trò ít nhất ngần này điểm ở chính kỹ năng đó.",
+    "minLead": 15,
+    "qualities": [
+      { "level": 1, "name": "Biết nghề", "speed": 0.6, "hardNode": -20 },
+      { "level": 2, "name": "Dạy được", "speed": 0.8, "hardNode": -10 },
+      { "level": 3, "name": "Thầy giỏi", "speed": 1, "hardNode": 0 },
+      { "level": 4, "name": "Danh sư", "speed": 1.25, "hardNode": 10 },
+      { "level": 5, "name": "Bậc kỳ tài", "speed": 1.5, "hardNode": 20 }
+    ],
+    "$sessionComment": "Một khóa học: số NGÀY TRONG GAME cho mỗi điểm kỹ năng nhận được, nhân hệ số chậm rồi chia cho tốc độ của thầy. Trong lúc đó người chơi không làm việc khác — đây là chi phí cơ hội, không phải một nút bấm.",
+    "daysPerLevel": 6,
+    "daysPerNode": 20,
+    "$maxLevelsComment": "Trần điểm kỹ năng MỘT khóa học mang lại, nhân tốc độ của thầy. Không có nó thì một khóa duy nhất kéo người ta từ tay mơ lên sát bậc thầy, và cả hệ thực hành của mục 3 thành đồ trang trí — thầy dạy phải là thứ PHÁ TRẦN rồi để người ta tự luyện tiếp, chứ không phải một cái nút mua trình độ.",
+    "maxLevelsPerCourse": 5,
+    "$attitudeComment": "Quan hệ quyết định thầy dạy hết hay giấu nghề: dưới `teachFloor` thì không nhận trò, dưới `fullFloor` thì mỗi khóa mất bớt một phần kết quả.",
+    "attitude": { "teachFloor": 10, "fullFloor": 55, "holdBackPenalty": 0.4 },
+    "$priceComment": "Giá của một khóa. Cái không phải tiền thì thành NGHĨA VỤ trong state, và Phần 15 phải nhớ mà đòi.",
+    "priceKinds": [
+      { "id": "money", "name": "Tiền", "obligation": false },
+      { "id": "service", "name": "Phục vụ", "obligation": true, "defaultDays": 1095 },
+      { "id": "oath", "name": "Lời thề", "obligation": true, "defaultDays": 0 },
+      { "id": "favor", "name": "Một ân huệ phải trả sau", "obligation": true, "defaultDays": 730 },
+      { "id": "secret", "name": "Một bí mật đem đổi", "obligation": true, "defaultDays": 0 }
+    ]
+  },
+
+  "$breakthroughComment": "Sự kiện đột phá bậc Tông sư (mục 8): KHÔNG mua được. Engine kiểm tra hoàn cảnh cực hạn, người chơi không có nút nào để bấm.",
+  "breakthrough": {
+    "requiredTeacherTier": "tong-su",
+    "$triggersComment": "Chỉ những hoàn cảnh này mới mở được, và phải xảy ra khi kỹ năng đã chạm trần của bậc Bậc thầy.",
+    "triggers": [
+      { "id": "song-sot-tran-thua", "name": "Sống sót một trận thua" },
+      { "id": "dau-ke-manh-hon", "name": "Đấu với người mạnh hơn hẳn mà không gục" },
+      { "id": "vuot-dai-that-bai", "name": "Đại thất bại rồi vượt qua" }
+    ]
+  }
+}

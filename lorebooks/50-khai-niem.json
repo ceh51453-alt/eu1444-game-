@@ -1,0 +1,1193 @@
+{
+  "kind": "eu1444-lorebook",
+  "schemaVersion": 1,
+  "exportedAt": 0,
+  "books": [
+    {
+      "id": "book-khai-niem",
+      "name": "Europa 1444 · Khái niệm và thể chế",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 0,
+      "entries": [
+        {
+          "id": "concept_co-che-tuyen-de-hau",
+          "title": "Cơ chế Tuyển Đế Hầu",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Cơ chế Tuyển Đế Hầu:\n- Định nghĩa: Thể chế chính trị và luật pháp tối cao quyết định người kế vị ngai vàng của Đế quốc La Mã Thần thánh.\n- Phân loại: Thể chế bầu cử quân chủ phong kiến.\n- Trạng thái/Cấp độ: Được quy định chặt chẽ bởi Đạo luật Vàng (Golden Bull) ban hành năm 1356, là nền tảng vận hành mọi quyền lực tại Trung Âu.\n\n## Cấu trúc và Thành phần của Hội đồng Tuyển Đế Hầu:\nKhác với các vương quốc cha truyền con nối như Pháp hay Anh, ngai vàng của Đế quốc La Mã Thần thánh không tự động truyền cho người thừa kế. Người nắm giữ vương miện phải được bầu ra bởi một hội đồng khép kín gồm đúng Bảy Tuyển Đế Hầu (Prince-Electors). Hội đồng này được chia làm hai phe phản ánh sự cân bằng quyền lực giữa thần quyền và thế tục.\n\nBa Tuyển Đế Hầu Giáo sĩ bao gồm Tổng giám mục Mainz, Cologne và Trier. Họ là những trụ cột của Giáo hội Công giáo tại Đức, nắm giữ quyền kiểm soát mạng lưới Ma pháp Thần thánh khổng lồ và điều hành Tòa án Dị giáo. Trong đó, Tuyển Đế Hầu Mainz giữ vai trò Tể tướng Đế quốc và là người có quyền lực điều phối cao nhất.\n\nBốn Tuyển Đế Hầu Thế tục bao gồm Vua của Bohemia, Bá tước hành cung của Palatinate, Công tước của Saxony và Phiên hầu tước của Brandenburg. Họ đại diện cho sức mạnh quân sự thực dụng, thao túng các mạch khoáng sản, hỏa khí luyện kim của tộc Lùn và lực lượng quân đội đông đảo. Bảy cá nhân này là những thực thể duy nhất trên lục địa có quyền quyết định ai sẽ trở thành người đứng đầu Đế quốc.\n\n## Cơ chế và Nguyên lý hoạt động của Cơ chế Tuyển Đế Hầu:\nKhi một Hoàng đế băng hà, ngai vàng chính thức bị bỏ trống. Trong thời gian này, quyền nhiếp chính tạm thời được giao cho Tuyển Đế Hầu Palatinate và Tuyển Đế Hầu Saxony để duy trì trật tự pháp lý và quân sự. Tổng giám mục Mainz có trách nhiệm gửi thông điệp triệu tập sáu Tuyển Đế Hầu còn lại đến Thành phố Tự do Frankfurt trong vòng một tháng.\n\nCuộc bầu cử bắt buộc phải diễn ra bên trong Nhà thờ St. Bartholomew tại Frankfurt. Các Tuyển Đế Hầu hoặc đại diện hợp pháp của họ sẽ tiến hành các vòng đàm phán bí mật, mặc cả chính trị và cuối cùng là bỏ phiếu. Một ứng cử viên chỉ cần đạt được đa số phiếu (bốn trên bảy phiếu) là sẽ chính thức đắc cử danh hiệu Vua của người La Mã (King of the Romans), bước đệm cuối cùng trước khi được Giáo hoàng trao vương miện Hoàng đế La Mã Thần thánh.\n\n## Tác động và Biến thể của Cơ chế Tuyển Đế Hầu:\nTrên thực tế, Cơ chế Tuyển Đế Hầu biến mỗi kỳ bầu cử thành một chiến trường đẫm máu trong bóng tối. Vì Hoàng đế có quyền phân phong lãnh thổ và kiểm soát các dòng chảy ma lực huyết mạch của Châu Âu, các ứng cử viên sẵn sàng dốc cạn kho bạc để hối lộ các Tuyển Đế Hầu.\n\nCác cuộc đàm phán tại Frankfurt luôn đi kèm với sự hiện diện của hàng ngàn lính đánh thuê thiện chiến hạ trại ngoài thành phố, cùng những cuộc giao tranh ma pháp ngầm giữa các sát thủ và pháp sư tình báo. Bất kỳ sự can thiệp từ bên ngoài nào bằng vũ lực nhằm thay đổi kết quả bầu cử đều bị coi là trọng tội phản quốc và sẽ kích hoạt các ma trận phòng ngự Thần thánh tử hình kẻ xâm phạm. Tại thời điểm năm 1444, Gia tộc Habsburg đang sử dụng nguồn tài lực khổng lồ từ nước Áo để liên tục mua chuộc Hội đồng, biến cơ chế bầu cử này dần trở thành một lớp vỏ bọc hợp pháp cho sự thống trị thế tập của họ.",
+          "summary": "Cơ chế Tuyển Đế Hầu: Thể chế chính trị và luật pháp tối cao quyết định người kế vị ngai vàng của Đế quốc La Mã Thần thánh. Được quy định chặt chẽ bởi Đạo luật Vàng (Golden Bull) ban hành năm 1356, là nền tảng vận hành mọi quyền lực tại Trung Âu.",
+          "keys": [
+            "Cơ chế Tuyển Đế Hầu",
+            "Bầu cử Hoàng đế",
+            "Electoral System",
+            "Bảy Tuyển Đế Hầu",
+            "Prince-Electors",
+            "Đạo luật Vàng",
+            "Golden Bull",
+            "Tuyển Đế Hầu",
+            "Hội đồng Tuyển Đế Hầu",
+            "King of the Romans"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "nation_hre",
+              "pullWeight": 0.7
+            }
+          ],
+          "variants": [
+            {
+              "audience": "nation_hre",
+              "content": "## Cơ chế Tuyển Đế Hầu, theo các Đẳng cấp Đế quốc:\n\nĐạo luật Vàng là thứ giữ cho Đế quốc không thành một vương quốc. Nếu ngai vàng cha truyền con nối, thì trong ba đời nữa toàn bộ đất đai của chúng ta sẽ là đất của một gia tộc, và chúng ta sẽ là quản gia trong nhà mình.\n\nBảy lá phiếu không phải bảy đặc quyền — chúng là bảy cái chốt. Muốn làm hoàng đế thì phải thương lượng với bảy người, và thương lượng thì phải nhượng bộ, và mỗi lần nhượng bộ là một tờ đặc quyền nữa cho một Đẳng cấp nào đó.\n\nVì thế mọi kỳ bầu cử đều đắt và đều chậm. Chậm là tính năng, không phải hỏng hóc.\n\nĐiều đang lo lúc này: Gia tộc Habsburg có nhiều bạc tới mức họ mua được cả bảy cái chốt cùng lúc. Bảy chốt mua được thì không còn là chốt."
+            },
+            {
+              "audience": "nation_giao-trieu",
+              "content": "## Cơ chế Tuyển Đế Hầu, theo Giáo triều:\n\nBảy vị hầu bầu ra một Vua của người La Mã. Họ không bầu ra một Hoàng đế. Hoàng đế là do Giáo hoàng đội vương miện, và cho tới lúc đội thì người ấy chỉ là một ông vua Đức có nhiều đất.\n\nĐạo luật Vàng năm 1356 cố tình bỏ qua chỗ này, và Rome cố tình chưa bao giờ công nhận việc bỏ qua ấy. Ba trong bảy vị hầu là Tổng giám mục, tức là người của Giáo hội, tức là Giáo hội cầm sẵn ba phiếu trong bảy — và ba phiếu thì chặn được bất cứ ai chỉ có bốn.\n\nCái Rome cần ở mỗi kỳ bầu cử không phải là ai thắng. Cái Rome cần là ứng viên nào cũng phải tới hỏi Rome trước, và cho tới nay chưa ai dám không hỏi."
+            },
+            {
+              "audience": "race_lun-nui",
+              "content": "## Cơ chế Tuyển Đế Hầu, theo các bang tộc Lùn:\n\nBảy người trên mặt đất cãi nhau bằng bạc, và bạc đó ra từ mỏ của chúng ta.\n\nMỗi kỳ bầu cử, phường hội ngân hàng dưới Alps cho vay cả bảy phía. Không phải vì chúng ta không chọn được phe — vì chọn phe là dại. Kẻ thắng trả nợ bằng đặc quyền khai mỏ, kẻ thua trả nợ bằng đất cầm cố. Cả hai đường đều về một chỗ.\n\nHọ gọi đó là bầu cử thiêng liêng của Đế quốc. Ở dưới này người ta gọi nó là mùa cho vay, và người ta chuẩn bị cho nó từ ba năm trước như chuẩn bị cho một mùa gặt.\n\nChỉ có một luật chúng ta không phá: không bao giờ cho vay quá nửa số bạc trong kho cho một phía. Bang nào phá luật đó đã mất bang từ hai trăm năm trước."
+            }
+          ]
+        },
+        {
+          "id": "concept_dang-cap-de-quoc",
+          "title": "Đẳng cấp Đế quốc",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Đẳng cấp Đế quốc:\n- Định nghĩa: Chế độ phân cấp các giai tầng và lãnh thổ được công nhận trực tiếp bởi Hoàng đế La Mã Thần thánh, nắm giữ quyền lợi pháp lý đặc biệt.\n- Phân loại: Thể chế quý tộc phong kiến, Quyền lực phân quyền.\n- Trạng thái/Cấp độ: Xương sống vận hành toàn bộ cơ cấu chính trị, quân sự và ma pháp của Lục địa Europa khu vực miền Trung.\n\n## Mô tả chi tiết và Cơ cấu tước vị của Đẳng cấp Đế quốc:\nTrong lề lối phức tạp của Đế quốc La Mã Thần thánh, không phải mọi lãnh chúa đều có quyền bình đẳng. Những người nắm giữ Đẳng cấp Đế quốc (Reichsstand) là những người được hưởng quyền Tự do Hoàng gia (Imperial Immediacy). Điều này có nghĩa là họ không phải là chư hầu của bất kỳ công tước hay vị vua nào khác, mà chỉ chịu trách nhiệm trực tiếp trước ngai vàng của Hoàng đế. Họ là những người có quyền tham dự Đại hội Đế quốc và biểu quyết các đạo luật ảnh hưởng đến toàn bộ Châu Âu.\n\nĐẳng cấp Đế quốc được chia thành nhiều bậc tước vị, phản ánh quy mô quân sự, quyền kiểm soát các mạch ma lực và ảnh hưởng kinh tế. Đứng trên đỉnh cao nhất là các Công tước (Duke/Herzog), cai trị những vùng lãnh thổ khổng lồ như Bavaria, Saxony hay Württemberg. Tiếp theo là các Phiên hầu tước (Margrave/Markgraf), những người được giao phó trọng trách trấn giữ và mở rộng các vùng biên viễn nguy hiểm, như Brandenburg hay Baden. Thấp hơn là các Phong địa Bá tước (Landgrave/Landgraf) cai quản những vùng nội địa trù phú như Hessen, và các Nam tước (Baron/Freiherr) nắm giữ các thung lũng nhỏ hoặc các pháo đài cô lập. Ngoài ra, các Giám mục và các Thành phố Tự do cũng được xếp vào Đẳng cấp Đế quốc, tạo ra một mạng lưới quyền lực đan xen chằng chịt.\n\n## Cơ chế và Nguyên lý hoạt động của Đẳng cấp Đế quốc:\nMỗi một Đẳng cấp Đế quốc hoạt động như một quốc gia thu nhỏ độc lập. Các Nam tước, Bá tước hay Công tước có toàn quyền đúc tiền kim loại riêng, ban hành luật lệ, duy trì quân đội thường trực và thành lập các Tòa án Dị giáo hoặc học viện ma pháp bí thuật của riêng mình. Sự tự trị này là con dao hai lưỡi. Một mặt, nó khuyến khích sự phát triển rực rỡ của các trung tâm văn hóa và kỹ nghệ luyện kim đa dạng. Mặt khác, nó biến Đế quốc thành một chiến trường nội bộ liên miên, nơi các quý tộc sẵn sàng dùng lính đánh thuê và pháp sư để giải quyết các tranh chấp đất đai.\n\n## Lịch sử hình thành và Tác động của Đẳng cấp Đế quốc:\nLề lối này bắt nguồn từ sự sụp đổ của các đại đế chế tập quyền thời Cổ đại và Thời kỳ Tăm tối, khi các vị vua cần sự hỗ trợ của giới tinh hoa quân sự để chống lại sự xâm lăng của Orc, Người Thú và các thảm họa ma pháp. Qua nhiều thế kỷ, các Đẳng cấp Đế quốc đã củng cố quyền lực thế tập của mình đến mức ngay cả những Hoàng đế hùng mạnh nhất như Gia tộc Habsburg cũng không thể thu hồi lãnh thổ của họ mà không gây ra một cuộc nội chiến khổng lồ. Sự tồn tại của lề lối này là rào cản lớn nhất ngăn cản sự thống nhất của Lục địa Europa khu vực miền Trung.",
+          "summary": "Đẳng cấp Đế quốc: Chế độ phân cấp các giai tầng và lãnh thổ được công nhận trực tiếp bởi Hoàng đế La Mã Thần thánh, nắm giữ quyền lợi pháp lý đặc biệt. Xương sống vận hành toàn bộ cơ cấu chính trị, quân sự và ma pháp của Lục địa Europa khu vực miền Trung.",
+          "keys": [
+            "Đẳng cấp Đế quốc",
+            "Imperial Estate",
+            "Reichsstand",
+            "Quyền Tự do Hoàng gia",
+            "Imperial Immediacy",
+            "Tự do Hoàng gia"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "concept_lien-bang-cac-bang-tu-tri",
+          "title": "Liên bang các bang tự trị",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Liên bang các bang tự trị:\n- Định nghĩa: Cấu trúc chính trị độc đáo của Cựu Liên minh Thụy Sĩ, bao gồm các bang (canton) độc lập liên kết với nhau qua các hiệp ước tuyên thệ.\n- Phân loại: Thể chế liên minh cộng hòa phong kiến.\n- Trạng thái/Cấp độ: Khối liên minh quân sự phi tập trung, từ chối sự cai trị của các lãnh chúa và Hoàng quyền.\n\n## Cấu trúc và Phân loại của Liên bang các bang tự trị:\nLề lối này không có một vị vua hay thủ đô trung ương. Thay vào đó, nó bao gồm các bang nông thôn (như Uri, Schwyz, Unterwalden) và các bang đô thị (như Lucerne, Zürich, Bern). Các bang nông thôn được cai quản bởi hội đồng nhân dân địa phương (Landsgemeinde), nơi những người đàn ông tự do tập trung tại các quảng trường hoặc đồng cỏ để biểu quyết luật pháp. Các bang đô thị được điều hành bởi giới tinh hoa tư sản và các phường hội thủ công.\n\nSự khác biệt về lợi ích kinh tế giữa các bang đô thị giàu có và các bang nông thôn cằn cỗi thường xuyên gây ra căng thẳng nội bộ, điển hình là cuộc Chiến tranh Zürich Cũ đang diễn ra vào năm 1444, khi Zürich liên minh với Công quốc Áo để chống lại các bang còn lại.\n\n## Cơ chế Quân sự và Hiệp ước Tương trợ của Liên bang các bang tự trị:\nTrái tim của Liên bang các bang tự trị là các hiệp ước phòng thủ chung. Khi một bang bị đe dọa bởi các thế lực bên ngoài (như Gia tộc Habsburg hay Công quốc Milan), tất cả các bang còn lại có nghĩa vụ gửi lực lượng dân binh và lính đánh thuê đến hỗ trợ.\n\nQuân đội của Liên bang không phải là lính nghĩa vụ cưỡng ép, mà là những công dân tự do chiến đấu vì sự sinh tồn của chính cộng đồng mình. Họ tự trang bị vũ khí, bầu ra các chỉ huy từ tầng lớp thường dân, và áp dụng kỷ luật thép trong các đội hình Phalanx giáo dài. Sự gắn kết chặt chẽ ở cấp độ địa phương này biến Liên bang các bang tự trị thành một cỗ máy nghiền thịt khổng lồ, đủ sức đè bẹp bất kỳ đạo quân phong kiến nào dám xâm phạm vùng núi Alps.",
+          "summary": "Liên bang các bang tự trị: Cấu trúc chính trị độc đáo của Cựu Liên minh Thụy Sĩ, bao gồm các bang (canton) độc lập liên kết với nhau qua các hiệp ước tuyên thệ. Khối liên minh quân sự phi tập trung, từ chối sự cai trị của các lãnh chúa và Hoàng quyền.",
+          "keys": [
+            "Liên bang các bang tự trị",
+            "Eidgenossenschaft",
+            "Chế độ Bang Thụy Sĩ",
+            "Bang tự trị",
+            "Swiss Cantons",
+            "Cựu Liên minh Thụy Sĩ",
+            "Liên bang Thụy Sĩ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_swiss",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_bo-may-hanh-chinh-hoang-gia-phap",
+          "title": "Bộ máy Hành chính Hoàng gia Pháp",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Bộ máy Hành chính Hoàng gia Pháp:\n- Định nghĩa: Bộ máy quan liêu và tư pháp được thiết lập bởi các vị vua triều đại Valois nhằm mục đích tập trung quyền lực về tay ngai vàng tại Paris.\n- Phân loại: Thể chế cai trị tập quyền.\n- Trạng thái/Cấp độ: Đang trong quá trình bành trướng mạnh mẽ, liên tục xung đột với quyền lợi thế tập của các đại công tước và quý tộc địa phương.\n\n## Cơ cấu quan liêu và Việc kiểm soát Ma pháp tại Vương quốc Pháp:\nTrái ngược với sự phân quyền tột độ của Đế quốc La Mã Thần thánh, Vương quốc Pháp đang nỗ lực vươn tới một mô hình quân chủ chuyên chế. Vua Pháp không cai trị trực tiếp qua các lãnh chúa, mà phái các quan chức đại diện gọi là Bailli (ở miền Bắc) và Sénéchal (ở miền Nam) đến từng vùng. Những viên quan này mang theo ấn tín hoàng gia, nắm quyền thu thuế, tổ chức tòa án và giám sát việc thi hành luật pháp, qua đó từ từ tước đoạt quyền lực tư pháp của giới quý tộc phong kiến.\n\nTrong thế giới tràn ngập ma lực này, bộ máy hành chính hoàng gia còn gánh vác một nhiệm vụ sống còn: Kiểm soát pháp sư. Triều đình Paris đã thiết lập một thỏa thuận ngầm với Giáo hội Công giáo nội địa (Nhà thờ Gallican), cho phép Vua Pháp có quyền can thiệp vào việc bổ nhiệm các giám mục. Điều này giúp ngai vàng nắm được một phần quyền điều động các pháp sư Thần thánh. Đồng thời, các học viện Bí thuật tại Paris và Toulouse bị đặt dưới sự giám sát nghiêm ngặt của các Bailli, đảm bảo rằng những nghiên cứu về giả kim thuật và ma pháp chiến đấu phải phục vụ cho lợi ích của vương quốc chứ không rơi vào tay các chư hầu nổi loạn.\n\n## Tình trạng xung đột nội bộ tại Vương quốc Pháp:\nVào thời điểm năm 1444, lề lối này đang vấp phải sự kháng cự quyết liệt. Các công tước mang dòng máu hoàng gia (Appanage) như Burgundy, Brittany hay Bourbon sở hữu bộ máy hành chính riêng và kiên quyết từ chối để các Bailli của nhà vua bước chân vào lãnh thổ của họ. Cuộc chiến ngầm giữa các điệp viên hoàng gia và mật thám của các chư hầu diễn ra liên tục, tạo nên một bầu không khí chính trị ngột ngạt và đầy rẫy sự phản bội ngay trong lòng nước Pháp.",
+          "summary": "Bộ máy Hành chính Hoàng gia Pháp: Bộ máy quan liêu và tư pháp được thiết lập bởi các vị vua triều đại Valois nhằm mục đích tập trung quyền lực về tay ngai vàng tại Paris. Đang trong quá trình bành trướng mạnh mẽ, liên tục xung đột với quyền lợi thế tập của các đại công tước và quý tộc địa phương.",
+          "keys": [
+            "Bộ máy Hành chính Hoàng gia Pháp",
+            "French Royal Administration",
+            "Hành chính Pháp",
+            "Triều đình Paris",
+            "Hành chính hoàng gia",
+            "Bailli",
+            "Sénéchal"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_france",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "prov_ao",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_che-do-thai-ap-timar",
+          "title": "Chế độ Thái ấp Timar",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Chế độ Thái ấp Timar:\n- Định nghĩa: Cơ chế phân phong đất đai quân sự đặc thù của Đế chế Ottoman, nơi đất đai thuộc sở hữu tuyệt đối của Sultan và chỉ được cấp tạm thời cho các kỵ binh.\n- Phân loại: Thể chế hành chính - quân sự.\n- Trạng thái/Cấp độ: Nền tảng cốt lõi duy trì lực lượng kỵ binh hạng nhẹ Sipahi khổng lồ, đảm bảo không một lãnh chúa nào có thể đe dọa ngai vàng.\n\n## Cơ chế Vận hành và Tính chất Quân sự của Chế độ Thái ấp Timar:\nKhác hoàn toàn với lề lối Đẳng cấp Đế quốc tại Châu Âu, đất đai trong Đế chế Ottoman không bao giờ là tài sản cha truyền con nối. Khi Đế chế chinh phục được một vùng lãnh thổ mới (như tại Balkan hay Anatolia), Sultan sẽ chia nhỏ chúng thành các Timar (thái ấp) và giao cho các kỵ binh Sipahi (thường là Tộc Orc hoặc các á nhân thảo nguyên trung thành) quản lý.\n\nNgười giữ Timar có quyền thu thuế nông nghiệp từ những người nông dân sống trên mảnh đất đó. Đổi lại, họ bắt buộc phải dùng số tiền đó để tự trang bị vũ khí, chiến mã ma thú và phải ngay lập tức lên đường tòng quân khi có lệnh triệu tập của Sultan. Nếu một Sipahi chết trận hoặc vi phạm quân lệnh, thái ấp sẽ lập tức bị thu hồi và giao cho người khác. Cơ chế này đảm bảo quân đội luôn có ngân sách tự duy trì mà không làm cạn kiệt kho bạc trung ương.\n\n## Sự khác biệt với Phong kiến Châu Âu và Ứng dụng Ma pháp:\nChế độ Timar triệt tiêu hoàn toàn mầm mống của sự phân quyền. Các kỵ binh Sipahi không được phép xây dựng lâu đài kiên cố bằng đá hay thiết lập các ma trận phòng ngự Thổ hệ trên đất của mình để chống lại triều đình. Họ liên tục bị thuyên chuyển giữa các vùng miền để ngăn chặn việc xây dựng vây cánh địa phương. Nhờ sự luân chuyển và kiểm soát gắt gao này, Đế chế Ottoman luôn có thể huy động hàng vạn kỵ binh Phong hệ cơ động chỉ trong vài tuần, một điều mà các vị Hoàng đế Châu Âu luôn thèm khát nhưng không bao giờ làm được.",
+          "summary": "Chế độ Thái ấp Timar: Cơ chế phân phong đất đai quân sự đặc thù của Đế chế Ottoman, nơi đất đai thuộc sở hữu tuyệt đối của Sultan và chỉ được cấp tạm thời cho các kỵ binh. Nền tảng cốt lõi duy trì lực lượng kỵ binh hạng nhẹ Sipahi khổng lồ, đảm bảo không một lãnh chúa nào có thể đe dọa ngai vàng.",
+          "keys": [
+            "Chế độ Thái ấp Timar",
+            "Ottoman Timar System",
+            "Timar",
+            "Kỵ binh Sipahi",
+            "Thái ấp Ottoman",
+            "Sipahi"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "nation_ottoman",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_chien-thuat-thao-nguyen",
+          "title": "Chiến thuật Thảo nguyên",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Chiến thuật Thảo nguyên:\n- Định nghĩa: Học thuyết quân sự đặc trưng của các Hãn quốc phương Đông, khai thác triệt để cấu trúc sinh học của Tộc Mã Nhân và Mục Nhân kết hợp với Ma pháp Phong hệ.\n- Phân loại: Học thuyết quân sự, Chiến thuật chiến tranh du động.\n- Trạng thái/Cấp độ: Là khắc tinh tự nhiên của đội hình giáo dài bộ binh và kỵ binh bọc thép hạng nặng của Châu Âu Cơ đốc giáo.\n\n## Cơ chế Cơ động và Bắn cung trên lưng ngựa (Horse Archery):\nCốt lõi của Chiến thuật Thảo nguyên là sự cơ động tuyệt đối. Tộc Mã Nhân không cần cưỡi ngựa, bản thân họ là những cỗ máy chiến đấu di động với tốc độ kinh hoàng. Thay vì dàn trận ngang và xung phong trực diện để đâm chém như kỵ binh Pháp hay Teuton, quân đội Hãn quốc sử dụng đội hình phân tán, liên tục di chuyển theo những vòng tròn đồng tâm bao quanh lực lượng địch.\n\nTrong lúc di chuyển, họ liên tục phóng ra những cơn mưa tên từ cung sừng ngược. Những mũi tên này thường được yểm Ma pháp Phong hệ để tự động điều chỉnh quỹ đạo, lách qua các khe hở của khiên chắn và áo giáp. Sự bắn phá liên tục này làm bào mòn thể lực, sinh mạng và tinh thần của đối phương mà quân Hãn quốc gần như không chịu tổn thất nào.\n\n## Chiến thuật Rút lui Giả vờ (Feigned Retreat) và Phá trận:\nĐòn đánh đáng sợ nhất của các Hãn quốc là \"Rút lui giả vờ\". Sau khi quấy rối, kỵ binh Mã Nhân sẽ đột ngột quay đầu bỏ chạy, giả vờ như đã vỡ trận. Khi các hiệp sĩ Châu Âu kiêu ngạo phá vỡ đội hình kỷ luật để đuổi theo, Mã Nhân sẽ bất ngờ quay ngược lại bắn những mũi tên chí mạng (Parthian shot).\n\nĐồng thời, khi đội hình địch đã bị kéo giãn và hỗn loạn, lực lượng dự bị là Tộc Mục Nhân (Minotaurs) khổng lồ sẽ được tung ra. Mang theo những cây chùy sắt yểm ma lực Thổ hệ, Mục Nhân lao vào tàn sát tàn dư của bộ binh và kỵ binh địch trong các pha giáp lá cà, kết thúc một trận chiến bằng sự nghiền nát vật lý hoàn toàn. Chiến thuật này đã giúp các Hãn quốc duy trì sự thống trị trên một khu vực rộng lớn từ biên giới Ba Lan đến tận châu Á.",
+          "summary": "Chiến thuật Thảo nguyên: Học thuyết quân sự đặc trưng của các Hãn quốc phương Đông, khai thác triệt để cấu trúc sinh học của Tộc Mã Nhân và Mục Nhân kết hợp với Ma pháp Phong hệ. Là khắc tinh tự nhiên của đội hình giáo dài bộ binh và kỵ binh bọc thép hạng nặng của Châu Âu Cơ đốc giáo.",
+          "keys": [
+            "Chiến thuật Thảo nguyên",
+            "Steppe Warfare",
+            "Kỵ binh bắn cung",
+            "Rút lui giả vờ",
+            "Horse Archery",
+            "Feigned Retreat",
+            "Parthian shot"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "concept_xa-hoi-du-muc-thao-nguyen",
+          "title": "Xã hội Du mục Thảo nguyên",
+          "type": "concept",
+          "content": "## Cấu trúc Bộ lạc và Lệ Kurultai của Xã hội Du mục Thảo nguyên:\nKhác với xã hội phong kiến Châu Âu phân chia theo giai cấp quý tộc và nông dân gắn chặt với đất đai, xã hội của các Hãn quốc phương Đông được xây dựng trên nền tảng các bộ lạc (Orda) di động. Tộc Mã Nhân (Centaurs) nắm giữ vị trí tối thượng, là những chiến binh tự do và những nhà lãnh đạo bẩm sinh. Tộc Mục Nhân (Minotaurs) đóng vai trò là những người bảo vệ trại và quản lý các đàn gia súc ma thú khổng lồ. Dưới cùng là hàng vạn nô lệ thuộc đủ mọi chủng tộc (Nhân loại, Tiên, Bán Tiên) bị bắt từ các vùng định cư, chịu trách nhiệm làm những công việc mạt hạng nhất như rèn vũ khí thô, thuộc da và làm bia đỡ đạn.\n\nQuyết định tối cao của thảo nguyên không được ban hành từ một ngai vàng đơn độc, mà thông qua \"Kurultai\" – một đại hội bộ lạc khổng lồ. Khi cần bầu ra một Đại Hãn (Khagan) mới hoặc quyết định phát động một cuộc chiến tranh quy mô lớn, tất cả các tộc trưởng Mã Nhân sẽ phi nước đại về một địa điểm tập kết. Sự đồng thuận tại Kurultai thường đạt được không phải qua tranh luận triết học, mà qua việc phô diễn sức mạnh cơ bắp, sự giàu có từ chiến lợi phẩm và đôi khi là những cuộc đấu tay đôi đẫm máu.\n\n## Luật Yassa và Trật tự Kỷ cương của Xã hội Du mục Thảo nguyên:\nSự hỗn loạn của hàng vạn sinh vật di chuyển trên thảo nguyên được kiềm chế bởi một bộ luật truyền miệng cổ xưa và tàn khốc: Luật Yassa. Bộ luật này không quan tâm đến các vấn đề thần học hay quyền sở hữu tư nhân phức tạp như luật La Mã.\n\nYassa quy định những hình phạt tử hình ngay lập tức cho các tội danh như phản bội bộ lạc, ăn cắp ngựa chiến, hoặc thể hiện sự hèn nhát trên chiến trường. Tuy nhiên, nó lại cực kỳ bao dung với việc cướp bóc kẻ thù và cho phép tự do tín ngưỡng tuyệt đối (miễn là không chống lại Đại Hãn). Sự tàn nhẫn của Yassa đảm bảo rằng một đội quân Mã Nhân, dù bao gồm nhiều bộ lạc thù ghét nhau, vẫn có thể kết hợp thành một cỗ máy chiến tranh kỷ luật tuyệt đối khi có lệnh xung phong.",
+          "summary": "Xã hội Du mục Thảo nguyên: Khác với xã hội phong kiến Châu Âu phân chia theo giai cấp quý tộc và nông dân gắn chặt với đất đai, xã hội của các Hãn quốc phương Đông được xây dựng trên nền tảng các bộ lạc (Orda) di động. Tộc Mã Nhân (Centaurs) nắm giữ vị trí tối thượng, là những chiến binh tự do và những nhà lãnh đạo bẩm sinh. Tộc Mục Nhân (Minotaurs) đóng vai trò là những người bảo vệ trại và quản lý các đàn gia súc ma thú khổng lồ.",
+          "keys": [
+            "Xã hội Du mục Thảo nguyên",
+            "Steppe Nomadic Society",
+            "Xã hội thảo nguyên",
+            "Luật Yassa",
+            "Kurultai",
+            "Orda",
+            "Khagan"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "concept_kinh-te-thao-nguyen",
+          "title": "Kinh tế Thảo nguyên",
+          "type": "concept",
+          "content": "## Chăn thả Ma thú và Cướp bóc của Nền Kinh tế Thảo nguyên:\nNền kinh tế của các Hãn quốc không dựa vào việc gieo hạt hay xây dựng các xưởng thủ công. Cột trụ đầu tiên của họ là nền kinh tế chăn thả. Họ di chuyển hàng triệu con cừu sừng cong, ngựa chiến và bò Tây Tạng lai ma thú theo chu kỳ các mùa cỏ trên thảo nguyên Pontic-Caspian. Gia súc cung cấp cho họ thịt, sữa ma thuật, da thuộc để làm áo giáp và dây cung, khiến các Hãn quốc gần như tự cung tự cấp về mặt sinh tồn cơ bản.\n\nTuy nhiên, để có được kim loại, vũ khí chất lượng cao và hàng hóa xa xỉ, các Hãn quốc phụ thuộc hoàn toàn vào Cướp bóc (Raiding). Các đội kỵ binh Akinji (Mã Nhân) thường xuyên thực hiện các cuộc đột kích chớp nhoáng vào mùa thu, tràn qua biên giới Ba Lan, Lithuania, Muscovy hoặc các vùng ngoại vi của Đế quốc La Mã Thần thánh. Họ đốt trụi làng mạc, cướp sạch kho thóc, vàng bạc và rút lui vào thảo nguyên trước khi các đội kỵ binh bọc thép chậm chạp của Châu Âu kịp tập hợp.\n\n## Công nghiệp Nô lệ và Thu Cống nạp của Nền Kinh tế Thảo nguyên:\nNguồn lợi nhuận khổng lồ nhất của các Hãn quốc (đặc biệt là Hãn quốc Crimea) đến từ thương mại nô lệ. Những người dân Châu Âu bị bắt trong các cuộc đột kích sẽ bị trói bằng dây thòng lọng ma thuật và lùa về các bến cảng ở Biển Đen (như Caffa). Tại đây, họ bị bán cho các thương gia Genoa, Venice hoặc trực tiếp cho Đế chế Ottoman. Nguồn cung nô lệ này là mạch máu duy trì ngạch Janissary và phu chèo thuyền Galley của Sultan.\n\nBên cạnh đó, các Hãn quốc lớn như Đại Trướng Hãn Quốc còn duy trì nền kinh tế bằng \"Cống nạp\" (Tribute). Họ đe dọa các công quốc yếu hơn (như các đại công quốc của người Rus) bằng sự hủy diệt, ép buộc những nước này phải nộp một lượng lớn bạc, lông thú và thiếu nữ mỗi năm chỉ để mua lấy sự bình yên tạm thời. Guồng bòn rút này khiến các vương quốc láng giềng liên tục cạn kiệt tài nguyên, không thể phát triển quân đội để phản kháng.",
+          "summary": "Kinh tế Thảo nguyên: Nền kinh tế của các Hãn quốc không dựa vào việc gieo hạt hay xây dựng các xưởng thủ công. Cột trụ đầu tiên của họ là nền kinh tế chăn thả. Họ di chuyển hàng triệu con cừu sừng cong, ngựa chiến và bò Tây Tạng lai ma thú theo chu kỳ các mùa cỏ trên thảo nguyên Pontic-Caspian. Gia súc cung cấp cho họ thịt, sữa ma thuật, da thuộc để làm áo giáp và dây cung, khiến các Hãn quốc gần như tự cung tự cấp về mặt sinh tồn cơ bản.",
+          "keys": [
+            "Kinh tế Thảo nguyên",
+            "Thương mại Nô lệ",
+            "Steppe Economy",
+            "Slave Trade",
+            "Kinh tế Hãn quốc",
+            "Thương mại nô lệ thảo nguyên",
+            "Kinh tế du mục",
+            "Akinji",
+            "Tribute"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "concept_hanh-chinh-han-quoc",
+          "title": "Hành chính Hãn quốc",
+          "type": "concept",
+          "content": "## Quyền lực của Đại Hãn và Quý tộc Mã Nhân trong Thể chế Hãn quốc:\nBộ máy hành chính của một Hãn quốc cực kỳ tối giản và mang tính quân sự hóa cao độ. Đứng đầu là Đại Hãn (Khagan), người được bầu ra từ dòng dõi hoàng kim (thường là hậu duệ của các nhà chinh phục vĩ đại trong quá khứ). Đại Hãn không cai trị thông qua các quan lại giấy tờ, mà cai trị thông qua quyền chỉ huy quân sự tuyệt đối và việc phân chia chiến lợi phẩm công bằng.\n\nDưới trướng Đại Hãn là các \"Noyan\" hoặc \"Bey\" – những tộc trưởng của các bộ lạc Mã Nhân lớn. Họ hoạt động như những tướng lĩnh quân sự kiêm quan quản lý khu vực. Khi không có chiến tranh, các Noyan tự cai quản bộ lạc của mình, phân xử các tranh chấp đồng cỏ và thu thập cống phẩm từ các bộ lạc nhỏ hơn. Lề lối này không có ranh giới rõ ràng giữa dân sự và quân sự; mọi nam giới Mã Nhân trưởng thành đều là lính, và mọi khu lều trại đều là một doanh trại quân đội.\n\n## Sự Phân quyền và Tính bất ổn của Thể chế Hãn quốc:\nTuy nhiên, sự đơn giản của lề lối này cũng chính là điểm yếu chí mạng. Lòng trung thành trong các Hãn quốc rất mong manh, phụ thuộc hoàn toàn vào sức mạnh cá nhân và uy tín của Đại Hãn. Nếu một Đại Hãn già yếu, thua trận hoặc không cung cấp đủ chiến lợi phẩm, các Noyan sẽ nhanh chóng nổi loạn, rút quân đội bộ lạc của mình đi và thậm chí tôn lập một Đại Hãn mới.\n\nVào năm 1444, cấu trúc lỏng lẻo này đang khiến Kim Trướng Hãn Quốc cổ đại bị xé nát từ bên trong. Các thống đốc khu vực ở Crimea, Kazan và Astrakhan đang tự xưng Hãn, từ chối nộp cống phẩm cho trung ương (Đại Trướng Hãn Quốc) và tự tiến hành các chiến dịch ngoại giao riêng rẽ với Đế chế Ottoman và các công quốc của người Rus. Sự phân rã hành chính này đánh dấu sự kết thúc của kỷ nguyên bá chủ thảo nguyên thống nhất, mở đường cho những cuộc nội chiến á nhân đẫm máu kéo dài hàng thập kỷ.",
+          "summary": "Hành chính Hãn quốc: Bộ máy hành chính của một Hãn quốc cực kỳ tối giản và mang tính quân sự hóa cao độ. Đứng đầu là Đại Hãn (Khagan), người được bầu ra từ dòng dõi hoàng kim (thường là hậu duệ của các nhà chinh phục vĩ đại trong quá khứ). Đại Hãn không cai trị thông qua các quan lại giấy tờ, mà cai trị thông qua quyền chỉ huy quân sự tuyệt đối và việc phân chia chiến lợi phẩm công bằng.",
+          "keys": [
+            "Hành chính Hãn quốc",
+            "Khaganate Administration",
+            "Cơ cấu Hãn quốc",
+            "Đại Hãn",
+            "Hành chính thảo nguyên",
+            "Khagan",
+            "Noyan",
+            "Bey",
+            "Đại Trướng Hãn Quốc",
+            "Kim Trướng Hãn Quốc",
+            "Kurultai"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "concept_ach-tatar",
+          "title": "Ách Tatar",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Ách Tatar:\n- Định nghĩa: Trạng thái chư hầu và lề lối bòn rút kinh tế - sinh mạng mà Kim Trướng Hãn Quốc áp đặt lên các công quốc Rus trong suốt hàng thế kỷ.\n- Phân loại: Ách thống trị ngoại bang, Lệ cống nạp.\n- Trạng thái/Cấp độ: Đang dần bị phá vỡ bởi sự trỗi dậy của Muscovy, nhưng những di chứng của nó đã vĩnh viễn thay đổi bản chất xã hội của người Rus.\n\n## Cơ chế Cống nạp và Kiểm soát của Ách Tatar:\nDưới Ách Tatar, các Đại Công tước Rus không có quyền cai trị độc lập. Họ phải lặn lội hành trình đến cố đô Sarai của Hãn quốc, mang theo vô số vàng bạc, lông thú và nô lệ để quỳ gối xin Đại Hãn ban cho \"Yarlyk\" (Sắc lệnh cai trị). Kẻ nào được Đại Hãn sủng ái sẽ được quyền thay mặt Hãn quốc đi thu thuế của các công quốc Rus khác.\n\nSự bòn rút này không chỉ dừng lại ở tài sản. Các Hãn quốc thường xuyên đòi hỏi cống nạp \"Thuế máu\" – ép buộc người Rus phải cung cấp binh lính và pháp sư để phục vụ cho các chiến dịch viễn chinh của Tộc Mã Nhân và Mục Nhân. Bất kỳ sự chậm trễ hay phản kháng nào đều sẽ bị đáp trả bằng những đợt kỵ binh càn quét, san phẳng các thành phố thành bình địa.\n\n## Di sản Tâm lý và Sự chuyển mình của Xã hội Rus:\nMặc dù vào năm 1444, quyền lực của các Hãn quốc đang phân rã, Ách Tatar đã để lại một vết sẹo không thể xóa nhòa trong tâm thức người Rus. Để sinh tồn dưới sự cai trị tàn bạo của ngoại bang, xã hội Rus đã biến đổi thành một cỗ máy quân sự hóa cao độ, đề cao sự phục tùng tuyệt đối đối với những nhà lãnh đạo mạnh mẽ (như các Đại Công tước Muscovy) và loại bỏ dần sự khoan nhượng. Nỗi sợ hãi thảo nguyên đã rèn dũa nên một nền văn hóa khắc kỷ, đa nghi và luôn trong trạng thái chuẩn bị cho chiến tranh tổng lực.",
+          "summary": "Ách Tatar: Trạng thái chư hầu và lề lối bòn rút kinh tế - sinh mạng mà Kim Trướng Hãn Quốc áp đặt lên các công quốc Rus trong suốt hàng thế kỷ. Đang dần bị phá vỡ bởi sự trỗi dậy của Muscovy, nhưng những di chứng của nó đã vĩnh viễn thay đổi bản chất xã hội của người Rus.",
+          "keys": [
+            "Ách Tatar",
+            "Tatar Yoke",
+            "Ách Cống nạp",
+            "Sự thống trị của Tatar",
+            "Kim Trướng Hãn Quốc",
+            "Thuế máu",
+            "Yarlyk"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_muscovy",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_le-loi-hoi-dong-veche",
+          "title": "Lề lối Hội đồng Veche",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Lề lối Hội đồng Veche:\n- Định nghĩa: Hình thức tổ chức chính trị và hành chính mang tính cộng hòa tự trị, đặc trưng của các thành bang Bắc Rus như Novgorod và Pskov.\n- Phân loại: Thể chế dân chủ sơ khai, Hội đồng nhân dân.\n- Trạng thái/Cấp độ: Đang hoạt động mạnh mẽ tại phương Bắc nhưng bị Đại Công quốc Muscovy coi là mầm mống phản loạn cần tiêu diệt.\n\n## Cơ chế vận hành và Quyền lực của Lề lối Hội đồng Veche:\nVeche không phải là một nghị viện theo kiểu Châu Âu phương Tây, mà là một cuộc họp mặt công khai của các nam giới tự do trong thành phố. Khi tiếng chuông khổng lồ của Veche vang lên, mọi công dân từ thương nhân, thợ thủ công đến pháp sư đều phải tập trung tại quảng trường chính. Mọi quyết định từ việc tuyên chiến, ký hòa ước, ban hành luật pháp cho đến việc trục xuất các Vương công (Prince) chỉ huy quân sự đều được thông qua bằng tiếng la hét biểu quyết.\n\nTại Cộng hòa Novgorod, Veche nắm quyền lực tối cao, kiểm soát cả việc bổ nhiệm Tổng giám mục. Bầu không khí tại các buổi họp Veche thường cực kỳ căng thẳng, đôi khi biến thành các cuộc ẩu đả đẫm máu hoặc các cuộc đụng độ ma pháp quy mô nhỏ giữa các phe phái tư sản tranh giành ảnh hưởng.\n\n## Sự xung đột ý thức hệ của Lề lối Hội đồng Veche:\nĐối với các nhà nước tập quyền như Muscovy, Veche là biểu tượng của sự hỗn loạn vô chính phủ. Các Đại Công tước Muscovy tin rằng quyền lực phải được tập trung vào một ngai vàng duy nhất do Đấng Sáng Tạo ban quyền. Do đó, mục tiêu chính trị lớn nhất của Muscovy khi bành trướng lên phương Bắc là đập vỡ chiếc chuông Veche, xóa bỏ vĩnh viễn tư tưởng cộng hòa tự trị của người dân Rus.",
+          "summary": "Lề lối Hội đồng Veche: Hình thức tổ chức chính trị và hành chính mang tính cộng hòa tự trị, đặc trưng của các thành bang Bắc Rus như Novgorod và Pskov. Đang hoạt động mạnh mẽ tại phương Bắc nhưng bị Đại Công quốc Muscovy coi là mầm mống phản loạn cần tiêu diệt.",
+          "keys": [
+            "Lề lối Hội đồng Veche",
+            "Veche",
+            "Veche System",
+            "Hội đồng Veche",
+            "chuông Veche"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_muscovy",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_novgorod",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_pskov",
+              "pullWeight": 0.5
+            }
+          ]
+        },
+        {
+          "id": "concept_dac-quyen-szlachta",
+          "title": "Đặc quyền Szlachta",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Giai cấp Quý tộc Szlachta:\n- Định nghĩa: Tầng lớp quý tộc phong kiến của Vương quốc Ba Lan và Đại Công quốc Lithuania, nắm giữ gần như toàn bộ đặc quyền chính trị và quân sự của quốc gia.\n- Phân loại: Giai cấp thống trị, Quý tộc quân sự tự do.\n- Trạng thái/Cấp độ: Đang trong quá trình bành trướng quyền lực vô hạn, dần biến nhà vua thành một vị quân vương bù nhìn chỉ có quyền lực trên danh nghĩa.\n\n## Cơ cấu Quyền lực và Ma pháp Huyết thống của Szlachta:\nKhác với giới quý tộc Tây Âu bị phân cấp nghiêm ngặt thành Công tước, Bá tước hay Nam tước, mọi thành viên của Szlachta về mặt lý thuyết đều bình đẳng với nhau, bất kể mức độ giàu có. Một quý tộc nghèo chỉ sở hữu một mảnh đất nhỏ và một thanh kiếm vẫn có tiếng nói ngang hàng với một đại quý tộc sở hữu hàng chục lâu đài.\n\nSức mạnh của Szlachta bắt nguồn từ khả năng quân sự. Họ là những người duy nhất được quyền gia nhập lực lượng kỵ binh hạng nặng (bao gồm cả Phiêu Kỵ Binh). Nhiều dòng họ Szlachta cổ đại mang trong mình những huyết mạch ma thuật được truyền lại từ thời kỳ Đa thần giáo, cho phép họ sử dụng Ma pháp Quang hệ hoặc Thổ hệ để cường hóa sức mạnh thể chất và kháng lại các đòn tấn công của quái thú phương Đông.\n\n## Quyền Phủ quyết và Trạng thái Vô chính phủ của Szlachta:\nĐặc quyền lớn nhất và cũng là tử huyệt của Vương quốc Ba Lan chính là sự tự do tuyệt đối của giới Szlachta (Khởi nguyên của khái niệm Nền Tự do Vàng - Golden Liberty). Nhà vua không thể ban hành đạo luật mới, tuyên chiến hay thu thuế nếu không có sự đồng thuận của họ.\n\nTại các kỳ họp nghị viện, giới Szlachta có quyền phủ quyết bất kỳ quyết định nào của ngai vàng. Họ coi việc bảo vệ quyền lợi cá nhân và gia tộc quan trọng hơn sự tồn vong của nhà nước trung ương. Sự bảo thủ và lòng kiêu hãnh cực đoan này khiến Vương quốc Ba Lan trở thành một quốc gia gần như không thể tập quyền, liên tục rơi vào trạng thái tê liệt hành chính mỗi khi phải đối mặt với các cuộc khủng hoảng lớn như cuộc xâm lăng của Đế chế Ottoman hay Hãn quốc Crimea.",
+          "summary": "Đặc quyền Szlachta: Tầng lớp quý tộc phong kiến của Vương quốc Ba Lan và Đại Công quốc Lithuania, nắm giữ gần như toàn bộ đặc quyền chính trị và quân sự của quốc gia. Đang trong quá trình bành trướng quyền lực vô hạn, dần biến nhà vua thành một vị quân vương bù nhìn chỉ có quyền lực trên danh nghĩa.",
+          "keys": [
+            "Đặc quyền Szlachta",
+            "Szlachta Privileges",
+            "Quý tộc Ba Lan",
+            "Golden Liberty",
+            "Szlachta",
+            "Nền Tự do Vàng"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_lithuania",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_poland",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_bo-may-nha-nuoc-dong-tu",
+          "title": "Bộ máy Nhà nước Dòng tu",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Bộ máy Nhà nước Dòng tu:\n- Định nghĩa: Mô hình cai trị thần quyền kết hợp quân sự đặc thù của Hội Hiệp sĩ Teuton và Liên bang Livonia, nơi các giáo sĩ kiêm chiến binh nắm giữ toàn bộ quyền lực nhà nước.\n- Phân loại: Thể chế thần quyền quân sự (Ordensstaat).\n- Trạng thái/Cấp độ: Đang bộc lộ những rạn nứt nghiêm trọng do sự xa lánh của giới tư sản địa phương và sự suy tàn của lý tưởng Thập Tự Chinh.\n\n## Cơ cấu Quan liêu và Sự Cai trị của Bộ máy Nhà nước Dòng tu:\nNhà nước Dòng tu không có vua, không có vương triều thế tập và không có giới quý tộc bản địa tham gia vào bộ máy trung ương. Đứng đầu là Đại Tông sư (Grand Master), được bầu ra bởi một đại hội đồng các Hiệp sĩ cao cấp (Chapter). Lãnh thổ được chia thành các Tỉnh (Bailiwicks) và các Hạt (Komturei), mỗi nơi do một Chỉ huy (Komtur) cai quản từ một pháo đài gạch đỏ kiên cố.\n\nLuật pháp của Nhà nước Dòng tu là sự pha trộn giữa luật lệ quân đội khắc nghiệt và giáo lý Công giáo cực đoan. Cư dân bản địa (người Phổ cũ, người Livonia) bị đối xử như công dân hạng hai, bị ép buộc lao dịch để xây dựng lâu đài và cung cấp lương thực cho các đội kỵ binh. Các hiệp sĩ của Dòng tu sống cuộc đời độc thân, tập trung hoàn toàn vào việc rèn luyện ma pháp Thần thánh và chiến đấu.\n\n## Mâu thuẫn Nội bộ và Sự Suy tàn của Bộ máy Nhà nước Dòng tu:\nVào thế kỷ 15, khi các cuộc Thập Tự Chinh phương Bắc đã kết thúc và không còn kẻ thù ngoại đạo nào để thanh tẩy, lề lối này trở nên dư thừa và bạo ngược. Các hiệp sĩ Teuton biến thành những lãnh chúa bóc lột, áp đặt các loại thuế cắt cổ lên các thành bang thương mại trù phú như Danzig, Elbing và Riga.\n\nSự cai trị độc đoán này đã đẩy giới tư sản (Đẳng cấp thứ ba) và quý tộc nhỏ trong lãnh thổ của Dòng tu vào thế đối đầu. Họ bí mật thành lập Liên minh Phổ (Prussian Confederation) nhằm tìm kiếm sự bảo hộ của Vương quốc Ba Lan để lật đổ ách cai trị của Đại Tông sư. Vào năm 1444, Bộ máy Nhà nước Dòng tu đang ngồi trên một thùng thuốc súng, chỉ chờ ngày bùng nổ thành một cuộc nội chiến xé nát toàn bộ vùng duyên hải Baltic.",
+          "summary": "Bộ máy Nhà nước Dòng tu: Mô hình cai trị thần quyền kết hợp quân sự đặc thù của Hội Hiệp sĩ Teuton và Liên bang Livonia, nơi các giáo sĩ kiêm chiến binh nắm giữ toàn bộ quyền lực nhà nước. Đang bộc lộ những rạn nứt nghiêm trọng do sự xa lánh của giới tư sản địa phương và sự suy tàn của lý tưởng Thập Tự Chinh.",
+          "keys": [
+            "Bộ máy Nhà nước Dòng tu",
+            "Monastic State Administration",
+            "Nhà nước Hiệp sĩ",
+            "Ordensstaat",
+            "Hội Hiệp sĩ Teuton",
+            "Liên bang Livonia",
+            "Đại Tông sư",
+            "Grand Master"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "org_dong-tu-teuton",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "nation_livonia",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_thue-eo-bien-oresund",
+          "title": "Thuế Eo biển Øresund",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Thuế Eo biển Øresund:\n- Định nghĩa: Loại thuế hàng hải tàn nhẫn được Vua Đan Mạch áp đặt lên mọi tàu thuyền đi qua eo biển Øresund (The Sound) - cửa ngõ duy nhất nối liền Biển Baltic và Biển Bắc.\n- Phân loại: Phép thuế quan, Công cụ tống tiền hàng hải.\n- Trạng thái/Cấp độ: Nguồn thu nhập lớn nhất của triều đình Đan Mạch, chiếm tới hai phần ba ngân khố quốc gia, là nguyên nhân sâu xa của vô số cuộc chiến tranh trên biển.\n\n## Cơ chế Thu thuế và Ma pháp Giám sát tại Eo biển Øresund:\nEo biển Øresund chỉ rộng khoảng bốn kilomet ở điểm hẹp nhất (giữa Helsingør của Đan Mạch và Helsingborg của vùng Scania - lúc này cũng thuộc Đan Mạch). Việc sở hữu cả hai bờ eo biển cho phép Đan Mạch khóa chặt hoàn toàn tuyến đường này. Các pháo đài ven biển được trang bị đại bác và các ma trận Phong hệ khổng lồ. \n\nBất kỳ con tàu nào đi ngang qua đều bị ma thuật phát hiện. Nếu thuyền trưởng từ chối thả neo tại Helsingør để nộp thuế (thường được tính bằng một phần trong giá trị hàng hóa chở trên tàu), các pháp sư Đan Mạch sẽ sử dụng ma pháp Thủy hệ tạo ra các xoáy nước giữ chân con tàu, trước khi đại bác từ hai bờ khai hỏa bắn chìm nó. Thuế được nộp bằng vàng ròng, bạc, hoặc đôi khi là ma thạch và vũ khí.\n\n## Tác động Kinh tế và Sự thù hận của Liên minh Hanse:\nViệc ban hành Thuế Eo biển Øresund (từ năm 1429) là một đòn giáng chí mạng vào yết hầu kinh tế của Liên minh Hanse. Các thương nhân Hanseatic, những kẻ trước đây tự do đi lại và độc quyền buôn bán cá muối, gỗ và lúa mì, giờ đây phải cắn răng nộp những khoản tiền khổng lồ cho Đan Mạch.\n\nKhoản tiền này cho phép Đan Mạch duy trì hạm đội tàu chiến drakkar bọc băng khổng lồ và thuê mướn các lính đánh thuê Đức để đàn áp sự nổi loạn của Thụy Điển. Sự tồn tại của Thuế Eo biển Øresund biến Đan Mạch thành một cái gai trong mắt mọi quốc gia có lợi ích hàng hải tại Châu Âu, liên tục kích động các cuộc chiến tranh phong tỏa kinh tế và cướp biển được tài trợ ngầm.",
+          "summary": "Thuế Eo biển Øresund: Loại thuế hàng hải tàn nhẫn được Vua Đan Mạch áp đặt lên mọi tàu thuyền đi qua eo biển Øresund (The Sound) - cửa ngõ duy nhất nối liền Biển Baltic và Biển Bắc. Nguồn thu nhập lớn nhất của triều đình Đan Mạch, chiếm tới hai phần ba ngân khố quốc gia, là nguyên nhân sâu xa của vô số cuộc chiến tranh trên biển.",
+          "keys": [
+            "Thuế Eo biển Øresund",
+            "Sound Dues",
+            "Thuế Sund",
+            "Øresundstolden",
+            "Eo biển Øresund",
+            "Helsingør",
+            "Helsingborg"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_denmark",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "prov_bo-bien-baltic",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_di-san-viking",
+          "title": "Di sản Viking",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Di sản Viking:\n- Định nghĩa: Những tàn dư về văn hóa, tư duy chiến tranh và ma thuật hàng hải từ Kỷ nguyên Viking cổ đại vẫn còn ăn sâu vào tiềm thức và xã hội của các dân tộc Bắc Âu.\n- Phân loại: Văn hóa xã hội, Tư duy quân sự.\n- Trạng thái/Cấp độ: Mặc dù đã cải đạo sang Công giáo La Mã, người Scandinavia vẫn duy trì một lối sống bạo lực, thực dụng và tôn thờ sức mạnh cá nhân trên biển cả.\n\n## Ảnh hưởng Tâm lý và Chiến thuật Đổ bộ của Di sản Viking:\nSự kết thúc của Kỷ nguyên Viking không đồng nghĩa với việc người Bắc Âu từ bỏ biển cả. Di sản Viking để lại một tầng lớp chiến binh (đặc biệt là Tộc Băng Tộc - Frostborn) coi việc cướp bóc và chiến tranh trên biển là những nghề nghiệp danh giá nhất. Khái niệm về danh dự của họ gắn liền với sự dũng cảm trong các trận giáp lá cà trên boong tàu và việc không bao giờ lùi bước trước cái chết.\n\nChiến thuật quân sự của Đan Mạch và Thụy Điển vẫn mang đậm dấu ấn của tổ tiên: Sử dụng các đội tàu di chuyển cực nhanh (nhờ sự hỗ trợ của Ma pháp Phong hệ và Thủy hệ) để chọc thủng phòng tuyến của đối phương, đổ bộ chớp nhoáng lên bờ biển, cướp bóc kho tàng, đốt phá bến cảng và rút lui trước khi lực lượng kỵ binh bọc thép của kẻ thù kịp tập hợp.\n\n## Tín ngưỡng Ngầm và Xã hội Hàng hải:\nMặc dù Giáo hội Công giáo đã xây dựng các nhà thờ bằng đá khắp Đan Mạch và Thụy Điển, ở những vùng hẻo lánh của Na Uy hay những khu rừng sâu của Thụy Điển, các nghi thức tôn thờ tinh linh tự nhiên, ma thuật bói toán bằng chữ Rune (Cổ ngữ) và các câu chuyện về Valhalla vẫn được truyền miệng bí mật.\n\nDi sản này cũng dung túng cho sự tồn tại của những băng nhóm hải tặc độc lập (như Victual Brothers ở đảo Gotland). Xã hội Bắc Âu chấp nhận việc những kẻ sống ngoài vòng pháp luật, miễn là họ chứng minh được sức mạnh trên biển, có thể dễ dàng được hoàng gia ân xá và tuyển mộ làm các đô đốc hải quân tư nhân (Privateers) để phục vụ cho các lợi ích thương mại của vương quốc.",
+          "summary": "Di sản Viking: Những tàn dư về văn hóa, tư duy chiến tranh và ma thuật hàng hải từ Kỷ nguyên Viking cổ đại vẫn còn ăn sâu vào tiềm thức và xã hội của các dân tộc Bắc Âu. Mặc dù đã cải đạo sang Công giáo La Mã, người Scandinavia vẫn duy trì một lối sống bạo lực, thực dụng và tôn thờ sức mạnh cá nhân trên biển cả.",
+          "keys": [
+            "Di sản Viking",
+            "Viking Legacy",
+            "Văn hóa Viking",
+            "Viking",
+            "Kỷ nguyên Viking",
+            "Valhalla"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "concept_che-do-lanh-chua-voivode",
+          "title": "Chế độ Lãnh chúa Voivode",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Chế độ Lãnh chúa Voivode:\n- Định nghĩa: Mô hình quân chủ quân sự hóa cao độ tại vùng Balkan (đặc biệt là Wallachia và Moldavia), nơi người đứng đầu nắm giữ quyền sinh sát tuyệt đối.\n- Phân loại: Thể chế phong kiến quân sự.\n- Trạng thái/Cấp độ: Đang phải gồng mình chống đỡ sức ép từ Đế chế Ottoman và các Công quốc Ma cà rồng, vận hành dựa trên sự tàn bạo và chiến thuật tiêu thổ.\n\n## Cơ chế Quyền lực và Cấu trúc Quân sự của Chế độ Lãnh chúa Voivode:\nTại các vương quốc Tây Âu, quyền lực của nhà vua bị giới hạn bởi giới quý tộc và hiến chương. Nhưng tại vùng Balkan, chức vị Voivode (Lãnh chúa hoặc Thân vương) đồng nghĩa với chức danh thống soái quân đội tối cao. Các Voivode (thường mang huyết mạch Long Duệ) cai trị bằng sự tàn nhẫn và bạo lực vật lý. Bất kỳ sự phản kháng nào từ giới quý tộc địa phương (Boyar) đều bị đáp trả bằng các cuộc thanh trừng đẫm máu và những rừng cọc xiên người.\n\nQuân đội của Voivode không phải là lính đánh thuê đắt đỏ mà là sự tổng động viên toàn dân. Mọi nam giới từ nông dân đến thợ rèn đều phải mang vũ khí ra trận khi có lệnh. Tuy nhiên, sự thiếu hụt trang bị và hỏa khí khiến lực lượng này không thể đối đầu trực diện với bộ binh Janissary hay pháo binh khổng lồ của Đế chế Ottoman trên các bình nguyên rộng lớn.\n\n## Chiến thuật Tiêu thổ và Nền kinh tế Chiến tranh:\nKinh tế của chế độ Voivode là một nền kinh tế sinh tồn khắc nghiệt. Khi quân Ottoman tràn qua sông Danube, các Voivode áp dụng triệt để chiến thuật vườn không nhà trống. Họ đốt sạch đồng lúa, phá hủy cầu đường, thả chất độc hoặc xác chết mang mầm bệnh vào các giếng nước.\n\nNhân dân phải lùi sâu vào rặng núi Carpathian để lẩn trốn, để lại một vùng bình địa chết chóc không có lương thực cho kẻ thù. Dù hiệu quả trong việc bẻ gãy đường tiếp tế của đối phương, chiến thuật này khiến nền kinh tế của Wallachia vĩnh viễn nằm trong trạng thái kiệt quệ, không thể tích lũy tư bản để phát triển các đô thị hay mạng lưới thương mại như phần còn lại của Lục địa Europa.",
+          "summary": "Chế độ Lãnh chúa Voivode: Mô hình quân chủ quân sự hóa cao độ tại vùng Balkan (đặc biệt là Wallachia và Moldavia), nơi người đứng đầu nắm giữ quyền sinh sát tuyệt đối. Đang phải gồng mình chống đỡ sức ép từ Đế chế Ottoman và các Công quốc Ma cà rồng, vận hành dựa trên sự tàn bạo và chiến thuật tiêu thổ.",
+          "keys": [
+            "Chế độ Lãnh chúa Voivode",
+            "Chế độ Voivode",
+            "Voivode System",
+            "Lãnh chúa Balkan",
+            "Voivode",
+            "Lãnh chúa Voivode"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "prov_transylvania",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "nation_ottoman",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_wallachia",
+              "pullWeight": 0.5
+            }
+          ]
+        },
+        {
+          "id": "concept_chu-nghia-gia-dinh-tri-giao-hoang",
+          "title": "Chủ nghĩa Gia đình trị Giáo hoàng",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Chủ nghĩa Gia đình trị Giáo hoàng:\n- Định nghĩa: Thực tiễn chính trị thâm căn cố đế tại Quốc gia Giáo hoàng, nơi các vị Giáo hoàng lạm dụng quyền lực để bổ nhiệm người thân (đặc biệt là các cháu trai) vào các vị trí tối cao.\n- Phân loại: Cơ chế thao túng quyền lực, Tham nhũng thần quyền.\n- Trạng thái/Cấp độ: Là nguyên nhân gây ra sự thối nát tột độ của Giáo hội, nhưng lại là công cụ sinh tồn duy nhất của một vị Giáo hoàng giữa bầy sói Vatican.\n\n## Cơ chế Vận hành của Chủ nghĩa Gia đình trị Giáo hoàng:\nNgai vàng của Thánh Peter không mang tính thế tập. Khi một Giáo hoàng đắc cử, ông ta thường là một ông lão bị bủa vây bởi các Hồng y thù địch thuộc các phe phái đối lập. Để bảo vệ tính mạng và đảm bảo các sắc lệnh của mình được thực thi, Giáo hoàng buộc phải phong tước Hồng y cho các cháu trai của mình (Cardinal-Nephew), bất chấp việc chúng có đủ tư cách đạo đức hay năng lực ma pháp hay không.\n\nNgười cháu trai này sẽ đóng vai trò là cánh tay phải, kiểm soát quân đội đánh thuê của Quốc gia Giáo hoàng, quản lý ngân khố và thay mặt Giáo hoàng điều hành Tòa án Dị giáo. Sự tập trung quyền lực này tạo ra những triều đại gia đình ngắn ngủi nhưng cực kỳ tàn bạo và tham lam.\n\n## Tác động Chính trị và Sự phẫn nộ của Lục địa Europa:\nChủ nghĩa gia đình trị cho phép các gia tộc gốc của Giáo hoàng vơ vét của cải của toàn bộ thế giới Cơ đốc giáo để xây dựng các cung điện xa hoa, mua sắm các ma cụ đắt tiền và tích lũy đất đai tại Ý.\n\nTuy nhiên, điều này cũng làm xói mòn nghiêm trọng tính chính danh của Ma pháp Thần thánh. Các phong trào cải cách và dị giáo (như Hussite ở Bohemia) sử dụng chính sự xa hoa và thối nát của các \"Hồng y cháu trai\" này làm bằng chứng cho thấy Giáo hội đã bị quỷ dữ thao túng, đẩy Lục địa Europa vào những cuộc chiến tranh tôn giáo đẫm máu.",
+          "summary": "Chủ nghĩa Gia đình trị Giáo hoàng: Thực tiễn chính trị thâm căn cố đế tại Quốc gia Giáo hoàng, nơi các vị Giáo hoàng lạm dụng quyền lực để bổ nhiệm người thân (đặc biệt là các cháu trai) vào các vị trí tối cao. Là nguyên nhân gây ra sự thối nát tột độ của Giáo hội, nhưng lại là công cụ sinh tồn duy nhất của một vị Giáo hoàng giữa bầy sói Vatican.",
+          "keys": [
+            "Chủ nghĩa Gia đình trị Giáo hoàng",
+            "Papal Nepotism",
+            "Gia đình trị Giáo hoàng",
+            "Hồng y cháu trai",
+            "Cardinal-Nephew",
+            "Quốc gia Giáo hoàng"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_papal",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "org_giao-hoi-cong-giao",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_ban-giay-xa-toi",
+          "title": "Bán Giấy xá tội",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Lề lối Bán Giấy xá tội:\n- Định nghĩa: Cơ chế tài chính gây tranh cãi của Giáo hội Công giáo, cho phép tín đồ dùng tiền vàng để mua sự tha thứ cho các tội lỗi và giảm bớt thời gian linh hồn phải chịu hình phạt ở Luyện ngục.\n- Phân loại: Guồng kinh tế thần quyền, Giao dịch tâm linh.\n- Trạng thái/Cấp độ: Nguồn thu nhập khổng lồ tài trợ cho các công trình vĩ đại tại Rome, nhưng là ngòi nổ cho sự phẫn nộ của giới bình dân.\n\n## Nguyên lý Ma pháp và Tài chính của Lề lối Bán Giấy xá tội:\nVề mặt lý thuyết thần học, Giáo hội tuyên bố họ nắm giữ \"Kho tàng Công đức\" (Treasury of Merit) vô tận do các Thánh và Đấng Sáng Tạo tích lũy. Thông qua Giấy xá tội (Indulgences), Giáo hoàng có thể phân phát một phần công đức này cho những kẻ tội lỗi.\n\nTrong thực tế ma pháp, Giấy xá tội là những cuộn giấy da được các tu sĩ cấp cao yểm một lượng ma lực Quang hệ cực nhỏ. Khi người mua truyền máu hoặc ma lực của mình vào tờ giấy, nó sẽ phát sáng, tạo ra một ảo giác tâm lý về sự thanh thản và gột rửa tội lỗi. Các \"Người bán giấy xá tội\" (Pardoners) đi khắp các vương quốc Châu Âu, sử dụng tài hùng biện và Huyễn thuật nhẹ để khủng bố tinh thần người dân về ngọn lửa địa ngục, ép họ phải dốc cạn những đồng tiền cuối cùng.\n\n## Tác động Kinh tế và Sự rạn nứt Tôn giáo:\nTiền thu được từ Giấy xá tội chảy thẳng về các ngân hàng của Gia tộc Medici tại Florence trước khi được chuyển về Vatican. Nguồn tài chính này được dùng để xây dựng các nhà thờ bằng đá cẩm thạch khổng lồ, mua sắm vũ khí và trả lương cho các đội quân Thập Tự Chinh.\n\nTuy nhiên, sự thương mại hóa trắng trợn này đã khiến giới quý tộc phương Bắc và các học giả vô cùng phẫn nộ. Họ nhận ra rằng Quốc gia Giáo hoàng đang dùng sự sợ hãi tâm linh để bòn rút tài nguyên của quốc gia họ, tạo tiền đề cho những cuộc ly giáo vĩ đại sẽ xé nát Lục địa Europa trong tương lai.",
+          "summary": "Bán Giấy xá tội: Cơ chế tài chính gây tranh cãi của Giáo hội Công giáo, cho phép tín đồ dùng tiền vàng để mua sự tha thứ cho các tội lỗi và giảm bớt thời gian linh hồn phải chịu hình phạt ở Luyện ngục. Nguồn thu nhập khổng lồ tài trợ cho các công trình vĩ đại tại Rome, nhưng là ngòi nổ cho sự phẫn nộ của giới bình dân.",
+          "keys": [
+            "Bán Giấy xá tội",
+            "Sale of Indulgences",
+            "Giấy xá tội",
+            "Indulgences",
+            "Kinh tế Giáo hoàng",
+            "Treasury of Merit",
+            "Pardoners",
+            "Người bán giấy xá tội"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "org_giao-hoi-cong-giao",
+              "pullWeight": 0.7
+            }
+          ],
+          "variants": [
+            {
+              "audience": "nation_giao-trieu",
+              "content": "## Giấy xá tội, theo Giáo triều:\n\nGiấy xá tội không bán ơn tha thứ. Ơn tha thứ đến từ xưng tội và ăn năn, và không đồng tiền nào mua được nó. Cái giấy này giảm phần đền tội ở Luyện ngục, rút từ Kho tàng Công nghiệp mà các thánh đã tích lại — và Giáo hội có quyền phân phát kho ấy.\n\nCủa dâng đi kèm là một việc lành, giống như bố thí. Nó xây nhà thờ, nuôi bệnh viện, trả tiền cho hạm đội chống Ottoman. Ai chê nó thì hãy nói xem lấy gì trả cho những thứ đó.\n\nChỗ hỏng nằm ở các sứ giả đi rao. Họ ăn hoa hồng, nên họ hứa nhiều hơn sắc chỉ cho phép, và có kẻ đã rao rằng đồng tiền vừa kêu leng keng là linh hồn vừa bay khỏi lửa. Giáo triều đã cấm câu đó ba lần. Người ta vẫn rao."
+            },
+            {
+              "audience": "nation_hre",
+              "content": "## Giấy xá tội, theo các Đẳng cấp Đế quốc:\n\nMỗi năm có một dòng bạc chảy từ đất Đức về Ý, và nó không chảy ngược lại bao giờ.\n\nMột sứ giả bán giấy xá tội đi qua một tỉnh trong ba tháng có thể lấy đi nhiều bạc hơn cả năm thuế của tỉnh ấy. Bạc đó không xây nhà thờ ở đây — nó xây nhà thờ ở Rome, trả cho thợ đá Ý, và nuôi họ hàng của Giáo hoàng.\n\nCác lãnh chúa đã học cách chặn: đòi chia phần trước khi cho sứ giả vào đất mình, hoặc đơn giản là đóng cổng. Chia phần thì thành đồng phạm, đóng cổng thì bị dọa vạ. Phần lớn chọn chia phần.\n\nDân chúng thì không có lựa chọn nào cả. Họ mua, vì người bên cạnh mua, và vì cha xứ đọc tên người mua ở nhà thờ ngày chủ nhật."
+            },
+            {
+              "audience": "race_lam-tien",
+              "content": "## Giấy xá tội, nhìn từ ngoài đức tin ấy:\n\nHọ bán một tờ giấy để đổi lấy thời gian trong một nơi họ chưa từng thấy, cho một linh hồn họ không đo được, theo giá do một người sống ấn định.\n\nĐiều lạ không phải là có kẻ bán. Điều lạ là có kẻ mua, và mua rất nhiều, và mua bằng tiền lẽ ra để qua mùa đông.\n\nCó một chỗ đáng học ở đây, và các bô lão của chúng ta nhắc nó mỗi khi có kẻ trẻ tuổi coi thường Nhân loại: giống loài này biến nỗi sợ chết thành một món hàng, rồi dựng cả một mạng lưới nhà băng quanh món hàng ấy. Chúng ta sống lâu gấp năm họ và chưa bao giờ nghĩ ra thứ gì giống thế."
+            }
+          ]
+        },
+        {
+          "id": "concept_rut-phep-thong-cong",
+          "title": "Rút phép thông công",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Quyền Rút phép thông công:\n- Định nghĩa: Vũ khí tâm linh, chính trị và ma thuật tối thượng của Giáo hội Công giáo, dùng để cắt đứt hoàn toàn một cá nhân, một thành phố hoặc một quốc gia khỏi sự cứu rỗi và cộng đồng Cơ đốc giáo.\n- Phân loại: Lệnh trừng phạt tôn giáo, Nguyền rủa diện rộng.\n- Trạng thái/Cấp độ: Lưỡi gươm treo trên đầu mọi vị vua và Hoàng đế tại Châu Âu, có khả năng kích hoạt các cuộc nổi loạn và chiến tranh hợp pháp.\n\n## Cơ chế Ma thuật của Quyền Rút phép thông công:\nRút phép thông công không chỉ là một văn bản trục xuất. Khi Giáo hoàng ban hành lệnh Tuyệt thông (Excommunication) hoặc Lệnh cấm (Interdict) lên một vùng lãnh thổ, các ma trận Thần thánh kết nối với mạng lưới nhà thờ tại khu vực đó sẽ bị ngắt kết nối hoàn toàn.\n\nHậu quả vật lý và ma thuật ngay lập tức xảy ra: Các tu sĩ không thể thi triển Ma pháp Chữa lành, các thánh tích mất đi khả năng xua đuổi tà ma, và các kết giới bảo vệ thành phố trước sinh vật Ám hệ bị vô hiệu hóa. Người chết không được cử hành tang lễ ma thuật, dẫn đến nguy cơ xác sống trỗi dậy. Vùng đất bị rút phép thông công trở thành một vùng tối ma thuật, dễ dàng bị các loài ma thú và dịch bệnh càn quét.\n\n## Tác động Địa chính trị của Quyền Rút phép thông công:\nVề mặt chính trị, khi một vị vua bị rút phép thông công, mọi thần dân và chư hầu của ông ta được Giáo hội giải phóng khỏi lời thề trung thành. Bất kỳ vương quốc láng giềng nào cũng có quyền hợp pháp để phát động Thánh chiến, xâm lược và chiếm đoạt lãnh thổ của vị vua đó mà không bị coi là kẻ xâm lược.\n\nVũ khí này mang lại cho Quốc gia Giáo hoàng quyền lực chi phối toàn bộ Lục địa Europa mà không cần một đội quân khổng lồ. Tuy nhiên, nếu lạm dụng quá mức, các vị vua (như tại Vương quốc Pháp) có thể sử dụng quyền lực quân sự để bắt cóc Giáo hoàng hoặc thiết lập một Giáo hội đối lập, dẫn đến sự phân liệt thần quyền.",
+          "summary": "Rút phép thông công: Vũ khí tâm linh, chính trị và ma thuật tối thượng của Giáo hội Công giáo, dùng để cắt đứt hoàn toàn một cá nhân, một thành phố hoặc một quốc gia khỏi sự cứu rỗi và cộng đồng Cơ đốc giáo. Lưỡi gươm treo trên đầu mọi vị vua và Hoàng đế tại Châu Âu, có khả năng kích hoạt các cuộc nổi loạn và chiến tranh hợp pháp.",
+          "keys": [
+            "Rút phép thông công",
+            "Excommunication",
+            "Tuyệt thông",
+            "Lệnh cấm Interdict",
+            "Interdict"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "org_giao-hoi-cong-giao",
+              "pullWeight": 0.7
+            }
+          ],
+          "variants": [
+            {
+              "audience": "nation_giao-trieu",
+              "content": "## Vạ tuyệt thông, theo Giáo triều:\n\nĐây là thứ vũ khí cuối cùng, và giá trị của nó nằm ở chỗ ít khi rút ra.\n\nKẻ bị vạ không được dự thánh lễ, không được chôn trong đất thánh, và mọi lời thề trung thành với hắn đều tan. Vế cuối mới là vế thật: một bá tước bị vạ thì chư hầu của hắn được phép bỏ hắn mà không mang tội bội thề. Không cần một người lính nào, quân của hắn tự tan.\n\nNặng hơn là lệnh cấm đặt lên cả một xứ: nhà thờ đóng cửa, chuông im, trẻ con không được rửa tội. Nó không nhắm vào lãnh chúa mà nhắm vào dân của lãnh chúa, để dân ép lãnh chúa quy phục.\n\nGiáo triều biết rõ điều này: dùng ba lần trong một đời Giáo hoàng thì nó là sấm sét; dùng ba mươi lần thì nó là tiếng ồn."
+            },
+            {
+              "audience": "nation_hre",
+              "content": "## Vạ tuyệt thông, theo các lãnh chúa Đế quốc:\n\nHỏi bất cứ ai đã sống qua thời Canossa: một tờ sắc chỉ có thể lột sạch quân của ngài trong hai tuần mà không cần một mũi tên.\n\nNhưng nó đã cùn đi nhiều. Trong một trăm năm qua có quá nhiều vạ được ban vì tranh chấp tiền bạc và tranh chấp bổ nhiệm, tới mức bây giờ dân chúng hỏi lại: vạ này vì đức tin hay vì Rome chưa nhận đủ tiền?\n\nCách chống thì ai cũng biết. Kháng nghị lên một Công đồng chung — vì Công đồng đứng trên Giáo hoàng, ít nhất là theo phe Basel. Giữ vài giám mục trong đất mình chịu tiếp tục làm lễ. Và trên hết, đừng bị vạ một mình: bốn lãnh chúa cùng bị vạ thì đó không còn là hình phạt, đó là một cuộc chiến."
+            },
+            {
+              "audience": "nation_dong-la-ma",
+              "content": "## Vạ tuyệt thông, theo Constantinople:\n\nGiám mục Rome ban vạ cho Thượng phụ của chúng ta, Thượng phụ ban vạ lại cho ông ta. Đó là năm 1054, và bốn thế kỷ trôi qua chẳng ai chết vì nó.\n\nĐiều đó cho thấy vũ khí ấy chỉ có sức mạnh bên trong bầy của nó. Với người ngoài, nó là một tờ giấy.\n\nCái đáng sợ với chúng ta không phải là vạ. Cái đáng sợ là điều đi kèm nó: khi Rome tuyên bố một dân tộc nằm ngoài Giáo hội, thì tài sản của dân tộc ấy không còn được luật Cơ đốc bảo vệ, và hạm đội của Venice hiểu điều đó rất nhanh. Năm 1204 họ đã hiểu nó một lần rồi."
+            }
+          ]
+        },
+        {
+          "id": "concept_le-loi-linh-danh-thue-condottieri",
+          "title": "Lề lối Lính đánh thuê Condottieri",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Lề lối Lính đánh thuê Condottieri:\n- Định nghĩa: Mô hình quân sự đặc thù tại Bán đảo Ý, nơi các cuộc chiến tranh được phó mặc hoàn toàn cho các đại đội quân sự tư nhân do các chỉ huy (Condottieri) lãnh đạo.\n- Phân loại: Chế độ quân sự hợp đồng, Quân đội tư nhân.\n- Trạng thái/Cấp độ: Xương sống của mọi cuộc xung đột tại Ý, thay thế hoàn toàn lực lượng dân binh và kỵ binh phong kiến truyền thống.\n\n## Cơ chế Hợp đồng và Ma pháp Huyết thệ của Lề lối Lính đánh thuê Condottieri:\nTại Bán đảo Ý, các thành bang giàu có như Venice, Florence hay Milan không muốn lãng phí nhân lực thương mại vào việc chém giết. Thay vào đó, họ ký kết các \"Condotta\" (Hợp đồng) với các chỉ huy lính đánh thuê. Các Condottieri này tự bỏ tiền túi để chiêu mộ, huấn luyện và trang bị cho binh lính của mình.\n\nĐể đảm bảo lòng trung thành trong một môi trường đầy rẫy sự phản trắc, các bản hợp đồng này thường được yểm Ma pháp Huyết thệ (Blood Magic). Một khi Condottieri đã nhỏ máu ký kết, việc nhận hối lộ để quay lưng lại với chủ nhân trên chiến trường sẽ khiến họ phải chịu những cơn đau đớn xé rách tâm trí. Tuy nhiên, giới Condottieri cực kỳ xảo quyệt; họ luôn tìm ra những lỗ hổng pháp lý ma thuật để chấm dứt hợp đồng sớm nếu nhận được một cái giá cao hơn từ phe đối địch.\n\n## Chiến thuật Cầm chừng và Tác động Chính trị của Lề lối Lính đánh thuê Condottieri:\nĐặc điểm kỳ lạ nhất của các cuộc chiến Condottieri là sự hạn chế đổ máu. Binh lính là tài sản quý giá của người chỉ huy, do đó họ hiếm khi lao vào các cuộc tàn sát sinh tử như quân đội Pháp hay Ottoman. Các trận đánh thường mang tính chất biểu diễn chiến thuật, sử dụng Huyễn thuật để đánh lừa đối phương, và kết thúc bằng việc bao vây bắt sống các tướng lĩnh để đòi tiền chuộc khổng lồ.\n\nQuyền lực quân sự độc lập này biến các Condottieri thành những con quái vật chính trị. Những chỉ huy kiệt xuất không chỉ chiến đấu vì tiền, mà còn dùng chính quân đội của mình để uy hiếp giới chủ lao động, ép buộc họ phải trao tặng các thái ấp hoặc tước vị. Sự trỗi dậy của Gia tộc Sforza tại Công quốc Milan là minh chứng rõ ràng nhất cho việc một Condottiere có thể dùng gươm giáo để đoạt lấy vương miện của một quốc gia.",
+          "summary": "Lề lối Lính đánh thuê Condottieri: Mô hình quân sự đặc thù tại Bán đảo Ý, nơi các cuộc chiến tranh được phó mặc hoàn toàn cho các đại đội quân sự tư nhân do các chỉ huy (Condottieri) lãnh đạo. Xương sống của mọi cuộc xung đột tại Ý, thay thế hoàn toàn lực lượng dân binh và kỵ binh phong kiến truyền thống.",
+          "keys": [
+            "Lề lối Lính đánh thuê Condottieri",
+            "Condottieri System",
+            "Condottieri",
+            "Lính đánh thuê Ý",
+            "Condotta",
+            "Lính đánh thuê",
+            "Đại đội quân sự tư nhân"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "concept_nen-kinh-te-vuong-quoc-phap",
+          "title": "Nền Kinh tế Vương quốc Pháp",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Nền Kinh tế Vương quốc Pháp:\n- Định nghĩa: Guồng sản xuất nông nghiệp, thương mại và cơ chế thu thuế khổng lồ cung cấp tài chính cho sự sinh tồn và bành trướng của ngai vàng Pháp.\n- Phân loại: Kinh tế phong kiến quân sự hóa.\n- Trạng thái/Cấp độ: Đang trong quá trình phục hồi cưỡng bức sau nhiều thập kỷ bị tàn phá bởi Chiến tranh Trăm Năm, bị đè nặng bởi các loại thuế trực thu hà khắc.\n\n## Nền tảng Nông nghiệp và Sản vật Ma thuật tại Vương quốc Pháp:\nSức mạnh cốt lõi của Pháp không nằm ở các mỏ bạc như Bohemia hay thương mại hàng hải như Liên minh Hanse, mà nằm ở nguồn tài nguyên đất đai vô tận. Những bình nguyên màu mỡ kéo dài từ Normandy đến Languedoc cung cấp lượng lúa mì khổng lồ, nuôi sống một dân số đông đảo nhất Lục địa Europa.\n\nSản vật xuất khẩu đắt giá nhất của Pháp là rượu vang ma thuật từ các vùng như Bordeaux và Champagne. Những vườn nho tại đây được chăm sóc bởi các nông dân sử dụng ma pháp Thổ và Thủy hệ mức độ thấp, tạo ra những loại rượu vang không chỉ có hương vị tuyệt hảo mà còn chứa đựng khả năng phục hồi sinh lực và làm dịu cơn đau do chấn thương ma pháp. Rượu vang Pháp là thứ tiền tệ ngoại giao được ưa chuộng tại mọi cung điện trên khắp Châu Âu.\n\n## Phép Thuế khóa tàn khốc: Taille và Gabelle:\nĐể duy trì cuộc chiến đẫm máu với Vương quốc Anh, triều đình Pháp đã áp đặt một phép thuế khóa được coi là tàn nhẫn nhất lục địa. Loại thuế quan trọng nhất là Taille, một dạng thuế trực thu đánh vào đất đai và tài sản của giới bình dân. Điểm đặc biệt là giới giáo sĩ và quý tộc (những người có nghĩa vụ chiến đấu) được miễn hoàn toàn loại thuế này, đổ dồn toàn bộ gánh nặng tài chính lên vai nông dân và tầng lớp tư sản thành thị.\n\nBên cạnh Taille là Gabelle, thuế độc quyền về muối. Trong thế giới này, muối không chỉ dùng để bảo quản thực phẩm mà còn là nguyên liệu thiết yếu để lập các vòng tròn phong ấn tà thuật và tinh chế ma thạch. Triều đình độc quyền bán muối với giá cắt cổ, tạo ra nguồn thu khổng lồ nhưng đồng thời cũng kích động vô số các cuộc buôn lậu và bạo loạn đẫm máu.\n\n## Tình cảnh điêu tàn của vùng nông thôn Vương quốc Pháp:\nVào năm 1444, bất chấp nguồn thu khổng lồ, vùng nông thôn nước Pháp mang đầy vết sẹo. Khi các lệnh đình chiến tạm thời được ký kết, hàng ngàn lính đánh thuê bị sa thải (được gọi là Écorcheurs, hay \"Kẻ lột da\") lang thang khắp các miền quê. Chúng cướp bóc lương thực, bắt cóc pháp sư làng và tàn sát nông dân, tạo ra một lỗ hổng kinh tế nghiêm trọng mà ngạch Bailli của nhà vua vẫn chưa thể hoàn toàn kiểm soát.",
+          "summary": "Nền Kinh tế Vương quốc Pháp: Guồng sản xuất nông nghiệp, thương mại và cơ chế thu thuế khổng lồ cung cấp tài chính cho sự sinh tồn và bành trướng của ngai vàng Pháp. Đang trong quá trình phục hồi cưỡng bức sau nhiều thập kỷ bị tàn phá bởi Chiến tranh Trăm Năm, bị đè nặng bởi các loại thuế trực thu hà khắc.",
+          "keys": [
+            "Nền Kinh tế Vương quốc Pháp",
+            "French Economy",
+            "Kinh tế Pháp",
+            "Thuế Taille",
+            "Thuế Gabelle",
+            "Écorcheurs",
+            "rượu vang ma thuật"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "concept_che-do-tu-tri-millet",
+          "title": "Chế độ Tự trị Millet",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Chế độ Tự trị Millet:\n- Định nghĩa: Khung pháp lý và xã hội cho phép các cộng đồng tôn giáo và chủng tộc thiểu số tự quản lý các vấn đề nội bộ bên trong Đế chế Ottoman.\n- Phân loại: Thể chế quản lý xã hội, Chính sách cai trị đa chủng tộc.\n- Trạng thái/Cấp độ: Công cụ ngoại giao sắc bén giúp Tộc Orc duy trì sự ổn định trên những vùng lãnh thổ rộng lớn ngập tràn các giống loài thù địch.\n\n## Cơ cấu Xã hội và Sự dung túng của Chế độ Tự trị Millet:\nĐế chế Ottoman bao trùm một vùng lãnh thổ khổng lồ với vô số chủng tộc (Nhân loại, Tiên, Bán Tiên, Người Thú) và tín ngưỡng (Chính thống giáo, Công giáo, Đa thần giáo). Thay vì ép buộc tất cả phải cải đạo bằng các giàn thiêu Lửa Thánh như Tòa án Dị giáo Châu Âu, Tộc Orc áp dụng một chính sách thực dụng hơn rất nhiều: Chế độ Millet.\n\nMỗi cộng đồng tôn giáo hoặc chủng tộc được tổ chức thành một Millet riêng biệt. Họ được phép bầu ra các lãnh đạo tinh thần (như Giáo trưởng hoặc Trưởng lão), tự do duy trì luật lệ gia đình, trường học và thậm chí là các phong tục ma pháp truyền thống của riêng mình. Sự dung túng này tạo ra một lớp vỏ bọc hòa bình, khiến nhiều nông dân Châu Âu và các pháp sư bị săn lùng sẵn sàng chấp nhận sự cai trị của Ottoman hơn là bị thiêu sống bởi chính đồng bào Cơ đốc giáo của họ.\n\n## Vai trò Kiểm soát Chủng tộc và Điều kiện đi kèm:\nTuy nhiên, sự tự do của Chế độ Millet không hề miễn phí. Để đổi lấy sự bảo vệ và quyền tự trị, các Millet phải chấp nhận thân phận công dân hạng hai. Họ bị cấm mang vũ khí hỏa khí, cấm cưỡi chiến mã, và không được phép xây dựng các công trình phòng ngự. \n\nQuan trọng nhất, các nhà lãnh đạo Millet phải chịu trách nhiệm hoàn toàn trước triều đình Ottoman về sự ngoan ngoãn của cộng đồng mình. Nếu một cuộc nổi loạn nổ ra từ một Millet, toàn bộ ban lãnh đạo của cộng đồng đó sẽ bị đưa ra xử trảm. Lề lối này biến các lãnh tụ tôn giáo và chủng tộc thành những viên cai ngục tự nguyện, giúp Tộc Orc kiểm soát hàng triệu sinh linh mà không cần tốn quá nhiều xương máu.",
+          "summary": "Chế độ Tự trị Millet: Khung pháp lý và xã hội cho phép các cộng đồng tôn giáo và chủng tộc thiểu số tự quản lý các vấn đề nội bộ bên trong Đế chế Ottoman. Công cụ ngoại giao sắc bén giúp Tộc Orc duy trì sự ổn định trên những vùng lãnh thổ rộng lớn ngập tràn các giống loài thù địch.",
+          "keys": [
+            "Chế độ Tự trị Millet",
+            "Ottoman Millet System",
+            "Millet",
+            "Chế độ Millet",
+            "Chính sách đa chủng tộc Ottoman"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "nation_ottoman",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_che-do-thai-ap-pomestye",
+          "title": "Chế độ Thái ấp Pomestye",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Chế độ Thái ấp Pomestye:\n- Định nghĩa: Chế độ phân phong đất đai quân sự đang được Đại Công quốc Muscovy áp dụng mạnh mẽ nhằm tập trung quyền lực và xây dựng quân đội thường trực.\n- Phân loại: Thể chế kinh tế - quân sự.\n- Trạng thái/Cấp độ: Công cụ cốt lõi giúp Muscovy trỗi dậy, dần thay thế quyền lực thế tập của giới quý tộc cũ.\n\n## Nguyên lý hoạt động của Chế độ Thái ấp Pomestye:\nTương tự như chế độ Timar của Đế chế Ottoman, Pomestye là những mảnh đất được Đại Công tước Muscovy cấp cho các kỵ binh và pháp sư chiến đấu (gọi là Pomeshchiki) làm phần thưởng cho sự phục vụ quân sự. Tuy nhiên, mảnh đất này không thuộc quyền sở hữu vĩnh viễn và không được truyền lại cho con cháu nếu người thừa kế không tiếp tục tòng quân.\n\nNgười giữ thái ấp có quyền khai thác sức lao động của nông dân trên mảnh đất đó để tự trang bị ngựa chiến, áo giáp và vũ khí. Khi có lệnh triệu tập từ điện Kremlin, họ bắt buộc phải có mặt ngay lập tức cùng với đội quân tùy tùng của mình.\n\n## Tác động xã hội và Sự trỗi dậy của Muscovy:\nChế độ Pomestye tạo ra một tầng lớp quý tộc quân sự mới, trung thành tuyệt đối với ngai vàng thay vì trung thành với dòng dõi gia tộc. Bằng cách tịch thu đất đai của những kẻ phản nghịch hoặc các công quốc bị thôn tính (như Tver hay Ryazan) và chia lại dưới dạng Pomestye, Muscovy không chỉ đè bẹp các thế lực cát cứ mà còn đảm bảo một nguồn nhân lực quân sự khổng lồ, liên tục được tái tạo để đối phó với các Hãn quốc phương Đông.",
+          "summary": "Chế độ Thái ấp Pomestye: Chế độ phân phong đất đai quân sự đang được Đại Công quốc Muscovy áp dụng mạnh mẽ nhằm tập trung quyền lực và xây dựng quân đội thường trực. Công cụ cốt lõi giúp Muscovy trỗi dậy, dần thay thế quyền lực thế tập của giới quý tộc cũ.",
+          "keys": [
+            "Chế độ Thái ấp Pomestye",
+            "Pomestye",
+            "Pomestye System",
+            "Thái ấp Pomestye",
+            "Pomeshchiki"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_muscovy",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_che-do-dien-trang-folwark",
+          "title": "Chế độ Điền trang Folwark",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Chế độ Điền trang Folwark:\n- Định nghĩa: Mô hình kinh tế nông nghiệp quy mô lớn dựa trên chế độ nông nô, do tầng lớp quý tộc Szlachta điều hành tại Ba Lan, Lithuania và các vùng lân cận.\n- Phân loại: Guồng kinh tế bóc lột, Chế độ nông nô.\n- Trạng thái/Cấp độ: Cột trụ tài chính của giới quý tộc Đông Âu, cung cấp lượng lương thực khổng lồ nuôi sống các đô thị phương Tây.\n\n## Cơ chế Vận hành và Bóc lột Nông nô của Chế độ Folwark:\nTrong khi nông dân ở Tây Âu đang dần thoát khỏi cảnh nông nô và trở thành những người thuê đất tự do, thì tại Đông Âu, giới quý tộc lại siết chặt gông cùm lên cổ người dân. Chế độ Folwark là những điền trang khổng lồ chuyên sản xuất lúa mì, lúa mạch và các loại ngũ cốc ma thuật.\n\nNgười nông dân sống trên đất Folwark bị trói buộc vĩnh viễn vào mảnh đất đó, không có quyền di cư, không có quyền sở hữu tài sản và phải làm việc không công (lao dịch) trên ruộng đất của lãnh chúa nhiều ngày trong tuần. Bất kỳ sự phản kháng hay bỏ trốn nào đều bị trừng phạt bằng những đòn tra tấn tàn khốc. Các pháp sư Thổ hệ của giới quý tộc thường xuyên thiết lập các ma trận rào cản quanh điền trang để ngăn chặn nông dân trốn thoát sang các vùng đất tự do ở phía Đông (như Ghềnh thác Dnieper).\n\n## Xuất khẩu Lúa mì và Vai trò Kinh tế của Chế độ Folwark:\nMục tiêu tối thượng của Folwark không phải là tự cung tự cấp, mà là xuất khẩu. Lúa mì thu hoạch được từ mồ hôi nước mắt của nông nô được vận chuyển dọc theo dòng sông Vistula đến bến cảng Danzig (Gdańsk) trên biển Baltic. Từ đây, Liên minh Hanse và các thương thuyền Tây Âu sẽ thu mua và phân phối đi khắp lục địa.\n\nSự bùng nổ dân số và các cuộc chiến tranh liên miên ở Pháp, Anh, Ý tạo ra nhu cầu lương thực khổng lồ. Việc bán lúa mì mang lại cho giới Szlachta những dòng tiền vàng bất tận, cho phép họ xây dựng những lâu đài xa hoa, mua sắm vũ khí ma thuật và trang phục lụa là đắt tiền, trong khi phần lớn đất nước vẫn chìm trong cảnh nghèo đói và lạc hậu về mặt công nghiệp.",
+          "summary": "Chế độ Điền trang Folwark: Mô hình kinh tế nông nghiệp quy mô lớn dựa trên chế độ nông nô, do tầng lớp quý tộc Szlachta điều hành tại Ba Lan, Lithuania và các vùng lân cận. Cột trụ tài chính của giới quý tộc Đông Âu, cung cấp lượng lương thực khổng lồ nuôi sống các đô thị phương Tây.",
+          "keys": [
+            "Chế độ Điền trang Folwark",
+            "Folwark System",
+            "Nông nô Ba Lan",
+            "Folwark",
+            "Nền kinh tế Folwark",
+            "điền trang Folwark"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_lithuania",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_poland",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_nghiep-khai-khoang-bergslagen",
+          "title": "Nghiệp Khai khoáng Bergslagen",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Nghiệp Khai khoáng Bergslagen:\n- Định nghĩa: Trái tim công nghiệp luyện kim và khai khoáng của Vương quốc Thụy Điển, nằm ở khu vực miền Trung Thụy Điển (Svealand), chuyên sản xuất sắt, đồng và bạc ma thuật.\n- Phân loại: Guồng lò rèn nặng, Nền tảng kinh tế quốc gia.\n- Trạng thái/Cấp độ: Cung cấp tới một phần ba lượng sắt và hai phần ba lượng đồng cho toàn bộ Lục địa Europa, là động lực tài chính chính cho các phong trào ly khai của Thụy Điển.\n\n## Cơ cấu Xã hội và Phương thức Khai thác tại Bergslagen:\nKhác với chế độ nông nô Folwark ở Đông Âu hay sự độc quyền của các phường hội Tộc Lùn tại dãy Alps, guồng Bergslagen được vận hành bởi các Bergsmän (Nông dân kiêm Thợ mỏ tự do). Họ là những người dân Thụy Điển được nhà vua ban cho đặc quyền tự tổ chức khai thác quặng, nung chảy kim loại và bán ra thị trường, đổi lại họ phải nộp một phần mười sản lượng cho ngai vàng.\n\nViệc khai thác ở Bergslagen cực kỳ khắc nghiệt. Các thợ mỏ phải đào sâu xuống những lớp đá granite cứng như thép. Họ sử dụng phương pháp đốt lửa (fire-setting) kết hợp với Ma pháp Thổ hệ và Hỏa hệ mức độ thấp để làm nứt đá. Nước ngầm liên tục tràn vào các hầm mỏ, buộc họ phải chế tạo các cỗ máy bơm nước khổng lồ chạy bằng sức nước từ các con sông trên bề mặt.\n\n## Động lực Chính trị và Sự sụp đổ của Liên minh Kalmar:\nSự giàu có từ các mỏ quặng tại Bergslagen (đặc biệt là Mỏ Đồng Lớn ở Falun) đã tạo ra một tầng lớp thương nhân và quý tộc Thụy Điển vô cùng quyền lực. Tuy nhiên, triều đình Đan Mạch lại muốn độc quyền thu mua kim loại này với giá rẻ mạt và đánh thuế xuất khẩu nặng nề để phục vụ cho các cuộc chiến của riêng Đan Mạch.\n\nSự xung đột lợi ích cốt lõi này đã châm ngòi cho vô số các cuộc nổi dậy (như Cuộc nổi dậy Engelbrekt năm 1434). Những người thợ mỏ Bergslagen, được trang bị nỏ và vũ khí bằng thép chất lượng cao do chính tay họ rèn ra, đã trở thành lực lượng quân sự nòng cốt hỗ trợ giới quý tộc Thụy Điển trong nỗ lực đẫm máu nhằm thoát khỏi sự cai trị của Đan Mạch.",
+          "summary": "Nghiệp Khai khoáng Bergslagen: Trái tim công nghiệp luyện kim và khai khoáng của Vương quốc Thụy Điển, nằm ở khu vực miền Trung Thụy Điển (Svealand), chuyên sản xuất sắt, đồng và bạc ma thuật. Cung cấp tới một phần ba lượng sắt và hai phần ba lượng đồng cho toàn bộ Lục địa Europa, là động lực tài chính chính cho các phong trào ly khai của Thụy Điển.",
+          "keys": [
+            "Nghiệp Khai khoáng Bergslagen",
+            "Bergslagen Mining System",
+            "Bergslagen",
+            "Mỏ Falun",
+            "Bergsmän",
+            "Mỏ Đồng Lớn",
+            "Engelbrekt"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_sweden",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_nen-kinh-te-huyet-ma-phap-transylvania",
+          "title": "Nền Kinh tế Huyết Ma pháp Transylvania",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Nền Kinh tế Huyết Ma pháp Transylvania:\n- Định nghĩa: Mô hình kinh tế và xã hội quái dị được thiết lập bởi các lãnh chúa Huyết Tộc tại vùng núi Carpathian.\n- Phân loại: Chế độ bóc lột sinh học, Kinh tế hắc ám.\n- Trạng thái/Cấp độ: Biến con người thành nguồn tài nguyên tái tạo, cô lập hoàn toàn với các tuyến thương mại thông thường của Lục địa Europa.\n\n## Lệ Thuế Máu và Chăn nuôi Nông nô:\nTại các Công quốc Ma cà rồng, vàng bạc không phải là thước đo giá trị tối thượng, mà là máu. Nông nô Nhân loại sống dưới chân các lâu đài Huyết Tộc không phải nộp thuế bằng lúa mì hay tiền xu, mà phải nộp Thuế Máu định kỳ. Các lãnh chúa Ma cà rồng quản lý các ngôi làng này như những trang trại chăn nuôi gia súc. Họ sử dụng ma pháp tạo sương mù và các bầy ma thú để cấm nông nô rời khỏi khu vực, nhưng đồng thời cũng bảo vệ họ khỏi dịch bệnh thông thường và các cuộc cướp bóc của ngoại bang, nhằm đảm bảo nguồn máu luôn thanh khiết và dồi dào.\n\nNhững cá nhân mang dòng máu đặc biệt (như có thiên phú ma lực hay sở hữu dòng máu lai Bán Tiên) sẽ được định giá cao hơn. Họ thường bị bắt trực tiếp vào các lâu đài để phục vụ cho các bữa tiệc xa hoa của giới quý tộc hoặc bị hiến tế trong các nghi thức Tử linh thuật.\n\n## Giao thương Hắc ám và Sự cô lập:\nNền kinh tế Transylvania gần như đóng cửa với thế giới bên ngoài. Tuy nhiên, họ vẫn duy trì một mạng lưới thương mại ngầm với các thương gia vô đạo đức, tội phạm buôn lậu hoặc các thành viên Tòa án Dị giáo biến chất. Các Huyết Tộc xuất khẩu các loại độc dược quý hiếm, ma cụ hắc ám và lính đánh thuê xác sống không biết mệt mỏi. Đổi lại, họ nhập khẩu tơ lụa, gia vị và những nạn nhân từ các khu chợ nô lệ ở Biển Đen để đa dạng hóa hương vị máu. Sự bóc lột này khiến Transylvania trở thành một địa ngục trần gian đối với Nhân loại, nhưng lại là một xã hội thịnh vượng bệnh hoạn đối với giới tinh hoa Ma cà rồng.",
+          "summary": "Nền Kinh tế Huyết Ma pháp Transylvania: Mô hình kinh tế và xã hội quái dị được thiết lập bởi các lãnh chúa Huyết Tộc tại vùng núi Carpathian. Biến con người thành nguồn tài nguyên tái tạo, cô lập hoàn toàn với các tuyến thương mại thông thường của Lục địa Europa.",
+          "keys": [
+            "Nền Kinh tế Huyết Ma pháp Transylvania",
+            "Kinh tế Huyết Ma pháp",
+            "Blood Economy of Transylvania",
+            "Nông nô máu",
+            "Kinh tế Transylvania",
+            "Thuế Máu",
+            "Huyết Tộc Transylvania"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "prov_carpathian",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_nen-kinh-te-va-thue-jizya-ottoman",
+          "title": "Nền Kinh tế và Thuế Jizya Ottoman",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Nền Kinh tế và Thuế Jizya Ottoman:\n- Định nghĩa: Guồng kinh tế vĩ mô của Đế chế Ottoman, vận hành dựa trên sự kiểm soát các tuyến giao thương huyết mạch và chính sách thu thuế phân biệt đối xử.\n- Phân loại: Kinh tế học đế quốc, Guồng tài chính quân sự.\n- Trạng thái/Cấp độ: Nguồn cung cấp vàng, bạc và ma thạch bất tận cho cỗ máy chiến tranh của Sultan, bóp nghẹt nền kinh tế của các quốc gia Châu Âu đối địch.\n\n## Độc quyền Thương mại và Tuyến đường Tơ lụa:\nĐế chế Ottoman ngự trị ngay trên điểm giao cắt của ba lục địa. Mọi tuyến đường bộ mang theo tơ lụa ma thuật, gia vị, hương liệu và ma thạch tinh khiết từ Châu Á đến Châu Âu đều phải đi qua các trạm thu thuế của Tộc Orc tại Anatolia và Rumelia. Họ không phá hủy thương mại, mà thao túng nó. \n\nBằng cách áp thuế quá cảnh cao đối với các thương nhân từ Cộng hòa Venice, Genoa hay Liên minh Hanse, Ottoman không chỉ làm giàu cho kho bạc của mình mà còn đẩy giá cả hàng hóa ma thuật tại Châu Âu lên mức cắt cổ. Tại các thành phố như Bursa hay Edirne, các xưởng công nghiệp khổng lồ liên tục sản xuất vũ khí, áo giáp và thuốc súng để tự cung tự cấp cho quân đội, giảm thiểu tối đa sự phụ thuộc vào phương Tây.\n\n## Thuế Jizya và Sự bóc lột Ma thuật:\nTrụ cột thứ hai của nền kinh tế Ottoman là Jizya (Thuế Thân). Đây là loại thuế bắt buộc đánh vào mọi nam giới trưởng thành không phải là người Hồi giáo sống trong Đế chế (như cư dân của các Millet). \n\nThuế Jizya không chỉ được trả bằng tiền vàng hay nông sản. Trong một thế giới ma pháp, nó còn được thu dưới dạng ma thạch chưa tinh chế, thảo dược, và thậm chí là việc bắt buộc các pháp sư ngoại đạo phải lao động không công tại các xưởng đúc đại bác. Sự tồn tại của Jizya tạo ra một áp lực kinh tế khổng lồ, buộc nhiều người dân Châu Âu tại vùng Balkan phải tự nguyện cải đạo và gia nhập hàng ngũ của Tộc Orc để thoát khỏi cảnh bần cùng, đồng thời tước đoạt toàn bộ thặng dư tài chính của các dân tộc bị chinh phục để phục vụ cho các cuộc chiến tranh tiếp theo.",
+          "summary": "Nền Kinh tế và Thuế Jizya Ottoman: Guồng kinh tế vĩ mô của Đế chế Ottoman, vận hành dựa trên sự kiểm soát các tuyến giao thương huyết mạch và chính sách thu thuế phân biệt đối xử. Nguồn cung cấp vàng, bạc và ma thạch bất tận cho cỗ máy chiến tranh của Sultan, bóp nghẹt nền kinh tế của các quốc gia Châu Âu đối địch.",
+          "keys": [
+            "Nền Kinh tế và Thuế Jizya Ottoman",
+            "Ottoman Economy and Jizya",
+            "Thuế Jizya",
+            "Kinh tế Ottoman",
+            "Thuế thân Ottoman",
+            "Jizya"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "nation_ottoman",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_mang-luoi-giao-thuong-long-thu",
+          "title": "Mạng lưới Giao thương Lông thú",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Mạng lưới Giao thương Lông thú Rus:\n- Định nghĩa: Huyết mạch kinh tế của toàn bộ các quốc gia phương Đông và phương Bắc Lục địa Europa, dựa trên việc khai thác và xuất khẩu da của các loài ma thú.\n- Phân loại: Mạng lưới thương mại độc quyền, Nền kinh tế khai khoáng tự nhiên.\n- Trạng thái/Cấp độ: Nguồn cung cấp vàng bạc chính cho Cộng hòa Novgorod và Muscovy, động lực thúc đẩy sự bành trướng về phía dãy Ural.\n\n## Sinh thái học và Khai thác của Mạng lưới Giao thương Lông thú Rus:\nKhu vực Taiga trải dài từ Pskov đến tận viễn Đông là nơi sinh sống của các loài sinh vật mang đậm ma lực Băng hệ và Thổ hệ như gấu tuyết khổng lồ, chồn ma thuật và cáo bạc. Lông và da của chúng không chỉ giữ ấm tuyệt đối trong nhiệt độ âm độ mà còn có khả năng kháng lại các đòn tấn công ma pháp nguyên tố.\n\nCác thợ săn (Pomors) và pháp sư Băng hệ của người Rus phải đối mặt với rủi ro tử vong cực cao khi tiến sâu vào rừng rậm. Họ thiết lập các bẫy rập ma thuật và sử dụng ma thú thuần hóa để truy lùng con mồi. Những tấm da quý giá này sau đó được tập kết tại các thành phố lớn dọc mạng lưới sông ngòi chằng chịt.\n\n## Vai trò địa chính trị của Mạng lưới Giao thương Lông thú Rus:\nLông thú được ví như \"Vàng Mềm\" của phương Bắc. Cộng hòa Novgorod duy trì sự giàu có của mình bằng cách bán độc quyền nguồn hàng này cho Liên minh Hanse tại các bến cảng Biển Baltic. Trong khi đó, các Hãn quốc như Kazan và Crimea cũng ráo riết đòi hỏi cống nạp bằng lông thú để bán cho Đế chế Ottoman. Cuộc chiến tranh giành quyền kiểm soát các lưu vực sông giàu tài nguyên này chính là nguyên nhân sâu xa đằng sau mọi cuộc xung đột đẫm máu giữa Muscovy, Novgorod và Kazan.",
+          "summary": "Mạng lưới Giao thương Lông thú: Huyết mạch kinh tế của toàn bộ các quốc gia phương Đông và phương Bắc Lục địa Europa, dựa trên việc khai thác và xuất khẩu da của các loài ma thú. Nguồn cung cấp vàng bạc chính cho Cộng hòa Novgorod và Muscovy, động lực thúc đẩy sự bành trướng về phía dãy Ural.",
+          "keys": [
+            "Mạng lưới Giao thương Lông thú",
+            "Giao thương Lông thú Rus",
+            "Rus Fur Trade",
+            "Buôn bán lông thú",
+            "lông thú Rus"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_novgorod",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_muscovy",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_mang-luoi-giao-thuong-ho-phach",
+          "title": "Mạng lưới Giao thương Hổ phách",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Mạng lưới Giao thương Hổ phách Baltic:\n- Định nghĩa: Tuyến đường thương mại cổ đại và cực kỳ lợi nhuận, chuyên khai thác và xuất khẩu hổ phách từ bờ biển Baltic đến khắp Lục địa Europa và phương Đông.\n- Phân loại: Độc quyền thương mại, Khai khoáng ma thuật.\n- Trạng thái/Cấp độ: Nguồn tài chính sống còn của Hội Hiệp sĩ Teuton và các thành bang Hanseatic, là nguyên nhân của vô số các cuộc chiến tranh trên biển.\n\n## Đặc tính Ma pháp của Hổ phách và Việc Khai thác:\nHổ phách Baltic không chỉ là một loại đá quý dùng để trang sức. Trong thực tại này, nó là nhựa cây hóa thạch của các khu rừng ma thuật cổ đại đã chìm dưới đáy biển hàng triệu năm trước. Hổ phách tinh khiết chứa đựng ma lực Quang hệ và Sinh trưởng tự nhiên, có khả năng xua đuổi chướng khí, làm chậm quá trình lão hóa và là thành phần không thể thiếu trong các lọ ma dược cao cấp của các giả kim thuật gia.\n\nViệc khai thác hổ phách diễn ra dọc theo bờ biển Phổ (Prussia) và Pomerania. Các thợ lặn, đôi khi là những người mang huyết thống Hải Tộc (Merfolk) bị bắt làm nô lệ, phải ngụp lặn dưới vùng nước đóng băng để cào xới đáy biển. Sau những cơn bão lớn, hổ phách thường trôi dạt vào bờ, dẫn đến các cuộc đụng độ đẫm máu giữa những kẻ săn trộm và lực lượng tuần tra của chính quyền.\n\n## Độc quyền Thương mại và Xung đột Địa chính trị tại Baltic:\nHội Hiệp sĩ Teuton tuyên bố độc quyền tuyệt đối đối với mọi viên hổ phách được tìm thấy trên lãnh thổ của họ. Bất kỳ ai lén lút thu thập và bán hổ phách ra chợ đen đều bị Tòa án Dị giáo của Dòng tu xử tử bằng cách treo cổ dọc bờ biển.\n\nHổ phách được thu gom và bán sỉ cho Liên minh Hanse, những kẻ sẽ phân phối chúng đến các xưởng kim hoàn tại Venice, Florence và các triều đình Châu Âu. Sự kiểm soát nguồn cung hổ phách mang lại cho Hội Teuton lượng vàng khổng lồ để thuê lính đánh thuê và xây dựng pháo đài. Việc Vương quốc Ba Lan và Đại Công quốc Lithuania liên tục phát động chiến tranh nhằm chiếm lấy quyền kiểm soát vùng duyên hải Pomerelia một phần lớn là để phá vỡ thế độc quyền béo bở này.",
+          "summary": "Mạng lưới Giao thương Hổ phách: Tuyến đường thương mại cổ đại và cực kỳ lợi nhuận, chuyên khai thác và xuất khẩu hổ phách từ bờ biển Baltic đến khắp Lục địa Europa và phương Đông. Nguồn tài chính sống còn của Hội Hiệp sĩ Teuton và các thành bang Hanseatic, là nguyên nhân của vô số các cuộc chiến tranh trên biển.",
+          "keys": [
+            "Mạng lưới Giao thương Hổ phách",
+            "Baltic Amber Trade",
+            "Con đường Hổ phách",
+            "Amber Road",
+            "Hổ phách Baltic",
+            "hổ phách",
+            "giao thương hổ phách"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "org_dong-tu-teuton",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "prov_bo-bien-baltic",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "concept_hoi-dong-co-mat-riksrad",
+          "title": "Hội đồng Cơ mật Riksråd",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Hội đồng Cơ mật Riksråd:\n- Định nghĩa: Cơ quan chính trị và cố vấn cao nhất tại các vương quốc Scandinavia (Đan Mạch, Thụy Điển, Na Uy), bao gồm các đại quý tộc và giám mục quyền lực nhất.\n- Phân loại: Hội đồng quý tộc phong kiến.\n- Trạng thái/Cấp độ: Nắm giữ quyền lực thực tế để giới hạn quyền lực của nhà vua, là nơi diễn ra các cuộc đấu đá chính trị định đoạt số phận của Liên minh Kalmar.\n\n## Cơ chế Hoạt động và Quyền lực của Hội đồng Cơ mật Riksråd:\nTại các quốc gia Bắc Âu, ngai vàng không tự động truyền theo huyết thống mà mang tính chất bầu cử. Khi một vị vua qua đời, Riksråd sẽ đứng ra điều hành đất nước (giai đoạn Interregnum) và có quyền quyết định ai sẽ là người kế vị. Để được bầu làm vua, ứng cử viên phải ký một bản tuyên thệ (Haandfæstning), cam kết bảo vệ các đặc quyền của giới quý tộc, không được tự ý thu thuế mới và không được phát động chiến tranh mà không có sự đồng ý của Riksråd.\n\nMỗi vương quốc trong Liên minh Kalmar đều có một Riksråd riêng. Mặc dù Đan Mạch cố gắng cai trị tập quyền, Hội đồng Cơ mật Thụy Điển (Svenska riksrådet) liên tục chống đối lại các chính sách của triều đình trung ương tại Copenhagen. Các cuộc họp của Riksråd thường xuyên biến thành những cuộc đàm phán đẫm máu, nơi các thành viên sử dụng tiền bạc, đe dọa quân sự và thậm chí là ám sát ma thuật để dập tắt các phe phái đối lập.\n\n## Sự tàn sát và Vết nứt của Liên minh Kalmar:\nSự tồn tại của Riksråd Thụy Điển là chướng ngại vật lớn nhất đối với sự thống trị tuyệt đối của Đan Mạch. Các nhiếp chính (Riksföreståndare) được Riksråd Thụy Điển bầu ra thường xuyên nắm giữ quyền lực thực tế, biến Vua Đan Mạch thành một quân vương bù nhìn trên đất Thụy Điển.\n\nSự căng thẳng này liên tục leo thang, dẫn đến việc các vị Vua Đan Mạch phải sử dụng bạo lực cực đoan (như các cuộc thảm sát giới quý tộc Thụy Điển) để đè bẹp Riksråd. Tuy nhiên, những hành động này chỉ đổ thêm dầu vào ngọn lửa thù hận, khiến thể chế chính trị của Liên minh Kalmar rơi vào trạng thái nội chiến trường kỳ không thể cứu vãn.",
+          "summary": "Hội đồng Cơ mật Riksråd: Cơ quan chính trị và cố vấn cao nhất tại các vương quốc Scandinavia (Đan Mạch, Thụy Điển, Na Uy), bao gồm các đại quý tộc và giám mục quyền lực nhất. Nắm giữ quyền lực thực tế để giới hạn quyền lực của nhà vua, là nơi diễn ra các cuộc đấu đá chính trị định đoạt số phận của Liên minh Kalmar.",
+          "keys": [
+            "Hội đồng Cơ mật Riksråd",
+            "Riksråd",
+            "Hội đồng Cơ mật Bắc Âu",
+            "Rigsrådet",
+            "Svenska riksrådet",
+            "Riksföreståndare",
+            "Haandfæstning"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "nation_kalmar",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_sweden",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_denmark",
+              "pullWeight": 0.5
+            },
+            {
+              "id": "realm_norway",
+              "pullWeight": 0.5
+            }
+          ]
+        },
+        {
+          "id": "concept_mang-luoi-phao-dai-bien-vien-vegvar",
+          "title": "Mạng lưới Pháo đài Biên viễn Végvár",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Mạng lưới Pháo đài Biên viễn Végvár:\n- Định nghĩa: Mạng lưới phòng thủ khổng lồ gồm hàng loạt các lâu đài và pháo đài đan xen nhau, được Vương quốc Hungary xây dựng dọc theo biên giới phía Nam để cản bước Đế chế Ottoman.\n- Phân loại: Mạng lưới phòng thủ quốc gia, Quân sự hóa biên giới.\n- Trạng thái/Cấp độ: Đang đối mặt với nguy cơ sụp đổ dây chuyền do sự thiếu hụt ngân sách trầm trọng sau thảm bại tại trận Varna.\n\n## Cấu trúc Phòng ngự và Tổ chức Xã hội của Mạng lưới Pháo đài Biên viễn Végvár:\nThay vì tập trung toàn bộ quân đội thành một khối lớn dễ bị tiêu diệt trên bình nguyên, giới quý tộc Hungary đã thiết lập mạng lưới Végvár (Lâu đài biên giới). Đây là một tuyến phòng ngự có chiều sâu, kết hợp giữa các pháo đài bằng đá kiên cố, các tháp canh bằng gỗ dọc theo dòng sông Danube và các đầm lầy nhân tạo. Xã hội xung quanh các Végvár bị quân sự hóa hoàn toàn. Người dân sống tại khu vực này không đóng thuế bằng nông sản hay tiền bạc, mà đóng thuế bằng nghĩa vụ tuần tra, cảnh giới và cung cấp thông tin tình báo.\n\nLực lượng đồn trú tại đây (Végvári vitézek) là những người lính dạn dày sương gió, sống cuộc đời thường trực đối mặt với cái chết. Họ sử dụng hỏa khí sơ khai, nỏ ma thuật đâm xuyên giáp và các bẫy rập Thủy hệ ven sông để làm chậm bước tiến của bộ binh Janissary và kỵ binh Akinji.\n\n## Sự sụp đổ và Khủng hoảng Tài chính sau Trận Varna:\nViệc duy trì mạng lưới Végvár tiêu tốn một lượng vàng khổng lồ. Các lâu đài cần được liên tục tu bổ để chịu đựng đạn đại bác của Tộc Ogre, và binh lính cần được trả lương định kỳ. Tuy nhiên, sau thất bại thảm hại tại Varna năm 1444, kho bạc của Vương quốc Hungary đã trống rỗng và ngai vàng bị bỏ trống.\n\nKhông có tiền trả lương, kỷ luật quân đội suy giảm nghiêm trọng. Nhiều đội đồn trú bắt đầu đào ngũ, bán vũ khí cho chợ đen hoặc chuyển sang cướp bóc chính người dân của mình để sinh tồn. Mạng lưới Végvár, từng là niềm tự hào và tấm khiên thép vững chắc nhất của Châu Âu, đang rỉ sét từ bên trong, để ngỏ cánh cửa tử thần cho Đế chế Ottoman tràn vào trung tâm lục địa.",
+          "summary": "Mạng lưới Pháo đài Biên viễn Végvár: Mạng lưới phòng thủ khổng lồ gồm hàng loạt các lâu đài và pháo đài đan xen nhau, được Vương quốc Hungary xây dựng dọc theo biên giới phía Nam để cản bước Đế chế Ottoman. Đang đối mặt với nguy cơ sụp đổ dây chuyền do sự thiếu hụt ngân sách trầm trọng sau thảm bại tại trận Varna.",
+          "keys": [
+            "Mạng lưới Pháo đài Biên viễn Végvár",
+            "Mạng lưới Pháo đài Végvár",
+            "Végvár System",
+            "Pháo đài biên viễn Hungary",
+            "Végvár",
+            "Lâu đài biên giới Hungary"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_hungary",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "nation_ottoman",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "hold_varna",
+              "pullWeight": 0.5
+            }
+          ]
+        },
+        {
+          "id": "concept_che-do-nghia-vu-hai-quan-leidang",
+          "title": "Chế độ Nghĩa vụ Hải quân Leidang",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Chế độ Nghĩa vụ Hải quân Leidang:\n- Định nghĩa: Lệ tổng động viên quân sự và hàng hải cổ đại của người Scandinavia, bắt buộc các khu vực duyên hải phải cung cấp tàu chiến, thủy thủ và vũ khí cho nhà vua khi có chiến tranh.\n- Phân loại: Chế độ nghĩa vụ quân sự phong kiến, Hạm đội dự bị.\n- Trạng thái/Cấp độ: Nền tảng tạo nên sức mạnh hải quân khổng lồ của các vương quốc Bắc Âu, đang dần biến tướng thành một dạng thuế nặng nề.\n\n## Cơ chế Phân bổ và Huy động của Chế độ Nghĩa vụ Hải quân Leidang:\nToàn bộ đường bờ biển của Đan Mạch, Na Uy và Thụy Điển được chia thành các đơn vị hành chính nhỏ gọi là Skipreide (Quận tàu). Mỗi Skipreide có trách nhiệm đóng mới, bảo trì và trang bị đầy đủ cho một con tàu chiến (thường là các tàu drakkar dài, sau này được nâng cấp thành các tàu có khả năng mang pháo nhỏ).\n\nKhi nhà vua phát lệnh triệu tập (bằng cách đốt các ngọn đuốc báo hiệu trên các đỉnh đồi dọc bờ biển hoặc dùng ma pháp truyền tin), những người nông dân và ngư dân tự do phải ngay lập tức lên tàu, mang theo lương thực đủ dùng cho hai tháng, cùng vũ khí như rìu chiến, giáo và khiên. Một hạm đội Leidang được tập hợp đầy đủ có thể lên tới hàng trăm con tàu và hàng vạn chiến binh, tạo ra một lực lượng đổ bộ có khả năng tàn phá bất kỳ bờ biển nào ở Bắc Âu.\n\n## Sự suy tàn và Chuyển hóa thành Thuế:\nVào thế kỷ 15, khi các trận hải chiến bắt đầu đòi hỏi những con tàu lớn hơn, được trang bị đại bác nặng và các pháp sư Phong hệ chuyên nghiệp, những con tàu Leidang do nông dân điều khiển dần trở nên lỗi thời trước hạm đội của Liên minh Hanse.\n\nThay vì yêu cầu nông dân đóng tàu, các vị vua của Liên minh Kalmar bắt đầu chuyển đổi nghĩa vụ Leidang thành một loại thuế trực thu (đóng bằng bạc, bơ, hoặc da thú). Loại thuế mới này đổ thêm gánh nặng lên vai tầng lớp bình dân, làm gia tăng sự bất mãn và trở thành một trong những nguyên nhân kích động các cuộc khởi nghĩa của nông dân và thợ mỏ chống lại triều đình.",
+          "summary": "Chế độ Nghĩa vụ Hải quân Leidang: Lệ tổng động viên quân sự và hàng hải cổ đại của người Scandinavia, bắt buộc các khu vực duyên hải phải cung cấp tàu chiến, thủy thủ và vũ khí cho nhà vua khi có chiến tranh. Nền tảng tạo nên sức mạnh hải quân khổng lồ của các vương quốc Bắc Âu, đang dần biến tướng thành một dạng thuế nặng nề.",
+          "keys": [
+            "Chế độ Nghĩa vụ Hải quân Leidang",
+            "Leidang System",
+            "Leidang",
+            "Leding",
+            "Skipreide"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "concept_mang-luoi-ngan-hang-phuc-hung",
+          "title": "Mạng lưới Ngân hàng Phục Hưng",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Mạng lưới Ngân hàng Phục Hưng:\n- Định nghĩa: Mạng lưới tài chính vĩ mô được khởi xướng bởi các gia tộc đại tư bản Bán đảo Ý, chi phối toàn bộ dòng chảy tiền tệ và tín dụng của Lục địa Europa.\n- Phân loại: Guồng tài chính - kinh tế, Độc quyền tiền tệ.\n- Trạng thái/Cấp độ: Nguồn sống của mọi cuộc chiến tranh phong kiến, có khả năng bóp nghẹt hoặc nâng đỡ bất kỳ vương quốc nào thông qua các lệnh cấm vận tín dụng.\n\n## Hối phiếu Ma thuật và Lối Giao dịch của Mạng lưới Ngân hàng Phục Hưng:\nCác trung tâm ngân hàng lớn nhất ngự trị tại Florence (với Gia tộc Medici), Genoa (Ngân hàng San Giorgio), Venice và Siena. Để giải quyết rủi ro khi vận chuyển khối lượng vàng bạc vật lý qua những vùng đất đầy rẫy cướp bóc, các chủ ngân hàng Ý đã phát minh ra Hối phiếu (Bills of Exchange) và Thư tín dụng (Letters of Credit).\n\nTrong thực tại này, những tờ giấy nợ không chỉ được bảo chứng bằng chữ ký. Các kỹ sư Tộc Gnome và các giả kim thuật gia đã phát triển loại mực in pha trộn ma thạch, cho phép mã hóa các khế ước tài chính bằng những ma trận Quang hệ vi mô. Chỉ có chi nhánh ngân hàng đích mới sở hữu chiếc kính lúp quang học tương thích để giải mã và xác thực hối phiếu. Kỹ nghệ chống giả mạo ma thuật này giúp các ngân hàng Ý chuyển tiền xuyên quốc gia chỉ trong nháy mắt, vượt mặt mọi guồng tài chính thủ công của phương Bắc.\n\n## Thao túng Vương quyền và Lách luật Tôn giáo của Mạng lưới Ngân hàng Phục Hưng:\nGiáo hội Công giáo nghiêm cấm việc cho vay lấy lãi (Usury), coi đó là một tội lỗi đáng bị đày xuống địa ngục. Tuy nhiên, các chủ ngân hàng Ý đã lách luật bằng cách ngụy trang tiền lãi dưới dạng \"phí chuyển đổi ngoại tệ\" hoặc các khoản đầu tư rủi ro chia sẻ lợi nhuận.\n\nQuyền lực của các ngân hàng này vượt xa mọi pháo đài bằng đá. Ngân hàng Medici tài trợ cho các chiến dịch quân sự của Vương quốc Anh và Pháp, trong khi Ngân hàng San Giorgio nắm giữ nợ công của toàn bộ Genoa và thu thuế trực tiếp từ các thuộc địa. Khi một vị Hoàng đế hay Tuyển Đế Hầu cần vàng để thuê lính đánh thuê, họ bắt buộc phải thế chấp các mỏ bạc, quyền thu thuế, hoặc thậm chí là quyền cai trị các thành phố tự do cho những ông trùm tài chính đang ngồi trong các dinh thự ấm áp tại Bắc Ý.",
+          "summary": "Mạng lưới Ngân hàng Phục Hưng: Mạng lưới tài chính vĩ mô được khởi xướng bởi các gia tộc đại tư bản Bán đảo Ý, chi phối toàn bộ dòng chảy tiền tệ và tín dụng của Lục địa Europa. Nguồn sống của mọi cuộc chiến tranh phong kiến, có khả năng bóp nghẹt hoặc nâng đỡ bất kỳ vương quốc nào thông qua các lệnh cấm vận tín dụng.",
+          "keys": [
+            "Mạng lưới Ngân hàng Phục Hưng",
+            "Renaissance Banking",
+            "Guồng tài chính Ý",
+            "Ngân hàng Ý",
+            "Bills of Exchange",
+            "Thư tín dụng",
+            "Letters of Credit",
+            "Hối phiếu"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "concept_nen-cong-hoa-quy-toc-tu-san",
+          "title": "Nền Cộng hòa Quý tộc Tư sản",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Nền Cộng hòa Quý tộc Tư sản:\n- Định nghĩa: Thể chế chính trị đặc trưng của nhiều thành bang Bán đảo Ý (như Venice, Genoa, Florence, Siena), nơi quyền lực không nằm trong tay một vị vua thế tập mà thuộc về các hội đồng do giới tinh hoa thương gia kiểm soát.\n- Phân loại: Thể chế cộng hòa đầu sỏ (Oligarchy).\n- Trạng thái/Cấp độ: Nền tảng của sự thịnh vượng kinh tế, nhưng liên tục chìm trong những cuộc đấu đá nội bộ tàn khốc giữa các phe phái gia tộc.\n\n## Cơ cấu Hội đồng và Chức vị Tổng trấn của Nền Cộng hòa Quý tộc Tư sản:\nThay vì cai trị bằng quyền lực thần thánh (Divine Right) như các vương quốc Tây Âu, các nền cộng hòa Ý cai trị bằng các bản hiến pháp và sự đồng thuận của giới nhà giàu (Patricians). Quyền lực tối cao thuộc về Đại Hội đồng (Great Council), bao gồm đại diện của các gia tộc có tên trong sổ vàng của thành phố.\n\nHọ bầu ra một người đứng đầu, thường gọi là Tổng trấn (Doge) hoặc Signoria (Hội đồng chấp chính). Mặc dù Doge được mặc áo choàng lụa vàng và đội vương miện, quyền lực của họ bị giới hạn nghiêm ngặt bởi các cơ quan giám sát (như Hội đồng Mười Người tại Venice) để ngăn chặn bất kỳ nỗ lực nào nhằm biến nền cộng hòa thành chế độ độc tài cha truyền con nối.\n\n## Trò chơi Vương quyền Ngầm và Tình báo của Nền Cộng hòa Quý tộc Tư sản:\nBề ngoài, các nền cộng hòa hoạt động dựa trên sự bỏ phiếu và pháp luật. Tuy nhiên, bản chất của chúng là một chiến trường ngầm. Các gia tộc đại tư bản liên tục sử dụng mạng lưới mật thám, sát thủ và độc dược giả kim để trừ khử đối thủ chính trị hoặc thao túng kết quả bầu cử.\n\nSự tự do tương đối của các nền cộng hòa này tạo ra một môi trường hoàn hảo cho các điệp viên hoạt động. Họ không dùng áo giáp hay kỵ binh, mà dùng ma pháp Huyễn thuật để nghe lén, giả mạo ấn tín và đánh cắp các bản đồ hàng hải tuyệt mật. Bất cứ một gia tộc nào suy yếu về mặt tài chính hoặc để lộ sơ hở trong mạng lưới bảo vệ ma thuật đều sẽ bị các gia tộc khác xâu xé và tước đoạt toàn bộ tài sản, đẩy họ vào cảnh lưu vong vĩnh viễn.",
+          "summary": "Nền Cộng hòa Quý tộc Tư sản: Thể chế chính trị đặc trưng của nhiều thành bang Bán đảo Ý (như Venice, Genoa, Florence, Siena), nơi quyền lực không nằm trong tay một vị vua thế tập mà thuộc về các hội đồng do giới tinh hoa thương gia kiểm soát. Nền tảng của sự thịnh vượng kinh tế, nhưng liên tục chìm trong những cuộc đấu đá nội bộ tàn khốc giữa các phe phái gia tộc.",
+          "keys": [
+            "Nền Cộng hòa Quý tộc Tư sản",
+            "Patrician Republics",
+            "Thể chế Cộng hòa Ý",
+            "Oligarchy",
+            "Đại Hội đồng",
+            "Great Council",
+            "Tổng trấn",
+            "Doge",
+            "Signoria"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_florence",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_venice",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_siena",
+              "pullWeight": 0.5
+            },
+            {
+              "id": "realm_genoa",
+              "pullWeight": 0.5
+            }
+          ]
+        },
+        {
+          "id": "concept_su-bao-tro-nghe-thuat-va-bi-thuat",
+          "title": "Sự bảo trợ Nghệ thuật và Bí thuật",
+          "type": "concept",
+          "content": "## Thông tin cốt lõi của Sự bảo trợ Nghệ thuật và Bí thuật:\n- Định nghĩa: Phong trào đầu tư tài chính khổng lồ của giới tinh hoa Bán đảo Ý nhằm phục hưng những tri thức cổ đại, dung hợp nghệ thuật thị giác với Ma pháp Bí thuật (Arcane Magic).\n- Phân loại: Trào lưu văn hóa - ma thuật, Phục Hưng.\n- Trạng thái/Cấp độ: Biến Ý thành ngọn hải đăng trí tuệ của Lục địa Europa, thách thức trực tiếp sự độc quyền tri thức của Giáo hội Công giáo.\n\n## Sự dung hợp giữa Học thuật và Ma pháp của Sự bảo trợ Nghệ thuật và Bí thuật:\nTrong khi phần lớn Lục địa Europa vẫn chìm trong bóng tối của sự kiểm duyệt từ Tòa án Dị giáo, các gia tộc như Medici (Florence), Este (Ferrara) hay Montefeltro (Urbino) đã mở rộng vòng tay đón nhận những học giả tị nạn từ Đế quốc Byzantine, các kỹ sư Gnome và những pháp sư lang thang. Họ xây dựng các thư viện khổng lồ để lưu trữ và dịch thuật các cuộn giấy da cổ đại viết bằng tiếng Hy Lạp, Latin và Cổ ngữ Tiên tộc.\n\nTại các thành bang này, nghệ thuật không chỉ là những bức tranh tĩnh lặng. Các họa sĩ và điêu khắc gia được đào tạo cả về Huyễn thuật và Giả kim thuật. Họ sử dụng các loại bột màu chiết xuất từ ma thạch để tạo ra những bức bích họa có khả năng chuyển động, những bức tượng đá cẩm thạch có thể tự động thay đổi tư thế, và những bản nhạc giao hưởng mang theo sóng âm chữa lành tâm trí.\n\n## Lá chắn Ngoại giao và Tác động Xã hội của Sự bảo trợ Nghệ thuật và Bí thuật:\nViệc công khai bảo trợ cho Ma pháp Bí thuật là một hành động khiêu khích đối với Giáo hoàng. Tuy nhiên, các nhà bảo trợ Ý đã sử dụng sức mạnh tài chính của mình làm lá chắn bảo vệ các học giả. Quốc gia Giáo hoàng phụ thuộc quá nhiều vào các khoản vay từ ngân hàng Florence và Siena, khiến họ buộc phải nhắm mắt làm ngơ trước những \"thí nghiệm dị giáo\" diễn ra trong các học viện tư nhân.\n\nPhong trào này không chỉ tạo ra cái đẹp, mà còn thúc đẩy sự ra đời của vi cơ khí ma thuật, bộ ống kính quang học và các lý thuyết toán học chiến thuật. Tri thức được giải phóng từ Bán đảo Ý đang dần lan tỏa ra khắp Lục địa Europa, gieo những hạt giống đầu tiên cho một kỷ nguyên của lý trí và kỹ nghệ, đe dọa trực tiếp đến sự tồn tại của trật tự thần quyền cũ.",
+          "summary": "Sự bảo trợ Nghệ thuật và Bí thuật: Phong trào đầu tư tài chính khổng lồ của giới tinh hoa Bán đảo Ý nhằm phục hưng những tri thức cổ đại, dung hợp nghệ thuật thị giác với Ma pháp Bí thuật (Arcane Magic). Biến Ý thành ngọn hải đăng trí tuệ của Lục địa Europa, thách thức trực tiếp sự độc quyền tri thức của Giáo hội Công giáo.",
+          "keys": [
+            "Sự bảo trợ Nghệ thuật và Bí thuật",
+            "Patronage of Arcane Arts",
+            "Bảo trợ Phục Hưng",
+            "Ma pháp Bí thuật",
+            "Arcane Magic"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "org_giao-hoi-cong-giao",
+              "pullWeight": 0.7
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

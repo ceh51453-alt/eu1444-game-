@@ -1,0 +1,1120 @@
+{
+  "kind": "eu1444-lorebook",
+  "schemaVersion": 1,
+  "exportedAt": 0,
+  "books": [
+    {
+      "id": "book-the-luc",
+      "name": "Europa 1444 · Thế lực và tổ chức",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 0,
+      "entries": [
+        {
+          "id": "nation_ottoman",
+          "title": "Đế chế Ottoman",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Đế chế Ottoman:\n- Định nghĩa: Một siêu cường quốc quân sự và chính trị trỗi dậy từ phương Đông, đang liên tục bành trướng lãnh thổ về phía Tây vào khu vực Balkan và Châu Âu.\n- Phân loại: Đế chế quân chủ tập quyền, Quốc gia đa chủng tộc do Tộc Orc lãnh đạo.\n- Trạng thái/Cấp độ: Thế lực thù địch lớn nhất của toàn bộ Lục địa Europa Cơ đốc giáo, sở hữu sức mạnh hỏa khí và bộ binh áp đảo nhất kỷ nguyên.\n\n## Cơ cấu chính trị và Sự thống trị của Đế chế Ottoman:\nĐứng đầu Đế chế Ottoman là Sultan, người nắm giữ quyền lực tuyệt đối về cả thế tục lẫn thần quyền (Hồi giáo) đối với thần dân của mình. Khác với sự phân quyền lỏng lẻo của Đế quốc La Mã Thần thánh nơi các Tuyển Đế Hầu tự do chống lệnh Hoàng đế, Đế chế Ottoman vận hành như một cỗ máy đồng hồ. Lệnh của Sultan là chân lý, kẻ trái lệnh chỉ có một kết cục là cái chết.\n\nTộc Orc đóng vai trò là giai cấp thống trị, kiểm soát các vị trí thống soái quân sự, quản đốc các công xưởng luyện kim và thống đốc các tỉnh. Các chủng tộc khác (Nhân loại, á nhân từ thảo nguyên) sống dưới sự cai trị này phải đóng thuế thân (Jizya) nhưng được phép duy trì tín ngưỡng riêng nếu không nổi loạn. Sự tổ chức hành chính hiệu quả giúp Đế chế huy động được nguồn tài chính và nhân lực khổng lồ cho các chiến dịch quân sự triền miên.\n\n## Cuộc Cách mạng Hỏa khí và Quân sự tại Đế chế Ottoman:\nSức mạnh khiến Đế chế Ottoman trở thành cơn ác mộng của Châu Âu không nằm ở số lượng đông đảo, mà nằm ở kỹ nghệ. Họ là quốc gia tiên phong loại bỏ tư duy kỵ binh hiệp sĩ cận chiến lỗi thời, thay vào đó tập trung phát triển hỏa khí. Các kỹ sư Orc đã kết hợp thuốc súng với ma thạch Hỏa hệ để tạo ra các loại vũ khí có sức công phá bạo liệt.\n\nQuân đội Ottoman là sự phối hợp hoàn hảo giữa các Binh chủng Janissary (bộ binh súng hỏa mai), Pháo binh Ogre (công thành) và kỵ binh nhẹ Sipahi. Tại thời điểm năm 1444, sau khi đè bẹp liên quân Thập Tự Chinh tại Trận Varna, cỗ máy chiến tranh của Đế chế Ottoman đang bao vây nghẹt thở tàn dư của Đế quốc Byzantine tại Constantinople, sẵn sàng tung đòn ân huệ để mở toang cánh cửa tiến vào trung tâm Lục địa Europa.",
+          "summary": "Đế chế Ottoman: Một siêu cường quốc quân sự và chính trị trỗi dậy từ phương Đông, đang liên tục bành trướng lãnh thổ về phía Tây vào khu vực Balkan và Châu Âu. Thế lực thù địch lớn nhất của toàn bộ Lục địa Europa Cơ đốc giáo, sở hữu sức mạnh hỏa khí và bộ binh áp đảo nhất kỷ nguyên.",
+          "keys": [
+            "Đế chế Ottoman",
+            "Ottoman Empire",
+            "Ottoman",
+            "Đế quốc Ottoman",
+            "Sultan"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "org_janissary",
+          "title": "Binh chủng Janissary",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Binh chủng Janissary:\n- Định nghĩa: Lực lượng bộ binh tinh nhuệ và lực lượng cận vệ cá nhân của Sultan, xương sống của quân đội Đế chế Ottoman.\n- Phân loại: Quân đội thường trực, Bộ binh súng hỏa mai hạng nặng.\n- Trạng thái/Cấp độ: Lực lượng chiến đấu kỷ luật nhất Lục địa Europa, sử dụng hỏa khí và chiến thuật bắn xoay vòng để nghiền nát mọi đội hình kỵ binh địch.\n\n## Nguồn gốc và Chế độ Devshirme của Binh chủng Janissary:\nBinh chủng Janissary không được tuyển mộ từ những người lính tự nguyện. Chúng là sản phẩm của lề lối \"Devshirme\" (Thu thập máu). Các quan chức Ottoman đi đến các vùng lãnh thổ bị chiếm đóng (như Balkan) để bắt những bé trai khỏe mạnh nhất của Nhân loại, Bán Tiên hoặc các á nhân khác. Những đứa trẻ này bị cắt đứt mọi liên hệ với gia đình, bị ép cải đạo và đưa vào các trại huấn luyện tàn khốc.\n\nTại đây, chúng bị tẩy não để trở thành những cỗ máy chỉ biết phục tùng Sultan. Bất kỳ cảm xúc cá nhân hay lòng thương xót nào đều bị đánh bật bằng roi vọt và kỷ luật thép. Khi trưởng thành, chúng trở thành những chiến binh vô cảm, coi doanh trại là nhà và đồng đội là gia đình duy nhất.\n\n## Trang bị và Chiến thuật trên chiến trường của Binh chủng Janissary:\nMột lính Janissary không mặc giáp toàn thân nặng nề như hiệp sĩ Châu Âu. Họ mặc áo khoác kaftan chống cháy, giáp vảy siêu nhẹ và sử dụng súng hỏa mai nòng dài có khắc ma trận giảm giật và tăng tầm bắn. Trong cận chiến, họ dùng những thanh gươm cong yataghan sắc lẹm.\n\nChiến thuật của Binh chủng Janissary là sự tĩnh lặng chết chóc. Họ hành quân không tạo ra tiếng ồn, duy trì đội hình khối vuông vức. Khi đối phương xung phong, họ thực hiện kỹ thuật bắn nạp đạn xoay vòng liên tục: Hàng đầu khai hỏa, sau đó lui về sau nạp đạn trong khi hàng thứ hai bước lên. Lưới lửa không ngừng nghỉ này tạo ra một bức tường đạn ma thuật xuyên thủng mọi lớp giáp thép, biến các cuộc tấn công của Châu Âu Cơ đốc giáo thành những cuộc tự sát tập thể.",
+          "summary": "Binh chủng Janissary: Lực lượng bộ binh tinh nhuệ và lực lượng cận vệ cá nhân của Sultan, xương sống của quân đội Đế chế Ottoman. Lực lượng chiến đấu kỷ luật nhất Lục địa Europa, sử dụng hỏa khí và chiến thuật bắn xoay vòng để nghiền nát mọi đội hình kỵ binh địch.",
+          "keys": [
+            "Binh chủng Janissary",
+            "Janissary Corps",
+            "Lính Janissary",
+            "Janissary",
+            "Devshirme"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "nation_ottoman",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "org_phao-binh-ottoman",
+          "title": "Pháo binh Ottoman",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Pháo binh Ottoman:\n- Định nghĩa: Binh chủng chuyên trách việc vận hành, bảo trì và sử dụng đại bác công thành của Đế chế Ottoman, chủ yếu do Tộc Ogre đảm nhận.\n- Phân loại: Lực lượng pháo binh tự hành, Đơn vị phá thành chiến lược.\n- Trạng thái/Cấp độ: Ác mộng của mọi pháo đài bằng đá tại Châu Âu, sở hữu những khẩu pháo có kích thước và sức công phá chưa từng có trong lịch sử.\n\n## Kỹ nghệ Đúc pháo và Đạn Ma thạch của Pháo binh Ottoman:\nTrong khi các quốc gia Châu Âu vẫn đang chật vật với những khẩu pháo nhỏ hay nổ tung vì lỗi kỹ thuật, Đế chế Ottoman đã xây dựng các tổ hợp lò đúc khổng lồ do các kỹ sư Orc điều hành. Họ sử dụng kỹ nghệ luyện kim tiên tiến để đúc ra \"Đại bác Basilica\" – những cỗ pháo khổng lồ bằng đồng, dài nhiều mét.\n\nĐạn của chúng không chỉ là những viên đá tròn, mà là những khối đá cẩm thạch được khoét rỗng, nhồi đầy tinh thể ma thạch Hỏa hệ và bột đen. Khi va chạm với tường thành, viên đạn không chỉ gây ra sát thương động năng mà còn phát nổ thành một quả cầu lửa ma thuật, thiêu rụi cả lớp giáp phòng ngự Thổ hệ của các lâu đài Châu Âu.\n\n## Cơ chế Vận hành cơ động bởi Tộc Ogre:\nĐiểm yếu chí mạng của đại bác Châu Âu là sự cồng kềnh, cần hàng chục con bò mộng để kéo qua những con đường lầy lội. Pháo binh Ottoman giải quyết vấn đề này bằng sức mạnh sinh học của Tộc Ogre. \n\nCác binh sĩ Ogre khổng lồ đóng vai trò là những cỗ xe tải sống. Một nhóm Ogre có thể tháo rời khẩu pháo, vác các bộ phận nặng hàng tấn trên vai và hành quân băng qua đồi núi, đầm lầy với tốc độ ngang bằng bộ binh thông thường. Khi đến chiến trường, họ tự tay lắp ráp và nạp đạn. Sự kết hợp giữa sức mạnh phá hoại của đại bác ma thuật và tính cơ động phi thường của Tộc Ogre biến Pháo binh Ottoman thành một lưỡi gươm sắc bén đâm thủng mọi phòng tuyến kiên cố nhất.",
+          "summary": "Pháo binh Ottoman: Binh chủng chuyên trách việc vận hành, bảo trì và sử dụng đại bác công thành của Đế chế Ottoman, chủ yếu do Tộc Ogre đảm nhận. Ác mộng của mọi pháo đài bằng đá tại Châu Âu, sở hữu những khẩu pháo có kích thước và sức công phá chưa từng có trong lịch sử.",
+          "keys": [
+            "Pháo binh Ottoman",
+            "Ottoman Artillery",
+            "Pháo binh Ogre",
+            "Topçu",
+            "Đại bác Basilica"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "nation_ottoman",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "nation_hre",
+          "title": "Đế quốc La Mã Thần thánh",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Đế quốc La Mã Thần thánh:\n- Tên gọi chính thức: Sacrum Romanum Imperium.\n- Phân loại: Siêu quốc gia phong kiến phân quyền, Liên minh các lãnh thổ và thành bang.\n- Vị trí địa lý: Trải dài khắp khu vực Trung Âu, bao trùm phần lớn nước Đức, Áo, Bohemia, miền bắc nước Ý và các vùng lân cận ngày nay.\n- Dân số chủ đạo: Nhân loại chiếm đa số tuyệt đối, Tộc Lùn (Dwarves) cư ngụ tại các rặng núi cao.\n- Tôn giáo quốc giáo: Công giáo La Mã.\n- Người đứng đầu hiện tại: Hoàng đế Frederick III thuộc Gia tộc Habsburg.\n\n## Cấu trúc chính trị và Lãnh thổ của Đế quốc La Mã Thần thánh:\nĐế quốc La Mã Thần thánh không phải là một quốc gia tập quyền nguyên khối mà là một mạng lưới khổng lồ, phức tạp gồm hàng trăm công quốc, bá quốc, giáo xứ độc lập và các thành bang tự do. Cấu trúc này được gắn kết lỏng lẻo bởi lòng trung thành trên danh nghĩa đối với Hoàng đế La Mã Thần thánh. Chức vị Hoàng đế không hoàn toàn thế tập mà được bầu ra bởi một hội đồng gồm Bảy Tuyển Đế Hầu (Kurfürst), bao gồm ba thế lực giáo sĩ cấp cao và bốn lãnh chúa thế tục hùng mạnh nhất. \n\nTại thời điểm năm 1444, Gia tộc Habsburg nước Áo đang củng cố quyền lực bá chủ của mình lên ngai vàng Đế quốc. Sự phân quyền tột độ khiến Đế quốc thường xuyên rơi vào tình trạng nội chiến quy mô nhỏ giữa các lãnh chúa, đồng thời tạo ra vô số lỗ hổng pháp lý và ranh giới địa lý chồng chéo. Chế độ luật pháp của Đế quốc là một mê cung rắc rối, nơi quyền lực thế tục của các lãnh chúa liên tục va chạm với quyền lực thần quyền của các Giám mục và Giáo hội La Mã.\n\n## Sự giao thoa Chủng tộc và Kinh tế tại Đế quốc La Mã Thần thánh:\nDù Nhân loại nắm giữ quyền thống trị trên các bình nguyên và thung lũng màu mỡ, hệ sinh thái của Đế quốc lại phụ thuộc sâu sắc vào sự tồn tại của tộc Lùn. Các rặng núi hùng vĩ bao quanh và xuyên qua Đế quốc như Alps ở phía Nam và Bohemia ở phía Đông là vương quốc ngầm của tộc Lùn. Mối quan hệ giữa các lãnh chúa Nhân loại và các phường hội tộc Lùn là một bản hiệp ước giao thương vĩnh cửu: Tộc Lùn cung cấp quặng kim loại tinh khiết, vũ khí ma pháp và kỹ thuật luyện kim tiên tiến, đổi lấy lương thực và quyền tự trị tuyệt đối dưới lòng đất.\n\nKhu vực sông Rhine và bờ biển Baltic ở phía Bắc là nơi thống trị của Liên minh Hanse, một mạng lưới các thành bang thương mại hùng mạnh của Nhân loại. Họ kiểm soát các tuyến đường thủy huyết mạch, thao túng giá cả lúa mì, lông thú và các di vật ma thuật sơ cấp, sở hữu những hạm đội thương thuyền được vũ trang mạnh mẽ không kém gì hải quân của một vương quốc độc lập.\n\n## Bộ máy Quân sự và Ma pháp của Đế quốc La Mã Thần thánh:\nQuân đội của Đế quốc không tồn tại dưới dạng một lực lượng thường trực thống nhất. Khi có chiến tranh, Hoàng đế phải triệu tập quân đội từ các chư hầu, tạo ra một đội quân ô hợp nhưng khổng lồ. Lực lượng nòng cốt vẫn là các đoàn kỵ binh hiệp sĩ hạng nặng được bọc thép kín mít, sử dụng trang bị do thợ rèn tộc Lùn chế tác. Bên cạnh đó, bộ binh giáo dài và lính đánh thuê đang ngày càng chứng tỏ vai trò quan trọng trên chiến trường.\n\nVề mặt ma pháp, Đế quốc La Mã Thần thánh bị đặt dưới sự giám sát nghiêm ngặt của Giáo hội Công giáo. Ma pháp Thần thánh là loại hình ma thuật duy nhất được công khai chấp nhận. Các tu sĩ chiến đấu và hiệp sĩ thánh chức sử dụng ma lực để gia cường thể chất, chữa trị thương tích và thi triển các kỹ năng thanh tẩy dị giáo. Bất kỳ hình thức nghiên cứu Ma pháp Bí thuật hay thuật giả kim nào không có sự cho phép của Giáo hội đều bị coi là dị giáo và phải đối mặt với các bục thiêu của Tòa án Dị giáo. Tuy nhiên, tại khu vực Bohemia, phong trào Hussite đang bùng nổ không chỉ là một cuộc nổi dậy về mặt thần học mà còn là sự trỗi dậy của các pháp sư dị giáo, những kẻ dám sử dụng ma thuật nguyên thủy để chống lại những cuộc thập tự chinh do Hoàng đế và Giáo hoàng phát động.",
+          "summary": "Đế quốc La Mã Thần thánh: Đế quốc La Mã Thần thánh không phải là một quốc gia tập quyền nguyên khối mà là một mạng lưới khổng lồ, phức tạp gồm hàng trăm công quốc, bá quốc, giáo xứ độc lập và các thành bang tự do. Cấu trúc này được gắn kết lỏng lẻo bởi lòng trung thành trên danh nghĩa đối với Hoàng đế La Mã Thần thánh. Chức vị Hoàng đế không hoàn toàn thế tập mà được bầu ra bởi một hội đồng gồm Bảy Tuyển Đế Hầu (Kurfürst), bao gồm ba thế lực giáo sĩ cấp cao và bốn lãnh chúa thế tục hùng mạnh nhất.",
+          "keys": [
+            "Đế quốc La Mã Thần thánh",
+            "Holy Roman Empire",
+            "HRE",
+            "Đế quốc La Mã",
+            "Sacrum Romanum Imperium"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "org_giao-hoi-cong-giao",
+          "title": "Giáo hội Công giáo",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Giáo hội Công giáo:\n- Định nghĩa: Thể chế tôn giáo tối cao và quyền lực nhất tại Châu Âu Tây và Trung Âu, đóng đô tại Quốc gia Giáo hoàng (Papal States) ở bán đảo Ý.\n- Phân loại: Tổ chức thần quyền xuyên quốc gia.\n- Trạng thái/Cấp độ: Nắm giữ độc quyền kiểm soát Ma pháp Thần thánh, có khả năng chi phối các quyết định chính trị của mọi vương quốc Cơ đốc giáo.\n\n## Cấu trúc quyền lực và Ảnh hưởng chính trị của Giáo hội Công giáo:\nĐứng đầu Giáo hội là Giáo hoàng, người được xưng tụng là đại diện của Đấng Sáng Tạo trên mặt đất. Dưới trướng Giáo hoàng là Hồng y đoàn, mạng lưới các Tổng giám mục, Giám mục và vô số tu viện trải dài từ Bồ Đào Nha cho đến biên giới Ba Lan. Lề lối này hoạt động như một siêu quốc gia phi lãnh thổ, thu thuế thập phân từ mọi tín đồ và sở hữu những khối tài sản khổng lồ.\n\nQuyền lực thực sự của Giáo hội nằm ở khả năng rút phép thông công (Excommunication). Nếu một vị vua hay lãnh chúa bị rút phép thông công, kẻ đó sẽ bị tước bỏ mọi quyền lực thiêng liêng, người dân không còn nghĩa vụ trung thành, và các lãnh chúa khác có quyền hợp pháp để phát động Thánh chiến tiêu diệt kẻ đó. Điều này khiến ngay cả Hoàng đế La Mã Thần thánh cũng phải e dè trước những sắc lệnh ban ra từ Rome.\n\n## Độc quyền Ma pháp Thần thánh của Giáo hội Công giáo:\nGiáo hội tuyên bố Ma pháp Thần thánh là hồng ân duy nhất được phép tồn tại. Các nhà thờ không chỉ là nơi cầu nguyện mà còn là những tháp dẫn ma lực khổng lồ, thu thập và tịnh hóa dòng chảy ma lực tự nhiên. Các tu sĩ cấp cao có khả năng ban phước lành, chữa lành vết thương chí mạng, và quan trọng nhất là thanh tẩy các thực thể Hắc ám hoặc những vùng đất bị nguyền rủa.\n\nBất kỳ ai sinh ra với thiên phú ma thuật đều phải được giao nộp cho các tu viện để đào tạo thành Thánh kỵ sĩ hoặc Tu sĩ chiến đấu. Nếu từ chối hoặc cố tình nghiên cứu Ma pháp Bí thuật (thao túng nguyên tố tự do, giả kim thuật), kẻ đó lập tức bị dán nhãn dị giáo và bị săn lùng gắt gao.",
+          "summary": "Giáo hội Công giáo: Thể chế tôn giáo tối cao và quyền lực nhất tại Châu Âu Tây và Trung Âu, đóng đô tại Quốc gia Giáo hoàng (Papal States) ở bán đảo Ý. Nắm giữ độc quyền kiểm soát Ma pháp Thần thánh, có khả năng chi phối các quyết định chính trị của mọi vương quốc Cơ đốc giáo.",
+          "keys": [
+            "Giáo hội Công giáo",
+            "Catholic Church",
+            "Giáo hội La Mã",
+            "Giáo hoàng",
+            "The Papacy",
+            "Hồng y đoàn",
+            "Ma pháp Thần thánh"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_papal",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "org_lien-minh-hanse",
+          "title": "Liên minh Hanse",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Liên minh Hanse:\n- Định nghĩa: Một liên minh thương mại và phòng thủ khổng lồ bao gồm các hội thương nhân và các thành phố dọc bờ biển Baltic, Biển Bắc và sâu trong nội địa Châu Âu.\n- Phân loại: Tổ chức độc quyền thương mại, Liên minh quân sự hàng hải.\n- Trạng thái/Cấp độ: Thống trị toàn bộ mạng lưới giao thương phía Bắc, sở hữu hạm đội hải quân mạnh hơn hầu hết các vương quốc.\n\n## Nền tảng kinh tế và Lực lượng hải quân của Liên minh Hanse:\nThủ phủ không chính thức của Liên minh là thành phố Lübeck. Họ độc quyền kiểm soát các mặt hàng thiết yếu mang giá trị ma thuật và sinh tồn cao như cá trích muối ướp thảo dược, sáp ong để làm nến cho các nhà thờ, gỗ tùng phương Bắc dùng để đóng tàu và quặng sắt. \n\nĐể bảo vệ các tuyến đường biển khỏi cướp biển và hải quân của các quốc gia thù địch, Liên minh Hanse xây dựng một lực lượng vũ trang đáng gờm. Các tàu buôn (Cog) của họ được thiết kế với thành tàu cao chót vót, dễ dàng chuyển đổi thành pháo đài nổi trên biển. Họ tuyển mộ hàng loạt pháp sư Phong hệ và Thủy hệ xuất sắc, cho phép các hạm đội Hanse di chuyển với tốc độ không tưởng bất chấp hướng gió tự nhiên, đồng thời có thể tạo ra những vùng sương mù ma thuật để che giấu đội hình hoặc nhấn chìm tàu địch.\n\n## Cơ chế vận hành và Tầm ảnh hưởng địa chính trị của Liên minh Hanse:\nLiên minh không có một vị vua hay quân đội thường trực trung ương. Nó được điều hành bởi Hội đồng Hanse (Hansetag), nơi các thương nhân giàu có nhất biểu quyết chính sách dựa trên lợi ích kinh tế. Khi bị đe dọa, họ sử dụng sức mạnh tài chính để tiến hành các cuộc chiến tranh phong tỏa kinh tế, cắt đứt nguồn cung lương thực và tài nguyên của toàn bộ một quốc gia. Sức mạnh của họ lớn đến mức có thể thao túng việc phế truất hoặc lập nên các vị vua tại các vương quốc Bắc Âu (Đan Mạch, Thụy Điển, Na Uy) nhằm duy trì các đặc quyền thương mại bất khả xâm phạm của mình.",
+          "summary": "Liên minh Hanse: Một liên minh thương mại và phòng thủ khổng lồ bao gồm các hội thương nhân và các thành phố dọc bờ biển Baltic, Biển Bắc và sâu trong nội địa Châu Âu. Thống trị toàn bộ mạng lưới giao thương phía Bắc, sở hữu hạm đội hải quân mạnh hơn hầu hết các vương quốc.",
+          "keys": [
+            "Liên minh Hanse",
+            "Hanseatic League",
+            "Hanse",
+            "Hội đồng Hanse",
+            "Hansetag",
+            "Lübeck"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "prov_bo-bien-baltic",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "org_dong-tu-teuton",
+          "title": "Hội Hiệp sĩ Teuton",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Hội Hiệp sĩ Teuton:\n- Định nghĩa: Một dòng tu quân sự Công giáo khét tiếng, thành lập từ thời Thập Tự Chinh, hiện đang cai trị một vùng lãnh thổ độc lập tại khu vực Prussia dọc bờ biển Baltic.\n- Phân loại: Dòng tu quân sự (Military Order), Nhà nước Thần quyền thế tục.\n- Trạng thái/Cấp độ: Lực lượng quân sự chuyên biệt trong việc tiêu diệt các bộ tộc ngoại đạo và á nhân, hiện đang suy yếu sau những thất bại trước liên minh Ba Lan-Lithuania.\n\n## Cơ cấu quân sự và Căn cứ địa của Hội Hiệp sĩ Teuton:\nNhà nước của Hội Hiệp sĩ Teuton là một cỗ máy chiến tranh thuần túy. Thủ phủ của họ là pháo đài khổng lồ Marienburg, một kiệt tác kiến trúc quân sự được gia cố bằng vô số ma trận phòng ngự Thần thánh, được cho là không thể bị công phá bằng hỏa khí hay ma pháp thông thường. \n\nLực lượng nòng cốt của Hội là các Hiệp sĩ Bọc thép (Ritter). Đây là những chiến binh Nhân loại tinh nhuệ nhất, khoác trên mình bộ giáp trắng mang hình thập tự đen. Họ kết hợp võ thuật cận chiến hạng nặng với Ma pháp Thần thánh cường hóa thể chất. Mỗi lần xuất kích, đội kỵ binh Teuton tạo ra một làn sóng xung kích ma lực quét sạch đội hình đối phương trước khi những ngọn giáo dài của họ xuyên thủng mọi hàng phòng ngự.\n\n## Lịch sử viễn chinh và Tình trạng hiện tại của Hội Hiệp sĩ Teuton:\nSứ mệnh ban đầu của Hội là tiến hành các cuộc Thập Tự Chinh phương Bắc (Northern Crusades), tiêu diệt các tín ngưỡng Đa thần giáo và các sinh vật huyền bí trong những khu rừng cổ đại tại Prussia và Lithuania. Dưới lưỡi gươm của họ, toàn bộ các bộ tộc bản địa bị tàn sát hoặc cưỡng bức cải đạo, những khu rừng ma thuật bị đốt trụi để xây dựng các pháo đài gạch đỏ.\n\nTuy nhiên, sự bành trướng hung hãn của Hội Hiệp sĩ Teuton đã đe dọa đến Vương quốc Ba Lan và Đại Công quốc Lithuania. Tại thời điểm 1444, Hội đang rơi vào khủng hoảng nghiêm trọng sau thảm bại tại Trận Grunwald (1410) trước liên quân Ba Lan-Lithuania. Nội bộ của họ bị chia rẽ, ngân khố cạn kiệt, và họ đang phải đối mặt với nguy cơ nổi loạn từ chính các thành bang thương mại thuộc Liên minh Hanse nằm trong lãnh thổ của mình, những kẻ đã chán ngấy việc phải đóng thuế cao để nuôi dưỡng một cỗ máy chiến tranh đang lụi tàn.",
+          "summary": "Hội Hiệp sĩ Teuton: Một dòng tu quân sự Công giáo khét tiếng, thành lập từ thời Thập Tự Chinh, hiện đang cai trị một vùng lãnh thổ độc lập tại khu vực Prussia dọc bờ biển Baltic. Lực lượng quân sự chuyên biệt trong việc tiêu diệt các bộ tộc ngoại đạo và á nhân, hiện đang suy yếu sau những thất bại trước liên minh Ba Lan-Lithuania.",
+          "keys": [
+            "Hội Hiệp sĩ Teuton",
+            "Teutonic Order",
+            "Hiệp sĩ Teuton",
+            "Dòng tu Teuton",
+            "Prussia",
+            "Marienburg",
+            "Ritter"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "prov_bo-bien-baltic",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_lithuania",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_poland",
+              "pullWeight": 0.5
+            }
+          ]
+        },
+        {
+          "id": "org_long-cuu-vang",
+          "title": "Hội Hiệp sĩ Lông Cừu Vàng",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Hội Hiệp sĩ Lông Cừu Vàng:\n- Định nghĩa: Một dòng tu hiệp sĩ Công giáo tinh hoa và độc quyền bậc nhất Lục địa Europa, được sáng lập bởi Công tước Philip Hảo Tâm của Gia tộc Burgundy vào năm 1430.\n- Phân loại: Hội hiệp sĩ hoàng gia, Tổ chức chính trị - ma thuật.\n- Trạng thái/Cấp độ: Vào năm 1444, Hội đóng vai trò là xương sống liên kết giới quý tộc tại Vùng Đất Thấp và các vùng lãnh thổ thuộc Burgundy, với số lượng thành viên bị giới hạn nghiêm ngặt ở mức 30 hiệp sĩ và một Đại Tông sư.\n\n## Nguồn gốc và Ý nghĩa biểu tượng của Hội Hiệp sĩ Lông Cừu Vàng:\nSự ra đời của Hội Hiệp sĩ Lông Cừu Vàng là sự kết hợp hoàn hảo giữa tham vọng thần quyền và nền tảng kinh tế khổng lồ của Gia tộc Burgundy. Bề ngoài, Hội được tuyên bố thành lập nhằm mục đích bảo vệ đức tin Công giáo và chuẩn bị cho một cuộc Thập Tự Chinh mới chống lại sự bành trướng của Đế chế Ottoman ở phương Đông.\n\nTuy nhiên, biểu tượng Lông Cừu Vàng mang hai tầng ý nghĩa ma thuật và thực dụng sâu sắc. Về mặt giả kim thuật và huyền học, nó tượng trưng cho chuyến hành trình của người anh hùng Jason trong thần thoại đi tìm Bộ Lông Cừu Vàng, một thánh tích hấp thụ ma lực nguyên thủy. Về mặt kinh tế, Lông Cừu Vàng ám chỉ trực tiếp đến nguồn tài phú khổng lồ của Burgundy: Ngành công nghiệp dệt len dạ ma thuật tại các thành bang thuộc Vùng Đất Thấp như Bruges, Ghent và Brussels. Sự giàu có từ những khung cửi này đã đài thọ cho những bữa tiệc xa hoa nhất và những chiến dịch quân sự tốn kém nhất của Công tước.\n\n## Cơ cấu Hiệp sĩ và Ma pháp của Hội Hiệp sĩ Lông Cừu Vàng:\nKhông giống như Tòa án Dị giáo hay Hội Hiệp sĩ Teuton chiêu mộ thành viên quy mô lớn, Hội Hiệp sĩ Lông Cừu Vàng là một câu lạc bộ cực kỳ khép kín. Các hiệp sĩ được lựa chọn đều là những lãnh chúa, tướng lĩnh hoặc pháp sư có huyết thống cao quý và quyền lực nhất từ khắp Lục địa Europa.\n\nMỗi thành viên khi được kết nạp sẽ được trao một chiếc Vòng cổ Lông Cừu Vàng (Collar of the Golden Fleece). Chiếc vòng cổ này không chỉ là trang sức đúc từ vàng ròng tinh khiết trị giá bằng cả một gia tài, mà còn là một pháp khí bảo hộ cấp cao. Các mắt xích của vòng cổ được yểm các ma trận Thần thánh đan xen với Bí thuật phòng ngự, giúp người đeo miễn nhiễm với các loại độc dược ám sát, ảo giác và đòn tấn công nguyên tố chí mạng trên chiến trường. Lời thề của Hội buộc các hiệp sĩ phải tuyệt đối trung thành với Đại Tông sư (Công tước Burgundy), tạo ra một mạng lưới bảo vệ quyền lực bất khả xâm phạm.\n\n## Tác động chính trị và Đạo luật kinh tế tại Vùng Đất Thấp:\nThông qua Hội Hiệp sĩ Lông Cừu Vàng, Gia tộc Burgundy đã khéo léo ban hành các đạo luật và đặc quyền kinh tế nhằm trói buộc các thành bang thương mại tại Vùng Đất Thấp. Những thương nhân Ý, phường hội dệt may và các chủ ngân hàng lớn nhất đều phải khao khát nhận được sự bảo trợ từ một hiệp sĩ của Hội để có quyền tiếp cận các nguồn quặng ma thuật hoặc tuyến giao thương an toàn.\n\nTại các kỳ họp của Hội (thường được tổ chức tại các nhà thờ lớn với sự xa hoa tột bậc), các đạo luật về thuế quan, phân bổ độc quyền buôn bán tơ lụa, len dạ và vàng bạc được thông qua dưới vỏ bọc của các quyết định quân sự. Điều này biến Hội Hiệp sĩ Lông Cừu Vàng thành một chính phủ ngầm, giúp Gia tộc Burgundy vươn lên thành một thế lực có khả năng thách thức trực tiếp quyền lực của cả Vương quốc Pháp lẫn Đế quốc La Mã Thần thánh.",
+          "summary": "Hội Hiệp sĩ Lông Cừu Vàng: Một dòng tu hiệp sĩ Công giáo tinh hoa và độc quyền bậc nhất Lục địa Europa, được sáng lập bởi Công tước Philip Hảo Tâm của Gia tộc Burgundy vào năm 1430. Vào năm 1444, Hội đóng vai trò là xương sống liên kết giới quý tộc tại Vùng Đất Thấp và các vùng lãnh thổ thuộc Burgundy, với số lượng thành viên bị giới hạn nghiêm ngặt ở mức 30 hiệp sĩ và một Đại Tông sư.",
+          "keys": [
+            "Hội Hiệp sĩ Lông Cừu Vàng",
+            "Order of the Golden Fleece",
+            "Lông Cừu Vàng",
+            "Golden Fleece",
+            "Hiệp sĩ Lông Cừu Vàng",
+            "Vòng cổ Lông Cừu Vàng",
+            "Collar of the Golden Fleece"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_burgundy",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "prov_low-countries",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "org_decapole",
+          "title": "Liên minh Decapole",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Liên minh Decapole:\n- Định nghĩa: Một liên minh phòng thủ và tương trợ kinh tế gồm mười Thành phố Tự do nằm tại vùng Alsace, bờ tây sông Rhine.\n- Phân loại: Liên minh thành bang tự trị (Dekapolis).\n- Trạng thái/Cấp độ: Đóng vai trò là vùng đệm chiến lược giữa Đế quốc La Mã Thần thánh và Vương quốc Pháp, sở hữu mạng ma trận phòng thủ liên kết.\n\n## Cơ cấu tổ chức và Căn cứ của Liên minh Decapole:\nĐược Hoàng đế Charles IV chính thức công nhận vào năm 1354, Liên minh Decapole bao gồm mười thành bang (Colmar, Haguenau, Wissembourg, Turckheim, Obernai, Rosheim, Munster, Sélestat, Kaysersberg và Mulhouse). Khác với các liên minh lỏng lẻo khác, mười thành phố này hoàn toàn bình đẳng về mặt quyền lợi và không có sự phân cấp thứ bậc. Haguenau đóng vai trò là thủ phủ mang tính biểu tượng, nơi đặt trụ sở của Đại diện Hoàng gia (Landvogt), nhưng các cuộc họp hội đồng thường được tổ chức tại Sélestat do vị trí trung tâm của nó.\n\nTrong thế giới tràn ngập ma lực này, mười thành phố không chỉ liên kết bằng các hiệp ước trên giấy. Các pháp sư của họ đã thiết lập một mạng lưới tinh thể ma thạch ngầm kết nối các bức tường thành của cả mười đô thị. Khi một thành phố bị tấn công, ma lực phòng ngự có thể được điều chuyển từ chín thành phố còn lại thông qua các đường đứt gãy địa chất, tạo ra những lá chắn vật lý khổng lồ có thể chặn đứng cả những đợt công thành của kỵ binh quái thú.\n\n## Cơ chế hoạt động và Vai trò địa chính trị của Liên minh Decapole:\nMục tiêu tối thượng của Liên minh Decapole là duy trì sự độc lập, hòa bình và thịnh vượng kinh tế trong một khu vực liên tục bị giằng xé bởi chiến tranh. Khi các lãnh chúa phong kiến xung quanh tìm cách thâu tóm lãnh thổ, Liên minh sẵn sàng triển khai một đội quân lính đánh thuê chung và chia sẻ ngân khố để hỗ trợ bất kỳ thành viên nào đối mặt với nguy cơ phá sản hoặc bị vây hãm.\n\nSự tồn tại của Liên minh Decapole là một cái gai trong mắt các đại công tước láng giềng. Mặc dù họ trung thành với Hoàng đế La Mã Thần thánh, họ từ chối can dự sâu vào các cuộc chiến tranh của Đế quốc. Sự thịnh vượng của họ đến từ việc kiểm soát các tuyến giao thương dọc sông Rhine và sự giao thoa văn hóa giữa những học giả, pháp sư chạy trốn khỏi các vùng chiến sự tại Pháp và Đức, biến Alsace thành một ốc đảo tri thức và thương mại.",
+          "summary": "Liên minh Decapole: Một liên minh phòng thủ và tương trợ kinh tế gồm mười Thành phố Tự do nằm tại vùng Alsace, bờ tây sông Rhine. Đóng vai trò là vùng đệm chiến lược giữa Đế quốc La Mã Thần thánh và Vương quốc Pháp, sở hữu mạng ma trận phòng thủ liên kết.",
+          "keys": [
+            "Liên minh Decapole",
+            "Decapole",
+            "Zehnstädtebund",
+            "Liên minh Mười Thành phố",
+            "Alsace Decapolis",
+            "Dekapolis",
+            "mười thành bang",
+            "Alsace"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "nation_hre",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_france",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "prov_luu-vuc-rhine",
+              "pullWeight": 0.5
+            },
+            {
+              "id": "hold_cologne",
+              "pullWeight": 0.5
+            }
+          ]
+        },
+        {
+          "id": "org_palaiologos",
+          "title": "Hoàng tộc Đông La Mã",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Hoàng tộc Đông La Mã:\n- Định nghĩa: Dòng dõi hoàng gia cuối cùng cai trị Đế quốc Byzantine (Đại Đế chế phương Đông), nắm giữ tàn tích của một nền văn minh đã kéo dài hơn một ngàn năm.\n- Phân loại: Hoàng tộc cai trị, Gia tộc ma pháp cổ đại.\n- Trạng thái/Cấp độ: Đang bên bờ vực diệt vong, bị bao vây cô lập tại Constantinople bởi Đế chế Ottoman của loài Orc, quyền lực bị thu hẹp chỉ còn trong vài dải đất nhỏ bé ở bán đảo Peloponnese.\n\n## Cấu trúc quyền lực và Tình trạng hiện tại của Hoàng tộc Đông La Mã:\nĐứng đầu Hoàng tộc hiện tại là Hoàng đế John VIII Palaiologos, người đang cai trị một Đế chế chỉ còn tồn tại trên danh nghĩa. Dưới trướng ông là các Vương công (Despot) cai quản các vùng lãnh thổ rời rạc như Morea. \n\nSự tráng lệ của Hoàng tộc Đông La Mã giờ chỉ còn là cái bóng của quá khứ. Cung điện Blachernae lộng lẫy một thời giờ đây đang dần sụp đổ, các bức tường vàng bị lột ra để trả lương cho lính đánh thuê. Toàn bộ hy vọng của Hoàng tộc đều đặt vào việc cử các phái đoàn ngoại giao mang theo những thánh tích ma pháp quý giá đến phương Tây, quỳ gối trước Giáo hoàng Công giáo để cầu xin các cuộc Thập Tự Chinh giải cứu, chấp nhận hy sinh cả sự độc lập của Giáo hội Chính thống giáo phương Đông.\n\n## Cơ chế Ma pháp và Phòng tuyến cuối cùng của Hoàng tộc Đông La Mã:\nDù suy tàn, Hoàng tộc Palaiologos vẫn nắm giữ những bí mật ma thuật cổ xưa mà phương Tây chưa thể chạm tới. Quan trọng nhất là Bức tường Theodosian bao quanh Constantinople. Đây không chỉ là một công trình vật lý, mà là một mạng ma trận Thổ hệ và Phong ấn khổng lồ được truyền ma lực qua hàng chục thế hệ Hoàng đế, có khả năng vô hiệu hóa các đòn công thành của pháp sư đối phương.\n\nBên cạnh đó, họ là những người duy nhất nắm giữ công thức chế tạo \"Lửa Hy Lạp\" (Greek Fire). Đây là một loại giả kim thuật Hỏa - Thủy hệ lai tạp cực kỳ khủng khiếp, một thứ chất lỏng ma thuật có thể bốc cháy mãnh liệt ngay cả khi ở dưới nước và không thể bị dập tắt bằng các phương thức thông thường. Vũ khí này đã nhiều lần cứu Constantinople khỏi các hạm đội xâm lăng, nhưng nguyên liệu chế tạo chúng đang cạn kiệt nghiêm trọng.\n\n## Tác động địa chính trị sau Thảm kịch Varna:\nThất bại của liên quân Cơ đốc giáo tại Trận Varna (tháng 11 năm 1444) đã giáng đòn ân huệ lên Hoàng tộc Đông La Mã. Không còn một lực lượng cứu viện nào đủ sức xuyên thủng vòng vây của Sultan Ottoman. Hoàng tộc Palaiologos hiện tại đang sống trong những ngày tháng đếm ngược, chuẩn bị cho một cuộc chiến tử thủ cuối cùng bảo vệ Kinh đô của Thế giới, nơi mọi tinh hoa ma thuật và văn minh của họ sẽ phải đối đầu với hỏa lực đại bác và sức mạnh bầy đàn của phương Đông.",
+          "summary": "Hoàng tộc Đông La Mã: Dòng dõi hoàng gia cuối cùng cai trị Đế quốc Byzantine (Đại Đế chế phương Đông), nắm giữ tàn tích của một nền văn minh đã kéo dài hơn một ngàn năm. Đang bên bờ vực diệt vong, bị bao vây cô lập tại Constantinople bởi Đế chế Ottoman của loài Orc, quyền lực bị thu hẹp chỉ còn trong vài dải đất nhỏ bé ở bán đảo Peloponnese.",
+          "keys": [
+            "Hoàng tộc Đông La Mã",
+            "House of Palaiologos",
+            "Đế quốc Byzantine",
+            "Gia tộc Palaiologos",
+            "Hoàng gia Byzantine",
+            "Palaiologos",
+            "Đông La Mã"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "hold_constantinople",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "prov_morea",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "nation_ottoman",
+              "pullWeight": 0.5
+            }
+          ]
+        },
+        {
+          "id": "org_quan-thuong-truc-phap",
+          "title": "Đội quân Thường trực Pháp",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Đội quân Thường trực Pháp:\n- Định nghĩa: Đội quân chuyên nghiệp, thường trực đầu tiên tại Lục địa Europa thời kỳ hậu Cổ đại, được thành lập bởi Vua Charles VII nhằm thay thế lực lượng lính đánh thuê hỗn loạn.\n- Phân loại: Quân đội Hoàng gia, Lực lượng kỵ binh ma pháp hạng nặng.\n- Trạng thái/Cấp độ: Công cụ quân sự tối thượng đang được định hình để quét sạch quân Anh khỏi lục địa và đè bẹp các chư hầu phản loạn.\n\n## Cơ cấu tổ chức và Chiến thuật của Đội quân Thường trực Pháp:\nĐược tài trợ bởi nguồn thu ổn định từ thuế Taille, Đội quân Thường trực Pháp (Compagnies d'ordonnance) đánh dấu sự chấm dứt của lề lối triệu tập chư hầu 40 ngày truyền thống. Quân đội được chia thành các đại đội (Compagnie) đóng quân cố định tại các thị trấn chiến lược. \n\nĐơn vị tác chiến cơ bản là một \"Lance\" (Ngọn giáo). Một Lance không chỉ là một người lính, mà là một tiểu đội phối hợp hoàn hảo gồm: Một hiệp sĩ bọc thép hạng nặng (Gendarme) cưỡi chiến mã yểm ma lực, một cận vệ (Squire), hai cung thủ hoặc nỏ thủ, một lính cầm kích và một pháp sư chiến đấu cấp thấp phụ trách việc tạo khiên chắn nguyên tố hoặc hồi phục nhanh. Hàng ngàn Lances này kết hợp lại tạo thành một cỗ máy nghiền thịt vô cùng kỷ luật.\n\n## Kỷ luật thép và Sự tích hợp Pháo binh Ma thuật:\nSự khác biệt lớn nhất của lực lượng này là kỷ luật. Lính trong các Compagnies được trả lương đều đặn, được cung cấp áo giáp đồng bộ và bị cấm tuyệt đối việc cướp bóc dân thường dưới hình phạt treo cổ. Điều này nhằm mục đích trực tiếp tiêu diệt các băng nhóm Écorcheurs đang tàn phá nền kinh tế.\n\nBên cạnh kỵ binh, Đội quân Thường trực còn tích hợp lực lượng pháo binh do hai anh em nhà Bureau chỉ huy. Đây là một cuộc cách mạng quân sự thực sự: Những khẩu đại bác đúc bằng đồng, bắn ra những viên đạn sắt nhồi tinh thể Hỏa hệ, được đặt trên các cỗ xe ngựa kéo linh hoạt. Khả năng triển khai hỏa lực ma pháp diện rộng và di động này giúp quân đội Pháp có thể đập tan cả những đội hình bộ binh tinh nhuệ nhất hay các pháo đài kiên cố nhất của kẻ thù trong một thời gian ngắn.",
+          "summary": "Đội quân Thường trực Pháp: Đội quân chuyên nghiệp, thường trực đầu tiên tại Lục địa Europa thời kỳ hậu Cổ đại, được thành lập bởi Vua Charles VII nhằm thay thế lực lượng lính đánh thuê hỗn loạn. Công cụ quân sự tối thượng đang được định hình để quét sạch quân Anh khỏi lục địa và đè bẹp các chư hầu phản loạn.",
+          "keys": [
+            "Đội quân Thường trực Pháp",
+            "Compagnies d'ordonnance",
+            "Gendarmerie",
+            "Quân đội Hoàng gia Pháp",
+            "Kỵ binh Pháp",
+            "Lance",
+            "Gendarme",
+            "anh em nhà Bureau"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "org_hoi-nghi-dang-cap-phap",
+          "title": "Hội nghị Đẳng cấp Pháp",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Hội nghị Đẳng cấp Pháp:\n- Định nghĩa: Cơ quan đại diện chính trị cao nhất của Vương quốc Pháp, bao gồm đại biểu từ ba đẳng cấp: Giáo sĩ (Đẳng cấp thứ nhất), Quý tộc (Đẳng cấp thứ hai) và Thường dân/Tư sản (Đẳng cấp thứ ba).\n- Phân loại: Hội đồng lập pháp và cố vấn phong kiến.\n- Trạng thái/Cấp độ: Đang mất dần quyền lực thực tế vào tay ngai vàng, bị nhà vua thao túng để hợp thức hóa việc thu thuế vĩnh viễn.\n\n## Cơ chế hoạt động và Sự phân hóa Đẳng cấp tại Vương quốc Pháp:\nKhông giống như Đại hội Đế quốc (Reichstag) của Đế quốc La Mã Thần thánh mang tính chất quyết định các đạo luật vĩ mô, Hội nghị Đẳng cấp Pháp (États généraux) không có quyền tự triệu tập. Nó chỉ được nhóm họp khi Vua Pháp gửi chiếu chỉ, thường là vào những lúc vương quốc lâm vào khủng hoảng sinh tử, cần huy động một lượng lớn tiền vàng (để trả tiền chuộc cho nhà vua bị bắt) hoặc cần tính chính danh để phát động chiến tranh toàn diện.\n\nSự phân hóa bên trong Hội nghị cực kỳ sâu sắc. Giới Giáo sĩ nắm giữ quyền lực của Ma pháp Thần thánh và tài sản của các tu viện. Giới Quý tộc thế tục nắm giữ đất đai và lực lượng kỵ binh. Cả hai đẳng cấp này luôn liên minh với nhau để từ chối nộp thuế. Mọi gánh nặng tài chính đều đổ dồn lên Đẳng cấp thứ ba, đại diện cho những thương nhân giàu có, các giả kim thuật gia, chủ ngân hàng và nông dân tự do. Bất chấp việc tạo ra của cải cho toàn bộ vương quốc, tiếng nói của Đẳng cấp thứ ba thường bị hai đẳng cấp trên phủ quyết dễ dàng.\n\n## Tình trạng suy tàn của Hội nghị Đẳng cấp Pháp vào năm 1444:\nSự kiện mang tính bước ngoặt đã xảy ra vào năm 1439, khi Hội nghị Đẳng cấp, trong nỗ lực tuyệt vọng nhằm tài trợ cho quân đội đánh đuổi người Anh, đã thông qua đạo luật cho phép Vua Charles VII được quyền thu thuế Taille hàng năm để duy trì Đội quân Thường trực.\n\nTuy nhiên, quyết định này chính là bản án tử hình cho quyền lực của Hội nghị. Bằng việc trao cho nhà vua một nguồn thu thuế vĩnh viễn mà không cần phải xin phép lại hàng năm, Hội nghị Đẳng cấp đã tự tước đi công cụ mặc cả duy nhất của mình. Vào thời điểm năm 1444, ngai vàng Pháp ngày càng trở nên độc đoán, thu thuế và ban hành luật lệ thông qua các Bailli mà không thèm đếm xỉa đến việc triệu tập Hội nghị, đẩy Vương quốc Pháp bước những bước dài trên con đường trở thành một quốc gia quân chủ chuyên chế tuyệt đối.",
+          "summary": "Hội nghị Đẳng cấp Pháp: Cơ quan đại diện chính trị cao nhất của Vương quốc Pháp, bao gồm đại biểu từ ba đẳng cấp: Giáo sĩ (Đẳng cấp thứ nhất), Quý tộc (Đẳng cấp thứ hai) và Thường dân/Tư sản (Đẳng cấp thứ ba). Đang mất dần quyền lực thực tế vào tay ngai vàng, bị nhà vua thao túng để hợp thức hóa việc thu thuế vĩnh viễn.",
+          "keys": [
+            "Hội nghị Đẳng cấp Pháp",
+            "Estates General of France",
+            "États généraux",
+            "Hội đồng Đẳng cấp",
+            "Ba đẳng cấp Pháp",
+            "Hội nghị Đẳng cấp"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_france",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "org_hau-cung-ottoman",
+          "title": "Hậu cung Hoàng gia Ottoman",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Hậu cung Hoàng gia Ottoman:\n- Định nghĩa: Khu vực cấm địa bên trong cung điện của Sultan, nơi sinh sống của các nữ quyến, phi tần, và là trung tâm đào tạo các nữ quan quyền lực nhất Đế chế.\n- Phân loại: Tổ chức chính trị ngầm, Cấu trúc hoàng gia khép kín.\n- Trạng thái/Cấp độ: Nắm giữ mạng lưới tình báo khổng lồ, thao túng trực tiếp dòng máu kế vị và các quyết sách ngoại giao của Đế chế.\n\n## Kiến trúc và Quyền lực ngầm của Hậu cung Hoàng gia Ottoman:\nBề ngoài, Hậu cung thường bị người Châu Âu hiểu lầm là một nhà tù giam lỏng những người phụ nữ xinh đẹp. Thực tế, đây là một học viện chính trị và ma thuật khắc nghiệt bậc nhất Lục địa Europa. Nằm sâu trong cung điện tại Edirne (và sau này là Topkapi), khu vực này được bảo vệ bởi vô số ma trận phong ấn Ám hệ và những hoạn quan mang sức mạnh thể chất vượt trội.\n\nĐứng đầu Hậu cung là Thái hậu (Valide Sultan), người phụ nữ có quyền lực chỉ xếp sau Sultan. Những phi tần được đưa vào đây (thường là những nữ tù binh xuất chúng từ các gia tộc Châu Âu, Tiên tộc hoặc Long Duệ) không chỉ dựa vào nhan sắc để sinh tồn. Họ được dạy chữ, thi ca, các ngôn ngữ cổ, giả kim thuật và nghệ thuật đầu độc. Một phi tần thành công có thể giật dây các quan tể tướng, sắp xếp các cuộc ám sát bằng ma thuật và kiểm soát nguồn quỹ khổng lồ của riêng mình.\n\n## Cơ chế Chọn lọc Huyết thống và Ma pháp:\nTộc Orc cai trị Đế chế Ottoman rất coi trọng sự tiến hóa sinh học. Hậu cung là nơi diễn ra quá trình lai tạo huyết thống có tính toán. Bằng cách nạp các phi tần mang ma lực mạnh mẽ từ nhiều chủng tộc khác nhau (như sức bền của Nhân loại, ma pháp của Tiên tộc hay sự cuồng bạo của Á nhân), họ đảm bảo rằng thế hệ hoàng tử tiếp theo sẽ thừa hưởng những đặc tính ma thuật và thể chất ưu việt nhất.\n\nTuy nhiên, sự cạnh tranh giữa các hoàng tử lại vô cùng đẫm máu. Theo luật kế vị, khi một hoàng tử lên ngôi Sultan, hắn bắt buộc phải ra lệnh siết cổ tất cả các anh em trai của mình để ngăn chặn nội chiến. Điều này biến Hậu cung thành một chiến trường không khoan nhượng, nơi các phi tần phải dùng mọi thủ đoạn tình báo và bùa chú để bảo vệ con trai mình bước lên ngai vàng.",
+          "summary": "Hậu cung Hoàng gia Ottoman: Khu vực cấm địa bên trong cung điện của Sultan, nơi sinh sống của các nữ quyến, phi tần, và là trung tâm đào tạo các nữ quan quyền lực nhất Đế chế. Nắm giữ mạng lưới tình báo khổng lồ, thao túng trực tiếp dòng máu kế vị và các quyết sách ngoại giao của Đế chế.",
+          "keys": [
+            "Hậu cung Hoàng gia Ottoman",
+            "Imperial Harem",
+            "Hậu cung Ottoman",
+            "Harem",
+            "Valide Sultan",
+            "Thái hậu"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "nation_ottoman",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "org_chinh-thong-giao",
+          "title": "Giáo hội Chính thống giáo phương Đông",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Giáo hội Chính thống giáo phương Đông:\n- Định nghĩa: Thể chế tôn giáo tối cao của Đế quốc Byzantine và các quốc gia Đông Âu (như Nga, Wallachia), hoạt động độc lập và đối lập với Giáo hội Công giáo La Mã.\n- Phân loại: Thể chế thần quyền phân lập.\n- Trạng thái/Cấp độ: Đang đánh mất dần quyền lực chính trị do sự thu hẹp lãnh thổ, nhưng vẫn nắm giữ những bí thuật thanh tẩy và bảo hộ cổ xưa nhất.\n\n## Cơ cấu tổ chức và Ma pháp Thánh ca của Giáo hội Chính thống giáo phương Đông:\nKhông giống như quyền lực tập trung tuyệt đối của Giáo hoàng tại Rome, Giáo hội Chính thống giáo được chia thành các Tòa Thượng phụ (Patriarchate) tự trị, trong đó Tòa Thượng phụ Constantinople mang tính biểu tượng cao nhất. Trụ sở tinh thần của họ là nhà thờ Hagia Sophia vĩ đại.\n\nMa pháp Thần thánh của Chính thống giáo có sự khác biệt căn bản so với phương Tây. Thay vì sử dụng các thánh tích để phóng ra ánh sáng bạo liệt (Quang hệ), các tu sĩ Chính thống giáo sử dụng Ma pháp Âm thanh và Hình ảnh. Họ tạo ra các bức Thánh tượng (Icons) được yểm ma lực, có khả năng hình thành các kết giới bảo vệ vĩnh cửu xung quanh các thành phố. Các nghi lễ của họ phụ thuộc vào những bài Thánh ca (Chants) đa âm sắc; khi hàng trăm tu sĩ cùng cất tiếng hát, sự cộng hưởng ma lực có thể chữa lành dịch bệnh diện rộng hoặc tạo ra ảo ảnh đánh lừa các đạo quân công thành.\n\n## Cuộc Khủng hoảng Niềm tin và Hiệp ước Florence:\nVào năm 1444, Giáo hội Chính thống giáo đang đối mặt với sự chia rẽ tột độ. Để cứu vãn Constantinople khỏi quân Ottoman, Hoàng đế John VIII Palaiologos đã chấp nhận ký Hiệp ước Florence (1439), đồng ý sáp nhập Chính thống giáo vào Công giáo La Mã để đổi lấy các cuộc Thập Tự Chinh viện trợ.\n\nTuy nhiên, hiệp ước này vấp phải sự phản đối dữ dội từ các tu sĩ cấp thấp và dân chúng. Phương châm của họ là: \"Thà nhìn thấy khăn xếp của người Thổ còn hơn là mũ của Giáo hoàng La Mã\". Sự cuồng tín bảo thủ này đã làm suy yếu nghiêm trọng sự phối hợp ma pháp bên trong các bức tường thành, khiến lớp phòng ngự tâm linh của Đế quốc Byzantine trở nên vô cùng mong manh trước ma thuật Hỏa hệ của phương Đông.",
+          "summary": "Giáo hội Chính thống giáo phương Đông: Thể chế tôn giáo tối cao của Đế quốc Byzantine và các quốc gia Đông Âu (như Nga, Wallachia), hoạt động độc lập và đối lập với Giáo hội Công giáo La Mã. Đang đánh mất dần quyền lực chính trị do sự thu hẹp lãnh thổ, nhưng vẫn nắm giữ những bí thuật thanh tẩy và bảo hộ cổ xưa nhất.",
+          "keys": [
+            "Giáo hội Chính thống giáo phương Đông",
+            "Eastern Orthodox Church",
+            "Chính thống giáo phương Đông",
+            "Tòa Thượng phụ Constantinople",
+            "Chính thống giáo",
+            "Hagia Sophia",
+            "Hiệp ước Florence"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "org_giao-hoi-cong-giao",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "hold_constantinople",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_wallachia",
+              "pullWeight": 0.5
+            }
+          ],
+          "variants": [
+            {
+              "audience": "nation_giao-trieu",
+              "content": "## Vụ ly giáo phương Đông, theo Giáo triều La Mã:\n\nNăm 1054 không phải một cuộc chia tay giữa hai giáo hội ngang hàng. Đó là ngày các Thượng phụ phương Đông bỏ đi khỏi Giáo hội duy nhất, vì kiêu ngạo và vì không chịu nổi việc Đấng kế vị Thánh Phêrô có tiếng nói cuối cùng.\n\nHọ giữ đúng bí tích, đúng phẩm trật, đúng lễ nghi — và chính vì thế họ nguy hiểm hơn kẻ ngoại đạo. Một tín đồ đi qua Constantinople không nhận ra mình đang dự một thánh lễ vô hiệu.\n\nHiệp ước Florence bảy năm trước đã kéo họ về. Hoàng đế của họ đã ký, Thượng phụ của họ đã ký. Rồi họ về nhà, và dân chúng ném đá các giám mục đã ký. Đó là toàn bộ vấn đề của phương Đông: họ hứa bằng miệng hoàng đế và nuốt lời bằng miệng đám đông.\n\nGiờ họ lại xin quân. Rome sẽ gửi quân khi Constantinople đọc kinh Tin Kính đúng như Rome đọc, không sớm hơn một ngày."
+            },
+            {
+              "audience": "nation_dong-la-ma",
+              "content": "## Chính thống giáo, theo Constantinople:\n\nChúng ta không ly khai khỏi ai cả. Chúng ta ở nguyên chỗ mình đã ở từ thời các Công đồng. Rome mới là bên tự thêm một chữ vào kinh Tin Kính mà không hỏi bốn Tòa Thượng phụ còn lại, rồi đòi cả thế giới nhận cái chữ thêm ấy là truyền thống.\n\nGiám mục Rome là anh cả trong năm anh em, không phải cha của bốn người kia. Đó là điều các Công đồng đã định, và không một sắc chỉ nào sửa được điều các Công đồng đã định.\n\nHiệp ước Florence là thứ hoàng đế ký trong lúc thành sắp mất, dưới sức ép của cái đói và của hạm đội Ý. Dân chúng không nhận, và dân chúng đúng. Có kẻ ở đây nói thẳng: thà thấy khăn xếp của Sultan trong thành còn hơn thấy mũ hồng y La Mã.\n\nHọ nói câu đó vì họ nhớ năm 1204, khi quân Thập Tự đến giúp chúng ta và ở lại cướp phá thành suốt ba ngày."
+            },
+            {
+              "audience": "race_rus",
+              "content": "## Chính thống giáo, theo các công quốc Rus:\n\nĐức tin đến với chúng ta từ Constantinople, và suốt bốn thế kỷ Thượng phụ ở đó phong giám mục cho chúng ta. Rồi ông ta ký với La Mã ở Florence, và mọi thứ vỡ.\n\nMoscow không nhận hiệp ước ấy. Vị giáo chủ mang nó về từ Ý đã bị tống giam rồi phải bỏ trốn. Từ đó chúng ta tự phong giám mục lấy, không xin phép ai.\n\nĐiều đó có nghĩa gì thì mỗi người hiểu một cách. Có người bảo chúng ta mồ côi. Có người bảo Constantinople đã bán đức tin để đổi lấy quân — và nếu Đấng Sáng Tạo vì thế mà bỏ mặc họ, thì ngọn đèn thật đã chuyển về phương Bắc, và chúng ta là kẻ giữ đèn.\n\nCác giáo sĩ chưa dám nói to điều thứ hai. Các đại công tước thì đã nghĩ tới nó rồi."
+            }
+          ]
+        },
+        {
+          "id": "nation_crimea",
+          "title": "Hãn quốc Crimea",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Hãn quốc Crimea:\n- Định nghĩa: Một hãn quốc độc lập hùng mạnh vừa tách ra từ Kim Trướng Hãn Quốc, chiếm cứ toàn bộ Bán đảo Crimea và vùng duyên hải Bắc Biển Đen.\n- Phân loại: Hãn quốc thảo nguyên kết hợp thế lực hàng hải.\n- Trạng thái/Cấp độ: Trung tâm buôn bán nô lệ lớn nhất thế giới, đang trong quá trình thiết lập quan hệ chư hầu hoặc đồng minh chiến lược với Đế chế Ottoman.\n\n## Vị trí Địa lý và Mạng lưới Nô lệ tại Hãn quốc Crimea:\nBán đảo Crimea là một pháo đài tự nhiên tuyệt hảo, được bảo vệ bởi eo đất Perekop hẹp ở phía Bắc và những dãy núi đá dốc đứng ở phía Nam. Khác với những hãn quốc chỉ biết chăn thả, Hãn quốc Crimea đã phát triển một nền kinh tế bòn rút tàn khốc dựa trên sức người. \n\nCác kỵ binh Mã Nhân của Crimea nổi tiếng với chiến thuật \"Thu hoạch thảo nguyên\". Họ tổ chức các cuộc đột kích chớp nhoáng (chambul) sâu vào lãnh thổ Ba Lan, Lithuania và Muscovy, không nhằm mục đích chiếm đất mà chỉ để bắt sống hàng vạn Nhân loại và Tiên tộc. Những tù binh này bị lùa về các chợ nô lệ khổng lồ tại Kefe (Caffa) - nơi đang xảy ra tranh chấp quyền kiểm soát với các thương nhân Cộng hòa Genoa. Từ đây, nô lệ được bán cho Đế chế Ottoman để làm lính Janissary, phi tần trong Hậu cung, hoặc phu chèo thuyền Galley.\n\n## Cơ chế Ngoại giao và Sức mạnh Quân sự của Hãn quốc Crimea:\nĐược cai trị bởi dòng dõi Giray, Hãn quốc Crimea vô cùng xảo quyệt trong ngoại giao. Họ nhận ra sự trỗi dậy không thể cản phá của Đế chế Ottoman (do Tộc Orc lãnh đạo) và sẵn sàng chia sẻ lợi ích tại Biển Đen để đổi lấy hỏa khí, đại bác và sự bảo vệ khỏi Đại Trướng Hãn Quốc.\n\nQuân đội Crimea không mặc giáp nặng. Họ sử dụng những bộ giáp da nhẹ, cung sừng và những sợi dây thòng lọng ma thuật có khả năng tự động siết chặt cổ nạn nhân. Tốc độ và sự tàn nhẫn của họ biến vùng biên giới Đông Âu thành một vùng đất chết, nơi nông dân phải ngủ với vũ khí dưới gối và các tháp canh phải liên tục đốt lửa báo động.",
+          "summary": "Hãn quốc Crimea: Một hãn quốc độc lập hùng mạnh vừa tách ra từ Kim Trướng Hãn Quốc, chiếm cứ toàn bộ Bán đảo Crimea và vùng duyên hải Bắc Biển Đen. Trung tâm buôn bán nô lệ lớn nhất thế giới, đang trong quá trình thiết lập quan hệ chư hầu hoặc đồng minh chiến lược với Đế chế Ottoman.",
+          "keys": [
+            "Hãn quốc Crimea",
+            "Crimean Khanate",
+            "Crimea",
+            "Gia tộc Giray",
+            "Kefe",
+            "Caffa",
+            "chambul"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "nation_ottoman",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "prov_steppe-pontic",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "nation_kazan",
+          "title": "Hãn quốc Kazan",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Hãn quốc Kazan:\n- Định nghĩa: Một hãn quốc hùng mạnh nằm ở ngã ba sông Volga và sông Kama, án ngữ cửa ngõ giao thương phương Bắc và phương Đông.\n- Phân loại: Hãn quốc định cư bán du mục, Trung tâm giao thương lông thú.\n- Trạng thái/Cấp độ: Đối thủ không đội trời chung của Công quốc Muscovy, sở hữu sự pha trộn văn hóa giữa thảo nguyên và rừng rậm.\n\n## Cảnh quan và Nền kinh tế Lông thú tại Hãn quốc Kazan:\nKhác với những người anh em ở phía Nam chỉ sống trên lưng ngựa, Hãn quốc Kazan đã xây dựng những thành trì bằng gỗ sồi và đất nện kiên cố dọc theo sông Volga. Lãnh thổ của họ là sự giao thoa giữa thảo nguyên lộng gió và những khu rừng Taiga rậm rạp tăm tối.\n\nSự giàu có của Kazan đến từ việc độc quyền kiểm soát tuyến đường buôn bán lông thú ma thuật. Các thợ săn và pháp sư của Kazan tiến sâu vào phương Bắc, thu thập da của các loài ma thú (như gấu tuyết, sói ma) để bán cho các thương gia phương Đông và Ottoman. Nguồn tài chính này cho phép Đại Hãn Kazan thuê mướn các kỹ sư luyện kim để chế tạo áo giáp vảy cá và vũ khí cận chiến chất lượng cao, vượt xa trang bị của các bộ lạc du mục thuần túy.\n\n## Xung đột và Chiến thuật Quân sự của Hãn quốc Kazan:\nKẻ thù lớn nhất của Kazan là sự bành trướng của Nhân loại từ Công quốc Muscovy. Hai thế lực này liên tục giao tranh để giành quyền kiểm soát lưu vực sông Volga.\n\nQuân đội Kazan là một sự kết hợp chết người. Họ sở hữu kỵ binh bắn cung Mã Nhân tinh nhuệ, được hỗ trợ bởi bộ binh Nhân loại và các á nhân bản địa chiến đấu bằng rìu và khiên gỗ. Các Shaman của Kazan có khả năng thao túng ma lực của sông ngòi, tạo ra những đợt lũ quét đột ngột hoặc đóng băng mặt sông để phục kích tàu buôn của đối phương, biến dòng Volga thành một ranh giới tử thần.",
+          "summary": "Hãn quốc Kazan: Một hãn quốc hùng mạnh nằm ở ngã ba sông Volga và sông Kama, án ngữ cửa ngõ giao thương phương Bắc và phương Đông. Đối thủ không đội trời chung của Công quốc Muscovy, sở hữu sự pha trộn văn hóa giữa thảo nguyên và rừng rậm.",
+          "keys": [
+            "Hãn quốc Kazan",
+            "Kazan Khanate",
+            "Kazan",
+            "sông Volga",
+            "sông Kama"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_muscovy",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "org_thi-toc-mansur",
+          "title": "Thị tộc Mansur",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Thị tộc Mansur:\n- Định nghĩa: Một trong bốn thị tộc quý tộc quyền lực nhất của các Hãn quốc thảo nguyên, nổi tiếng với sức mạnh quân sự áp đảo và lực lượng bộ binh/kỵ binh hạng nặng.\n- Phân loại: Thị tộc quân sự, Trụ cột Hãn quốc.\n- Trạng thái/Cấp độ: Chuyên phụ trách các chiến dịch đập tan phòng tuyến của kẻ thù, sở hữu lực lượng Tộc Mục Nhân đông đảo nhất.\n\n## Cơ cấu Chủng tộc và Vũ trang của Thị tộc Mansur:\nTrong khi Thị tộc Shirin thao túng chính trị bằng ngoại giao, Thị tộc Mansur giải quyết vấn đề bằng sức mạnh vật lý. Cấu trúc dân số của Mansur có tỷ lệ Tộc Mục Nhân (Minotaurs) cao bất thường. Những người khổng lồ nửa người nửa trâu bò này được trang bị các tấm giáp đúc từ đồng và da tê giác, tạo thành một bức tường thịt không thể xuyên thủng.\n\nVũ khí đặc trưng của Thị tộc Mansur là những cây chùy sắt khổng lồ và các lưỡi rìu chiến yểm ma lực Thổ hệ. Khi đối mặt với các phòng tuyến bằng xe ngựa bọc thép (Wagon forts) của lính đánh thuê Đông Âu hoặc các pháo đài gỗ của quân Muscovy, lực lượng xung kích của Mansur sẽ được tung ra để càn lướt, phá vỡ cấu trúc phòng thủ trước khi kỵ binh nhẹ tiến vào.\n\n## Vị thế và Lòng trung thành của Thị tộc Mansur:\nCác tộc trưởng của Mansur thường giữ chức vụ thống soái quân đội (Beylerbey) trong triều đình của Đại Hãn. Lòng trung thành của họ không thể mua bằng những lời hứa hẹn suông, mà phải được trả bằng chiến lợi phẩm đẫm máu. \n\nVào năm 1444, sự hiện diện của Thị tộc Mansur trong một chiến dịch quân sự là bảo chứng cho sự tàn phá tuyệt đối. Bất kỳ vị Hãn nào bị Thị tộc Mansur quay lưng đều sẽ mất đi khả năng công thành và phá trận, dẫn đến việc vương quyền nhanh chóng sụp đổ trước những cuộc tấn công của các phe phái đối nghịch trên thảo nguyên.",
+          "summary": "Thị tộc Mansur: Một trong bốn thị tộc quý tộc quyền lực nhất của các Hãn quốc thảo nguyên, nổi tiếng với sức mạnh quân sự áp đảo và lực lượng bộ binh/kỵ binh hạng nặng. Chuyên phụ trách các chiến dịch đập tan phòng tuyến của kẻ thù, sở hữu lực lượng Tộc Mục Nhân đông đảo nhất.",
+          "keys": [
+            "Thị tộc Mansur",
+            "Mansur Clan",
+            "Gia tộc Mansur",
+            "Bộ lạc Mansur",
+            "Mansur"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "org_hoi-dong-boyar",
+          "title": "Hội đồng Boyar",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Hội đồng Boyar:\n- Định nghĩa: Cơ quan cố vấn tối cao bao gồm các đại quý tộc thế tập (Boyar), tồn tại trong triều đình của hầu hết các công quốc Rus.\n- Phân loại: Hội đồng quý tộc phong kiến.\n- Trạng thái/Cấp độ: Thế lực chính trị bảo thủ, đang trong cuộc giằng co quyền lực sinh tử với các Đại Công tước có xu hướng độc tài.\n\n## Cơ cấu quyền lực và Đặc quyền của Hội đồng Boyar:\nCác Boyar là những người đứng đầu các gia tộc cổ xưa, sở hữu những vùng đất đai rộng lớn (Votchina) mang tính chất thế tập vĩnh viễn, hoàn toàn khác biệt với những người lính giữ thái ấp Pomestye. Họ duy trì quân đội tư nhân khổng lồ, kiểm soát các pháo đài bằng gỗ độc lập và sở hữu các học viện đào tạo pháp sư chiến đấu của riêng gia tộc.\n\nHội đồng Boyar (Boyar Duma) có nhiệm vụ cố vấn cho Đại Công tước về các vấn đề lập pháp, ngoại giao và quân sự. Theo truyền thống, không một đạo luật lớn nào được ban hành mà không có sự đồng thuận của Hội đồng. Tại các quốc gia suy yếu, Boyar thao túng hoàn toàn ngai vàng, tự ý phế lập các vương công.\n\n## Sự đàn áp và Thanh trừng tại Muscovy:\nTại Đại Công quốc Muscovy, sự tồn tại của Hội đồng Boyar là chướng ngại vật lớn nhất ngăn cản tham vọng tập quyền của Đại Công tước. Các vị vua Muscovy liên tục sử dụng các thủ đoạn chính trị, vu khống tà thuật và ám sát ngầm để loại bỏ những Boyar cứng đầu, tịch thu tài sản của họ để chia cho tầng lớp quân sự mới. Cuộc chiến ngầm giữa ngai vàng và giới quý tộc cổ đại này khiến nội bộ các cung điện tại Kremlin luôn ngập tràn máu và độc dược.",
+          "summary": "Hội đồng Boyar: Cơ quan cố vấn tối cao bao gồm các đại quý tộc thế tập (Boyar), tồn tại trong triều đình của hầu hết các công quốc Rus. Thế lực chính trị bảo thủ, đang trong cuộc giằng co quyền lực sinh tử với các Đại Công tước có xu hướng độc tài.",
+          "keys": [
+            "Hội đồng Boyar",
+            "Boyar Duma",
+            "Quý tộc Boyar",
+            "Boyar",
+            "đại quý tộc Boyar"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "prov_ao",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "nation_livonia",
+          "title": "Liên bang Livonia",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Liên bang Livonia:\n- Định nghĩa: Một liên bang thần quyền phức tạp nằm ở khu vực Đông Baltic (Estonia và Latvia ngày nay), được hình thành sau các cuộc Thập Tự Chinh phương Bắc.\n- Phân loại: Liên minh Thần quyền - Quân sự (Terra Mariana).\n- Trạng thái/Cấp độ: Đang bị chia rẽ nội bộ sâu sắc, đóng vai trò là tiền đồn của Công giáo La Mã chống lại Cộng hòa Novgorod và Pskov.\n\n## Cơ cấu tổ chức và Cảnh quan của Liên bang Livonia:\nLivonia không phải là một quốc gia thống nhất mà là một mạng lưới gồm năm thực thể quyền lực chồng chéo lên nhau: Dòng tu Hiệp sĩ Livonia (một nhánh tự trị của Hội Hiệp sĩ Teuton) nắm giữ sức mạnh quân sự nòng cốt, cùng với bốn Tòa Giám mục độc lập (Riga, Dorpat, Ösel-Wiek và Courland). Cảnh quan nơi đây là những bờ biển đóng băng vào mùa đông, các khu rừng thông dày đặc và các pháo đài gạch đỏ mọc lên trên các vùng đất của người ngoại đạo bản địa đã bị cưỡng bức cải đạo.\n\nMa pháp tại Livonia được kiểm soát gắt gao bởi các Giám mục và Hiệp sĩ. Họ sử dụng Ma pháp Thần thánh kết hợp với hỏa lực từ các thành bang Hanseatic để đàn áp các cuộc nổi dậy của các bộ lạc Finno-Ugric và Baltic, những người vẫn bí mật thờ phụng các tinh linh tự nhiên.\n\n## Xung đột và Chiến lược Quân sự của Liên bang Livonia:\nBên trong Liên bang, các Hiệp sĩ Livonia và Tổng giám mục Riga liên tục xảy ra các cuộc nội chiến ngầm để tranh giành quyền kiểm soát thương mại dọc sông Daugava. Họ cũng thường xuyên xung đột với các thương gia của Liên minh Hanse trú ngụ trong các thành phố của mình.\n\nVề mặt đối ngoại, Livonia là tấm khiên của phương Tây chặn đường ra biển Baltic của người Rus. Họ liên tục phát động các cuộc chiến tranh trên mặt băng chống lại Cộng hòa Novgorod và Pskov, sử dụng kỵ binh bọc thép và ma pháp Quang hệ để đối đầu với các pháp sư Băng hệ của phương Đông. Tuy nhiên, sự phân mảnh nội bộ khiến Liên bang này ngày càng trở nên mong manh trước sự trỗi dậy của các siêu cường láng giềng.",
+          "summary": "Liên bang Livonia: Một liên bang thần quyền phức tạp nằm ở khu vực Đông Baltic (Estonia và Latvia ngày nay), được hình thành sau các cuộc Thập Tự Chinh phương Bắc. Đang bị chia rẽ nội bộ sâu sắc, đóng vai trò là tiền đồn của Công giáo La Mã chống lại Cộng hòa Novgorod và Pskov.",
+          "keys": [
+            "Liên bang Livonia",
+            "Livonian Confederation",
+            "Terra Mariana",
+            "Livonia",
+            "Hiệp sĩ Livonia"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_novgorod",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "prov_bo-bien-baltic",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_pskov",
+              "pullWeight": 0.5
+            }
+          ]
+        },
+        {
+          "id": "org_sejm",
+          "title": "Hội nghị Quốc dân Sejm",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Hội nghị Quốc dân Sejm:\n- Định nghĩa: Cơ quan lập pháp tối cao của Vương quốc Ba Lan (và sau này là toàn bộ Khối thịnh vượng chung), nơi quy tụ các đại diện của giới quý tộc Szlachta.\n- Phân loại: Nghị viện quý tộc, Hội đồng lập pháp phong kiến.\n- Trạng thái/Cấp độ: Nắm giữ quyền lực thực tế của quốc gia, là chiến trường chính trị nơi các đại gia tộc đấu đá và chia chác quyền lợi.\n\n## Cấu trúc Phân cấp và Hoạt động của Hội nghị Sejm:\nHội nghị Quốc dân Sejm (Walny Sejm) được chia thành hai viện chính. Thượng viện (Senat) bao gồm các quan chức cấp cao của hoàng gia, các giám mục Công giáo và các lãnh chúa đại quý tộc (Magnates). Hạ viện (Izba Poselska) bao gồm các đại biểu được bầu ra từ các hội đồng địa phương (Sejmik) của giới quý tộc nhỏ.\n\nKhác với Hội nghị Đẳng cấp của Pháp, nông dân và giới tư sản thành thị hoàn toàn bị loại trừ khỏi Sejm. Những cuộc họp của Sejm thường diễn ra trong bầu không khí cực kỳ căng thẳng, ồn ào và kéo dài nhiều tuần lễ. Các đại biểu mang theo vũ khí vào phòng họp, và không hiếm những trường hợp các cuộc tranh luận về thuế khóa hay ngoại giao biến thành những cuộc đấu kiếm đẫm máu ngay giữa nghị trường.\n\n## Quyền lực Lập pháp và Tác động đến Vương quyền của Hội nghị Sejm:\nSejm nắm giữ chiếc vòng kim cô siết chặt ngai vàng Ba Lan. Nhà vua không thể ban hành bất kỳ đạo luật mới nào, không thể tăng thuế để xây dựng quân đội thường trực, và không thể tuyên chiến nếu không có sự thông qua của Sejm.\n\nKhi Vua Władysław III tử trận tại Varna vào năm 1444, ngai vàng Ba Lan bị bỏ trống. Trong thời gian này, quyền lực của Sejm đạt đến đỉnh điểm. Họ sử dụng quyền bầu cử nhà vua để ép buộc các ứng cử viên tiềm năng (như Casimir của Lithuania) phải ký kết các đặc ân (Pacta conventa) hứa hẹn sẽ từ bỏ thêm nhiều quyền lực hoàng gia, đẩy Ba Lan vào một vòng lặp suy yếu hành chính không thể cứu vãn.",
+          "summary": "Hội nghị Quốc dân Sejm: Cơ quan lập pháp tối cao của Vương quốc Ba Lan (và sau này là toàn bộ Khối thịnh vượng chung), nơi quy tụ các đại diện của giới quý tộc Szlachta. Nắm giữ quyền lực thực tế của quốc gia, là chiến trường chính trị nơi các đại gia tộc đấu đá và chia chác quyền lợi.",
+          "keys": [
+            "Hội nghị Quốc dân Sejm",
+            "General Sejm",
+            "Nghị viện Ba Lan",
+            "Walny Sejm",
+            "Sejm",
+            "Izba Poselska",
+            "Senat"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_poland",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "nation_kalmar",
+          "title": "Liên minh Kalmar",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Liên minh Kalmar:\n- Định nghĩa: Một siêu liên minh cá nhân khổng lồ, hợp nhất ba vương quốc Đan Mạch, Thụy Điển và Na Uy dưới một ngai vàng duy nhất để tạo thành một khối thống nhất tại Bắc Âu.\n- Phân loại: Liên minh vương quyền phong kiến, Siêu cường phương Bắc.\n- Trạng thái/Cấp độ: Nắm giữ quyền kiểm soát phần lớn bờ biển Baltic và Biển Bắc, hiện đang bị rạn nứt nghiêm trọng bởi các cuộc nổi dậy ly khai và sự cai trị tàn bạo của Tộc Băng Tộc (Frostborn).\n\n## Cấu trúc Chính trị và Sự thống trị của Liên minh Kalmar:\nĐược thành lập vào năm 1397 tại thành phố Kalmar, mục tiêu ban đầu của Liên minh là tạo ra một khối đối trọng quân sự và kinh tế đủ sức chống lại sự bành trướng của Đế quốc La Mã Thần thánh và đặc biệt là đập tan thế độc quyền thương mại của Liên minh Hanse. \n\nTuy nhiên, quyền lực bên trong Liên minh không hề bình đẳng. Đan Mạch, với dân số đông đảo và vị trí chiến lược, luôn đóng vai trò là kẻ thống trị tuyệt đối. Các quốc vương Đan Mạch (hiện tại được nhiếp chính bởi Yngvild của Băng Tộc) đặt triều đình trung ương tại Copenhagen, bổ nhiệm các quan chức Đan Mạch đến cai trị Thụy Điển và Na Uy, đồng thời sử dụng tiền thuế của hai vương quốc này để phục vụ cho các chiến dịch quân sự của riêng Đan Mạch.\n\n## Xung đột Nội bộ và Cục diện năm 1444 của Liên minh Kalmar:\nVào thời điểm năm 1444, Liên minh Kalmar đang ngồi trên một núi lửa chực chờ phun trào. Giới quý tộc Thụy Điển cực kỳ phẫn nộ trước việc bị Đan Mạch chèn ép và bóc lột. Họ liên tục ngấm ngầm tài trợ cho các đội quân khởi nghĩa, được hỗ trợ vũ khí và tài chính bí mật từ chính Liên minh Hanse (những kẻ không muốn thấy một Bắc Âu thống nhất).\n\nSức mạnh quân sự của Liên minh Kalmar nằm ở sự kết hợp giữa hạm đội tàu chiến drakkar bọc Băng Vĩnh Cửu của Đan Mạch, lực lượng bộ binh hạng nặng từ Na Uy và nguồn quặng sắt dồi dào từ Thụy Điển. Nếu ba quốc gia này thực sự đồng lòng, họ có khả năng phong tỏa toàn bộ miền Bắc Châu Âu. Tuy nhiên, thay vì tiến đánh kẻ thù bên ngoài, ngai vàng Kalmar lại đang phải dùng phần lớn ma lực và quân đội để đàn áp chính những thần dân bên trong liên minh của mình.",
+          "summary": "Liên minh Kalmar: Một siêu liên minh cá nhân khổng lồ, hợp nhất ba vương quốc Đan Mạch, Thụy Điển và Na Uy dưới một ngai vàng duy nhất để tạo thành một khối thống nhất tại Bắc Âu. Nắm giữ quyền kiểm soát phần lớn bờ biển Baltic và Biển Bắc, hiện đang bị rạn nứt nghiêm trọng bởi các cuộc nổi dậy ly khai và sự cai trị tàn bạo của Tộc Băng Tộc (Frostborn).",
+          "keys": [
+            "Liên minh Kalmar",
+            "Kalmar Union",
+            "Kalmar",
+            "Liên bang Kalmar"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_denmark",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "prov_bo-bien-baltic",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_sweden",
+              "pullWeight": 0.5
+            },
+            {
+              "id": "realm_norway",
+              "pullWeight": 0.5
+            }
+          ]
+        },
+        {
+          "id": "org_stratioti",
+          "title": "Lề lối Lính đánh thuê Stratioti",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Lề lối Lính đánh thuê Stratioti:\n- Định nghĩa: Mạng lưới các đội kỵ binh nhẹ và chiến binh du kích xuất thân từ vùng đồi núi Balkan, bao gồm người Albania, Hy Lạp và Dalmatia.\n- Phân loại: Lực lượng quân sự tư nhân, Kỵ binh cơ động.\n- Trạng thái/Cấp độ: Nguồn cung cấp lính đánh thuê ưa thích của Cộng hòa Venice và các thành bang Bắc Ý để chống lại sự bành trướng của Đế chế Ottoman.\n\n## Kỹ năng Chiến đấu và Ma pháp Cơ động của Lề lối Lính đánh thuê Stratioti:\nKhi các vùng đất ở Balkan lần lượt rơi vào tay quân đội Ottoman, hàng vạn chiến binh bản địa đã mất đi quê hương. Thay vì đầu hàng, họ tập hợp thành các đội lính đánh thuê Stratioti. Họ khước từ việc mặc giáp bọc thép nặng nề như kỵ binh Pháp hay Đức, mà chỉ mặc áo lanh, giáp da nhẹ, sử dụng khiên gỗ nhỏ, giáo dài và kiếm cong.\n\nĐiểm mạnh tuyệt đối của Stratioti là sự tàn nhẫn và khả năng cơ động phi thường. Họ am hiểu tường tận địa hình đồi núi hiểm trở, sử dụng Ma pháp Phong hệ để tăng tốc độ di chuyển của chiến mã và Ma pháp Thổ hệ để tạo ảo ảnh che giấu đội hình trong các hẻm núi. Chiến thuật của họ thiên về quấy rối liên tục, cắt đứt đường tiếp tế, và phục kích các toán quân lẻ tẻ của kẻ thù trước khi rút lui nhanh chóng.\n\n## Vai trò Thương mại Quân sự tại Bán đảo Balkan:\nStratioti không chiến đấu vì lý tưởng hiệp sĩ đạo hay tôn giáo, họ chiến đấu vì vàng. Cộng hòa Venice là khách hàng lớn nhất của lực lượng này, thường xuyên chi tiền để thuê họ bảo vệ các thuộc địa ven biển Adriatic và Peloponnese khỏi quân đội Ottoman. Việc trả lương cho Stratioti thường rẻ hơn rất nhiều so với việc thuê kỵ binh bọc thép hay lính giáo dài Thụy Sĩ, khiến họ trở thành một lực lượng xuất khẩu quân sự cốt lõi, mang lại dòng tiền quan trọng cho các bộ lạc vùng đồi núi Balkan chưa bị khuất phục.",
+          "summary": "Lề lối Lính đánh thuê Stratioti: Mạng lưới các đội kỵ binh nhẹ và chiến binh du kích xuất thân từ vùng đồi núi Balkan, bao gồm người Albania, Hy Lạp và Dalmatia. Nguồn cung cấp lính đánh thuê ưa thích của Cộng hòa Venice và các thành bang Bắc Ý để chống lại sự bành trướng của Đế chế Ottoman.",
+          "keys": [
+            "Lề lối Lính đánh thuê Stratioti",
+            "Lính đánh thuê Stratioti",
+            "Stratioti Mercenary System",
+            "Stratioti",
+            "Kỵ binh nhẹ Balkan",
+            "Lính đánh thuê Balkan"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_venice",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "nation_ottoman",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "realm_albania",
+              "pullWeight": 0.5
+            }
+          ]
+        },
+        {
+          "id": "org_giao-trieu-la-ma",
+          "title": "Giáo triều La Mã",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Giáo triều La Mã:\n- Định nghĩa: Bộ máy hành chính, tư pháp và tài chính tối cao hỗ trợ Giáo hoàng trong việc cai quản toàn bộ Giáo hội Công giáo và Quốc gia Giáo hoàng.\n- Phân loại: Tổ chức hành chính thần quyền.\n- Trạng thái/Cấp độ: Trung tâm đầu não phân bổ Ma pháp Thần thánh và quyền lực chính trị khắp Lục địa Europa.\n\n## Cơ cấu Tổ chức của Giáo triều La Mã:\nGiáo triều La Mã (Curia) là một lề lối quan liêu khổng lồ và vô cùng phức tạp, đóng đô tại Vatican. Nó bao gồm nhiều cơ quan (Dicasteries) khác nhau. Nổi bật nhất là Tòa Ân giải Tối cao (Apostolic Penitentiary) chuyên xử lý các tội lỗi tâm linh và giải trừ các lời nguyền hắc ám, cùng với Tòa Rota La Mã (Roman Rota) đóng vai trò là tòa án tối cao xét xử các tranh chấp hôn nhân hoàng gia và tài sản tu viện.\n\nCác vị trí chủ chốt trong Giáo triều đều do các Hồng y và Tổng giám mục nắm giữ. Bầu không khí bên trong các hành lang của Vatican luôn đặc quánh những âm mưu, sự hối lộ và các cuộc tranh giành ảnh hưởng giữa các gia tộc La Mã cổ đại (như Colonna và Orsini), những kẻ luôn cố gắng cài cắm người của mình vào Giáo triều để kiểm soát dòng chảy tiền bạc.\n\n## Kiểm soát Ma pháp và Ngoại giao của Giáo triều La Mã:\nThông qua cơ quan Mật thư (Apostolic Chancery), Giáo triều La Mã phát đi các Sắc chỉ Giáo hoàng (Papal Bulls) đến mọi ngóc ngách của Châu Âu. Những sắc chỉ này không chỉ là văn bản pháp lý mà còn được yểm các ma trận Quang hệ cấp cao, đảm bảo không thể bị làm giả và mang theo áp lực tinh thần khủng khiếp lên người nhận.\n\nGiáo triều cũng là cơ quan điều phối toàn bộ mạng lưới Đại sứ Giáo hoàng (Papal Legates). Những sứ thần này là những pháp sư Thần thánh quyền lực, được phái đến các triều đình Pháp, Anh, hay Đế quốc La Mã Thần thánh để can thiệp vào các cuộc bầu cử, dàn xếp các hiệp ước đình chiến hoặc châm ngòi cho các cuộc Thập Tự Chinh chống lại Ottoman.",
+          "summary": "Giáo triều La Mã: Bộ máy hành chính, tư pháp và tài chính tối cao hỗ trợ Giáo hoàng trong việc cai quản toàn bộ Giáo hội Công giáo và Quốc gia Giáo hoàng. Trung tâm đầu não phân bổ Ma pháp Thần thánh và quyền lực chính trị khắp Lục địa Europa.",
+          "keys": [
+            "Giáo triều La Mã",
+            "Roman Curia",
+            "Curia",
+            "Tòa thánh Vatican",
+            "Giáo triều",
+            "Apostolic Penitentiary",
+            "Tòa Ân giải Tối cao",
+            "Roman Rota",
+            "Tòa Rota La Mã",
+            "Apostolic Chancery",
+            "Papal Bulls",
+            "Sắc chỉ Giáo hoàng"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "realm_papal",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "org_giao-hoi-cong-giao",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "org_toa-an-di-giao",
+          "title": "Tòa án Dị giáo",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Tòa án Dị giáo:\n- Định nghĩa: Cơ quan thực thi pháp luật tôn giáo và tình báo mật của Giáo hội Công giáo.\n- Phân loại: Tổ chức bán quân sự, Cơ quan điều tra và xét xử thần quyền.\n- Trạng thái/Cấp độ: Nỗi khiếp sợ của mọi pháp sư tự do, á nhân và các phong trào ly khai tôn giáo trên khắp lục địa.\n\n## Cơ cấu hoạt động và Lực lượng thực thi của Tòa án Dị giáo:\nTòa án Dị giáo không bị ràng buộc bởi luật pháp thế tục của bất kỳ vương quốc nào. Các Thẩm vấn viên (Inquisitor) được trao quyền hạn vô biên để bắt giữ, tra tấn và xét xử bất kỳ ai bị tình nghi phản bội đức tin hoặc thực hành tà thuật. Mạng lưới mật thám của họ len lỏi vào mọi tầng lớp xã hội, từ những người hầu trong lâu đài quý tộc cho đến những thương nhân lang thang.\n\nLực lượng nòng cốt bảo vệ và thực thi án lệnh của Tòa án Dị giáo là các Đội Thanh Tẩy. Đây là những đội quân gồm các Thánh kỵ sĩ được trang bị giáp trụ khắc kín ma trận kháng phép, sử dụng vũ khí được yểm Thánh thủy cường độ cao. Họ chuyên thực hiện các cuộc đột kích vào các học viện bí thuật ngầm, các khu rừng của tộc Tiên hoặc các hang ổ của ma thú.\n\n## Phương thức đàn áp và Thẩm quyền của Tòa án Dị giáo:\nKhi một cá nhân bị Tòa án Dị giáo kết tội, tài sản của họ sẽ bị tịch thu và chia chác giữa Giáo hội và chính quyền địa phương, tạo ra động lực kinh tế cho những lời vu khống. Hình phạt phổ biến nhất dành cho các pháp sư dị giáo là bị trói vào các cọc thiêu (Bục thiêu dị giáo). Ngọn lửa sử dụng trong các buổi hành hình này không phải lửa thông thường mà là Lửa Thánh, một loại hỏa hệ ma pháp đặc biệt có khả năng thiêu rụi cả thể xác lẫn mạch ma lực bên trong linh hồn, đảm bảo nạn nhân không thể hồi sinh hay sử dụng tà thuật để trốn thoát.",
+          "summary": "Tòa án Dị giáo: Cơ quan thực thi pháp luật tôn giáo và tình báo mật của Giáo hội Công giáo. Nỗi khiếp sợ của mọi pháp sư tự do, á nhân và các phong trào ly khai tôn giáo trên khắp lục địa.",
+          "keys": [
+            "Tòa án Dị giáo",
+            "Holy Inquisition",
+            "The Inquisition",
+            "Thẩm vấn viên",
+            "Đội Thanh Tẩy",
+            "Inquisitor",
+            "Bục thiêu dị giáo",
+            "Lửa Thánh"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "org_giao-hoi-cong-giao",
+              "pullWeight": 0.7
+            }
+          ],
+          "variants": [
+            {
+              "audience": "nation_giao-trieu",
+              "content": "## Tòa án Dị giáo, theo Giáo triều:\n\nĐây là cơ quan chữa bệnh, không phải cơ quan giết người. Dị giáo lây như dịch hạch, và một xứ đạo bỏ mặc một năm là một xứ đạo mất hẳn — Bohemia đã chứng minh điều đó bằng năm cuộc Thập Tự thất bại.\n\nTrình tự có luật: thời hạn ân xá để tự thú, hai nhân chứng, biên bản ghi lại từng lời. Phần lớn án là hành hương, đeo thánh giá vải, hoặc nộp phạt. Bó củi là ngoại lệ, và chỉ dành cho kẻ tái phạm sau khi đã chối tội một lần.\n\nCái người ta không nói là: mỗi vụ đều kèm tịch thu, và phần tịch thu chia ba giữa tòa, lãnh chúa và kẻ tố giác. Giáo triều biết điều đó. Giáo triều cũng biết rằng không có phần chia ấy thì không ai chịu làm thẩm vấn viên ở những nơi cần họ nhất."
+            },
+            {
+              "audience": "race_lam-tien",
+              "content": "## Tòa án Dị giáo, theo tộc Lâm Tiên:\n\nHọ không đến vì đức tin. Họ đến vì gỗ.\n\nHai trăm năm nay, cứ mỗi lần một tu viện hoặc một bá tước muốn mở rộng ruộng vào rừng già, thì trước đó sáu tháng sẽ có một thẩm vấn viên tới làng dưới chân núi và bắt đầu hỏi về \"những kẻ thờ cây\". Sau đó là một sắc lệnh, sau đó là lính, sau đó là những chiếc rìu.\n\nHọ gọi giao ước của chúng ta với tinh linh cây cỏ là khế ước với ma quỷ. Chúng ta đã giữ giao ước ấy từ trước khi có nhà thờ đầu tiên trên lục địa này.\n\nCó một điều nên nhớ về họ: họ ghi chép. Mọi lời khai đều nằm trong sổ, và sổ thì để trong tu viện. Ai đọc được sổ của họ thì biết trước sáu tháng nữa rìu sẽ hạ xuống chỗ nào."
+            },
+            {
+              "audience": "race_ma-due",
+              "content": "## Tòa án Dị giáo, theo Ma Duệ:\n\nVới người khác, đó là một phiên tòa. Với chúng ta, đó là một cuộc nhận dạng.\n\nKhông ai phải chứng minh chúng ta làm gì sai. Cặp sừng là bằng chứng, màu mắt là bằng chứng, cái bóng đổ không đúng hướng là bằng chứng. Trình tự có luật của họ bắt đầu bằng câu hỏi \"ngươi đã làm gì\", còn với chúng ta nó bắt đầu bằng câu \"ngươi là cái gì\", và câu đó thì không cãi được.\n\nVì thế Ma Duệ nào sống lâu cũng học đúng ba việc: đội mũ trùm, có sẵn một lãnh chúa thế tục cần mình hơn cần Giáo hội, và biết một con đường ra khỏi thành không đi qua cổng.\n\nMột số kẻ trong bọn chúng ta thì làm việc cho chính Tòa án. Họ ngửi được ma lực Ám hệ ở khoảng cách xa hơn bất cứ tu sĩ nào — và không ai đốt con chó săn tốt nhất của mình."
+            }
+          ]
+        },
+        {
+          "id": "org_lien-minh-swabia",
+          "title": "Liên minh các thành bang Swabia",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Liên minh các thành bang Swabia:\n- Định nghĩa: Một khối liên minh quân sự và chính trị khổng lồ của các thành bang độc lập tại miền Nam nước Đức (vùng Swabia), dưới sự dẫn dắt của thành phố Ulm.\n- Phân loại: Liên minh phòng thủ đô thị.\n- Trạng thái/Cấp độ: Lực lượng đối trọng chính đối với tham vọng bành trướng của giới quý tộc phong kiến (đặc biệt là Gia tộc Württemberg và Bavaria) tại miền Nam Đế quốc.\n\n## Nguyên lý hình thành và Cơ cấu quân sự của Liên minh các thành bang Swabia:\nLục địa Europa là một nơi khắc nghiệt, và những thành phố giàu có nhưng thiếu đất đai thường xuyên trở thành con mồi ngon cho các bá tước và công tước sở hữu kỵ binh hạng nặng. Để sinh tồn, kể từ cuối thế kỷ 14, hàng chục thành phố tự do tại vùng Swabia đã gạt bỏ sự cạnh tranh thương mại để ký kết các hiệp ước tương trợ quân sự đẫm máu. \n\nSức mạnh của Liên minh các thành bang Swabia không nằm ở các Thánh kỵ sĩ hay pháp sư quý tộc, mà nằm ở sức mạnh của đồng tiền và kỹ nghệ. Họ sở hữu các đội dân binh được trang bị hỏa khí, nỏ ma thuật đâm xuyên giáp, và những cỗ xe ngựa bọc thép (war wagons) có khả năng hình thành các pháo đài di động trên chiến trường. Hơn thế nữa, họ là những khách hàng lớn nhất của lính đánh thuê Thụy Sĩ, thường xuyên dùng vàng để thuê các đội hình giáo dài Phalanx nghiền nát kỵ binh của giới quý tộc.\n\n## Cơ chế hoạt động và Tác động chính trị của Liên minh các thành bang Swabia:\nMục tiêu duy nhất của Liên minh là bảo vệ quyền Tự do Hoàng gia (Imperial Immediacy) – tức là họ chỉ phải nộp thuế cho Hoàng đế chứ không chịu sự cai trị của bất kỳ lãnh chúa nào. Tuy nhiên, khi Hoàng đế cần tiền và cố tình đem cầm cố các thành phố này cho các công tước, Liên minh sẵn sàng tuyên chiến với chính ngai vàng.\n\nCác cuộc chiến tranh giữa Liên minh các thành bang Swabia và giới quý tộc (như Chiến tranh các thành bang Nam Đức) thường cực kỳ tàn khốc, kéo theo sự phá hủy của vô số làng mạc và nông tuyến. Tại thời điểm hiện tại, mặc dù các liên minh cũ có lúc bị giải tán dưới sức ép của Đại hội Đế quốc, nhưng tinh thần liên kết của họ vẫn luôn âm ỉ chờ đợi cơ hội bùng nổ, tạo thành một lò lửa chực chờ thiêu rụi trật tự phong kiến miền Nam.",
+          "summary": "Liên minh các thành bang Swabia: Một khối liên minh quân sự và chính trị khổng lồ của các thành bang độc lập tại miền Nam nước Đức (vùng Swabia), dưới sự dẫn dắt của thành phố Ulm. Lực lượng đối trọng chính đối với tham vọng bành trướng của giới quý tộc phong kiến (đặc biệt là Gia tộc Württemberg và Bavaria) tại miền Nam Đế quốc.",
+          "keys": [
+            "Liên minh các thành bang Swabia",
+            "Swabian League of Cities",
+            "Liên minh Swabia",
+            "Schwäbischer Städtebund",
+            "thành bang Swabia",
+            "vùng Swabia",
+            "thành phố Ulm"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "prov_wurttemberg",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "prov_bayern",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "org_can-ve-varangian",
+          "title": "Đội Cận vệ Varangian",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Đội Cận vệ Varangian:\n- Định nghĩa: Đội lính đánh thuê tinh nhuệ nhất và là lực lượng bảo vệ hoàng gia (Scholae Palatinae) của các Hoàng đế Byzantine, có lịch sử tồn tại hàng thế kỷ.\n- Phân loại: Lực lượng cận vệ hoàng gia, Lính đánh thuê ngoại tộc.\n- Trạng thái/Cấp độ: Chỉ còn là một tàn tích nhỏ bé nhưng cực kỳ thiện chiến, trung thành tuyệt đối với Hoàng tộc Palaiologos cho đến hơi thở cuối cùng.\n\n## Nguồn gốc và Trang bị của Đội Cận vệ Varangian:\nTrong quá khứ, Đội Cận vệ Varangian được chiêu mộ chủ yếu từ những chiến binh phương Bắc, bao gồm Tộc Băng Tộc (Frostborn) từ Scandinavia, người Anglo-Saxon và các lính đánh thuê Rus. Họ được Hoàng đế Byzantine trả lương bằng những rương vàng khổng lồ và lụa là phương Đông để đổi lấy lòng trung thành không bị vướng bận bởi các mưu đồ chính trị nội bộ.\n\nVũ khí đặc trưng làm nên tên tuổi của họ là những cây rìu chiến hai tay khổng lồ (Pelekys). Những cây rìu này được rèn từ thép Damascus kết hợp với những mảnh Băng Vĩnh Cửu (True-Ice) hoặc ma thạch gia cố. Các chiến binh Varangian mặc giáp xích dài phủ qua đầu gối, kết hợp với các tấm giáp vảy rồng nhân tạo, biến họ thành những cỗ xe tăng bộ binh có sức càn lướt khủng khiếp trong các trận cận chiến giáp lá cà.\n\n## Huyết thệ và Trạng thái Hiện tại của Đội Cận vệ Varangian:\nĐiểm khác biệt của Varangian so với các lính đánh thuê thông thường (như lính Thụy Sĩ hay Landsknecht) là Ma pháp Huyết thệ. Khi gia nhập đội, họ phải uống một giọt máu của Hoàng đế Long Duệ, tạo ra một liên kết ma thuật buộc họ không thể phản bội hoặc bỏ chạy khi Hoàng đế gặp nguy hiểm.\n\nVào năm 1444, do ngân khố Byzantine đã cạn kiệt, đội cận vệ khổng lồ ngày xưa giờ chỉ còn lại vài trăm người. Họ là những chiến binh già dặn, sẹo đầy mình, đứng gác tại Cung điện Blachernae hoặc theo sát bảo vệ các Hoàng nữ như Zoe Palaiologos trên Bức tường Theodosian. Dù không còn nhận được vàng bạc, họ vẫn bám trụ lại thành phố đang hấp hối này vì danh dự của những lời thề cổ xưa, sẵn sàng dùng chiếc rìu của mình để chẻ đôi bất kỳ tên lính Janissary nào dám trèo lên tường thành.",
+          "summary": "Đội Cận vệ Varangian: Đội lính đánh thuê tinh nhuệ nhất và là lực lượng bảo vệ hoàng gia (Scholae Palatinae) của các Hoàng đế Byzantine, có lịch sử tồn tại hàng thế kỷ. Chỉ còn là một tàn tích nhỏ bé nhưng cực kỳ thiện chiến, trung thành tuyệt đối với Hoàng tộc Palaiologos cho đến hơi thở cuối cùng.",
+          "keys": [
+            "Đội Cận vệ Varangian",
+            "Varangian Guard",
+            "Cận vệ Varangian",
+            "Lính đánh thuê Varangian",
+            "Varangian",
+            "Scholae Palatinae",
+            "Pelekys"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "org_palaiologos",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "hold_constantinople",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "org_dai-hoi-de-quoc",
+          "title": "Đại hội Đế quốc",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Đại hội Đế quốc:\n- Định nghĩa: Cơ quan lập pháp và diễn đàn chính trị tối cao của Đế quốc La Mã Thần thánh.\n- Phân loại: Hội đồng nghị viện phong kiến.\n- Trạng thái/Cấp độ: Bộ máy quan liêu khổng lồ, nơi giải quyết các tranh chấp lãnh thổ, phân bổ quân đội và định hình luật pháp chung.\n\n## Cơ cấu tổ chức của Đại hội Đế quốc:\nĐại hội Đế quốc (Reichstag) không có trụ sở cố định mà được triệu tập bởi Hoàng đế tại một thành phố lớn bất kỳ của Đế quốc (thường là Nuremberg, Augsburg hoặc Regensburg). Cấu trúc của Đại hội được chia thành ba viện phân cấp nghiêm ngặt:\n\n1. Viện Tuyển Đế Hầu (Kurfürstenrat): Gồm Bảy Tuyển Đế Hầu, nhóm quyền lực nhất có tiếng nói quyết định đối với các sắc lệnh của Hoàng đế.\n2. Viện Các Lãnh chúa (Reichsfürstenrat): Gồm hàng trăm công tước, bá tước, giám mục và các lãnh chúa lớn nhỏ khác. Viện này lại chia thành phe thế tục và phe giáo sĩ, thường xuyên mâu thuẫn gay gắt.\n3. Viện Các Thành phố Tự do (Reichsstädtekollegium): Gồm đại diện của các thành bang thương mại giàu có. Dù nắm giữ quyền lực tài chính khổng lồ, tiếng nói của họ thường bị hai viện trên coi thường.\n\n## Vai trò và Hạn chế thực tiễn của Đại hội Đế quốc:\nMọi quyết định liên quan đến việc ban hành thuế mới, tuyên chiến với ngoại bang (như chống lại Đế chế Ottoman hay Vương quốc Pháp), hoặc thay đổi ranh giới ma thuật giữa các lãnh thổ đều phải được Đại hội thông qua. \n\nTuy nhiên, quá trình vận hành của Đại hội Đế quốc là một cơn ác mộng về mặt hành chính. Các cuộc họp có thể kéo dài hàng tháng trời, chìm trong những cuộc tranh cãi bất tận về vị trí chỗ ngồi, thứ bậc ưu tiên và các hiệp ước chằng chịt. Sự chậm chạp này khiến Đế quốc La Mã Thần thánh hiếm khi có thể phản ứng nhanh chóng trước các thảm họa quân sự hay sự bùng nổ của các cuộc nổi dậy dị giáo, biến nó thành một gã khổng lồ chậm chạp và trì trệ.",
+          "summary": "Đại hội Đế quốc: Cơ quan lập pháp và diễn đàn chính trị tối cao của Đế quốc La Mã Thần thánh. Bộ máy quan liêu khổng lồ, nơi giải quyết các tranh chấp lãnh thổ, phân bổ quân đội và định hình luật pháp chung.",
+          "keys": [
+            "Đại hội Đế quốc",
+            "Imperial Diet",
+            "Reichstag",
+            "Nghị viện Đế quốc",
+            "Viện Tuyển Đế Hầu",
+            "Kurfürstenrat",
+            "Viện Các Lãnh chúa",
+            "Reichsfürstenrat",
+            "Viện Các Thành phố Tự do",
+            "Reichsstädtekollegium"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "nation_hre",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "nation_nogai",
+          "title": "Quần thể Nogai",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Quần thể Nogai:\n- Định nghĩa: Một liên minh khổng lồ của các bộ lạc du mục độc lập, lang thang trên vùng thảo nguyên trải dài từ sông Volga đến rặng núi Ural và Biển Caspi.\n- Phân loại: Liên minh bộ lạc du mục, Thế lực ly khai.\n- Trạng thái/Cấp độ: Lực lượng bảo thủ tột độ, từ chối mọi hình thức định cư, sở hữu hàng vạn kỵ binh Mã Nhân luôn sẵn sàng chiến đấu.\n\n## Cảnh quan sinh tồn và Tập tính của Quần thể Nogai:\nKhông giống như Hãn quốc Kazan đã bắt đầu xây dựng các thành trì bằng gỗ hay Hãn quốc Crimea phụ thuộc vào thương mại hàng hải, Quần thể Nogai bảo tồn lối sống du mục thuần túy của tổ tiên. Lãnh thổ của họ không có biên giới cố định, mà di chuyển theo chu kỳ các mùa cỏ để chăn thả hàng triệu con ngựa chiến và ma thú thảo nguyên.\n\nTộc Mã Nhân thuộc Quần thể Nogai cực kỳ khinh miệt những đồng loại chọn cách định cư. Họ coi việc xây tường thành là hành vi của những kẻ hèn nhát và sự yếu đuối. Các khu trại của họ là những thành phố lều vải khổng lồ có thể được tháo dỡ và di chuyển chỉ trong một đêm. Làn da của những chiến binh Nogai sạm đen vì nắng gió, và họ thường xăm những cổ ngữ Phong hệ lên ngực để thể hiện sự tự do không thể bị trói buộc.\n\n## Sức mạnh Quân sự và Vai trò chính trị của Quần thể Nogai:\nVào thời điểm năm 1444, Quần thể Nogai đóng vai trò là một thế lực độc lập, hoạt động như những kẻ đánh thuê hoặc những kẻ cướp bóc tùy theo tình hình. Mặc dù trên danh nghĩa vẫn tôn trọng Đại Hãn của Đại Trướng Hãn Quốc, họ hiếm khi tuân lệnh nộp cống phẩm.\n\nSức mạnh quân sự của Quần thể Nogai nằm ở số lượng cung thủ Mã Nhân cơ động khổng lồ. Họ không trang bị giáp nặng, chỉ mặc áo da thú và sử dụng cung sừng ngược. Khi Quần thể Nogai quyết định tiến hành \"Thu hoạch thảo nguyên\", họ có thể tạo ra một cơn bão bụi quét sạch mọi ngôi làng của Công quốc Muscovy hoặc các bộ lạc láng giềng, cướp đi hàng vạn nô lệ trước khi biến mất vào vùng hoang dã Caspi.",
+          "summary": "Quần thể Nogai: Một liên minh khổng lồ của các bộ lạc du mục độc lập, lang thang trên vùng thảo nguyên trải dài từ sông Volga đến rặng núi Ural và Biển Caspi. Lực lượng bảo thủ tột độ, từ chối mọi hình thức định cư, sở hữu hàng vạn kỵ binh Mã Nhân luôn sẵn sàng chiến đấu.",
+          "keys": [
+            "Quần thể Nogai",
+            "Nogai Horde",
+            "Bộ lạc Nogai",
+            "Nogai",
+            "Mã Nhân Nogai",
+            "chiến binh Nogai",
+            "kỵ binh Nogai"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "nation_kazan",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "prov_steppe-pontic",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "org_thi-toc-shirin",
+          "title": "Thị tộc Shirin",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Thị tộc Shirin:\n- Định nghĩa: Thị tộc quý tộc quyền lực và danh giá bậc nhất bên trong Hãn quốc Crimea và Đại Trướng Hãn Quốc.\n- Phân loại: Thị tộc quý tộc, Kẻ kiến tạo vua (Kingmakers).\n- Trạng thái/Cấp độ: Nắm giữ quyền lực chính trị ngầm, thao túng việc bầu cử Đại Hãn và kiểm soát các tuyến thương mại nô lệ huyết mạch.\n\n## Cơ cấu Quyền lực và Sự thao túng của Thị tộc Shirin:\nTrong xã hội thảo nguyên, quyền lực của Đại Hãn không phải là tuyệt đối mà phụ thuộc vào sự ủng hộ của bốn thị tộc lớn (Shirin, Barghin, Mansur, Sicivut), trong đó Thị tộc Shirin đứng đầu. Lãnh tụ của Thị tộc Shirin (được gọi là Bey) có quyền ngồi cùng mâm với Đại Hãn và là người đầu tiên đưa ra lá phiếu trong các kỳ Kurultai (Đại hội bộ lạc).\n\nTộc Mã Nhân thuộc Thị tộc Shirin không chỉ là những chiến binh xuất sắc mà còn là những nhà ngoại giao xảo quyệt. Họ sở hữu những vùng đồng cỏ trù phú nhất tại bán đảo Crimea và kiểm soát các bến cảng nơi nô lệ được bán cho Cộng hòa Genoa và Đế chế Ottoman. Sự giàu có từ thuế quan và thương mại giúp Thị tộc Shirin đúc được những bộ giáp bằng hợp kim nhẹ cho lực lượng kỵ binh tinh nhuệ của riêng mình.\n\n## Vai trò trong cuộc nội chiến Thảo nguyên của Thị tộc Shirin:\nVào năm 1444, khi dòng dõi Giray đang cố gắng củng cố sự độc lập của Hãn quốc Crimea khỏi Đại Trướng Hãn Quốc, sự ủng hộ của Thị tộc Shirin là yếu tố sống còn. Bất kỳ vị Hãn nào muốn lên ngôi đều phải hứa hẹn ban phát đặc quyền đất đai và miễn trừ sưu thuế cho Thị tộc Shirin.\n\nNếu Đại Hãn có dấu hiệu đe dọa đến lợi ích của giới quý tộc, tộc trưởng Shirin sẽ không ngần ngại rút quân đội bộ lạc của mình khỏi chiến trường, hoặc thậm chí liên minh ngầm với các thế lực ngoại bang (như Ba Lan hoặc Ottoman) để tiến hành đảo chính, lật đổ ngai vàng và lập lên một con rối mới dễ bảo hơn.",
+          "summary": "Thị tộc Shirin: Thị tộc quý tộc quyền lực và danh giá bậc nhất bên trong Hãn quốc Crimea và Đại Trướng Hãn Quốc. Nắm giữ quyền lực chính trị ngầm, thao túng việc bầu cử Đại Hãn và kiểm soát các tuyến thương mại nô lệ huyết mạch.",
+          "keys": [
+            "Thị tộc Shirin",
+            "Shirin Clan",
+            "Gia tộc Shirin",
+            "Bộ lạc Shirin",
+            "Shirin",
+            "Bey Shirin",
+            "quý tộc Shirin",
+            "Mã Nhân Shirin"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "nation_dai-truong",
+              "pullWeight": 0.7
+            },
+            {
+              "id": "nation_crimea",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "nation_kipchak",
+          "title": "Liên minh Kipchak",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Liên minh Kipchak:\n- Định nghĩa: Quần thể các bộ lạc bản địa lâu đời nhất thống trị khu vực thảo nguyên Cuman-Kipchak trước khi bị sáp nhập vào Kim Trướng Hãn Quốc.\n- Phân loại: Liên minh bộ lạc bản địa, Lực lượng quân sự thứ cấp.\n- Trạng thái/Cấp độ: Dân số đông đảo nhất trên thảo nguyên, đóng vai trò là xương sống cung cấp binh lính trinh sát và cung thủ cho các Đại Hãn.\n\n## Cấu trúc Sinh học và Di sản của Liên minh Kipchak:\nTrước khi những kẻ chinh phục từ phương Đông tràn đến, Liên minh Kipchak là những người chủ thực sự của thảo nguyên. Hiện tại, dù giới tinh hoa cai trị của các Hãn quốc mang dòng máu hoàng kim, phần lớn dân số á nhân trên bình nguyên Pontic-Caspian vẫn mang huyết thống Kipchak.\n\nTộc Mã Nhân Kipchak có đặc trưng là lớp lông ngựa mang màu vàng nhạt hoặc xám cát, giúp họ ngụy trang hoàn hảo trên những cánh đồng cỏ úa. Họ sở hữu khả năng thích nghi sinh tồn bền bỉ, có thể nhịn khát nhiều ngày liền bằng cách uống máu ngựa pha sữa chua ma thuật. Sự hiểu biết tường tận về địa hình, các mạch nước ngầm và hướng gió của thảo nguyên khiến họ trở thành những người dẫn đường không thể thay thế.\n\n## Vai trò Quân sự và Xã hội của Liên minh Kipchak:\nBên trong quân đội của Đại Trướng Hãn Quốc hay Hãn quốc Crimea, các chiến binh Kipchak thường được xếp vào các đơn vị tiên phong hoặc trinh sát. Họ có nhiệm vụ quấy rối đội hình địch, bắn những loạt tên tẩm độc rồi rút lui nhanh chóng để dụ kẻ thù vào bẫy của lực lượng chủ lực.\n\nMặc dù bị tước đoạt vị thế cai trị tối cao, ngôn ngữ và văn hóa Kipchak đã đồng hóa ngược lại chính những kẻ chinh phục. Các Đại Hãn buộc phải sử dụng ngôn ngữ Kipchak trong các văn bản ngoại giao và giao tiếp hàng ngày để có thể ra lệnh cho hàng vạn binh lính dưới quyền. Sự tồn tại của họ là một dòng chảy ngầm mạnh mẽ, luôn chực chờ bùng nổ nếu giới quý tộc cầm quyền tỏ ra suy yếu.",
+          "summary": "Liên minh Kipchak: Quần thể các bộ lạc bản địa lâu đời nhất thống trị khu vực thảo nguyên Cuman-Kipchak trước khi bị sáp nhập vào Kim Trướng Hãn Quốc. Dân số đông đảo nhất trên thảo nguyên, đóng vai trò là xương sống cung cấp binh lính trinh sát và cung thủ cho các Đại Hãn.",
+          "keys": [
+            "Liên minh Kipchak",
+            "Kipchak Tribes",
+            "Cuman-Kipchak",
+            "Bộ lạc Kipchak",
+            "Kipchak",
+            "Mã Nhân Kipchak",
+            "chiến binh Kipchak",
+            "ngôn ngữ Kipchak"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "related": [
+            {
+              "id": "nation_dai-truong",
+              "pullWeight": 0.7
+            }
+          ]
+        },
+        {
+          "id": "nation_oirat",
+          "title": "Liên minh Oirat",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Liên minh Oirat:\n- Định nghĩa: Một siêu liên minh các bộ lạc du mục từ viễn Đông (vùng Altai và Siberia), đang tạo ra một làn sóng di cư và bành trướng đẫm máu về phía Tây.\n- Phân loại: Liên minh bộ lạc viễn Đông, Lực lượng xâm lăng.\n- Trạng thái/Cấp độ: Cực kỳ hung hãn, sử dụng ma thuật Shaman tàn bạo, tạo ra áp lực khổng lồ đẩy các Hãn quốc khác phải dồn ép lên biên giới Châu Âu.\n\n## Cảnh quan nguồn cội và Sự biến dị của Liên minh Oirat:\nĐến từ những vùng bình nguyên băng giá và những dãy núi hoang vu nhất của phương Đông, các chiến binh Oirat mang một vẻ ngoài đáng sợ hơn hẳn những người anh em ở phía Tây. Tộc Mục Nhân (Minotaurs) và Mã Nhân (Centaurs) của Oirat thường có lớp lông cực dày, cơ bắp phát triển dị thường để chống chọi với cái lạnh âm độ.\n\nMa pháp của Liên minh Oirat không chỉ dừng lại ở Phong hệ cơ bản, mà pha trộn với sự tàn bạo của Shaman giáo hắc ám. Các Tư tế Oirat có khả năng hiến tế sinh mạng của tù binh để triệu hồi những cơn bão tuyết trái mùa, hoặc gọi lên những linh hồn ma thú để nhập vào cơ thể các chiến binh, biến họ thành những cỗ máy cuồng sát không biết đau đớn.\n\n## Tác động Địa chính trị của Liên minh Oirat:\nSự bành trướng của Liên minh Oirat là hiệu ứng domino tàn khốc nhất trên Lục địa Europa. Khi Oirat tiến về phía Tây để tìm kiếm đồng cỏ mới, họ nghiền nát và đánh đuổi các bộ lạc Nogai và Kipchak.\n\nĐể sinh tồn, những bộ lạc bị đánh đuổi này buộc phải dồn ép lên lãnh thổ của Đại Trướng Hãn Quốc. Đến lượt mình, Đại Trướng Hãn Quốc lại phải phát động các cuộc chiến tranh xâm lược vào Công quốc Muscovy và Liên minh Ba Lan-Lithuania để bù đắp tài nguyên. Do đó, mặc dù chưa trực tiếp đặt chân đến biên giới Châu Âu Cơ đốc giáo vào năm 1444, bóng ma của Liên minh Oirat chính là bàn tay vô hình đang bóp nghẹt toàn bộ sườn phía Đông của lục địa.",
+          "summary": "Liên minh Oirat: Một siêu liên minh các bộ lạc du mục từ viễn Đông (vùng Altai và Siberia), đang tạo ra một làn sóng di cư và bành trướng đẫm máu về phía Tây. Cực kỳ hung hãn, sử dụng ma thuật Shaman tàn bạo, tạo ra áp lực khổng lồ đẩy các Hãn quốc khác phải dồn ép lên biên giới Châu Âu.",
+          "keys": [
+            "Liên minh Oirat",
+            "Oirat Confederation",
+            "Oirats",
+            "Bộ lạc Oirat",
+            "Kalmyk",
+            "Oirat",
+            "Mục Nhân Oirat",
+            "Mã Nhân Oirat",
+            "Shaman Oirat",
+            "chiến binh Oirat"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "nation_dai-truong",
+          "title": "Đại Trướng Hãn Quốc",
+          "type": "faction",
+          "content": "## Thông tin cốt lõi của Đại Trướng Hãn Quốc:\n- Định nghĩa: Tàn dư lớn nhất và là trung tâm quyền lực danh nghĩa của Kim Trướng Hãn Quốc (Golden Horde) cổ đại, thống trị vùng thảo nguyên Pontic-Caspian bao la.\n- Phân loại: Đế chế du mục á nhân, Hãn quốc thảo nguyên.\n- Trạng thái/Cấp độ: Đang trong quá trình suy thoái và phân rã thành các hãn quốc nhỏ hơn, nhưng vẫn sở hữu lực lượng kỵ binh Mã Nhân đông đảo đủ sức san phẳng bất kỳ vương quốc Đông Âu nào.\n\n## Cấu trúc Bộ lạc và Sự cai trị tại Đại Trướng Hãn Quốc:\nĐại Trướng Hãn Quốc không có những lâu đài bằng đá hay thành phố cố định sầm uất. Kinh đô của họ là Sarai, một siêu đô thị lều trại khổng lồ di chuyển theo các mùa cỏ và dòng chảy ma lực của thảo nguyên. Quyền lực tối cao nằm trong tay một Đại Hãn (Khagan), người phải liên tục khẳng định sức mạnh của mình thông qua bạo lực và những chiến lợi phẩm cướp được để giữ chân các bộ lạc trung thành.\n\nTộc Mã Nhân (Centaurs) là giai cấp quý tộc chiến binh, nắm giữ mọi đặc quyền chỉ huy. Bên dưới họ là Tộc Mục Nhân (Minotaurs) lo việc bảo vệ các đàn gia súc ma thú và làm lực lượng phá trận. Hàng vạn Nhân loại và các á nhân khác bị bắt làm nô lệ, chịu trách nhiệm rèn vũ khí thô sơ, chăn ngựa và làm bia đỡ đạn trên chiến trường.\n\n## Cơ chế Ma pháp và Nguy cơ Phân rã của Đại Trướng Hãn Quốc:\nSức mạnh của Đại Trướng Hãn Quốc gắn liền với Ma pháp Phong hệ hoang dã. Khi hàng vạn Mã Nhân cùng phi nước đại, ma lực của họ cộng hưởng tạo thành những cơn bão bụi khổng lồ che khuất mặt trời, làm nhiễu loạn mọi loại ma bàn định vị của quân đội Châu Âu.\n\nTuy nhiên, vào năm 1444, quyền lực của Đại Hãn đang bị thách thức nghiêm trọng. Các thủ lĩnh bộ lạc ở vùng rìa thảo nguyên đang dần tách ra để thành lập các Hãn quốc độc lập như Crimea hay Kazan. Để vớt vát lại vị thế bá chủ, Đại Trướng Hãn Quốc liên tục phát động các cuộc đột kích quy mô lớn vào lãnh thổ của Công quốc Muscovy và Liên minh Ba Lan-Lithuania, nhằm cướp bóc vàng bạc và củng cố lại sự kính sợ từ các chư hầu.",
+          "summary": "Đại Trướng Hãn Quốc: Tàn dư lớn nhất và là trung tâm quyền lực danh nghĩa của Kim Trướng Hãn Quốc (Golden Horde) cổ đại, thống trị vùng thảo nguyên Pontic-Caspian bao la. Đang trong quá trình suy thoái và phân rã thành các hãn quốc nhỏ hơn, nhưng vẫn sở hữu lực lượng kỵ binh Mã Nhân đông đảo đủ sức san phẳng bất kỳ vương quốc Đông Âu nào.",
+          "keys": [
+            "Đại Trướng Hãn Quốc",
+            "Great Horde",
+            "Kim Trướng Hãn Quốc",
+            "Golden Horde",
+            "Sarai",
+            "Đại Hãn"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 10,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    }
+  ]
+}

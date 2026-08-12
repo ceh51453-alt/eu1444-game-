@@ -1,0 +1,249 @@
+{
+  "$comment": "TIN TỨC LAN TRUYỀN — Phần 15 mục 6, 7, 8. Đây là cơ chế đặc trưng của thế kỷ 14: một sự kiện xảy ra ở một toạ độ và KHÔNG tự động vào đầu người chơi. Nó phải đi bộ, đi ngựa, hoặc đi thuyền tới chỗ người chơi đang đứng, mất chừng ấy ngày, và mất chừng ấy độ chính xác trên đường. Mọi con số ở file này là tham số cân bằng, không phải hằng số vật lý — sửa ở đây, không sửa trong code (R5).",
+  "version": 1,
+
+  "config": {
+    "$comment": "Ngưỡng chung của cả hệ. `rumourBelow` trùng với RUMOUR_CONFIDENCE của Phần 4 mục 5 có chủ ý: một tin tới nơi với độ tin cậy dưới ngưỡng ấy được ghi vào tri thức như TIN ĐỒN, và cổng tri thức tự kèm ghi chú dè dặt cho AI. Hai ngưỡng khác nhau là hai chỗ sẽ lệch nhau.",
+    "rumourBelow": 60,
+    "minAccuracy": 5,
+    "maxDaysInFlight": 400,
+    "feedLimit": 600,
+    "cardLimit": 12
+  },
+
+  "carriers": [
+    {
+      "id": "carrier_su-gia",
+      "name": "sứ giả",
+      "$comment": "Người của một triều đình, đổi ngựa dọc đường, mang thư có ấn. Nhanh và ít sai — nhưng chỉ đi những nơi có người trả tiền cho nó đi.",
+      "kmPerDay": 60,
+      "lossPer100Km": 1.2,
+      "lossPerHop": 0.5,
+      "baseAccuracy": 96,
+      "reachFactor": 1.0
+    },
+    {
+      "id": "carrier_thuong-nhan",
+      "name": "thương nhân",
+      "$comment": "Đi theo hàng hoá nên đi đâu cũng tới, nhưng dừng ở mọi chợ và kể lại theo trí nhớ của người kể trước.",
+      "kmPerDay": 30,
+      "lossPer100Km": 3.5,
+      "lossPerHop": 2,
+      "baseAccuracy": 82,
+      "reachFactor": 1.15
+    },
+    {
+      "id": "carrier_tin-don",
+      "name": "tin đồn",
+      "$comment": "Không ai trả tiền cho nó và không ai chịu trách nhiệm về nó. Chậm nhất, sai nhất, và là thứ tới được những nơi hai loại kia không tới.",
+      "kmPerDay": 18,
+      "lossPer100Km": 7,
+      "lossPerHop": 5,
+      "baseAccuracy": 64,
+      "reachFactor": 1.4
+    },
+    {
+      "id": "carrier_hanh-huong",
+      "name": "khách hành hương",
+      "$comment": "Đi rất xa và rất chậm, theo mùa lễ. Tin tôn giáo đi bằng chân họ.",
+      "kmPerDay": 22,
+      "lossPer100Km": 4.5,
+      "lossPerHop": 3,
+      "baseAccuracy": 74,
+      "reachFactor": 1.25
+    }
+  ],
+
+  "importance": [
+    { "level": 1, "reachKm": 150, "speedFactor": 0.9, "carriers": ["carrier_tin-don"] },
+    { "level": 2, "reachKm": 420, "speedFactor": 0.95, "carriers": ["carrier_tin-don", "carrier_thuong-nhan"] },
+    { "level": 3, "reachKm": 950, "speedFactor": 1.0, "carriers": ["carrier_thuong-nhan", "carrier_tin-don"] },
+    {
+      "level": 4,
+      "reachKm": 2200,
+      "speedFactor": 1.15,
+      "carriers": ["carrier_su-gia", "carrier_thuong-nhan", "carrier_tin-don"]
+    },
+    {
+      "level": 5,
+      "reachKm": 6000,
+      "speedFactor": 1.35,
+      "carriers": ["carrier_su-gia", "carrier_hanh-huong", "carrier_thuong-nhan", "carrier_tin-don"]
+    }
+  ],
+
+  "intel": {
+    "$comment": "MỤC 6, VẾ CUỐI: người chơi chủ động được. Ba khoản đầu tư, mỗi khoản gắn với MỘT vùng, và chúng cộng dồn. `speedBonus` nhân vào tốc độ, `accuracyBonus` cộng vào độ chính xác còn lại lúc tin tới nơi. Chi phí là tiền mỗi tháng — Phần 13 trừ nó ở sổ lãnh thổ.",
+    "kinds": [
+      {
+        "id": "intel_su-gia-rieng",
+        "name": "sứ giả riêng",
+        "speedBonus": 1.45,
+        "accuracyBonus": 8,
+        "upkeepPerMonth": 24,
+        "note": "Ngựa trạm của riêng ngài trên một tuyến. Tin về nhanh, nhưng ai cũng thấy ngài đang quan tâm chỗ nào."
+      },
+      {
+        "id": "intel_mua-tin",
+        "name": "mua tin thương nhân",
+        "speedBonus": 1.15,
+        "accuracyBonus": 14,
+        "upkeepPerMonth": 15,
+        "note": "Trả cho hội buôn để họ kể trước khi kể cho người khác. Rẻ, và không lộ."
+      },
+      {
+        "id": "intel_gian-diep",
+        "name": "gián điệp cài sẵn",
+        "speedBonus": 1.25,
+        "accuracyBonus": 26,
+        "upkeepPerMonth": 40,
+        "note": "Người của ngài ngồi sẵn trong triều đình ấy. Đắt, chính xác, và nếu lộ thì là chuyện tày đình."
+      }
+    ]
+  },
+
+  "distortions": {
+    "$comment": "BÓP MÉO — mục 6: 'một trận thua có thể tới nơi thành một trận thắng, số quân bị thổi lên gấp ba'. Mỗi mẫu chỉ được áp khi độ chính xác CÒN LẠI đã rơi dưới `belowAccuracy`; càng xa thì càng nhiều mẫu đủ điều kiện. `weight` là trọng số bốc thăm.",
+    "templates": [
+      {
+        "id": "dist_so-thoi-phong",
+        "belowAccuracy": 80,
+        "weight": 30,
+        "kind": "so-lieu",
+        "numberFactor": [1.5, 3.2],
+        "note": "số người bị thổi lên"
+      },
+      {
+        "id": "dist_so-thu-nho",
+        "belowAccuracy": 70,
+        "weight": 12,
+        "kind": "so-lieu",
+        "numberFactor": [0.3, 0.7],
+        "note": "số người bị kể nhỏ đi"
+      },
+      {
+        "id": "dist_mat-chi-tiet",
+        "belowAccuracy": 65,
+        "weight": 22,
+        "kind": "chi-tiet",
+        "note": "chi tiết rơi rụng, chỉ còn cái sườn"
+      },
+      {
+        "id": "dist_nham-noi",
+        "belowAccuracy": 55,
+        "weight": 18,
+        "kind": "dia-danh",
+        "note": "kể sai chỗ xảy ra"
+      },
+      {
+        "id": "dist_nham-nguoi",
+        "belowAccuracy": 45,
+        "weight": 16,
+        "kind": "nhan-vat",
+        "note": "kể sai tên người"
+      },
+      {
+        "id": "dist_them-diem-bao",
+        "belowAccuracy": 50,
+        "weight": 14,
+        "kind": "them-thao",
+        "note": "thêm điềm trời vào cho ra chuyện"
+      },
+      {
+        "id": "dist_dao-ket-cuc",
+        "belowAccuracy": 35,
+        "weight": 20,
+        "kind": "ket-cuc",
+        "note": "ĐẢO NGƯỢC kết cục — thua thành thắng, chết thành sống"
+      }
+    ],
+    "omens": [
+      "người ta bảo đêm ấy trời đỏ như máu",
+      "có kẻ thề đã thấy hai mặt trời mọc cùng lúc",
+      "chuông nhà thờ tự đổ, không ai kéo",
+      "quạ đậu đen kịt nóc nhà thờ suốt ba ngày",
+      "một con bê hai đầu sinh ra ở làng bên"
+    ],
+    "hedges": [
+      "nghe nói",
+      "người ta đồn",
+      "có kẻ vừa từ đó về kể lại",
+      "chưa ai xác nhận, nhưng"
+    ]
+  },
+
+  "templates": {
+    "$comment": "MẪU VĂN BẢN CHO SỰ KIỆN NHỎ — mục 8: importance 1–3 KHÔNG gọi LLM. Biến thay thế: {chuThe} kẻ gây ra, {mucTieu} kẻ chịu, {noi} nơi chốn, {so} con số, {nam} năm. Thiếu biến nào thì engine bỏ nguyên chỗ trống chứ không in ra dấu ngoặc.",
+    "byKind": {
+      "tran-danh": [
+        "Có đánh nhau ở {noi}. {chuThe} thắng, {mucTieu} bỏ lại chừng {so} người trên đồng.",
+        "{chuThe} và {mucTieu} dàn trận ở {noi}. Tan trận, phần thắng về {chuThe}."
+      ],
+      "vay-ham": [
+        "{chuThe} đóng quân trước tường {noi}. Bên trong còn cầm cự.",
+        "{noi} mở cổng cho {chuThe} sau nhiều tuần bị vây."
+      ],
+      "chien-tranh": [
+        "{chuThe} tuyên chiến với {mucTieu}.",
+        "Sứ của {chuThe} ném găng xuống trước mặt {mucTieu}. Chiến tranh."
+      ],
+      "hoa-uoc": [
+        "{chuThe} và {mucTieu} ký hoà ước.",
+        "Súng im giữa {chuThe} và {mucTieu}, ít nhất là năm nay."
+      ],
+      "chet": [
+        "{chuThe} qua đời ở {noi}.",
+        "{chuThe} không qua nổi mùa này. Tang lễ ở {noi}."
+      ],
+      "ke-vi": [
+        "{chuThe} lên thay, sau khi {mucTieu} nằm xuống.",
+        "Ngôi của {mucTieu} về tay {chuThe}. Chưa ai phản đối to tiếng."
+      ],
+      "hon-nhan": [
+        "{chuThe} cưới người nhà {mucTieu}. Hai bên đổi đất và đổi lời thề.",
+        "Đám cưới giữa {chuThe} và nhà {mucTieu} — của hồi môn tính bằng cả một thái ấp."
+      ],
+      "phan-loan": [
+        "Dân {noi} nổi lên. Chừng {so} người đang cầm gậy trên đường.",
+        "{chuThe} không nghe lệnh {mucTieu} nữa. {noi} đóng cổng."
+      ],
+      "dich-benh": [
+        "Dịch ở {noi}. Chừng {so} người đã chết, nhà thờ không kịp chôn.",
+        "Người ta đốt lửa ở cổng {noi} và không cho ai vào."
+      ],
+      "doi-kem": [
+        "Mùa hỏng ở {noi}. Giá bánh mì gấp đôi.",
+        "{noi} xin lương từ hàng xóm. Chưa ai gửi."
+      ],
+      "di-cu": [
+        "Chừng {so} người rời {noi}, đi về phía {mucTieu}.",
+        "Cả một xóm ở {noi} bỏ đi trong đêm."
+      ],
+      "tuyen-bo": [
+        "{chuThe} ra tuyên bố. Nội dung đã dán ở cổng nhà thờ {noi}.",
+        "Lệnh của {chuThe} vừa được đọc to ở {noi}."
+      ],
+      "am-muu": [
+        "Có chuyện gì đó đang được bàn sau lưng {mucTieu}. Chưa rõ ai bàn.",
+        "Một người của {chuThe} bị bắt ở {noi}, trong người có thư không niêm."
+      ],
+      "sup-do": [
+        "{chuThe} không còn nữa. Đất của họ đang bị chia.",
+        "Cờ của {chuThe} đã hạ khỏi {noi}."
+      ],
+      "thien-tai": [
+        "Nước lớn ở {noi}. Cầu gãy, mùa màng mất.",
+        "Đất rung ở {noi}. Tường thành nứt một đoạn dài."
+      ],
+      "khac": ["Có chuyện xảy ra ở {noi}."]
+    }
+  },
+
+  "prompts": {
+    "$comment": "MỤC 8, VẾ ĐẦU: sự kiện importance 4–5 gọi LLM để viết văn bản, và GỘP NHIỀU SỰ KIỆN VÀO MỘT REQUEST. Model rẻ đủ dùng, nên chỉ dẫn phải ngắn và cứng — một model rẻ được cho tự do sẽ viết ba đoạn văn hoa mỹ và bịa thêm ba con số.",
+    "systemText": "Ngươi là người chép sử của một thế giới châu Âu thế kỷ 14 giả tưởng. Ngươi nhận một danh sách biến cố ĐÃ XẢY RA và viết lời loan báo cho từng cái.\n\nLUẬT CỨNG:\n- KHÔNG được đổi, thêm, hay bịa bất kỳ con số nào. Con số trong dữ kiện là sự thật, chép đúng.\n- KHÔNG được quyết định hệ quả. Ngươi chỉ loan tin về chuyện đã xảy ra.\n- Viết bằng tiếng Việt, giọng biên niên sử, mỗi biến cố 2–4 câu.\n- Ba tầng sở hữu chỉ được gọi bằng ĐÚNG ba từ này và không từ nào khác: THÀNH TRÌ (một điểm có tường), LÃNH THỔ (một vùng gồm nhiều tỉnh), THÁI ẤP (một tờ giấy có ấn triện).\n- Không dùng từ hiện đại: \"hệ thống\", \"năng lượng\", \"cấp độ\".\n\nTRẢ VỀ ĐÚNG MỘT MẢNG JSON, không có chữ nào khác:\n[{\"eventId\":\"...\",\"headline\":\"một câu ngắn\",\"text\":\"2-4 câu\"}]",
+    "systemAgents": "Ngươi đóng vai NGƯỜI SUY NGHĨ THAY cho một nhóm nhân vật trong thế giới châu Âu thế kỷ 14 giả tưởng. Mỗi nhân vật có mục tiêu riêng, tính cách riêng, và BIẾT NHỮNG GÌ HỌ BIẾT — không phải những gì thật sự đang xảy ra.\n\nLUẬT CỨNG (vi phạm là toàn bộ câu trả lời bị vứt):\n- KHÔNG trả về con số nào. Mức độ chỉ được nói bằng ba chữ: \"nhỏ\", \"vừa\", \"lớn\".\n- Mỗi nhân vật chỉ ra ĐÚNG MỘT quyết định cho tháng này.\n- Quyết định phải nằm trong danh sách hành động được phép của chính nhân vật ấy.\n- Nhân vật hành động theo cái họ TƯỞNG là đúng. Nếu tri thức của họ sai, cứ để họ sai.\n- Viết `reasoning` bằng tiếng Việt, một câu, đúng giọng của nhân vật.\n\nTRẢ VỀ ĐÚNG MỘT MẢNG JSON, không có chữ nào khác:\n[{\"npcId\":\"...\",\"decision\":\"...\",\"reasoning\":\"...\",\"targetId\":\"...\",\"magnitude\":\"nhỏ|vừa|lớn\"}]",
+    "maxTokensText": 1400,
+    "maxTokensAgents": 2000
+  }
+}

@@ -1,0 +1,15 @@
+<% const h = q.holding(); %>
+╔═ THÀNH TRÌ ĐANG ĐỨNG: <%= h.name %> ═══════════════════
+║ Cấp: <%= h.tierName %> (cấp <%= h.tier %>/5) · Tường: <%= h.wall %>
+║ Dân: <%= h.population %> người · Lòng dân: <%= h.mood %> · Đồn trú: <%= h.garrison %> quân
+║ Kho: <%= fmt.list(h.stores) %>
+║ Công trình: <%= fmt.list(h.buildings) %>
+<% if (h.building) { %>
+║ Đang xây: <%= h.building %>
+<% } %>
+║ Cầm cự được nếu bị vây: <%= h.siegeWeeks %> tuần
+╚═══════════════════════════════════════════════
+
+ĐÂY LÀ MỘT ĐIỂM. Được phép nói tới từng công trình, từng viên đá, từng người có
+tên. Số ở khung này là số ĐẾM ĐƯỢC, viết chính xác. KHÔNG được nói tới luật,
+thuế suất, chư hầu — những thứ đó thuộc khung LÃNH THỔ ở dưới.

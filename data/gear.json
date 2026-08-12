@@ -1,0 +1,1003 @@
+{
+  "$comment": "TRANG BỊ KHỞI ĐẦU — lớp KHAI BÁO của Phần 6, không phải hệ vật phẩm thật. Phần 16 sở hữu vật phẩm: bản đồ che phủ giáp, khe hở, độ bền, vừa người, ba mốc thời đại. Ở đây chỉ đủ để nói NGÀI ĐANG MANG GÌ, đủ chi tiết cho AI mô tả nhất quán và cho Phần 7/16 dựng tiếp. HAI RANH GIỚI CỐ Ý: (1) vũ khí và dụng cụ khai `skillBonus` vì mục 1 có sẵn vế `+ trang bị` trong công thức d100, và vế đó phải hiện thành một dòng đọc được chứ không nằm ẩn; (2) giáp KHÔNG khai một con số phòng thủ tổng — nó chỉ khai `coverage` là những vùng cơ thể nó che. README mục 8.5 nói rút giáp thành một con số là làm hỏng luôn cơ chế đâm khe hở của Phần 9, nên chỗ đó để trống cho Phần 16 điền, không phải để Phần 6 đoán.",
+  "version": 1,
+  "slots": [
+    {
+      "id": "dau",
+      "name": "Đầu"
+    },
+    {
+      "id": "than",
+      "name": "Thân"
+    },
+    {
+      "id": "tay-phai",
+      "name": "Tay phải"
+    },
+    {
+      "id": "tay-trai",
+      "name": "Tay trái"
+    },
+    {
+      "id": "ban-tay",
+      "name": "Bàn tay"
+    },
+    {
+      "id": "chan",
+      "name": "Chân"
+    },
+    {
+      "id": "ngoai",
+      "name": "Khoác ngoài"
+    },
+    {
+      "id": "that-lung",
+      "name": "Thắt lưng"
+    },
+    {
+      "id": "ba-lo",
+      "name": "Hành lý"
+    },
+    {
+      "id": "cuoi",
+      "name": "Vật cưỡi"
+    },
+    {
+      "id": "mang-theo",
+      "name": "Mang theo"
+    }
+  ],
+  "materials": [
+    {
+      "id": "vai",
+      "name": "vải thô",
+      "note": "rẻ, nhẹ, không chịu được gì"
+    },
+    {
+      "id": "len",
+      "name": "len",
+      "note": "ấm, thấm nước thì rất nặng"
+    },
+    {
+      "id": "lua",
+      "name": "lụa",
+      "note": "đắt, và ai cũng nhìn ra là đắt"
+    },
+    {
+      "id": "vai-don",
+      "name": "vải độn nhiều lớp",
+      "note": "nền bắt buộc của mọi bộ giáp — cơ học ở data/materials.json"
+    },
+    {
+      "id": "go-thuy-tung",
+      "name": "gỗ thủy tùng",
+      "note": "thân cung dài tốt nhất"
+    },
+    {
+      "id": "da",
+      "name": "da sống",
+      "note": "bền vừa, rẻ"
+    },
+    {
+      "id": "da-thuoc",
+      "name": "da thuộc",
+      "note": "tiêu chuẩn cho yên cương và giáp nhẹ"
+    },
+    {
+      "id": "go",
+      "name": "gỗ",
+      "note": "cán, thân cung, khiên"
+    },
+    {
+      "id": "xuong",
+      "name": "xương và sừng",
+      "note": "thị tộc dùng thay kim loại"
+    },
+    {
+      "id": "dong",
+      "name": "đồng",
+      "note": "cũ kỹ, nhưng còn dùng ở vùng nghèo"
+    },
+    {
+      "id": "sat",
+      "name": "sắt rèn",
+      "note": "phổ thông"
+    },
+    {
+      "id": "thep",
+      "name": "thép",
+      "note": "tiêu chuẩn của vũ khí tử tế"
+    },
+    {
+      "id": "thep-tot",
+      "name": "thép tôi kỹ",
+      "note": "hàng của thợ có tên tuổi"
+    },
+    {
+      "id": "bac",
+      "name": "bạc",
+      "note": "Phần 14b mục D: gây thương tích KHÔNG tự lành cho Huyết Tộc"
+    },
+    {
+      "id": "vang",
+      "name": "vàng",
+      "note": "để phô, không để dùng"
+    }
+  ],
+  "qualities": [
+    {
+      "id": "tho-vung",
+      "name": "thợ vụng",
+      "bonus": -10,
+      "priceFactor": 0.5
+    },
+    {
+      "id": "thuong",
+      "name": "thường",
+      "bonus": 0,
+      "priceFactor": 1
+    },
+    {
+      "id": "tho-gioi",
+      "name": "thợ giỏi",
+      "bonus": 10,
+      "priceFactor": 3
+    },
+    {
+      "id": "kiet-tac",
+      "name": "kiệt tác",
+      "bonus": 20,
+      "priceFactor": 12
+    }
+  ],
+  "items": [
+    {
+      "id": "item_kiem-dai",
+      "name": "Kiếm dài",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "thep",
+      "weightKg": 1.4,
+      "price": 60,
+      "skillBonus": {
+        "domains": [
+          "skill.kiem-thuat"
+        ],
+        "value": 10
+      },
+      "note": "Hai tay khi cần. Thế nửa kiếm dùng được trước giáp tấm."
+    },
+    {
+      "id": "item_kiem-mot-tay",
+      "name": "Kiếm một tay",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "thep",
+      "weightKg": 1.1,
+      "price": 25,
+      "skillBonus": {
+        "domains": [
+          "skill.kiem-thuat"
+        ],
+        "value": 8
+      },
+      "note": "Đi cùng khiên."
+    },
+    {
+      "id": "item_dao-gam",
+      "name": "Dao găm",
+      "kind": "vu-khi",
+      "slot": "that-lung",
+      "material": "thep",
+      "weightKg": 0.3,
+      "price": 1,
+      "skillBonus": {
+        "domains": [
+          "skill.dao-gam"
+        ],
+        "value": 8
+      },
+      "note": "Thứ kết thúc phần lớn trận đánh thật."
+    },
+    {
+      "id": "item_riu-chien",
+      "name": "Rìu chiến",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "thep",
+      "weightKg": 1.6,
+      "price": 30,
+      "skillBonus": {
+        "domains": [
+          "skill.riu-bua"
+        ],
+        "value": 10
+      }
+    },
+    {
+      "id": "item_bua-chien",
+      "name": "Búa chiến",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "thep",
+      "weightKg": 1.8,
+      "price": 45,
+      "skillBonus": {
+        "domains": [
+          "skill.riu-bua"
+        ],
+        "value": 12
+      },
+      "note": "Còn hiệu quả trước giáp tấm mà không cần tìm khe hở."
+    },
+    {
+      "id": "item_chuy",
+      "name": "Chùy",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "sat",
+      "weightKg": 1.5,
+      "price": 25,
+      "skillBonus": {
+        "domains": [
+          "skill.riu-bua"
+        ],
+        "value": 8
+      }
+    },
+    {
+      "id": "item_giao",
+      "name": "Giáo",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "go",
+      "weightKg": 2,
+      "price": 3,
+      "skillBonus": {
+        "domains": [
+          "skill.thuong-kich"
+        ],
+        "value": 8
+      }
+    },
+    {
+      "id": "item_thuong-dai",
+      "name": "Thương dài",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "go",
+      "weightKg": 4.5,
+      "price": 18,
+      "skillBonus": {
+        "domains": [
+          "skill.thuong-kich"
+        ],
+        "value": 12
+      },
+      "note": "Vũ khí của hàng ngũ, vô dụng khi đứng một mình."
+    },
+    {
+      "id": "item_kich",
+      "name": "Kích",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "thep",
+      "weightKg": 3,
+      "price": 35,
+      "skillBonus": {
+        "domains": [
+          "skill.thuong-kich"
+        ],
+        "value": 10
+      }
+    },
+    {
+      "id": "item_truong-cung",
+      "name": "Trường cung",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "go-thuy-tung",
+      "weightKg": 1.5,
+      "price": 30,
+      "skillBonus": {
+        "domains": [
+          "skill.cung-no"
+        ],
+        "value": 12
+      },
+      "note": "Cần nhiều năm mới kéo nổi."
+    },
+    {
+      "id": "item_cung-ngan",
+      "name": "Cung ngắn",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "go",
+      "weightKg": 0.9,
+      "price": 18,
+      "skillBonus": {
+        "domains": [
+          "skill.cung-no"
+        ],
+        "value": 8
+      },
+      "note": "Bắn được trên lưng ngựa."
+    },
+    {
+      "id": "item_no-tay",
+      "name": "Nỏ tay",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "go",
+      "weightKg": 3,
+      "price": 40,
+      "skillBonus": {
+        "domains": [
+          "skill.cung-no"
+        ],
+        "value": 10
+      },
+      "note": "Ai cũng bắn được sau một buổi tập."
+    },
+    {
+      "id": "item_lao",
+      "name": "Bó lao",
+      "kind": "vu-khi",
+      "slot": "ba-lo",
+      "material": "go",
+      "weightKg": 2,
+      "price": 6,
+      "skillBonus": {
+        "domains": [
+          "skill.nem-lao"
+        ],
+        "value": 8
+      }
+    },
+    {
+      "id": "item_sung-tay",
+      "name": "Súng tay",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "sat",
+      "weightKg": 4,
+      "price": 120,
+      "skillBonus": {
+        "domains": [
+          "skill.hoa-khi"
+        ],
+        "value": 8
+      },
+      "note": "Mới, ồn, và chưa ai thật sự tin."
+    },
+    {
+      "id": "item_khien-tron",
+      "name": "Khiên tròn",
+      "kind": "khien",
+      "slot": "tay-trai",
+      "material": "go",
+      "weightKg": 2.5,
+      "price": 12,
+      "skillBonus": {
+        "domains": [
+          "skill.khien"
+        ],
+        "value": 10
+      },
+      "coverage": [
+        "tay-trai",
+        "than-truoc"
+      ]
+    },
+    {
+      "id": "item_khien-lon",
+      "name": "Khiên lớn",
+      "kind": "khien",
+      "slot": "tay-trai",
+      "material": "go",
+      "weightKg": 6,
+      "price": 25,
+      "skillBonus": {
+        "domains": [
+          "skill.khien"
+        ],
+        "value": 14
+      },
+      "coverage": [
+        "tay-trai",
+        "than-truoc",
+        "dui-trai"
+      ]
+    },
+    {
+      "id": "item_ao-lot-giap",
+      "name": "Áo lót giáp",
+      "kind": "giap",
+      "slot": "than",
+      "material": "vai-don",
+      "weightKg": 4,
+      "price": 10,
+      "coverage": [
+        "than-truoc",
+        "than-sau",
+        "tay-tren-trai",
+        "tay-tren-phai"
+      ],
+      "note": "Mặc dưới giáp lưới. Một mình nó cũng đã hơn không có gì."
+    },
+    {
+      "id": "item_giap-da",
+      "name": "Giáp da",
+      "kind": "giap",
+      "slot": "than",
+      "material": "da-thuoc",
+      "weightKg": 6,
+      "price": 40,
+      "coverage": [
+        "than-truoc",
+        "than-sau",
+        "tay-tren-trai",
+        "tay-tren-phai"
+      ]
+    },
+    {
+      "id": "item_giap-luoi",
+      "name": "Giáp lưới",
+      "kind": "giap",
+      "slot": "than",
+      "material": "sat",
+      "weightKg": 12,
+      "price": 150,
+      "coverage": [
+        "than-truoc",
+        "than-sau",
+        "tay-tren-trai",
+        "tay-tren-phai",
+        "tay-duoi-trai",
+        "tay-duoi-phai",
+        "dui-trai",
+        "dui-phai"
+      ],
+      "note": "Chặn được chém, không chặn được đâm xuyên và không chặn được đập."
+    },
+    {
+      "id": "item_giap-tam",
+      "name": "Giáp tấm",
+      "kind": "giap",
+      "slot": "than",
+      "material": "thep",
+      "weightKg": 25,
+      "price": 900,
+      "coverage": [
+        "dau",
+        "co",
+        "than-truoc",
+        "than-sau",
+        "tay-tren-trai",
+        "tay-tren-phai",
+        "tay-duoi-trai",
+        "tay-duoi-phai",
+        "dui-trai",
+        "dui-phai",
+        "cang-chan-trai",
+        "cang-chan-phai"
+      ],
+      "note": "Gần như bất khả xâm phạm trừ khe hở. Phần 16 mục 3–4 dựng bản đồ che phủ thật."
+    },
+    {
+      "id": "item_mu-sat",
+      "name": "Mũ sắt",
+      "kind": "giap",
+      "slot": "dau",
+      "material": "sat",
+      "weightKg": 2,
+      "price": 25,
+      "coverage": [
+        "dau"
+      ]
+    },
+    {
+      "id": "item_mu-tru",
+      "name": "Mũ trụ kín",
+      "kind": "giap",
+      "slot": "dau",
+      "material": "thep",
+      "weightKg": 3.5,
+      "price": 90,
+      "coverage": [
+        "dau",
+        "mat",
+        "co"
+      ],
+      "note": "Che kín, và cũng bịt gần hết tầm nhìn."
+    },
+    {
+      "id": "item_gang-sat",
+      "name": "Găng sắt",
+      "kind": "giap",
+      "slot": "ban-tay",
+      "material": "thep",
+      "weightKg": 1,
+      "price": 45,
+      "coverage": [
+        "ban-tay-trai",
+        "ban-tay-phai"
+      ]
+    },
+    {
+      "id": "item_ghet-sat",
+      "name": "Ghệt sắt",
+      "kind": "giap",
+      "slot": "chan",
+      "material": "thep",
+      "weightKg": 3,
+      "price": 60,
+      "coverage": [
+        "cang-chan-trai",
+        "cang-chan-phai"
+      ]
+    },
+    {
+      "id": "item_ao-choang-len",
+      "name": "Áo choàng len",
+      "kind": "quan-ao",
+      "slot": "ngoai",
+      "material": "len",
+      "weightKg": 2,
+      "price": 6,
+      "skillBonus": {
+        "domains": [
+          "*"
+        ],
+        "value": 8,
+        "whenAnyTag": [
+          "gia-lanh",
+          "mua-dong"
+        ]
+      }
+    },
+    {
+      "id": "item_ao-dong",
+      "name": "Áo dòng",
+      "kind": "quan-ao",
+      "slot": "than",
+      "material": "len",
+      "weightKg": 1.5,
+      "price": 8,
+      "skillBonus": {
+        "domains": [
+          "skill.giang-dao",
+          "skill.gay-thien-cam"
+        ],
+        "value": 8,
+        "whenAnyTag": [
+          "nha-tho",
+          "giao-si"
+        ]
+      }
+    },
+    {
+      "id": "item_ao-lua",
+      "name": "Áo lụa",
+      "kind": "quan-ao",
+      "slot": "than",
+      "material": "lua",
+      "weightKg": 0.6,
+      "price": 120,
+      "skillBonus": {
+        "domains": [
+          "skill.nghi-thuc",
+          "skill.dam-phan"
+        ],
+        "value": 8,
+        "whenAnyTag": [
+          "trieu-dinh"
+        ]
+      }
+    },
+    {
+      "id": "item_giay-da",
+      "name": "Giày da",
+      "kind": "quan-ao",
+      "slot": "chan",
+      "material": "da-thuoc",
+      "weightKg": 0.8,
+      "price": 4
+    },
+    {
+      "id": "item_ung-cuoi-ngua",
+      "name": "Ủng cưỡi ngựa",
+      "kind": "quan-ao",
+      "slot": "chan",
+      "material": "da-thuoc",
+      "weightKg": 1.5,
+      "price": 12,
+      "skillBonus": {
+        "domains": [
+          "skill.cuoi-ngua"
+        ],
+        "value": 5
+      }
+    },
+    {
+      "id": "item_do-ren",
+      "name": "Bộ đồ rèn",
+      "kind": "dung-cu",
+      "slot": "ba-lo",
+      "material": "sat",
+      "weightKg": 15,
+      "price": 60,
+      "skillBonus": {
+        "domains": [
+          "skill.ren-sat"
+        ],
+        "value": 15
+      }
+    },
+    {
+      "id": "item_do-moc",
+      "name": "Bộ đồ mộc",
+      "kind": "dung-cu",
+      "slot": "ba-lo",
+      "material": "sat",
+      "weightKg": 8,
+      "price": 35,
+      "skillBonus": {
+        "domains": [
+          "skill.moc"
+        ],
+        "value": 15
+      }
+    },
+    {
+      "id": "item_do-che-tac",
+      "name": "Bộ đồ chạm khắc",
+      "kind": "dung-cu",
+      "slot": "ba-lo",
+      "material": "thep",
+      "weightKg": 2,
+      "price": 70,
+      "skillBonus": {
+        "domains": [
+          "skill.che-tac",
+          "skill.co-khi"
+        ],
+        "value": 15
+      }
+    },
+    {
+      "id": "item_tui-thuoc",
+      "name": "Túi thuốc",
+      "kind": "dung-cu",
+      "slot": "that-lung",
+      "material": "da",
+      "weightKg": 2,
+      "price": 40,
+      "skillBonus": {
+        "domains": [
+          "skill.y-thuat",
+          "skill.duoc-thao"
+        ],
+        "value": 12
+      }
+    },
+    {
+      "id": "item_do-phau",
+      "name": "Bộ dao phẫu",
+      "kind": "dung-cu",
+      "slot": "ba-lo",
+      "material": "thep",
+      "weightKg": 1,
+      "price": 80,
+      "skillBonus": {
+        "domains": [
+          "skill.phau-thuat"
+        ],
+        "value": 15
+      },
+      "note": "Không có thuốc mê tử tế đi kèm."
+    },
+    {
+      "id": "item_do-mo-khoa",
+      "name": "Bộ mở khóa",
+      "kind": "dung-cu",
+      "slot": "that-lung",
+      "material": "thep",
+      "weightKg": 0.2,
+      "price": 30,
+      "skillBonus": {
+        "domains": [
+          "skill.mo-khoa"
+        ],
+        "value": 15
+      },
+      "note": "Bị bắt gặp mang thứ này là đủ để bị treo cổ ở vài nơi."
+    },
+    {
+      "id": "item_do-viet",
+      "name": "Bộ bút mực",
+      "kind": "dung-cu",
+      "slot": "ba-lo",
+      "material": "go",
+      "weightKg": 1,
+      "price": 25,
+      "skillBonus": {
+        "domains": [
+          "skill.thu-phap",
+          "skill.ke-toan"
+        ],
+        "value": 12
+      }
+    },
+    {
+      "id": "item_do-gia-kim",
+      "name": "Bộ giả kim",
+      "kind": "dung-cu",
+      "slot": "ba-lo",
+      "material": "dong",
+      "weightKg": 10,
+      "price": 150,
+      "skillBonus": {
+        "domains": [
+          "skill.gia-kim",
+          "skill.doc-duoc"
+        ],
+        "value": 15
+      }
+    },
+    {
+      "id": "item_day-thung",
+      "name": "Dây thừng",
+      "kind": "dung-cu",
+      "slot": "ba-lo",
+      "material": "vai",
+      "weightKg": 3,
+      "price": 3,
+      "skillBonus": {
+        "domains": [
+          "skill.leo-treo"
+        ],
+        "value": 8
+      }
+    },
+    {
+      "id": "item_den-long",
+      "name": "Đèn lồng",
+      "kind": "dung-cu",
+      "slot": "mang-theo",
+      "material": "sat",
+      "weightKg": 1.5,
+      "price": 10,
+      "skillBonus": {
+        "domains": [
+          "*"
+        ],
+        "value": 10,
+        "whenAnyTag": [
+          "ban-dem",
+          "trong-ham"
+        ]
+      }
+    },
+    {
+      "id": "item_le-lua",
+      "name": "Đá lửa và bùi nhùi",
+      "kind": "dung-cu",
+      "slot": "that-lung",
+      "material": "sat",
+      "weightKg": 0.2,
+      "price": 1,
+      "skillBonus": {
+        "domains": [
+          "skill.sinh-ton"
+        ],
+        "value": 5
+      }
+    },
+    {
+      "id": "item_bay-thu",
+      "name": "Bộ bẫy thú",
+      "kind": "dung-cu",
+      "slot": "ba-lo",
+      "material": "sat",
+      "weightKg": 5,
+      "price": 15,
+      "skillBonus": {
+        "domains": [
+          "skill.san-ban"
+        ],
+        "value": 12
+      }
+    },
+    {
+      "id": "item_ngua-chien",
+      "name": "Ngựa chiến",
+      "kind": "vat-cuoi",
+      "slot": "cuoi",
+      "material": "",
+      "weightKg": 0,
+      "price": 400,
+      "note": "Đắt hơn phần lớn người. Cần người biết chăm."
+    },
+    {
+      "id": "item_ngua-cuoi",
+      "name": "Ngựa cưỡi",
+      "kind": "vat-cuoi",
+      "slot": "cuoi",
+      "material": "",
+      "weightKg": 0,
+      "price": 120
+    },
+    {
+      "id": "item_ngua-tho",
+      "name": "Ngựa thồ",
+      "kind": "vat-cuoi",
+      "slot": "cuoi",
+      "material": "",
+      "weightKg": 0,
+      "price": 60
+    },
+    {
+      "id": "item_la",
+      "name": "Con la",
+      "kind": "vat-cuoi",
+      "slot": "cuoi",
+      "material": "",
+      "weightKg": 0,
+      "price": 35,
+      "note": "Chậm, bướng, và đi được chỗ ngựa không đi."
+    },
+    {
+      "id": "item_nhan-an",
+      "name": "Nhẫn ấn triện",
+      "kind": "quy-vat",
+      "slot": "mang-theo",
+      "material": "bac",
+      "weightKg": 0.05,
+      "price": 150,
+      "skillBonus": {
+        "domains": [
+          "skill.nghi-thuc",
+          "skill.luat-le"
+        ],
+        "value": 10
+      },
+      "note": "Đóng dấu là ký tên. Mất nó là chuyện lớn."
+    },
+    {
+      "id": "item_thanh-gia-bac",
+      "name": "Thánh giá bạc",
+      "kind": "quy-vat",
+      "slot": "mang-theo",
+      "material": "bac",
+      "weightKg": 0.1,
+      "price": 60,
+      "skillBonus": {
+        "domains": [
+          "skill.tru-ta"
+        ],
+        "value": 10
+      }
+    },
+    {
+      "id": "item_sach-kinh",
+      "name": "Sách kinh chép tay",
+      "kind": "quy-vat",
+      "slot": "ba-lo",
+      "material": "da-thuoc",
+      "weightKg": 2.5,
+      "price": 200,
+      "skillBonus": {
+        "domains": [
+          "skill.giang-dao",
+          "skill.hoc-van"
+        ],
+        "value": 10
+      },
+      "note": "Bằng cả một đàn bò."
+    },
+    {
+      "id": "item_thu-tich",
+      "name": "Bó thư tịch",
+      "kind": "quy-vat",
+      "slot": "ba-lo",
+      "material": "da-thuoc",
+      "weightKg": 3,
+      "price": 120,
+      "skillBonus": {
+        "domains": [
+          "skill.hoc-van",
+          "skill.su-ky"
+        ],
+        "value": 10
+      }
+    },
+    {
+      "id": "item_ban-do",
+      "name": "Bản đồ vùng",
+      "kind": "quy-vat",
+      "slot": "ba-lo",
+      "material": "da-thuoc",
+      "weightKg": 0.3,
+      "price": 45,
+      "skillBonus": {
+        "domains": [
+          "skill.do-duong"
+        ],
+        "value": 12
+      },
+      "note": "Sai chừng một phần tư, như mọi bản đồ thời này."
+    },
+    {
+      "id": "item_thu-gioi-thieu",
+      "name": "Thư giới thiệu",
+      "kind": "giay-to",
+      "slot": "mang-theo",
+      "material": "da-thuoc",
+      "weightKg": 0.05,
+      "price": 0,
+      "skillBonus": {
+        "domains": [
+          "skill.gay-thien-cam",
+          "skill.dam-phan"
+        ],
+        "value": 12,
+        "whenAnyTag": [
+          "nguoi-la",
+          "trieu-dinh",
+          "nha-tho"
+        ]
+      }
+    },
+    {
+      "id": "item_the-phuong-hoi",
+      "name": "Thẻ phường hội",
+      "kind": "giay-to",
+      "slot": "mang-theo",
+      "material": "dong",
+      "weightKg": 0.05,
+      "price": 0,
+      "skillBonus": {
+        "domains": [
+          "skill.mac-ca"
+        ],
+        "value": 10
+      }
+    },
+    {
+      "id": "item_so-no",
+      "name": "Sổ nợ",
+      "kind": "giay-to",
+      "slot": "ba-lo",
+      "material": "da-thuoc",
+      "weightKg": 1,
+      "price": 0,
+      "skillBonus": {
+        "domains": [
+          "skill.ke-toan"
+        ],
+        "value": 8
+      },
+      "note": "Tên người khác trong đó, không phải tên ngài. Hy vọng thế."
+    },
+    {
+      "id": "item_giay-thong-hanh",
+      "name": "Giấy thông hành",
+      "kind": "giay-to",
+      "slot": "mang-theo",
+      "material": "da-thuoc",
+      "weightKg": 0.05,
+      "price": 0,
+      "note": "Không có nó thì một nông nô ra khỏi tỉnh là phạm luật."
+    },
+    {
+      "id": "item_tui-tien",
+      "name": "Túi tiền",
+      "kind": "quy-vat",
+      "slot": "that-lung",
+      "material": "da",
+      "weightKg": 0.3,
+      "price": 2
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.vite/
+*.local
+
+# Địa chỉ proxy dev là của riêng từng máy.
+.env
+.env.local
+
+# Save files exported by hand (tier C) — never commit a player's campaign.
+/saves/

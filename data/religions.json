@@ -1,0 +1,427 @@
+{
+  "$comment": "TÔN GIÁO (Phần 6 mục 7). Dùng CHUNG khuôn hiệu ứng với data/traits.json — `domains` + `value` theo thang d100 + `whenAnyTag` — nên chỉ có đúng một đường quy đổi sang bốn hệ xúc sắc, và một dòng modifier tôn giáo đọc giống hệt một dòng đặc tính chủng tộc. `value` được NHÂN với mức sùng đạo (piety/100) trước khi vào phép kiểm: một người ghi tên trong sổ rửa tội mà không tin gì thì tôn giáo gần như không đụng tới con số nào của họ, còn một người sùng đạo thì vừa được nhiều hơn vừa bị trói nhiều hơn. `taboos` là chữ cho AI đọc, không vào công thức. Phần 14 (tám thế lực) sở hữu quan hệ giữa các tôn giáo và sẽ sửa lại `stance`.",
+  "$comment14": "PHẦN 14 MỤC 5 nối tiếp vào file này, KHÔNG mở file thứ hai — một tôn giáo hai nguồn sự thật là cách chắc chắn nhất để Phần 6 và Phần 14 nói về hai thứ khác nhau bằng cùng một cái tên. Phần 14 thêm bốn tôn giáo mà mục 5 đòi phải có riêng (nhánh Baltic của Tín ngưỡng Cổ TÁCH khỏi nhánh phương tây; giáo phái Thần Chiến Trận của Sói Nhân; hai phong trào dị giáo phát sinh TỪ TRONG Giáo hội Chính thống), cộng bốn khối mới: `spread` (cơ chế lan truyền), `heresy` (dị giáo bùng sau khủng hoảng — QUY TẮC BẮT BUỘC, không phải ngẫu nhiên), `relations` (ma trận quan hệ giữa các tôn giáo), `seeds` (tỷ lệ khởi đầu theo thế lực và theo tỉnh).",
+  "version": 2,
+  "religions": [
+    {
+      "id": "rel_giao-hoi",
+      "name": "Giáo hội Chính thống",
+      "shortName": "Chính thống",
+      "description": "Bộ máy tôn giáo lớn nhất Tây và Trung Europa. Biết chữ, có tòa án riêng, và nhớ rất dai.",
+      "stance": "chính thống",
+      "raceStandings": ["chính thống", "trung tâm"],
+      "taboos": ["hành nghề huyền thuật ngoài phép", "cho vay nặng lãi công khai", "ăn thịt vào ngày chay"],
+      "effects": [
+        { "domains": ["skill.giang-dao", "skill.nghi-thuc"], "value": 15 },
+        { "domains": ["skill.an-ui", "skill.hoc-van", "skill.luat-le"], "value": 10 },
+        { "domains": ["skill.dam-phan", "skill.gay-thien-cam"], "value": 12, "whenAnyTag": ["giao-si", "nha-tho"] },
+        { "domains": ["skill.huyen-thuat", "skill.phu-chu"], "value": -20 }
+      ]
+    },
+    {
+      "id": "rel_ly-giao",
+      "name": "Giáo hội Đông phương",
+      "shortName": "Ly giáo",
+      "description": "Cùng một Chúa, khác một chữ trong kinh tín, và bốn thế kỷ không ai chịu nhường.",
+      "stance": "ly giáo",
+      "raceStandings": ["ly giáo"],
+      "taboos": ["thừa nhận quyền tối cao của Giáo triều", "dùng bánh không men"],
+      "effects": [
+        { "domains": ["skill.giang-dao", "skill.hoc-van"], "value": 12 },
+        { "domains": ["skill.su-ky", "skill.thu-phap", "skill.ngon-ngu"], "value": 12 },
+        { "domains": ["skill.dam-phan"], "value": -15, "whenAnyTag": ["giao-si", "nha-tho"] }
+      ]
+    },
+    {
+      "id": "rel_da-than",
+      "name": "Tín ngưỡng cổ",
+      "shortName": "Đa thần",
+      "description": "Có trước nhà thờ, và ở nhiều nơi vẫn sống dai hơn nhà thờ. Thờ ở lùm cây chứ không ở dưới mái.",
+      "stance": "ngoại đạo",
+      "raceStandings": ["ngoại đạo"],
+      "taboos": ["chặt cây trong lùm thiêng", "thề trên thánh giá", "vào đất thánh của Giáo hội"],
+      "effects": [
+        { "domains": ["skill.duoc-thao", "skill.sinh-ton", "skill.san-ban"], "value": 15 },
+        { "domains": ["skill.cam-ung", "skill.boi-toan"], "value": 12 },
+        { "domains": ["*"], "value": 12, "whenAnyTag": ["trong-rung"] },
+        { "domains": ["skill.nghi-thuc"], "value": -15, "whenAnyTag": ["trieu-dinh", "nha-tho"] }
+      ]
+    },
+    {
+      "id": "rel_thao-nguyen",
+      "name": "Thiên tín thảo nguyên",
+      "shortName": "Thiên tín",
+      "description": "Trời rộng là thần, và người ta thề dưới trời chứ không thề trong nhà.",
+      "stance": "ngoại đạo",
+      "raceStandings": ["ngoại đạo"],
+      "taboos": ["làm bẩn nguồn nước", "phản bội chủ đã cho ăn", "chôn người trong thành"],
+      "effects": [
+        { "domains": ["skill.cuoi-ngua", "skill.do-duong"], "value": 15 },
+        { "domains": ["skill.thien-van", "skill.thu-y"], "value": 12 },
+        { "domains": ["*"], "value": 12, "whenAnyTag": ["hanh-quan", "ngoai-troi"] },
+        { "domains": ["skill.hoc-van", "skill.luat-le"], "value": -12 }
+      ]
+    },
+    {
+      "id": "rel_nam-phuong",
+      "name": "Nhất thần phương Nam",
+      "shortName": "Nhất thần",
+      "description": "Tôn giáo nhà nước của đế quốc phương nam. Có luật, có học viện, và có quân đội của riêng nó.",
+      "stance": "thù địch",
+      "raceStandings": ["thù địch"],
+      "taboos": ["rượu", "hình tượng người trong nơi thờ tự", "bỏ giờ cầu nguyện"],
+      "effects": [
+        { "domains": ["skill.luat-le", "skill.hoc-van", "skill.thien-van"], "value": 15 },
+        { "domains": ["skill.chi-huy"], "value": 12, "whenAnyTag": ["doi-hinh"] },
+        { "domains": ["skill.y-thuat", "skill.gia-kim"], "value": 12 },
+        { "domains": ["skill.dam-phan", "skill.gay-thien-cam"], "value": -20, "whenAnyTag": ["giao-si", "nha-tho"] }
+      ]
+    },
+    {
+      "id": "rel_lo-ren",
+      "name": "Tín ngưỡng Lò Rèn",
+      "shortName": "Lò Rèn",
+      "description": "Thần ở trong việc làm ra thứ tồn tại lâu hơn người làm ra nó. Không giảng đạo, chỉ có tay nghề.",
+      "stance": "hòa ước",
+      "raceStandings": ["hòa ước"],
+      "taboos": ["bỏ dở một món đã bắt đầu", "bán hàng lỗi mà giấu", "phá một công trình còn dùng được"],
+      "effects": [
+        { "domains": ["skill.ren-sat", "skill.xay-cat", "skill.che-tac"], "value": 15 },
+        { "domains": ["skill.co-khi", "skill.dao-ham"], "value": 12 },
+        { "domains": ["*"], "value": 12, "whenAnyTag": ["kinh-hoang", "khiep-so"] },
+        { "domains": ["skill.kich-dong", "skill.giang-dao"], "value": -12 }
+      ]
+    },
+    {
+      "id": "rel_to-tien",
+      "name": "Thờ tổ tiên thị tộc",
+      "shortName": "Tổ tiên",
+      "description": "Người chết không đi đâu cả, họ ở lại và vẫn nhìn. Thị tộc là đơn vị của cả đời sống lẫn đức tin.",
+      "stance": "ngoại đạo",
+      "raceStandings": ["ngoại đạo", "ngoài lề"],
+      "taboos": ["bỏ mặc người cùng thị tộc", "nói dối trước bàn thờ", "chết mà không ai nhớ tên"],
+      "effects": [
+        { "domains": ["combat.*"], "value": 15, "whenAnyTag": ["danh-theo-bay", "co-dong-doi"] },
+        { "domains": ["skill.truy-dau", "skill.san-ban", "skill.chiu-dung"], "value": 12 },
+        { "domains": ["skill.an-ui", "skill.doc-nguoi"], "value": 10 },
+        { "domains": ["skill.lua-doi", "skill.gia-dang"], "value": -12 }
+      ]
+    },
+    {
+      "id": "rel_huyen-hoc",
+      "name": "Huyền học bí truyền",
+      "shortName": "Huyền học",
+      "description": "Không phải một nhà thờ mà một chuỗi thầy trò kéo dài nhiều thế kỷ. Giáo hội gọi đó là tà thuật.",
+      "stance": "bị nghi tà thuật",
+      "raceStandings": ["đối địch ngầm", "bị nghi tà thuật", "bị truy bức", "dị giáo"],
+      "taboos": ["truyền lại cho người chưa thề", "ghi chép rõ ràng quá mức", "dùng công khai giữa đám đông"],
+      "effects": [
+        { "domains": ["arcane.*", "skill.huyen-thuat", "skill.cam-ung", "skill.phu-chu"], "value": 18 },
+        { "domains": ["skill.hoc-van", "skill.ngon-ngu"], "value": 10 },
+        { "domains": ["skill.gay-thien-cam"], "value": -18, "whenAnyTag": ["giao-si", "nha-tho", "dam-dong"] }
+      ]
+    },
+    {
+      "id": "rel_khong-theo",
+      "name": "Không theo đạo nào",
+      "shortName": "Vô tín",
+      "description": "Hiếm, và ở thế kỷ này thì đó là một tuyên bố chứ không phải một sự thiếu vắng.",
+      "stance": "ngoài lề",
+      "raceStandings": [],
+      "taboos": [],
+      "effects": [
+        { "domains": ["skill.lua-doi", "skill.gia-dang"], "value": 10 },
+        { "domains": ["*"], "value": -10, "whenAnyTag": ["kinh-hoang", "khiep-so"] },
+        { "domains": ["skill.gay-thien-cam", "skill.dam-phan"], "value": -12, "whenAnyTag": ["giao-si", "nha-tho"] }
+      ]
+    },
+    {
+      "id": "rel_da-than-baltic",
+      "name": "Tín ngưỡng Cổ nhánh Baltic",
+      "shortName": "Cổ Baltic",
+      "description": "Cùng gốc với tín ngưỡng lùm cây phương tây, nhưng chưa từng bị chinh phục nên chưa từng phải giấu mình. Có tư tế công khai, có đền gỗ, có lịch lễ riêng — và có một dòng tu hiệp sĩ đóng ngay bên kia sông.",
+      "stance": "ngoại đạo",
+      "raceStandings": [],
+      "branchOf": "rel_da-than",
+      "$branchComment": "Phần 14 mục 5: HAI NHÁNH RIÊNG. Nhánh tây là tàn dư sống trong rừng sâu và bị coi là mê tín; nhánh Baltic là tôn giáo NHÀ NƯỚC của một đại công quốc. Gộp chúng lại là mất luôn lý do vì sao thập tự chinh phương bắc còn chạy ở thế kỷ này.",
+      "taboos": ["chặt cây trong lùm thiêng", "cải đạo vì bị ép", "để tro người chết cho người ngoài thị tộc"],
+      "effects": [
+        { "domains": ["skill.sinh-ton", "skill.san-ban", "skill.do-duong"], "value": 15 },
+        { "domains": ["skill.chi-huy"], "value": 10, "whenAnyTag": ["trong-rung"] },
+        { "domains": ["skill.dam-phan"], "value": -15, "whenAnyTag": ["giao-si", "nha-tho"] }
+      ]
+    },
+    {
+      "id": "rel_than-chien-tran",
+      "name": "Thần Chiến Trận",
+      "shortName": "Chiến Thần",
+      "description": "Không có đền, không có sách. Có bài ca trước trận và có luật chia chiến lợi phẩm. Sói Nhân giữ nó chặt nhất, nhưng cả thảo nguyên đều biết bài ca ấy.",
+      "stance": "ngoại đạo",
+      "raceStandings": [],
+      "taboos": ["giết kẻ đã bỏ vũ khí xin hàng đúng nghi thức", "chia phần không đều sau trận", "bỏ xác đồng đội lại"],
+      "effects": [
+        { "domains": ["combat.*"], "value": 12, "whenAnyTag": ["xung-phong", "danh-theo-bay"] },
+        { "domains": ["skill.chiu-dung", "skill.truy-dau"], "value": 12 },
+        { "domains": ["skill.dam-phan", "skill.luat-le"], "value": -14 }
+      ]
+    },
+    {
+      "id": "rel_di-giao-ao-vai",
+      "name": "Phong trào Áo Vải",
+      "shortName": "Áo Vải",
+      "description": "Sinh ra TỪ TRONG Giáo hội Chính thống, không phải từ bên ngoài. Giảng rằng linh mục sống trong dinh thự thì không rửa tội cho ai được. Lan nhanh nhất ở nơi vừa có người chết đói.",
+      "stance": "dị giáo",
+      "raceStandings": [],
+      "heresyOf": "rel_giao-hoi",
+      "taboos": ["nhận bổng lộc", "giữ của riêng quá một mùa", "im lặng trước một linh mục giàu"],
+      "effects": [
+        { "domains": ["skill.giang-dao", "skill.kich-dong"], "value": 16 },
+        { "domains": ["skill.chiu-dung", "skill.an-ui"], "value": 10 },
+        { "domains": ["skill.nghi-thuc"], "value": -18, "whenAnyTag": ["trieu-dinh", "nha-tho"] }
+      ]
+    },
+    {
+      "id": "rel_di-giao-thanh-tay",
+      "name": "Phái Thanh Tẩy",
+      "shortName": "Thanh Tẩy",
+      "description": "Cũng sinh ra từ trong Giáo hội, nhưng đi xa hơn nhiều: thế giới vật chất là tác phẩm của một kẻ khác, nên nhà thờ đá là bằng chứng buộc tội. Có phẩm trật riêng, có kinh riêng, và có thành phố của riêng nó.",
+      "stance": "dị giáo",
+      "raceStandings": [],
+      "heresyOf": "rel_giao-hoi",
+      "taboos": ["ăn thịt thú bốn chân", "thề trên vật chất", "sinh con khi đã nhận phép trọn"],
+      "effects": [
+        { "domains": ["skill.hoc-van", "skill.giang-dao"], "value": 14 },
+        { "domains": ["skill.chiu-dung"], "value": 14, "whenAnyTag": ["tra-tan", "kinh-hoang"] },
+        { "domains": ["skill.gay-thien-cam"], "value": -20, "whenAnyTag": ["giao-si", "nha-tho"] }
+      ]
+    }
+  ],
+  "spread": {
+    "$comment": "CƠ CHẾ LAN TRUYỀN (mục 5). Mỗi vùng có tỷ lệ theo tôn giáo, và tỷ lệ ấy đổi vì năm nguyên nhân: truyền đạo, DI DÂN (mục 3 — nhóm bị truy bức chạy sang nước khác và mang đức tin đi theo), đàn áp, phép lạ, và quan trọng nhất là KHỦNG HOẢNG. Mọi con số là ĐIỂM PHẦN TRĂM THỊ PHẦN mỗi năm.",
+    "driftToDominantPerYear": 0.4,
+    "minShareToSurvive": 0.005,
+    "missionary": {
+      "sharePerYear": 1.2,
+      "costPerPoint": 26,
+      "check": "truyen-dao",
+      "difficulty": "kho",
+      "resistancePerHostility": 0.011,
+      "$resistanceComment": "Ma trận `relations` nhân vào đây: truyền đạo vào vùng thù địch tốn gấp đôi mà được một nửa."
+    },
+    "migration": {
+      "sharePerThousandArrivals": 0.06,
+      "$comment": "Dòng di dân của mục 3 chảy qua đây. Một cộng đồng lưu vong không chỉ mang tay nghề, họ mang cả nhà thờ của họ."
+    },
+    "oppression": {
+      "suppressPerYear": 2.5,
+      "unrestPerYear": 5,
+      "grievancePerYear": 6,
+      "backfireBelowPrestige": 40,
+      "backfireSharePerYear": 1.8,
+      "$backfireComment": "Đàn áp mạnh tay có thể dập được, HOẶC có thể làm nó lan nhanh hơn (mục 5). Ranh giới là uy tín của người đàn áp: một Giáo hội còn uy tín thì dập được, một Giáo hội đã mất uy tín thì mỗi giàn hỏa là một bài giảng cho phía bên kia."
+    },
+    "miracle": {
+      "chancePerYear": 4,
+      "sharePerEvent": 3,
+      "prestigePerEvent": 5
+    }
+  },
+  "heresy": {
+    "$comment": "QUY TẮC BẮT BUỘC, KHÔNG PHẢI NGẪU NHIÊN (mục 5): dị giáo bùng mạnh nhất SAU đói kém, SAU dịch bệnh, và khi Giáo hội mất uy tín — mà uy tín mất mạnh nhất khi có HAI GIÁO HOÀNG. Không có trigger nào thì `basePerYear` giữ nó âm ỉ chứ không tắt hẳn: một phong trào chết hẳn thì Phần 15 không còn gì để hồi sinh sau đại dịch kế tiếp.",
+    "movements": ["rel_di-giao-ao-vai", "rel_di-giao-thanh-tay"],
+    "sourceFaith": "rel_giao-hoi",
+    "basePerYear": 0.25,
+    "triggers": [
+      { "id": "doi-kem", "name": "Đói kém", "sharePerYear": 4, "yearsOfEcho": 3 },
+      { "id": "dich-benh", "name": "Dịch bệnh", "sharePerYear": 6, "yearsOfEcho": 4 },
+      { "id": "hai-giao-hoang", "name": "Hai Giáo hoàng", "sharePerYear": 8, "yearsOfEcho": 6 },
+      { "id": "uy-tin-thap", "name": "Giáo hội mất uy tín", "prestigeBelow": 45, "sharePerYear": 3, "yearsOfEcho": 1 },
+      { "id": "ban-an-xa", "name": "Bán ân xá quá tay", "sharePerYear": 2.5, "yearsOfEcho": 2 }
+    ],
+    "responses": [
+      {
+        "id": "giang-dao",
+        "name": "Giảng đạo và tranh biện",
+        "cost": 60,
+        "suppress": 1.2,
+        "prestige": 1,
+        "unrest": 0,
+        "backfire": 0,
+        "note": "Chậm, rẻ, không bao giờ phản tác dụng. Không đủ khi phong trào đã có thành phố."
+      },
+      {
+        "id": "cai-cach",
+        "name": "Cải cách dòng tu",
+        "cost": 220,
+        "suppress": 2.6,
+        "prestige": 6,
+        "unrest": -2,
+        "backfire": 0,
+        "requiresPrestige": 40,
+        "note": "Cách duy nhất chữa vào gốc — nhưng hồng y đoàn phải chịu mất bổng lộc, nên nó tốn phiếu ở mật nghị."
+      },
+      {
+        "id": "toa-di-giao",
+        "name": "Tòa dị giáo",
+        "cost": 140,
+        "suppress": 4.5,
+        "prestige": -4,
+        "unrest": 7,
+        "backfire": 2.2,
+        "backfireBelowPrestige": 45,
+        "note": "Dập được nhanh, hoặc biến mỗi bản án thành một người tử đạo. Xem `spread.oppression.backfire`."
+      },
+      {
+        "id": "thap-tu-noi-bo",
+        "name": "Thập tự chinh nội bộ",
+        "cost": 420,
+        "suppress": 9,
+        "prestige": -9,
+        "unrest": 18,
+        "backfire": 3.5,
+        "backfireBelowPrestige": 50,
+        "landDamage": 1,
+        "note": "Đốt cả một vùng để dập một phong trào. Vùng ấy nhớ chuyện đó lâu hơn phong trào sống."
+      }
+    ]
+  },
+  "relations": {
+    "$comment": "MA TRẬN QUAN HỆ GIỮA CÁC TÔN GIÁO, -100..100. Đối xứng: engine đọc cả hai chiều từ một dòng. Chỗ nào không khai thì mặc định 0 (không quen biết). Đây là vế tôn giáo của ma trận quan hệ ở mục 6.",
+    "default": 0,
+    "pairs": [
+      { "a": "rel_giao-hoi", "b": "rel_ly-giao", "value": -55, "note": "Cùng một Chúa, khác một chữ, bốn thế kỷ không ai nhường." },
+      { "a": "rel_giao-hoi", "b": "rel_da-than", "value": -70 },
+      { "a": "rel_giao-hoi", "b": "rel_da-than-baltic", "value": -80, "note": "Mục tiêu chính thức của thập tự chinh phương bắc." },
+      { "a": "rel_giao-hoi", "b": "rel_nam-phuong", "value": -85 },
+      { "a": "rel_giao-hoi", "b": "rel_than-chien-tran", "value": -65 },
+      { "a": "rel_giao-hoi", "b": "rel_thao-nguyen", "value": -50 },
+      { "a": "rel_giao-hoi", "b": "rel_lo-ren", "value": 5, "note": "Hòa ước: Lùn không truyền đạo nên Giáo hội không có gì để cấm." },
+      { "a": "rel_giao-hoi", "b": "rel_to-tien", "value": -30 },
+      { "a": "rel_giao-hoi", "b": "rel_huyen-hoc", "value": -60 },
+      { "a": "rel_giao-hoi", "b": "rel_di-giao-ao-vai", "value": -95 },
+      { "a": "rel_giao-hoi", "b": "rel_di-giao-thanh-tay", "value": -100 },
+      { "a": "rel_ly-giao", "b": "rel_nam-phuong", "value": -80 },
+      { "a": "rel_ly-giao", "b": "rel_thao-nguyen", "value": -35 },
+      { "a": "rel_ly-giao", "b": "rel_da-than-baltic", "value": -45 },
+      { "a": "rel_ly-giao", "b": "rel_di-giao-ao-vai", "value": -40, "note": "Không phải dị giáo của họ, nên họ chỉ khó chịu chứ không đốt." },
+      { "a": "rel_ly-giao", "b": "rel_di-giao-thanh-tay", "value": -55 },
+      { "a": "rel_nam-phuong", "b": "rel_thao-nguyen", "value": -20 },
+      { "a": "rel_nam-phuong", "b": "rel_than-chien-tran", "value": -30 },
+      { "a": "rel_nam-phuong", "b": "rel_di-giao-ao-vai", "value": 10, "note": "Kẻ thù của kẻ thù. Đế quốc Orc cho dị giáo tị nạn — và Giáo hội không bao giờ quên chuyện đó." },
+      { "a": "rel_thao-nguyen", "b": "rel_than-chien-tran", "value": 45 },
+      { "a": "rel_da-than", "b": "rel_da-than-baltic", "value": 60, "note": "Cùng gốc, nhưng một bên trốn trong rừng còn một bên có đền công khai." },
+      { "a": "rel_da-than", "b": "rel_to-tien", "value": 35 },
+      { "a": "rel_da-than-baltic", "b": "rel_to-tien", "value": 30 },
+      { "a": "rel_huyen-hoc", "b": "rel_di-giao-thanh-tay", "value": 25 },
+      { "a": "rel_lo-ren", "b": "rel_to-tien", "value": 25 },
+      { "a": "rel_di-giao-ao-vai", "b": "rel_di-giao-thanh-tay", "value": -15, "note": "Hai phong trào cùng chống một Giáo hội và vẫn không chịu nhau." }
+    ]
+  },
+  "seeds": {
+    "$comment": "TỶ LỆ KHỞI ĐẦU. `areaId` là một `nation_*` của nations.json hoặc một `prov_*` của provinces.json — tỉnh nào không khai thì thừa hưởng tỷ lệ của thế lực chủ. Tổng mỗi vùng phải xấp xỉ 1, và phép kiểm lúc nạp bắt chỗ lệch.",
+    "areas": [
+      {
+        "areaId": "nation_ottoman",
+        "mix": [
+          { "religionId": "rel_nam-phuong", "share": 0.52 },
+          { "religionId": "rel_ly-giao", "share": 0.3 },
+          { "religionId": "rel_giao-hoi", "share": 0.09 },
+          { "religionId": "rel_thao-nguyen", "share": 0.05 },
+          { "religionId": "rel_huyen-hoc", "share": 0.04 }
+        ]
+      },
+      {
+        "areaId": "nation_dong-la-ma",
+        "mix": [
+          { "religionId": "rel_ly-giao", "share": 0.82 },
+          { "religionId": "rel_giao-hoi", "share": 0.09 },
+          { "religionId": "rel_nam-phuong", "share": 0.04 },
+          { "religionId": "rel_huyen-hoc", "share": 0.05 }
+        ]
+      },
+      {
+        "areaId": "nation_lien-bang-nui",
+        "mix": [
+          { "religionId": "rel_giao-hoi", "share": 0.58 },
+          { "religionId": "rel_lo-ren", "share": 0.34 },
+          { "religionId": "rel_da-than", "share": 0.05 },
+          { "religionId": "rel_di-giao-ao-vai", "share": 0.03 }
+        ]
+      },
+      {
+        "areaId": "nation_han-quoc",
+        "mix": [
+          { "religionId": "rel_thao-nguyen", "share": 0.46 },
+          { "religionId": "rel_than-chien-tran", "share": 0.22 },
+          { "religionId": "rel_ly-giao", "share": 0.19 },
+          { "religionId": "rel_nam-phuong", "share": 0.09 },
+          { "religionId": "rel_to-tien", "share": 0.04 }
+        ]
+      },
+      {
+        "areaId": "nation_hre",
+        "mix": [
+          { "religionId": "rel_giao-hoi", "share": 0.79 },
+          { "religionId": "rel_lo-ren", "share": 0.07 },
+          { "religionId": "rel_da-than", "share": 0.05 },
+          { "religionId": "rel_di-giao-ao-vai", "share": 0.05 },
+          { "religionId": "rel_huyen-hoc", "share": 0.04 }
+        ]
+      },
+      {
+        "areaId": "nation_frank",
+        "mix": [
+          { "religionId": "rel_giao-hoi", "share": 0.86 },
+          { "religionId": "rel_di-giao-thanh-tay", "share": 0.06 },
+          { "religionId": "rel_da-than", "share": 0.04 },
+          { "religionId": "rel_huyen-hoc", "share": 0.04 }
+        ]
+      },
+      {
+        "areaId": "nation_giao-trieu",
+        "mix": [
+          { "religionId": "rel_giao-hoi", "share": 0.94 },
+          { "religionId": "rel_di-giao-ao-vai", "share": 0.03 },
+          { "religionId": "rel_huyen-hoc", "share": 0.03 }
+        ]
+      },
+      {
+        "areaId": "nation_thanh-bang-latin",
+        "mix": [
+          { "religionId": "rel_giao-hoi", "share": 0.8 },
+          { "religionId": "rel_ly-giao", "share": 0.06 },
+          { "religionId": "rel_di-giao-ao-vai", "share": 0.05 },
+          { "religionId": "rel_huyen-hoc", "share": 0.05 },
+          { "religionId": "rel_nam-phuong", "share": 0.04 }
+        ]
+      },
+      {
+        "areaId": "nation_anh-quoc",
+        "mix": [
+          { "religionId": "rel_giao-hoi", "share": 0.82 },
+          { "religionId": "rel_da-than", "share": 0.09 },
+          { "religionId": "rel_di-giao-ao-vai", "share": 0.06 },
+          { "religionId": "rel_huyen-hoc", "share": 0.03 }
+        ]
+      },
+      {
+        "areaId": "nation_baltic",
+        "mix": [
+          { "religionId": "rel_da-than-baltic", "share": 0.44 },
+          { "religionId": "rel_giao-hoi", "share": 0.3 },
+          { "religionId": "rel_ly-giao", "share": 0.22 },
+          { "religionId": "rel_to-tien", "share": 0.04 }
+        ]
+      },
+      {
+        "areaId": "nation_hungary",
+        "mix": [
+          { "religionId": "rel_giao-hoi", "share": 0.62 },
+          { "religionId": "rel_ly-giao", "share": 0.24 },
+          { "religionId": "rel_to-tien", "share": 0.07 },
+          { "religionId": "rel_huyen-hoc", "share": 0.07 }
+        ]
+      }
+    ]
+  }
+}

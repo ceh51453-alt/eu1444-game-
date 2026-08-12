@@ -1,0 +1,680 @@
+{
+  "$comment": "TƯỚC VỊ VÀ THÁI ẤP — Phần 13 mục 2, 3, 4, 5, 7. Đây là file của TỜ GIẤY CÓ ẤN TRIỆN (Phụ lục A mục 1), không phải của thành trì (data/buildings.json) cũng không phải của vùng đất (data/provinces.json). Bốn khối: `panels` là bảng trạng thái mỗi cấp mở ra (mục 4) — UI đọc thẳng, không hardcode; `ladders` là tám thang riêng của mục 3 cộng thang Tây Âu của mục 2; `titles` là từng bậc, mỗi bậc trỏ tới đúng một panel và khai NGHĨA VỤ nợ lên trên; `court` là năm ghế triều đình của mục 8. `commandUnits` phải khớp `data/units.json → command` (Phần 10 mục 3) — Phần 13 là chủ thang, Phần 10 chỉ giữ vế quân sự của nó. `levyDays` ở đây CHÍNH LÀ con số Phần 11 dùng khi đi vây (mục 12.5).",
+  "version": 2,
+
+  "config": {
+    "check": {
+      "$comment": "Kiểm định cai trị dùng 3d6 — phân miền cứng của Phần 5 mục 2 xếp quản trị vào 'năng lực dài hạn'. Mọi miền cai trị bắt đầu bằng `rule.` để nguồn modifier chính danh khớp được bằng `rule.*`.",
+      "system": "3d6",
+      "domainPrefix": "rule",
+      "domains": ["rule.thu-thue", "rule.xu-an", "rule.giu-chu-hau", "rule.ban-luat", "rule.goi-quan", "rule.bo-nhiem", "rule.du-an", "rule.dep-loan", "rule.ngoai-giao"]
+    },
+
+    "legitimacy": {
+      "$comment": "CHÍNH DANH 0–100 là chỉ số trung tâm của Phần 13 (mục 5). Ba con đường lên tước cho ba vạch xuất phát rất khác nhau, và khoảng cách ấy chính là cái giá của việc chiếm đoạt.",
+      "min": 0,
+      "max": 100,
+      "neutral": 50,
+      "startByPath": {
+        "duoc-phong": 78,
+        "thua-ke": 70,
+        "chiem-doat": 22
+      },
+      "settle": 60,
+      "driftPerYear": 2,
+      "perTenPoints": 5,
+      "$perTenComment": "Mỗi 10 điểm lệch khỏi `neutral` đổi ra ±5 trên THANG d100 rồi đi qua `scaleToSystem` của Phần 5 — không nguồn nào tự chọn con số riêng cho từng hệ.",
+      "usurperVassalPenalty": 25,
+      "churchRecognitionBonus": 10,
+      "churchCondemnPenalty": 18,
+      "fairVerdictGain": 2,
+      "biasedVerdictLoss": 3,
+      "battleWonGain": 4,
+      "seizedLandLoss": 6,
+      "yearsToRebuild": 12,
+      "rebelSuppressedGain": 5
+    },
+
+    "obligations": {
+      "$comment": "HỢP ĐỒNG PHONG KIẾN HAI CHIỀU (mục 7). Con số ở đây là thứ NGƯỜI CHƠI NỢ lãnh chúa cấp trên; thứ chư hầu nợ người chơi lấy từ chính bậc của chư hầu đó. `levyDays` là con số Phần 11 dùng khi hạn nghĩa vụ hết giữa cuộc vây.",
+      "arrearsSummonsYears": 2,
+      "arrearsFineShare": 0.5,
+      "arrearsSeizureYears": 4,
+      "courtAbsenceLoyalty": -4,
+      "courtAbsenceLegitimacy": -2,
+      "levyOverCallDays": 60,
+      "$levyOverCallComment": "Gọi quá số ngày nợ trong một năm là bẻ khế ước: chư hầu vẫn đi, nhưng ghi một mối hận.",
+      "tributeShareOfRevenue": 0.2
+    },
+
+    "vassal": {
+      "$comment": "CHƯ HẦU LÀ NPC THẬT (mục 7). Bảng này là toàn bộ vật lý của lòng trung: trôi về đâu, ai kéo nó xuống, và ngưỡng nào thì nổ.",
+      "startLoyalty": 60,
+      "settleLoyalty": 55,
+      "driftPerYear": 2,
+      "grievanceDecayPerYear": 1,
+      "grievanceWeight": 1.5,
+      "maxGrievances": 24,
+      "loyalty": {
+        "taxPerPointOverBase": -0.9,
+        "$taxComment": "Mỗi điểm phần trăm thuế vượt `baseRate` của laws.json trừ ngần này lòng trung mỗi năm. Đây là cái nút mà Test A của mục 12.11 vặn hết cỡ.",
+        "levyPerTenDaysOver": -4,
+        "unfairVerdict": -12,
+        "fairVerdict": 4,
+        "liegeLegitimacyPer10Below": -3,
+        "landSeized": -25,
+        "landGranted": 18,
+        "titleGranted": 14,
+        "battleWon": 6,
+        "battleLost": -5,
+        "marriage": 15,
+        "gift": 6,
+        "giftCostPerPoint": 45,
+        "liegePresencePerYear": 3,
+        "rivalCourting": -6,
+        "liegeWeakPerTenPower": -4
+      },
+      "rebellion": {
+        "loyaltyBelow": 25,
+        "$loyaltyBelowComment": "Dưới ngưỡng này thì chư hầu BẮT ĐẦU tính chuyện phản, chưa phải là đã phản.",
+        "powerRatioNeeded": 0.35,
+        "claimBonus": 12,
+        "factionBonus": 15,
+        "perAlliedRebel": 8,
+        "liegeLegitimacyPer10": -6,
+        "checkDomain": "rule.giu-chu-hau",
+        "riskCap": 95,
+        "$riskCapComment": "Không bao giờ 100: một lãnh chúa tuyệt vọng vẫn còn cửa, đúng Phần 5 mục 7."
+      },
+      "power": {
+        "perHolding": 8,
+        "perProvince": 14,
+        "perLevyHundred": 6,
+        "perTitleRank": 5
+      },
+      "$capByRankComment": "SỐ CHƯ HẦU THẬT giữ được. Mục 2 chốt bá tước là ngưỡng ĐẦU TIÊN có chư hầu thật — nên mọi bậc dưới 4 đều là 0, và đó không phải một con số cân bằng mà là một ranh giới thiết kế. Khoá `$comment` KHÔNG nằm trong bảng: bảng này là `Record<string, number>` và một chuỗi lọt vào đó sẽ làm Zod từ chối cả file.",
+      "capByRank": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 6,
+        "5": 8,
+        "6": 14,
+        "7": 14,
+        "8": 24,
+        "9": 40
+      }
+    }
+  },
+
+  "panels": [
+    {
+      "id": "panel_khong-co",
+      "name": "Không có bảng cai trị",
+      "sections": [],
+      "actions": [],
+      "note": "Thường dân KHÔNG có bảng trạng thái cai trị (mục 2). Bảng không tồn tại, không phải hiện ra rồi khóa (mục 11)."
+    },
+    {
+      "id": "panel_hiep-si",
+      "name": "Sổ hiệp sĩ",
+      "sections": [
+        { "id": "tuy-tung", "name": "Tùy tùng" },
+        { "id": "ngua-giap", "name": "Ngựa và giáp" },
+        { "id": "no", "name": "Nợ" },
+        { "id": "nghia-vu", "name": "Nghĩa vụ với lãnh chúa" }
+      ],
+      "actions": [
+        { "id": "nhan-nhiem-vu", "name": "Nhận nhiệm vụ" },
+        { "id": "dau-giai", "name": "Dự đấu giải" },
+        { "id": "chi-huy-don-vi", "name": "Chỉ huy một đơn vị", "ref": "Phần 10" },
+        { "id": "tim-chu", "name": "Tìm chủ tốt hơn" },
+        { "id": "gay-danh-vong", "name": "Gây dựng danh vọng" }
+      ],
+      "note": "Một trang viên, KHÔNG phải lãnh thổ (mục 2). Không có tỉnh nào, không có thuế suất nào."
+    },
+    {
+      "id": "panel_thai-ap-nho",
+      "name": "Bảng thái ấp nhỏ",
+      "sections": [
+        { "id": "thanh-tri", "name": "Thành trì", "ref": "Phần 12" },
+        { "id": "lang", "name": "Vài làng" },
+        { "id": "thue-tho", "name": "Thuế thô" },
+        { "id": "quan-dich-no", "name": "Quân dịch nợ lên trên" }
+      ],
+      "actions": [
+        { "id": "mo-thanh-tri", "name": "Mở màn hình thành trì", "ref": "Phần 12" },
+        { "id": "hau-toa-lanh-chua", "name": "Hầu tòa lãnh chúa" },
+        { "id": "tranh-chap-ranh-gioi", "name": "Tranh chấp ranh giới" }
+      ]
+    },
+    {
+      "id": "panel_huyen",
+      "name": "Sổ huyện",
+      "sections": [
+        { "id": "so-thue", "name": "Sổ thuế của huyện" },
+        { "id": "danh-sach-lang", "name": "Danh sách làng" },
+        { "id": "khieu-nai", "name": "Khiếu nại của dân" }
+      ],
+      "actions": [
+        { "id": "hanh-chinh-thay-mat", "name": "Hành chính thay mặt bá tước" },
+        { "id": "an-chan", "name": "Ăn chặn" },
+        { "id": "liem-chinh", "name": "Liêm chính" }
+      ],
+      "note": "Chưa có chư hầu riêng (mục 2). Bị kẹp giữa dân và cấp trên — đó là toàn bộ lối chơi của bậc này."
+    },
+    {
+      "id": "panel_quan",
+      "name": "BẢNG QUẬN",
+      "sections": [
+        { "id": "chu-hau", "name": "Chư hầu" },
+        { "id": "thue-suat", "name": "Thuế suất" },
+        { "id": "luat-le", "name": "Luật lệ" },
+        { "id": "toa-an", "name": "Tòa án" },
+        { "id": "tri-an", "name": "Trật tự trị an" },
+        { "id": "quan-dich", "name": "Quân dịch huy động được" }
+      ],
+      "actions": [
+        { "id": "dat-thue", "name": "Đặt thuế suất" },
+        { "id": "ban-luat", "name": "Ban và bãi luật" },
+        { "id": "xu-an", "name": "Mở tòa xử án" },
+        { "id": "cap-phep-xay", "name": "Cấp giấy phép xây", "ref": "Phần 12 mục 3" },
+        { "id": "goi-quan", "name": "Gọi quân" },
+        { "id": "du-an-vung", "name": "Khởi công dự án vùng" },
+        { "id": "bo-nhiem", "name": "Bổ nhiệm quan lại" },
+        { "id": "qua-cap", "name": "Ban quà cho chư hầu" }
+      ],
+      "note": "NGƯỠNG QUAN TRỌNG: lần đầu có CHƯ HẦU THẬT, và lần đầu chơi cờ chính trị (mục 4)."
+    },
+    {
+      "id": "panel_quan-bien",
+      "name": "BẢNG QUẬN BIÊN CƯƠNG",
+      "extends": "panel_quan",
+      "sections": [
+        { "id": "bien-phong", "name": "Biên phòng" },
+        { "id": "thuong-mai-bien-gioi", "name": "Thương mại biên giới" },
+        { "id": "quan-he-ngoai-bang", "name": "Quan hệ ngoại bang" }
+      ],
+      "actions": [
+        { "id": "tu-khai-chien", "name": "Tự khai chiến với ngoại bang" },
+        { "id": "mua-chuoc-bo-lac", "name": "Mua chuộc bộ lạc bên kia" }
+      ]
+    },
+    {
+      "id": "panel_cong-quoc",
+      "name": "BẢNG CÔNG QUỐC",
+      "sections": [
+        { "id": "cac-quan", "name": "Các quận" },
+        { "id": "hoi-dong", "name": "Hội đồng" },
+        { "id": "luat-rieng", "name": "Luật riêng" },
+        { "id": "tien-duc", "name": "Tiền đúc riêng" },
+        { "id": "quan-he-cong-quoc", "name": "Quan hệ với các công quốc khác" }
+      ],
+      "actions": [
+        { "id": "lien-minh", "name": "Kết liên minh" },
+        { "id": "hon-nhan-chinh-tri", "name": "Sắp đặt hôn nhân chính trị" },
+        { "id": "bo-nhiem-ba-tuoc", "name": "Bổ nhiệm và cách chức bá tước" },
+        { "id": "duc-tien", "name": "Đúc tiền" }
+      ]
+    },
+    {
+      "id": "panel_tuyen-hau",
+      "name": "Bảng tuyển hầu",
+      "sections": [
+        { "id": "la-phieu", "name": "Lá phiếu" },
+        { "id": "gia-la-phieu", "name": "Giá của lá phiếu" },
+        { "id": "phe-trong-de-quoc", "name": "Phe trong Đế quốc" }
+      ],
+      "actions": [{ "id": "mac-ca-bau-cu", "name": "Mặc cả bầu cử hoàng đế" }],
+      "note": "Thang SONG SONG với thang đất: một tuyển hầu vẫn là công tước của công quốc mình. Mục 3 cho giữ nhiều tước ở nhiều thang cùng lúc."
+    },
+    {
+      "id": "panel_vuong-quoc",
+      "name": "BẢNG VƯƠNG QUỐC",
+      "sections": [
+        { "id": "ngoai-giao", "name": "Ngoại giao" },
+        { "id": "giao-hoi", "name": "Giáo hội" },
+        { "id": "tai-chinh-quoc-gia", "name": "Tài chính quốc gia" },
+        { "id": "ke-vi", "name": "Kế vị" }
+      ],
+      "actions": [
+        { "id": "tuyen-chien", "name": "Tuyên chiến" },
+        { "id": "cu-su", "name": "Cử sứ" },
+        { "id": "phong-cong-tuoc", "name": "Phong và tước công tước" }
+      ],
+      "note": "Cai trị QUA các công tước, ai cũng có thể phản (mục 4)."
+    },
+    {
+      "id": "panel_de-che",
+      "name": "BẢNG ĐẾ CHẾ",
+      "extends": "panel_vuong-quoc",
+      "sections": [{ "id": "cac-vuong-quoc", "name": "Các vương quốc chư hầu" }],
+      "actions": [{ "id": "cai-cach-de-che", "name": "Cải cách đế chế", "ref": "Phần 14" }],
+      "note": "Giữ một cỗ máy quá lớn không rã ra. Minigame CẢI CÁCH ĐẾ CHẾ thuộc Phần 14 — ở đây chỉ có cửa vào."
+    },
+    {
+      "id": "panel_quan-doan",
+      "name": "Bảng quân đoàn",
+      "sections": [
+        { "id": "quan-doan", "name": "Quân đoàn" },
+        { "id": "quan-nhu", "name": "Quân nhu" },
+        { "id": "ho-so-nang-luc", "name": "Hồ sơ năng lực" }
+      ],
+      "actions": [
+        { "id": "dieu-quan", "name": "Điều quân" },
+        { "id": "thi-sat-hach", "name": "Dự sát hạch thăng cấp" }
+      ],
+      "note": "Đế quốc Orc lên bằng NĂNG LỰC, không thế tập — nên bảng này không có ô thừa kế nào."
+    },
+    {
+      "id": "panel_bang",
+      "name": "Bảng bang",
+      "sections": [
+        { "id": "cu-tri", "name": "Cử tri" },
+        { "id": "nhiem-ky", "name": "Nhiệm kỳ còn lại" },
+        { "id": "ngan-sach-bang", "name": "Ngân sách bang" }
+      ],
+      "actions": [
+        { "id": "van-dong", "name": "Vận động" },
+        { "id": "trieu-tap-hoi-nghi", "name": "Triệu tập hội nghị bang" }
+      ],
+      "note": "MẤT CHỨC ĐƯỢC. Bảng có ô đếm ngược nhiệm kỳ, và đó là khác biệt lối chơi lớn nhất so với thang thế tập."
+    },
+    {
+      "id": "panel_giao-phan",
+      "name": "Bảng giáo phận",
+      "sections": [
+        { "id": "giao-phan", "name": "Giáo phận" },
+        { "id": "thap-phan", "name": "Thập phân" },
+        { "id": "cu-tri-hong-y", "name": "Phe trong Hồng y đoàn" }
+      ],
+      "actions": [
+        { "id": "ban-phep", "name": "Ban phép" },
+        { "id": "ra-vay", "name": "Ra vạ tuyệt thông" },
+        { "id": "van-dong-cong-nghi", "name": "Vận động công nghị" }
+      ],
+      "note": "Thang SONG SONG, không dính phong kiến (mục 3). Xung đột nghĩa vụ với thang đất là nguồn kịch tính chính của tầng cao."
+    },
+    {
+      "id": "panel_thanh-bang",
+      "name": "Bảng thành bang",
+      "sections": [
+        { "id": "nghi-vien", "name": "Nghị viện" },
+        { "id": "kho-bac", "name": "Kho bạc" },
+        { "id": "hop-dong-danh-thue", "name": "Hợp đồng lính đánh thuê" }
+      ],
+      "actions": [
+        { "id": "mua-phieu", "name": "Mua phiếu" },
+        { "id": "thue-condottiero", "name": "Thuê đội đánh thuê" }
+      ],
+      "note": "BẦU CỬ có nhiệm kỳ, TIỀN quyết định (mục 3)."
+    },
+    {
+      "id": "panel_bo-lac",
+      "name": "Bảng bộ tộc",
+      "sections": [
+        { "id": "cac-bo-toc", "name": "Các bộ tộc công nhận" },
+        { "id": "dan-ngua", "name": "Đàn ngựa và bầy gia súc" },
+        { "id": "chien-loi-pham", "name": "Chiến lợi phẩm chia được" }
+      ],
+      "actions": [
+        { "id": "thach-dau", "name": "Thách đấu giành quyền" },
+        { "id": "chia-chien-loi-pham", "name": "Chia chiến lợi phẩm" },
+        { "id": "trieu-tap-kurultai", "name": "Triệu tập đại hội bộ tộc" }
+      ],
+      "note": "Sức mạnh + được các bộ tộc CÔNG NHẬN. Không có giấy tờ nào, nên chính danh ở đây đo bằng số bộ tộc gật đầu."
+    },
+    {
+      "id": "panel_phuong-hoi",
+      "name": "Bảng phường hội",
+      "sections": [
+        { "id": "xuong", "name": "Xưởng và học việc" },
+        { "id": "von", "name": "Vốn" },
+        { "id": "tuyen-buon", "name": "Tuyến buôn" }
+      ],
+      "actions": [
+        { "id": "nhan-hoc-viec", "name": "Nhận học việc" },
+        { "id": "mo-tuyen", "name": "Mở tuyến buôn" },
+        { "id": "van-dong-hoi-truong", "name": "Vận động ghế hội trưởng" }
+      ],
+      "note": "Tay nghề + vốn. Không có tỉnh nào, không có chư hầu nào — một hội trưởng giàu hơn bá tước mà vẫn không gọi được quân."
+    },
+    {
+      "id": "panel_hoi-dong-bo-lao",
+      "name": "Bảng hội đồng bô lão",
+      "sections": [
+        { "id": "uy-tin", "name": "Uy tín trong hội đồng" },
+        { "id": "cac-bo-lao", "name": "Các bô lão" }
+      ],
+      "actions": [
+        { "id": "phat-bieu", "name": "Phát biểu trước hội đồng" },
+        { "id": "hoa-giai", "name": "Đứng ra hòa giải" }
+      ],
+      "note": "KHÔNG CÓ TƯỚC VỊ, chỉ có uy tín (mục 3). Bảng này cố ý không có ô thuế, ô quân dịch, ô chư hầu nào."
+    }
+  ],
+
+  "ladders": [
+    {
+      "id": "tay-au",
+      "name": "Thang tước vị Tây Âu",
+      "advancement": "the-tap",
+      "nations": ["nation_hre", "nation_frank", "nation_anh-quoc", "nation_hungary", "nation_burgundy", "nation_kalmar", "nation_iberia", "nation_rus", "nation_baltic"],
+      "successionDefault": "truong-nam",
+      "note": "Thang chuẩn của mục 2. Lên bằng phong, thừa kế, hoặc chiếm đoạt (mục 5)."
+    },
+    {
+      "id": "orc",
+      "name": "Thang Đế quốc Orc",
+      "advancement": "nang-luc",
+      "nations": ["nation_ottoman"],
+      "successionDefault": "theo-nang-luc",
+      "hereditary": false,
+      "note": "THEO NĂNG LỰC, không thế tập, không dòng dõi (mục 3). Con của một tể tướng vào đời bằng đúng cửa học viên như mọi người."
+    },
+    {
+      "id": "lun",
+      "name": "Thang Liên bang Lùn",
+      "advancement": "bau-cu",
+      "nations": ["nation_lien-bang-nui"],
+      "successionDefault": "bau-cu",
+      "hereditary": false,
+      "termYears": 6,
+      "note": "BẦU CỬ CÓ NHIỆM KỲ, mất chức được (mục 3)."
+    },
+    {
+      "id": "cao-tien",
+      "name": "Thang Cao Tiên (Đông La Mã)",
+      "advancement": "dong-mau",
+      "nations": ["nation_dong-la-ma"],
+      "successionDefault": "truong-nam",
+      "bloodGated": true,
+      "note": "Theo dòng máu và TUỔI. Gần như không thể leo lên nếu sinh sai nhà — bậc nào cũng đòi `minBlood`."
+    },
+    {
+      "id": "giao-hoi",
+      "name": "Thang Giáo hội",
+      "advancement": "bau-cu",
+      "nations": ["nation_giao-trieu"],
+      "successionDefault": "bau-cu",
+      "hereditary": false,
+      "parallel": true,
+      "note": "Thang SONG SONG, không dính phong kiến (mục 3). Giữ đồng thời với thang đất là được, và đó chính là chỗ sinh xung đột nghĩa vụ."
+    },
+    {
+      "id": "thanh-bang",
+      "name": "Thang Thành bang Latin",
+      "advancement": "bau-cu",
+      "nations": ["nation_thanh-bang-latin"],
+      "successionDefault": "bau-cu",
+      "hereditary": false,
+      "termYears": 2,
+      "note": "Bầu cử có nhiệm kỳ, TIỀN quyết định."
+    },
+    {
+      "id": "han-quoc",
+      "name": "Thang Hãn quốc thảo nguyên",
+      "advancement": "suc-manh",
+      "nations": ["nation_han-quoc"],
+      "successionDefault": "manh-nhat",
+      "note": "Sức mạnh cộng với được các bộ tộc công nhận."
+    },
+    {
+      "id": "thuong-hoi",
+      "name": "Thang Thương hội",
+      "advancement": "tay-nghe",
+      "nations": ["nation_hanse"],
+      "successionDefault": "bau-cu",
+      "hereditary": false,
+      "note": "Tay nghề + vốn."
+    },
+    {
+      "id": "baltic",
+      "name": "Uy tín Baltic / Lâm Tiên",
+      "advancement": "uy-tin",
+      "nations": ["nation_baltic", "nation_teuton"],
+      "successionDefault": "bau-cu",
+      "hereditary": false,
+      "titleless": true,
+      "note": "KHÔNG CÓ TƯỚC VỊ, chỉ có uy tín trong hội đồng bô lão (mục 3). Vẫn phải có một bậc trong file này, nếu không thì một người chơi Lâm Tiên sẽ không có bảng nào cả."
+    }
+  ],
+
+  "titles": [
+    {
+      "id": "thuong-dan",
+      "ladderId": "tay-au",
+      "rank": 0,
+      "name": "Thường dân",
+      "landKind": "khong",
+      "panel": "panel_khong-co",
+      "commandUnits": 1,
+      "provinceCap": 0,
+      "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 0 },
+      "note": "Không có bảng trạng thái cai trị (mục 2)."
+    },
+    {
+      "id": "hiep-si",
+      "ladderId": "tay-au",
+      "rank": 1,
+      "name": "Hiệp sĩ",
+      "landKind": "trang-vien",
+      "panel": "panel_hiep-si",
+      "commandUnits": 1,
+      "provinceCap": 0,
+      "obligations": { "levyDays": 40, "tribute": 0, "courtDays": 1 },
+      "grants": ["giu-trang-vien", "chi-huy-mot-don-vi"],
+      "note": "Có thể giữ một trang viên, KHÔNG phải lãnh thổ (mục 2)."
+    },
+    {
+      "id": "nam-tuoc",
+      "ladderId": "tay-au",
+      "rank": 2,
+      "name": "Nam tước",
+      "landKind": "thai-ap-nho",
+      "panel": "panel_thai-ap-nho",
+      "commandUnits": 4,
+      "provinceCap": 0,
+      "obligations": { "levyDays": 40, "tribute": 120, "courtDays": 2 },
+      "grants": ["giu-thanh-tri", "thu-thue-tho"],
+      "note": "Một thái ấp nhỏ: vài làng + một thành trì. Toàn bộ Phần 12 mở ở đây."
+    },
+    {
+      "id": "tu-tuoc",
+      "ladderId": "tay-au",
+      "rank": 3,
+      "name": "Tử tước",
+      "landKind": "huyen",
+      "panel": "panel_huyen",
+      "commandUnits": 8,
+      "provinceCap": 0,
+      "obligations": { "levyDays": 45, "tribute": 200, "courtDays": 3 },
+      "grants": ["so-thue-huyen", "hanh-chinh-thay-mat"],
+      "loses": [],
+      "note": "Phó của bá tước, coi một huyện, CHƯA có chư hầu riêng (mục 2)."
+    },
+    {
+      "id": "ba-tuoc",
+      "ladderId": "tay-au",
+      "rank": 4,
+      "name": "Bá tước",
+      "landKind": "quan",
+      "panel": "panel_quan",
+      "commandUnits": 0,
+      "provinceCap": 1,
+      "obligations": { "levyDays": 40, "tribute": 400, "courtDays": 4 },
+      "grants": ["chu-hau", "dat-thue-suat", "ban-luat", "toa-an", "cap-phep-xay", "goi-quan", "du-an-vung"],
+      "loses": ["dat-cong-trinh-truc-tiep"],
+      "note": "MỘT QUẬN. Ngưỡng quan trọng: lần đầu có CHƯ HẦU THẬT. Từ đây người chơi MẤT quyền tự tay đặt công trình ở thành trì của chư hầu — ông ta ra lệnh, và nam tước có thể không nghe (mục 4)."
+    },
+    {
+      "id": "hau-tuoc",
+      "ladderId": "tay-au",
+      "rank": 5,
+      "name": "Hầu tước",
+      "landKind": "quan-bien",
+      "panel": "panel_quan-bien",
+      "commandUnits": 0,
+      "provinceCap": 2,
+      "obligations": { "levyDays": 40, "tribute": 500, "courtDays": 3 },
+      "grants": ["tu-khai-chien-ngoai-bang", "thuong-mai-bien-gioi", "mua-chuoc-bo-lac"],
+      "note": "Quận biên cương: tự khai chiến với NGOẠI BANG mà không cần xin phép (mục 2). Với người trong nước thì vẫn phải xin."
+    },
+    {
+      "id": "cong-tuoc",
+      "ladderId": "tay-au",
+      "rank": 6,
+      "name": "Công tước",
+      "landKind": "cong-quoc",
+      "panel": "panel_cong-quoc",
+      "commandUnits": 0,
+      "provinceCap": 6,
+      "obligations": { "levyDays": 30, "tribute": 900, "courtDays": 2 },
+      "grants": ["hoi-dong", "luat-rieng", "duc-tien", "bo-nhiem-ba-tuoc", "hon-nhan-chinh-tri"],
+      "loses": ["xu-an-truc-tiep-cap-lang"],
+      "note": "MỘT CÔNG QUỐC gồm nhiều quận. Vụ án cấp làng không lên tới bàn nữa — bá tước xử, và họ xử thế nào là chuyện của lòng trung."
+    },
+    {
+      "id": "tuyen-hau",
+      "ladderId": "tay-au",
+      "rank": 7,
+      "name": "Tuyển hầu",
+      "landKind": "cong-quoc",
+      "panel": "panel_tuyen-hau",
+      "commandUnits": 0,
+      "provinceCap": 6,
+      "requiresNation": "nation_hre",
+      "obligations": { "levyDays": 30, "tribute": 900, "courtDays": 4 },
+      "grants": ["la-phieu-bau-hoang-de"],
+      "note": "CHỈ trong Đế quốc (mục 2). Đây là một tước SONG SONG chồng lên tước đất, không thay thế nó."
+    },
+    {
+      "id": "vuong",
+      "ladderId": "tay-au",
+      "rank": 8,
+      "name": "Vương",
+      "landKind": "vuong-quoc",
+      "panel": "panel_vuong-quoc",
+      "commandUnits": 0,
+      "provinceCap": 24,
+      "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 0 },
+      "grants": ["tuyen-chien", "ngoai-giao", "tai-chinh-quoc-gia", "phong-cong-tuoc"],
+      "loses": ["cai-tri-truc-tiep-quan"],
+      "note": "Cai trị QUA các công tước, ai cũng có thể phản (mục 4)."
+    },
+    {
+      "id": "hoang-de",
+      "ladderId": "tay-au",
+      "rank": 9,
+      "name": "Hoàng đế",
+      "landKind": "de-quoc",
+      "panel": "panel_de-che",
+      "commandUnits": 0,
+      "provinceCap": 99,
+      "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 0 },
+      "grants": ["cai-cach-de-che", "phong-vuong"],
+      "note": "Giữ một cỗ máy quá lớn không rã ra."
+    },
+
+    { "id": "orc-hoc-vien", "ladderId": "orc", "rank": 1, "name": "Học viên", "landKind": "khong", "panel": "panel_quan-doan", "commandUnits": 1, "provinceCap": 0, "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 0 }, "meritExam": "so-cap", "note": "Vào đời bằng sát hạch, không bằng cha." },
+    { "id": "orc-si-quan", "ladderId": "orc", "rank": 3, "name": "Sĩ quan", "landKind": "khong", "panel": "panel_quan-doan", "commandUnits": 6, "provinceCap": 0, "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 0 }, "meritExam": "trung-cap" },
+    { "id": "orc-chi-huy-quan-doan", "ladderId": "orc", "rank": 5, "name": "Chỉ huy quân đoàn", "landKind": "quan-bien", "panel": "panel_quan-doan", "commandUnits": 0, "provinceCap": 1, "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 4 }, "meritExam": "cao-cap", "grants": ["dieu-quan-doan"], "note": "Một trong 18 quân đoàn của Phần 14 mục 4." },
+    { "id": "orc-dai-than", "ladderId": "orc", "rank": 7, "name": "Đại thần", "landKind": "cong-quoc", "panel": "panel_cong-quoc", "commandUnits": 0, "provinceCap": 4, "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 6 }, "meritExam": "cao-cap" },
+    { "id": "orc-te-tuong", "ladderId": "orc", "rank": 8, "name": "Tể tướng", "landKind": "vuong-quoc", "panel": "panel_vuong-quoc", "commandUnits": 0, "provinceCap": 24, "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 0 }, "meritExam": "toi-cao", "grants": ["ngoai-giao", "tai-chinh-quoc-gia"], "note": "Cách chức được, và đó là khác biệt lớn nhất với một vương Tây Âu." },
+
+    { "id": "lun-tho-ca", "ladderId": "lun", "rank": 2, "name": "Thợ cả", "landKind": "khong", "panel": "panel_phuong-hoi", "commandUnits": 1, "provinceCap": 0, "obligations": { "levyDays": 20, "tribute": 0, "courtDays": 1 } },
+    { "id": "lun-dai-bieu", "ladderId": "lun", "rank": 3, "name": "Đại biểu bang", "landKind": "khong", "panel": "panel_bang", "commandUnits": 2, "provinceCap": 0, "termYears": 4, "obligations": { "levyDays": 20, "tribute": 0, "courtDays": 3 } },
+    { "id": "lun-chap-chinh", "ladderId": "lun", "rank": 5, "name": "Chấp chính bang", "landKind": "quan", "panel": "panel_bang", "commandUnits": 0, "provinceCap": 1, "termYears": 6, "obligations": { "levyDays": 20, "tribute": 200, "courtDays": 4 }, "grants": ["dat-thue-suat", "ban-luat", "toa-an"] },
+    { "id": "lun-chu-tich", "ladderId": "lun", "rank": 7, "name": "Chủ tịch liên bang", "landKind": "cong-quoc", "panel": "panel_bang", "commandUnits": 0, "provinceCap": 6, "termYears": 6, "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 0 }, "grants": ["ngoai-giao", "hoi-dong"], "note": "HẾT NHIỆM KỲ LÀ MẤT — không có ai thừa kế cái ghế này." },
+
+    { "id": "cao-tien-quy-toc", "ladderId": "cao-tien", "rank": 2, "name": "Quý tộc bản gia", "landKind": "thai-ap-nho", "panel": "panel_thai-ap-nho", "commandUnits": 4, "provinceCap": 0, "minBlood": 40, "obligations": { "levyDays": 40, "tribute": 150, "courtDays": 4 } },
+    { "id": "cao-tien-tong-doc", "ladderId": "cao-tien", "rank": 4, "name": "Tổng đốc quản hạt", "landKind": "quan", "panel": "panel_quan", "commandUnits": 0, "provinceCap": 1, "minBlood": 60, "minAge": 120, "obligations": { "levyDays": 40, "tribute": 400, "courtDays": 6 }, "grants": ["chu-hau", "dat-thue-suat", "toa-an"] },
+    { "id": "cao-tien-dai-quan", "ladderId": "cao-tien", "rank": 6, "name": "Đại quan cung đình", "landKind": "cong-quoc", "panel": "panel_cong-quoc", "commandUnits": 0, "provinceCap": 4, "minBlood": 80, "minAge": 200, "obligations": { "levyDays": 20, "tribute": 800, "courtDays": 8 } },
+    { "id": "cao-tien-hoang-de", "ladderId": "cao-tien", "rank": 9, "name": "Hoàng đế Đông La Mã", "landKind": "de-quoc", "panel": "panel_de-che", "commandUnits": 0, "provinceCap": 99, "minBlood": 95, "minAge": 300, "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 0 } },
+
+    { "id": "giao-linh-muc", "ladderId": "giao-hoi", "rank": 1, "name": "Linh mục", "landKind": "khong", "panel": "panel_giao-phan", "commandUnits": 0, "provinceCap": 0, "parallel": true, "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 1 } },
+    { "id": "giao-giam-muc", "ladderId": "giao-hoi", "rank": 4, "name": "Giám mục", "landKind": "quan", "panel": "panel_giao-phan", "commandUnits": 2, "provinceCap": 1, "parallel": true, "obligations": { "levyDays": 0, "tribute": 300, "courtDays": 3 }, "grants": ["thap-phan", "toa-an-giao-hoi"], "note": "Vừa là chư hầu của Hoàng đế vừa là Giám mục của Giáo hoàng — mục 3 gọi đúng đây là nguồn kịch tính chính của tầng cao." },
+    { "id": "giao-tong-giam-muc", "ladderId": "giao-hoi", "rank": 6, "name": "Tổng giám mục", "landKind": "cong-quoc", "panel": "panel_giao-phan", "commandUnits": 2, "provinceCap": 3, "parallel": true, "obligations": { "levyDays": 0, "tribute": 600, "courtDays": 4 } },
+    { "id": "giao-hong-y", "ladderId": "giao-hoi", "rank": 7, "name": "Hồng y", "landKind": "cong-quoc", "panel": "panel_giao-phan", "commandUnits": 0, "provinceCap": 3, "parallel": true, "obligations": { "levyDays": 0, "tribute": 600, "courtDays": 6 }, "grants": ["phieu-bau-giao-hoang"] },
+    { "id": "giao-hoang", "ladderId": "giao-hoi", "rank": 9, "name": "Giáo hoàng", "landKind": "vuong-quoc", "panel": "panel_giao-phan", "commandUnits": 0, "provinceCap": 8, "parallel": true, "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 0 }, "grants": ["ra-va-tuyet-thong", "cong-nhan-tuoc-vi"], "note": "Công nhận hoặc không công nhận một tước đoạt được — vế Giáo hội của mục 5." },
+
+    { "id": "latin-uy-vien", "ladderId": "thanh-bang", "rank": 2, "name": "Ủy viên", "landKind": "khong", "panel": "panel_thanh-bang", "commandUnits": 1, "provinceCap": 0, "termYears": 1, "obligations": { "levyDays": 0, "tribute": 40, "courtDays": 2 } },
+    { "id": "latin-nghi-vien", "ladderId": "thanh-bang", "rank": 4, "name": "Nghị viên", "landKind": "quan", "panel": "panel_thanh-bang", "commandUnits": 2, "provinceCap": 1, "termYears": 2, "obligations": { "levyDays": 0, "tribute": 200, "courtDays": 4 }, "grants": ["dat-thue-suat", "ban-luat"] },
+    { "id": "latin-tong-doc", "ladderId": "thanh-bang", "rank": 6, "name": "Tổng đốc", "landKind": "cong-quoc", "panel": "panel_thanh-bang", "commandUnits": 0, "provinceCap": 3, "termYears": 2, "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 0 }, "grants": ["ngoai-giao", "thue-condottiero"] },
+
+    { "id": "han-thu-linh", "ladderId": "han-quoc", "rank": 3, "name": "Thủ lĩnh", "landKind": "khong", "panel": "panel_bo-lac", "commandUnits": 6, "provinceCap": 0, "obligations": { "levyDays": 90, "tribute": 0, "courtDays": 1 } },
+    { "id": "han-noi-han", "ladderId": "han-quoc", "rank": 6, "name": "Nội hãn", "landKind": "quan-bien", "panel": "panel_bo-lac", "commandUnits": 0, "provinceCap": 3, "obligations": { "levyDays": 90, "tribute": 300, "courtDays": 1 }, "grants": ["chu-hau", "goi-quan", "tu-khai-chien-ngoai-bang"] },
+    { "id": "han-dai-han", "ladderId": "han-quoc", "rank": 9, "name": "Đại Hãn", "landKind": "de-quoc", "panel": "panel_de-che", "commandUnits": 0, "provinceCap": 99, "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 0 }, "grants": ["tuyen-chien", "chia-chien-loi-pham"] },
+
+    { "id": "hoi-hoc-viec", "ladderId": "thuong-hoi", "rank": 0, "name": "Học việc", "landKind": "khong", "panel": "panel_phuong-hoi", "commandUnits": 1, "provinceCap": 0, "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 0 } },
+    { "id": "hoi-tho-ban", "ladderId": "thuong-hoi", "rank": 1, "name": "Thợ bạn", "landKind": "khong", "panel": "panel_phuong-hoi", "commandUnits": 1, "provinceCap": 0, "obligations": { "levyDays": 0, "tribute": 20, "courtDays": 0 } },
+    { "id": "hoi-tho-ca", "ladderId": "thuong-hoi", "rank": 2, "name": "Thợ cả", "landKind": "khong", "panel": "panel_phuong-hoi", "commandUnits": 1, "provinceCap": 0, "obligations": { "levyDays": 0, "tribute": 60, "courtDays": 1 } },
+    { "id": "hoi-truong-phuong", "ladderId": "thuong-hoi", "rank": 4, "name": "Trưởng phường", "landKind": "khong", "panel": "panel_phuong-hoi", "commandUnits": 2, "provinceCap": 0, "obligations": { "levyDays": 0, "tribute": 200, "courtDays": 2 }, "grants": ["mo-tuyen-buon"] },
+    { "id": "hoi-truong", "ladderId": "thuong-hoi", "rank": 6, "name": "Hội trưởng", "landKind": "khong", "panel": "panel_phuong-hoi", "commandUnits": 4, "provinceCap": 0, "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 0 }, "grants": ["ngoai-giao", "cam-van-thuong-mai"], "note": "Giàu hơn bá tước mà vẫn không gọi được quân dịch — cố ý: `provinceCap` bằng 0 ở mọi bậc của thang này." },
+
+    { "id": "baltic-bo-lao", "ladderId": "baltic", "rank": 3, "name": "Bô lão được nghe", "landKind": "khong", "panel": "panel_hoi-dong-bo-lao", "commandUnits": 2, "provinceCap": 0, "obligations": { "levyDays": 0, "tribute": 0, "courtDays": 0 }, "note": "Không phải một tước vị. Ghi ở đây vì người chơi Lâm Tiên vẫn phải có một bảng để mở." }
+  ],
+
+  "court": [
+    {
+      "id": "quan-gia",
+      "name": "Quản gia",
+      "brief": "Tài chính",
+      "stat": "int",
+      "skill": "quan-tri",
+      "minRank": 4,
+      "effect": { "revenue": 0.25, "corruptionRisk": 0.35 },
+      "note": "Ăn chặn được nhiều nhất, và cũng là ghế phát hiện muộn nhất."
+    },
+    {
+      "id": "nguyen-soai",
+      "name": "Nguyên soái",
+      "brief": "Quân",
+      "stat": "pre",
+      "skill": "chi-huy",
+      "minRank": 4,
+      "effect": { "levy": 0.2, "corruptionRisk": 0.15 }
+    },
+    {
+      "id": "chuong-an",
+      "name": "Chưởng ấn",
+      "brief": "Ngoại giao",
+      "stat": "elo",
+      "skill": "ngoai-giao",
+      "minRank": 5,
+      "effect": { "legitimacyPerYear": 1, "corruptionRisk": 0.12 }
+    },
+    {
+      "id": "gian-diep-truong",
+      "name": "Gián điệp trưởng",
+      "brief": "Tin tức",
+      "stat": "gui",
+      "skill": "do-tham",
+      "minRank": 5,
+      "effect": { "plotDetection": 0.4, "corruptionRisk": 0.3 },
+      "note": "Ghế duy nhất nhìn thấy phe chư hầu đang hình thành TRƯỚC khi nó nổ."
+    },
+    {
+      "id": "giao-si-truong",
+      "name": "Giáo sĩ trưởng",
+      "brief": "Giáo hội",
+      "stat": "wil",
+      "skill": "than-hoc",
+      "minRank": 4,
+      "effect": { "unrest": -3, "legitimacyPerYear": 1, "corruptionRisk": 0.1 }
+    }
+  ],
+
+  "courtConfig": {
+    "$comment": "Mỗi ghế là một NPC THẬT có năng lực và lòng trung riêng, làm việc thay người chơi và CÓ THỂ LÀM HỎNG HOẶC ĂN CHẶN (mục 8).",
+    "skillDivisor": 20,
+    "loyaltyDivisor": 25,
+    "skimBelowLoyalty": 40,
+    "skimShare": 0.18,
+    "blunderBelowSkill": 30,
+    "blunderChance": 22,
+    "vacantPenalty": 0.35,
+    "salaryPerRank": 40
+  }
+}

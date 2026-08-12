@@ -1,0 +1,185 @@
+@import 'tailwindcss';
+
+/*
+  Bảng màu nền của game. Đặt ở đây để bản đồ cơ thể (Phần 7) đổi màu qua CSS
+  variable đúng như Phần 0 mục 3 yêu cầu, thay vì nhúng màu vào SVG.
+*/
+@theme {
+  --color-ink: #1b1713;
+  --color-parchment: #e8dcc4;
+  --color-vellum: #d6c7a8;
+  --color-oak: #2a2320;
+  --color-oak-light: #3a312c;
+  --color-brass: #b08d4f;
+  --color-blood: #7a2020;
+
+  --font-serif-game: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+}
+
+:root {
+  color-scheme: dark;
+
+  /* Trạng thái vùng cơ thể — Phần 7 ghi đè từng biến theo mức thương tích. */
+  --body-region-healthy: var(--color-vellum);
+  --body-region-hurt: #c98a3a;
+  --body-region-severe: var(--color-blood);
+  --body-region-lost: #3a2020;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/*
+  Windows/Chromium forced-colors thay toàn bộ màu game bằng nền đen và viền
+  trắng, làm mất cả ký hiệu phe lẫn chất liệu bản đồ. Game đã có chữ và biểu
+  tượng đi kèm màu, nên giữ nguyên bảng màu tác giả bên trong vùng ứng dụng.
+*/
+#root {
+  forced-color-adjust: none;
+  -ms-high-contrast-adjust: none;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-ink);
+  color: var(--color-parchment);
+  font-family: var(--font-serif-game);
+}
+
+/*
+  Menu mở đầu có lớp bố cục riêng để không bị biến thành các ô HTML thô khi
+  trình duyệt bật chế độ tương phản hoặc một bản CSS tiện ích bị giữ trong cache.
+*/
+.start-menu-overlay {
+  box-sizing: border-box;
+  padding: 1.5rem 1rem;
+  background: rgb(27 23 19 / 95%);
+  color: var(--color-parchment);
+  font-family: var(--font-serif-game);
+}
+
+.start-menu-panel {
+  box-sizing: border-box;
+  max-height: 100%;
+  border: 1px solid var(--color-oak-light);
+  border-radius: 0.25rem;
+  background: var(--color-ink);
+  box-shadow: 0 24px 64px rgb(0 0 0 / 55%);
+}
+
+.start-menu-panel-compact {
+  max-width: 48rem;
+}
+
+.start-menu-panel-wide {
+  max-width: 72rem;
+}
+
+.start-menu-header {
+  box-sizing: border-box;
+  min-height: 4.5rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-oak-light);
+  background: rgb(42 35 32 / 78%);
+}
+
+.start-menu-kicker {
+  color: var(--color-brass);
+}
+
+.start-menu-subtitle {
+  color: rgb(214 199 168 / 45%);
+}
+
+.start-menu-content-padded {
+  box-sizing: border-box;
+  padding: 1.5rem;
+}
+
+.start-menu-list {
+  box-sizing: border-box;
+  max-width: 32rem;
+  margin-inline: auto;
+  gap: 0.75rem;
+}
+
+.start-menu-choice {
+  box-sizing: border-box;
+  min-height: 4.25rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-oak-light);
+  border-radius: 0.25rem;
+  background: rgb(42 35 32 / 72%);
+  color: var(--color-parchment);
+  font: inherit;
+}
+
+.start-menu-choice:hover:not(:disabled) {
+  border-color: var(--color-brass);
+  background: var(--color-oak-light);
+}
+
+.start-menu-choice-title {
+  color: var(--color-brass);
+}
+
+.start-menu-choice-note {
+  margin-top: 0.25rem;
+  color: rgb(214 199 168 / 55%);
+}
+
+@media (max-width: 640px) {
+  .start-menu-overlay {
+    padding: 0.75rem;
+  }
+
+  .start-menu-header {
+    min-height: 4rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .start-menu-content-padded {
+    padding: 1rem;
+  }
+
+  .start-menu-choice {
+    padding: 0.875rem 1rem;
+  }
+}
+
+/* Marker trên bản đồ: nhịp nhẹ để không thất lạc trên ảnh nhiều chi tiết. */
+@keyframes map-player-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.18);
+  }
+}
+
+.map-player-pulse {
+  animation: map-player-pulse 1.35s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Quân hiệu trên chiến đồ thật sáng lên khi rê, không che đường biên lịch sử. */
+.campaign-map-node {
+  transition: filter 140ms ease;
+}
+
+.campaign-map-node:hover {
+  filter: brightness(1.18) saturate(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-player-pulse {
+    animation: none;
+  }
+}

@@ -1,0 +1,345 @@
+{
+  "$comment": "SỰ KIỆN VÂY HÃM — Phần 11 mục 4. Mỗi sự kiện là một POPUP CÓ LỰA CHỌN, và mọi sự kiện đều DỪNG nút tăng tốc: cả giá trị của bảng này nằm ở chỗ nó cắt ngang một chuỗi tuần đang trôi. Trường `effects` chỉ được dùng những khoá engine biết áp — thêm khoá lạ thì `data.ts` nổ lúc nạp chứ không im lặng bỏ qua (R4).",
+  "version": 1,
+
+  "config": {
+    "checkId": "siege.su-kien",
+    "weeklyChance": 26,
+    "$chanceComment": "Khoảng một phần tư số tuần có chuyện. Cao hơn thì nút tăng tốc vô dụng; thấp hơn thì hai mươi tuần vây hãm là hai mươi lần bấm cùng một nút.",
+    "minWeekBetween": 2,
+    "sameEventCooldown": 8
+  },
+
+  "events": [
+    {
+      "id": "ev_cuu-vien-duoc-phat-hien",
+      "name": "Quân cứu viện được phát hiện",
+      "side": "ca-hai",
+      "weight": 10,
+      "when": { "weekAtLeast": 3, "reliefPossible": true },
+      "text": "Kỵ binh do thám phi về trại: một đạo quân đang kéo tới từ phía đông, còn chừng hai tuần đường. Trong thành, người ta cũng đã trông thấy khói hiệu trên đỉnh đồi.",
+      "options": [
+        {
+          "id": "chia-quan",
+          "label": "Chia quân ra chặn đường",
+          "for": "vay",
+          "text": "Một nửa đạo quân quay ra, vòng vây mỏng đi trông thấy.",
+          "effects": { "reliefIncoming": true, "weeksToRelief": 2, "besiegerMorale": -4, "circumvallation": -1, "defenderMorale": 8 }
+        },
+        {
+          "id": "bo-vay-quay-ra",
+          "label": "Bỏ vây, quay ra đánh",
+          "for": "vay",
+          "text": "Bỏ dở tất cả — máy móc, hào lũy, sáu tuần công sức — để đánh một trận sòng phẳng.",
+          "effects": { "endSiege": "bo-vay", "besiegerMorale": 6, "defenderMorale": 20 }
+        },
+        {
+          "id": "cu-vay",
+          "label": "Cứ vây, cược vào việc thành đổ trước",
+          "for": "vay",
+          "text": "Ai cũng biết canh bạc này. Không ai nói ra.",
+          "effects": { "reliefIncoming": true, "weeksToRelief": 2, "besiegerMorale": -8, "defenderMorale": 14 }
+        }
+      ]
+    },
+    {
+      "id": "ev-ke-phan-boi",
+      "name": "Kẻ phản bội đề nghị mở cổng",
+      "side": "vay",
+      "weight": 5,
+      "when": { "weekAtLeast": 5, "defenderMoraleBelow": 55 },
+      "text": "Một người trèo dây xuống trong đêm. Hắn là em rể viên quản kho, và hắn nói giá của một cánh cổng nhỏ.",
+      "options": [
+        {
+          "id": "tra-tien",
+          "label": "Trả tiền",
+          "for": "vay",
+          "text": "Vàng đổi lấy một then cửa. Rẻ hơn ba tuần bắn phá.",
+          "effects": { "treasury": -300, "gateOpenChance": 60, "cruelty": 0 }
+        },
+        {
+          "id": "duoi-di",
+          "label": "Đuổi hắn về",
+          "for": "vay",
+          "text": "Một cuộc vây hãm thắng bằng phản trắc là một cuộc vây hãm không ai hát về sau.",
+          "effects": { "besiegerMorale": 3, "mercy": 5 }
+        },
+        {
+          "id": "treo-len-tuong",
+          "label": "Treo hắn lên cho trong thành nhìn thấy",
+          "for": "vay",
+          "text": "Một xác người đung đưa trước cổng, quay mặt vào trong.",
+          "effects": { "defenderMorale": -6, "populationMorale": -4, "cruelty": 6, "church": -4 }
+        }
+      ]
+    },
+    {
+      "id": "ev_bao-danh-sap-thap",
+      "name": "Bão đánh sập tháp công thành",
+      "side": "vay",
+      "weight": 7,
+      "when": { "hasEngineTag": "tong-cong" },
+      "text": "Gió đêm quật vào cái khung gỗ cao mười hai mét ấy suốt bốn giờ. Đến sáng nó nằm ngang trên bùn, gãy làm ba.",
+      "options": [
+        {
+          "id": "dung-lai",
+          "label": "Dựng lại từ chỗ còn dùng được",
+          "for": "vay",
+          "text": "Thợ mộc lôi ra những thanh chưa gãy. Mất thêm nhiều tuần.",
+          "effects": { "engineDestroyed": 1, "engineRebuild": true, "besiegerMorale": -6 }
+        },
+        {
+          "id": "bo-luon",
+          "label": "Bỏ luôn, dồn hết cho máy bắn",
+          "for": "vay",
+          "text": "Không ai muốn trèo lên một cái tháp thứ hai nữa.",
+          "effects": { "engineDestroyed": 1, "besiegerMorale": -3, "bombardBonus": 8 }
+        }
+      ]
+    },
+    {
+      "id": "ev_dich-hach-bung-trong-trai",
+      "name": "Dịch bùng trong trại",
+      "side": "vay",
+      "weight": 12,
+      "when": { "weekAtLeast": 2, "hygieneBelow": 55 },
+      "text": "Bắt đầu từ khu lều phía nam, chỗ người ta đào hố xí quá gần suối. Đến ngày thứ ba thì không ai đếm nữa.",
+      "options": [
+        {
+          "id": "doi-trai",
+          "label": "Dời trại lên chỗ cao, đốt khu cũ",
+          "for": "vay",
+          "text": "Một tuần không ai bắn một phát nào, nhưng nước lại sạch.",
+          "effects": { "hygiene": 22, "besiegerLoss": 0.02, "bombardPause": 1, "besiegerMorale": -4 }
+        },
+        {
+          "id": "cach-ly",
+          "label": "Cách ly người bệnh ra ngoài vòng vây",
+          "for": "vay",
+          "text": "Họ được cho một cái lều và một thùng nước. Không ai quay lại thăm.",
+          "effects": { "hygiene": 10, "besiegerLoss": 0.035, "cruelty": 4, "church": -3 }
+        },
+        {
+          "id": "khong-lam-gi",
+          "label": "Không làm gì — cứ vây tiếp",
+          "for": "vay",
+          "text": "Thầy thuốc nói đó là do không khí xấu. Không ai biết phải làm gì với không khí.",
+          "effects": { "outbreak": 3, "besiegerMorale": -10 }
+        }
+      ]
+    },
+    {
+      "id": "ev_su-gia-giao-hoang",
+      "name": "Sứ giả Giáo hoàng đến yêu cầu ngừng chiến",
+      "side": "vay",
+      "weight": 6,
+      "when": { "weekAtLeast": 6 },
+      "text": "Một giáo sĩ mặc đồ trắng cưỡi la vào trại, không ai dám chặn. Ông ta đọc một tờ thư bằng tiếng Latin và nhìn thẳng vào mặt ngài suốt lúc đọc.",
+      "options": [
+        {
+          "id": "nhan-ngung-chien",
+          "label": "Nhận lệnh ngừng chiến bốn tuần",
+          "for": "vay",
+          "text": "Bốn tuần cho thành trong kia tiếp tế và sửa tường.",
+          "effects": { "church": 14, "truceWeeks": 4, "defenderFood": 3000, "wallIntegrity": 30, "besiegerMorale": -5 }
+        },
+        {
+          "id": "tu-choi-le-phep",
+          "label": "Từ chối, nhưng lễ phép",
+          "for": "vay",
+          "text": "Ngài quỳ nhận phép lành rồi nói không. Ông ta hiểu, và vẫn ghi lại.",
+          "effects": { "church": -8 }
+        },
+        {
+          "id": "duoi-su-gia",
+          "label": "Đuổi ông ta ra khỏi trại",
+          "for": "vay",
+          "text": "Con la đi ngược lên đồi, chậm rãi, giữa hai hàng người im lặng.",
+          "effects": { "church": -22, "cruelty": 5, "besiegerMorale": -3 }
+        }
+      ]
+    },
+    {
+      "id": "ev_tu-binh-treo-len-tuong",
+      "name": "Tù binh bị treo lên tường",
+      "side": "thu",
+      "weight": 5,
+      "when": { "weekAtLeast": 4 },
+      "text": "Bên thủ dẫn tám người lính bắt được trong cuộc đột kích tuần trước lên mặt tường, và làm việc ấy chậm rãi, cho cả trại nhìn rõ.",
+      "options": [
+        {
+          "id": "tra-dua",
+          "label": "Trả đũa: treo tù binh của mình trước cổng",
+          "for": "vay",
+          "text": "Đến chiều thì hai bên đều hết tù binh.",
+          "effects": { "besiegerMorale": 4, "defenderMorale": -4, "cruelty": 12, "church": -8, "noQuarter": true }
+        },
+        {
+          "id": "ghi-so",
+          "label": "Ghi sổ, để dành cho lúc vào được thành",
+          "for": "vay",
+          "text": "Viên thư ký chép đủ tám cái tên.",
+          "effects": { "besiegerMorale": -6, "sackPressure": 15 }
+        }
+      ]
+    },
+    {
+      "id": "ev_gieng-can",
+      "name": "Giếng cạn",
+      "side": "thu",
+      "weight": 8,
+      "when": { "weekAtLeast": 5, "insideOnly": true },
+      "text": "Cái gàu chạm đáy và kêu một tiếng khô khốc mà cả sân đều nghe thấy.",
+      "options": [
+        {
+          "id": "dao-sau-them",
+          "label": "Đào sâu thêm",
+          "for": "thu",
+          "text": "Đàn ông thay nhau xuống, mỗi lượt một giờ, suốt bốn ngày.",
+          "effects": { "wells": 0, "materials": -400, "populationMorale": -6, "defenderMorale": -3 }
+        },
+        {
+          "id": "chia-nuoc",
+          "label": "Chia nước theo khẩu phần",
+          "for": "thu",
+          "text": "Lính gác được hai phần, thợ một phần, trẻ con nửa phần.",
+          "effects": { "wells": -1, "defenderMorale": -10, "populationMorale": -14 }
+        }
+      ]
+    },
+    {
+      "id": "ev_kho-luong-boc-chay",
+      "name": "Kho lương bốc cháy",
+      "side": "thu",
+      "weight": 7,
+      "when": { "weekAtLeast": 3, "insideOnly": true },
+      "text": "Không ai biết là do một hòn đá cháy bắn qua tường hay do một bàn tay trong thành. Đến sáng thì một phần ba số thóc chỉ còn là than.",
+      "options": [
+        {
+          "id": "cuu-duoc-mot-phan",
+          "label": "Dốc cả thành đi chữa cháy",
+          "for": "thu",
+          "text": "Cứu được gần một nửa. Ba người chết ngạt trong kho.",
+          "effects": { "defenderFood": -0.22, "populationMorale": -8, "defenderMorale": -6 }
+        },
+        {
+          "id": "cat-khau-phan-ngay",
+          "label": "Bỏ mặc, cắt khẩu phần ngay đêm ấy",
+          "for": "thu",
+          "text": "Giữ người, mất thóc, và nói thật với mọi người.",
+          "effects": { "defenderFood": -0.35, "rationLevel": "nua-phan", "defenderMorale": -3, "populationMorale": -4 }
+        }
+      ]
+    },
+    {
+      "id": "ev_linh-danh-thue-noi-loan",
+      "name": "Lính đánh thuê nổi loạn đòi tiền",
+      "side": "vay",
+      "weight": 9,
+      "when": { "weekAtLeast": 4, "mercenaryUnpaid": true },
+      "text": "Đại đội người Brabant dựng giáo thành một vòng quanh lều của viên đội trưởng và không cho ai ra vào cho tới khi có bạc.",
+      "options": [
+        {
+          "id": "tra-du",
+          "label": "Trả đủ, kể cả phần chưa tới hạn",
+          "for": "vay",
+          "text": "Kho bạc nhẹ hẳn đi, nhưng vòng vây vẫn còn nguyên.",
+          "effects": { "treasury": -600, "besiegerMorale": 6, "mercenaryPaidWeeks": 4 }
+        },
+        {
+          "id": "hua-suong",
+          "label": "Hứa sẽ trả bằng chiến lợi phẩm khi hạ được thành",
+          "for": "vay",
+          "text": "Họ chấp nhận. Và từ hôm ấy, không ai trong đại đội ấy còn ủng hộ chuyện tha cho thành cả.",
+          "effects": { "besiegerMorale": -4, "sackPressure": 35 }
+        },
+        {
+          "id": "de-ho-di",
+          "label": "Để họ đi",
+          "for": "vay",
+          "text": "Bốn trăm ngọn giáo đi ngược ra khỏi thung lũng giữa ban ngày.",
+          "effects": { "mercenaryLeave": true, "besiegerMorale": -12, "circumvallation": -2 }
+        }
+      ]
+    },
+    {
+      "id": "ev_mua-dam-ngap-hao-luy",
+      "name": "Mưa dầm, hào lũy ngập",
+      "side": "vay",
+      "weight": 8,
+      "when": { "weekAtLeast": 2 },
+      "text": "Bốn ngày mưa. Cái vòng hào bên vây đào để chặn tiếp tế biến thành một con mương bùn cao tới bụng.",
+      "options": [
+        {
+          "id": "dao-lai",
+          "label": "Bắt quân đào lại",
+          "for": "vay",
+          "text": "Không ai ngủ được và không ai bị bệnh thêm — trong tuần này.",
+          "effects": { "besiegerMorale": -6, "hygiene": -6 }
+        },
+        {
+          "id": "de-do",
+          "label": "Để đó, siết vòng vây bằng kỵ binh tuần đường",
+          "for": "vay",
+          "text": "Đêm nào cũng có bóng người lọt qua, và ai cũng biết.",
+          "effects": { "circumvallation": -1, "defenderFood": 800, "hygiene": -12 }
+        }
+      ]
+    },
+    {
+      "id": "ev_dan-trong-thanh-doi-mo-cong",
+      "name": "Dân trong thành đòi mở cổng",
+      "side": "thu",
+      "weight": 9,
+      "when": { "weekAtLeast": 6, "populationMoraleBelow": 40, "insideOnly": true },
+      "text": "Một đám đông đứng chật khoảnh sân trước nhà nguyện từ sáng sớm. Họ không mang gì trong tay, và đó mới là điều đáng sợ.",
+      "options": [
+        {
+          "id": "dien-thuyet",
+          "label": "Ra nói chuyện với họ",
+          "for": "thu",
+          "text": "Kiểm định hùng biện. Nếu hỏng thì lần sau họ sẽ mang theo thứ gì đó trong tay.",
+          "effects": { "speechCheck": true }
+        },
+        {
+          "id": "xu-tu-ke-ban-lui",
+          "label": "Xử tử hai kẻ nói to nhất",
+          "for": "thu",
+          "text": "Đám đông giải tán trong im lặng, và không ai nhìn ai trong suốt một tuần sau.",
+          "effects": { "defenderMorale": 6, "populationMorale": -16, "cruelty": 8, "church": -6 }
+        },
+        {
+          "id": "phat-them-luong",
+          "label": "Phát thêm lương một tuần",
+          "for": "thu",
+          "text": "Cách rẻ nhất trong hôm nay, và đắt nhất trong tháng sau.",
+          "effects": { "defenderFood": -0.08, "populationMorale": 14, "defenderMorale": 4 }
+        }
+      ]
+    },
+    {
+      "id": "ev_doan-tiep-te-bi-cuop",
+      "name": "Đoàn tiếp tế của bên vây bị cướp",
+      "side": "vay",
+      "weight": 7,
+      "when": { "weekAtLeast": 4 },
+      "text": "Ba mươi xe lương đi qua khu rừng phía bắc và không có xe nào tới nơi. Người đánh xe sống sót nói đó là dân vùng này, không phải lính.",
+      "options": [
+        {
+          "id": "dot-lang",
+          "label": "Đốt mấy làng quanh đó cho họ nhớ",
+          "for": "vay",
+          "text": "Tuần sau không đoàn xe nào bị chặn. Và tin đồn đi nhanh hơn xe lương rất nhiều.",
+          "effects": { "campSupply": 400, "cruelty": 18, "church": -10, "besiegerMorale": 4 }
+        },
+        {
+          "id": "cu-doi-ho-tong",
+          "label": "Cắt quân hộ tống mỗi chuyến",
+          "for": "vay",
+          "text": "An toàn hơn, và vòng vây mỏng đi một khúc.",
+          "effects": { "circumvallation": -1, "campSupply": -200 }
+        }
+      ]
+    }
+  ]
+}

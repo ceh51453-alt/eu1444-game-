@@ -1,0 +1,25 @@
+<% const r = q.realm(); const t = q.title(); %>
+┌─ LÃNH THỔ CAI TRỊ: <%= r.name %> ───────────────
+<% if (t) { %>
+│ Thái ấp: <%= t.name %>, thụ phong năm <%= t.grantedYear %>, chính danh <%= t.legitimacy %>
+<% } %>
+│ Gồm <%= r.provinces %> tỉnh · rộng <%= r.spanDays %> ngày ngựa từ đông sang tây
+│ Nhân khẩu <%= fmt.approx(r.population) %>
+│ Thuế suất: nông <%= fmt.pct(r.taxFarm) %>, thương <%= fmt.pct(r.taxTrade) %> · Bất ổn: <%= r.unrest %>
+<% if (r.vassals.length > 0) { %>
+│ Chư hầu: <%= fmt.list(r.vassals) %>
+<% } %>
+<% if (r.laws.length > 0) { %>
+│ Luật đang áp: <%= fmt.list(r.laws) %>
+<% } %>
+<% if (r.duties.length > 0) { %>
+│ Nghĩa vụ phải trả: <%= fmt.list(r.duties) %>
+<% } %>
+<% if (r.pending.length > 0) { %>
+│ Vụ đang chờ xử: <%= fmt.list(r.pending) %>
+<% } %>
+└─────────────────────────────────────────────
+
+ĐÂY LÀ MỘT VÙNG. Được phép nói tới luật, thuế, chư hầu, kiện tụng. KHÔNG được
+nhắc tên một công trình cụ thể, và mọi con số nhân khẩu ở đây đều là ƯỚC CHỪNG —
+giữ nguyên chữ "chừng" khi kể lại, đừng làm tròn thành một con số dứt khoát.

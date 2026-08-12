@@ -1,0 +1,640 @@
+{
+  "$comment": "XUẤT THÂN (Phần 6 mục 3). LUẬT CỨNG: xuất thân chỉ quyết định VẠCH XUẤT PHÁT, không khóa trần tước vị — một nông nô về lý thuyết vẫn lên tới hoàng đế được, và không chỗ nào trong code được phép đọc file này để chặn một tước vị. Bảng `pointBuy` nằm ở đây chứ không nằm trong code vì nó là luật cân bằng, và cân bằng phải sửa được mà không build lại.",
+  "version": 2,
+  "pointBuy": {
+    "$comment": "12 chỉ số đều bắt đầu ở `baseStat`, rồi tiêu `statPoints` của giai tầng. Giá lũy tiến để điểm cuối cùng đắt gấp ba điểm đầu — nhờ vậy không ai dồn hết vào một ô. `maxAtCreation` là trần LÚC TẠO, thấp hơn trần chủng tộc: 16 là 'xuất chúng' theo mục 1, và một người mười tám tuổi chưa nên đứng ở đó nhờ mấy điểm phân bổ.",
+    "baseStat": 8,
+    "minAtCreation": 4,
+    "maxAtCreation": 16,
+    "statCostLadder": [
+      {
+        "upTo": 14,
+        "cost": 1
+      },
+      {
+        "upTo": 16,
+        "cost": 2
+      },
+      {
+        "upTo": 20,
+        "cost": 3
+      }
+    ],
+    "skillTrainingPerPoint": 5,
+    "skillMaxAtCreation": 30,
+    "$ageBonusComment": "TUỔI ĐỔI RA ĐIỂM KỸ NĂNG. Một người bốn mươi đã sống thêm hai mươi năm nữa so với một tân binh, và số năm đó phải nằm ở đâu đó chứ không thể chỉ là một dòng chữ trên phiếu. Đọc theo TUỔI HIỆU DỤNG nên một Cao Tiên 300 tuổi và một Frank 35 tuổi nhận cùng một khoản. Đây là nửa đầu của một cái đánh đổi: nửa sau nằm ở Phần 8 mục 5, nơi người lớn tuổi học chậm hẳn lại và mấy điểm được tặng thêm này là thứ họ sẽ mãi mãi phải sống cùng. KHÔNG cộng vào điểm chỉ số — chỉ số theo tuổi đi đường riêng, qua `statShift` của từng giai đoạn.",
+    "ageBonus": {
+      "referenceAge": 22,
+      "skillPointsPerYear": 0.4,
+      "min": -4,
+      "max": 14
+    }
+  },
+  "wealthBands": [
+    {
+      "id": "rat-it",
+      "label": "rất ít",
+      "coins": 5
+    },
+    {
+      "id": "it",
+      "label": "ít",
+      "coins": 20
+    },
+    {
+      "id": "vua",
+      "label": "vừa",
+      "coins": 80
+    },
+    {
+      "id": "nhieu",
+      "label": "nhiều",
+      "coins": 300
+    },
+    {
+      "id": "rat-nhieu",
+      "label": "rất nhiều",
+      "coins": 1200
+    },
+    {
+      "id": "khong-lo",
+      "label": "khổng lồ",
+      "coins": 5000
+    }
+  ],
+  "origins": [
+    {
+      "id": "origin_nong-no",
+      "name": "Nông nô",
+      "description": "Sinh ra trên đất của người khác, và về pháp lý thì đi đâu cũng phải xin phép. Không có gì để mất, nên cũng không có gì trói chân.",
+      "statPoints": 8,
+      "skillPoints": 6,
+      "wealth": "rat-it",
+      "prestige": 0,
+      "relations": 0,
+      "assetNote": "không có gì",
+      "favouredSkills": [
+        "skill_the-luc",
+        "skill_sinh-ton",
+        "skill_chiu-dung",
+        "skill_san-ban"
+      ],
+      "gear": [
+        {
+          "item": "item_dao-gam",
+          "quality": "tho-vung",
+          "material": "sat"
+        },
+        {
+          "item": "item_giay-da"
+        },
+        {
+          "item": "item_le-lua"
+        }
+      ],
+      "property": [],
+      "holdings": [],
+      "fiefs": [],
+      "realmRole": "khong-co"
+    },
+    {
+      "id": "origin_nong-dan-tu-do",
+      "name": "Nông dân tự do",
+      "description": "Có mảnh đất mang tên mình và một tờ giấy chứng minh điều đó. Đủ để không ai lôi đi được, chưa đủ để ai nghe.",
+      "statPoints": 10,
+      "skillPoints": 8,
+      "wealth": "it",
+      "prestige": 5,
+      "relations": 1,
+      "assetNote": "nhà đất nhỏ",
+      "favouredSkills": [
+        "skill_the-luc",
+        "skill_sinh-ton",
+        "skill_san-ban",
+        "skill_moc"
+      ],
+      "gear": [
+        {
+          "item": "item_dao-gam"
+        },
+        {
+          "item": "item_giay-da"
+        },
+        {
+          "item": "item_le-lua"
+        },
+        {
+          "item": "item_bay-thu"
+        },
+        {
+          "item": "item_ao-choang-len"
+        },
+        {
+          "item": "item_giay-thong-hanh"
+        }
+      ],
+      "property": [
+        "nhà đất nhỏ",
+        "một con bò"
+      ],
+      "holdings": [],
+      "fiefs": [],
+      "realmRole": "khong-co"
+    },
+    {
+      "id": "origin_tho-thu-cong",
+      "name": "Thợ thủ công",
+      "description": "Học nghề từ mười tuổi trong một phường hội có luật riêng và có trí nhớ rất dài.",
+      "statPoints": 10,
+      "skillPoints": 12,
+      "wealth": "vua",
+      "prestige": 10,
+      "relations": 2,
+      "assetNote": "xưởng",
+      "favouredSkills": [
+        "skill_ren-sat",
+        "skill_moc",
+        "skill_che-tac",
+        "skill_mac-ca"
+      ],
+      "gear": [
+        {
+          "item": "item_do-ren"
+        },
+        {
+          "item": "item_dao-gam"
+        },
+        {
+          "item": "item_the-phuong-hoi"
+        },
+        {
+          "item": "item_giay-da"
+        },
+        {
+          "item": "item_ao-choang-len"
+        }
+      ],
+      "property": [
+        "xưởng nhỏ trong phố nghề"
+      ],
+      "holdings": [],
+      "fiefs": [],
+      "realmRole": "khong-co"
+    },
+    {
+      "id": "origin_thuong-nhan",
+      "name": "Thương nhân",
+      "description": "Lớn lên giữa sổ sách và những chuyến hàng có thể mất trắng. Quen tính rủi ro trước khi quen tính tiền.",
+      "statPoints": 9,
+      "skillPoints": 10,
+      "wealth": "nhieu",
+      "prestige": 15,
+      "relations": 3,
+      "assetNote": "kho hàng",
+      "favouredSkills": [
+        "skill_mac-ca",
+        "skill_ke-toan",
+        "skill_ngon-ngu",
+        "skill_doc-nguoi"
+      ],
+      "gear": [
+        {
+          "item": "item_do-viet"
+        },
+        {
+          "item": "item_so-no"
+        },
+        {
+          "item": "item_dao-gam"
+        },
+        {
+          "item": "item_tui-tien"
+        },
+        {
+          "item": "item_ao-choang-len"
+        },
+        {
+          "item": "item_giay-da"
+        },
+        {
+          "item": "item_la"
+        }
+      ],
+      "property": [
+        "kho hàng ở bến",
+        "một phần vốn trong chuyến tàu chưa về"
+      ],
+      "holdings": [],
+      "fiefs": [],
+      "realmRole": "khong-co"
+    },
+    {
+      "id": "origin_giao-si",
+      "name": "Giáo sĩ",
+      "description": "Biết chữ, biết luật, và biết ai trong giáo khu nợ ai điều gì. Nghèo tiền nhưng giàu cửa.",
+      "statPoints": 9,
+      "skillPoints": 14,
+      "wealth": "it",
+      "prestige": 25,
+      "relations": 4,
+      "assetNote": "thư tịch",
+      "favouredSkills": [
+        "skill_hoc-van",
+        "skill_ngon-ngu",
+        "skill_giang-dao",
+        "skill_luat-le"
+      ],
+      "gear": [
+        {
+          "item": "item_ao-dong"
+        },
+        {
+          "item": "item_sach-kinh"
+        },
+        {
+          "item": "item_do-viet"
+        },
+        {
+          "item": "item_thanh-gia-bac"
+        },
+        {
+          "item": "item_thu-gioi-thieu"
+        },
+        {
+          "item": "item_giay-da"
+        }
+      ],
+      "property": [
+        "một ô sách trong thư viện giáo khu"
+      ],
+      "holdings": [],
+      "fiefs": [],
+      "realmRole": "khong-co"
+    },
+    {
+      "id": "origin_hiep-si",
+      "name": "Hiệp sĩ",
+      "description": "Được nuôi để đánh nhau trên lưng ngựa và để thề. Đất thì có thể không nhiều, nhưng lời thề thì rất nặng.",
+      "statPoints": 13,
+      "skillPoints": 9,
+      "wealth": "vua",
+      "prestige": 30,
+      "relations": 3,
+      "assetNote": "ngựa, giáp",
+      "favouredSkills": [
+        "skill_kiem-thuat",
+        "skill_cuoi-ngua",
+        "skill_thuong-kich",
+        "skill_nghi-thuc"
+      ],
+      "gear": [
+        {
+          "item": "item_kiem-dai"
+        },
+        {
+          "item": "item_khien-tron"
+        },
+        {
+          "item": "item_giap-luoi"
+        },
+        {
+          "item": "item_mu-sat"
+        },
+        {
+          "item": "item_ao-lot-giap"
+        },
+        {
+          "item": "item_ngua-chien"
+        },
+        {
+          "item": "item_ung-cuoi-ngua"
+        },
+        {
+          "item": "item_dao-gam"
+        }
+      ],
+      "property": [
+        "một trang viên nhỏ",
+        "một cận vệ"
+      ],
+      "holdings": [],
+      "fiefs": [
+        {
+          "title": "hiep-si",
+          "obligations": [
+            "quan-dich-40"
+          ]
+        }
+      ],
+      "realmRole": "khong-co"
+    },
+    {
+      "id": "origin_quy-toc-nho",
+      "name": "Quý tộc nhỏ",
+      "description": "Một trang viên, vài chục hộ, và một cái tên mà người ngoài tỉnh chưa nghe bao giờ.",
+      "statPoints": 12,
+      "skillPoints": 10,
+      "wealth": "nhieu",
+      "prestige": 45,
+      "relations": 5,
+      "assetNote": "trang viên",
+      "favouredSkills": [
+        "skill_nghi-thuc",
+        "skill_cai-tri",
+        "skill_kiem-thuat",
+        "skill_luat-le"
+      ],
+      "gear": [
+        {
+          "item": "item_kiem-dai",
+          "quality": "tho-gioi"
+        },
+        {
+          "item": "item_giap-luoi"
+        },
+        {
+          "item": "item_mu-tru"
+        },
+        {
+          "item": "item_ao-lot-giap"
+        },
+        {
+          "item": "item_ngua-chien"
+        },
+        {
+          "item": "item_nhan-an"
+        },
+        {
+          "item": "item_ao-lua"
+        },
+        {
+          "item": "item_ung-cuoi-ngua"
+        }
+      ],
+      "property": [
+        "trang viên",
+        "gia nhân"
+      ],
+      "holdings": [
+        {
+          "tier": "lang",
+          "role": "chu-so-huu"
+        }
+      ],
+      "fiefs": [
+        {
+          "title": "nam-tuoc",
+          "obligations": [
+            "quan-dich-40",
+            "chau-trieu"
+          ]
+        }
+      ],
+      "realmRole": "chu-hau"
+    },
+    {
+      "id": "origin_dai-quy-toc",
+      "name": "Đại quý tộc",
+      "description": "Thái ấp có ấn triện, chư hầu có tên, và ít nhất một người trong nhà đang mưu chuyện gì đó.",
+      "statPoints": 14,
+      "skillPoints": 11,
+      "wealth": "rat-nhieu",
+      "prestige": 65,
+      "relations": 8,
+      "assetNote": "thái ấp",
+      "favouredSkills": [
+        "skill_chi-huy",
+        "skill_cai-tri",
+        "skill_ngoai-giao",
+        "skill_nghi-thuc"
+      ],
+      "gear": [
+        {
+          "item": "item_kiem-dai",
+          "quality": "tho-gioi",
+          "material": "thep-tot"
+        },
+        {
+          "item": "item_giap-tam"
+        },
+        {
+          "item": "item_mu-tru"
+        },
+        {
+          "item": "item_gang-sat"
+        },
+        {
+          "item": "item_ghet-sat"
+        },
+        {
+          "item": "item_ngua-chien"
+        },
+        {
+          "item": "item_nhan-an"
+        },
+        {
+          "item": "item_ao-lua"
+        }
+      ],
+      "property": [
+        "dinh thự trong thành",
+        "đội hộ vệ"
+      ],
+      "holdings": [
+        {
+          "tier": "tran",
+          "role": "chu-so-huu"
+        },
+        {
+          "tier": "lang",
+          "role": "chu-so-huu"
+        }
+      ],
+      "fiefs": [
+        {
+          "title": "ba-tuoc",
+          "obligations": [
+            "quan-dich-60",
+            "chau-trieu",
+            "cung-ky-si"
+          ]
+        }
+      ],
+      "realmRole": "chu-hau"
+    },
+    {
+      "id": "origin_vuong-that",
+      "name": "Vương thất",
+      "description": "Máu hoàng gia. Nghĩa là rất nhiều người muốn ngài sống, và một số người rất muốn ngược lại.",
+      "statPoints": 15,
+      "skillPoints": 12,
+      "wealth": "khong-lo",
+      "prestige": 85,
+      "relations": 12,
+      "assetNote": "thành trì",
+      "favouredSkills": [
+        "skill_chi-huy",
+        "skill_ngoai-giao",
+        "skill_muu-luoc",
+        "skill_nghi-thuc"
+      ],
+      "gear": [
+        {
+          "item": "item_kiem-dai",
+          "quality": "kiet-tac",
+          "material": "thep-tot"
+        },
+        {
+          "item": "item_giap-tam",
+          "quality": "tho-gioi",
+          "material": "thep-tot"
+        },
+        {
+          "item": "item_mu-tru"
+        },
+        {
+          "item": "item_gang-sat"
+        },
+        {
+          "item": "item_ghet-sat"
+        },
+        {
+          "item": "item_ngua-chien"
+        },
+        {
+          "item": "item_nhan-an",
+          "material": "vang"
+        },
+        {
+          "item": "item_ao-lua"
+        }
+      ],
+      "property": [
+        "cung thất",
+        "đội cận vệ riêng"
+      ],
+      "holdings": [
+        {
+          "tier": "thanh",
+          "role": "chu-so-huu"
+        },
+        {
+          "tier": "tran",
+          "role": "duoc-uy-thac"
+        }
+      ],
+      "fiefs": [
+        {
+          "title": "cong-tuoc",
+          "obligations": [
+            "chau-trieu",
+            "cung-ky-si"
+          ]
+        }
+      ],
+      "realmRole": "cai-tri"
+    }
+  ],
+  "birthOrders": [
+    {
+      "id": "con-ca",
+      "name": "Con cả",
+      "description": "Thừa kế mặc định. Cũng là người bị nhìn kỹ nhất.",
+      "inherits": true,
+      "prestige": 10,
+      "wealthMultiplier": 1,
+      "relations": 0
+    },
+    {
+      "id": "con-thu",
+      "name": "Con thứ",
+      "description": "Không thừa kế. Phải tự tìm lấy nhà thờ, thanh kiếm, hoặc một cuộc hôn nhân.",
+      "inherits": false,
+      "prestige": 0,
+      "wealthMultiplier": 0.5,
+      "relations": 0
+    },
+    {
+      "id": "con-ut",
+      "name": "Con út",
+      "description": "Được chiều, được ít, và ít bị để mắt tới — thứ cuối cùng đôi khi lại có giá.",
+      "inherits": false,
+      "prestige": -5,
+      "wealthMultiplier": 0.4,
+      "relations": 1
+    },
+    {
+      "id": "con-ngoai-gia-thu",
+      "name": "Con ngoài giá thú",
+      "description": "Mang nửa dòng máu và không mang cái tên. Được biết, không được nhận.",
+      "inherits": false,
+      "prestige": -20,
+      "wealthMultiplier": 0.25,
+      "relations": -1
+    }
+  ],
+  "lineageStates": [
+    {
+      "id": "thinh",
+      "name": "Thịnh",
+      "description": "Gia tộc đang lên. Cửa nào cũng mở, và ai cũng nhớ mặt.",
+      "prestige": 10,
+      "wealthMultiplier": 1.25,
+      "relations": 2
+    },
+    {
+      "id": "suy",
+      "name": "Suy",
+      "description": "Vẫn còn cái tên, đã hết phần lớn cái khác. Chủ nợ thì nhớ rất kỹ.",
+      "prestige": -10,
+      "wealthMultiplier": 0.6,
+      "relations": 0
+    },
+    {
+      "id": "luu-vong",
+      "name": "Lưu vong",
+      "description": "Bị đuổi khỏi đất của mình. Quan hệ cũ còn, nhưng ở rất xa.",
+      "prestige": -20,
+      "wealthMultiplier": 0.3,
+      "relations": -2
+    },
+    {
+      "id": "tuyet-tu",
+      "name": "Tuyệt tự",
+      "description": "Người cuối cùng còn lại. Không ai chia phần, cũng không ai đỡ.",
+      "prestige": -5,
+      "wealthMultiplier": 0.8,
+      "relations": -3
+    }
+  ],
+  "relationKinds": [
+    {
+      "id": "gia-dinh",
+      "name": "Gia đình"
+    },
+    {
+      "id": "thay-day",
+      "name": "Thầy dạy"
+    },
+    {
+      "id": "ban-than",
+      "name": "Bạn thân"
+    },
+    {
+      "id": "ke-thu",
+      "name": "Kẻ thù"
+    },
+    {
+      "id": "an-nhan",
+      "name": "Ân nhân"
+    },
+    {
+      "id": "chu-no",
+      "name": "Chủ nợ"
+    },
+    {
+      "id": "quen",
+      "name": "Quen biết"
+    }
+  ]
+}

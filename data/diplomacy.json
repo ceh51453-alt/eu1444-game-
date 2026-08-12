@@ -1,0 +1,518 @@
+{
+  "$comment": "QUAN HỆ GIỮA CÁC THẾ LỰC — Phần 14 mục 6. Hai nửa, và nửa thứ hai mới là nửa quan trọng: `pairs` là ma trận quan hệ khởi đầu, còn `ripples` là bảng DỘI SANG NHAU. Mục 6 nói thẳng chuỗi mẫu: Giáo hoàng ra vạ với Hoàng đế → chư hầu Đế quốc được cởi lời thề → Frank thừa cơ lấn đất → Thành bang cho cả hai bên vay tiền và lời to. Phần 15 mới là chỗ chuỗi ấy chạy thành lịch sử, nhưng Phần 14 phải xuất ra đủ dữ liệu để Phần 15 tính được — bảng `ripples` chính là dữ liệu ấy, viết bằng data chứ không nhét trong code (R5).",
+  "version": 1,
+  "config": {
+    "relationMin": -100,
+    "relationMax": 100,
+    "driftToBasePerYear": 1.5,
+    "$driftComment": "Quan hệ TRÔI VỀ MỨC NỀN chứ không đứng yên. Một lần giúp đỡ không mua được vĩnh viễn, và một lần phản bội cũng không kết án vĩnh viễn — trừ khi nó tạo ra một yêu sách, và yêu sách thì không trôi.",
+    "bands": [
+      {
+        "upTo": -60,
+        "id": "chien-tranh-lanh",
+        "name": "Thù nghịch",
+        "warChancePerYear": 6
+      },
+      {
+        "upTo": -25,
+        "id": "thu-dich",
+        "name": "Thù địch",
+        "warChancePerYear": 2.5
+      },
+      {
+        "upTo": 10,
+        "id": "lanh-nhat",
+        "name": "Lạnh nhạt",
+        "warChancePerYear": 1
+      },
+      {
+        "upTo": 45,
+        "id": "than-thien",
+        "name": "Thân thiện",
+        "warChancePerYear": 0.3
+      },
+      {
+        "upTo": 100,
+        "id": "than-can",
+        "name": "Thân cận",
+        "warChancePerYear": 0
+      }
+    ],
+    "war": {
+      "declareCheck": "tuyen-chien",
+      "difficulty": "trung-binh",
+      "relationOnDeclare": -45,
+      "prestigePerVictory": 8,
+      "prestigePerDefeat": -10,
+      "landPerVictory": 1,
+      "yearsMin": 2,
+      "warExhaustionPerYear": 6,
+      "exhaustionPeaceAt": 45,
+      "$exhaustionComment": "Không bên nào đánh mãi. Kiệt quệ tới ngưỡng là bên đó chấp nhận hòa dù đang thắng — đây là cái van giữ cho 60 năm mô phỏng của mục 10.15 không biến thành một cuộc chiến duy nhất."
+    },
+    "claims": {
+      "$comment": "Yêu sách KHÔNG TRÔI. Đây là chỗ khác biệt giữa quan hệ (đổi theo tâm trạng) và quyền (đổi theo giấy tờ).",
+      "yearsToFade": 0,
+      "relationPenalty": -18,
+      "warJustification": 30,
+      "inheritedByHeir": true
+    },
+    "marriage": {
+      "relationBonus": 22,
+      "yearsOfEffect": 25,
+      "unionChancePerYear": 3,
+      "$unionComment": "Một trong bốn con đường nuốt của Frank (mục 2.6), và cũng là cách một nhánh hoàng tộc Đông La Mã mời quân ngoài vào nhà."
+    },
+    "embargo": {
+      "relationPenalty": -20,
+      "targetIncomeFactor": 0.88,
+      "selfIncomeFactor": 0.96,
+      "note": "Cấm vận làm đau cả hai, và làm đau người cấm ít hơn đúng một chút — vừa đủ để nó vẫn là một lựa chọn."
+    }
+  },
+  "treaties": [
+    {
+      "id": "hiep_lien-minh",
+      "name": "Liên minh",
+      "years": 10,
+      "relation": 25,
+      "callToArms": true,
+      "breakRelation": -40,
+      "breakPrestige": -8
+    },
+    {
+      "id": "hiep_khong-xam-pham",
+      "name": "Không xâm phạm",
+      "years": 8,
+      "relation": 12,
+      "callToArms": false,
+      "breakRelation": -25,
+      "breakPrestige": -5
+    },
+    {
+      "id": "hiep_thuong-mai",
+      "name": "Thương ước",
+      "years": 12,
+      "relation": 15,
+      "incomeBonus": 0.08,
+      "breakRelation": -18,
+      "breakPrestige": -2
+    },
+    {
+      "id": "hiep_trieu-cong",
+      "name": "Triều cống",
+      "years": 0,
+      "relation": -10,
+      "tributePerYear": 0.08,
+      "breakRelation": -35,
+      "breakPrestige": -6,
+      "note": "Bên nộp ghét bên nhận đều đặn mỗi năm — và một ngày họ ngừng nộp."
+    },
+    {
+      "id": "hiep_hon-nhan",
+      "name": "Hôn ước",
+      "years": 25,
+      "relation": 22,
+      "claimOnExtinction": true,
+      "breakRelation": -30,
+      "breakPrestige": -10
+    },
+    {
+      "id": "hiep_hop-nhat-giao-hoi",
+      "name": "Hợp nhất giáo hội",
+      "years": 0,
+      "relation": 45,
+      "religionShift": 0.06,
+      "populaceAnger": 28,
+      "breakRelation": -50,
+      "note": "Cái giá của cầu viện phương Tây ở mục 2.2b. Ký thì dân trong nước gọi mình là kẻ phản đạo; không ký thì không có viện binh. Không có đáp án đúng."
+    }
+  ],
+  "pairs": [
+    {
+      "a": "nation_ottoman",
+      "b": "nation_dong-la-ma",
+      "value": -70,
+      "claim": true,
+      "note": "Yêu sách trên kinh đô cũ, và một lời mời cũ chưa bao giờ rút lại."
+    },
+    {
+      "a": "nation_ottoman",
+      "b": "nation_giao-trieu",
+      "value": -85
+    },
+    {
+      "a": "nation_ottoman",
+      "b": "nation_hungary",
+      "value": -75,
+      "claim": true
+    },
+    {
+      "a": "nation_ottoman",
+      "b": "nation_thanh-bang-latin",
+      "value": -10,
+      "note": "Thù về đạo, bạn về hàng. Thành bang bán vũ khí cho cả hai bên và ai cũng biết."
+    },
+    {
+      "a": "nation_ottoman",
+      "b": "nation_han-quoc",
+      "value": 5
+    },
+    {
+      "a": "nation_ottoman",
+      "b": "nation_hre",
+      "value": -55
+    },
+    {
+      "a": "nation_dong-la-ma",
+      "b": "nation_giao-trieu",
+      "value": -35,
+      "note": "Cần viện binh, không chịu nổi cái giá."
+    },
+    {
+      "a": "nation_dong-la-ma",
+      "b": "nation_thanh-bang-latin",
+      "value": -45,
+      "note": "Các thành bang đã giành gần hết quyền thu ở eo biển, và họ có hạm đội."
+    },
+    {
+      "a": "nation_dong-la-ma",
+      "b": "nation_han-quoc",
+      "value": -20
+    },
+    {
+      "a": "nation_dong-la-ma",
+      "b": "nation_baltic",
+      "value": 10
+    },
+    {
+      "a": "nation_giao-trieu",
+      "b": "nation_hre",
+      "value": -15,
+      "note": "Hai đầu của một cuộc cãi vã kéo dài ba thế kỷ về việc ai phong ai."
+    },
+    {
+      "a": "nation_giao-trieu",
+      "b": "nation_frank",
+      "value": 20
+    },
+    {
+      "a": "nation_giao-trieu",
+      "b": "nation_thanh-bang-latin",
+      "value": 25
+    },
+    {
+      "a": "nation_giao-trieu",
+      "b": "nation_baltic",
+      "value": -40,
+      "note": "Một đại công quốc ngoại đạo ngay trong châu lục là lời mời gọi thập tự chinh thường trực."
+    },
+    {
+      "a": "nation_giao-trieu",
+      "b": "nation_han-quoc",
+      "value": -50
+    },
+    {
+      "a": "nation_hre",
+      "b": "nation_frank",
+      "value": -40,
+      "claim": true
+    },
+    {
+      "a": "nation_hre",
+      "b": "nation_lien-bang-nui",
+      "value": -65,
+      "claim": true,
+      "note": "Đế quốc và các gia tộc quý tộc muốn đòi lại quyền cai trị trên các bang — kẻ thù thường trực của mục 2.3e."
+    },
+    {
+      "a": "nation_hre",
+      "b": "nation_thanh-bang-latin",
+      "value": -25,
+      "claim": true
+    },
+    {
+      "a": "nation_hre",
+      "b": "nation_baltic",
+      "value": -30
+    },
+    {
+      "a": "nation_hre",
+      "b": "nation_hungary",
+      "value": 15
+    },
+    {
+      "a": "nation_frank",
+      "b": "nation_anh-quoc",
+      "value": -75,
+      "claim": true
+    },
+    {
+      "a": "nation_frank",
+      "b": "nation_thanh-bang-latin",
+      "value": 5,
+      "note": "Vay tiền của họ, và nợ thì không phải tình bạn."
+    },
+    {
+      "a": "nation_frank",
+      "b": "nation_lien-bang-nui",
+      "value": 20,
+      "note": "Khách hàng lớn nhất của thị trường lính đánh thuê."
+    },
+    {
+      "a": "nation_lien-bang-nui",
+      "b": "nation_thanh-bang-latin",
+      "value": 15
+    },
+    {
+      "a": "nation_lien-bang-nui",
+      "b": "nation_frank",
+      "value": 20
+    },
+    {
+      "a": "nation_han-quoc",
+      "b": "nation_baltic",
+      "value": -35,
+      "claim": true
+    },
+    {
+      "a": "nation_han-quoc",
+      "b": "nation_hungary",
+      "value": -30
+    },
+    {
+      "a": "nation_thanh-bang-latin",
+      "b": "nation_anh-quoc",
+      "value": 10
+    },
+    {
+      "a": "nation_baltic",
+      "b": "nation_hungary",
+      "value": 5
+    },
+    {
+      "a": "nation_anh-quoc",
+      "b": "nation_hre",
+      "value": 5
+    }
+  ],
+  "ripples": [
+    {
+      "id": "ripple_va-tuyet-thong",
+      "event": "vạ tuyệt thông",
+      "from": "nation_giao-trieu",
+      "text": "Giáo hoàng ra vạ với {target} — chư hầu của họ được cởi lời thề trung thành.",
+      "targetEffects": {
+        "stability": -14,
+        "cohesion": -18,
+        "prestige": -10
+      },
+      "neighbourEffects": {
+        "relationToTarget": -12,
+        "claimPressure": 18
+      },
+      "opportunists": [
+        "nation_frank",
+        "nation_hre",
+        "nation_ottoman"
+      ],
+      "bankers": [
+        "nation_thanh-bang-latin"
+      ],
+      "bankerEffects": {
+        "loanDemand": 2,
+        "rateBonus": 0.03
+      },
+      "note": "Chuỗi mẫu của mục 6, viết nguyên văn thành data."
+    },
+    {
+      "id": "ripple_hai-giao-hoang",
+      "event": "hai Giáo hoàng",
+      "from": "nation_giao-trieu",
+      "text": "Xuất hiện Giáo hoàng thứ hai do {backer} dựng lên. Cả thế giới phải chọn phe.",
+      "worldEffects": {
+        "heresyTrigger": "hai-giao-hoang",
+        "churchPrestige": -25
+      },
+      "everyPowerEffects": {
+        "stability": -6,
+        "mustPickSide": true
+      },
+      "note": "Biến cố lớn nhất mà Phần 15 có thể sinh ra (mục 2.7)."
+    },
+    {
+      "id": "ripple_thap-tu-chinh",
+      "event": "kêu gọi thập tự chinh",
+      "from": "nation_giao-trieu",
+      "text": "Giáo hoàng kêu gọi thập tự chinh chống {target}.",
+      "targetEffects": {
+        "warExhaustion": 8,
+        "relationToChurch": -30
+      },
+      "callerEffects": {
+        "prestige": 12
+      },
+      "joinerEffects": {
+        "prestige": 6,
+        "treasury": -120
+      },
+      "failPenalty": {
+        "churchPrestige": -18
+      }
+    },
+    {
+      "id": "ripple_chinh-phuc",
+      "event": "chinh phục",
+      "from": "nation_ottoman",
+      "text": "{source} chiếm thêm đất của {target}.",
+      "sourceEffects": {
+        "prestige": 7,
+        "treasury": 210,
+        "land": 1
+      },
+      "targetEffects": {
+        "land": -1,
+        "prestige": -8,
+        "stability": -6
+      },
+      "neighbourEffects": {
+        "relationToSource": -8,
+        "fear": 10
+      }
+    },
+    {
+      "id": "ripple_thue-quan-ngoai",
+      "event": "thuê quân ngoài",
+      "from": "nation_dong-la-ma",
+      "text": "{source} thuê quân của {hired} để thắng nội chiến — và bên được thuê ở lại.",
+      "sourceEffects": {
+        "land": -1,
+        "prestige": -6,
+        "stability": 5
+      },
+      "hiredEffects": {
+        "land": 1,
+        "prestige": 4,
+        "footholdIn": "source"
+      },
+      "note": "Đây là cách đế quốc Orc lần đầu đặt chân sang bờ bên này — do chính một hoàng đế Tiên mời sang (mục 2.2a). Bài kiểm tra A của mục 10.15 đòi chuyện này phải xảy ra ít nhất một lần trong 60 năm."
+    },
+    {
+      "id": "ripple_binh-bien",
+      "event": "binh biến",
+      "from": "nation_ottoman",
+      "text": "Quân đoàn {corps} làm binh biến ở {source}.",
+      "sourceEffects": {
+        "stability": -22,
+        "prestige": -12,
+        "expansionPaused": 3
+      },
+      "neighbourEffects": {
+        "relationToSource": 4,
+        "fear": -12
+      }
+    },
+    {
+      "id": "ripple_vo-no",
+      "event": "vỡ nợ",
+      "from": "any",
+      "text": "{source} quỵt khoản vay của {lender} — và không ai đòi nổi một ông vua.",
+      "sourceEffects": {
+        "prestige": -14,
+        "creditLost": true
+      },
+      "lenderEffects": {
+        "treasury": -1,
+        "councilAnger": 15
+      },
+      "worldEffects": {
+        "creditTightening": 0.12
+      }
+    },
+    {
+      "id": "ripple_noi-day-sac-toc",
+      "event": "nổi dậy sắc tộc",
+      "from": "any",
+      "text": "Nhóm {race} nổi dậy ở {source}.",
+      "sourceEffects": {
+        "stability": -16,
+        "treasury": -140,
+        "land": 0
+      },
+      "note": "Oán hận cao + tỷ lệ dân số cao (mục 3)."
+    },
+    {
+      "id": "ripple_di-cu",
+      "event": "dòng di dân",
+      "from": "any",
+      "text": "Cộng đồng {race} chạy khỏi {source} sang {destination}.",
+      "sourceEffects": {
+        "income": -0.06,
+        "skillLoss": true
+      },
+      "destinationEffects": {
+        "income": 0.04,
+        "manpower": 1200,
+        "religionShift": true
+      },
+      "note": "Nhóm bị truy bức ở nước A CHẠY SANG nước B, và nước B nhận được nhân lực với kỹ năng của họ (mục 3). Phần 15 mô phỏng dòng này và phải NHỚ nó qua nhiều thế hệ."
+    },
+    {
+      "id": "ripple_cai-cach",
+      "event": "cải cách đế chế thông qua",
+      "from": "nation_hre",
+      "text": "Đế hội thông qua {reform}.",
+      "sourceEffects": {
+        "authority": 1,
+        "cohesion": 6
+      },
+      "neighbourEffects": {
+        "relationToSource": -6,
+        "fear": 8
+      },
+      "watchers": [
+        "nation_frank",
+        "nation_giao-trieu"
+      ]
+    },
+    {
+      "id": "ripple_ly-khai",
+      "event": "ly khai",
+      "from": "any",
+      "text": "{province} tách khỏi {source} và tự xưng độc lập.",
+      "sourceEffects": {
+        "land": -1,
+        "prestige": -9,
+        "cohesion": -10
+      },
+      "worldEffects": {
+        "newPowerHint": true
+      }
+    },
+    {
+      "id": "ripple_dich-hach",
+      "event": "đại dịch",
+      "from": "nation_han-quoc",
+      "text": "Dịch hạch khởi phát trên tuyến thương mại và lan theo chính những con đường được bảo hộ.",
+      "worldEffects": {
+        "populationFactor": 0.72,
+        "heresyTrigger": "dich-benh",
+        "tradeIncome": -0.35
+      },
+      "note": "Nối thẳng vào Phần 15 (mục 2.4c). Tuyến thương mại là nguồn tiền lớn nhất của Hãn quốc, và cũng là ĐƯỜNG ĐI CỦA ĐẠI DỊCH."
+    },
+    {
+      "id": "ripple_doi-kem",
+      "event": "đói kém",
+      "from": "any",
+      "text": "Mất mùa ở {source} — dân bỏ làng đi.",
+      "sourceEffects": {
+        "stability": -10,
+        "income": -0.18
+      },
+      "worldEffects": {
+        "heresyTrigger": "doi-kem"
+      }
+    }
+  ]
+}

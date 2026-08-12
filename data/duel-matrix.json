@@ -1,0 +1,515 @@
+{
+  "$comment": "PHẦN 9 — BẢNG HÀNH ĐỘNG VÀ MA TRẬN TƯƠNG KHẮC. Mục 5 nói thẳng: KHÔNG phải oẳn tù tì thắng thua tuyệt đối, chỉ là modifier vào d20 để kỹ năng và xúc sắc vẫn quyết định. Vì thế mọi con số ở đây khai theo THANG d100 (dương là dễ hơn cho bên đang được nói tới) rồi đi qua `scaleToSystem` của Phần 5 mục 7 để đổi sang DC của d20 — cùng một hàm mà thương tích, đặc tính và trang bị dùng. Khai thẳng số d20 ở đây là dựng một thang thứ hai, và cái ngày hai thang lệch nhau thì 'mệt' trong đấu tay đôi sẽ nặng khác 'mệt' ở kiếm thuật mà không ai cố ý thiết kế như thế.",
+  "version": 1,
+
+  "$tagsComment": "TỪ VỰNG CỦA MA TRẬN. Ma trận tra theo NHÃN chứ không theo id hành động: một chiêu thức mở từ node Phần 8 chỉ cần khai nhãn `dam` là tự nhận đủ mọi dòng tương khắc của đòn đâm, không phải thêm một hàng mới vào bảng này. `tan-cong` và `phong-thu` là hai nhãn Phần 8 đã dùng sẵn trong `whenAnyTag` của node — giữ nguyên tên, vì đổi tên ở đây là làm chết lặng hiệu ứng của mọi node đã viết.",
+  "tags": [
+    { "id": "tan-cong", "name": "đòn tấn công", "note": "Phần 8 đã dùng nhãn này trong effects của node." },
+    { "id": "phong-thu", "name": "đòn phòng thủ", "note": "Phần 8 đã dùng nhãn này trong effects của node." },
+    { "id": "di-chuyen", "name": "di chuyển" },
+    { "id": "chem", "name": "đường chém" },
+    { "id": "chem-ngang", "name": "chém ngang", "note": "Đường chém đi ngang — thứ né sang bên tránh được dễ nhất." },
+    { "id": "dam", "name": "mũi đâm" },
+    { "id": "dap", "name": "đòn đập", "note": "Chùy, búa, sống rìu. Vũ khí duy nhất không cần tìm khe giáp." },
+    { "id": "chat-chan", "name": "chặt chân" },
+    { "id": "do-cung", "name": "đỡ cứng" },
+    { "id": "gat", "name": "gạt hướng" },
+    { "id": "ne", "name": "né sang" },
+    { "id": "lui", "name": "lùi tránh" },
+    { "id": "khien", "name": "dùng khiên" },
+    { "id": "gia-don", "name": "giả đòn" },
+    { "id": "vat-lon", "name": "vật lộn" },
+    { "id": "tuoc-vu-khi", "name": "tước vũ khí" },
+    { "id": "ban-thiu", "name": "đòn bẩn", "note": "Hất cát, húc mặt. Doctrine `honor` thấp mới dùng." },
+    { "id": "giap-la-ca", "name": "cự ly ôm nhau", "note": "Phần 8 đã dùng nhãn này — node Khóa kiếm bật lên ở đây." },
+    { "id": "dich-giap-tam", "name": "địch mặc giáp tấm", "note": "Phần 8 đã dùng nhãn này — node Thế nửa kiếm bật lên ở đây." },
+    { "id": "lan-dau-gap", "name": "lần đầu gặp đối thủ này" }
+  ],
+
+  "$speedsComment": "TỐC ĐỘ TƯƠNG ĐỐI của mục 4. `initiative` chỉ dùng để chọn ai là BÊN CÔNG khi cả hai cùng tấn công — thứ tự rút xúc sắc phải tất định, không được phụ thuộc vào ai gõ nút trước (R3). `staminaFactor` nhân vào chi phí thể lực: một đòn chậm là một đòn dồn cả người vào.",
+  "speeds": [
+    { "id": "nhanh", "name": "nhanh", "initiative": 2, "staminaFactor": 0.8 },
+    { "id": "vua", "name": "vừa", "initiative": 1, "staminaFactor": 1 },
+    { "id": "cham", "name": "chậm", "initiative": 0, "staminaFactor": 1.35 }
+  ],
+
+  "$tempoComment": "THẾ TRẬN −5..+5 (mục 6). `perStep` là số điểm d100 mỗi bậc thế trận đáng giá; +5 nghĩa là +15 trên thang chung, tức khoảng −3 DC ở d20. Đủ để cảm thấy, không đủ để một bên đã dẫn thế trận là thắng chắc — mục 5 đòi kỹ năng và xúc sắc vẫn quyết định. `lockAttackBelow` là chỗ mục 6 nói 'tempo âm thì một số hành động tấn công bị khóa': dưới ngưỡng này, chỉ còn đòn `nhanh` và đòn phòng thủ. `comboFrom` mở đòn liên hoàn: đủ thế trận thì đánh xong vẫn giữ được thế.",
+  "tempo": {
+    "min": -5,
+    "max": 5,
+    "perStep": 3,
+    "gain": { "critSuccess": 2, "success": 1, "costlySuccess": 1, "fail": -1, "critFail": -2 },
+    "lockAttackBelow": -3,
+    "comboFrom": 3,
+    "comboKeep": 1,
+    "$driftComment": "Không ai giữ được thế trận bằng cách đứng yên. Mỗi hiệp không có va chạm nào thì thế trận của cả hai bò một bậc về 0.",
+    "driftToZero": 1
+  },
+
+  "$staminaComment": "THỂ LỰC (mục 6). Đây là chỗ mục 6 nói quyết định phần lớn các trận giáp trụ thật ngoài đời: người ta thua vì kiệt sức chứ ít khi vì một nhát chém đẹp. Nên thang phạt phải LŨY TIẾN chứ không tuyến tính — tụt xuống dưới 25 là hỏng hẳn, chứ không phải hơi kém hơn một chút.",
+  "stamina": {
+    "max": 100,
+    "$recoverComment": "Hồi mỗi hiệp. Đứng thủ hồi nhiều hơn — đó là lý do một trận đấu thật có những quãng hai bên chỉ đi vòng quanh nhau.",
+    "recover": { "base": 5, "defending": 10, "resting": 14 },
+    "$vitFactorComment": "Thể chất nhân vào cả trần lẫn tốc độ hồi: `factor = vitReference / (vitFloor + VIT)`, đảo lại thành hệ số nhân.",
+    "vitReference": 10,
+    "vitPerPoint": 3,
+    "injuryDrainPerSeverity": 0.7,
+    "penalties": [
+      { "below": 60, "penalty": 5, "name": "thở gấp" },
+      { "below": 40, "penalty": 12, "name": "mỏi tay" },
+      { "below": 25, "penalty": 22, "name": "hụt hơi" },
+      { "below": 10, "penalty": 35, "name": "kiệt sức" }
+    ],
+    "$forcedComment": "Dưới ngưỡng này thì không còn đòn tấn công nào bấm được nữa — buộc phải thủ. Mục 6: 'cạn thể lực → phạt nặng dần rồi buộc phải thủ'.",
+    "forcedDefenceBelow": 12
+  },
+
+  "$woundsComment": "THƯƠNG TÍCH TRONG TRẬN (mục 8). Phần 7 đếm máu chảy theo LƯỢT GAME — một lượt có thể là nửa ngày. Một hiệp đấu là chừng sáu giây, nên nếu áp nguyên `injury.bleeding` mỗi hiệp thì vết đầu tiên giết người ngay trong hiệp thứ ba. `bleedPerRound` là phần của mức chảy máu một lượt thật sự rút đi trong một hiệp. Đây là con số DUY NHẤT Phần 9 được đổi trong cơ chế máu me của Phần 7; mọi thứ khác đi thẳng qua `inflictInjury`.",
+  "wounds": {
+    "bleedPerRound": 0.22,
+    "$downComment": "Ngã gục — một cửa kết thúc của mục 9. Ba đường tới cùng một chỗ: hết máu, hết ý thức, hoặc một vết chí mạng vào chỗ chí mạng.",
+    "downBlood": 32,
+    "downConsciousness": ["lo-mo", "hon-me"],
+    "downSeverity": 5,
+    "$deathComment": "Chết trong trận. Tạng chí mạng bị phá hủy là chết ngay theo mục 9 của Phần 7; máu cạn là đường còn lại.",
+    "deathBlood": 8,
+    "$disarmComment": "Vết ở bàn tay hoặc cẳng tay làm rơi vũ khí khi khả năng cầm nắm tụt dưới ngưỡng này.",
+    "gripDropBelow": 45,
+    "$absorbedComment": "Một đòn bị giáp nuốt trọn KHÔNG gây thương tích, nhưng nó vẫn tới. Người mặc giáp mất ngần này thể lực mỗi lần chịu một cú như thế — và đó là cách duy nhất một thanh kiếm còn nói được gì trước giáp tấm nếu không có nửa kiếm: đánh cho người ta kiệt sức trong bộ giáp của chính họ.",
+    "absorbedStamina": 5
+  },
+
+  "$facingComment": "HƯỚNG MẶT (mục 2). Tám hướng, lệch tính theo số bậc 45°: 0 và ±1 là chính diện, ±2 và ±3 là sườn, 4 là sau lưng. Đánh sau lưng đáng +15 d100 — lớn, nhưng giành được một hiệp đứng sau lưng đối thủ còn sống là chuyện hiếm.",
+  "facing": {
+    "front": 0,
+    "flank": 6,
+    "back": 15,
+    "$blindComment": "Bị hất cát vào mắt thì mọi hướng đều là sườn.",
+    "blindedTreatsAllAsFlank": true
+  },
+
+  "$reachComment": "TẦM VỚI (mục 2) — 'Nghệ thuật quyết đấu nằm ở việc giành đúng cự ly cho vũ khí mình.' Ngoài tầm một ô thì còn với tới nhưng hụt; xa hơn nữa thì đòn không tới, và không có cú tung nào cả. Gần hơn tầm tối thiểu là chỗ cây giáo dài thành một khúc gỗ.",
+  "reach": {
+    "tooFar": -25,
+    "tooClose": -18,
+    "$missBeyondComment": "Cách quá tầm tối đa bao nhiêu ô thì đòn không chạm được vào đâu cả.",
+    "missBeyond": 1,
+    "$grappleAtComment": "Ở cự ly này trở xuống thì nhãn `giap-la-ca` bật lên cho cả hai bên.",
+    "grappleAt": 1
+  },
+
+  "$armorComment": "QUY TẮC GIÁP (mục 7) — KHÔNG PHẢI TRỪ THẲNG SÁT THƯƠNG. Giáp thay đổi LOẠI thương tích có thể xảy ra. `severityCap` là trần mức độ vết thương; `forceType` đổi loại vết thành thứ khác; `hitMod` là phần cộng vào cú tung. Bốn dòng của mục 7 nằm gọn trong bảng này, và README mục 8.5 cấm rút chúng thành một con số phòng thủ tổng.",
+  "armorRules": [
+    {
+      "attack": "chem",
+      "armorClass": "giap-tam",
+      "severityCap": 0,
+      "hitMod": 0,
+      "note": "Chém vào giáp tấm GẦN NHƯ VÔ HIỆU (mục 7). `severityCap` 0 nghĩa là không sinh vết thương nào — lưỡi kiếm trượt trên tấm thép và để lại đúng một vết xước trên sơn. Cái nó để lại là mệt: xem `wounds.absorbedStamina`."
+    },
+    {
+      "attack": "chem",
+      "armorClass": "giap-luoi",
+      "severityCap": 3,
+      "forceType": "blunt",
+      "hitMod": 0,
+      "note": "Lưới không cho lưỡi cắt vào, nhưng lực vẫn truyền qua."
+    },
+    { "attack": "chem", "armorClass": "giap-da", "severityCap": 4, "hitMod": 0, "note": "Da thuộc ăn bớt một phần đường cắt." },
+    {
+      "attack": "dam",
+      "armorClass": "giap-tam",
+      "severityCap": 0,
+      "hitMod": -30,
+      "gapOnly": true,
+      "note": "Đâm THẲNG vào tấm thép thì mũi trượt đi — trần mức độ 1. Cửa duy nhất là khe hở, và `gapOnly` nghĩa là `hitMod` chỉ tính cho đòn thật sự NHẮM vào khe: nhắm vào khe thì khó hơn nhiều, nhưng trúng khe thì luật này không áp vì khe không có giáp. Node nửa kiếm gỡ phần lớn mức phạt ấy."
+    },
+    {
+      "attack": "dam",
+      "armorClass": "giap-luoi",
+      "severityCap": 4,
+      "hitMod": -12,
+      "note": "Mũi nhọn banh được mắt lưới, nhưng phải đúng góc."
+    },
+    { "attack": "dam", "armorClass": "giap-da", "severityCap": 5, "hitMod": -4 },
+    {
+      "attack": "dap",
+      "armorClass": "giap-tam",
+      "severityCap": 5,
+      "forceType": "fracture",
+      "hitMod": 0,
+      "note": "Chùy và búa xuyên qua giáp thành chấn thương kín và gãy xương."
+    },
+    { "attack": "dap", "armorClass": "giap-luoi", "severityCap": 5, "forceType": "fracture", "hitMod": 0 },
+    { "attack": "dap", "armorClass": "giap-da", "severityCap": 5, "hitMod": 0 },
+    {
+      "attack": "vat-lon",
+      "armorClass": "giap-tam",
+      "severityCap": 3,
+      "hitMod": 8,
+      "note": "Bộ giáp nặng ba mươi cân là thứ dễ vật ngã nhất trên đời — nhưng ngã rồi vẫn khó giết."
+    }
+  ],
+  "$halfSwordComment": "Node `node_kiem-thuat_nua-kiem` của Phần 8 cho phép một thanh kiếm đâm chính xác vào khe giáp. Nó gỡ đúng `hitMod` của dòng `dam` × `giap-tam` ở trên (phần trăm), CỘNG THÊM dòng +25 mà chính node đã khai trong `data/skill-nodes.json`. Hai vế nằm ở hai chỗ có chủ ý: vế dưới đây là quy tắc CƠ HỌC của giáp, vế kia là hiệu ứng của việc ngài đã học được chiêu ấy.",
+  "armorPiercing": { "gapPenaltyRelief": 0.8, "gapAimBias": 4 },
+
+  "$actionsComment": "BẢNG HÀNH ĐỘNG (mục 4). Mỗi hành động khai: chi phí thể lực, thời gian tương đối, tầm yêu cầu, chỉ số và kỹ năng dùng, vùng cơ thể nó nhắm tới. `skill` nhận `$weapon` (kỹ năng của vũ khí đang cầm), `$shield`, hoặc một id kỹ năng thật. `domain` để rỗng nghĩa là suy từ kỹ năng — nhờ vậy hiệu ứng node và trang bị của Phần 6/8 tự bật lên mà Phần 9 không phải chép lại một dòng nào. `aimBias` là bảng tư thế mà Phần 7 mục 1 đã chừa sẵn chỗ nhận (`HitOptions.postureBias`).",
+  "actions": [
+    {
+      "id": "buoc-toi",
+      "name": "Bước tới",
+      "category": "di-chuyen",
+      "tags": ["di-chuyen"],
+      "speed": "nhanh",
+      "stamina": 3,
+      "move": { "forward": 1, "faceEnemy": true },
+      "note": "Một ô về phía đối thủ. Cách duy nhất để dao găm nói được gì trước cây giáo."
+    },
+    {
+      "id": "buoc-lui",
+      "name": "Bước lùi",
+      "category": "di-chuyen",
+      "tags": ["di-chuyen", "lui"],
+      "speed": "nhanh",
+      "stamina": 3,
+      "move": { "forward": -1, "faceEnemy": true }
+    },
+    {
+      "id": "vong-trai",
+      "name": "Vòng trái",
+      "category": "di-chuyen",
+      "tags": ["di-chuyen"],
+      "speed": "vua",
+      "stamina": 4,
+      "move": { "strafe": -1, "faceEnemy": true },
+      "note": "Đi vòng để giành sườn. Ai vòng nhanh hơn thì được đánh vào chỗ đối thủ không nhìn thấy."
+    },
+    {
+      "id": "vong-phai",
+      "name": "Vòng phải",
+      "category": "di-chuyen",
+      "tags": ["di-chuyen"],
+      "speed": "vua",
+      "stamina": 4,
+      "move": { "strafe": 1, "faceEnemy": true }
+    },
+    {
+      "id": "xoay-mat",
+      "name": "Xoay mặt",
+      "category": "di-chuyen",
+      "tags": ["di-chuyen"],
+      "speed": "nhanh",
+      "stamina": 1,
+      "move": { "turn": "free" },
+      "note": "Không đi đâu cả, chỉ đổi hướng nhìn. Thứ phải làm khi vừa bị vòng ra sau lưng."
+    },
+    {
+      "id": "nhay-lui",
+      "name": "Nhảy lùi",
+      "category": "di-chuyen",
+      "tags": ["di-chuyen", "lui"],
+      "speed": "vua",
+      "stamina": 8,
+      "move": { "forward": -2, "faceEnemy": true },
+      "note": "Cắt đứt cự ly hẳn. Đắt thể lực, và mất thế trận."
+    },
+
+    {
+      "id": "chem-ngang",
+      "name": "Chém ngang",
+      "category": "tan-cong",
+      "tags": ["tan-cong", "chem", "chem-ngang"],
+      "speed": "vua",
+      "stamina": 7,
+      "skill": "$weapon",
+      "requiresWeaponTag": ["chem"],
+      "reach": "$weapon",
+      "difficulty": "thuong",
+      "aimBias": { "than": 2, "tay-trai": 1.6, "tay-phai": 1.6 },
+      "note": "Đường ngang vào sườn. Đòn dễ đọc nhất, nên cũng dễ né nhất."
+    },
+    {
+      "id": "chem-cheo",
+      "name": "Chém chéo",
+      "category": "tan-cong",
+      "tags": ["tan-cong", "chem"],
+      "speed": "vua",
+      "stamina": 7,
+      "skill": "$weapon",
+      "requiresWeaponTag": ["chem"],
+      "reach": "$weapon",
+      "difficulty": "thuong",
+      "aimBias": { "dau": 1.6, "than": 1.6, "tay-phai": 1.4 },
+      "note": "Từ vai xuống hông. Vừa đánh vừa gạt được đường kiếm địch."
+    },
+    {
+      "id": "bo-doc",
+      "name": "Bổ dọc",
+      "category": "tan-cong",
+      "tags": ["tan-cong", "chem"],
+      "speed": "cham",
+      "stamina": 10,
+      "skill": "$weapon",
+      "requiresWeaponTag": ["chem"],
+      "reach": "$weapon",
+      "difficulty": "kho",
+      "aimBias": { "dau": 4, "than": 1.2 },
+      "severityBonus": 1,
+      "note": "Dồn cả người xuống đỉnh đầu. Chậm, nhưng trúng là hỏng."
+    },
+    {
+      "id": "dam",
+      "name": "Đâm",
+      "category": "tan-cong",
+      "tags": ["tan-cong", "dam"],
+      "speed": "nhanh",
+      "stamina": 6,
+      "skill": "$weapon",
+      "requiresWeaponTag": ["dam"],
+      "reach": "$weapon",
+      "difficulty": "thuong",
+      "aimBias": { "than": 2.5, "dau": 1.2 },
+      "note": "Đường ngắn nhất giữa hai điểm, nên nhanh hơn mọi đường chém."
+    },
+    {
+      "id": "dap",
+      "name": "Đập",
+      "category": "tan-cong",
+      "tags": ["tan-cong", "dap"],
+      "speed": "cham",
+      "stamina": 9,
+      "skill": "$weapon",
+      "requiresWeaponTag": ["dap"],
+      "reach": "$weapon",
+      "difficulty": "thuong",
+      "aimBias": { "dau": 2, "than": 2 },
+      "note": "Không cần cắt qua thứ gì. Đây là câu trả lời của thế kỷ 14 cho giáp tấm."
+    },
+    {
+      "id": "chat-chan",
+      "name": "Chặt chân",
+      "category": "tan-cong",
+      "tags": ["tan-cong", "chem", "chat-chan"],
+      "speed": "vua",
+      "stamina": 8,
+      "skill": "$weapon",
+      "requiresWeaponTag": ["chem"],
+      "reach": "$weapon",
+      "difficulty": "kho",
+      "aimBias": { "chan-trai": 6, "chan-phai": 6 },
+      "note": "Cúi xuống thì hở đầu. Nhưng một cái chân hỏng là hết chạy."
+    },
+
+    {
+      "id": "do-cung",
+      "name": "Đỡ cứng",
+      "category": "phong-thu",
+      "tags": ["phong-thu", "do-cung"],
+      "speed": "nhanh",
+      "stamina": 5,
+      "skill": "$weapon",
+      "difficulty": "thuong",
+      "note": "Chặn thẳng bằng thân vũ khí. Chắc trước đường chém, vô dụng trước mũi đâm."
+    },
+    {
+      "id": "gat-huong",
+      "name": "Gạt hướng",
+      "category": "phong-thu",
+      "tags": ["phong-thu", "gat"],
+      "speed": "nhanh",
+      "stamina": 4,
+      "skill": "$weapon",
+      "difficulty": "thuong",
+      "tempoBonus": 1,
+      "note": "Đưa đòn địch đi lệch thay vì chặn đứng. Tốn ít sức và giành lại được nhịp."
+    },
+    {
+      "id": "ne-sang",
+      "name": "Né sang",
+      "category": "phong-thu",
+      "tags": ["phong-thu", "ne"],
+      "speed": "nhanh",
+      "stamina": 5,
+      "skill": "",
+      "domain": "combat.ne-tranh",
+      "difficulty": "thuong",
+      "move": { "strafe": 1, "faceEnemy": true },
+      "note": "Bước hẳn ra khỏi đường đòn. Ăn đứt trước đường chém ngang, hụt trước mũi đâm."
+    },
+    {
+      "id": "lui-tranh",
+      "name": "Lùi tránh",
+      "category": "phong-thu",
+      "tags": ["phong-thu", "lui"],
+      "speed": "nhanh",
+      "stamina": 4,
+      "skill": "",
+      "domain": "combat.ne-tranh",
+      "difficulty": "thuong",
+      "move": { "forward": -1, "faceEnemy": true }
+    },
+    {
+      "id": "nup-khien",
+      "name": "Núp khiên",
+      "category": "phong-thu",
+      "tags": ["phong-thu", "do-cung", "khien"],
+      "speed": "nhanh",
+      "stamina": 4,
+      "skill": "$shield",
+      "requiresShield": true,
+      "difficulty": "thuong",
+      "note": "Thu cả người vào sau vành khiên. Không giành được gì, nhưng cũng không mất gì."
+    },
+
+    {
+      "id": "doi-the",
+      "name": "Đổi thế",
+      "category": "the",
+      "tags": [],
+      "speed": "nhanh",
+      "stamina": 2,
+      "note": "Chuyển sang một thế đã mở ở Phần 8. Không đánh ai trong hiệp này — đổi lại, hiệu ứng của thế bật lên từ hiệp sau. Engine nở ra một nút riêng cho mỗi thế đã mở, nên bảng này chỉ khai khuôn."
+    },
+    {
+      "id": "gia-don",
+      "name": "Giả đòn",
+      "category": "dac-biet",
+      "tags": ["tan-cong", "gia-don"],
+      "speed": "nhanh",
+      "stamina": 5,
+      "skill": "$weapon",
+      "reach": "$weapon",
+      "difficulty": "thuong",
+      "noInjury": true,
+      "tempoBonus": 2,
+      "note": "Không nhằm trúng ai. Nhằm khiến đối thủ đỡ vào chỗ trống rồi hở ra chỗ khác."
+    },
+    {
+      "id": "tuoc-vu-khi",
+      "name": "Tước vũ khí",
+      "category": "dac-biet",
+      "tags": ["tan-cong", "tuoc-vu-khi", "giap-la-ca"],
+      "speed": "vua",
+      "stamina": 8,
+      "skill": "$weapon",
+      "reach": { "min": 0, "max": 1 },
+      "difficulty": "rat-kho",
+      "noInjury": true,
+      "disarm": true,
+      "note": "Đối thủ mất vũ khí là điều kiện kết thúc của phần lớn các loại quyết đấu."
+    },
+    {
+      "id": "vat-lon",
+      "name": "Vật lộn",
+      "category": "dac-biet",
+      "tags": ["tan-cong", "vat-lon", "giap-la-ca"],
+      "speed": "vua",
+      "stamina": 10,
+      "skill": "skill_tay-khong",
+      "reach": { "min": 0, "max": 1 },
+      "difficulty": "kho",
+      "knockdown": true,
+      "aimBias": { "dau": 1.5, "than": 2 },
+      "note": "Quật, khóa, đè. Kết thúc phần lớn trận đánh thật — và bộ giáp càng nặng càng dễ ngã."
+    },
+    {
+      "id": "huc-khien",
+      "name": "Húc khiên",
+      "category": "dac-biet",
+      "tags": ["tan-cong", "dap", "khien", "giap-la-ca"],
+      "speed": "vua",
+      "stamina": 7,
+      "skill": "$shield",
+      "requiresShield": true,
+      "reach": { "min": 0, "max": 1 },
+      "difficulty": "thuong",
+      "knockdown": true,
+      "aimBias": { "dau": 1.5, "than": 3 },
+      "note": "Vành khiên vào mặt. Không đẹp, nhưng người ta viết cả một chương về nó."
+    },
+    {
+      "id": "hat-cat",
+      "name": "Hất cát",
+      "category": "dac-biet",
+      "tags": ["tan-cong", "ban-thiu"],
+      "speed": "nhanh",
+      "stamina": 3,
+      "skill": "",
+      "domain": "combat.duel",
+      "reach": { "min": 0, "max": 2 },
+      "difficulty": "kho",
+      "noInjury": true,
+      "blinds": 2,
+      "dishonourable": true,
+      "note": "Một nắm đất. Danh dự mất sạch, nhưng hai hiệp tới đối thủ không thấy đường."
+    },
+    {
+      "id": "keu-hang",
+      "name": "Kêu hàng",
+      "category": "dac-biet",
+      "tags": [],
+      "speed": "nhanh",
+      "stamina": 0,
+      "yields": true,
+      "note": "Ném vũ khí xuống. Ở đấu sinh tử và phục kích thì câu này không có ai nghe."
+    }
+  ],
+
+  "$matrixComment": "MA TRẬN TƯƠNG KHẮC (mục 5). Đọc: 'bên có nhãn `when` gặp bên có nhãn `against` thì bên ấy được `self`, bên kia được `other`'. Số theo thang d100, dương là dễ hơn. Bảng tra hai chiều: một dòng khai một chiều, engine tự tra cả hai bên. Chín dòng đầu là nguyên văn mục 5; những dòng sau là phần mở rộng cho các hành động mà mục 5 liệt kê ở mục 4 nhưng không kịp khai số — chúng đứng cùng một chỗ để người cân bằng sửa mà không phải build lại.",
+  "matrix": [
+    { "when": "dam", "against": "chem", "self": 4, "other": 0, "note": "Đâm nhanh hơn chém." },
+    {
+      "when": "chem",
+      "against": "do-cung",
+      "self": -3,
+      "other": 0,
+      "effects": { "otherStamina": 4 },
+      "note": "Chém vào đòn đỡ cứng thì bị chặn, nhưng người đỡ phải chịu cả lực."
+    },
+    { "when": "do-cung", "against": "dam", "self": -4, "other": 0, "note": "Mũi đâm luồn qua đòn đỡ." },
+    { "when": "ne", "against": "chem-ngang", "self": 5, "other": 0, "note": "Đường ngang là đường dễ bước ra khỏi nhất." },
+    { "when": "ne", "against": "dam", "self": -2, "other": 0, "note": "Mũi đâm đuổi theo được." },
+    {
+      "when": "gia-don",
+      "against": "do-cung",
+      "self": 6,
+      "other": 0,
+      "effects": { "selfTempo": 1 },
+      "note": "Giả đòn ăn trọn một đòn đỡ vào chỗ trống, và giành luôn thế trận."
+    },
+    {
+      "when": "gia-don",
+      "against": "ne",
+      "self": 6,
+      "other": 0,
+      "effects": { "selfTempo": 1 },
+      "note": "Né một đòn không có thật là tự bước ra khỏi thế của mình."
+    },
+    { "when": "gia-don", "against": "tan-cong", "self": -5, "other": 0, "note": "Giả đòn gặp đòn thật thì bị đánh phủ đầu." },
+    { "when": "vat-lon", "against": "gia-don", "self": 5, "other": 0, "note": "Đang giả đòn thì không có gì cản người ta ôm vào." },
+    { "when": "vat-lon", "against": "dam", "self": -6, "other": 0, "note": "Lao vào một mũi nhọn." },
+    {
+      "when": "lui",
+      "against": "tan-cong",
+      "self": 0,
+      "other": 0,
+      "effects": { "incomingSeverity": -1, "selfTempo": -1 },
+      "note": "Bước lùi làm đòn tới hụt lực, nhưng ai lùi là người mất thế."
+    },
+
+    { "when": "dap", "against": "do-cung", "self": 3, "other": 0, "effects": { "otherStamina": 5 }, "note": "Đỡ một cây chùy bằng thanh kiếm là một ý tồi." },
+    { "when": "dap", "against": "khien", "self": -2, "other": 0, "effects": { "otherStamina": 4 } },
+    { "when": "gat", "against": "chem", "self": 3, "other": 0, "note": "Đưa lưỡi đi lệch rẻ hơn nhiều so với chặn đứng." },
+    { "when": "gat", "against": "dap", "self": -4, "other": 0, "note": "Không gạt lệch được thứ nặng như thế." },
+    { "when": "khien", "against": "chem", "self": 6, "other": 0 },
+    { "when": "khien", "against": "dam", "self": 2, "other": 0 },
+    { "when": "chat-chan", "against": "lui", "self": -4, "other": 0, "note": "Chân vừa lùi ra khỏi tầm." },
+    { "when": "chat-chan", "against": "do-cung", "self": 3, "other": 0, "note": "Đỡ ở trên thì hở ở dưới." },
+    { "when": "tuoc-vu-khi", "against": "vat-lon", "self": -4, "other": 0 },
+    { "when": "tuoc-vu-khi", "against": "do-cung", "self": 5, "other": 0, "note": "Hai lưỡi đã dính vào nhau thì có chỗ mà xoắn." },
+    { "when": "vat-lon", "against": "do-cung", "self": 4, "other": 0 },
+    { "when": "ban-thiu", "against": "phong-thu", "self": 4, "other": 0, "note": "Người đang giơ vũ khí lên đỡ thì không che được mắt." },
+    { "when": "di-chuyen", "against": "tan-cong", "self": -8, "other": 0, "note": "Đang bước thì không chống đỡ được gì cả." }
+  ]
+}

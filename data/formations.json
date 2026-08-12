@@ -1,0 +1,77 @@
+{
+  "$comment": "ĐỘI HÌNH — Phần 10 mục 6. Năm đội hình của mục 6, không hơn không kém. Số điều chỉnh theo thang d100, dương là lợi; `rangedVulnerability` là HỆ SỐ NHÂN vào thương vong do tên đạn, không phải một mức cộng.",
+  "version": 1,
+
+  "formations": [
+    {
+      "id": "hang-ngang",
+      "name": "Hàng ngang",
+      "frontage": 2,
+      "attack": 6,
+      "defence": -6,
+      "vsCavalry": -12,
+      "rangedVulnerability": 0.75,
+      "moveBonus": 0,
+      "note": "Mặt trận rộng, mỏng, dễ bị chọc thủng (mục 6). Đánh được nhiều đơn vị cùng lúc."
+    },
+    {
+      "id": "khoi-sau",
+      "name": "Khối sâu",
+      "frontage": 1,
+      "attack": 10,
+      "defence": 12,
+      "push": 12,
+      "vsCavalry": 6,
+      "rangedVulnerability": 1.7,
+      "cohesionKeep": 6,
+      "note": "Bền, đẩy mạnh, NHƯNG là mồi ngon cho cung thủ (mục 6). Đây là vế thứ hai của vòng khắc chế ở mục 7."
+    },
+    {
+      "id": "nem",
+      "name": "Nêm",
+      "requiresTag": "ky-binh",
+      "frontage": 1,
+      "attack": 18,
+      "charge": 22,
+      "defence": -8,
+      "vsCavalry": 0,
+      "rangedVulnerability": 1.1,
+      "cohesionAfterContact": 25,
+      "moveBonus": 1,
+      "note": "Chỉ kỵ binh. Xuyên phá tốt, mất đội hình ngay sau khi chạm (mục 6)."
+    },
+    {
+      "id": "vong-giao",
+      "name": "Vòng giáo",
+      "requiresTag": "giao-dai",
+      "frontage": 1,
+      "attack": -10,
+      "defence": 16,
+      "vsCavalry": 45,
+      "rangedVulnerability": 1.55,
+      "immobile": true,
+      "note": "Khắc kỵ binh gần như tuyệt đối, nhưng đứng im và chết vì tên (mục 6). Vế thứ nhất của vòng khắc chế."
+    },
+    {
+      "id": "tan-mat",
+      "name": "Tản mát",
+      "frontage": 3,
+      "attack": -22,
+      "defence": -18,
+      "vsCavalry": -25,
+      "rangedVulnerability": 0.3,
+      "moveBonus": 1,
+      "cohesionKeep": 3,
+      "note": "Né tên tốt, đánh gần rất yếu, di chuyển nhanh (mục 6)."
+    }
+  ],
+
+  "change": {
+    "$comment": "Mục 6: 'Đổi đội hình tốn thời gian và làm giảm cohesion tạm thời. Đổi đội hình khi địch đang áp sát là một quyết định rất mạo hiểm.'",
+    "cohesionCost": 14,
+    "nearEnemyExtraCost": 18,
+    "nearEnemyMeters": 120,
+    "staminaCost": 5,
+    "endsTurn": true
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "kind": "eu1444-lorebook",
+  "schemaVersion": 1,
+  "exportedAt": 0,
+  "$huong-dan": "KHUNG MẪU — mỗi entry dưới đây là một ví dụ ĐẦY ĐỦ cho một loại, kèm ghi chú ở trường $ghi-chu. Copy entry gần giống nhất rồi sửa. Trường bắt đầu bằng $ bị bỏ qua khi nạp, viết ghi chú thoải mái. Đọc HUONG-DAN-VIET-LOREBOOK.md trước.",
+  "books": [
+    {
+      "id": "book-khung-mau",
+      "name": "KHUNG MẪU — xóa sau khi đã copy xong",
+      "version": 1,
+      "scope": { "kind": "topic" },
+      "enabled": false,
+      "autoScope": false,
+      "priority": 0,
+      "$ghi-chu": "enabled=false nên sách này không bao giờ vào prompt. Đây là kho ví dụ, không phải nội dung.",
+      "entries": [
+        {
+          "$ghi-chu": "PLACE — địa danh. Chú ý: regions khai ở cấp TỈNH thì mọi thành trì trong tỉnh đều thấy; khai ở cấp thành trì thì chỉ đúng chỗ đó.",
+          "id": "hold_vi-du",
+          "title": "Thành Ví Dụ",
+          "type": "place",
+          "content": "Thành ngồi trên mỏm đá nhìn xuống khúc sông cạn. Tường gỗ và đất, cổng nam mở ra chợ phiên. Mùi cá khô từ bến át cả mùi khói bếp. Người trong thành gọi lãnh chúa là \"ông chủ cũ\" vì ông ít khi về.",
+          "summary": "Thành nhỏ trên mỏm đá, tường gỗ và đất, sống bằng chợ phiên và bến sông.",
+          "keys": ["Ví Dụ", "thành Ví Dụ"],
+          "matchMode": "plain",
+          "regions": ["prov_swabia"],
+          "knowledge": "public",
+          "weight": 12,
+          "budgetPriority": 7,
+          "related": [{ "id": "npc_vi-du", "pullWeight": 0.8 }]
+        },
+        {
+          "$ghi-chu": "PERSON — nhân vật. Viết cái người đó MUỐN và SỢ, đừng viết tiểu sử. Bí mật của họ tách ra entry riêng ở dưới.",
+          "id": "npc_vi-du",
+          "title": "Bá tước Ví Dụ",
+          "type": "person",
+          "content": "Cai trị từ năm 1437, tính keo và hay kiện. Ông muốn một vụ kiện ranh giới rừng kết thúc có lợi cho mình, và sợ nhất là bị Hoàng đế gọi ra hội đồng. Khi nói chuyện ông có thói quen xoay chiếc nhẫn ấn triện.",
+          "keys": ["Ví Dụ", "bá tước Ví Dụ"],
+          "regions": ["prov_swabia"],
+          "knowledge": "public",
+          "weight": 12,
+          "recurse": true,
+          "$ghi-chu-recurse": "recurse=true vì nội dung có nhắc 'vụ kiện ranh giới rừng' — vòng đệ quy sẽ kéo entry law_* vào theo."
+        },
+        {
+          "$ghi-chu": "PERSON, phần GATED — chỉ mở khi nhân vật đã có tri thức fact_*. Tri thức được cấp bằng trigger hoặc bằng patch của AI.",
+          "id": "npc_vi-du-am-muu",
+          "title": "Bá tước Ví Dụ tính phản",
+          "type": "person",
+          "content": "Ông đã gửi thư cho sứ giả ngoại bang hai lần trong mùa đông. Nếu chuyện lộ ra, đó là tội phản nghịch.",
+          "keys": ["âm mưu", "phản nghịch", "sứ giả ngoại bang"],
+          "regions": ["prov_swabia"],
+          "knowledge": "gated",
+          "requiresKnowledge": ["fact_thu-cua-vi-du"],
+          "weight": 14
+        },
+        {
+          "$ghi-chu": "PERSON, phần SECRET — KHÔNG BAO GIỜ vào prompt chính. Chỉ mô phỏng ngầm (Phần 15) thấy, để NPC hành động đúng động cơ thật.",
+          "id": "npc_vi-du-dong-co-that",
+          "title": "Lý do thật ông không chịu chia rừng",
+          "type": "person",
+          "content": "Dưới sườn bắc khu rừng có một mạch sắt lộ thiên chưa ai khai. Ông biết, và đó mới là lý do ông kiện tới cùng.",
+          "keys": ["mỏ sắt", "mạch sắt"],
+          "regions": ["prov_swabia"],
+          "knowledge": "secret",
+          "weight": 15
+        },
+        {
+          "$ghi-chu": "FACTION — phe phái. Loại này hợp variants nhất: mỗi phe nói về phe kia một kiểu.",
+          "id": "fief_phuong-det-vi-du",
+          "title": "Phường thợ dệt",
+          "type": "faction",
+          "content": "Phường giữ độc quyền nhuộm trong thành và không cho người ngoài mở khung cửi. Ai phá lệ thì hàng bị đốt giữa chợ.",
+          "variants": [
+            {
+              "audience": "nation_thanh-bang-latin",
+              "content": "Phường dệt là mẫu mực của trật tự thương mại — thành bang nào cũng nên có."
+            },
+            {
+              "audience": "nation_hre",
+              "content": "Phường dệt là một ổ tự trị không chịu nộp nghĩa vụ cho ai. Sớm muộn phải dẹp."
+            }
+          ],
+          "keys": ["thợ dệt", "phường dệt", "khung cửi"],
+          "knowledge": "public",
+          "weight": 10
+        },
+        {
+          "$ghi-chu": "CONCEPT + CONSTANT — khái niệm nền, luôn chèn. Giữ NGẮN và luôn có summary, vì nó tốn ngân sách mỗi lượt.",
+          "id": "law_giao-hoi",
+          "title": "Giáo hội trong đời thường",
+          "type": "concept",
+          "content": "Lịch làm ăn chạy theo ngày lễ. Hôn nhân và di chúc đều cần cha xứ. Một sắc chỉ từ Rome đảo lộn được một tỉnh trong một mùa. Người thường sợ vạ tuyệt thông hơn sợ lính.",
+          "summary": "Giáo hội chi phối lịch, hôn nhân, di chúc. Vạ tuyệt thông đáng sợ hơn lính.",
+          "keys": [],
+          "constant": true,
+          "knowledge": "public",
+          "weight": 10,
+          "budgetPriority": 8
+        },
+        {
+          "$ghi-chu": "LAW — luật, hiệp ước. Phần đáng giá nhất là vế 'ai lách được và lách bằng cách nào'.",
+          "id": "law_cam-tu-chien",
+          "title": "Lệnh cấm tư chiến",
+          "type": "law",
+          "content": "Hai quý tộc gây chiến với nhau mà chưa qua tòa của lãnh chúa cấp trên là phạm lệnh, bị phạt tiền và có thể bị tước quyền săn. Nhưng lệnh chỉ áp cho quý tộc: thuê một toán lính đánh thuê \"đi tuần\" ngang qua đất đối phương thì không ai gọi được là tư chiến.",
+          "summary": "Cấm quý tộc tự gây chiến; lách bằng cách thuê lính đánh thuê đi tuần.",
+          "keys": ["tư chiến", "cấm tư chiến"],
+          "validFrom": { "year": 1440, "month": 1, "day": 1, "hour": 0 },
+          "regions": ["realm_hre"],
+          "knowledge": "public",
+          "weight": 10
+        },
+        {
+          "$ghi-chu": "EVENT — sự kiện, có validFrom và trigger. onDateReached bắn đúng một lần khi lịch đi tới ngày.",
+          "id": "event_dich-hach",
+          "title": "Dịch hạch quay lại",
+          "type": "event",
+          "content": "Tin từ các cảng phía nam: bệnh dịch lại bùng lên. Thành nào cũng bắt đầu đóng cổng với người lạ, và thầy thuốc bảo nhau đốt hương ngải.",
+          "summary": "Dịch bệnh bùng lại từ các cảng phía nam; các thành đóng cổng với người lạ.",
+          "keys": ["dịch", "dịch hạch", "bệnh dịch"],
+          "validFrom": { "year": 1444, "month": 6, "day": 1, "hour": 0 },
+          "knowledge": "public",
+          "weight": 12,
+          "triggers": [
+            {
+              "when": "onDateReached",
+              "emit": {
+                "event": "lore.notify",
+                "payload": { "title": "Dịch hạch", "body": "Tin dịch bệnh đã lan tới vùng này." }
+              }
+            }
+          ],
+          "triggerOnce": true
+        },
+        {
+          "$ghi-chu": "EVENT — tin đồn, trigger cấp tri thức. confidence thấp nghĩa là nhân vật mới chỉ NGHE, chưa chắc; entry gated dựa vào nó sẽ chèn kèm ghi chú dè dặt.",
+          "id": "event_tin-don-vi-du",
+          "title": "Tin đồn ngoài chợ",
+          "type": "event",
+          "content": "Ngoài chợ người ta rỉ tai nhau về một lá thư gửi đi trong mùa đông. Chưa ai thấy nó, nhưng chuyện đã tới tai ba người bán hàng.",
+          "keys": ["lá thư", "thư gửi đi"],
+          "regions": ["prov_swabia"],
+          "knowledge": "public",
+          "weight": 9,
+          "triggers": [
+            {
+              "when": "onFirstActivate",
+              "emit": {
+                "event": "lore.knowledge.gain",
+                "payload": { "id": "fact_thu-cua-vi-du", "source": "nghe lỏm ngoài chợ", "confidence": 35 }
+              }
+            }
+          ],
+          "triggerOnce": true
+        },
+        {
+          "$ghi-chu": "CREATURE — sinh vật. Viết dấu hiệu nhận ra TRƯỚC khi thấy mặt, và điều người ta tin SAI về nó.",
+          "id": "npc_soi-rung-vi-du",
+          "title": "Bầy sói rừng Ehr",
+          "type": "creature",
+          "content": "Biết chúng tới trước khi thấy: chim ngừng hót, rồi chó trong làng rúc vào gầm nhà. Dân treo chuông đồng ở cửa chuồng. Người ta bảo sói sợ lửa — không đúng, chúng chỉ sợ đông người.",
+          "keys": ["sói", "bầy sói"],
+          "regions": ["prov_swabia"],
+          "includeAdjacent": true,
+          "knowledge": "public",
+          "weight": 8,
+          "probability": 70,
+          "cooldown": 3
+        },
+        {
+          "$ghi-chu": "ITEM — chỉ viết cho vật phẩm CÓ TÊN RIÊNG và có chuyện. Vật phẩm thường thuộc data của Phần 16.",
+          "id": "item_nhan-an-vi-du",
+          "title": "Chiếc nhẫn ấn triện của nhà Ví Dụ",
+          "type": "item",
+          "content": "Vàng đã mòn, mặt khắc hình đầu sói. Mọi văn bản của gia tộc đều đóng dấu bằng nó. Ai cầm được nó thì làm giả được một tờ giấy đủ để lấy một thái ấp.",
+          "keys": ["nhẫn ấn triện", "ấn triện nhà Ví Dụ"],
+          "knowledge": "public",
+          "weight": 11
+        },
+        {
+          "$ghi-chu": "CONCEPT chèn theo ĐỘ SÂU — vào thẳng cuối prompt thay vì gộp vào khối 4. Dùng cho nhắc nhở luật chơi mà AI hay quên.",
+          "id": "law_vay-thanh",
+          "title": "Vây thành trông thế nào",
+          "type": "concept",
+          "content": "Không ai tổng công ngay. Vây thành là ngồi ngoài tường chờ kho lương trong thành cạn, trong lúc quân vây tự chết dần vì bệnh và vì đói.",
+          "keys": ["vây", "vây hãm", "công thành"],
+          "knowledge": "public",
+          "placement": { "depth": 2 },
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8
+        },
+        {
+          "$ghi-chu": "CUSTOM có EJS — nội dung đổi theo state. Phần lớn entry KHÔNG cần EJS; chỉ dùng khi thật sự phải đổi.",
+          "id": "event_cho-phien-vi-du",
+          "title": "Chợ phiên",
+          "type": "custom",
+          "content": "Chợ họp ngoài cổng nam vào ngày thứ ba hằng tuần. Muối, sắt, len, và tin tức — thứ cuối cùng rẻ nhất và lan nhanh nhất.\n<% if (q.rumors().length > 0) { %>Chuyện đang được bàn nhiều nhất: <%= q.rumors()[q.rumors().length - 1] %>.<% } %>",
+          "keys": ["chợ", "chợ phiên"],
+          "regions": ["prov_swabia"],
+          "includeAdjacent": true,
+          "knowledge": "public",
+          "weight": 8,
+          "sticky": 2,
+          "$ghi-chu-sticky": "sticky=2: sau khi thôi khớp từ khóa, entry còn được chèn thêm 2 lượt — cảnh chợ không biến mất ngay khi người chơi ngừng nói chữ 'chợ'."
+        }
+      ]
+    }
+  ]
+}

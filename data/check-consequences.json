@@ -1,0 +1,96 @@
+{
+  "$comment": "Bảng hệ quả của Phần 5 mục 5 và 12.5. Engine chọn bằng seeded RNG, AI KHÔNG được bịa ra cái khác. Ba cột: cost cho costlySuccess, boon cho critSuccess, escalation cho critFail. LUẬT CỨNG của mục 5: không dòng escalation nào được gây chết ngay hoặc mất trắng thành trì — chúng chỉ được leo thang tình huống, vì game không có reroll và người chơi phải luôn thấy mình còn cửa xoay xở. Có bài test gác luật này. Tra theo miền: khớp nguyên văn trước, rồi tới mẫu `x.*`, cuối cùng là `*`.",
+  "version": 1,
+  "domains": {
+    "*": {
+      "cost": [
+        "Mất thêm nửa buổi so với dự tính, và đã có người kịp trông thấy.",
+        "Một món đồ đang dùng hỏng mất — còn xài được, nhưng không còn tin cậy.",
+        "Phải nhờ vả một người, và người đó ghi nợ chứ không cho không.",
+        "Việc xong nhưng để lại dấu vết: ai đi qua sau cũng đọc ra vừa có người làm gì ở đây."
+      ],
+      "boon": [
+        "Xong sớm hơn tính, còn dư thời gian cho một việc nhỏ nữa.",
+        "Có người chứng kiến và kể lại — tiếng tăm đi trước ngài một bước.",
+        "Trong lúc làm, ngài nhặt được một mẩu tin không định tìm."
+      ],
+      "escalation": [
+        "Có người trông thấy đúng lúc hỏng, và họ không giữ mồm.",
+        "Hỏng việc kéo theo hỏng đồ: thứ đang dùng gãy, phải sửa hoặc thay trước khi làm lại.",
+        "Tiếng động khiến người khác chú ý — chỗ này sắp không còn yên."
+      ]
+    },
+    "skill.*": {
+      "cost": [
+        "Cơ bắp căng quá sức: một vết rách nhỏ, chưa cản việc nhưng đau suốt mấy ngày.",
+        "Phải làm ẩu cho kịp — dùng được, nhưng ai có nghề nhìn là biết.",
+        "Hết sạch vật liệu dự trữ mang theo.",
+        "Mất gấp đôi thời gian, trời đã sang canh khác."
+      ],
+      "boon": [
+        "Tay nghề lên một nấc: lần sau việc này bớt khó.",
+        "Làm gọn tới mức người đứng xem phải hỏi ngài học nghề ở đâu.",
+        "Còn dư vật liệu, đủ cho một lần nữa."
+      ],
+      "escalation": [
+        "Dụng cụ gãy giữa chừng, phải kiếm cái khác trước khi làm lại.",
+        "Vụng tay tự làm mình bị thương — vết nhẹ, nhưng ở đúng chỗ vướng nhất.",
+        "Người quanh đó thấy ngài làm hỏng, và họ sẽ nhớ mặt."
+      ]
+    },
+    "combat.*": {
+      "cost": [
+        "Đòn trúng nhưng ngài hở sườn: một cú phản đau, chưa gãy gì.",
+        "Thắng thế nhưng mất chỗ đứng, phải lùi về chỗ đất xấu hơn.",
+        "Lưỡi vũ khí mẻ một đoạn — còn dùng được, nhưng không còn ăn giáp như trước.",
+        "Thở dốc: hơi sức tụt hẳn cho những nhịp sau."
+      ],
+      "boon": [
+        "Đòn sạch tới mức đối thủ chững lại, ngài chiếm hẳn thế chủ động.",
+        "Địch quanh đó trông thấy cảnh này và chùn tay.",
+        "Ngài đọc ra thói quen của đối thủ: nhịp sau dễ hơn hẳn."
+      ],
+      "escalation": [
+        "Mất thăng bằng, ngã một nhịp — đối thủ có nguyên một đòn không phải trả giá.",
+        "Vũ khí văng khỏi tay, còn trong tầm nhưng phải cúi xuống nhặt.",
+        "Hàng ngũ quanh ngài thấy ngài loạng choạng, và sĩ khí tụt theo."
+      ]
+    },
+    "admin.*": {
+      "cost": [
+        "Việc trôi, nhưng phải hứa nhượng một khoản thu trong hai năm.",
+        "Xong nhờ vay mượn: kho hụt đi một khoản không nhỏ.",
+        "Phải bổ thêm sưu dịch, và dân trong vùng nhớ rất dai chuyện đó.",
+        "Chậm mất một mùa — mọi kế hoạch sau phải dồn lại."
+      ],
+      "boon": [
+        "Rẻ hơn dự toán, phần dư đủ để khởi động một việc khác.",
+        "Sổ sách gọn tới mức người kế nhiệm cũng đọc được — uy tín ngài lên theo.",
+        "Một chức dịch có năng lực để mắt tới ngài và xin theo hầu."
+      ],
+      "escalation": [
+        "Sổ sách rối tới mức phải làm lại từ đầu, và trong lúc đó có kẻ tranh thủ bớt xén.",
+        "Lệnh ban ra bị hiểu ngược, người thi hành làm sai gần hết.",
+        "Tin đồn ngài quản không nổi lan tới tai kẻ đang muốn thay ngài."
+      ]
+    },
+    "social.*": {
+      "cost": [
+        "Ông ta đồng ý, nhưng đòi quyền thu thuế một làng trong hai năm.",
+        "Được việc, đổi lại ngài mắc một ân huệ chưa biết bao giờ bị đòi.",
+        "Phải nói ra một điều đáng lẽ giữ kín.",
+        "Người thứ ba trong phòng nghe được, và hiểu đúng ý ngài đang toan tính."
+      ],
+      "boon": [
+        "Không những thuận, ông ta còn giới thiệu ngài với một người nữa.",
+        "Câu chuyện được kể lại đúng ý ngài — danh tiếng đi xa hơn dự tính.",
+        "Ngài nhận ra ông ta đang giấu chuyện gì, mà ông ta không biết là ngài nhận ra."
+      ],
+      "escalation": [
+        "Câu nói hớ bị nhắc lại nguyên văn, và nó đến tai đúng người ngài không muốn.",
+        "Ông ta thấy ngài đang cần, và từ giờ mọi giá đều đội lên.",
+        "Một người vốn trung lập nay đứng hẳn về phía đối thủ của ngài."
+      ]
+    }
+  }
+}

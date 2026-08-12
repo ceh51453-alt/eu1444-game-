@@ -1,0 +1,213 @@
+{
+  "$comment": "ĐÀM PHÁN VÀ ĐIỀU KHOẢN ĐẦU HÀNG — Phần 11 mục 5. Đây là cách phần lớn thành trì đổi chủ ở thế kỷ 14, nên bảng này quan trọng ngang bảng máy công thành. Điều khoản trung tâm là ĐẦU HÀNG CÓ ĐIỀU KIỆN: 'nếu đến ngày X mà không có quân cứu viện, chúng tôi mở cổng' — một KHẾ ƯỚC ghi vào state, ràng buộc CẢ HAI bên.",
+  "version": 1,
+
+  "config": {
+    "checkId": "siege.dam-phan",
+    "domain": "siege.dam-phan",
+    "$systemComment": "d100 theo Phần 5 mục 2: đàm phán là KỸ NĂNG CÁ NHÂN của người ngồi ở bàn, không phải năng lực dài hạn của một bộ máy. Kỹ năng dùng làm nền khai ở `skills`, và người gọi chọn hùng biện hay mưu mô.",
+    "skills": ["skill_hung-bien", "skill_muu-do"],
+    "defaultSkill": "skill_hung-bien",
+    "baseWithoutSkill": 30,
+    "band": "thuong",
+    "refusalCooldownWeeks": 2,
+
+    "$modifierComment": "Tương quan lực lượng, lương thực còn lại, uy tín, và tin tức về quân cứu viện — đúng bốn vế mục 5 kể tên. Mọi con số theo thang d100, DƯƠNG LÀ DỄ HƠN cho bên đang đề nghị.",
+    "modifiers": {
+      "forceRatioPer": 12,
+      "forceRatioCap": 30,
+      "foodWeeksFull": 12,
+      "foodWeeksBonus": 26,
+      "foodWeeksEmpty": 3,
+      "foodEmptyPenalty": -30,
+      "wallBreached": 22,
+      "layerLost": 16,
+      "reliefExpected": -28,
+      "reliefCrushed": 24,
+      "weeksBesiegedPer4": 5,
+      "weeksBesiegedCap": 20,
+      "$crueltyComment": "TIẾNG TÀN BẠO CỦA MỤC 7 QUAY LẠI ĐÚNG Ở ĐÂY. Một chỉ huy đã cướp phá một thành rồi thì thành sau không tin lời hứa của ông ta nữa — không phải vì họ ghét ông ta, mà vì họ đã biết cái giá của việc mở cổng.",
+      "crueltyPer10": -9,
+      "crueltyFloor": -45,
+      "mercyPer10": 7,
+      "mercyCap": 28,
+      "churchCondemned": -12,
+      "noQuarterDeclared": -35,
+      "starvingGarrison": 18,
+      "plagueInside": 14
+    },
+
+    "$contractComment": "KHẾ ƯỚC ĐẦU HÀNG CÓ ĐIỀU KIỆN. Phá ước thì mất danh dự nghiêm trọng và bị Giáo hội xét — cả hai chiều, kể cả khi chính bên vây phá.",
+    "contract": {
+      "defaultDeadlineWeeks": 4,
+      "minDeadlineWeeks": 1,
+      "maxDeadlineWeeks": 12,
+      "$duringComment": "Trong lúc khế ước còn hiệu lực, không bên nào được bắn phá, đào hầm hay đột kích. Thời gian trôi và cả hai cùng nhìn về phía chân trời.",
+      "freezesHostilities": true,
+      "reliefArrivesVoids": true,
+      "breakHonor": -45,
+      "breakChurch": -30,
+      "breakCruelty": 20,
+      "keepHonor": 12,
+      "keepMercy": 8
+    }
+  },
+
+  "$termsComment": "`ask` là bên ĐƯA RA yêu cầu; `weight` là cái giá nó đặt lên bàn, trừ thẳng vào ngưỡng d100 của bên ấy. Bên nào đòi nhiều thì bên ấy khó được gật đầu — đó là toàn bộ cơ học của một cuộc mặc cả.",
+  "terms": [
+    {
+      "id": "term_quan-rut-mang-vu-khi",
+      "name": "Quân đồn trú rút đi, mang theo vũ khí và cờ",
+      "ask": "thu",
+      "group": "quan-don-tru",
+      "weight": 22,
+      "text": "Họ đi ra bằng cổng chính, giữa hai hàng quân vây, cờ cuốn nhưng gươm vẫn bên hông.",
+      "effects": { "garrisonFree": 1, "besiegerLoot": -120, "defenderHonor": 20, "besiegerHonor": 6, "mercy": 8 }
+    },
+    {
+      "id": "term_quan-rut-tay-khong",
+      "name": "Quân đồn trú rút đi, bỏ lại vũ khí",
+      "ask": "thu",
+      "group": "quan-don-tru",
+      "weight": 10,
+      "text": "Gươm và cung xếp thành đống trước cổng. Người thì được đi.",
+      "effects": { "garrisonFree": 1, "besiegerLoot": 80, "defenderHonor": 6, "mercy": 4 }
+    },
+    {
+      "id": "term_quan-thanh-tu-binh",
+      "name": "Quân đồn trú thành tù binh",
+      "ask": "vay",
+      "group": "quan-don-tru",
+      "weight": 20,
+      "text": "Cả đám ra ngoài rồi bị dồn vào một khoảnh đất có rào. Quý tộc thì được đòi tiền chuộc.",
+      "effects": { "garrisonPrisoner": 1, "besiegerRansom": 1, "defenderHonor": -14 }
+    },
+    {
+      "id": "term_tien-chuoc-chi-huy",
+      "name": "Tiền chuộc cho viên chỉ huy",
+      "ask": "vay",
+      "group": "chi-huy",
+      "weight": 14,
+      "text": "Con số được nói ra rất bình thản, như giá một đàn cừu.",
+      "effects": { "besiegerRansom": 1, "defenderTreasury": -450 }
+    },
+    {
+      "id": "term_con-tin",
+      "name": "Nộp con tin",
+      "ask": "vay",
+      "group": "bao-dam",
+      "weight": 12,
+      "text": "Hai đứa con trai và một người cháu, nuôi ở nhà bên kia cho tới khi nào bên này còn giữ lời.",
+      "effects": { "hostages": 3, "defenderHonor": -6, "contractBinding": 18 }
+    },
+    {
+      "id": "term_tha-thanh-pho",
+      "name": "Thành phố được tha, không cướp phá",
+      "ask": "thu",
+      "group": "so-phan-thanh",
+      "weight": 26,
+      "text": "Không một cánh cửa nào bị đạp, không một nhà kho nào bị mở. Điều khoản đắt nhất trên bàn.",
+      "effects": { "spared": 1, "besiegerLoot": -400, "besiegerMorale": -8, "mercy": 22, "church": 10 }
+    },
+    {
+      "id": "term_boi-thuong-thay-cuop-pha",
+      "name": "Nộp một khoản thay cho việc cướp phá",
+      "ask": "vay",
+      "group": "so-phan-thanh",
+      "weight": 16,
+      "text": "Thành gom bạc trong ba ngày. Quân được chia phần mà không ai phải đốt nhà ai.",
+      "effects": { "spared": 1, "besiegerLoot": 520, "defenderTreasury": -520, "besiegerMorale": 4, "mercy": 10 }
+    },
+    {
+      "id": "term_giu-tuoc-vi",
+      "name": "Lãnh chúa giữ tước vị và thái ấp",
+      "ask": "thu",
+      "group": "tuoc-vi",
+      "weight": 24,
+      "text": "Tờ giấy có ấn triện vẫn còn giá trị. Chỉ có người mà nó phải quỳ trước là đổi.",
+      "effects": { "keepsTitle": 1, "defenderHonor": 14 }
+    },
+    {
+      "id": "term_than-phuc",
+      "name": "Thần phục, giữ đất nhưng đổi chủ",
+      "ask": "vay",
+      "group": "tuoc-vi",
+      "weight": 14,
+      "text": "Quỳ, đặt hai tay vào giữa hai bàn tay người kia, và nói đủ mấy câu ấy trước mặt một giáo sĩ.",
+      "effects": { "vassalage": 1, "keepsTitle": 1, "besiegerHonor": 10, "mercy": 6 }
+    },
+    {
+      "id": "term_sap-nhap",
+      "name": "Sáp nhập thẳng vào lãnh thổ bên thắng",
+      "ask": "vay",
+      "group": "tuoc-vi",
+      "weight": 28,
+      "text": "Không còn thái ấp nào ở đây nữa. Chỉ còn một tỉnh của người khác.",
+      "effects": { "annexed": 1, "keepsTitle": 0, "defenderHonor": -20, "localHatred": 25 }
+    },
+    {
+      "id": "term_mo-cong-co-dieu-kien",
+      "name": "Mở cổng có điều kiện nếu không có cứu viện",
+      "ask": "thu",
+      "group": "khe-uoc",
+      "weight": 6,
+      "conditional": true,
+      "text": "Nếu đến ngày ấy mà không có quân cứu viện, chúng tôi mở cổng. Cả hai bên cùng ngừng tay cho tới hôm đó.",
+      "effects": { "contract": 1, "besiegerHonor": 8, "defenderHonor": 10, "church": 8 }
+    }
+  ],
+
+  "$packagesComment": "Ba gói dựng sẵn, để một cuộc đàm phán do engine cầm — hoặc một người chơi chưa quen bảng điều khoản — vẫn ra được một đề nghị hợp lý.",
+  "packages": [
+    {
+      "id": "pkg_hao-hiep",
+      "name": "Điều kiện hào hiệp",
+      "by": "vay",
+      "terms": ["term_quan-rut-mang-vu-khi", "term_tha-thanh-pho", "term_than-phuc"],
+      "note": "đắt, nhưng thành sau sẽ nghe nói về nó"
+    },
+    {
+      "id": "pkg_thong-thuong",
+      "name": "Điều kiện thông thường",
+      "by": "vay",
+      "terms": ["term_quan-rut-tay-khong", "term_boi-thuong-thay-cuop-pha", "term_con-tin", "term_than-phuc"],
+      "note": "thông lệ của thời kỳ: người được đi, của thì ở lại"
+    },
+    {
+      "id": "pkg_khac-nghiet",
+      "name": "Điều kiện khắc nghiệt",
+      "by": "vay",
+      "terms": ["term_quan-thanh-tu-binh", "term_tien-chuoc-chi-huy", "term_sap-nhap"],
+      "note": "gần như không ai nhận, trừ khi trong kia đã hết cả nước lẫn hy vọng"
+    },
+    {
+      "id": "pkg_cau-hoa",
+      "name": "Xin khất tới ngày hẹn",
+      "by": "thu",
+      "terms": ["term_mo-cong-co-dieu-kien", "term_quan-rut-mang-vu-khi", "term_tha-thanh-pho", "term_giu-tuoc-vi"],
+      "note": "cược cả cuộc vây hãm vào một đạo quân chưa chắc có thật"
+    }
+  ],
+
+  "$sackComment": "MỤC 7 — cướp phá hay tha, và hệ quả lan tới toàn cục. Luật chiến tranh thời đó: thành đầu hàng THEO ĐIỀU KIỆN thì được tha; thành bị hạ bằng TỔNG CÔNG thì bên thắng có quyền cướp phá.",
+  "sack": {
+    "lootPerPopulation": 1.8,
+    "lootFromStores": 0.55,
+    "moraleIfSacked": 18,
+    "moraleIfSpared": -14,
+    "mutinyChanceIfSpared": 30,
+    "mutinyChancePerSackPressure": 0.8,
+    "crueltyIfSacked": 34,
+    "mercyIfSpared": 26,
+    "churchIfSacked": -26,
+    "churchIfSpared": 16,
+    "reputationIfSacked": -22,
+    "reputationIfSpared": 12,
+    "localHatredIfSacked": 55,
+    "populationLossIfSacked": 0.22,
+    "$globalComment": "VÀ ĐÂY LÀ HỆ QUẢ QUAN TRỌNG NHẤT của cả Phần 11: mọi thành trì khác nghe tin sẽ KHÔNG chịu đầu hàng nữa mà tử thủ tới cùng. Con số ấy sống THẬT trong state ở slice `siege` — không phải một biến tạm của minigame — và Phần 15 đọc nó khi tính phản ứng của các thành khác.",
+    "crueltyStatePath": "siege.reputation.tanBao",
+    "mercyStatePath": "siege.reputation.nhanTu",
+    "crueltyDecayPerYear": 6
+  }
+}

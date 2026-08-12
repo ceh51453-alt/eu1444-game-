@@ -1,0 +1,40 @@
+<% const a = q.army(); %>
+QUÂN ĐỘI CỦA NGƯỜI CHƠI
+
+· Tổng quân: <%= fmt.approx(a.total) %> · lục quân <%= fmt.approx(a.land) %> · hải quân <%= fmt.approx(a.navy) %>
+· <%= a.armies %> đạo quân · <%= a.fleets %> hạm đội · sĩ khí <%= a.morale %>/100 · kinh nghiệm <%= a.experience %>/100 · huấn luyện <%= a.training %>/100
+· Nhân lực còn có thể huy động: <%= fmt.approx(a.manpowerFree) %> · hậu cần còn trống <%= fmt.approx(a.logisticsFree) %> · doanh trại hoạt động: <%= a.barracks %>
+<% if (a.recruitment.length > 0) { %>
+· Đang tuyển: <%= fmt.list(a.recruitment.map(r => `${r.name} (${r.strength} người, còn ${r.monthsLeft} tháng)`)) %>
+<% } %>
+· Binh chủng có thể tuyển (id, tên, lục/hải quân, quân số mỗi đội, số tháng):
+<%= fmt.table(a.recruitable.map(r => [r.typeId, r.name, r.kind, r.companySize, r.months])) %>
+
+Khi diễn biến THẬT SỰ dẫn tới việc người chơi ra lệnh tuyển quân, ngài không tự
+thêm quân số vào UpdateVariable. Hãy kể lệnh được ban ra rồi đặt một thẻ:
+
+  <RequestRecruitment binh-chung="unit_bo-binh-lang" so-doi="1" dao-quan="army_1" />
+
+`binh-chung` phải lấy nguyên văn từ bảng binh chủng có thể tuyển ở trên. `so-doi` là số đội, không
+phải số người. Bỏ `dao-quan` nếu muốn nhập vào đạo quân đầu tiên. Engine sẽ tự
+kiểm tiền, nhân lực, hậu cần, doanh trại và số tháng; nếu thiếu thì lệnh thất bại.
+Chỉ đặt thẻ khi nhân vật thật sự ban lệnh hoặc chấp thuận hợp đồng trong cảnh,
+không đặt thẻ chỉ vì hai người đang bàn về khả năng tuyển quân.
+<% if (Array.isArray(a.chienDo) && a.chienDo.length > 0) { %>
+
+VỊ TRÍ TRÊN CHIẾN ĐỒ
+<% a.chienDo.forEach(function (row) { %>
+· <%= row.id %> — <%= row.name %>: <%= row.stance === 'hanh-quan' ? `đang hành quân, vừa rời ${row.where}, hướng ${row.heading}, còn chừng ${row.daysLeft} ngày` : `${row.stance === 'vay-thanh' ? 'đang vây' : row.stance === 'chiem-dong' ? 'đang chiếm đóng' : 'đóng quân'} tại ${row.where}` %>
+<% }); %>
+
+QUÂN KHÔNG BAO GIỜ DỊCH CHUYỂN TỨC THỜI. Ngài không được kể một đạo quân đã có
+mặt ở nơi mà bảng trên chưa nói là nó đã tới — kể cả khi đoạn văn cần nó ở đó.
+Muốn dời quân thì kể lệnh được ban ra rồi đặt một thẻ:
+
+  <DieuQuan dao-quan="army_1" toi="vung_champagne" />
+
+`toi` nhận id ở bất cứ tầng nào của chiến đồ (`qg_`, `vung_`, `huyen_`); lệnh
+"về Pháp" sẽ tự hạ xuống thủ phủ của Pháp. Engine tìm đường, tính số chặng và số
+ngày; trong lúc đi, đạo quân nằm GIỮA hai ô và người chơi nhìn thấy nó ở đó. Nếu
+không có đường thì lệnh bị từ chối và đạo quân đứng nguyên.
+<% } %>

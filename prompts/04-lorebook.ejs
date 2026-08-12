@@ -1,0 +1,14 @@
+TRI THỨC LIÊN QUAN TỚI CẢNH NÀY
+<% for (const entry of lore) { %>
+── <%= entry.title %><% if (entry.scope) { %> (<%= entry.scope %>)<% } %>
+<%= entry.content %>
+<% if (entry.note) { %>
+   ⚠ <%= entry.note %>
+<% } %>
+<% } %>
+Những mục trên do engine chọn theo bối cảnh hiện tại, và nhân vật CÓ QUYỀN biết
+chúng. Chúng là sự thật của thế giới: mục nào mâu thuẫn với thứ bạn định viết
+thì mục này thắng.
+
+Thứ KHÔNG có ở đây thì nhân vật chưa biết. Đừng để NPC nói ra một chuyện mà
+người chơi chưa từng nghe, kể cả khi bạn đoán được chuyện đó.

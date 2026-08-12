@@ -1,0 +1,2016 @@
+{
+  "$schema": "./nations.schema.json",
+  "$comment": "Thế lực. Mười một thế lực chính tắc của Phần 14 + 14b (canon: true), cộng sáu thế lực mà lorebook chiến dịch có mà bảng cũ gộp chung (canon: false). Ba chỗ dùng file này: ô 'phe hiện tại' trong tab Lorebook, tag `audience` của variants (Phần 4 mục 6), và `scope.refId` của sách kind 'nation' / 'faction'. 'regions' trỏ sang regions.json, 'loreEntry' trỏ sang entry lorebook mô tả thế lực đó, 'aliasThietKe' là tên id trong tài liệu thiết kế khi nó khác tên ở đây — lorebook là nguồn sự thật, tài liệu là bản dịch.",
+  "version": 2,
+  "nations": [
+    {
+      "id": "nation_ottoman",
+      "name": "Đế chế Ottoman",
+      "canon": true,
+      "aliasThietKe": "nation_orc",
+      "nguyenMau": "Ottoman",
+      "loreEntry": "nation_ottoman",
+      "seat": "hold_edirne",
+      "regions": [
+        "realm_ottoman"
+      ],
+      "rulingRaces": [
+        "race_orc"
+      ],
+      "otherRaces": [
+        "race_ogre",
+        "race_mieu-nhan",
+        "race_gnome",
+        "race_hai-toc",
+        "race_nguu-nhan",
+        "race_phong-tien",
+        "race_nhan-loai"
+      ]
+    },
+    {
+      "id": "nation_hre",
+      "name": "Đế quốc La Mã Thần thánh",
+      "canon": true,
+      "aliasThietKe": "nation_de-quoc",
+      "nguyenMau": "HRE",
+      "loreEntry": "nation_hre",
+      "seat": "hold_frankfurt",
+      "regions": [
+        "realm_hre"
+      ],
+      "rulingRaces": [
+        "race_teuton"
+      ],
+      "otherRaces": [
+        "race_lun-nui",
+        "race_ban-nhan",
+        "race_lam-tien",
+        "race_gnome",
+        "race_kobold",
+        "race_thu-nhan"
+      ]
+    },
+    {
+      "id": "nation_frank",
+      "name": "Vương quốc Pháp",
+      "canon": true,
+      "nguyenMau": "Pháp",
+      "loreEntry": "realm_france",
+      "seat": "hold_chinon",
+      "regions": [
+        "realm_france"
+      ],
+      "rulingRaces": [
+        "race_frank"
+      ],
+      "otherRaces": [
+        "race_ban-tien",
+        "race_ma-due",
+        "race_ban-nhan"
+      ]
+    },
+    {
+      "id": "nation_giao-trieu",
+      "name": "Giáo triều",
+      "canon": true,
+      "nguyenMau": "Papacy",
+      "loreEntry": "org_giao-trieu-la-ma",
+      "seat": "realm_papal",
+      "regions": [
+        "realm_papal",
+        "prov_avignon"
+      ],
+      "rulingRaces": [
+        "race_thien-due",
+        "race_latin"
+      ],
+      "otherRaces": [
+        "race_nhan-loai",
+        "race_ban-tien"
+      ]
+    },
+    {
+      "id": "nation_dong-la-ma",
+      "name": "Đế quốc Đông La Mã",
+      "canon": true,
+      "nguyenMau": "Byzantine",
+      "loreEntry": "org_palaiologos",
+      "seat": "hold_constantinople",
+      "regions": [
+        "realm_byzantine"
+      ],
+      "rulingRaces": [
+        "race_cao-tien",
+        "race_long-due"
+      ],
+      "otherRaces": [
+        "race_ban-tien",
+        "race_latin",
+        "race_rus",
+        "race_hai-toc",
+        "race_nguu-nhan"
+      ]
+    },
+    {
+      "id": "nation_lien-bang-nui",
+      "name": "Cựu Liên minh Thụy Sĩ",
+      "canon": true,
+      "nguyenMau": "các bang Thụy Sĩ",
+      "loreEntry": "realm_swiss",
+      "seat": "prov_thanh-bang-ngam-lun",
+      "regions": [
+        "realm_swiss"
+      ],
+      "rulingRaces": [
+        "race_lun-nui"
+      ],
+      "otherRaces": [
+        "race_hung-nhan",
+        "race_teuton",
+        "race_ban-khong-lo"
+      ]
+    },
+    {
+      "id": "nation_han-quoc",
+      "name": "Các hãn quốc thảo nguyên",
+      "canon": true,
+      "nguyenMau": "các tộc du mục",
+      "loreEntry": "nation_dai-truong",
+      "seat": "hold_sarai",
+      "regions": [
+        "realm_great-horde",
+        "realm_crimea",
+        "realm_kazan",
+        "realm_astrakhan",
+        "prov_steppe-pontic"
+      ],
+      "rulingRaces": [
+        "race_ma-nhan"
+      ],
+      "otherRaces": [
+        "race_nguu-nhan",
+        "race_ban-tien",
+        "race_rus",
+        "race_lang-nhan"
+      ]
+    },
+    {
+      "id": "nation_thanh-bang-latin",
+      "name": "Các thành bang Latin",
+      "canon": true,
+      "nguyenMau": "các thành bang Ý",
+      "seat": "realm_florence",
+      "regions": [
+        "realm_venice",
+        "realm_genoa",
+        "realm_florence",
+        "realm_milan",
+        "realm_siena",
+        "realm_lucca",
+        "realm_ferrara",
+        "realm_mantua",
+        "realm_urbino",
+        "realm_savoy",
+        "realm_naples"
+      ],
+      "rulingRaces": [
+        "race_latin"
+      ],
+      "otherRaces": [
+        "race_gnome",
+        "race_mieu-nhan",
+        "race_hai-toc",
+        "race_ban-tien",
+        "race_thu-nhan"
+      ]
+    },
+    {
+      "id": "nation_anh-quoc",
+      "name": "Anh quốc",
+      "canon": true,
+      "nguyenMau": "14b mục A",
+      "loreEntry": "realm_england",
+      "seat": "realm_england",
+      "regions": [
+        "realm_england",
+        "realm_scotland"
+      ],
+      "rulingRaces": [
+        "race_nhan-loai",
+        "race_lam-tien"
+      ],
+      "otherRaces": [
+        "race_hung-nhan",
+        "race_phong-tien",
+        "race_ban-nhan"
+      ]
+    },
+    {
+      "id": "nation_baltic",
+      "name": "Ba Lan–Litva và Baltic",
+      "canon": true,
+      "nguyenMau": "14b mục B",
+      "loreEntry": "realm_lithuania",
+      "seat": "realm_poland",
+      "regions": [
+        "realm_poland",
+        "realm_lithuania",
+        "prov_mazovia",
+        "prov_zaporizhia"
+      ],
+      "rulingRaces": [
+        "race_lam-tien",
+        "race_moc-toc"
+      ],
+      "otherRaces": [
+        "race_thien-due",
+        "race_lang-nhan",
+        "race_ban-tien",
+        "race_rus"
+      ]
+    },
+    {
+      "id": "nation_hungary",
+      "name": "Hungary–Balkan",
+      "canon": true,
+      "nguyenMau": "14b mục C",
+      "loreEntry": "realm_hungary",
+      "seat": "realm_hungary",
+      "regions": [
+        "realm_hungary",
+        "realm_wallachia",
+        "prov_transylvania",
+        "realm_albania"
+      ],
+      "rulingRaces": [
+        "race_long-due",
+        "race_nguu-nhan",
+        "race_huyet-toc"
+      ],
+      "otherRaces": [
+        "race_nhan-loai",
+        "race_am-tien",
+        "race_lang-nhan"
+      ]
+    },
+    {
+      "id": "nation_burgundy",
+      "name": "Công quốc Burgundy",
+      "canon": false,
+      "loreEntry": "realm_burgundy",
+      "seat": "prov_low-countries",
+      "regions": [
+        "realm_burgundy"
+      ],
+      "rulingRaces": [
+        "race_frank"
+      ],
+      "otherRaces": [
+        "race_teuton",
+        "race_ban-nhan",
+        "race_gnome"
+      ]
+    },
+    {
+      "id": "nation_kalmar",
+      "name": "Liên minh Kalmar",
+      "canon": false,
+      "loreEntry": "nation_kalmar",
+      "seat": "realm_denmark",
+      "regions": [
+        "realm_denmark",
+        "realm_sweden",
+        "realm_norway"
+      ],
+      "rulingRaces": [
+        "race_bang-toc"
+      ],
+      "otherRaces": [
+        "race_hung-nhan",
+        "race_phong-tien",
+        "race_hai-toc",
+        "race_troll-da"
+      ]
+    },
+    {
+      "id": "nation_teuton",
+      "name": "Nhà nước Dòng tu Teuton",
+      "canon": false,
+      "loreEntry": "org_dong-tu-teuton",
+      "seat": "hold_marienburg",
+      "regions": [
+        "realm_teutonic",
+        "realm_livonia"
+      ],
+      "rulingRaces": [
+        "race_bang-toc",
+        "race_teuton"
+      ],
+      "otherRaces": [
+        "race_moc-toc",
+        "race_lam-tien",
+        "race_rus"
+      ]
+    },
+    {
+      "id": "nation_rus",
+      "name": "Các công quốc Rus",
+      "canon": false,
+      "loreEntry": "realm_muscovy",
+      "seat": "realm_muscovy",
+      "regions": [
+        "realm_muscovy",
+        "realm_novgorod",
+        "realm_pskov",
+        "realm_tver",
+        "realm_ryazan"
+      ],
+      "rulingRaces": [
+        "race_rus"
+      ],
+      "otherRaces": [
+        "race_bang-toc",
+        "race_lang-nhan",
+        "race_thach-due",
+        "race_ma-nhan"
+      ]
+    },
+    {
+      "id": "nation_iberia",
+      "name": "Các vương quốc Iberia",
+      "canon": false,
+      "loreEntry": "realm_castile",
+      "seat": "realm_castile",
+      "regions": [
+        "realm_castile",
+        "realm_aragon",
+        "realm_portugal",
+        "realm_granada"
+      ],
+      "rulingRaces": [
+        "race_nhan-loai",
+        "race_thien-due"
+      ],
+      "otherRaces": [
+        "race_mieu-nhan",
+        "race_lang-nhan",
+        "race_thach-due",
+        "race_hai-toc"
+      ]
+    },
+    {
+      "id": "nation_hanse",
+      "name": "Liên minh Hanse",
+      "canon": false,
+      "loreEntry": "org_lien-minh-hanse",
+      "seat": "hold_lubeck",
+      "regions": [
+        "prov_bo-bien-baltic",
+        "hold_danzig",
+        "hold_gotland"
+      ],
+      "rulingRaces": [
+        "race_gnome",
+        "race_teuton"
+      ],
+      "otherRaces": [
+        "race_hai-toc",
+        "race_thu-nhan",
+        "race_ban-nhan"
+      ]
+    }
+  ],
+  "$powersComment": "PHẦN 14 — TÁM THẾ LỰC, TÁM LỐI CHƠI. Khối này KHÔNG thay mảng `nations` ở trên: mảng ấy là sổ đăng ký thế lực của Phần 4 (ô 'phe hiện tại', tag `audience`, `scope.refId`), còn khối này là vế GAMEPLAY của tám thế lực chính tắc. Một file, hai vai, và `nationId` là chỗ nối — thêm một file thứ hai khai lại tên tám thế lực là tự tạo hai nguồn sự thật cho cùng một câu hỏi 'thế lực nào có thật'. Luật cứng của mục 1: TÁM MINIGAME PHẢI KHÁC NHAU VỀ THỂ LOẠI. `minigame` là id thể loại ấy, và phép kiểm lúc nạp bắt hai thế lực trùng thể loại — nếu hai quốc gia chơi giống nhau thì một trong hai làm sai.",
+  "accessTiers": [
+    {
+      "id": "quan-sat",
+      "rank": 1,
+      "name": "Quan sát",
+      "note": "Từ lượt đầu tiên, dù người chơi là nông nô. Bảng trạng thái LUÔN xem được, chỉ khác độ rõ (mục 1)."
+    },
+    {
+      "id": "tac-dong",
+      "rank": 2,
+      "name": "Tác động",
+      "note": "Hối lộ, tung tin đồn, thỉnh nguyện, làm tay chân cho một phe, cấp tiền hoặc quân. Không ngồi vào bàn nhưng đẩy được kim."
+    },
+    {
+      "id": "choi-that",
+      "rank": 3,
+      "name": "Chơi thật",
+      "note": "Ngồi vào bàn, có lá phiếu, ra quyết định."
+    }
+  ],
+  "clarity": {
+    "$comment": "ĐỘ RÕ phụ thuộc TRI THỨC (Phần 4), không phụ thuộc tước vị. Bảng không bao giờ bị khóa xám — chỗ nào chưa biết thì hiện mờ kèm 'tin đồn chưa xác thực', KHÔNG hiện số liệu thật (mục 8).",
+    "levels": [
+      {
+        "id": "tin-don",
+        "upToConfidence": 39,
+        "name": "Tin đồn",
+        "blurs": true,
+        "showsNumbers": false,
+        "label": "tin đồn chưa xác thực"
+      },
+      {
+        "id": "nghe-noi",
+        "upToConfidence": 69,
+        "name": "Nghe nói",
+        "blurs": true,
+        "showsNumbers": false,
+        "label": "nghe nói vậy, chưa ai xác nhận"
+      },
+      {
+        "id": "biet-ro",
+        "upToConfidence": 100,
+        "name": "Biết rõ",
+        "blurs": false,
+        "showsNumbers": true,
+        "label": ""
+      }
+    ],
+    "inCourtBonus": 45,
+    "sameNationBonus": 25,
+    "neighbourBonus": 10,
+    "$bonusComment": "Người trong triều thấy rõ, người ở xa chỉ thấy tin đồn mờ nhạt (mục 1). Ba khoản này cộng vào `confidence` của tri thức đã có về thế lực ấy."
+  },
+  "minorityPolicies": {
+    "$comment": "BỐN CHÍNH SÁCH của mục 3, áp cho mỗi nhóm thiểu số và đổi được theo thời gian. Dòng thứ năm `han-che` KHÔNG đặt được: nó là trạng thái thừa hưởng từ lịch sử, và cách duy nhất ra khỏi nó là chọn một trong bốn chính sách kia. TRUY BỨC là chính sách duy nhất có hậu quả KHÔNG HỒI LẠI ĐƯỢC: đóng góp kinh tế mất VĨNH VIỄN, và cộng đồng lưu vong nuôi hận qua nhiều thế hệ — Phần 15 phải nhớ và cho họ hành động về sau.",
+    "policies": [
+      {
+        "id": "trong-dung",
+        "name": "Trọng dụng",
+        "settable": true,
+        "gains": "cho vào quân đội và quan trường; được năng lực",
+        "costs": "mất lòng tộc thống trị: \"bọn ngoại tộc đang cướp chỗ của ta\"",
+        "grievancePerYear": -4,
+        "usefulnessPerYear": 2.5,
+        "usefulnessCap": 100,
+        "dominantMoodPerYear": -3,
+        "taxFactor": 1.0,
+        "manpowerFactor": 1.35,
+        "emigrationPerYear": 0,
+        "immigrationDraw": 14
+      },
+      {
+        "id": "dung-nap",
+        "name": "Dung nạp",
+        "settable": true,
+        "gains": "để yên, thu thuế bình thường; an toàn",
+        "costs": "không được gì thêm",
+        "grievancePerYear": -1.2,
+        "usefulnessPerYear": 0.4,
+        "usefulnessCap": 75,
+        "dominantMoodPerYear": 0,
+        "taxFactor": 1.0,
+        "manpowerFactor": 1.0,
+        "emigrationPerYear": 0,
+        "immigrationDraw": 4
+      },
+      {
+        "id": "thue-rieng",
+        "name": "Thuế riêng",
+        "settable": true,
+        "gains": "thu nặng hơn; được tiền",
+        "costs": "tăng oán hận đều đặn",
+        "grievancePerYear": 3.5,
+        "usefulnessPerYear": -0.6,
+        "usefulnessCap": 65,
+        "dominantMoodPerYear": 1,
+        "taxFactor": 1.45,
+        "manpowerFactor": 0.85,
+        "emigrationPerYear": 0.4,
+        "immigrationDraw": -6
+      },
+      {
+        "id": "truy-buc",
+        "name": "Truy bức",
+        "settable": true,
+        "gains": "được tài sản ngay lập tức, được lòng phe cực đoan",
+        "costs": "mất VĨNH VIỄN đóng góp kinh tế của nhóm đó, và tạo ra một cộng đồng lưu vong nuôi hận qua nhiều thế hệ",
+        "grievancePerYear": 14,
+        "usefulnessPerYear": -9,
+        "usefulnessCap": 40,
+        "dominantMoodPerYear": 4,
+        "taxFactor": 0,
+        "seizureOnce": 2.2,
+        "manpowerFactor": 0.2,
+        "emigrationPerYear": 9,
+        "immigrationDraw": -40,
+        "permanentUsefulnessFloor": true,
+        "exileMemoryYears": 120
+      },
+      {
+        "id": "han-che",
+        "name": "Bị hạn chế",
+        "settable": false,
+        "gains": "giữ nguyên hiện trạng thừa hưởng: được ở, không được làm quan",
+        "costs": "oán hận âm ỉ và không bao giờ hết",
+        "grievancePerYear": 1.6,
+        "usefulnessPerYear": -0.2,
+        "usefulnessCap": 55,
+        "dominantMoodPerYear": 0,
+        "taxFactor": 1.15,
+        "manpowerFactor": 0.6,
+        "emigrationPerYear": 0.15,
+        "immigrationDraw": -2
+      }
+    ],
+    "revolt": {
+      "$comment": "Oán hận cao + tỷ lệ dân số cao = NỔI DẬY SẮC TỘC (mục 3). Hai vế NHÂN nhau chứ không cộng, và `populationWeight` phải đủ lớn để câu trong mục 3 đúng thành số: một nhóm 2% dân có oán hận 100 chỉ được (100-55)·0,9·0,16 ≈ 6%/năm — gây rắc rối chứ không lật được ai; một nhóm 30% dân có oán hận 80 được (80-55)·0,9·2,4 = 54%/năm — lật được. Hạ `populationWeight` xuống là đảo ngược cả câu ấy: nhóm bé mà giận sẽ nguy hiểm hơn nhóm lớn mà giận, và cơ chế mất hết ý nghĩa chính trị.",
+      "grievanceFloor": 55,
+      "riskPerGrievancePoint": 0.9,
+      "populationWeight": 8,
+      "riskCap": 85,
+      "check": "dep-noi-day",
+      "difficulty": "kho",
+      "stabilityHit": -16,
+      "treasuryHit": -140,
+      "grievanceAfterCrush": -18,
+      "grievanceAfterConcession": -34,
+      "usefulnessAfterCrush": -12
+    },
+    "migration": {
+      "$comment": "DÒNG DI DÂN THẬT (mục 3). Nhóm bị truy bức ở nước A chạy sang nước B; nước B nhận được nhân lực VÀ KỸ NĂNG của họ. Chọn nơi đến theo ba vế: chính sách nước đó với chính tộc ấy, quan hệ giữa hai nước, và khoảng cách.",
+      "peoplePerSharePoint": 24000,
+      "arrivalUsefulnessTransfer": 0.7,
+      "arrivalGrievance": 12,
+      "$arrivalGrievanceComment": "Người tị nạn đến nơi mới KHÔNG bắt đầu từ 0. Họ mang theo mối hận với nước cũ, và đó là thứ Phần 15 dùng để cho một cộng đồng lưu vong tài trợ cho kẻ thù của nước đã đuổi họ.",
+      "hostDominantMood": -2,
+      "minSharePointToMove": 0.4
+    }
+  },
+  "powers": [
+    {
+      "nationId": "nation_ottoman",
+      "minigame": "quan-doan",
+      "genre": "quản lý một cỗ máy quân sự và cân bằng phe phái trong nội bộ nó",
+      "threat": "không phải kẻ thù bên ngoài mà là quân đội của chính mình",
+      "victory": "bành trướng đều tay trong khi 18 quân đoàn vẫn được trả lương đúng hạn",
+      "failure": "chết dưới tay chính đội quân mình dựng nên",
+      "access": {
+        "ladder": "orc",
+        "impactRank": 2,
+        "playRank": 6
+      },
+      "state": {
+        "treasury": 940,
+        "income": 1180,
+        "prestige": 74,
+        "stability": 68,
+        "cohesion": 72,
+        "military": 88,
+        "land": 14
+      },
+      "demographics": {
+        "dominantRace": "race_orc",
+        "nativeRaces": [
+          "race_orc",
+          "race_nguu-nhan"
+        ],
+        "groups": [
+          {
+            "raceId": "race_orc",
+            "population": 0.34,
+            "status": "trong-dung",
+            "grievance": 4,
+            "usefulness": 88
+          },
+          {
+            "raceId": "race_nhan-loai",
+            "population": 0.22,
+            "status": "thue-rieng",
+            "grievance": 42,
+            "usefulness": 64
+          },
+          {
+            "raceId": "race_nguu-nhan",
+            "population": 0.09,
+            "status": "dung-nap",
+            "grievance": 18,
+            "usefulness": 58
+          },
+          {
+            "raceId": "race_hai-toc",
+            "population": 0.06,
+            "status": "dung-nap",
+            "grievance": 12,
+            "usefulness": 70
+          },
+          {
+            "raceId": "race_mieu-nhan",
+            "population": 0.06,
+            "status": "trong-dung",
+            "grievance": 8,
+            "usefulness": 82
+          },
+          {
+            "raceId": "race_gnome",
+            "population": 0.06,
+            "status": "trong-dung",
+            "grievance": 10,
+            "usefulness": 86
+          },
+          {
+            "raceId": "race_cao-tien",
+            "population": 0.05,
+            "status": "thue-rieng",
+            "grievance": 55,
+            "usefulness": 74
+          },
+          {
+            "raceId": "race_ogre",
+            "population": 0.05,
+            "status": "dung-nap",
+            "grievance": 14,
+            "usefulness": 52
+          },
+          {
+            "raceId": "race_phong-tien",
+            "population": 0.04,
+            "status": "han-che",
+            "grievance": 36,
+            "usefulness": 48
+          },
+          {
+            "raceId": "race_qua-nhan",
+            "population": 0.03,
+            "status": "trong-dung",
+            "grievance": 6,
+            "usefulness": 76
+          }
+        ],
+        "note": "MỖI THẾ LỰC ĐỀU ĐA CHỦNG TỘC (mục 1b). Orc thống trị, nhưng cấm vệ là dị tộc chiêu mộ, thương nhân là Miêu Nhân và Latin, thợ thủ công là Gnome, dân vùng chinh phục là Nhân tộc, Ngưu Nhân, Phong Tiên, Hải Tộc."
+      },
+      "board": {
+        "militaryBudget": 0.64,
+        "religiousPolicy": "khoan-dung",
+        "yearsSinceConquest": 0,
+        "yearsOfArrears": 0,
+        "devshirmeRegions": [
+          {
+            "regionId": "prov_rumelia",
+            "races": [
+              "race_nhan-loai",
+              "race_hai-toc"
+            ],
+            "resentment": 22,
+            "intakeYears": 0
+          },
+          {
+            "regionId": "prov_morea",
+            "races": [
+              "race_cao-tien",
+              "race_ban-tien"
+            ],
+            "resentment": 31,
+            "intakeYears": 0
+          },
+          {
+            "regionId": "prov_anatolia",
+            "races": [
+              "race_nguu-nhan",
+              "race_mieu-nhan"
+            ],
+            "resentment": 9,
+            "intakeYears": 0
+          },
+          {
+            "regionId": "realm_albania",
+            "races": [
+              "race_nhan-loai",
+              "race_phong-tien"
+            ],
+            "resentment": 44,
+            "intakeYears": 0
+          },
+          {
+            "regionId": "prov_transylvania",
+            "races": [
+              "race_long-due",
+              "race_nhan-loai"
+            ],
+            "resentment": 38,
+            "intakeYears": 0
+          }
+        ],
+        "conquestTargets": [
+          "nation_dong-la-ma",
+          "nation_hungary",
+          "nation_baltic",
+          "nation_thanh-bang-latin"
+        ]
+      }
+    },
+    {
+      "nationId": "nation_dong-la-ma",
+      "minigame": "noi-chien",
+      "genre": "mọi lựa chọn cứu vãn đều đẩy nhanh sự sụp đổ",
+      "threat": "chính ký ức của tộc mình",
+      "victory": "SỐNG SÓT lâu hơn dự kiến và giữ được thứ gì đó truyền lại",
+      "failure": "kinh đô mất, và không còn ai nhớ đúng cách gọi tên nó",
+      "access": {
+        "ladder": "cao-tien",
+        "impactRank": 2,
+        "playRank": 7
+      },
+      "state": {
+        "treasury": 120,
+        "income": 260,
+        "prestige": 41,
+        "stability": 44,
+        "cohesion": 38,
+        "military": 26,
+        "land": 3
+      },
+      "demographics": {
+        "dominantRace": "race_cao-tien",
+        "nativeRaces": [
+          "race_cao-tien",
+          "race_ban-tien",
+          "race_nhan-loai"
+        ],
+        "groups": [
+          {
+            "raceId": "race_cao-tien",
+            "population": 0.28,
+            "status": "trong-dung",
+            "grievance": 2,
+            "usefulness": 80
+          },
+          {
+            "raceId": "race_ban-tien",
+            "population": 0.16,
+            "status": "trong-dung",
+            "grievance": 14,
+            "usefulness": 84
+          },
+          {
+            "raceId": "race_nhan-loai",
+            "population": 0.12,
+            "status": "dung-nap",
+            "grievance": 20,
+            "usefulness": 62
+          },
+          {
+            "raceId": "race_latin",
+            "population": 0.12,
+            "status": "thue-rieng",
+            "grievance": 48,
+            "usefulness": 78
+          },
+          {
+            "raceId": "race_hai-toc",
+            "population": 0.1,
+            "status": "dung-nap",
+            "grievance": 16,
+            "usefulness": 72
+          },
+          {
+            "raceId": "race_nguu-nhan",
+            "population": 0.08,
+            "status": "dung-nap",
+            "grievance": 22,
+            "usefulness": 55
+          },
+          {
+            "raceId": "race_rus",
+            "population": 0.08,
+            "status": "dung-nap",
+            "grievance": 18,
+            "usefulness": 50
+          },
+          {
+            "raceId": "race_phong-tien",
+            "population": 0.04,
+            "status": "han-che",
+            "grievance": 34,
+            "usefulness": 44
+          },
+          {
+            "raceId": "race_long-due",
+            "population": 0.02,
+            "status": "trong-dung",
+            "grievance": 8,
+            "usefulness": 66
+          }
+        ]
+      },
+      "board": {
+        "unionProgress": 12,
+        "unionSigned": false,
+        "populaceAnger": 18,
+        "straitsIncome": 300,
+        "latinShare": 0.72,
+        "councilAvgAge": 340,
+        "conservatism": 62,
+        "survivalYears": 0,
+        "claimants": [
+          {
+            "id": "claim_kantakouzenos",
+            "name": "Nhánh Kantakouzenos",
+            "strength": 42,
+            "backer": "nation_ottoman",
+            "age": 210
+          },
+          {
+            "id": "claim_palaiologos-tre",
+            "name": "Nhánh Palaiologos trẻ",
+            "strength": 36,
+            "backer": "nation_thanh-bang-latin",
+            "age": 96
+          },
+          {
+            "id": "claim_morea",
+            "name": "Chuyên chế xứ Morea",
+            "strength": 28,
+            "backer": "",
+            "age": 155
+          }
+        ],
+        "lands": [
+          {
+            "id": "hold_constantinople",
+            "name": "Kinh đô",
+            "value": 4,
+            "core": true
+          },
+          {
+            "id": "prov_morea",
+            "name": "Xứ Morea",
+            "value": 2,
+            "core": false
+          },
+          {
+            "id": "hold_varna",
+            "name": "Mấy cảng Hắc Hải",
+            "value": 1,
+            "core": false
+          }
+        ],
+        "hireable": [
+          "nation_ottoman",
+          "nation_thanh-bang-latin",
+          "nation_lien-bang-nui",
+          "nation_han-quoc"
+        ]
+      }
+    },
+    {
+      "nationId": "nation_lien-bang-nui",
+      "minigame": "lien-bang",
+      "genre": "đồng thuận và nghịch lý",
+      "threat": "chính lá phiếu mình vừa kết nạp",
+      "victory": "giữ được đồng thuận trong khi vẫn bán được lính",
+      "failure": "hai bang đánh nhau vì hợp đồng của hai ông chủ khác nhau",
+      "access": {
+        "ladder": "lun",
+        "impactRank": 2,
+        "playRank": 5
+      },
+      "state": {
+        "treasury": 380,
+        "income": 420,
+        "prestige": 52,
+        "stability": 76,
+        "cohesion": 58,
+        "military": 64,
+        "land": 6
+      },
+      "demographics": {
+        "dominantRace": "race_lun-nui",
+        "nativeRaces": [
+          "race_lun-nui",
+          "race_teuton",
+          "race_ban-nhan"
+        ],
+        "groups": [
+          {
+            "raceId": "race_lun-nui",
+            "population": 0.38,
+            "status": "trong-dung",
+            "grievance": 3,
+            "usefulness": 86
+          },
+          {
+            "raceId": "race_teuton",
+            "population": 0.18,
+            "status": "dung-nap",
+            "grievance": 16,
+            "usefulness": 70
+          },
+          {
+            "raceId": "race_ban-nhan",
+            "population": 0.16,
+            "status": "dung-nap",
+            "grievance": 12,
+            "usefulness": 64
+          },
+          {
+            "raceId": "race_gnome",
+            "population": 0.14,
+            "status": "trong-dung",
+            "grievance": 6,
+            "usefulness": 88
+          },
+          {
+            "raceId": "race_thach-due",
+            "population": 0.06,
+            "status": "han-che",
+            "grievance": 40,
+            "usefulness": 58
+          },
+          {
+            "raceId": "race_hung-nhan",
+            "population": 0.05,
+            "status": "dung-nap",
+            "grievance": 18,
+            "usefulness": 60
+          },
+          {
+            "raceId": "race_lun-vuc-sau",
+            "population": 0.03,
+            "status": "han-che",
+            "grievance": 46,
+            "usefulness": 52
+          }
+        ],
+        "note": "Thạch Duệ do chính thợ Lùn tạo ra ở vài bang — và vẫn chưa bang nào chịu trả lời câu hỏi họ có linh hồn hay không, nên họ vẫn ở diện hạn chế."
+      },
+      "board": {
+        "youthsAbroad": 4200,
+        "cashFlow": 0,
+        "empireRelation": -65,
+        "cantons": [
+          {
+            "id": "bang_uri",
+            "name": "Bang Uri",
+            "votes": 1,
+            "interest": "giữ đèo",
+            "mood": 72,
+            "feudWith": "",
+            "menForHire": 2400
+          },
+          {
+            "id": "bang_schwyz",
+            "name": "Bang Schwyz",
+            "votes": 1,
+            "interest": "xuất lính",
+            "mood": 66,
+            "feudWith": "bang_zurich",
+            "menForHire": 3200
+          },
+          {
+            "id": "bang_unterwalden",
+            "name": "Bang Unterwalden",
+            "votes": 1,
+            "interest": "giữ đèo",
+            "mood": 70,
+            "feudWith": "",
+            "menForHire": 1800
+          },
+          {
+            "id": "bang_luzern",
+            "name": "Bang Luzern",
+            "votes": 1,
+            "interest": "chợ và thuế đường",
+            "mood": 58,
+            "feudWith": "",
+            "menForHire": 2600
+          },
+          {
+            "id": "bang_zurich",
+            "name": "Bang Zürich",
+            "votes": 1,
+            "interest": "phường hội",
+            "mood": 49,
+            "feudWith": "bang_schwyz",
+            "menForHire": 3600
+          },
+          {
+            "id": "bang_ngam-lun",
+            "name": "Bang Ngầm Lùn",
+            "votes": 1,
+            "interest": "mỏ và lò",
+            "mood": 74,
+            "feudWith": "",
+            "menForHire": 2800
+          }
+        ],
+        "passes": [
+          {
+            "id": "deo_gotthard",
+            "name": "Đèo Gotthard",
+            "garrison": 900,
+            "held": true,
+            "tollPerYear": 120
+          },
+          {
+            "id": "deo_mont-cenis",
+            "name": "Đèo Mont-Cenis",
+            "garrison": 400,
+            "held": false,
+            "tollPerYear": 90
+          },
+          {
+            "id": "deo_brenner",
+            "name": "Đèo Brenner",
+            "garrison": 600,
+            "held": true,
+            "tollPerYear": 110
+          },
+          {
+            "id": "deo_ngam-lun",
+            "name": "Đường Ngầm Lùn",
+            "garrison": 1200,
+            "held": true,
+            "tollPerYear": 160
+          }
+        ],
+        "contracts": [],
+        "admitCandidates": [
+          {
+            "id": "bang_bern",
+            "name": "Bang Bern",
+            "votes": 2,
+            "strength": 78,
+            "interest": "mở rộng xuống đồng bằng"
+          },
+          {
+            "id": "bang_basel",
+            "name": "Bang Basel",
+            "votes": 1,
+            "strength": 54,
+            "interest": "sông và cầu"
+          },
+          {
+            "id": "bang_appenzell",
+            "name": "Bang Appenzell",
+            "votes": 1,
+            "strength": 32,
+            "interest": "chăn nuôi"
+          }
+        ],
+        "employers": [
+          "nation_frank",
+          "nation_hre",
+          "nation_thanh-bang-latin",
+          "nation_giao-trieu",
+          "nation_dong-la-ma"
+        ]
+      }
+    },
+    {
+      "nationId": "nation_han-quoc",
+      "minigame": "cong-nap",
+      "genre": "bòn rút bên ngoài trong khi bên trong đang tan",
+      "threat": "một chư hầu được ưu ái quá lâu",
+      "victory": "giữ được sổ cống nạp trong khi các hãn quốc con vẫn còn gọi mình là đại hãn",
+      "failure": "tách thành bốn hãn quốc nhỏ, mỗi cái thu thuế của chính mình",
+      "access": {
+        "ladder": "han-quoc",
+        "impactRank": 2,
+        "playRank": 6
+      },
+      "state": {
+        "treasury": 620,
+        "income": 760,
+        "prestige": 58,
+        "stability": 52,
+        "cohesion": 41,
+        "military": 72,
+        "land": 11
+      },
+      "demographics": {
+        "dominantRace": "race_ma-nhan",
+        "nativeRaces": [
+          "race_ma-nhan",
+          "race_nguu-nhan",
+          "race_lang-nhan"
+        ],
+        "groups": [
+          {
+            "raceId": "race_ma-nhan",
+            "population": 0.3,
+            "status": "trong-dung",
+            "grievance": 5,
+            "usefulness": 82
+          },
+          {
+            "raceId": "race_nguu-nhan",
+            "population": 0.18,
+            "status": "trong-dung",
+            "grievance": 12,
+            "usefulness": 74
+          },
+          {
+            "raceId": "race_lang-nhan",
+            "population": 0.14,
+            "status": "dung-nap",
+            "grievance": 20,
+            "usefulness": 66
+          },
+          {
+            "raceId": "race_rus",
+            "population": 0.12,
+            "status": "thue-rieng",
+            "grievance": 52,
+            "usefulness": 70
+          },
+          {
+            "raceId": "race_qua-nhan",
+            "population": 0.08,
+            "status": "trong-dung",
+            "grievance": 8,
+            "usefulness": 78
+          },
+          {
+            "raceId": "race_mieu-nhan",
+            "population": 0.08,
+            "status": "trong-dung",
+            "grievance": 10,
+            "usefulness": 84
+          },
+          {
+            "raceId": "race_bang-toc",
+            "population": 0.06,
+            "status": "dung-nap",
+            "grievance": 22,
+            "usefulness": 56
+          },
+          {
+            "raceId": "race_ban-tien",
+            "population": 0.04,
+            "status": "dung-nap",
+            "grievance": 16,
+            "usefulness": 62
+          }
+        ]
+      },
+      "board": {
+        "settlement": -60,
+        "plagueLevel": 8,
+        "plagueOutbreakYear": 0,
+        "religionPull": {
+          "rel_thao-nguyen": 46,
+          "rel_ly-giao": 19,
+          "rel_nam-phuong": 9
+        },
+        "khanates": [
+          {
+            "id": "han_dai-truong",
+            "name": "Đại Trướng",
+            "loyalty": 100,
+            "strength": 70,
+            "seat": true
+          },
+          {
+            "id": "han_crimea",
+            "name": "Hãn quốc Crimea",
+            "loyalty": 58,
+            "strength": 46
+          },
+          {
+            "id": "han_kazan",
+            "name": "Hãn quốc Kazan",
+            "loyalty": 52,
+            "strength": 42
+          },
+          {
+            "id": "han_astrakhan",
+            "name": "Hãn quốc Astrakhan",
+            "loyalty": 61,
+            "strength": 38
+          }
+        ],
+        "tributaries": [
+          {
+            "id": "chuhau_muscovy",
+            "name": "Đại công quốc Muscovy",
+            "patent": true,
+            "tribute": 180,
+            "strength": 52,
+            "favouredYears": 4,
+            "arrears": 0
+          },
+          {
+            "id": "chuhau_tver",
+            "name": "Công quốc Tver",
+            "patent": false,
+            "tribute": 90,
+            "strength": 34,
+            "favouredYears": 0,
+            "arrears": 0
+          },
+          {
+            "id": "chuhau_ryazan",
+            "name": "Công quốc Ryazan",
+            "patent": false,
+            "tribute": 70,
+            "strength": 26,
+            "favouredYears": 0,
+            "arrears": 0
+          },
+          {
+            "id": "chuhau_novgorod",
+            "name": "Cộng hòa Novgorod",
+            "patent": false,
+            "tribute": 140,
+            "strength": 44,
+            "favouredYears": 0,
+            "arrears": 0
+          },
+          {
+            "id": "chuhau_pskov",
+            "name": "Công quốc Pskov",
+            "patent": false,
+            "tribute": 50,
+            "strength": 22,
+            "favouredYears": 0,
+            "arrears": 0
+          }
+        ],
+        "routes": [
+          {
+            "id": "tuyen_bac",
+            "name": "Tuyến bắc thảo nguyên",
+            "income": 220,
+            "plagueRisk": 6,
+            "protected": true
+          },
+          {
+            "id": "tuyen_caffa",
+            "name": "Tuyến Caffa – Hắc Hải",
+            "income": 300,
+            "plagueRisk": 11,
+            "protected": true
+          },
+          {
+            "id": "tuyen_volga",
+            "name": "Tuyến sông Volga",
+            "income": 180,
+            "plagueRisk": 7,
+            "protected": false
+          }
+        ]
+      }
+    },
+    {
+      "nationId": "nation_hre",
+      "minigame": "cai-cach",
+      "genre": "bỏ phiếu và mặc cả",
+      "threat": "chính các chư hầu đang bầu ra mình",
+      "victory": "sáu dự luật thông qua, và đế quốc trở thành một quốc gia",
+      "failure": "đế quốc rã dần thành các quốc gia riêng",
+      "access": {
+        "ladder": "tay-au",
+        "impactRank": 3,
+        "playRank": 7
+      },
+      "state": {
+        "treasury": 300,
+        "income": 480,
+        "prestige": 60,
+        "stability": 58,
+        "cohesion": 34,
+        "military": 55,
+        "land": 16
+      },
+      "demographics": {
+        "dominantRace": "race_teuton",
+        "nativeRaces": [
+          "race_teuton",
+          "race_ban-nhan",
+          "race_gnome"
+        ],
+        "groups": [
+          {
+            "raceId": "race_teuton",
+            "population": 0.46,
+            "status": "trong-dung",
+            "grievance": 4,
+            "usefulness": 80
+          },
+          {
+            "raceId": "race_ban-nhan",
+            "population": 0.14,
+            "status": "dung-nap",
+            "grievance": 14,
+            "usefulness": 62
+          },
+          {
+            "raceId": "race_gnome",
+            "population": 0.1,
+            "status": "trong-dung",
+            "grievance": 9,
+            "usefulness": 90
+          },
+          {
+            "raceId": "race_kobold",
+            "population": 0.07,
+            "status": "han-che",
+            "grievance": 58,
+            "usefulness": 46
+          },
+          {
+            "raceId": "race_lun-vuc-sau",
+            "population": 0.06,
+            "status": "dung-nap",
+            "grievance": 24,
+            "usefulness": 68
+          },
+          {
+            "raceId": "race_thu-nhan",
+            "population": 0.05,
+            "status": "han-che",
+            "grievance": 50,
+            "usefulness": 40
+          },
+          {
+            "raceId": "race_ma-due",
+            "population": 0.04,
+            "status": "truy-buc",
+            "grievance": 82,
+            "usefulness": 34
+          },
+          {
+            "raceId": "race_lam-tien",
+            "population": 0.04,
+            "status": "dung-nap",
+            "grievance": 20,
+            "usefulness": 64
+          },
+          {
+            "raceId": "race_nhan-loai",
+            "population": 0.04,
+            "status": "dung-nap",
+            "grievance": 12,
+            "usefulness": 60
+          }
+        ]
+      },
+      "board": {
+        "authority": 28,
+        "freedom": 72,
+        "yearsToDiet": 1,
+        "pendingReformId": "",
+        "passedReformIds": [],
+        "papacyStance": "trung-lap",
+        "collapseYears": 0,
+        "$comment": "Tuyển hầu, chư hầu lớn, phe và sáu dự luật nạp từ data/reforms.json — bảng này chỉ giữ TRẠNG THÁI, không giữ danh mục."
+      }
+    },
+    {
+      "nationId": "nation_frank",
+      "minigame": "tap-quyen",
+      "genre": "thôn tính từng bước, quản lý bất mãn",
+      "threat": "liên minh quý tộc nổi dậy tất cả cùng lúc",
+      "victory": "mọi công quốc lớn thành đất vương quyền mà không có cuộc nổi dậy nào thắng",
+      "failure": "bất mãn vượt ngưỡng và cả nước quay lại thời trước",
+      "access": {
+        "ladder": "tay-au",
+        "impactRank": 2,
+        "playRank": 7
+      },
+      "state": {
+        "treasury": 460,
+        "income": 720,
+        "prestige": 62,
+        "stability": 61,
+        "cohesion": 55,
+        "military": 70,
+        "land": 12
+      },
+      "demographics": {
+        "dominantRace": "race_frank",
+        "nativeRaces": [
+          "race_frank",
+          "race_ban-nhan",
+          "race_nhan-loai"
+        ],
+        "groups": [
+          {
+            "raceId": "race_frank",
+            "population": 0.34,
+            "status": "trong-dung",
+            "grievance": 3,
+            "usefulness": 82
+          },
+          {
+            "raceId": "race_ban-nhan",
+            "population": 0.3,
+            "status": "dung-nap",
+            "grievance": 15,
+            "usefulness": 66
+          },
+          {
+            "raceId": "race_nhan-loai",
+            "population": 0.14,
+            "status": "dung-nap",
+            "grievance": 12,
+            "usefulness": 64
+          },
+          {
+            "raceId": "race_ban-tien",
+            "population": 0.07,
+            "status": "trong-dung",
+            "grievance": 10,
+            "usefulness": 78
+          },
+          {
+            "raceId": "race_ma-due",
+            "population": 0.05,
+            "status": "truy-buc",
+            "grievance": 78,
+            "usefulness": 38
+          },
+          {
+            "raceId": "race_moc-toc",
+            "population": 0.04,
+            "status": "han-che",
+            "grievance": 54,
+            "usefulness": 50
+          },
+          {
+            "raceId": "race_ogre",
+            "population": 0.03,
+            "status": "dung-nap",
+            "grievance": 20,
+            "usefulness": 54
+          },
+          {
+            "raceId": "race_hung-nhan",
+            "population": 0.03,
+            "status": "dung-nap",
+            "grievance": 18,
+            "usefulness": 56
+          }
+        ],
+        "note": "Bài kiểm tra C của mục 10.17 chạy trên chính bảng này: truy bức một nhóm ở đây phải thấy họ di cư sang thế lực khác và thấy kinh tế vùng đó sụt."
+      },
+      "board": {
+        "crownLand": 5,
+        "vassalLand": 7,
+        "discontent": 22,
+        "revoltThreshold": 70,
+        "suits": [],
+        "duchies": [
+          {
+            "id": "cq_burgundy",
+            "name": "Công quốc Burgundy",
+            "strength": 82,
+            "heirless": false,
+            "absorbed": false,
+            "claimStrength": 30
+          },
+          {
+            "id": "cq_brittany",
+            "name": "Công quốc Brittany",
+            "strength": 58,
+            "heirless": false,
+            "absorbed": false,
+            "claimStrength": 45
+          },
+          {
+            "id": "cq_aquitaine",
+            "name": "Công quốc Aquitaine",
+            "strength": 66,
+            "heirless": false,
+            "absorbed": false,
+            "claimStrength": 55
+          },
+          {
+            "id": "cq_anjou",
+            "name": "Bá quốc Anjou",
+            "strength": 44,
+            "heirless": true,
+            "absorbed": false,
+            "claimStrength": 70
+          },
+          {
+            "id": "cq_bourbon",
+            "name": "Công quốc Bourbon",
+            "strength": 40,
+            "heirless": false,
+            "absorbed": false,
+            "claimStrength": 62
+          },
+          {
+            "id": "cq_orleans",
+            "name": "Công quốc Orléans",
+            "strength": 48,
+            "heirless": false,
+            "absorbed": false,
+            "claimStrength": 74
+          }
+        ],
+        "paths": [
+          {
+            "id": "phap-luat",
+            "name": "Luật pháp",
+            "years": 4,
+            "cost": 120,
+            "discontent": 6,
+            "check": "kien-tung",
+            "difficulty": "kho",
+            "needsCourt": true
+          },
+          {
+            "id": "hon-nhan",
+            "name": "Hôn nhân",
+            "years": 8,
+            "cost": 200,
+            "discontent": 4,
+            "check": "mai-mo",
+            "difficulty": "trung-binh"
+          },
+          {
+            "id": "tuyet-tu",
+            "name": "Tuyệt tự thừa kế",
+            "years": 1,
+            "cost": 60,
+            "discontent": 9,
+            "check": "yeu-sach",
+            "difficulty": "de",
+            "requiresHeirless": true
+          },
+          {
+            "id": "chien-tranh",
+            "name": "Chiến tranh",
+            "years": 3,
+            "cost": 460,
+            "discontent": 18,
+            "check": "chinh-phuc",
+            "difficulty": "kho"
+          }
+        ]
+      }
+    },
+    {
+      "nationId": "nation_giao-trieu",
+      "minigame": "mat-nghi",
+      "genre": "chính trị nội bộ cộng đòn bẩy lên toàn thế giới",
+      "threat": "một Giáo hoàng thứ hai do một quốc gia lớn dựng lên",
+      "victory": "giữ uy tín thiêng liêng đủ cao để lời nói vẫn còn là một vũ khí",
+      "failure": "hai Giáo hoàng, và cả thế giới phải chọn phe",
+      "access": {
+        "ladder": "giao-hoi",
+        "impactRank": 2,
+        "playRank": 8
+      },
+      "state": {
+        "treasury": 540,
+        "income": 600,
+        "prestige": 66,
+        "stability": 64,
+        "cohesion": 60,
+        "military": 18,
+        "land": 4
+      },
+      "demographics": {
+        "dominantRace": "race_latin",
+        "nativeRaces": [
+          "race_latin",
+          "race_nhan-loai"
+        ],
+        "groups": [
+          {
+            "raceId": "race_latin",
+            "population": 0.52,
+            "status": "trong-dung",
+            "grievance": 4,
+            "usefulness": 80
+          },
+          {
+            "raceId": "race_nhan-loai",
+            "population": 0.2,
+            "status": "dung-nap",
+            "grievance": 14,
+            "usefulness": 62
+          },
+          {
+            "raceId": "race_thien-due",
+            "population": 0.12,
+            "status": "trong-dung",
+            "grievance": 6,
+            "usefulness": 92
+          },
+          {
+            "raceId": "race_qua-nhan",
+            "population": 0.06,
+            "status": "trong-dung",
+            "grievance": 12,
+            "usefulness": 84
+          },
+          {
+            "raceId": "race_ban-tien",
+            "population": 0.05,
+            "status": "dung-nap",
+            "grievance": 16,
+            "usefulness": 70
+          },
+          {
+            "raceId": "race_thu-nhan",
+            "population": 0.05,
+            "status": "han-che",
+            "grievance": 48,
+            "usefulness": 42
+          }
+        ],
+        "note": "Thiên Duệ chiếm tỷ lệ CAO BẤT THƯỜNG trong hàng giáo phẩm cấp cao — và điều đó gây tranh cãi trong chính Giáo hội (mục 2.7)."
+      },
+      "board": {
+        "spiritualPrestige": 66,
+        "vacancy": false,
+        "antipope": {
+          "exists": false,
+          "backer": "",
+          "sinceYear": 0
+        },
+        "interdicts": [],
+        "excommunicated": [],
+        "indulgenceYears": 0,
+        "cardinals": [
+          {
+            "id": "hy_orsini",
+            "name": "Hồng y Orsini",
+            "faction": "phe_la-ma",
+            "age": 62,
+            "loyalty": 74,
+            "raceId": "race_latin",
+            "influence": 78
+          },
+          {
+            "id": "hy_colonna",
+            "name": "Hồng y Colonna",
+            "faction": "phe_la-ma",
+            "age": 58,
+            "loyalty": 55,
+            "raceId": "race_latin",
+            "influence": 72
+          },
+          {
+            "id": "hy_avignon",
+            "name": "Hồng y d'Auvergne",
+            "faction": "phe_frank",
+            "age": 51,
+            "loyalty": 38,
+            "raceId": "race_frank",
+            "influence": 80
+          },
+          {
+            "id": "hy_limoges",
+            "name": "Hồng y Limoges",
+            "faction": "phe_frank",
+            "age": 66,
+            "loyalty": 34,
+            "raceId": "race_frank",
+            "influence": 64
+          },
+          {
+            "id": "hy_koln",
+            "name": "Hồng y Köln",
+            "faction": "phe_de-quoc",
+            "age": 59,
+            "loyalty": 48,
+            "raceId": "race_teuton",
+            "influence": 66
+          },
+          {
+            "id": "hy_salzburg",
+            "name": "Hồng y Salzburg",
+            "faction": "phe_de-quoc",
+            "age": 71,
+            "loyalty": 52,
+            "raceId": "race_teuton",
+            "influence": 58
+          },
+          {
+            "id": "hy_thien-due-cao",
+            "name": "Hồng y Seraphel",
+            "faction": "phe_cai-cach",
+            "age": 240,
+            "loyalty": 66,
+            "raceId": "race_thien-due",
+            "influence": 88
+          },
+          {
+            "id": "hy_khac-kho",
+            "name": "Hồng y Bernardo",
+            "faction": "phe_cai-cach",
+            "age": 47,
+            "loyalty": 70,
+            "raceId": "race_latin",
+            "influence": 54
+          },
+          {
+            "id": "hy_venezia",
+            "name": "Hồng y Venezia",
+            "faction": "phe_thanh-bang",
+            "age": 55,
+            "loyalty": 44,
+            "raceId": "race_latin",
+            "influence": 76
+          },
+          {
+            "id": "hy_firenze",
+            "name": "Hồng y Firenze",
+            "faction": "phe_thanh-bang",
+            "age": 49,
+            "loyalty": 42,
+            "raceId": "race_latin",
+            "influence": 70
+          },
+          {
+            "id": "hy_toledo",
+            "name": "Hồng y Toledo",
+            "faction": "phe_la-ma",
+            "age": 63,
+            "loyalty": 60,
+            "raceId": "race_thien-due",
+            "influence": 62
+          },
+          {
+            "id": "hy_esztergom",
+            "name": "Hồng y Esztergom",
+            "faction": "phe_de-quoc",
+            "age": 57,
+            "loyalty": 50,
+            "raceId": "race_long-due",
+            "influence": 52
+          }
+        ],
+        "factions": [
+          {
+            "id": "phe_la-ma",
+            "name": "Phe La Mã",
+            "wants": "Giáo hoàng ở lại La Mã, và một người La Mã ngồi ghế ấy"
+          },
+          {
+            "id": "phe_frank",
+            "name": "Phe Frank",
+            "wants": "Giáo triều nghe lời vương quyền Frank — và nếu cần thì dời về đất Frank"
+          },
+          {
+            "id": "phe_de-quoc",
+            "name": "Phe Đế quốc",
+            "wants": "hòa với Hoàng đế, miễn thuế đất nhà thờ"
+          },
+          {
+            "id": "phe_cai-cach",
+            "name": "Phe cải cách",
+            "wants": "cắt bổng lộc, cấm bán ân xá, dẹp dị giáo bằng gương mẫu chứ không bằng lửa"
+          },
+          {
+            "id": "phe_thanh-bang",
+            "name": "Phe thành bang",
+            "wants": "ngân khố Giáo triều gửi ở ngân hàng của họ"
+          }
+        ],
+        "weapons": [
+          {
+            "id": "vu_tuyet-thong",
+            "name": "Vạ tuyệt thông cá nhân",
+            "prestigeCost": 4,
+            "targetStability": -8,
+            "note": "Cá nhân, không phải cả nước."
+          },
+          {
+            "id": "vu_cam-che",
+            "name": "Cấm chế cả vương quốc",
+            "prestigeCost": 12,
+            "targetStability": -18,
+            "targetCohesion": -16,
+            "freesVassals": true,
+            "note": "Đóng cửa mọi nhà thờ — dân sợ hãi, chư hầu được cởi lời thề trung thành."
+          },
+          {
+            "id": "vu_thap-tu",
+            "name": "Kêu gọi thập tự chinh",
+            "prestigeCost": 0,
+            "prestigeIfWin": 12,
+            "prestigeIfFail": -18,
+            "treasuryCost": 180
+          },
+          {
+            "id": "vu_phong-thanh",
+            "name": "Phong thánh",
+            "prestigeGain": 6,
+            "treasuryCost": 60
+          },
+          {
+            "id": "vu_phan-xu",
+            "name": "Phán xử tranh chấp giữa các vua",
+            "prestigeGain": 4,
+            "relationShift": 12
+          },
+          {
+            "id": "vu_ban-an-xa",
+            "name": "Bán ân xá",
+            "treasuryGain": 260,
+            "prestigeCost": 7,
+            "heresyTrigger": "ban-an-xa"
+          },
+          {
+            "id": "vu_toa-di-giao",
+            "name": "Lập tòa dị giáo",
+            "treasuryCost": 140,
+            "heresyResponse": "toa-di-giao"
+          }
+        ]
+      }
+    },
+    {
+      "nationId": "nation_thanh-bang-latin",
+      "minigame": "ngan-hang",
+      "genre": "quản lý tài chính và rủi ro",
+      "threat": "một ông vua quỵt nợ, và lính đánh thuê chưa được trả",
+      "victory": "giữ ghế qua từng nhiệm kỳ trong khi sổ cái vẫn dương",
+      "failure": "mất ghế — và mất ghế là mất tất cả",
+      "access": {
+        "ladder": "thanh-bang",
+        "impactRank": 2,
+        "playRank": 5
+      },
+      "state": {
+        "treasury": 1450,
+        "income": 980,
+        "prestige": 55,
+        "stability": 66,
+        "cohesion": 62,
+        "military": 30,
+        "land": 5
+      },
+      "demographics": {
+        "dominantRace": "race_latin",
+        "nativeRaces": [
+          "race_latin",
+          "race_hai-toc"
+        ],
+        "groups": [
+          {
+            "raceId": "race_latin",
+            "population": 0.44,
+            "status": "trong-dung",
+            "grievance": 3,
+            "usefulness": 88
+          },
+          {
+            "raceId": "race_hai-toc",
+            "population": 0.16,
+            "status": "trong-dung",
+            "grievance": 10,
+            "usefulness": 86
+          },
+          {
+            "raceId": "race_mieu-nhan",
+            "population": 0.1,
+            "status": "trong-dung",
+            "grievance": 14,
+            "usefulness": 90
+          },
+          {
+            "raceId": "race_thu-nhan",
+            "population": 0.1,
+            "status": "han-che",
+            "grievance": 52,
+            "usefulness": 48
+          },
+          {
+            "raceId": "race_gnome",
+            "population": 0.08,
+            "status": "dung-nap",
+            "grievance": 12,
+            "usefulness": 82
+          },
+          {
+            "raceId": "race_ban-tien",
+            "population": 0.06,
+            "status": "dung-nap",
+            "grievance": 14,
+            "usefulness": 72
+          },
+          {
+            "raceId": "race_nhan-loai",
+            "population": 0.06,
+            "status": "dung-nap",
+            "grievance": 16,
+            "usefulness": 60
+          }
+        ]
+      },
+      "board": {
+        "termYears": 4,
+        "yearsLeftInTerm": 4,
+        "seat": true,
+        "councilSupport": 54,
+        "bribeSpent": 0,
+        "grainPrice": 100,
+        "creditRating": 78,
+        "loans": [
+          {
+            "id": "vay_frank-1",
+            "debtor": "nation_frank",
+            "principal": 420,
+            "rate": 0.14,
+            "yearsLeft": 6,
+            "defaultRisk": 5
+          },
+          {
+            "id": "vay_hre-1",
+            "debtor": "nation_hre",
+            "principal": 260,
+            "rate": 0.12,
+            "yearsLeft": 4,
+            "defaultRisk": 7
+          },
+          {
+            "id": "vay_dong-la-ma-1",
+            "debtor": "nation_dong-la-ma",
+            "principal": 300,
+            "rate": 0.22,
+            "yearsLeft": 8,
+            "defaultRisk": 16
+          },
+          {
+            "id": "vay_giao-trieu-1",
+            "debtor": "nation_giao-trieu",
+            "principal": 180,
+            "rate": 0.09,
+            "yearsLeft": 5,
+            "defaultRisk": 3
+          }
+        ],
+        "condottieri": [
+          {
+            "id": "cond_sforza",
+            "name": "Đoàn Sforza",
+            "men": 4200,
+            "payPerYear": 210,
+            "yearsLeft": 3,
+            "mood": 62,
+            "unpaidYears": 0
+          },
+          {
+            "id": "cond_hawkwood",
+            "name": "Đoàn Bạch Y",
+            "men": 3000,
+            "payPerYear": 180,
+            "yearsLeft": 2,
+            "mood": 54,
+            "unpaidYears": 0
+          },
+          {
+            "id": "cond_ogre",
+            "name": "Đoàn Ogre Núi",
+            "men": 1800,
+            "payPerYear": 160,
+            "yearsLeft": 4,
+            "mood": 44,
+            "unpaidYears": 0
+          }
+        ],
+        "routes": [
+          {
+            "id": "tuyen_levant",
+            "name": "Tuyến Levant",
+            "income": 340,
+            "monopoly": true
+          },
+          {
+            "id": "tuyen_hac-hai",
+            "name": "Tuyến Hắc Hải",
+            "income": 260,
+            "monopoly": true
+          },
+          {
+            "id": "tuyen_flanders",
+            "name": "Tuyến Flanders",
+            "income": 220,
+            "monopoly": false
+          }
+        ],
+        "councilFactions": [
+          {
+            "id": "phe_cu",
+            "name": "Phe cựu tộc",
+            "seats": 5,
+            "wants": "giữ độc quyền tuyến cũ"
+          },
+          {
+            "id": "phe_moi",
+            "name": "Phe tân phú",
+            "seats": 4,
+            "wants": "mở tuyến mới, cho vay mạnh tay"
+          },
+          {
+            "id": "phe_bien",
+            "name": "Phe hàng hải",
+            "seats": 3,
+            "wants": "đóng thêm tàu, đánh cướp biển"
+          }
+        ]
+      }
+    }
+  ]
+}

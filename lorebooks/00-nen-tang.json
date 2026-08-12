@@ -1,0 +1,149 @@
+{
+  "kind": "eu1444-lorebook",
+  "schemaVersion": 1,
+  "exportedAt": 0,
+  "books": [
+    {
+      "id": "book-nen-tang",
+      "name": "Europa 1444 · Nền tảng",
+      "version": 1,
+      "scope": { "kind": "global" },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 10,
+      "entries": [
+        {
+          "id": "concept_ma-luc-hai-nhanh",
+          "title": "Ma lực và hai nhánh phép thuật",
+          "type": "concept",
+          "content": "Ma lực dâng lên từ lòng đất và đọng lại thành vùng. Đất nào mạch dày thì mùa màng tốt, ma thú nhiều, và luôn có kẻ tới tranh.\n\nGiáo hội độc quyền Ma pháp Thần thánh: chỉ tu sĩ được ban phước và Thánh kỵ sĩ mới được chữa lành hay thanh tẩy, và ai làm việc đó cũng phải trình được người đã ban phước cho mình.\n\nMa pháp Bí thuật học từ sách vở, từ huyết thống, hoặc từ giả kim. Nó không bị cấm bằng luật, nó bị nghi. Ở Florence và Venice người ta làm công khai; ở đồng quê Đức, một bà lang biết chữ là đủ để bị tố.",
+          "summary": "Ma lực dâng từ lòng đất thành vùng, ảnh hưởng mùa màng và ma thú. Giáo hội độc quyền Ma pháp Thần thánh và đòi giấy ban phước; Ma pháp Bí thuật học từ sách vở, không bị cấm nhưng bị Tòa án Dị giáo nghi.",
+          "keys": [],
+          "matchMode": "wholeWord",
+          "constant": true,
+          "knowledge": "public",
+          "weight": 14,
+          "budgetPriority": 9
+        },
+        {
+          "id": "concept_tien-te",
+          "title": "Tiền tệ và giá cả",
+          "type": "concept",
+          "content": "Không có đồng tiền chung. Mỗi thành, mỗi lãnh chúa đúc riêng, và người đổi tiền cắn thử từng đồng trước khi nhận.\n\nBa bậc quen thuộc: đồng đen tiêu ở chợ, bạc trả công, vàng dành cho hồi môn, tiền chuộc và hối lộ.\n\nĐể ước lượng: một ổ bánh đáng vài đồng đen; công một ngày của thợ nề đáng dăm đồng bạc; một con ngựa chiến đủ sức chở giáp đáng số bạc mà một nhà nông không gom nổi cả đời.\n\nVàng ròng hầu như không ai mang theo người. Nó nằm trong khế ước và thư tín dụng của các nhà băng Ý.",
+          "summary": "Không có tiền chung; mỗi thành đúc riêng và người đổi tiền cắn thử từng đồng. Đồng đen tiêu chợ, bạc trả công, vàng cho hồi môn và tiền chuộc. Vàng thật nằm trong khế ước của nhà băng Ý chứ không nằm trong túi ai.",
+          "keys": [],
+          "matchMode": "wholeWord",
+          "constant": true,
+          "knowledge": "public",
+          "weight": 14,
+          "budgetPriority": 9
+        },
+        {
+          "id": "concept_di-duong-tin-tuc",
+          "title": "Đi đường và tốc độ tin tức",
+          "type": "concept",
+          "content": "Bộ hành đi được chừng một ngày đường mỗi ngày. Ngựa trạm đi gấp ba, nếu dọc đường có trạm đổi ngựa.\n\nMùa đông đường lầy, đèo Alps đóng, sông đóng băng — mọi thứ chậm lại một nửa hoặc dừng hẳn.\n\nTin tức đi bằng tốc độ ngựa và méo dần theo mỗi lần kể lại. Chuyện xảy ra ở Constantinople phải mất hàng tuần mới tới lưu vực sông Rhine, và tới nơi thì đã đổi tên người, đổi số quân, đôi khi đổi cả bên thắng.\n\nKhông ai kiểm chứng được gì. Người ta tin vào kẻ kể, không tin vào tin.",
+          "summary": "Bộ hành đi chừng một ngày đường mỗi ngày, ngựa trạm gấp ba. Mùa đông đèo đóng và mọi thứ chậm một nửa. Tin đi bằng tốc độ ngựa và méo dần mỗi lần kể lại — người ta tin vào kẻ kể chứ không tin vào tin.",
+          "keys": [],
+          "matchMode": "wholeWord",
+          "constant": true,
+          "knowledge": "public",
+          "weight": 14,
+          "budgetPriority": 9
+        },
+        {
+          "id": "concept_nam-cap-khu-dinh-cu",
+          "title": "Năm cấp khu định cư",
+          "type": "concept",
+          "content": "Năm cấp, phân theo số dân và theo tường:\n\nThôn — dưới một trăm người, không tường.\nLàng — một tới năm trăm, hàng rào gỗ.\nTrấn — năm trăm tới hai nghìn, tường gỗ hoặc tường đất.\nThành — hai tới tám nghìn, tường đá.\nĐại thành — trên tám nghìn, tường đá nhiều lớp.\n\nTường mới là thứ phân biệt thật sự. Có tường thì có quyền thu lệ chợ, có quyền đóng cổng, và có tư cách để bị vây hãm thay vì bị cướp phá.",
+          "summary": "Thôn dưới trăm người không tường; làng có hàng rào gỗ; trấn tường gỗ hoặc đất; thành tường đá; đại thành trên tám nghìn dân, tường đá nhiều lớp. Có tường thì có quyền thu lệ chợ và đóng cổng.",
+          "keys": [],
+          "matchMode": "wholeWord",
+          "constant": true,
+          "knowledge": "public",
+          "weight": 14,
+          "budgetPriority": 9
+        },
+        {
+          "id": "concept_thang-tuoc-vi",
+          "title": "Thang tước vị",
+          "type": "concept",
+          "content": "Thang Tây Âu, từ dưới lên: thường dân, hiệp sĩ, nam tước, tử tước, bá tước, hầu tước, công tước, tuyển hầu, vương, hoàng đế.\n\nBa mốc đáng nhớ: bá tước là cấp đầu tiên có chư hầu thật; công tước có hội đồng riêng, luật riêng và quyền đúc tiền; tuyển hầu chỉ có trong Đế quốc và nắm một phiếu bầu hoàng đế.\n\nKhông phe nào cũng dùng thang này. Đế chế Ottoman thăng theo năng lực, tộc Lùn bầu có nhiệm kỳ, Giáo hội có thang song song, còn vùng Baltic không có tước vị — chỉ có tiếng nói trong hội đồng bô lão.",
+          "summary": "Thường dân · hiệp sĩ · nam tước · tử tước · bá tước · hầu tước · công tước · tuyển hầu · vương · hoàng đế. Bá tước là cấp đầu có chư hầu thật, công tước có luật riêng và quyền đúc tiền, tuyển hầu có phiếu bầu hoàng đế. Ottoman, tộc Lùn, Giáo hội và Baltic dùng thang khác.",
+          "keys": [],
+          "matchMode": "wholeWord",
+          "constant": true,
+          "knowledge": "public",
+          "weight": 14,
+          "budgetPriority": 9
+        },
+        {
+          "id": "concept_xung-ho",
+          "title": "Xưng hô và phép tắc",
+          "type": "concept",
+          "content": "Gọi sai tước là xúc phạm, và người ta nhớ rất lâu.\n\nCông tước trở lên gọi \"điện hạ\"; bá tước tới hầu tước gọi \"các hạ\"; hiệp sĩ gọi \"ngài\". Giám mục gọi \"đức cha\", hồng y gọi \"đức hồng y\". Thường dân đứng trước quý tộc thì không nhìn thẳng mắt và không nói trước khi được hỏi.\n\nNgười ngoại tộc bị hạ một bậc theo thói quen, kể cả khi có tước thật: một bá tước Người Thú vẫn bị lính gác chặn lại ở cổng ngoài, và đó không phải sơ suất — đó là lệ.",
+          "summary": "Gọi sai tước là xúc phạm. Công tước trở lên gọi điện hạ, bá tước tới hầu tước gọi các hạ, hiệp sĩ gọi ngài; giám mục gọi đức cha. Người ngoại tộc bị hạ một bậc theo lệ, kể cả khi có tước thật.",
+          "keys": [],
+          "matchMode": "wholeWord",
+          "constant": true,
+          "knowledge": "public",
+          "weight": 14,
+          "budgetPriority": 9
+        },
+        {
+          "id": "concept_lich-mua-vu",
+          "title": "Lịch, mùa vụ và mùa chiến dịch",
+          "type": "concept",
+          "content": "Người ta đếm thời gian bằng lễ chứ không bằng con số: trước lễ Thánh Martin, sau lễ Phục Sinh, tới mùa Chay thì không cưới xin và không ăn thịt.\n\nMùa chiến dịch mở khi đất khô, chừng cuối xuân, và đóng khi mưa thu tới. Quân đội mùa đông là quân đội chết đói. Thuế và tô thu sau vụ gặt, nên tháng nào cũng có kẻ nợ.\n\nMùa đông là mùa của kiện tụng, hôn ước, âm mưu và cái đói. Ngày làm việc bắt đầu lúc chuông sớm và kết thúc khi tắt nắng.",
+          "summary": "Thời gian đếm bằng lễ nhà thờ, không bằng con số. Mùa chiến dịch mở cuối xuân và đóng khi mưa thu; thuế thu sau vụ gặt. Mùa đông là mùa kiện tụng, hôn ước, âm mưu và đói.",
+          "keys": [],
+          "matchMode": "wholeWord",
+          "constant": true,
+          "knowledge": "public",
+          "weight": 14,
+          "budgetPriority": 9
+        },
+        {
+          "id": "concept_da-chung-toc",
+          "title": "Mọi thế lực đều đa chủng tộc",
+          "type": "concept",
+          "content": "Không tộc nào man rợ hay văn minh bẩm sinh. Vai trò đến từ thể chế, không đến từ máu.\n\nMỗi thế lực đều đa chủng tộc, và tộc nắm chính quyền chỉ là tộc nắm chính quyền. Đế chế Ottoman do Orc cai trị, nhưng cấm vệ tuyển dị tộc, thợ thủ công là Gnome, thủy thủ là Hải Tộc. Đế quốc La Mã Thần thánh do Teuton cầm quyền, nhưng phường thợ có tộc Lùn, đồng ruộng có Bán Nhân, rừng có Lâm Tiên.\n\nMột thế lực thuần một tộc là viết sai.",
+          "summary": "Không tộc nào man rợ hay văn minh bẩm sinh — vai trò đến từ thể chế. Mọi thế lực đều đa chủng tộc; tộc cai trị chỉ nắm chính quyền chứ không chiếm hết dân số. Viết một thế lực thuần một tộc là viết sai.",
+          "keys": [],
+          "matchMode": "wholeWord",
+          "constant": true,
+          "knowledge": "public",
+          "weight": 14,
+          "budgetPriority": 9
+        },
+        {
+          "id": "concept_y-thuat",
+          "title": "Y thuật, thương tích và cái chết",
+          "type": "concept",
+          "content": "Thầy thuốc có ba việc: trích máu, bốc thảo dược, và cầu nguyện. Ai làm được việc thứ tư — khâu vết thương, cưa chi, nắn xương — thì đó là thợ cạo, và tay nghề của họ tùy vào việc họ đã cưa bao nhiêu cái chân.\n\nVết thương không giết người ngay. Cái giết người là bốn ngày sau, khi mép thịt đỏ lên và người bệnh bắt đầu nói mê.\n\nMa pháp Thần thánh chữa được, nhưng đắt và phải xin. Một tu sĩ chỉ đặt tay lên người có giấy giới thiệu, hoặc người trả được lễ vật. Kẻ ngoại đạo thì đừng hy vọng.\n\nGãy chân ở nơi không có thợ cạo nghĩa là đi khập khiễng suốt đời. Không có thuốc giảm đau, chỉ có rượu mạnh và một khúc gỗ để cắn.",
+          "summary": "Y thuật là trích máu, thảo dược và cầu nguyện; khâu và cưa là việc của thợ cạo. Vết thương giết người bằng nhiễm trùng bốn ngày sau chứ không giết ngay. Ma pháp Thần thánh chữa được nhưng phải xin và phải trả, và kẻ ngoại đạo thì đừng hy vọng.",
+          "keys": ["thầy thuốc", "thợ cạo", "trích máu", "nhiễm trùng", "băng bó", "vết thương", "chữa lành", "thảo dược"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "weight": 10,
+          "budgetPriority": 8
+        },
+        {
+          "id": "law_giay-phep-xay-thanh",
+          "title": "Giấy phép xây thành lũy",
+          "type": "law",
+          "content": "Dựng tường, đào hào, hay xây tháp canh bằng đá đều phải có giấy phép của lãnh chúa cấp trên, đóng ấn triện và ghi rõ chiều cao được phép. Không có giấy thì công trình là bằng chứng của phản nghịch, và lãnh chúa có quyền đem quân san bằng — không cần xử án.\n\nAi được lợi: lãnh chúa cấp trên, vì mỗi tờ giấy là một khoản lệ phí và một lần nhắc rằng ai mới là chủ.\n\nAi lách được, và lách bằng cách nào: người ta xây \"kho lúa\" tường dày ba thước, \"tháp chuông\" có lỗ châu mai, \"nhà thờ\" có hào bao quanh. Chừng nào không có lính đồn trú thì trên giấy tờ nó vẫn không phải công sự. Thành bang tự do thì lách theo cách khác — họ mua thẳng đặc quyền từ hoàng đế đang cần tiền, và sau đó không cần xin ai nữa.",
+          "summary": "Dựng tường, đào hào hay xây tháp đá đều phải có giấy phép đóng ấn của lãnh chúa cấp trên; không có giấy thì bị coi là phản nghịch và bị san bằng không cần xử án. Người ta lách bằng cách gọi công sự là kho lúa, tháp chuông hoặc nhà thờ; thành bang tự do thì mua thẳng đặc quyền từ hoàng đế đang cần tiền.",
+          "keys": ["giấy phép xây thành", "quyền xây thành lũy", "xây tường thành", "đắp tường", "tháp canh", "công sự trái phép", "ấn triện"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "validFrom": { "year": 1356, "month": 1, "day": 10, "hour": 0 },
+          "weight": 12,
+          "budgetPriority": 8
+        }
+      ]
+    }
+  ]
+}

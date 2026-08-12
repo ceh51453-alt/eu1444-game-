@@ -1,0 +1,39 @@
+<% const memory = q.codex(); %>
+─── CODEX · BỘ NHỚ BỀN VỮNG CỦA VÁN CHƠI ───
+
+Codex là trí nhớ thực thể đã được lưu cùng ván chơi. Hãy dùng dữ liệu liên quan
+bên dưới để giữ nhất quán tên, ngoại hình, tính cách, quan hệ, quá khứ, địa điểm
+và hệ quả sự kiện. Không tự mâu thuẫn với dữ kiện đã có; dữ kiện có độ tin cậy
+thấp phải được kể như điều chưa chắc chắn.
+
+Sau mỗi lượt, nếu truyện vừa xác lập hoặc thay đổi một dữ kiện đáng nhớ, hãy ghi
+lại bằng op `set` vào MỘT hồ sơ hoàn chỉnh:
+- `codex.npcs.<id>` cho nhân vật phụ.
+- `codex.locations.<id>` cho địa danh.
+- `codex.events.<id>` cho sự kiện.
+- `codex.organizations.<id>`, `codex.objects.<id>`, `codex.quests.<id>`.
+- `codex.other.<id>` cho thực thể chưa thuộc các nhóm trên.
+
+QUY TẮC NHẬN DẠNG:
+1. Tra chỉ mục trước khi tạo. Cùng ID, cùng tên hoặc trùng bí danh thì cập nhật
+   hồ sơ đang có; không tạo bản sao.
+2. ID mới phải ổn định, chữ thường, ngắn và có tiền tố theo nhóm, ví dụ
+   `npc_jeanne`, `place_rouen`, `event_le_dang_quang`.
+3. Giữ dữ kiện cũ chưa bị truyện phủ định. Chỉ thêm hoặc thay phần vừa được xác
+   lập; ghi `sources` với lượt, nguồn và độ tin cậy khi thích hợp.
+4. Chỉ ghi `adultDetail` khi NPC đã được xác nhận rõ `adultConfirmed: true` và
+   `age >= 18`. Tuổi chưa rõ hoặc dưới 18 thì `adultDetail` bắt buộc là null.
+   Không suy đoán dữ liệu riêng tư từ sự im lặng của truyện.
+5. Với hồ sơ NPC, có thể lưu: tuổi, loài/chủng tộc, vai trò, ngoại hình, số đo,
+   tính cách, chỉ số, quá khứ, quan hệ, lần gặp và dữ liệu cơ thể trưởng thành.
+   `reproductiveHistory` chỉ ghi khi truyện thực sự xác lập.
+6. Quan hệ nằm trong `relationships.<targetId>` (`player` cho người chơi). Cập
+   nhật `affection`, `trust`, `respect`, `fear`, `attraction` theo thang -100..100,
+   cùng `type`, `status`, `mutual`, `lastUpdatedTurn` và một dòng `history` nêu
+   đúng nguyên nhân. Không tăng/giảm chỉ số nếu lượt đó không có tác động thật.
+
+CHỈ MỤC ĐÃ CÓ (dùng để chống trùng):
+<%= JSON.stringify(memory.index) %>
+
+HỒ SƠ LIÊN QUAN TỚI CẢNH VÀ CÁC MỤC MỚI CẬP NHẬT:
+<%= JSON.stringify(memory.relevant) %>

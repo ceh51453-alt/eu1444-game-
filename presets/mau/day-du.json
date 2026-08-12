@@ -1,0 +1,270 @@
+{
+  "$comment": "Preset mẫu TỔNG HỢP do engine dựng để kiểm thử trình import. KHÔNG phải preset SillyTavern thật. Nó cố ý chứa đủ bốn cái bẫy ở Phần 1 mục 6.2.",
+  "temperature": 1.05,
+  "frequency_penalty": 0.1,
+  "presence_penalty": 0.05,
+  "top_p": 0.98,
+  "top_k": 40,
+  "openai_max_context": 200000,
+  "openai_max_tokens": 8192,
+  "max_context_unlocked": true,
+  "seed": -1,
+  "n": 1,
+  "stream_openai": true,
+  "reasoning_effort": "high",
+  "verbosity": "medium",
+  "show_thoughts": true,
+  "names_behavior": 0,
+  "send_if_empty": "",
+  "wi_format": "{0}",
+  "scenario_format": "[Bối cảnh: {{scenario}}]",
+  "personality_format": "[Tính cách: {{personality}}]",
+  "use_sysprompt": true,
+  "squash_system_messages": false,
+  "continue_postfix": " ",
+  "prompts": [
+    {
+      "identifier": "main",
+      "id": "main",
+      "name": "Lời dẫn hệ thống",
+      "enabled": true,
+      "role": "system",
+      "content": "Bạn là người kể chuyện cho một thế giới giả tưởng thế kỷ 14.",
+      "system_prompt": true,
+      "marker": false,
+      "forbid_overrides": false,
+      "injection_position": 0,
+      "injection_depth": 0,
+      "injection_order": 100
+    },
+    {
+      "identifier": "styleGuide",
+      "id": "style-guide-v2",
+      "name": "Văn phong",
+      "enabled": false,
+      "role": "system",
+      "content": "Giọng kể trầm, không dùng từ hiện đại.",
+      "system_prompt": true,
+      "marker": false,
+      "forbid_overrides": true,
+      "injection_position": 0,
+      "injection_order": 90
+    },
+    {
+      "identifier": "personaDescription",
+      "name": "Hồ sơ người chơi",
+      "enabled": true,
+      "role": "system",
+      "content": "",
+      "marker": true,
+      "injection_position": 0,
+      "injection_order": 80
+    },
+    {
+      "identifier": "scenario",
+      "name": "Bối cảnh",
+      "enabled": true,
+      "role": "system",
+      "content": "",
+      "marker": true,
+      "injection_position": 0,
+      "injection_order": 70
+    },
+    {
+      "identifier": "worldInfoBefore",
+      "name": "Lorebook (trước)",
+      "enabled": true,
+      "role": "system",
+      "content": "",
+      "marker": true,
+      "injection_position": 0,
+      "injection_order": 60
+    },
+    {
+      "identifier": "charDescription",
+      "name": "Mô tả NPC",
+      "enabled": false,
+      "role": "system",
+      "content": "",
+      "marker": true,
+      "injection_position": 0,
+      "injection_order": 50
+    },
+    {
+      "identifier": "charPersonality",
+      "name": "Tính cách NPC",
+      "enabled": true,
+      "role": "system",
+      "content": "",
+      "marker": true,
+      "injection_position": 0,
+      "injection_order": 45
+    },
+    {
+      "identifier": "worldInfoAfter",
+      "name": "Lorebook (sau)",
+      "enabled": true,
+      "role": "system",
+      "content": "",
+      "marker": true,
+      "injection_position": 0,
+      "injection_order": 40
+    },
+    {
+      "identifier": "dialogueExamples",
+      "name": "Ví dụ hội thoại",
+      "enabled": true,
+      "role": "system",
+      "content": "",
+      "marker": true,
+      "injection_position": 0,
+      "injection_order": 35
+    },
+    {
+      "identifier": "chatHistory",
+      "name": "Lịch sử hội thoại",
+      "enabled": true,
+      "role": "user",
+      "content": "",
+      "marker": true,
+      "injection_position": 0,
+      "injection_order": 30
+    },
+    {
+      "identifier": "nudgeDepth2",
+      "id": "nudge-depth-2",
+      "name": "Nhắc theo độ sâu",
+      "enabled": true,
+      "role": "system",
+      "content": "Nhớ giữ nhịp truyện.",
+      "injection_position": 1,
+      "injection_depth": 2,
+      "injection_order": 20,
+      "injection_trigger": ["normal"]
+    },
+    {
+      "identifier": "orphanTonePolice",
+      "name": "Khối mồ côi 1",
+      "enabled": true,
+      "role": "system",
+      "content": "Không được viết lời thoại thay người chơi.",
+      "injection_position": 0,
+      "injection_order": 10
+    },
+    {
+      "identifier": "orphanLegacyJailbreak",
+      "name": "Khối mồ côi 2",
+      "enabled": true,
+      "role": "system",
+      "content": "Khối cũ từ preset đời trước.",
+      "injection_position": 0,
+      "injection_order": 5
+    },
+    {
+      "identifier": "orphanUnused",
+      "name": "Khối mồ côi 3",
+      "enabled": false,
+      "role": "user",
+      "content": "Không dùng nữa.",
+      "injection_position": 0,
+      "injection_order": 0
+    }
+  ],
+  "prompt_order": [
+    {
+      "character_id": 54321,
+      "order": [
+        { "identifier": "main", "enabled": true },
+        { "identifier": "chatHistory", "enabled": true }
+      ]
+    },
+    {
+      "character_id": 100001,
+      "order": [
+        { "identifier": "main", "enabled": true },
+        { "identifier": "styleGuide", "enabled": true },
+        { "identifier": "personaDescription", "enabled": true },
+        { "identifier": "scenario", "enabled": false },
+        { "identifier": "worldInfoBefore", "enabled": true },
+        { "identifier": "charDescription", "enabled": true },
+        { "identifier": "charPersonality", "enabled": false },
+        { "identifier": "worldInfoAfter", "enabled": true },
+        { "identifier": "dialogueExamples", "enabled": true },
+        { "identifier": "chatHistory", "enabled": true },
+        { "identifier": "nudgeDepth2", "enabled": true },
+        { "identifier": "khongTonTai", "enabled": true }
+      ]
+    }
+  ],
+  "extensions": {
+    "SPreset": {
+      "ChatSquash": { "enabled": false },
+      "MacroNest": { "enabled": true },
+      "ToolBindings": {},
+      "RegexBinding": [
+        {
+          "id": "cut-thinking",
+          "scriptName": "Cắt khối thinking khỏi prompt",
+          "disabled": false,
+          "findRegex": "/<thinking>[\\s\\S]*?<\\/thinking>/g",
+          "replaceString": "",
+          "trimStrings": [],
+          "placement": [2],
+          "promptOnly": true,
+          "markdownOnly": false,
+          "minDepth": null,
+          "maxDepth": null
+        },
+        {
+          "id": "wrap-thinking",
+          "scriptName": "Bọc chuỗi suy nghĩ bằng CSS",
+          "disabled": false,
+          "findRegex": "/<thinking>([\\s\\S]*?)<\\/thinking>/g",
+          "replaceString": "<div class=\"tu-duy\">$1</div>",
+          "placement": [2],
+          "promptOnly": false,
+          "markdownOnly": true,
+          "minDepth": null,
+          "maxDepth": null
+        },
+        {
+          "id": "greedy-danger",
+          "scriptName": "Regex tham lam (phải bị từ chối)",
+          "disabled": false,
+          "findRegex": "/(a+)+$/",
+          "replaceString": "",
+          "placement": [1]
+        }
+      ]
+    },
+    "regex_scripts": [
+      {
+        "id": "trim-ooc",
+        "scriptName": "Bỏ ghi chú OOC",
+        "disabled": true,
+        "findRegex": "\\(OOC:[^)]*\\)",
+        "replaceString": "",
+        "placement": [1, 2]
+      }
+    ],
+    "tavern_helper": {
+      "scripts": [
+        {
+          "type": "script",
+          "id": "ui-fold-thinking",
+          "name": "Khung gập cho chuỗi tư duy",
+          "enabled": true,
+          "content": "const nodes = document.querySelectorAll('.tu-duy'); nodes.forEach(n => { n.style.opacity = '0.7'; });"
+        },
+        {
+          "type": "script",
+          "id": "compute-derive",
+          "name": "Tính biến phụ",
+          "enabled": true,
+          "content": "const turn = api.state && api.state.meta ? api.state.meta.turn : 0; api.log('turn', turn); return [{ path: 'derived.turnEcho', op: 'set', value: turn }];"
+        }
+      ]
+    },
+    "entryGrouping": { "groups": [] }
+  }
+}

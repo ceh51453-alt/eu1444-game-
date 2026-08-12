@@ -1,0 +1,115 @@
+{
+  "kind": "eu1444-lorebook",
+  "schemaVersion": 1,
+  "exportedAt": 0,
+  "books": [
+    {
+      "id": "book-lich-su",
+      "name": "Europa 1444 · Thế giới và lịch sử",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 0,
+      "entries": [
+        {
+          "id": "concept_the-gioi-europa",
+          "title": "Cấu trúc thực tại của Lục địa Europa",
+          "type": "concept",
+          "content": "## Cấu trúc thực tại của Lục địa Europa năm 1444:\nThực tại này là một phiên bản phản chiếu dị thường của lục địa Châu Âu vào thế kỷ 15, nơi tiến trình lịch sử, các đường biên giới quốc gia có thật và các quy luật vật lý cơ bản vận hành song song cùng dòng chảy ma lực và sự tồn tại của các chủng tộc á nhân. Dòng chảy ma thuật này bắt nguồn từ sâu trong lòng đất, tạo ra những vùng từ trường ma thuật ảnh hưởng trực tiếp đến hệ sinh thái, sự tiến hóa của sinh vật, cũng như tác động sâu sắc đến quân sự, kinh tế và chính trị. Năm 1444 là một năm bản lề đẫm máu và đầy biến động, đánh dấu sự giao tranh khốc liệt giữa các thế lực phong kiến lâu đời và những đế chế mới nổi, khi tàn dư của thời kỳ phong kiến tăm tối đang phải đối mặt với ánh sáng của những tư tưởng mới và những cuộc xung đột đẫm máu giữa các chủng tộc đa dạng.\n\n## Cục diện địa chính trị và phân bố chủng tộc:\nLục địa bị chia cắt thành hàng trăm lãnh thổ, vương quốc và đế chế lớn nhỏ, mang dấu ấn đặc trưng của từng chủng tộc. Nhân loại chiếm số lượng đông đảo nhất, phân bố rộng khắp và thành lập nên các vương quốc hùng mạnh tại Tây và Trung Europa với trật tự phong kiến phức tạp. Tại Tây Âu, Vương quốc Pháp và Vương quốc Anh đang sa lầy trong cuộc Chiến tranh Trăm Năm, nơi lực lượng kỵ binh hiệp sĩ nhân loại kết hợp cùng các pháp sư đánh thuê. Tại Trung Âu, Đế quốc La Mã Thần thánh là một thực thể phân quyền phức tạp với hàng trăm lãnh thổ nhỏ. Các rặng núi hùng vĩ trải dài ở trung tâm lục địa như Alps và Bohemia bên trong Đế quốc là nơi cư ngụ của tộc Lùn, những kẻ làm chủ kỹ thuật luyện kim, kiểm soát giao thương vũ khí dưới lòng đất và các phường hội ngân hàng khổng lồ.\n\nỞ phía Đông và Nam, Đế chế Ottoman đang trỗi dậy mạnh mẽ dưới sự lãnh đạo của Sultan, sở hữu một đội quân đa chủng tộc khổng lồ. Lực lượng này bao gồm cả những toán lính xung kích Orc và Người Thú đến từ các thảo nguyên phương Đông, liên tục đe dọa biên giới và tạo áp lực nghẹt thở lên phần còn lại của Châu Âu. Xen kẽ giữa các quốc gia nhân loại là các khu rừng nguyên sinh cổ đại tại phương Bắc, phía Tây, Lithuania hoặc vùng Celtic, nơi tộc Tiên lui về ẩn cư, duy trì sự tồn tại biệt lập và bảo vệ nghiêm ngặt biên giới bằng ma pháp tự nhiên. Các giống loài khác như Yêu tinh sống rải rác ở những vùng rìa văn minh hoặc các khu vực hoang dã chưa được khám phá.\n\n## Nền ma pháp và tín ngưỡng tôn giáo:\nMa pháp tại Lục địa Europa được phân chia thành hai thái cực chính: Ma pháp Thần thánh và Ma pháp Bí thuật. Giáo hội Công giáo, đặt trụ sở tại Quốc gia Giáo hoàng ở bán đảo Ý, là tổ chức kiểm soát quyền lực tinh thần của toàn bộ Châu Âu và độc quyền quản lý Ma pháp Thần thánh. Giáo hội tuyên bố ma lực là hồng ân của Đấng Sáng Tạo hay Chúa Trời, và chỉ những Thánh kỵ sĩ hoặc tu sĩ được ban phước mới có quyền sử dụng để chữa lành hoặc thanh tẩy. Bất kỳ kẻ nào thao túng ma thuật ngoài luồng đều bị nghi ngờ và có nguy cơ bị Tòa án Dị giáo săn lùng gắt gao.\n\nTrái lại, Ma pháp Bí thuật là việc thao túng Mana tự nhiên thông qua nghiên cứu học thuật, huyết thống, kết hợp với giả kim thuật và cơ khí. Bất chấp rào cản tôn giáo, tại các thành bang thương mại trù phú ở miền Bắc nước Ý như Florence hay Venice, Ma pháp Bí thuật đang bắt đầu nhen nhóm thông qua sự trỗi dậy của phong trào Phục Hưng. Các học viện phép thuật tư nhân bắt đầu mọc lên tại những thành bang tự do này, nơi tri thức được trao đổi mạnh mẽ. Trong khi đó, các chủng tộc phi nhân loại như Tiên và Orc vẫn giữ gìn nếp tín ngưỡng Đa thần giáo, Tín ngưỡng Tự nhiên cổ xưa và ma thuật Shaman của riêng họ, trực tiếp vay mượn và khai thác sức mạnh nguyên thủy của đất trời.",
+          "summary": "Cấu trúc thực tại của Lục địa Europa: Thực tại này là một phiên bản phản chiếu dị thường của lục địa Châu Âu vào thế kỷ 15, nơi tiến trình lịch sử, các đường biên giới quốc gia có thật và các quy luật vật lý cơ bản vận hành song song cùng dòng chảy ma lực và sự tồn tại của các chủng tộc á nhân. Dòng chảy ma thuật này bắt nguồn từ sâu trong lòng đất, tạo ra những vùng từ trường ma thuật ảnh hưởng trực tiếp đến hệ sinh thái, sự tiến hóa của sinh vật, cũng như tác động sâu sắc đến quân sự, kinh tế và chính trị.",
+          "keys": [
+            "Lục địa Europa",
+            "Europa",
+            "dòng chảy ma lực",
+            "từ trường ma thuật",
+            "Ma pháp Thần thánh",
+            "Ma pháp Bí thuật",
+            "chủng tộc á nhân",
+            "á nhân"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 14,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "event_lich-su-den-1444",
+          "title": "Dòng thời gian Europa, từ Kỷ nguyên Thần Thoại đến Varna 1444",
+          "type": "event",
+          "content": "## Giai đoạn: Kỷ nguyên Cổ đại và Sự trỗi dậy của Nhân loại\n\n- Kỷ nguyên Thần Thoại - Thời kỳ Cổ Long và Cự Nhân thống trị: Các Cổ Long và Cự Nhân nắm giữ quyền lực tuyệt đối trên lục địa. Các chủng tộc nhỏ bé như Nhân loại, Tiên, và Lùn phải sống lay lắt dưới cái bóng của các thực thể khổng lồ này.\n\n- Năm 0 - Sự sinh ra của Đấng Cứu Thế (Chúa Jesus): Đánh dấu điểm khởi đầu của Công nguyên và sự lan tỏa của Ma pháp Thần thánh nguyên thủy.\n\n## Giai đoạn: Thời kỳ Tăm tối, Các cuộc Thánh chiến và Sự định hình Đế quốc La Mã Thần thánh\n\n- Năm 476 - Sự sụp đổ của Đại Đế chế phương Tây: Đại Đế chế phương Tây (hay Đế quốc Tây La Mã) sụp đổ trước các cuộc di cư khổng lồ và xâm lăng của các bộ tộc man tộc, Orc và Người Thú từ phương Bắc và phương Đông. Sự kiện này kết hợp với sự suy thoái và hỗn loạn của ma lực từ bên trong đã đẩy lục địa vào Thời kỳ Tăm Tối. Các lãnh chúa địa phương tự lập ranh giới, khiến chế độ phong kiến phân quyền bắt đầu bám rễ sâu sắc.\n\n- Năm 1095 - Cuộc Thập Tự Chinh Đầu Tiên: Giáo hội, dưới sự dẫn dắt của Giáo hoàng Urban II, kêu gọi các hiệp sĩ Nhân loại từ khắp Châu Âu tiến về phương Nam để giành lại các thánh địa cổ xưa. Tại Đất Thánh, họ phải đối đầu không chỉ với các vương quốc ngoại đạo Hồi giáo mà còn mở ra kỷ nguyên xung đột tôn giáo đẫm máu.\n\n- Năm 1250 đến 1273 - Thời kỳ Đại Không Vương (Interregnum): Đế quốc La Mã Thần thánh chìm trong hỗn loạn vô chính phủ khi ngai vàng Hoàng đế bị bỏ trống. Các lãnh chúa tự do chém giết lẫn nhau để giành giật các mạch ma lực và lãnh thổ. Khép lại kỷ nguyên này là sự kiện Bá tước Rudolf I đắc cử Hoàng đế, đánh dấu bước chuyển mình vĩ đại đầu tiên của Gia tộc Habsburg bước lên vũ đài quyền lực tối cao.\n\n- Năm 1337 - Khởi đầu Chiến tranh Trăm Năm: Cuộc chiến tranh giành ngai vàng bùng nổ giữa hai vương quốc hùng mạnh nhất ở phía Tây là Anh và Pháp. Cuộc chiến kéo dài làm suy kiệt tài nguyên và tiêu hao sinh mạng của cả hai quốc gia, biến các vùng nông thôn thành chiến trường đẫm máu với sự can thiệp của lính đánh thuê ngoại tộc từ nội địa Đế quốc, tộc Lùn, các pháp sư lưu vong tộc Tiên cùng những loại vũ khí ma pháp thử nghiệm.\n\n- Năm 1356 - Ban hành Đạo luật Vàng (Golden Bull): Hoàng đế Charles IV ban hành hiến chương tối cao, chính thức ấn định quyền lực cho Bảy Tuyển Đế Hầu. Sự kiện này chấm dứt những cuộc nội chiến tranh giành quyền bầu cử, nhưng lại vĩnh viễn khóa chặt Đế quốc vào cấu trúc phân quyền, tạo ra những nhà nước độc lập ngay bên trong lòng Đế chế.\n\n- Năm 1419 đến 1434 - Chiến tranh Hussite tại Bohemia: Lục địa rúng động trước cuộc nổi dậy của các dị giáo đồ Hussite. Bất chấp việc bị Hoàng đế và Giáo hội phát động tới năm cuộc Thập Tự Chinh đàn áp, quân đội Hussite với các chiến xa bọc thép kết hợp hỏa khí của tộc Lùn và ma thuật nguyên thủy đã liên tục nghiền nát các đạo kỵ binh bọc thép tinh nhuệ nhất của Đế quốc. Sự kiện này định hình lại hoàn toàn lối nghĩ về chiến tranh.\n\n- Năm 1440 đến 1444 - Chiến tranh Zürich Cũ (Old Zürich War): Cuộc xung đột đẫm máu bùng nổ ngay trong lòng dãy Alps giữa thành bang Zürich (được Gia tộc Habsburg và lính đánh thuê Armagnac của Pháp hậu thuẫn) và phần còn lại của Cựu Liên minh Thụy Sĩ. Sự kiện này phơi bày rõ sự mong manh của các hiệp ước phong kiến khi đối mặt với các thành bang ngầm của tộc Lùn và lực lượng lính đánh thuê trỗi dậy.\n\n## Giai đoạn: Cục diện năm 1444 và Biến cố Varna\n\n- Ngày 10 tháng 11 năm 1444 - Thảm kịch Trận Varna: Trận chiến tàn khốc kết thúc với sự thất bại hoàn toàn của Liên minh Thập tự quân do Vua Władysław III của Vương quốc Ba Lan và Hungary lãnh đạo. Họ bị nghiền nát bởi quân đội của Sultan Murad II thuộc Đế chế Ottoman, một Đế quốc Orc mới đang trỗi dậy mạnh mẽ ở phương Đông. Vua Władysław III tử trận tại sa trường. Sự kiện này giáng một đòn chí mạng vào quyền lực của Châu Âu Cơ đốc giáo, mở đường cho Đế chế Ottoman tiếp tục bành trướng vào vùng Balkan và đe dọa phần còn lại của Đại Đế chế phương Đông. Tàn dư của Đế quốc Byzantine tại Constantinople rơi vào tình trạng bị cô lập hoàn toàn và đối mặt với nguy cơ diệt vong. Trong khi đó, ở phía Tây, cuộc Chiến tranh Trăm Năm tạm thời đình chiến nhưng căng thẳng vẫn âm ỉ. Khắp lục địa, toàn bộ các cường quốc, phe phái, chủng tộc và tôn giáo đều đang ráo riết định hình lại liên minh và chuẩn bị cho một cuộc đại chiến định hình lại bản đồ thế giới.",
+          "summary": "Dòng thời gian Europa, từ Kỷ nguyên Thần Thoại đến Varna 1444: ",
+          "keys": [
+            "Kỷ nguyên Thần Thoại",
+            "Thời kỳ Tăm Tối",
+            "Thập Tự Chinh",
+            "Đại Không Vương",
+            "Interregnum",
+            "Chiến tranh Trăm Năm",
+            "Đạo luật Vàng",
+            "Golden Bull",
+            "Chiến tranh Hussite",
+            "Chiến tranh Zürich Cũ",
+            "Trận Varna",
+            "lịch sử Europa"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "validUntil": {
+            "year": 1500,
+            "month": 12,
+            "day": 31,
+            "hour": 23
+          }
+        },
+        {
+          "id": "event_lich-su-sau-1444",
+          "title": "Những gì SẼ xảy ra sau 1444 — chỉ mô phỏng ngầm được biết",
+          "type": "event",
+          "content": "## Giai đoạn: Hậu Varna và Những biến động đầu Kỷ nguyên Phục Hưng\n\n- Năm 1453 - Sự sụp đổ của Constantinople: Sau gần hai tháng bị vây hãm bởi lực lượng pháo binh khổng lồ của tộc Ogre và binh đoàn Janissary tinh nhuệ, Bức tường Theodosian bất khả xâm phạm cuối cùng cũng sụp đổ. Sultan Mehmed II tiến vào kinh thành, chính thức kết liễu Đế quốc Byzantine ngàn năm tuổi. Constantinople được đổi tên và trở thành thủ đô mới của Đế chế Ottoman, củng cố vị thế bá chủ của họ tại Đông Địa Trung Hải và cắt đứt hoàn toàn tuyến đường giao thương ma thuật cổ đại giữa Châu Âu và phương Đông.\n\n- Năm 1453 - Kết thúc Chiến tranh Trăm Năm: Cùng năm với sự sụp đổ của phương Đông, Vương quốc Pháp dưới sự lãnh đạo của Vua Charles VII và sự trợ giúp của lực lượng pháo binh ma thuật cải tiến đã đánh bật hoàn toàn quân đội Anh ra khỏi lục địa (ngoại trừ vùng Calais). Vương quốc Pháp bắt đầu quá trình tập quyền hóa mạnh mẽ, trở thành một siêu cường quân sự đáng gờm tại Tây Âu.\n\n- Năm 1455 đến 1487 - Chiến tranh Hoa Hồng (Wars of the Roses): Vương quốc Anh chìm trong biển máu của cuộc nội chiến tàn khốc giữa hai nhánh của gia tộc hoàng gia Plantagenet là House of Lancaster (Hoa hồng đỏ) và House of York (Hoa hồng trắng). Sự hỗn loạn này tạo cơ hội cho các thế lực ma thuật hắc ám và các thế lực dị giáo trỗi dậy từ trong bóng tối, trong khi giới quý tộc tàn sát lẫn nhau cho đến khi Gia tộc Tudor vươn lên giành lấy ngai vàng.\n\n- Năm 1477 - Cái chết của Charles the Bold và Sự chia cắt Công quốc Burgundy: Tham vọng xây dựng một vương quốc độc lập nằm giữa Pháp và Đế quốc La Mã Thần thánh của Công tước Charles the Bold bị nghiền nát trong Trận Nancy. Cái chết của ông dẫn đến cuộc khủng hoảng thừa kế khổng lồ. Vương quốc Pháp nhanh chóng nuốt chửng các vùng lãnh thổ cốt lõi của Burgundy, trong khi Vùng Đất Thấp (The Low Countries) trù phú rơi vào tay Gia tộc Habsburg thông qua hôn nhân, tạo ra một mâu thuẫn địa chính trị sẽ kéo dài hàng thế kỷ.\n\n- Năm 1492 - Sự sụp đổ của Granada và Kỷ nguyên Khám phá: Tại Bán đảo Iberia, Liên minh Vương quyền Castile và Aragon hoàn thành cuộc Reconquista (Tái chinh phục) bằng việc tiêu diệt Tiểu vương quốc Granada, thành trì cuối cùng của người Hồi giáo tại Tây Âu. Cùng năm đó, được tài trợ bởi Vương quyền Tây Ban Nha, một hạm đội thám hiểm đã vượt qua Đại Tây Dương, khám phá ra một Tân Thế Giới hoàn toàn mới. Sự kiện này mở ra Kỷ nguyên Đại Hàng Hải, nơi các cường quốc Châu Âu bắt đầu vươn vòi bạch tuộc ra khắp các lục địa để săn lùng tài nguyên, thuộc địa và những nguồn ma lực nguyên thủy chưa từng được biết đến.",
+          "summary": "Đường đi của lịch sử sau tháng 11 năm 1444, theo bản ghi của mô phỏng ngầm: Constantinople thất thủ, Chiến tranh Trăm Năm khép lại, Anh quốc nội chiến, Burgundy tan, Granada sụp. Không nhân vật nào trong thế giới biết những điều này.",
+          "keys": [
+            "Constantinople",
+            "Granada",
+            "Burgundy",
+            "Chiến tranh Hoa Hồng",
+            "Wars of the Roses",
+            "Charles the Bold",
+            "Mehmed II",
+            "Tân Thế Giới",
+            "Kỷ nguyên Đại Hàng Hải",
+            "Reconquista",
+            "tương lai",
+            "số phận"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "secret",
+          "placement": "block",
+          "weight": 8,
+          "budgetPriority": 5,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    }
+  ]
+}

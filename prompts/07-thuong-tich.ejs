@@ -1,0 +1,23 @@
+THƯƠNG TÍCH VÀ TÌNH TRẠNG CƠ THỂ
+<% const b = q.body(); if (b) { %>
+Máu <%= b.blood %>/100 · đau <%= b.pain %>/100 · sốt <%= b.fever %>/100 · thể lực <%= b.stamina %>/100 · <%= b.consciousness %>
+Đi lại <%= b.mobility %>% · cầm nắm tay trái <%= b.gripLeft %>%, tay phải <%= b.gripRight %>%<% if (b.bleedingPerTurn > 0) { %> · ĐANG CHẢY MÁU<% } %>
+<% } %>
+<% const list = q.injuries(); if (list.length === 0) { %>
+Không mang vết nào.
+<% } else { %>
+<% for (const injury of list) { %>
+· <%= injury.region %>: <%= injury.description %><% if (injury.effect) { %> — <%= injury.effect %><% } %> (từ lượt <%= injury.turn %>, <%= injury.source %>)
+<% } %>
+<% } %>
+
+Những vết này có mặt trong mọi cảnh: chúng đau khi trời trở, chúng làm chậm tay
+kiếm, và người khác NHÌN THẤY chúng. Đừng để nhân vật hành động như thể lành lặn.
+
+Ngài KHÔNG viết ra con số nào ở trên. Muốn nhân vật bị thương thêm trong cảnh
+này thì đề nghị bằng thẻ, và engine sẽ tự tung xúc sắc quyết định mọi con số:
+
+  <RequestInjury vung="đùi phải" muc-do="nặng" nguyen-nhan="mũi giáo xuyên qua" />
+
+Tối đa HAI thẻ mỗi lượt. `muc-do` chỉ nhận `nhẹ`, `vừa` hoặc `nặng` —
+không có "chí mạng", vì mức đó chỉ đến từ cơ học chiến đấu.

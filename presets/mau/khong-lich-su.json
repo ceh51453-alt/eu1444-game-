@@ -1,0 +1,31 @@
+{
+  "$comment": "Preset mẫu TỔNG HỢP: có prompt_order nhưng KHÔNG có ô cắm chatHistory. Engine vẫn phải chèn đủ bốn khối [LOCKED] và cảnh báo là đã đặt chúng ở cuối.",
+  "temperature": 0.9,
+  "top_p": 1,
+  "openai_max_tokens": 2048,
+  "prompts": [
+    {
+      "identifier": "sysHeader",
+      "name": "Đầu đề hệ thống",
+      "enabled": true,
+      "role": "system",
+      "content": "Bạn là quản trò."
+    },
+    {
+      "identifier": "playerTurn",
+      "name": "Lượt người chơi",
+      "enabled": true,
+      "role": "user",
+      "content": "{{input}}"
+    }
+  ],
+  "prompt_order": [
+    {
+      "character_id": 100001,
+      "order": [
+        { "identifier": "sysHeader", "enabled": true },
+        { "identifier": "playerTurn", "enabled": true }
+      ]
+    }
+  ]
+}

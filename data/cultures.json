@@ -1,0 +1,174 @@
+{
+  "$comment": "VĂN HÓA NUÔI DẠY (Phần 6). Đây KHÔNG phải chủng tộc: một Frank bị bắt từ nhỏ và lớn lên trong thị tộc thảo nguyên mang máu Frank nhưng mang văn hóa thảo nguyên, và hai thứ đó tác động khác nhau — chủng tộc cho thân thể, văn hóa cho thứ được dạy. Tách ra còn để Phần 8 (nghịch cảnh mở nhánh) và Phần 14 (chủng tộc xen kẽ) có chỗ cắm vào. Khuôn hiệu ứng dùng chung với traits.json và religions.json; `value` được nhân với mức hòa nhập (culturalFit/100). `nativeRaces` chỉ là GỢI Ý cho UI, không khóa lựa chọn — chọn lệch là chuyện thú vị chứ không phải lỗi.",
+  "version": 1,
+  "cultures": [
+    {
+      "id": "cul_phong-kien-tay",
+      "name": "Phong kiến Tây Âu",
+      "description": "Thề, đất, và ngựa. Ai cũng là chư hầu của ai đó, và ai cũng nhớ mình đứng ở bậc nào.",
+      "nativeRaces": ["race_frank", "race_ban-tien", "race_ma-due"],
+      "regions": ["realm_france", "realm_burgundy", "realm_england"],
+      "language": "Tiếng Frank",
+      "effects": [
+        { "domains": ["skill.cuoi-ngua", "skill.nghi-thuc"], "value": 15 },
+        { "domains": ["skill.kiem-thuat", "skill.thuong-kich"], "value": 10 },
+        { "domains": ["skill.luat-le"], "value": 10 },
+        { "domains": ["skill.mac-ca", "skill.ke-toan"], "value": -12 }
+      ]
+    },
+    {
+      "id": "cul_de-quoc-teuton",
+      "name": "Đế quốc và phường hội",
+      "description": "Một đế quốc gồm ba trăm mảnh, và mỗi mảnh có điều lệ riêng. Nghề nào cũng có sổ và có thầy.",
+      "nativeRaces": ["race_teuton", "race_lun-nui", "race_gnome"],
+      "regions": ["realm_hre", "realm_swiss"],
+      "language": "Tiếng Teuton",
+      "effects": [
+        { "domains": ["skill.ren-sat", "skill.moc", "skill.xay-cat", "skill.che-tac"], "value": 12 },
+        { "domains": ["skill.luat-le", "skill.ke-toan"], "value": 10 },
+        { "domains": ["combat.*"], "value": 10, "whenAnyTag": ["doi-hinh"] },
+        { "domains": ["skill.kich-dong"], "value": -10 }
+      ]
+    },
+    {
+      "id": "cul_thanh-bang-latin",
+      "name": "Thành bang Latin",
+      "description": "Tiền, hợp đồng và mưu. Ở đây một lá thư tín dụng đi xa hơn một đội kỵ binh.",
+      "nativeRaces": ["race_latin", "race_mieu-nhan", "race_gnome"],
+      "regions": ["realm_venice", "realm_florence", "realm_genoa", "realm_milan"],
+      "language": "Tiếng Latin tục",
+      "effects": [
+        { "domains": ["skill.mac-ca", "skill.ke-toan", "skill.dam-phan"], "value": 15 },
+        { "domains": ["skill.tinh-bao", "skill.doc-nguoi"], "value": 10 },
+        { "domains": ["skill.hoc-van", "skill.thu-phap"], "value": 10 },
+        { "domains": ["skill.sinh-ton", "skill.san-ban"], "value": -12 }
+      ]
+    },
+    {
+      "id": "cul_bien-cuong-rus",
+      "name": "Biên cương Rus",
+      "description": "Rừng, sông, và một biên giới không bao giờ yên. Mọi nhà đều có người từng đi lính.",
+      "nativeRaces": ["race_rus", "race_lang-nhan", "race_bang-toc"],
+      "regions": ["realm_muscovy", "realm_novgorod", "realm_tver"],
+      "language": "Tiếng Rus",
+      "effects": [
+        { "domains": ["skill.sinh-ton", "skill.truy-dau", "skill.san-ban"], "value": 12 },
+        { "domains": ["skill.cung-no", "skill.cuoi-ngua"], "value": 10 },
+        { "domains": ["*"], "value": 12, "whenAnyTag": ["gia-lanh", "mua-dong"] },
+        { "domains": ["skill.nghi-thuc"], "value": -12, "whenAnyTag": ["trieu-dinh"] }
+      ]
+    },
+    {
+      "id": "cul_thao-nguyen",
+      "name": "Thảo nguyên du mục",
+      "description": "Không có thành, chỉ có đàn và đường đi. Của cải là thứ mang theo được.",
+      "nativeRaces": ["race_ma-nhan", "race_nguu-nhan", "race_lang-nhan"],
+      "regions": ["realm_great-horde", "realm_crimea", "realm_kazan"],
+      "language": "Tiếng thảo nguyên",
+      "effects": [
+        { "domains": ["skill.cuoi-ngua", "skill.thu-y"], "value": 15 },
+        { "domains": ["skill.cung-no", "combat.ban-xa"], "value": 12, "whenAnyTag": ["tren-ngua"] },
+        { "domains": ["logistics.*", "skill.do-duong"], "value": 12, "whenAnyTag": ["hanh-quan"] },
+        { "domains": ["skill.xay-cat", "skill.ke-toan"], "value": -15 }
+      ]
+    },
+    {
+      "id": "cul_nam-phuong",
+      "name": "Đế quốc phương Nam",
+      "description": "Quan chế, học viện, và một bộ máy quân sự chạy bằng giấy tờ. Thăng tiến bằng công trạng chứ không bằng dòng máu.",
+      "nativeRaces": ["race_orc", "race_ogre", "race_hai-toc"],
+      "regions": ["realm_ottoman"],
+      "language": "Tiếng Orc miền nam",
+      "effects": [
+        { "domains": ["admin.*", "skill.hau-can", "skill.cai-tri"], "value": 12 },
+        { "domains": ["combat.*", "skill.chi-huy"], "value": 12, "whenAnyTag": ["doi-hinh"] },
+        { "domains": ["skill.thien-van", "skill.y-thuat"], "value": 10 },
+        { "domains": ["skill.dam-phan"], "value": -12, "whenAnyTag": ["giao-si", "nha-tho"] }
+      ]
+    },
+    {
+      "id": "cul_ham-mo",
+      "name": "Hầm mỏ và bang tự trị",
+      "description": "Đá, sổ nợ và một hội đồng cãi nhau ba đời. Chưa ai từng chinh phục được nơi này lâu.",
+      "nativeRaces": ["race_lun-nui", "race_lun-vuc-sau", "race_kobold"],
+      "regions": ["realm_swiss", "prov_alps"],
+      "language": "Tiếng Lùn miền núi",
+      "effects": [
+        { "domains": ["skill.dao-ham", "skill.ren-sat", "skill.xay-cat"], "value": 12 },
+        { "domains": ["*"], "value": 12, "whenAnyTag": ["trong-ham", "duoi-long-dat"] },
+        { "domains": ["skill.ke-toan", "skill.mac-ca"], "value": 10 },
+        { "domains": ["skill.cuoi-ngua", "skill.cheo-thuyen"], "value": -15 }
+      ]
+    },
+    {
+      "id": "cul_rung-gia",
+      "name": "Rừng già và lùm thiêng",
+      "description": "Làng nhỏ, tư tế già, và một hiệp ước cũ với thứ sống trong rừng.",
+      "nativeRaces": ["race_lam-tien", "race_moc-toc", "race_lang-nhan"],
+      "regions": ["realm_lithuania", "realm_livonia"],
+      "language": "Tiếng lùm thiêng",
+      "effects": [
+        { "domains": ["skill.cung-no", "skill.len-lut", "skill.duoc-thao"], "value": 12 },
+        { "domains": ["*"], "value": 15, "whenAnyTag": ["trong-rung"] },
+        { "domains": ["skill.cam-ung", "skill.boi-toan"], "value": 10 },
+        { "domains": ["admin.*", "skill.nghi-thuc"], "value": -12 }
+      ]
+    },
+    {
+      "id": "cul_hai-cang",
+      "name": "Hải cảng và thương đoàn",
+      "description": "Nơi tin tức đến trước hàng hóa, và cả hai đều bán được.",
+      "nativeRaces": ["race_hai-toc", "race_mieu-nhan", "race_gnome"],
+      "regions": ["realm_venice", "realm_genoa", "realm_portugal", "realm_denmark"],
+      "language": "Tiếng lóng bến cảng",
+      "effects": [
+        { "domains": ["skill.cheo-thuyen", "skill.boi-loi", "skill.thien-van"], "value": 12 },
+        { "domains": ["skill.mac-ca", "skill.ngon-ngu"], "value": 12 },
+        { "domains": ["*"], "value": 12, "whenAnyTag": ["tren-thuyen", "duoi-nuoc"] },
+        { "domains": ["skill.cuoi-ngua"], "value": -12 }
+      ]
+    },
+    {
+      "id": "cul_o-chuot",
+      "name": "Ổ chuột thành thị",
+      "description": "Lớn lên ở chỗ mà luật đi qua nhưng không dừng lại. Học nhanh hoặc không học nữa.",
+      "nativeRaces": ["race_thu-nhan", "race_kobold", "race_ban-nhan"],
+      "regions": ["reg_europa"],
+      "language": "Tiếng lóng ổ chuột",
+      "effects": [
+        { "domains": ["skill.len-lut", "skill.moc-tui", "skill.mo-khoa", "skill.lua-doi"], "value": 15 },
+        { "domains": ["skill.doc-nguoi"], "value": 10 },
+        { "domains": ["*"], "value": 12, "whenAnyTag": ["cho-chat", "dam-dong"] },
+        { "domains": ["skill.nghi-thuc", "skill.hoc-van"], "value": -15 }
+      ]
+    },
+    {
+      "id": "cul_bac-cuc",
+      "name": "Băng giá phương Bắc",
+      "description": "Nửa năm không có mặt trời. Ai không chuẩn bị từ mùa hè thì không qua nổi mùa đông.",
+      "nativeRaces": ["race_bang-toc", "race_hung-nhan", "race_ban-khong-lo"],
+      "regions": ["realm_sweden", "realm_norway", "realm_denmark"],
+      "language": "Tiếng Băng Tộc",
+      "effects": [
+        { "domains": ["*"], "value": 18, "whenAnyTag": ["gia-lanh", "mua-dong"] },
+        { "domains": ["skill.sinh-ton", "skill.chiu-dung", "skill.cheo-thuyen"], "value": 12 },
+        { "domains": ["skill.riu-bua"], "value": 10 },
+        { "domains": ["*"], "value": -12, "whenAnyTag": ["nong-buc"] }
+      ]
+    },
+    {
+      "id": "cul_carpath",
+      "name": "Quý tộc Carpath",
+      "description": "Vùng vỡ vụn nơi ai cũng liên minh với ai để chống ai, và một số gia tộc thì không bao giờ chết.",
+      "nativeRaces": ["race_huyet-toc", "race_long-due", "race_nguu-nhan"],
+      "regions": ["realm_hungary", "realm_wallachia", "prov_transylvania"],
+      "language": "Tiếng Magyar quý tộc",
+      "effects": [
+        { "domains": ["skill.tinh-bao", "skill.phan-gian", "skill.doc-nguoi"], "value": 12 },
+        { "domains": ["skill.uy-hiep", "skill.chi-huy"], "value": 12 },
+        { "domains": ["*"], "value": 10, "whenAnyTag": ["ban-dem"] },
+        { "domains": ["skill.gay-thien-cam"], "value": -12, "whenAnyTag": ["nguoi-la"] }
+      ]
+    }
+  ]
+}

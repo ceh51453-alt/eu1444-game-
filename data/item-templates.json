@@ -1,0 +1,494 @@
+{
+  "$comment": "MẪU VẬT PHẨM (Phần 16 mục 2, 7, 10, 11, 12, 15). Đây là lớp VẬT PHẨM THẬT mà README mục 5 hứa: `data/gear.json` chỉ khai NGÀI ĐANG MANG GÌ, còn ở đây mới có chất lượng năm bậc, hư hỏng cụ thể, bảo dưỡng, chế tạo, bản mẫu và ba mốc thời đại.",
+  "version": 1,
+
+  "$inheritComment": "MẪU KHÔNG CHÉP LẠI `data/gear.json`. Món nào đã có id ở đó thì `name`, `kind`, `slot`, `material`, `weightKg` và `value` TỰ ĐỘNG kế thừa, và mẫu ở dưới chỉ khai phần Phần 16 thêm vào: mốc thời đại, cách chế tạo, cách bảo dưỡng, thuộc phe nào. Món nào Phần 16 mới thêm thì khai đủ. Loader nổ nếu một mẫu vừa không có trong `gear.json` vừa không khai đủ — im lặng lùi về mặc định là cách một cây rìu cán dài trở thành một món nặng 0 cân giá 0 đồng.",
+
+  "$kindComment": "Tám loại của mục 2, giữ đúng từ vựng của `gear.json` để hai lớp không cần bảng dịch: vu-khi (weapon) · giap (armor) · khien (shield) · quan-ao (clothing) · dung-cu (tool) · vat-cuoi (mount) · quan-nhu (supply) · trang-suc (trinket).",
+
+  "$qualityComment": "NĂM BẬC CỦA MỤC 7 — `data/gear.json` chỉ có bốn, vì Phần 6 chưa cần bậc 'thượng phẩm'. `alias` là cách một món tạo ra từ Phần 6 tra được sang bảng này mà không phải sửa save. `bonus` là điểm d100 cộng vào `skillBonus`, giữ nguyên thang của Phần 6. `power`/`protect` cộng thẳng vào ba trục của mục 3.",
+  "qualities": [
+    { "id": "vung-ve", "level": 1, "name": "vụng về", "alias": ["tho-vung"], "bonus": -10, "power": -8, "protect": -8, "priceFactor": 0.5, "conditionDecay": 1.8 },
+    { "id": "thuong", "level": 2, "name": "thường", "alias": [], "bonus": 0, "power": 0, "protect": 0, "priceFactor": 1, "conditionDecay": 1 },
+    { "id": "tot", "level": 3, "name": "tốt", "alias": ["tho-gioi"], "bonus": 10, "power": 6, "protect": 6, "priceFactor": 3, "conditionDecay": 0.7 },
+    { "id": "thuong-pham", "level": 4, "name": "thượng phẩm", "alias": [], "bonus": 15, "power": 10, "protect": 10, "priceFactor": 6, "conditionDecay": 0.5 },
+    { "id": "tuyet-tac", "level": 5, "name": "tuyệt tác", "alias": ["kiet-tac"], "bonus": 20, "power": 14, "protect": 14, "priceFactor": 12, "conditionDecay": 0.3, "named": true, "prestige": 12 }
+  ],
+  "$masterpieceComment": "TUYỆT TÁC KHÔNG CHỈ MẠNH HƠN (mục 7): nó có TÊN RIÊNG (`named`), có `history`, và có GIÁ TRỊ XÃ HỘI (`prestige`). Tặng một thanh tuyệt tác là một hành động chính trị của Phần 13, nên `prestige` phải là một con số chứ không phải một dòng mô tả.",
+
+  "$craftRollComment": "Bậc quyết định bởi KIỂM ĐỊNH 3d6 của người thợ khi hoàn thành (mục 7, hệ của Phần 5), cộng với: kỹ năng thợ, chất lượng lò rèn trong thành trì (Phần 12), vật liệu, thời gian bỏ ra, và có bản mẫu để chép hay không. Ngưỡng đọc từ dưới lên: biên độ càng lớn thì bậc càng cao.",
+  "craftRoll": {
+    "system": "3d6",
+    "difficulty": "thuong",
+    "tiers": [
+      { "minMargin": 6, "quality": "tuyet-tac" },
+      { "minMargin": 3, "quality": "thuong-pham" },
+      { "minMargin": 1, "quality": "tot" },
+      { "minMargin": -2, "quality": "thuong" },
+      { "minMargin": -99, "quality": "vung-ve" }
+    ],
+    "$factorComment": "Cộng vào ngưỡng 3d6 (dương là dễ hơn). `forgeQuality` đọc cấp công trình lò rèn của Phần 12; `extraTimeFactor` là số tuần bỏ thêm so với `manWeeks` chuẩn.",
+    "skillPerPoint": 0.06,
+    "forgeQualityPerLevel": 1.2,
+    "materialCraftMinPenalty": -4,
+    "extraTimeFactor": 1.5,
+    "noPatternPenalty": -6
+  },
+
+  "$damageComment": "HƯ HỎNG CỤ THỂ (mục 10) — KHÔNG DÙNG MỘT THANH ĐỘ BỀN. `condition` 0–100 vẫn có, nhưng nó chỉ là tổng hao mòn; thứ thật sự đổi cơ học là DANH SÁCH này. Một thanh kiếm mẻ lưỡi và một thanh kiếm cong là hai vấn đề khác nhau, cần hai người thợ khác nhau, và một thanh độ bền không nói ra được điều đó.",
+  "damageKinds": [
+    {
+      "id": "luoi-me",
+      "name": "lưỡi mẻ",
+      "applies": ["vu-khi"],
+      "power": { "chem": -12, "dam": -2, "dap": 0 },
+      "repair": { "skill": "skill_ren-sat", "skillMin": 0, "hours": 2, "supplies": 0, "building": "", "note": "Mài lại được — ngay tại lều, bằng một hòn đá mài." }
+    },
+    {
+      "id": "luoi-cong",
+      "name": "lưỡi cong",
+      "applies": ["vu-khi"],
+      "power": { "chem": -22, "dam": -18, "dap": -4 },
+      "repair": { "skill": "skill_ren-sat", "skillMin": 35, "hours": 10, "supplies": 1, "building": "bld_lo-ren", "note": "Giảm nhiều, CẦN THỢ RÈN." }
+    },
+    {
+      "id": "gay",
+      "name": "gãy",
+      "applies": ["vu-khi", "khien"],
+      "broken": true,
+      "power": { "chem": -60, "dam": -60, "dap": -40 },
+      "repair": { "skill": "skill_ren-sat", "skillMin": 55, "hours": 60, "supplies": 4, "building": "bld_lo-ren", "valuePct": 0.5, "note": "BỎ HOẶC RÈN LẠI. Rèn lại thì bậc chất lượng tụt một nấc, và mọi `history` vẫn giữ." }
+    },
+    {
+      "id": "giap-mop",
+      "name": "giáp móp",
+      "applies": ["giap"],
+      "regional": true,
+      "coverage": -20,
+      "protect": { "chem": -6, "dam": -6, "dap": -10 },
+      "repair": { "skill": "skill_ren-sat", "skillMin": 25, "hours": 6, "supplies": 1, "building": "bld_lo-ren", "note": "GIẢM COVERAGE Ở ĐÚNG VÙNG ĐÓ, gò lại được." }
+    },
+    {
+      "id": "giap-thung",
+      "name": "giáp thủng",
+      "applies": ["giap"],
+      "regional": true,
+      "coverage": -85,
+      "protect": { "chem": -20, "dam": -25, "dap": -12 },
+      "repair": { "skill": "skill_ren-sat", "skillMin": 45, "hours": 20, "supplies": 2, "building": "bld_lo-ren", "note": "COVERAGE VÙNG ĐÓ VỀ GẦN 0 CHO TỚI KHI VÁ. Một lỗ thủng ở yếm giáp là một lỗ thủng ở đúng chỗ người ta nhắm." }
+    },
+    {
+      "id": "dai-dut",
+      "name": "đai đứt",
+      "applies": ["giap"],
+      "slipsOff": true,
+      "coverage": -100,
+      "repair": { "skill": "skill_thuoc-da", "skillMin": 10, "hours": 1, "supplies": 1, "building": "", "note": "MÓN GIÁP TUỘT RA KHI VẬN ĐỘNG MẠNH. Sửa thì dễ, nhưng phải nhớ sửa." }
+    },
+    {
+      "id": "gi-set",
+      "name": "gỉ sét",
+      "applies": ["vu-khi", "giap"],
+      "spreads": true,
+      "spreadPerWeek": 6,
+      "power": { "chem": -8, "dam": -6, "dap": -2 },
+      "protect": { "chem": -8, "dam": -8, "dap": -4 },
+      "repair": { "skill": "skill_ren-sat", "skillMin": 0, "hours": 4, "supplies": 1, "building": "", "note": "LAN DẦN NẾU KHÔNG LAU DẦU; giáp lưới phải LĂN TRONG CÁT — một thùng cát và hai người lăn suốt buổi chiều." }
+    },
+    {
+      "id": "day-cung-gian",
+      "name": "dây cung giãn",
+      "applies": ["vu-khi"],
+      "bowOnly": true,
+      "power": { "chem": 0, "dam": -25, "dap": 0 },
+      "repair": { "skill": "skill_che-tac", "skillMin": 10, "hours": 2, "supplies": 1, "building": "", "note": "CUNG MẤT LỰC, MƯA LÀM HỎNG NHANH. Xạ thủ tử tế mang ba dây và giữ chúng trong mũ." }
+    },
+    {
+      "id": "moi-mot",
+      "name": "mối mọt",
+      "applies": ["vu-khi", "khien", "quan-ao"],
+      "storageOnly": true,
+      "power": { "chem": -6, "dam": -6, "dap": -10 },
+      "repair": { "skill": "skill_moc", "skillMin": 20, "hours": 8, "supplies": 2, "building": "bld_xuong-moc", "note": "Trang bị để lâu TRONG KHO ẨM." }
+    },
+    {
+      "id": "da-muc",
+      "name": "da mục",
+      "applies": ["giap", "quan-ao"],
+      "storageOnly": true,
+      "protect": { "chem": -14, "dam": -10, "dap": -12 },
+      "repair": { "skill": "skill_thuoc-da", "skillMin": 20, "hours": 6, "supplies": 2, "building": "", "note": "Cùng một cái kho ẩm, và cùng một người quên mở cửa thông gió." }
+    }
+  ],
+
+  "$maintenanceComment": "BẢO DƯỠNG là hoạt động tốn THỜI GIAN và VẬT TƯ, làm SAU MỖI TRẬN (mục 10). Bỏ bê thì vào trận sau với đồ hỏng. MỘT ĐẠO QUÂN KHÔNG CÓ THỢ RÈN ĐI THEO SẼ RÃ TRANG BỊ SAU VÀI TUẦN CHIẾN DỊCH — nối thẳng vào vây hãm theo tuần của Phần 11.",
+  "maintenance": {
+    "conditionPerBattle": 6,
+    "conditionPerCampaignWeek": 4,
+    "wetStorageExtra": 3,
+    "$smithComment": "Thợ rèn theo quân giữ được bao nhiêu: mỗi thợ chăm được `perSmith` người mỗi tuần. Thiếu thợ thì phần chênh lệch cộng thẳng vào hao mòn, và tới ngưỡng thì sinh hư hỏng cụ thể.",
+    "perSmith": 120,
+    "noSmithMultiplier": 2.5,
+    "damageAtCondition": [
+      { "below": 70, "chance": 12 },
+      { "below": 45, "chance": 30 },
+      { "below": 25, "chance": 55 }
+    ],
+    "$restoreComment": "Một buổi bảo dưỡng tử tế: giờ công và vật tư theo giá trị món.",
+    "restorePerHour": 9,
+    "suppliesPerHour": 0.15
+  },
+
+  "$patternComment": "BẢN MẪU (mục 11) — ĐÂY LÀ CÁCH 'CÔNG NGHỆ' LAN TRONG THẾ GIỚI. Kiểu giáp tấm mới phải HỌC TỪ THỢ KHÁC, MUA BẢN VẼ, hoặc THÁO MỘT MÓN CÓ SẴN RA NGHIÊN CỨU. Không có bản mẫu thì vẫn làm được, nhưng chịu `noPatternPenalty` và gần như không bao giờ ra tuyết tác. `spreadFrom` là năm kiểu ấy bắt đầu lan ra ngoài nơi phát minh — Phần 15 dùng nó làm một tuyến sự kiện.",
+  "patterns": [
+    { "id": "pat_giap-luoi", "name": "Đan giáp lưới", "skill": "skill_ren-sat", "skillMin": 25, "learnDifficulty": "thuong", "inventedYear": 1200, "spreadFrom": 1200, "origin": "" },
+    { "id": "pat_ao-giap-manh", "name": "Tán tấm vào vải", "skill": "skill_ren-sat", "skillMin": 35, "learnDifficulty": "thuong", "inventedYear": 1290, "spreadFrom": 1300, "origin": "nation_hre" },
+    { "id": "pat_tam-chi", "name": "Gò tấm cho tay chân", "skill": "skill_ren-sat", "skillMin": 45, "learnDifficulty": "kho", "inventedYear": 1320, "spreadFrom": 1340, "origin": "nation_frank" },
+    { "id": "pat_bascinet", "name": "Gò mũ bascinet", "skill": "skill_ren-sat", "skillMin": 55, "learnDifficulty": "kho", "inventedYear": 1330, "spreadFrom": 1345, "origin": "nation_hre" },
+    { "id": "pat_yem-tam", "name": "Gò yếm giáp tấm", "skill": "skill_ren-sat", "skillMin": 60, "learnDifficulty": "rat-kho", "inventedYear": 1350, "spreadFrom": 1365, "origin": "nation_frank" },
+    { "id": "pat_giap-toan-than", "name": "Bộ giáp tấm toàn thân", "skill": "skill_ren-sat", "skillMin": 75, "learnDifficulty": "cuc-kho", "inventedYear": 1370, "spreadFrom": 1390, "origin": "nation_frank" },
+    { "id": "pat_no-toi-quay", "name": "Nỏ tời quay", "skill": "skill_co-khi", "skillMin": 50, "learnDifficulty": "kho", "inventedYear": 1330, "spreadFrom": 1345, "origin": "nation_lien-bang-nui" },
+    { "id": "pat_hoa-khi", "name": "Ống hỏa khí", "skill": "skill_gia-kim", "skillMin": 55, "learnDifficulty": "rat-kho", "inventedYear": 1360, "spreadFrom": 1395, "origin": "nation_ottoman" },
+    { "id": "pat_cung-sung", "name": "Ép cung sừng phức hợp", "skill": "skill_che-tac", "skillMin": 55, "learnDifficulty": "rat-kho", "inventedYear": 1100, "spreadFrom": 1100, "origin": "nation_han-quoc" },
+    { "id": "pat_cung-dai", "name": "Vót cung dài thủy tùng", "skill": "skill_che-tac", "skillMin": 40, "learnDifficulty": "kho", "inventedYear": 1250, "spreadFrom": 1250, "origin": "nation_anh-quoc" }
+  ],
+  "$learnComment": "Ba đường học một bản mẫu (mục 11). `weeks` là thời gian, `cost` là bội số giá trị món mẫu.",
+  "patternLearning": [
+    { "id": "hoc-tho", "name": "Học từ thợ khác", "weeks": 8, "cost": 0.6, "needsTeacher": true, "note": "Rẻ nhất, và người thầy sẽ nhớ." },
+    { "id": "mua-ban-ve", "name": "Mua bản vẽ", "weeks": 3, "cost": 2.5, "needsTeacher": false, "note": "Nhanh và đắt. Bản vẽ có thể sai." },
+    { "id": "thao-ra", "name": "Tháo một món ra nghiên cứu", "weeks": 12, "cost": 1, "destroysItem": true, "note": "PHÁ HỦY MÓN MẪU. Đây là cách một bộ giáp cướp được đáng giá hơn nhiều so với giá bán của nó." }
+  ],
+
+  "$massComment": "SẢN XUẤT HÀNG LOẠT cho quân đội là BÀI TOÁN KHÁC với rèn một món tuyệt tác (mục 11): chọn giữa NHIỀU ĐỒ TẦM THƯỜNG hay ÍT ĐỒ TỐT.",
+  "massProduction": {
+    "batchMin": 20,
+    "manWeekFactor": 0.45,
+    "qualityShift": -1,
+    "maxQuality": "thuong",
+    "note": "Một xưởng chạy lô lớn làm nhanh hơn gấp đôi và không bao giờ ra được món trên mức 'thường'. Đó là lý do binh lính và hiệp sĩ không mặc cùng một thứ."
+  },
+
+  "$factionComment": "TRANG BỊ THEO PHE PHÁI (mục 15). `catalog` là thứ bán rộng rãi ở đó; `exclusive` là thứ CHỈ HỌ mới có, và mọi nơi khác phải cướp, mua lại đắt gấp mấy lần, hoặc nghiên cứu.",
+  "factions": {
+    "nation_ottoman": {
+      "name": "Đế quốc Orc",
+      "catalog": ["item_giap-luoi", "item_cung-sung", "item_kiem-mot-tay", "item_giao"],
+      "exclusive": ["item_sung-tay", "item_dai-phao"],
+      "note": "Giáp lưới nhẹ TIÊU CHUẨN HÓA HÀNG LOẠT, cung phức hợp, và ĐỘC QUYỀN THUỐC SÚNG ở giai đoạn đầu."
+    },
+    "nation_lien-bang-nui": {
+      "name": "Liên bang Lùn",
+      "catalog": ["item_thuong-dai", "item_kich", "item_no-nang", "item_riu-can-dai"],
+      "exclusive": ["item_no-nang"],
+      "materials": ["thep-lun", "thep-rune"],
+      "note": "Giáo dài, kích, thép Lùn, nỏ nặng."
+    },
+    "nation_dong-la-ma": {
+      "name": "Đông La Mã",
+      "catalog": ["item_giap-luoi", "item_kiem-mot-tay", "item_cung-ngan"],
+      "exclusive": [],
+      "note": "Giáp lưới kiểu cổ RẤT TỐT NHƯNG LỖI THỜI DẦN, hỏa dược đặc biệt. Mỗi thập niên trôi qua là một thập niên họ tụt lại."
+    },
+    "nation_frank": {
+      "name": "Frank / Đế quốc",
+      "catalog": ["item_giap-tam", "item_yem-giap-tam", "item_kiem-dai", "item_thuong-ky"],
+      "exclusive": [],
+      "patterns": ["pat_yem-tam", "pat_giap-toan-than"],
+      "note": "GIÁP TẤM TIÊN TIẾN NHẤT, kỵ binh nặng."
+    },
+    "nation_hre": {
+      "name": "Đế quốc La Mã Thần thánh",
+      "catalog": ["item_giap-tam", "item_kiem-dai", "item_mu-bascinet"],
+      "exclusive": [],
+      "patterns": ["pat_bascinet", "pat_ao-giap-manh"],
+      "note": "Thợ giáp thành phố, và mỗi thành một kiểu."
+    },
+    "nation_anh-quoc": {
+      "name": "Anh quốc",
+      "catalog": ["item_truong-cung", "item_ao-lot-giap", "item_bua-chien"],
+      "exclusive": ["item_truong-cung"],
+      "materials": ["go-thuy-tung"],
+      "note": "CUNG DÀI THỦY TÙNG — KHÔNG NƠI NÀO KHÁC CÓ ĐỦ XẠ THỦ, vì không nơi nào khác có tám năm luyện của một tầng dân tự do."
+    },
+    "nation_han-quoc": {
+      "name": "Thảo nguyên",
+      "catalog": ["item_cung-sung", "item_giap-da", "item_kiem-mot-tay"],
+      "exclusive": ["item_cung-sung"],
+      "note": "Cung sừng, giáp da nhẹ, ƯU TIÊN TỐC ĐỘ TUYỆT ĐỐI. Không ai ở đây mặc ba mươi cân thép."
+    },
+    "nation_thanh-bang-latin": {
+      "name": "Thành bang",
+      "catalog": ["item_no-tay", "item_ao-giap-manh", "item_kiem-mot-tay", "item_giap-tam"],
+      "exclusive": [],
+      "wealthFactor": 1.5,
+      "note": "Nỏ, giáp lính đánh thuê, và TIỀN để mua đồ tốt nhất — họ không phát minh ra gì cả, họ chỉ trả giá cao hơn ngài."
+    },
+    "nation_hungary": {
+      "name": "Balkan / Huyết Tộc",
+      "catalog": ["item_kiem-mot-tay", "item_giap-da", "item_no-tay"],
+      "exclusive": [],
+      "materials": ["bac"],
+      "note": "VŨ KHÍ BẠC (dùng để chống chính họ), giáp đêm. Một xứ mà thợ bạc kiếm sống bằng nghề rèn kiếm."
+    }
+  },
+
+  "$templateComment": "Mẫu vật phẩm. Món có id trong `gear.json` thì kế thừa phần khai báo; món Phần 16 mới thêm thì khai đủ.",
+  "templates": [
+    {
+      "id": "item_kiem-ban-to",
+      "name": "Kiếm bản to",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "thep",
+      "weightKg": 2.2,
+      "value": 45,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 40, "building": "bld_lo-ren", "manWeeks": 2 },
+      "note": "Bản rộng, mũi cùn. Người ta mua nó vì nó chém đứt được một cây giáo."
+    },
+    {
+      "id": "item_dao-rondel",
+      "name": "Dao rondel",
+      "kind": "vu-khi",
+      "slot": "that-lung",
+      "material": "thep",
+      "weightKg": 0.45,
+      "value": 12,
+      "eraFrom": 1330,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 30, "building": "bld_lo-ren", "manWeeks": 0.5 },
+      "note": "Hai cái đĩa thép kẹp lấy bàn tay để mũi dao không trượt ngược. Người ta phát minh ra nó SAU giáp tấm, vì giáp tấm."
+    },
+    {
+      "id": "item_riu-can-dai",
+      "name": "Rìu cán dài",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "thep",
+      "weightKg": 3.2,
+      "value": 30,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 30, "building": "bld_lo-ren", "manWeeks": 1.5 },
+      "note": "Một lưỡi rìu trên hai mét gỗ. Rẻ, và là thứ giết nhiều hiệp sĩ nhất thế kỷ."
+    },
+    {
+      "id": "item_thuong-ky",
+      "name": "Thương kỵ",
+      "kind": "vu-khi",
+      "slot": "cuoi",
+      "material": "go",
+      "weightKg": 7,
+      "value": 20,
+      "craft": { "skill": "skill_moc", "skillMin": 25, "building": "bld_xuong-moc", "manWeeks": 1 },
+      "note": "Làm để gãy. Một hiệp sĩ ra trận mang ba cây, và về nhà với không cây nào."
+    },
+    {
+      "id": "item_gay-sat",
+      "name": "Gậy sắt",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "sat",
+      "weightKg": 1.9,
+      "value": 8,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 10, "building": "bld_lo-ren", "manWeeks": 0.5 },
+      "note": "Món vũ khí rẻ nhất còn giết được người mặc giáp."
+    },
+    {
+      "id": "item_cung-sung",
+      "name": "Cung sừng phức hợp",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "xuong",
+      "weightKg": 1,
+      "value": 90,
+      "craft": { "skill": "skill_che-tac", "skillMin": 55, "building": "bld_xuong-cung-no", "manWeeks": 40, "pattern": "pat_cung-sung" },
+      "maintenance": { "weeks": 2, "supplies": 1 },
+      "note": "MỘT NĂM để ép và hong khô. Đó là lý do một tộc du mục quý cây cung hơn con ngựa."
+    },
+    {
+      "id": "item_no-nang",
+      "name": "Nỏ hạng nặng",
+      "kind": "vu-khi",
+      "slot": "tay-phai",
+      "material": "thep",
+      "weightKg": 7,
+      "value": 140,
+      "eraFrom": 1340,
+      "craft": { "skill": "skill_co-khi", "skillMin": 50, "building": "bld_xuong-cung-no", "manWeeks": 6, "pattern": "pat_no-toi-quay" },
+      "note": "Cánh thép và một cái tời. Người bắn nó không cần khỏe, chỉ cần kiên nhẫn."
+    },
+    {
+      "id": "item_dai-phao",
+      "name": "Đại pháo",
+      "kind": "dung-cu",
+      "slot": "ba-lo",
+      "material": "dong",
+      "weightKg": 900,
+      "value": 2600,
+      "eraFrom": 1380,
+      "faction": "nation_ottoman",
+      "craft": { "skill": "skill_gia-kim", "skillMin": 65, "building": "bld_xuong-duc", "manWeeks": 30, "pattern": "pat_hoa-khi" },
+      "note": "CHỈ DÙNG CÔNG THÀNH (mục 16). Rút thời gian hạ tường từ nhiều tháng xuống vài tuần — và mỗi phát bắn có thể là phát cuối của chính nó."
+    },
+
+    {
+      "id": "item_ao-giap-manh",
+      "name": "Áo giáp mảnh",
+      "kind": "giap",
+      "slot": "than",
+      "material": "sat",
+      "weightKg": 9,
+      "value": 90,
+      "eraFrom": 1300,
+      "eraTo": 1380,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 35, "building": "bld_lo-ren", "manWeeks": 3, "pattern": "pat_ao-giap-manh" },
+      "note": "Cách người ta mặc tấm trước khi biết gò tấm lớn — và nó biến mất khi họ biết."
+    },
+    {
+      "id": "item_yem-giap-tam",
+      "name": "Yếm giáp tấm",
+      "kind": "giap",
+      "slot": "than",
+      "material": "thep",
+      "weightKg": 8,
+      "value": 220,
+      "eraFrom": 1360,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 60, "building": "bld_lo-ren", "manWeeks": 8, "pattern": "pat_yem-tam" },
+      "note": "Một tấm thép gò cong đúng lồng ngực MỘT người."
+    },
+    {
+      "id": "item_giap-lung",
+      "name": "Giáp lưng",
+      "kind": "giap",
+      "slot": "than",
+      "material": "thep",
+      "weightKg": 5,
+      "value": 150,
+      "eraFrom": 1370,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 60, "building": "bld_lo-ren", "manWeeks": 5, "pattern": "pat_yem-tam" }
+    },
+    {
+      "id": "item_giap-vai",
+      "name": "Giáp vai",
+      "kind": "giap",
+      "slot": "than",
+      "material": "thep",
+      "weightKg": 3,
+      "value": 95,
+      "eraFrom": 1370,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 55, "building": "bld_lo-ren", "manWeeks": 3, "pattern": "pat_tam-chi" }
+    },
+    {
+      "id": "item_giap-canh-tay",
+      "name": "Giáp cánh tay",
+      "kind": "giap",
+      "slot": "tay-phai",
+      "material": "thep",
+      "weightKg": 2,
+      "value": 70,
+      "eraFrom": 1350,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 45, "building": "bld_lo-ren", "manWeeks": 2, "pattern": "pat_tam-chi" }
+    },
+    {
+      "id": "item_giap-cang-tay",
+      "name": "Giáp cẳng tay",
+      "kind": "giap",
+      "slot": "tay-trai",
+      "material": "thep",
+      "weightKg": 1.6,
+      "value": 55,
+      "eraFrom": 1340,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 45, "building": "bld_lo-ren", "manWeeks": 1.5, "pattern": "pat_tam-chi" }
+    },
+    {
+      "id": "item_vay-giap",
+      "name": "Váy giáp",
+      "kind": "giap",
+      "slot": "that-lung",
+      "material": "thep",
+      "weightKg": 3.5,
+      "value": 85,
+      "eraFrom": 1370,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 55, "building": "bld_lo-ren", "manWeeks": 3, "pattern": "pat_tam-chi" }
+    },
+    {
+      "id": "item_giap-dui",
+      "name": "Giáp đùi",
+      "kind": "giap",
+      "slot": "chan",
+      "material": "thep",
+      "weightKg": 4,
+      "value": 90,
+      "eraFrom": 1350,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 50, "building": "bld_lo-ren", "manWeeks": 3, "pattern": "pat_tam-chi" }
+    },
+    {
+      "id": "item_mu-bascinet",
+      "name": "Mũ bascinet",
+      "kind": "giap",
+      "slot": "dau",
+      "material": "thep",
+      "weightKg": 2.6,
+      "value": 65,
+      "eraFrom": 1340,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 55, "building": "bld_lo-ren", "manWeeks": 3, "pattern": "pat_bascinet" }
+    },
+    {
+      "id": "item_tam-che-mat",
+      "name": "Tấm che mặt",
+      "kind": "giap",
+      "slot": "dau",
+      "material": "thep",
+      "weightKg": 1.1,
+      "value": 40,
+      "eraFrom": 1350,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 55, "building": "bld_lo-ren", "manWeeks": 1.5, "pattern": "pat_bascinet" },
+      "note": "Lật lên được. Và người ta lật lên đúng một lần quá nhiều."
+    },
+    {
+      "id": "item_mang-luoi-co",
+      "name": "Màng lưới cổ",
+      "kind": "giap",
+      "slot": "dau",
+      "material": "sat",
+      "weightKg": 1.4,
+      "value": 30,
+      "eraFrom": 1330,
+      "craft": { "skill": "skill_ren-sat", "skillMin": 25, "building": "bld_lo-ren", "manWeeks": 1, "pattern": "pat_giap-luoi" }
+    },
+
+    { "id": "item_kiem-mot-tay", "craft": { "skill": "skill_ren-sat", "skillMin": 35, "building": "bld_lo-ren", "manWeeks": 2 } },
+    { "id": "item_kiem-dai", "eraFrom": 1350, "craft": { "skill": "skill_ren-sat", "skillMin": 50, "building": "bld_lo-ren", "manWeeks": 4 } },
+    { "id": "item_dao-gam", "craft": { "skill": "skill_ren-sat", "skillMin": 15, "building": "bld_lo-ren", "manWeeks": 0.5 } },
+    { "id": "item_riu-chien", "craft": { "skill": "skill_ren-sat", "skillMin": 20, "building": "bld_lo-ren", "manWeeks": 1 } },
+    { "id": "item_bua-chien", "eraFrom": 1350, "craft": { "skill": "skill_ren-sat", "skillMin": 45, "building": "bld_lo-ren", "manWeeks": 2 } },
+    { "id": "item_chuy", "craft": { "skill": "skill_ren-sat", "skillMin": 20, "building": "bld_lo-ren", "manWeeks": 1 } },
+    { "id": "item_giao", "craft": { "skill": "skill_ren-sat", "skillMin": 10, "building": "bld_lo-ren", "manWeeks": 0.5 } },
+    { "id": "item_thuong-dai", "craft": { "skill": "skill_moc", "skillMin": 15, "building": "bld_xuong-moc", "manWeeks": 0.5 } },
+    { "id": "item_kich", "eraFrom": 1340, "craft": { "skill": "skill_ren-sat", "skillMin": 40, "building": "bld_lo-ren", "manWeeks": 2 } },
+    { "id": "item_truong-cung", "material": "go-thuy-tung", "craft": { "skill": "skill_che-tac", "skillMin": 40, "building": "bld_xuong-cung-no", "manWeeks": 3, "pattern": "pat_cung-dai" }, "maintenance": { "weeks": 2, "supplies": 1 } },
+    { "id": "item_cung-ngan", "craft": { "skill": "skill_che-tac", "skillMin": 20, "building": "bld_xuong-cung-no", "manWeeks": 1 }, "maintenance": { "weeks": 3, "supplies": 1 } },
+    { "id": "item_no-tay", "craft": { "skill": "skill_co-khi", "skillMin": 35, "building": "bld_xuong-cung-no", "manWeeks": 3 } },
+    { "id": "item_lao", "craft": { "skill": "skill_moc", "skillMin": 10, "building": "bld_xuong-moc", "manWeeks": 0.3 } },
+    { "id": "item_sung-tay", "eraFrom": 1370, "faction": "nation_ottoman", "craft": { "skill": "skill_gia-kim", "skillMin": 55, "building": "bld_xuong-duc", "manWeeks": 8, "pattern": "pat_hoa-khi" } },
+    { "id": "item_khien-tron", "craft": { "skill": "skill_moc", "skillMin": 15, "building": "bld_xuong-moc", "manWeeks": 0.5 } },
+    { "id": "item_khien-lon", "craft": { "skill": "skill_moc", "skillMin": 20, "building": "bld_xuong-moc", "manWeeks": 1 } },
+    { "id": "item_ao-lot-giap", "material": "vai-don", "craft": { "skill": "skill_det-may", "skillMin": 20, "building": "bld_xuong-nghe", "manWeeks": 2 } },
+    { "id": "item_giap-da", "material": "da-thuoc", "craft": { "skill": "skill_thuoc-da", "skillMin": 25, "building": "bld_xuong-nghe", "manWeeks": 2 } },
+    { "id": "item_giap-luoi", "craft": { "skill": "skill_ren-sat", "skillMin": 25, "building": "bld_lo-ren", "manWeeks": 12, "pattern": "pat_giap-luoi" } },
+    { "id": "item_mu-sat", "craft": { "skill": "skill_ren-sat", "skillMin": 20, "building": "bld_lo-ren", "manWeeks": 1 } },
+    { "id": "item_mu-tru", "eraTo": 1380, "craft": { "skill": "skill_ren-sat", "skillMin": 40, "building": "bld_lo-ren", "manWeeks": 3 } },
+    { "id": "item_gang-sat", "eraFrom": 1330, "craft": { "skill": "skill_ren-sat", "skillMin": 50, "building": "bld_lo-ren", "manWeeks": 2, "pattern": "pat_tam-chi" } },
+    { "id": "item_ghet-sat", "eraFrom": 1320, "craft": { "skill": "skill_ren-sat", "skillMin": 45, "building": "bld_lo-ren", "manWeeks": 2, "pattern": "pat_tam-chi" } },
+    { "id": "item_giap-tam", "eraFrom": 1380, "craft": { "skill": "skill_ren-sat", "skillMin": 75, "building": "bld_lo-ren", "manWeeks": 26, "pattern": "pat_giap-toan-than" }, "note": "SÁU THÁNG CÔNG của một thợ giỏi, và phải đặt trước. Đây là con số làm cho mục 12 có nghĩa." }
+  ],
+
+  "$heraldryComment": "HUY HIỆU & DANH TÍNH (mục 13). Ba tác dụng CƠ HỌC, không phải trang trí: được nhận ra thì bị BẮT SỐNG để đòi tiền chuộc thay vì bị giết (nối Phần 10); được nhận ra thì uy tín tăng khi lập công NHƯNG cũng bị nhắm làm mục tiêu; GIẤU huy hiệu thì đánh ẩn danh được, nhưng lộ ra là mất danh dự nặng. NGƯỜI MẶC GIÁP TỐT MÀ KHÔNG CÓ HUY HIỆU THÌ BỊ COI LÀ CƯỚP VÀ BỊ GIẾT NGAY.",
+  "heraldry": {
+    "captureChanceBonus": 45,
+    "targetedBonus": 18,
+    "prestigePerVictory": 6,
+    "hiddenHonourLoss": -25,
+    "hiddenDiscoveryChance": 25,
+    "richNoDeviceKillBonus": 35,
+    "richArmourValue": 250,
+    "carriers": ["item_ao-choang-len", "item_khien-tron", "item_khien-lon", "item_giap-tam"]
+  }
+}

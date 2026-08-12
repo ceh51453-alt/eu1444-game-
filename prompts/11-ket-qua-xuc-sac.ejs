@@ -1,0 +1,79 @@
+<%
+  /*
+    KHỐI 11 [LOCKED] — Phần 5 mục 10.
+    Đây là chỗ R1 thành câu chữ model thật sự đọc: engine đã tung xong, bảng
+    dưới là dữ kiện, và hai dòng cuối (`narrativeHint`) do engine sinh ra, model
+    không được sửa. Thiếu khối này là AI bịa số — README mục 8.2.
+  */
+  const nhanCap = {
+    critSuccess: 'THÀNH CÔNG LỚN',
+    success: 'THÀNH CÔNG',
+    costlySuccess: 'THÀNH CÔNG CÓ GIÁ',
+    fail: 'THẤT BẠI',
+    critFail: 'THẤT BẠI NẶNG',
+  };
+  const nhanHe = {
+    d100: 'd100 tung-dưới',
+    d20: 'd20 + chỉ số vs DC',
+    '3d6': '3d6 tung-dưới',
+    pool: 'dice pool d6',
+  };
+  const nhanHeQua = {
+    cost: 'Cái giá engine đã định',
+    boon: 'Lợi ích engine đã định',
+    escalation: 'Biến cố engine đã định',
+  };
+  const nhanDoKho = {
+    'de-dang': 'Dễ dàng',
+    thuong: 'Thường',
+    kho: 'Khó',
+    'rat-kho': 'Rất khó',
+    'cuc-kho': 'Cực khó',
+    'gan-bat-kha': 'Gần bất khả',
+  };
+  const dau = (n) => (n >= 0 ? '+' + n : String(n));
+%>
+═══ KẾT QUẢ ĐÃ ĐƯỢC QUYẾT ĐỊNH — BẮT BUỘC TUÂN THEO ═══
+Hành động: <%= action.text %>
+<% if (roll.checks.length === 0) { %>
+
+Lượt này engine không tung xúc sắc: hành động không có gì để hỏng. Cứ kể, nhưng
+vẫn không được tự sinh ra con số nào.
+<% } %>
+<% for (const check of roll.checks) { %>
+
+Phép kiểm: <%= check.id %> · miền <%= check.domain %>
+Hệ: <%= nhanHe[check.system] || check.system %> · độ khó <%= nhanDoKho[check.difficulty] || check.difficulty %>
+<% if (check.modifiers.length > 0) { %>
+Điều chỉnh: <%= check.modifiers.map((m) => dau(m.value) + ' (' + m.label + ')').join(', ') %>
+<% } %>
+<% if (check.system === 'pool') { %>
+Tung <%= check.raw.length %> viên d6: <%= check.raw.join(' ') %> · cần <%= check.target %> thành công
+<% } else if (check.system === 'd20') { %>
+DC <%= check.dc %>, tung được <%= check.raw.join('') %> (chênh <%= dau(check.margin) %>)
+<% } else { %>
+Mục tiêu <%= check.target %>, tung được <%= check.raw.join('+') %><%= check.raw.length > 1 ? ' = ' + check.raw.reduce((a, b) => a + b, 0) : '' %> (chênh <%= dau(check.margin) %>)
+<% } %>
+→ <%= nhanCap[check.tier] || check.tier %>
+<% if (check.consequence) { %>
+<%= nhanHeQua[check.consequence.kind] || 'Engine đã định' %>: <%= check.consequence.text %>
+<% } %>
+
+<%= check.narrativeHint %>
+<% } %>
+<% if (roll.timeCost > 0) { %>
+
+Hành động này tiêu mất <%= roll.timeCost %> phút trong game. Cảnh phải phản ánh
+đúng khoảng thời gian đó, đừng kể như thể nó xảy ra trong chớp mắt.
+<% } %>
+<% if (roll.notes.length > 0) { %>
+
+Engine còn ghi thêm:
+<% for (const note of roll.notes) { %>
+· <%= note %>
+<% } %>
+<% } %>
+
+KHÔNG đảo ngược kết quả trên. KHÔNG "suýt nữa thì". KHÔNG để nhân vật gỡ lại
+bằng một pha may mắn mà engine chưa tung. Nếu là thất bại, hãy kể vì sao nó
+hỏng cho hợp lý và để hậu quả đứng lại trong cảnh.

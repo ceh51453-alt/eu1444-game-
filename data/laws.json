@@ -1,0 +1,432 @@
+{
+  "$comment": "LUẬT, THUẾ VÀ TÒA ÁN — Phần 13 mục 8. Đây là ba động từ của LÃNH THỔ (Phụ lục A mục 4): ban luật, thu thuế, xử án. Không mục nào trong file này được nhắc tên một công trình cụ thể — một điều luật có PHẠM VI ÁP DỤNG chứ không có TỌA ĐỘ (mục 1). Hệ quả xuống tới thành trì chỉ đi qua `holdingEffect` dưới dạng hai con số, đúng như `RealmOrder.law` của Phần 12 cho phép; để nguyên văn điều luật xuống đó là mở đường cho cả bộ luật này sống trong `holdings`.",
+  "version": 1,
+
+  "config": {
+    "tax": {
+      "$comment": "THUẾ LÀ THỨ LÃNH THỔ THU TỪ DÂN (Phụ lục A mục 4, cụm sai số 2). Thành trì thì NỘP NGHĨA VỤ, và con số ấy nằm ở `Tribute` của Phần 12 chứ không nằm đây. Đơn vị ở tầng này là PHẦN TRĂM, đúng mục 5 của Phụ lục A.",
+      "groups": [
+        {
+          "id": "nong",
+          "name": "Nông",
+          "covers": ["nong-no", "dan-tu-do"],
+          "share": 0.82,
+          "baseRate": 12,
+          "minRate": 0,
+          "maxRate": 45,
+          "hatesTax": 1.3,
+          "unrestPerPointOver": 0.75,
+          "yieldPerPoint": 1.0,
+          "note": "Đông nhất, nên mỗi điểm thuế ở đây vừa ra nhiều tiền nhất vừa sinh nhiều bất ổn nhất."
+        },
+        {
+          "id": "thuong",
+          "name": "Thương",
+          "covers": ["tho", "thuong-nhan"],
+          "share": 0.14,
+          "baseRate": 10,
+          "minRate": 0,
+          "maxRate": 40,
+          "hatesTax": 1.8,
+          "unrestPerPointOver": 0.35,
+          "yieldPerPoint": 1.6,
+          "fleeAbove": 26,
+          "fleePerPointOver": 0.012,
+          "note": "Thuế nặng thì họ không nổi loạn — họ chuyển đi, và tiền đi theo. `fleeAbove` là chỗ mất tiền mà không có tiếng động nào."
+        },
+        {
+          "id": "giao-hoi",
+          "name": "Giáo hội",
+          "covers": ["giao-si"],
+          "share": 0.03,
+          "baseRate": 0,
+          "minRate": 0,
+          "maxRate": 25,
+          "hatesTax": 2.5,
+          "unrestPerPointOver": 0.4,
+          "yieldPerPoint": 1.2,
+          "legitimacyPerPoint": -0.35,
+          "note": "Đánh thuế Giáo hội là việc làm được, và mỗi điểm trả bằng chính danh. Vế Giáo hội của mục 5."
+        },
+        {
+          "id": "quy-toc",
+          "name": "Quý tộc",
+          "covers": ["quy-toc-nho"],
+          "share": 0.01,
+          "baseRate": 6,
+          "minRate": 0,
+          "maxRate": 30,
+          "hatesTax": 2.2,
+          "unrestPerPointOver": 0.15,
+          "yieldPerPoint": 1.4,
+          "vassalLoyaltyPerPoint": -0.6,
+          "note": "Ít người, nhiều tiếng nói: đánh vào đây thì bất ổn gần như không nhúc nhích, nhưng chư hầu ghi sổ."
+        }
+      ],
+      "revenuePerDevelopment": 5.5,
+      "revenuePerThousandHouseholds": 24,
+      "banditryLossPerPoint": 0.02,
+      "unrestLossPerPoint": 0.012,
+      "collectionCheck": "rule.thu-thue",
+      "collectionDifficulty": "thuong",
+      "collectionBonusPerTier": { "critSuccess": 0.2, "success": 0.1, "costlySuccess": 0, "fail": -0.15, "critFail": -0.35 },
+      "$collectionComment": "Thu thuế là một KIỂM ĐỊNH, không phải một phép nhân. Người chơi đặt suất, engine tung 3d6 theo miền `rule.thu-thue`, và chênh lệch chính là chỗ quản gia ăn chặn hoặc dân giấu lúa."
+    },
+
+    "unrest": {
+      "$comment": "BẤT ỔN của một VÙNG, đo bằng điểm (Phụ lục A mục 5). Khác hẳn LÒNG DÂN của một thành trì, vốn đo bằng người và bằng lời.",
+      "min": 0,
+      "max": 100,
+      "settle": 12,
+      "driftPerYear": 3,
+      "bands": [
+        { "upTo": 15, "id": "yen", "name": "Yên", "revenueFactor": 1.0, "banditryPerYear": -1 },
+        { "upTo": 35, "id": "xao-xac", "name": "Xao xác", "revenueFactor": 0.94, "banditryPerYear": 1 },
+        { "upTo": 55, "id": "bat-on", "name": "Bất ổn", "revenueFactor": 0.82, "banditryPerYear": 3 },
+        { "upTo": 75, "id": "loan-nho", "name": "Loạn nhỏ", "revenueFactor": 0.6, "banditryPerYear": 6 },
+        { "upTo": 100, "id": "khoi-nghia", "name": "Khởi nghĩa", "revenueFactor": 0.25, "banditryPerYear": 10 }
+      ],
+      "suppressCheck": "rule.dep-loan",
+      "suppressDifficulty": "kho",
+      "suppressDrop": 22,
+      "suppressLegitimacyCost": 3,
+      "$suppressComment": "Dẹp loạn hạ bất ổn nhanh và trả bằng chính danh. Không có cách nào vừa nhanh vừa sạch, và đó là cả điểm của mục này."
+    },
+
+    "justice": {
+      "$comment": "XỬ ÁN (mục 8). Mỗi phán quyết làm hài lòng một bên và mất lòng bên kia — không có lựa chọn nào làm vừa lòng cả hai, và bảng dưới đây cố ý không có dòng nào như thế.",
+      "check": "rule.xu-an",
+      "casesPerYearPerProvince": 1.2,
+      "backlogUnrestPerCase": 1.5,
+      "backlogLimit": 8,
+      "ignoredCaseLegitimacy": -2,
+      "judicialDuel": {
+        "$comment": "QUYẾT ĐẤU TƯ PHÁP — chuyển thẳng sang Phần 9 (mục 8). Chỉ mở khi CẢ HAI bên không phục, vì nếu chỉ cần một bên đòi là đấu thì mọi vụ án đều kết thúc bằng kiếm và tòa án thành trang trí.",
+        "requiresBothRefuse": true,
+        "arenaId": "arena_san-dau",
+        "kind": "quyet-dau-tu-phap",
+        "legitimacyIfHonoured": 3,
+        "legitimacyIfIgnored": -8,
+        "loserLoyalty": -6,
+        "winnerLoyalty": 10,
+        "bannedByLaw": "luat_cam-quyet-dau"
+      }
+    },
+
+    "permit": {
+      "$comment": "CẤP GIẤY PHÉP XÂY — nối thẳng vào Phần 12 mục 3 (mục 8, việc 12.8). Lệnh đi xuống dưới dạng `RealmOrder{kind:'cap-phep'}`, và đó là cửa DUY NHẤT; lãnh thổ không đặt công trình, nó chỉ ký giấy.",
+      "requiresRank": 4,
+      "check": "rule.bo-nhiem",
+      "difficulty": "de-dang",
+      "feePerTier": 60,
+      "feePerWork": 25,
+      "refuseUnrest": 2,
+      "refuseVassalLoyalty": -5,
+      "grantVassalLoyalty": 4,
+      "illegalDiscoveryFine": 200,
+      "illegalDiscoveryLoyalty": -12
+    }
+  },
+
+  "laws": [
+    {
+      "id": "luat_cam-tu-chien",
+      "name": "Cấm tư chiến",
+      "scope": "realm",
+      "requiresRank": 4,
+      "cost": 0,
+      "upkeepPerYear": 30,
+      "effects": { "unrest": -4, "banditry": -8, "vassalLoyalty": -5, "revenueFactor": 0, "levyDays": 0, "development": 0, "legitimacyPerYear": 1 },
+      "holdingEffect": { "moraleShift": 2, "outputShift": 0 },
+      "opposedBy": ["quy-toc"],
+      "favouredBy": ["nong", "thuong"],
+      "note": "Chư hầu mất quyền tự đánh nhau, và họ nhớ điều đó rất lâu."
+    },
+    {
+      "id": "luat_doc-quyen-coi-xay",
+      "name": "Độc quyền cối xay",
+      "scope": "realm",
+      "requiresRank": 2,
+      "cost": 0,
+      "upkeepPerYear": 0,
+      "effects": { "unrest": 4, "banditry": 0, "vassalLoyalty": 3, "revenueFactor": 0.08, "levyDays": 0, "development": 0 },
+      "holdingEffect": { "moraleShift": -3, "outputShift": 0 },
+      "opposedBy": ["nong"],
+      "favouredBy": ["quy-toc"],
+      "note": "Dân phải xay ở cối của lãnh chúa. Tên luật nhắc tới CỐI XAY như một LOẠI, không phải cái cối nào ở ô nào — đó là ranh giới, và nó nằm ở chữ."
+    },
+    {
+      "id": "luat_cam-san-rung",
+      "name": "Cấm săn trong rừng",
+      "scope": "province",
+      "requiresRank": 2,
+      "cost": 0,
+      "upkeepPerYear": 10,
+      "effects": { "unrest": 6, "banditry": 2, "vassalLoyalty": 5, "revenueFactor": 0.03, "levyDays": 0, "development": 0 },
+      "holdingEffect": { "moraleShift": -4, "outputShift": -0.02 },
+      "opposedBy": ["nong"],
+      "favouredBy": ["quy-toc"],
+      "note": "Ví dụ mẫu của mục 1: một điều luật, không phải một công trình."
+    },
+    {
+      "id": "luat_mien-thue-cho-phien",
+      "name": "Miễn thuế chợ phiên",
+      "scope": "province",
+      "requiresRank": 3,
+      "cost": 150,
+      "upkeepPerYear": 40,
+      "effects": { "unrest": -3, "banditry": 0, "vassalLoyalty": 0, "revenueFactor": -0.06, "levyDays": 0, "development": 3 },
+      "holdingEffect": { "moraleShift": 3, "outputShift": 0.03 },
+      "favouredBy": ["thuong", "nong"],
+      "note": "Mất thu ngay, được phát triển về sau. Cái bẫy là một lãnh chúa đang thiếu tiền sẽ không bao giờ ban nó."
+    },
+    {
+      "id": "luat_thap-phan-bat-buoc",
+      "name": "Thập phân bắt buộc",
+      "scope": "realm",
+      "requiresRank": 4,
+      "cost": 0,
+      "upkeepPerYear": 0,
+      "effects": { "unrest": 3, "banditry": 0, "vassalLoyalty": -2, "revenueFactor": -0.04, "levyDays": 0, "development": 0, "legitimacyPerYear": 2 },
+      "holdingEffect": { "moraleShift": -2, "outputShift": 0 },
+      "opposedBy": ["nong"],
+      "favouredBy": ["giao-hoi"],
+      "note": "Giáo hội thu, ngài mất một phần thuế — và được đổi bằng chính danh."
+    },
+    {
+      "id": "luat_toa-an-luu-dong",
+      "name": "Tòa án lưu động",
+      "scope": "realm",
+      "requiresRank": 4,
+      "cost": 200,
+      "upkeepPerYear": 120,
+      "effects": { "unrest": -6, "banditry": -4, "vassalLoyalty": -3, "revenueFactor": 0, "levyDays": 0, "development": 1 },
+      "holdingEffect": { "moraleShift": 3, "outputShift": 0 },
+      "casesPerYearBonus": 2,
+      "opposedBy": ["quy-toc"],
+      "favouredBy": ["nong"],
+      "note": "Xử được nhiều vụ hơn mỗi năm. Chư hầu ghét vì tòa của ngài đi qua đầu tòa của họ."
+    },
+    {
+      "id": "luat_doc-quyen-cap-phep",
+      "name": "Độc quyền cấp phép xây",
+      "scope": "realm",
+      "requiresRank": 4,
+      "cost": 0,
+      "upkeepPerYear": 0,
+      "effects": { "unrest": 2, "banditry": 0, "vassalLoyalty": -6, "revenueFactor": 0.05, "levyDays": 0, "development": -1 },
+      "holdingEffect": { "moraleShift": -1, "outputShift": 0 },
+      "permitRequiredFromTier": 2,
+      "opposedBy": ["quy-toc", "thuong"],
+      "note": "Từ cấp Làng trở lên là phải có giấy. Đây là chỗ mục 12.8 cắm vào Phần 12 mục 3: không có luật này thì chư hầu tự xây, có luật này thì họ phải xin — và xây chui thì bị phạt."
+    },
+    {
+      "id": "luat_quan-dich-mo-rong",
+      "name": "Mở rộng quân dịch",
+      "scope": "realm",
+      "requiresRank": 4,
+      "cost": 0,
+      "upkeepPerYear": 0,
+      "effects": { "unrest": 5, "banditry": 0, "vassalLoyalty": -8, "revenueFactor": 0, "levyDays": 20, "development": -1 },
+      "holdingEffect": { "moraleShift": -4, "outputShift": -0.04 },
+      "opposedBy": ["nong", "quy-toc"],
+      "note": "Thêm 20 ngày nghĩa vụ mỗi năm — con số này đi thẳng sang Phần 11, và một cuộc vây 14 tuần bỗng nằm trong hạn."
+    },
+    {
+      "id": "luat_an-xa",
+      "name": "Ân xá",
+      "scope": "realm",
+      "requiresRank": 4,
+      "cost": 100,
+      "upkeepPerYear": 0,
+      "oneOff": true,
+      "effects": { "unrest": -12, "banditry": 5, "vassalLoyalty": 0, "revenueFactor": 0, "levyDays": 0, "development": 0, "legitimacyPerYear": -2 },
+      "holdingEffect": { "moraleShift": 5, "outputShift": 0 },
+      "favouredBy": ["nong"],
+      "note": "Hạ bất ổn ngay, và thả cả những kẻ không nên thả."
+    },
+    {
+      "id": "luat_bao-ho-thuong-nhan",
+      "name": "Bảo hộ thương nhân",
+      "scope": "realm",
+      "requiresRank": 3,
+      "cost": 120,
+      "upkeepPerYear": 90,
+      "effects": { "unrest": -2, "banditry": -6, "vassalLoyalty": 0, "revenueFactor": 0.07, "levyDays": 0, "development": 2 },
+      "holdingEffect": { "moraleShift": 1, "outputShift": 0.02 },
+      "favouredBy": ["thuong"]
+    },
+    {
+      "id": "luat_cam-vu-khi",
+      "name": "Cấm thường dân mang vũ khí",
+      "scope": "realm",
+      "requiresRank": 4,
+      "cost": 0,
+      "upkeepPerYear": 50,
+      "effects": { "unrest": 6, "banditry": -10, "vassalLoyalty": 4, "revenueFactor": 0, "levyDays": -10, "development": 0 },
+      "holdingEffect": { "moraleShift": -3, "outputShift": 0 },
+      "opposedBy": ["nong"],
+      "note": "Ít cướp hơn, và ít dân binh hơn. Trừ thẳng vào số ngày quân dịch gọi được."
+    },
+    {
+      "id": "luat_tu-do-di-lai",
+      "name": "Tự do đi lại",
+      "scope": "realm",
+      "requiresRank": 5,
+      "cost": 300,
+      "upkeepPerYear": 0,
+      "effects": { "unrest": -8, "banditry": 2, "vassalLoyalty": -14, "revenueFactor": -0.05, "levyDays": 0, "development": 5, "legitimacyPerYear": -1 },
+      "holdingEffect": { "moraleShift": 8, "outputShift": 0.04 },
+      "opposedBy": ["quy-toc"],
+      "favouredBy": ["nong", "thuong"],
+      "note": "Bãi thân phận nông nô trong vùng. Dân được, quý tộc mất người làm — và họ sẽ nhớ ai đã ký."
+    },
+    {
+      "id": "luat_lao-dich-duong-xa",
+      "name": "Lao dịch đường xá",
+      "scope": "province",
+      "requiresRank": 3,
+      "cost": 0,
+      "upkeepPerYear": 0,
+      "effects": { "unrest": 5, "banditry": -3, "vassalLoyalty": 2, "revenueFactor": 0.02, "levyDays": 0, "development": 2 },
+      "holdingEffect": { "moraleShift": -5, "outputShift": -0.05 },
+      "roadsPerYear": 1,
+      "opposedBy": ["nong"],
+      "note": "Đường tốt lên mỗi năm một bậc, trả bằng chính nhân công mà thành trì đang cần."
+    },
+    {
+      "id": "luat_cam-quyet-dau",
+      "name": "Cấm quyết đấu tư pháp",
+      "scope": "realm",
+      "requiresRank": 4,
+      "cost": 0,
+      "upkeepPerYear": 0,
+      "effects": { "unrest": 0, "banditry": 0, "vassalLoyalty": -4, "revenueFactor": 0, "levyDays": 0, "development": 0, "legitimacyPerYear": 1 },
+      "holdingEffect": { "moraleShift": 0, "outputShift": 0 },
+      "opposedBy": ["quy-toc"],
+      "note": "Đóng cửa sang Phần 9. Tòa của ngài văn minh hơn, và mọi vụ án đều phải kết thúc bằng một phán quyết của chính ngài."
+    },
+    {
+      "id": "luat_thue-cau-duong",
+      "name": "Thuế cầu đường",
+      "scope": "province",
+      "requiresRank": 3,
+      "cost": 80,
+      "upkeepPerYear": 20,
+      "effects": { "unrest": 2, "banditry": 0, "vassalLoyalty": 2, "revenueFactor": 0.06, "levyDays": 0, "development": -2 },
+      "holdingEffect": { "moraleShift": -1, "outputShift": 0 },
+      "opposedBy": ["thuong"],
+      "note": "Tiền vào ngay, tuyến buôn tránh vùng ngài đi vòng — và phát triển tụt dần."
+    }
+  ],
+
+  "caseTypes": [
+    {
+      "id": "vu_tranh-chap-ranh-gioi",
+      "name": "Tranh chấp ranh giới",
+      "parties": ["chu-hau", "chu-hau"],
+      "difficulty": "thuong",
+      "allowsJudicialDuel": true,
+      "weight": 3,
+      "note": "Vụ án phổ biến nhất giữa hai chư hầu, và là vụ dễ nhất để xử thiên vị mà không ai chứng minh được."
+    },
+    {
+      "id": "vu_thue-qua-nang",
+      "name": "Dân kiện chư hầu thu quá tay",
+      "parties": ["dan", "chu-hau"],
+      "difficulty": "thuong",
+      "allowsJudicialDuel": false,
+      "weight": 3,
+      "unrestIfIgnored": 4
+    },
+    {
+      "id": "vu_giet-nguoi",
+      "name": "Án mạng",
+      "parties": ["dan", "dan"],
+      "difficulty": "kho",
+      "allowsJudicialDuel": true,
+      "weight": 2,
+      "unrestIfIgnored": 3
+    },
+    {
+      "id": "vu_trom-cap",
+      "name": "Trộm cắp",
+      "parties": ["dan", "dan"],
+      "difficulty": "de-dang",
+      "allowsJudicialDuel": false,
+      "weight": 3
+    },
+    {
+      "id": "vu_yeu-sach-thai-ap",
+      "name": "Yêu sách thái ấp",
+      "parties": ["chu-hau", "ngoai-toc"],
+      "difficulty": "rat-kho",
+      "allowsJudicialDuel": true,
+      "weight": 1,
+      "legitimacyIfIgnored": -4,
+      "note": "Vụ nặng nhất: xử sai là hàng xóm có cớ gây chiến (mục 5)."
+    },
+    {
+      "id": "vu_di-giao",
+      "name": "Cáo buộc dị giáo",
+      "parties": ["giao-hoi", "dan"],
+      "difficulty": "kho",
+      "allowsJudicialDuel": false,
+      "weight": 1,
+      "churchWatching": true
+    }
+  ],
+
+  "verdicts": [
+    {
+      "id": "xu-cho-nguyen",
+      "name": "Xử cho nguyên đơn",
+      "favours": "a",
+      "effects": { "legitimacy": 0, "loyaltyFavoured": 8, "loyaltyOther": -12, "unrest": 0, "revenue": 0 }
+    },
+    {
+      "id": "xu-cho-bi",
+      "name": "Xử cho bị đơn",
+      "favours": "b",
+      "effects": { "legitimacy": 0, "loyaltyFavoured": 8, "loyaltyOther": -12, "unrest": 0, "revenue": 0 }
+    },
+    {
+      "id": "xu-cong-bang",
+      "name": "Xử theo luật, không nể ai",
+      "favours": "khong",
+      "requiresCheck": true,
+      "effects": { "legitimacy": 2, "loyaltyFavoured": -3, "loyaltyOther": -3, "unrest": -3, "revenue": 0 },
+      "note": "Cả hai bên đều hơi giận, và cả vùng thì bớt giận. Đây là lựa chọn duy nhất tăng chính danh."
+    },
+    {
+      "id": "hoa-giai",
+      "name": "Hòa giải, chia đôi",
+      "favours": "khong",
+      "effects": { "legitimacy": -1, "loyaltyFavoured": -2, "loyaltyOther": -2, "unrest": -1, "revenue": 0 },
+      "note": "Không ai thắng nên không ai nhớ ơn, nhưng cũng không ai ôm hận nặng."
+    },
+    {
+      "id": "nhan-tien",
+      "name": "Nhận tiền rồi xử",
+      "favours": "a",
+      "effects": { "legitimacy": -6, "loyaltyFavoured": 12, "loyaltyOther": -16, "unrest": 3, "revenue": 250 },
+      "corrupt": true,
+      "note": "Tiền vào kho ngay. Bị lộ hay không là việc của gián điệp trưởng bên kia."
+    },
+    {
+      "id": "hoan-lai",
+      "name": "Hoãn lại",
+      "favours": "khong",
+      "effects": { "legitimacy": -2, "loyaltyFavoured": -4, "loyaltyOther": -4, "unrest": 2, "revenue": 0 },
+      "keepsCase": true
+    },
+    {
+      "id": "quyet-dau-tu-phap",
+      "name": "Cho quyết đấu tư pháp",
+      "favours": "khong",
+      "opensDuel": true,
+      "effects": { "legitimacy": 0, "loyaltyFavoured": 0, "loyaltyOther": 0, "unrest": 1, "revenue": 0 },
+      "note": "Chuyển thẳng sang Phần 9. Kết quả trận đấu LÀ phán quyết — engine không được lật lại."
+    }
+  ]
+}

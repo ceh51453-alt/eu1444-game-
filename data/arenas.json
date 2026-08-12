@@ -1,0 +1,272 @@
+{
+  "$comment": "PHẦN 9 MỤC 2 VÀ MỤC 9 — ĐẤU TRƯỜNG, ĐỊA HÌNH, VÀ SÁU LOẠI HÌNH QUYẾT ĐẤU. Kích thước lưới sinh THEO ĐỊA ĐIỂM chứ không cố định: một trận trên cầu hẹp và một trận giữa sân đấu là hai trò chơi khác nhau, và sự khác nhau ấy phải nằm trong data để sửa được mà không build lại (R5). Mỗi ô ~1m.",
+  "version": 1,
+
+  "$terrainComment": "ĐỊA HÌNH Ô (mục 2). Số theo thang d100, dương là dễ hơn — cùng thang với mọi thứ khác của Phần 9, đi qua `scaleToSystem` của Phần 5. `moveCost` là số điểm di chuyển một bước vào ô này tốn; hiện mỗi hành động di chuyển cho 1 điểm, nên `moveCost` 2 nghĩa là KHÔNG bước vào được trong một hiệp — phải mất hai hiệp, và đó chính là chỗ vũng bùn thành một bức tường mềm. `elevation` là cao độ: ai đứng cao hơn thì đánh xuống dễ hơn.",
+  "terrain": [
+    {
+      "id": "bang-phang",
+      "name": "Bằng phẳng",
+      "moveCost": 1,
+      "attack": 0,
+      "defence": 0,
+      "staminaExtra": 0,
+      "elevation": 0,
+      "passable": true,
+      "footingRisk": 0,
+      "note": "Nền đất nện, sàn đá, cỏ ngắn."
+    },
+    {
+      "id": "bun-lay",
+      "name": "Bùn lầy",
+      "moveCost": 2,
+      "attack": -8,
+      "defence": -8,
+      "staminaExtra": 3,
+      "elevation": 0,
+      "passable": true,
+      "footingRisk": 10,
+      "note": "Chỗ giết nhiều hiệp sĩ mặc giáp nhất trong lịch sử thật. Chân không rút lên được thì kỹ năng không còn nghĩa gì."
+    },
+    {
+      "id": "da-lom-chom",
+      "name": "Đá lởm chởm",
+      "moveCost": 2,
+      "attack": -5,
+      "defence": -10,
+      "staminaExtra": 1,
+      "elevation": 0,
+      "passable": true,
+      "footingRisk": 18,
+      "note": "Lùi mà không nhìn xuống là ngã."
+    },
+    {
+      "id": "doc",
+      "name": "Dốc",
+      "moveCost": 2,
+      "attack": 0,
+      "defence": -4,
+      "staminaExtra": 2,
+      "elevation": 1,
+      "passable": true,
+      "footingRisk": 8,
+      "note": "Đứng trên cao thì đòn xuống nặng hơn — engine cộng theo chênh lệch `elevation`, không cộng cứng ở đây."
+    },
+    {
+      "id": "nuoc-nong",
+      "name": "Nước nông",
+      "moveCost": 2,
+      "attack": -6,
+      "defence": -4,
+      "staminaExtra": 3,
+      "elevation": -1,
+      "passable": true,
+      "footingRisk": 6,
+      "note": "Ngang bắp chân. Chậm, ồn, và lạnh cóng tay sau vài hiệp."
+    },
+    {
+      "id": "ban-ghe",
+      "name": "Bàn ghế",
+      "moveCost": 99,
+      "attack": 0,
+      "defence": 0,
+      "staminaExtra": 0,
+      "elevation": 0,
+      "passable": false,
+      "footingRisk": 0,
+      "note": "Không đi qua được, và cũng không đánh xuyên qua được. Trong một đại sảnh thì đây là thứ quyết định trận đấu."
+    },
+    {
+      "id": "vuc",
+      "name": "Mép hụt",
+      "moveCost": 1,
+      "attack": 0,
+      "defence": -6,
+      "staminaExtra": 0,
+      "elevation": 0,
+      "passable": true,
+      "outOfBounds": true,
+      "footingRisk": 25,
+      "note": "Mép cầu, bờ tường, rìa sàn đấu. Bước ra là ra khỏi vòng — điều kiện kết thúc của mục 9."
+    }
+  ],
+
+  "$arenasComment": "Bốn địa điểm mục 2 nêu đích danh, cộng một mặc định. `weights` sinh địa hình ngẫu nhiên bằng dòng RNG của trận đấu (R3: cùng seed cho cùng đấu trường). `fixed` đè lên trên: những ô luôn luôn là thứ đó, ví dụ hai mép cầu.",
+  "arenas": [
+    {
+      "id": "arena_san-dau",
+      "name": "Sân đấu",
+      "width": 9,
+      "height": 9,
+      "default": true,
+      "weights": { "bang-phang": 90, "bun-lay": 6, "da-lom-chom": 4 },
+      "fixed": [],
+      "note": "Chín mét vuông đất nện có rào. Chỗ duy nhất người ta được chọn cự ly thật sự thoải mái."
+    },
+    {
+      "id": "arena_dai-sanh",
+      "name": "Đại sảnh",
+      "width": 7,
+      "height": 7,
+      "weights": { "bang-phang": 82, "ban-ghe": 18 },
+      "fixed": [],
+      "note": "Sàn đá, bàn dài, ghế đổ. Cây giáo dài trở thành một gánh nặng."
+    },
+    {
+      "id": "arena_cau-hep",
+      "name": "Cầu hẹp",
+      "width": 3,
+      "height": 9,
+      "weights": { "bang-phang": 100 },
+      "fixed": [
+        { "x": 0, "y": 0, "terrain": "vuc" },
+        { "x": 2, "y": 0, "terrain": "vuc" },
+        { "x": 0, "y": 8, "terrain": "vuc" },
+        { "x": 2, "y": 8, "terrain": "vuc" }
+      ],
+      "edgeTerrain": "vuc",
+      "note": "Ba mét ngang. Không vòng sườn được, không lùi xa được — chỉ còn đâm và đỡ."
+    },
+    {
+      "id": "arena_phong-ngu",
+      "name": "Phòng ngủ",
+      "width": 4,
+      "height": 4,
+      "weights": { "bang-phang": 75, "ban-ghe": 25 },
+      "fixed": [],
+      "note": "Bốn mét. Dao găm ở đây đáng giá hơn trường kiếm."
+    },
+    {
+      "id": "arena_bai-lay",
+      "name": "Bãi lầy",
+      "width": 7,
+      "height": 7,
+      "weights": { "bun-lay": 55, "nuoc-nong": 20, "bang-phang": 25 },
+      "fixed": [],
+      "note": "Nơi bộ giáp đắt nhất châu Âu thành một cái quan tài đứng."
+    },
+    {
+      "id": "arena_suon-doi",
+      "name": "Sườn đồi",
+      "width": 9,
+      "height": 7,
+      "weights": { "bang-phang": 55, "doc": 35, "da-lom-chom": 10 },
+      "fixed": [],
+      "note": "Ai giành được chỗ cao thì đánh xuống."
+    },
+    {
+      "id": "arena_ngo-hep",
+      "name": "Ngõ hẹp",
+      "width": 3,
+      "height": 7,
+      "weights": { "bang-phang": 70, "bun-lay": 20, "ban-ghe": 10 },
+      "fixed": [],
+      "note": "Chỗ của phục kích."
+    }
+  ],
+
+  "$kindsComment": "SÁU LOẠI HÌNH QUYẾT ĐẤU (mục 9). Điều kiện kết thúc theo loại — và đây là chỗ một minigame dễ làm hời hợt nhất: nếu mọi trận đều đánh tới khi một bên gục thì đấu tập, đấu danh dự và đấu sinh tử là cùng một trò với ba cái tên. `endOn` liệt kê ĐÚNG những cửa ra mà loại này có; thiếu một cửa nghĩa là loại đó không kết thúc theo cách ấy được. `severityCap` là trần mức độ MỖI vết thương gây ra trong trận (vũ khí cùn không giết ai). `refereeAt` là mức độ mà trọng tài xen vào dừng trận.",
+  "kinds": [
+    {
+      "id": "dau-tap",
+      "name": "Đấu tập",
+      "blunted": true,
+      "severityCap": 2,
+      "lethal": false,
+      "yieldAllowed": true,
+      "refereeAt": 2,
+      "endOn": ["chiu-thua", "nga-guc", "mat-vu-khi", "trong-tai-dung", "het-hiep"],
+      "maxRounds": 20,
+      "practiceFactor": 1.5,
+      "reputation": 0,
+      "note": "Vũ khí cùn, mục tiêu là điểm thực hành, ít rủi ro. Vẫn gãy tay được — chỉ là hiếm."
+    },
+    {
+      "id": "dau-giai",
+      "name": "Đấu giải",
+      "blunted": true,
+      "severityCap": 3,
+      "lethal": false,
+      "yieldAllowed": true,
+      "refereeAt": 3,
+      "endOn": ["chiu-thua", "nga-guc", "mat-vu-khi", "ra-khoi-vong", "trong-tai-dung", "het-hiep"],
+      "maxRounds": 25,
+      "practiceFactor": 1.2,
+      "reputation": 12,
+      "ransom": true,
+      "note": "Thương ngựa trước rồi bộ chiến, có trọng tài, có khán giả. Thắng được uy tín và tiền chuộc ngựa giáp — phần tiền chuộc nối vào Phần 13."
+    },
+    {
+      "id": "quyet-dau-tu-phap",
+      "name": "Quyết đấu tư pháp",
+      "blunted": false,
+      "severityCap": 5,
+      "lethal": true,
+      "yieldAllowed": true,
+      "refereeAt": 0,
+      "endOn": ["chiu-thua", "nga-guc", "chet", "mat-vu-khi", "ra-khoi-vong", "het-hiep"],
+      "maxRounds": 40,
+      "practiceFactor": 1,
+      "reputation": 20,
+      "legal": true,
+      "note": "CÓ HIỆU LỰC PHÁP LÝ: thắng là thắng kiện. Rất đặc trưng thế kỷ 14. Chịu thua ở đây nghĩa là thua kiện, và bản án vẫn thi hành — Phần 13 nối vào `legal`."
+    },
+    {
+      "id": "dau-danh-du",
+      "name": "Đấu danh dự",
+      "blunted": false,
+      "severityCap": 5,
+      "lethal": true,
+      "yieldAllowed": true,
+      "refereeAt": 0,
+      "firstBloodEnds": true,
+      "endOn": ["chiu-thua", "do-mau", "nga-guc", "chet", "mat-vu-khi", "het-hiep"],
+      "maxRounds": 30,
+      "practiceFactor": 1,
+      "reputation": 10,
+      "note": "Tới khi một bên chịu thua hoặc đổ máu. Phần lớn kết thúc ở giọt máu đầu tiên, và cả hai đều còn sống."
+    },
+    {
+      "id": "dau-sinh-tu",
+      "name": "Đấu sinh tử",
+      "blunted": false,
+      "severityCap": 5,
+      "lethal": true,
+      "yieldAllowed": false,
+      "refereeAt": 0,
+      "endOn": ["nga-guc", "chet", "can-thiep"],
+      "maxRounds": 60,
+      "practiceFactor": 1,
+      "reputation": 15,
+      "note": "Không có đường lui. Kêu hàng cũng không ai nghe."
+    },
+    {
+      "id": "phuc-kich",
+      "name": "Phục kích",
+      "blunted": false,
+      "severityCap": 5,
+      "lethal": true,
+      "yieldAllowed": false,
+      "refereeAt": 0,
+      "freeOpeningRound": true,
+      "endOn": ["nga-guc", "chet", "can-thiep", "ra-khoi-vong"],
+      "maxRounds": 60,
+      "practiceFactor": 0.8,
+      "reputation": 0,
+      "note": "Bên tấn công có hiệp mở màn miễn phí — bên kia không được chọn hành động, chỉ chịu đòn. Và không có chuyện đầu hàng."
+    }
+  ],
+
+  "$endComment": "Từ điển điều kiện kết thúc, để UI và biên niên gọi tên bằng cùng một chữ.",
+  "endings": [
+    { "id": "chiu-thua", "name": "Chịu thua", "loserIsYielder": true },
+    { "id": "do-mau", "name": "Đã đổ máu" },
+    { "id": "nga-guc", "name": "Ngã gục" },
+    { "id": "chet", "name": "Tử vong" },
+    { "id": "mat-vu-khi", "name": "Mất vũ khí" },
+    { "id": "ra-khoi-vong", "name": "Ra khỏi vòng" },
+    { "id": "trong-tai-dung", "name": "Trọng tài dừng" },
+    { "id": "can-thiep", "name": "Có người can thiệp" },
+    { "id": "het-hiep", "name": "Hết hiệp", "note": "Không ai thắng dứt điểm — xử theo thế trận và thương tích." }
+  ]
+}

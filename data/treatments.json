@@ -1,0 +1,242 @@
+{
+  "$comment": "Y HỌC THẾ KỶ 14 — Phần 7 mục 6. Kiểm định d100 kỹ năng y thuật, ra ĐÚNG 5 cấp của Phần 5, và mỗi cấp có hệ quả CƠ HỌC cụ thể chứ không phải một dòng chữ. Hai luật lịch sử được cài cứng: (1) TRÍCH MÁU phải có hại về mặt cơ học, không có vế lợi nào — đây là cái bẫy có chủ ý, và thầy thuốc giỏi trong game sẽ khuyên tránh nó; (2) đại thất bại LÀM TỆ HƠN nhưng KHÔNG giết ngay, kể cả khoan sọ — Phần 5 mục 5 nói cái chết phải đi qua một chuỗi biến chứng.",
+  "version": 1,
+
+  "$outcomeComment": "Trường trong mỗi cấp kết quả: bleedingMul nhân vào máu đang chảy · infectionAdd cộng vào mức nhiễm trùng · painAdd cộng vào đau của vết đó · healBonus cộng thẳng vào tiến độ lành · quality 1–5 là chất lượng chữa (nhân vào tốc độ lành các lượt sau) · bloodAdd đổi máu toàn thân · addsInjury gây thêm một vết mới · resolves gỡ biến chứng · causesPermanent ghi tàn phế · reopens mở lại vết thương.",
+
+  "treatments": [
+    {
+      "id": "khau-vet-thuong",
+      "name": "Khâu vết thương",
+      "skill": "skill_y-thuat",
+      "difficulty": "thuong",
+      "appliesTo": { "types": ["laceration", "puncture", "crush", "amputation"], "minSeverity": 2 },
+      "timeTurns": 1,
+      "supplies": ["kim", "chỉ gân", "rượu mạnh"],
+      "price": 6,
+      "harmful": false,
+      "summary": "Cầm máu tốt, nguy cơ nhiễm trùng vừa.",
+      "risks": "Kim bẩn thì chính mũi khâu là đường vào của nhiễm trùng.",
+      "outcomes": {
+        "critSuccess": { "bleedingMul": 0, "infectionAdd": -15, "painAdd": 4, "healBonus": 12, "quality": 5, "treated": true, "text": "Mũi khâu đều và kín, máu ngừng hẳn, mép thịt áp đúng vào nhau." },
+        "success": { "bleedingMul": 0.15, "infectionAdd": -6, "painAdd": 6, "healBonus": 6, "quality": 4, "treated": true, "text": "Vết được khâu lại, máu chỉ còn rỉ." },
+        "costlySuccess": { "bleedingMul": 0.35, "infectionAdd": 4, "painAdd": 12, "healBonus": 3, "quality": 2, "treated": true, "text": "Khâu được, nhưng mép thịt xô lệch — chỗ này sẽ thành sẹo lồi." },
+        "fail": { "bleedingMul": 0.9, "infectionAdd": 6, "painAdd": 10, "quality": 1, "text": "Chỉ đứt, kim tuột, máu vẫn thấm ra. Mất một cuộn chỉ và nửa buổi." },
+        "critFail": { "bleedingMul": 1.4, "infectionAdd": 22, "painAdd": 20, "reopens": true, "text": "Mũi khâu xé rách thêm thịt và lôi vào theo cả mảnh vải bẩn." }
+      }
+    },
+    {
+      "id": "dot-sat-nung",
+      "name": "Đốt bằng sắt nung",
+      "skill": "skill_phau-thuat",
+      "difficulty": "thuong",
+      "appliesTo": { "types": ["laceration", "puncture", "crush", "amputation"], "minSeverity": 2 },
+      "timeTurns": 1,
+      "supplies": ["sắt nung", "lửa"],
+      "price": 2,
+      "harmful": false,
+      "summary": "Cầm máu rất tốt, GÂY THÊM một vết bỏng, đau dữ dội.",
+      "risks": "Luôn để lại một vết bỏng thật — kể cả khi thành công lớn. Đây là cái giá cố định của phương pháp.",
+      "outcomes": {
+        "critSuccess": { "bleedingMul": 0, "infectionAdd": -25, "painAdd": 25, "healBonus": 8, "quality": 4, "treated": true, "addsInjury": { "type": "burn", "severity": 1 }, "text": "Sắt đỏ áp đúng một lần, máu tắt ngay, miệng vết cháy khô lại." },
+        "success": { "bleedingMul": 0, "infectionAdd": -12, "painAdd": 32, "healBonus": 3, "quality": 3, "treated": true, "addsInjury": { "type": "burn", "severity": 2 }, "text": "Máu ngừng. Mùi thịt cháy ở lại trong lều suốt đêm." },
+        "costlySuccess": { "bleedingMul": 0.1, "infectionAdd": -4, "painAdd": 45, "quality": 2, "treated": true, "addsInjury": { "type": "burn", "severity": 3 }, "text": "Cầm được máu, nhưng sắt trượt và cháy lan ra vùng thịt lành." },
+        "fail": { "bleedingMul": 0.8, "infectionAdd": 4, "painAdd": 40, "quality": 1, "addsInjury": { "type": "burn", "severity": 2 }, "text": "Sắt nguội quá tay: đủ đau, không đủ cầm máu." },
+        "critFail": { "bleedingMul": 1.2, "infectionAdd": 15, "painAdd": 60, "addsInjury": { "type": "burn", "severity": 4 }, "text": "Bệnh nhân giãy, sắt đè xuống sai chỗ và ở lại đó quá lâu." }
+      }
+    },
+    {
+      "id": "dap-mat-ong-ruou",
+      "name": "Đắp mật ong và rượu",
+      "skill": "skill_duoc-thao",
+      "difficulty": "de-dang",
+      "appliesTo": { "types": ["laceration", "puncture", "burn", "crush", "amputation"], "minSeverity": 1 },
+      "timeTurns": 1,
+      "supplies": ["mật ong", "rượu mạnh", "vải sạch"],
+      "price": 4,
+      "harmful": false,
+      "repeatable": true,
+      "summary": "Giảm nhiễm trùng THẬT SỰ, nhưng chậm.",
+      "risks": "Không cầm được máu. Dùng một mình cho vết đang phun máu là mất cả mật ong lẫn người.",
+      "outcomes": {
+        "critSuccess": { "infectionAdd": -30, "painAdd": -6, "healBonus": 6, "quality": 5, "treated": true, "resolves": ["nhiem-trung"], "text": "Vết sạch hẳn, hết mùi, da quanh mép hồng trở lại." },
+        "success": { "infectionAdd": -18, "painAdd": -3, "healBonus": 3, "quality": 4, "treated": true, "text": "Mật ong bịt kín vết, mủ rút đi trông thấy." },
+        "costlySuccess": { "infectionAdd": -9, "painAdd": 2, "quality": 3, "treated": true, "text": "Đỡ tấy, nhưng hết sạch chỗ mật ong dành cho mùa đông." },
+        "fail": { "infectionAdd": 2, "quality": 1, "text": "Rượu pha loãng quá, băng đắp lên rồi lại phải gỡ ra." },
+        "critFail": { "infectionAdd": 16, "painAdd": 8, "text": "Vải băng lấy từ đống giẻ chưa giặt. Vết thương tệ hơn trước khi được đụng vào." }
+      }
+    },
+    {
+      "id": "nep-xuong",
+      "name": "Nẹp xương",
+      "skill": "skill_y-thuat",
+      "difficulty": "thuong",
+      "appliesTo": { "types": ["fracture"], "minSeverity": 1 },
+      "timeTurns": 1,
+      "supplies": ["nẹp gỗ", "vải quấn"],
+      "price": 5,
+      "harmful": false,
+      "required": true,
+      "summary": "BẮT BUỘC cho gãy xương. Nẹp sai thì liền lệch vĩnh viễn.",
+      "risks": "Nẹp lệch còn tệ hơn không nẹp: xương sẽ liền đúng vào chỗ sai đó.",
+      "outcomes": {
+        "critSuccess": { "painAdd": -8, "healBonus": 15, "quality": 5, "treated": true, "resolves": ["lien-lech"], "text": "Xương được kéo về đúng trục ngay lần đầu, nẹp chặt và cân." },
+        "success": { "painAdd": -4, "healBonus": 8, "quality": 4, "treated": true, "resolves": ["lien-lech"], "text": "Nẹp xong, chi được cố định. Còn đau nhưng đã yên." },
+        "costlySuccess": { "painAdd": 6, "healBonus": 4, "quality": 2, "treated": true, "resolves": ["lien-lech"], "causesPermanent": "cung-khop", "text": "Xương vào chỗ, nhưng nẹp quá chặt — khớp này sẽ không bao giờ mềm lại." },
+        "fail": { "painAdd": 10, "quality": 1, "text": "Kéo mấy lần không vào, đành quấn tạm rồi để đó." },
+        "critFail": { "painAdd": 22, "infectionAdd": 8, "causesPermanent": "lien-xuong-lech", "text": "Nẹp cố định đúng vào tư thế sai. Từ giờ xương sẽ liền theo đúng cái sai đó." }
+      }
+    },
+    {
+      "id": "nan-khop",
+      "name": "Nắn khớp",
+      "skill": "skill_y-thuat",
+      "difficulty": "thuong",
+      "appliesTo": { "types": ["dislocation"], "minSeverity": 1 },
+      "timeTurns": 1,
+      "supplies": [],
+      "price": 2,
+      "harmful": false,
+      "summary": "Nắn lại khớp trật. Làm sớm thì gần như khỏi hẳn.",
+      "risks": "Nắn ẩu thì rách gân, và khớp đó cứng lại vĩnh viễn.",
+      "outcomes": {
+        "critSuccess": { "painAdd": -15, "healBonus": 40, "quality": 5, "treated": true, "resolves": ["cung-khop-dan"], "text": "Một tiếng khục, và cánh tay lại quay được như cũ." },
+        "success": { "painAdd": -8, "healBonus": 25, "quality": 4, "treated": true, "resolves": ["cung-khop-dan"], "text": "Khớp vào lại chỗ. Đau âm ỉ vài ngày rồi thôi." },
+        "costlySuccess": { "painAdd": 8, "healBonus": 12, "quality": 2, "treated": true, "resolves": ["cung-khop-dan"], "text": "Vào được, sau bốn lần thử và một tiếng hét vang cả sân." },
+        "fail": { "painAdd": 12, "quality": 1, "text": "Không vào. Khớp sưng thêm và giờ càng khó nắn." },
+        "critFail": { "painAdd": 25, "causesPermanent": "cung-khop", "addsInjury": { "type": "fracture", "severity": 2 }, "text": "Lực kéo sai hướng: khớp không vào mà xương thì nứt." }
+      }
+    },
+    {
+      "id": "cat-cut-chi",
+      "name": "Cắt cụt chi",
+      "skill": "skill_phau-thuat",
+      "difficulty": "kho",
+      "appliesTo": { "requiresLimb": true, "requiresComplications": ["hoai-tu"], "minSeverity": 3 },
+      "timeTurns": 1,
+      "supplies": ["cưa", "sắt nung", "dây buộc", "rượu mạnh"],
+      "price": 25,
+      "harmful": false,
+      "summary": "Cứu mạng khi hoại tử, đổi lấy tàn phế vĩnh viễn.",
+      "risks": "Đây là lựa chọn cuối. Sống sót hay không phụ thuộc vào việc cầm được máu ở mỏm cụt.",
+      "outcomes": {
+        "critSuccess": { "bleedingMul": 0, "infectionAdd": -60, "painAdd": 40, "bloodAdd": -8, "quality": 5, "treated": true, "amputates": true, "resolves": ["hoai-tu", "nhiem-trung"], "text": "Cưa dứt khoát, mỏm cụt được đốt kín ngay. Cắt xong là hết hoại tử." },
+        "success": { "bleedingMul": 0.1, "infectionAdd": -45, "painAdd": 55, "bloodAdd": -15, "quality": 4, "treated": true, "amputates": true, "resolves": ["hoai-tu"], "text": "Chi rời ra, máu cầm được sau hai lần đốt. Người còn sống." },
+        "costlySuccess": { "bleedingMul": 0.3, "infectionAdd": -30, "painAdd": 70, "bloodAdd": -25, "quality": 2, "treated": true, "amputates": true, "resolves": ["hoai-tu"], "text": "Cắt được, nhưng cắt quá cao và máu ra nhiều hơn dự tính rất nhiều." },
+        "fail": { "bleedingMul": 1.3, "infectionAdd": 10, "painAdd": 60, "bloodAdd": -20, "text": "Cưa mắc vào xương, phải dừng lại giữa chừng. Không cắt được mà máu thì đã mất." },
+        "critFail": { "bleedingMul": 1.8, "infectionAdd": 30, "painAdd": 85, "bloodAdd": -30, "amputates": true, "text": "Cắt nhầm cao hơn chỗ định cắt, và mỏm cụt không đốt kín được." }
+      }
+    },
+    {
+      "id": "khoan-so",
+      "name": "Khoan sọ",
+      "skill": "skill_phau-thuat",
+      "difficulty": "rat-kho",
+      "appliesTo": { "regions": ["skull"], "types": ["concussion", "fracture", "blunt", "internal"], "minSeverity": 3 },
+      "timeTurns": 1,
+      "supplies": ["khoan sọ", "rượu mạnh"],
+      "price": 60,
+      "harmful": false,
+      "summary": "Cứu chấn thương sọ. Tỷ lệ tử vong rất cao.",
+      "risks": "Cửa hẹp nhất trong cả bảng. Thất bại nặng không giết ngay, nhưng nó mở ra một vết sọ hở — và vết sọ hở thì hiếm khi lành.",
+      "outcomes": {
+        "critSuccess": { "painAdd": -25, "healBonus": 45, "infectionAdd": 5, "quality": 5, "treated": true, "text": "Mảnh xương lún được nhấc lên, máu tụ chảy ra. Người tỉnh lại ngay trên bàn." },
+        "success": { "painAdd": -12, "healBonus": 25, "infectionAdd": 12, "quality": 3, "treated": true, "text": "Lỗ khoan mở đúng chỗ tụ máu. Áp lực trong sọ giảm xuống." },
+        "costlySuccess": { "painAdd": 15, "healBonus": 12, "infectionAdd": 25, "quality": 2, "treated": true, "causesPermanent": "dau-kinh-nien", "text": "Cứu được, đổi lấy một cái đầu không bao giờ hết đau." },
+        "fail": { "painAdd": 25, "infectionAdd": 25, "bloodAdd": -6, "text": "Khoan chưa tới lớp trong thì tay run. Đóng lại, và không giải quyết được gì." },
+        "critFail": { "painAdd": 45, "infectionAdd": 45, "bloodAdd": -12, "addsInjury": { "type": "internal", "severity": 4 }, "text": "Mũi khoan đi sâu quá một phân. Người vẫn thở, nhưng thứ ở trong đó đã hỏng." }
+      }
+    },
+    {
+      "id": "trich-mau",
+      "name": "Trích máu",
+      "skill": "skill_y-thuat",
+      "difficulty": "de-dang",
+      "appliesTo": { "types": [], "minSeverity": 1, "any": true },
+      "timeTurns": 1,
+      "supplies": ["dao trích", "bát hứng"],
+      "price": 8,
+      "harmful": true,
+      "summary": "KHÔNG có lợi ích cơ học nào. Chỉ mất thêm máu.",
+      "risks": "Cái bẫy lịch sử của mục 6. Mọi cấp kết quả đều trừ máu, kể cả THÀNH CÔNG LỚN — làm đúng bài bản một phương pháp sai thì vẫn sai.",
+      "advice": "Thầy thuốc học ở phương nam sẽ can ngài. Thợ cạo ngoài chợ thì sẽ mời chào.",
+      "outcomes": {
+        "critSuccess": { "bloodAdd": -6, "painAdd": -2, "quality": 1, "text": "Mạch được mở khéo, máu chảy đúng lượng thầy thuốc muốn — và đó chính xác là chỗ vô ích của việc này." },
+        "success": { "bloodAdd": -9, "quality": 1, "text": "Một bát đầy. Bệnh nhân thấy nhẹ người, rồi thấy chóng mặt." },
+        "costlySuccess": { "bloodAdd": -13, "painAdd": 4, "quality": 1, "text": "Trích ba lần cho chắc. Ba lần đều không giúp gì." },
+        "fail": { "bloodAdd": -16, "painAdd": 6, "infectionAdd": 6, "text": "Dao trượt, vết mở rộng hơn định, và cái bát thì đầy hơn hẳn." },
+        "critFail": { "bloodAdd": -24, "painAdd": 12, "infectionAdd": 18, "addsInjury": { "type": "laceration", "severity": 2, "region": "forearmL" }, "text": "Cắt trúng chỗ không nên cắt. Bây giờ có thêm một vết thương thật, do chính thầy thuốc gây ra." }
+      }
+    },
+    {
+      "id": "cau-nguyen",
+      "name": "Cầu nguyện và thánh tích",
+      "skill": "skill_giang-dao",
+      "difficulty": "thuong",
+      "appliesTo": { "types": [], "minSeverity": 1, "any": true },
+      "timeTurns": 1,
+      "supplies": [],
+      "price": 0,
+      "harmful": false,
+      "repeatable": true,
+      "physical": false,
+      "summary": "Không tác dụng vật lý. Giảm `pain` và tăng WIL tạm thời qua cơ chế tinh thần.",
+      "risks": "Không cầm máu, không diệt nhiễm trùng, không nối xương. Ai chỉ có cái này thì vẫn đang chờ chết, chỉ là chờ bình tĩnh hơn.",
+      "outcomes": {
+        "critSuccess": { "painAdd": -18, "willBonus": 15, "willTurns": 6, "text": "Người bệnh úp mặt vào tấm vải thánh và ngủ được một giấc trọn vẹn — cái đầu tiên kể từ hôm bị thương." },
+        "success": { "painAdd": -10, "willBonus": 10, "willTurns": 4, "text": "Lời kinh đều đặn. Cơn đau vẫn đó, nhưng đã có chỗ để bám vào." },
+        "costlySuccess": { "painAdd": -5, "willBonus": 5, "willTurns": 2, "text": "Đỡ được lúc đọc kinh, rồi trở lại như cũ ngay sau đó." },
+        "fail": { "text": "Không ai thấy gì thay đổi. Buổi cầu nguyện kéo dài tới khuya." },
+        "critFail": { "painAdd": 6, "willBonus": -10, "willTurns": 4, "text": "Thánh tích được rước tới, và người bệnh hiểu ra rằng người ta đã nghĩ tới chuyện hậu sự." }
+      }
+    }
+  ],
+
+  "$healersComment": "Mục 6 — chất lượng khác nhau rất xa. `skill` là khoảng điểm rèn luyện d100 của người chữa; `tu-chua` lấy thẳng kỹ năng của người chơi. `advisesAgainst` là chỗ luật trích máu thành ra ĐỌC ĐƯỢC trên màn hình: người biết nghề sẽ can, người không biết sẽ mời.",
+  "healers": [
+    {
+      "id": "tu-chua",
+      "name": "Tự chữa",
+      "skill": null,
+      "price": 0,
+      "advisesAgainst": [],
+      "note": "Dùng chính kỹ năng y thuật của nhân vật. Một tay và một con mắt, tự khâu lấy mình."
+    },
+    {
+      "id": "ba-lang-thao-duoc",
+      "name": "Bà lang thảo dược",
+      "skill": [30, 60],
+      "price": 5,
+      "prefers": ["dap-mat-ong-ruou"],
+      "advisesAgainst": ["trich-mau", "khoan-so"],
+      "note": "Không biết chữ, biết cây. Vết nhiễm trùng thì bà giỏi hơn phần lớn thầy thuốc có bằng."
+    },
+    {
+      "id": "thay-tu",
+      "name": "Thầy tu",
+      "skill": [30, 55],
+      "price": 3,
+      "prefers": ["cau-nguyen", "dap-mat-ong-ruou"],
+      "advisesAgainst": [],
+      "note": "Nhà tu có vườn thuốc và có sách. Cái họ thiếu là được phép cắt vào người khác."
+    },
+    {
+      "id": "tho-cao-phau-thuat",
+      "name": "Thợ cạo kiêm phẫu thuật",
+      "skill": [35, 60],
+      "price": 12,
+      "prefers": ["dot-sat-nung", "cat-cut-chi", "trich-mau"],
+      "advisesAgainst": [],
+      "note": "Dao sắc, tay nhanh, và tin chắc vào trích máu. Cái biển sọc đỏ trắng ngoài cửa là băng dính máu phơi khô."
+    },
+    {
+      "id": "thay-thuoc-phuong-nam",
+      "name": "Thầy thuốc học ở trường y phương nam",
+      "skill": [55, 85],
+      "price": 45,
+      "prefers": ["khau-vet-thuong", "nep-xuong", "dap-mat-ong-ruou"],
+      "advisesAgainst": ["trich-mau"],
+      "note": "Học ở Salerno hoặc Montpellier. Đắt, hiếm, và là người duy nhất trong bảng sẽ khuyên ngài ĐỪNG trích máu."
+    }
+  ]
+}

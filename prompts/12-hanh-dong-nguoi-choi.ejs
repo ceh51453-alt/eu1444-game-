@@ -1,0 +1,9 @@
+═══ HÀNH ĐỘNG CỦA NGƯỜI CHƠI Ở LƯỢT NÀY ═══
+<% if (action.kind === 'minigame') { %>
+(chọn trong minigame <%= action.minigameId %>: <%= action.minigameChoiceId %>)
+<% } %>
+<%= action.text === '' ? '(không nhập gì — kể tiếp cảnh và để nhân vật chờ)' : action.text %>
+
+Viết diễn biến cho đúng hành động này, không cho một hành động khác mà bạn thấy
+hay hơn. Nếu người chơi định làm một việc bất khả thi trong cảnh, hãy để nhân
+vật THỬ và hỏng, chứ đừng lặng lẽ đổi sang việc khác.

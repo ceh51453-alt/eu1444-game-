@@ -1,0 +1,41 @@
+{
+  "$comment": "HẬU CẦN QUÂN SỰ — mọi lượng quân nhu là điểm tiếp tế trừu tượng theo tháng; giá dùng cùng thang tiền với kho bạc vùng cai trị.",
+  "version": 1,
+  "config": {
+    "reserveMonths": 4,
+    "fieldReserveMonths": 1.5,
+    "depotOpeningFill": 0.7,
+    "depotReorderTarget": 0.82,
+    "monthlyReplenishment": 0.14,
+    "baseRouteLoss": 0.025,
+    "winterMonths": [12, 1, 2],
+    "winterCapacityFactor": 0.7,
+    "blockadeCapacityFactor": 0.12,
+    "routeWearPerMonth": 0.8,
+    "transportCostPerPoint": 0.018,
+    "severeShortageAttrition": 0.018,
+    "shortageAttrition": 0.004
+  },
+  "supplies": [
+    { "id": "luong-thuc", "name": "Lương thực", "unit": "khẩu phần", "needPerTroop": 0.03, "trainingNeedPerTroop": 0.012, "cost": 0.09, "depotShare": 0.36, "priority": 1 },
+    { "id": "co-kho", "name": "Cỏ khô & thức ăn ngựa", "unit": "bó", "needPerTroop": 0, "trainingNeedPerTroop": 0, "cost": 0.07, "depotShare": 0.18, "priority": 2 },
+    { "id": "dan-duoc", "name": "Tên, đạn & thuốc súng", "unit": "kiện", "needPerTroop": 0, "trainingNeedPerTroop": 0, "cost": 0.22, "depotShare": 0.14, "priority": 4 },
+    { "id": "trang-bi", "name": "Vũ khí & trang bị", "unit": "bộ", "needPerTroop": 0.0025, "trainingNeedPerTroop": 0.004, "cost": 0.38, "depotShare": 0.12, "priority": 5 },
+    { "id": "duoc-pham", "name": "Dược phẩm & băng vải", "unit": "hòm", "needPerTroop": 0.0012, "trainingNeedPerTroop": 0.0005, "cost": 0.55, "depotShare": 0.08, "priority": 3 },
+    { "id": "vat-tu-hai-quan", "name": "Gỗ, dây & nhựa tàu", "unit": "kiện", "needPerTroop": 0, "trainingNeedPerTroop": 0, "cost": 0.31, "depotShare": 0.12, "priority": 6 }
+  ],
+  "transportModes": [
+    { "id": "duong-bo", "name": "Xe và súc vật thồ", "capacityFactor": 1, "costFactor": 1, "lossFactor": 1, "winterFactor": 0.72 },
+    { "id": "duong-song", "name": "Thuyền sông", "capacityFactor": 1.65, "costFactor": 0.68, "lossFactor": 0.65, "winterFactor": 0.55 },
+    { "id": "duong-bien", "name": "Đoàn tàu biển", "capacityFactor": 2.3, "costFactor": 0.58, "lossFactor": 0.82, "winterFactor": 0.78 },
+    { "id": "duong-nui", "name": "Đoàn la đường núi", "capacityFactor": 0.52, "costFactor": 1.65, "lossFactor": 1.4, "winterFactor": 0.42 }
+  ],
+  "terrainFactors": {
+    "dong-bang": 1,
+    "doi": 0.82,
+    "rung": 0.68,
+    "nui": 0.48,
+    "dam-lay": 0.54,
+    "bien": 1
+  }
+}

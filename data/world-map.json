@@ -1,0 +1,1190 @@
+{
+  "$schema": "./world-map.schema.json",
+  "$comment": "BẢN ĐỒ ĐO ĐƯỜNG ĐI — Phần 15 mục 6. SINH TỰ ĐỘNG bởi tools/tao-ban-do.mjs, đừng sửa tay: sửa bảng toạ độ trong script ấy rồi chạy lại. Toạ độ tính bằng KM trên một phép chiếu phẳng, gốc ở góc tây bắc châu Âu. Cạnh của đồ thị KHÔNG nằm ở đây — chúng suy ra lúc chạy từ `adjacent` và `parentId` của regions.json, cộng với `lanes` bên dưới. Lục địa reg_europa cố ý KHÔNG có mặt: nó là gốc của cây vùng chứ không phải một nơi chốn, và cho nó toạ độ là biến nó thành đường tắt nối mọi thứ với mọi thứ.",
+  "version": 1,
+  "config": {
+    "$comment": "`terrainFactor` và `roadFactor` nhân vào tốc độ của người đưa tin. `laneFactor` áp cho tuyến khai tay, và nó THAY cho địa hình chứ không cộng thêm: một chiếc galley đi Venice–Constantinople không quan tâm giữa đường có núi hay không.",
+    "terrainFactor": {
+      "dong-bang": 1,
+      "song": 1.15,
+      "doi": 0.85,
+      "thao-nguyen": 0.9,
+      "rung": 0.7,
+      "dam-lay": 0.6,
+      "bien": 0.8,
+      "nui": 0.45
+    },
+    "roadFactor": [
+      0.6,
+      0.8,
+      1,
+      1.2
+    ],
+    "laneFactor": {
+      "duong-cai": 1.25,
+      "duong-song": 1.1,
+      "duong-bien": 0.95,
+      "duong-nui": 0.5
+    },
+    "seasonFactor": {
+      "xuan": 1,
+      "ha": 1.1,
+      "thu": 0.95,
+      "dong": 0.6
+    },
+    "hierarchyFactor": 0.9,
+    "fallbackFactor": 0.35
+  },
+  "lanes": [
+    {
+      "a": "hold_constantinople",
+      "b": "realm_venice",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "hold_constantinople",
+      "b": "hold_caffa",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "hold_constantinople",
+      "b": "hold_gallipoli",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "hold_constantinople",
+      "b": "hold_varna",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "hold_constantinople",
+      "b": "prov_morea",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "realm_venice",
+      "b": "realm_genoa",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "realm_genoa",
+      "b": "realm_aragon",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "realm_naples",
+      "b": "realm_genoa",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "hold_gibraltar",
+      "b": "realm_portugal",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "hold_gibraltar",
+      "b": "realm_granada",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "hold_lubeck",
+      "b": "hold_danzig",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "hold_lubeck",
+      "b": "hold_helsingor",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "hold_helsingor",
+      "b": "hold_gotland",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "hold_gotland",
+      "b": "realm_livonia",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "hold_gotland",
+      "b": "realm_sweden",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "hold_hamburg",
+      "b": "realm_england",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "realm_england",
+      "b": "prov_low-countries",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "realm_england",
+      "b": "prov_normandy",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "realm_england",
+      "b": "prov_brittany",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "realm_norway",
+      "b": "realm_scotland",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "prov_luu-vuc-rhine",
+      "b": "hold_cologne",
+      "kind": "duong-song"
+    },
+    {
+      "a": "prov_luu-vuc-rhine",
+      "b": "hold_mainz",
+      "kind": "duong-song"
+    },
+    {
+      "a": "prov_luu-vuc-rhine",
+      "b": "hold_strasbourg",
+      "kind": "duong-song"
+    },
+    {
+      "a": "hold_regensburg",
+      "b": "hold_vienna",
+      "kind": "duong-song"
+    },
+    {
+      "a": "hold_vienna",
+      "b": "realm_hungary",
+      "kind": "duong-song"
+    },
+    {
+      "a": "hold_sarai",
+      "b": "hold_astrakhan",
+      "kind": "duong-song"
+    },
+    {
+      "a": "hold_kazan-kremlin",
+      "b": "hold_sarai",
+      "kind": "duong-song"
+    },
+    {
+      "a": "realm_papal",
+      "b": "realm_florence",
+      "kind": "duong-cai"
+    },
+    {
+      "a": "hold_augsburg",
+      "b": "hold_mont-cenis",
+      "kind": "duong-cai"
+    },
+    {
+      "a": "hold_mont-cenis",
+      "b": "realm_milan",
+      "kind": "duong-nui"
+    },
+    {
+      "a": "hold_troyes",
+      "b": "hold_orleans",
+      "kind": "duong-cai"
+    },
+    {
+      "a": "hold_avignon",
+      "b": "realm_papal",
+      "kind": "duong-bien"
+    },
+    {
+      "a": "prov_alps",
+      "b": "realm_swiss",
+      "kind": "duong-nui"
+    },
+    {
+      "a": "prov_alps",
+      "b": "realm_milan",
+      "kind": "duong-nui"
+    },
+    {
+      "a": "prov_alps",
+      "b": "realm_savoy",
+      "kind": "duong-nui"
+    },
+    {
+      "a": "prov_alps",
+      "b": "prov_ao",
+      "kind": "duong-nui"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "hold_aachen",
+      "name": "Thành phố Tự do Aachen",
+      "x": 1290,
+      "y": 1245,
+      "terrain": "doi",
+      "roads": 3
+    },
+    {
+      "id": "hold_alhambra",
+      "name": "Cung điện Alhambra",
+      "x": 600,
+      "y": 2755,
+      "terrain": "nui",
+      "roads": 2
+    },
+    {
+      "id": "hold_astrakhan",
+      "name": "Thành phố Astrakhan",
+      "x": 4284,
+      "y": 1737,
+      "terrain": "song",
+      "roads": 1
+    },
+    {
+      "id": "hold_augsburg",
+      "name": "Thành phố Tự do Augsburg",
+      "x": 1634,
+      "y": 1513,
+      "terrain": "dong-bang",
+      "roads": 3
+    },
+    {
+      "id": "hold_avignon",
+      "name": "Thành phố Avignon",
+      "x": 1199,
+      "y": 2004,
+      "terrain": "song",
+      "roads": 3
+    },
+    {
+      "id": "hold_brogg",
+      "name": "Làng Brogg",
+      "x": 1541,
+      "y": 1521,
+      "terrain": "doi",
+      "roads": 1
+    },
+    {
+      "id": "hold_bursa",
+      "name": "Thành phố Bursa",
+      "x": 2930,
+      "y": 2421,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "hold_caffa",
+      "name": "Thành phố cảng Caffa",
+      "x": 3381,
+      "y": 1884,
+      "terrain": "bien",
+      "roads": 2
+    },
+    {
+      "id": "hold_carcassonne",
+      "name": "Thành trì Carcassonne",
+      "x": 1024,
+      "y": 2086,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "hold_chinon",
+      "name": "Lâu đài Chinon",
+      "x": 873,
+      "y": 1646,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "hold_cologne",
+      "name": "Thành phố Tự do Cologne",
+      "x": 1353,
+      "y": 1228,
+      "terrain": "song",
+      "roads": 3
+    },
+    {
+      "id": "hold_constantinople",
+      "name": "Thành phố Constantinople",
+      "x": 2924,
+      "y": 2330,
+      "terrain": "bien",
+      "roads": 3
+    },
+    {
+      "id": "hold_danzig",
+      "name": "Thành phố cảng Danzig",
+      "x": 2187,
+      "y": 849,
+      "terrain": "bien",
+      "roads": 3
+    },
+    {
+      "id": "hold_edirne",
+      "name": "Thành phố Edirne",
+      "x": 2751,
+      "y": 2256,
+      "terrain": "dong-bang",
+      "roads": 3
+    },
+    {
+      "id": "hold_ehrenfeld",
+      "name": "Thành Ehrenfeld",
+      "x": 1555,
+      "y": 1510,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "hold_frankfurt",
+      "name": "Thành phố Tự do Frankfurt",
+      "x": 1476,
+      "y": 1320,
+      "terrain": "song",
+      "roads": 3
+    },
+    {
+      "id": "hold_gallipoli",
+      "name": "Căn cứ Hải quân Gallipoli",
+      "x": 2759,
+      "y": 2396,
+      "terrain": "bien",
+      "roads": 2
+    },
+    {
+      "id": "hold_ghenh-dnieper",
+      "name": "Ghềnh thác Dnieper",
+      "x": 3353,
+      "y": 1571,
+      "terrain": "song",
+      "roads": 1
+    },
+    {
+      "id": "hold_gibraltar",
+      "name": "Núi đá Gibraltar",
+      "x": 474,
+      "y": 2870,
+      "terrain": "bien",
+      "roads": 1
+    },
+    {
+      "id": "hold_gotland",
+      "name": "Đảo Gotland",
+      "x": 2176,
+      "y": 500,
+      "terrain": "bien",
+      "roads": 1
+    },
+    {
+      "id": "hold_hamburg",
+      "name": "Thành phố Tự do Hamburg",
+      "x": 1569,
+      "y": 938,
+      "terrain": "bien",
+      "roads": 3
+    },
+    {
+      "id": "hold_helsingor",
+      "name": "Thành Helsingør",
+      "x": 1755,
+      "y": 663,
+      "terrain": "bien",
+      "roads": 2
+    },
+    {
+      "id": "hold_kazan-kremlin",
+      "name": "Thành lũy Kazan",
+      "x": 4359,
+      "y": 688,
+      "terrain": "song",
+      "roads": 1
+    },
+    {
+      "id": "hold_lubeck",
+      "name": "Thành phố Tự do Lübeck",
+      "x": 1619,
+      "y": 902,
+      "terrain": "bien",
+      "roads": 3
+    },
+    {
+      "id": "hold_mainz",
+      "name": "Thành phố Mainz",
+      "x": 1446,
+      "y": 1332,
+      "terrain": "song",
+      "roads": 3
+    },
+    {
+      "id": "hold_marienburg",
+      "name": "Thành Marienburg",
+      "x": 2214,
+      "y": 884,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "hold_mont-cenis",
+      "name": "Pháo đài Đèo Mont Cenis",
+      "x": 1349,
+      "y": 1859,
+      "terrain": "nui",
+      "roads": 1
+    },
+    {
+      "id": "hold_mont-saint-michel",
+      "name": "Đảo tu viện Mont Saint-Michel",
+      "x": 748,
+      "y": 1483,
+      "terrain": "bien",
+      "roads": 1
+    },
+    {
+      "id": "hold_muhldorf",
+      "name": "Trấn Mühldorf",
+      "x": 1748,
+      "y": 1526,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "hold_nuremberg",
+      "name": "Thành phố Tự do Nuremberg",
+      "x": 1647,
+      "y": 1393,
+      "terrain": "doi",
+      "roads": 3
+    },
+    {
+      "id": "hold_orleans",
+      "name": "Thành phố Orléans",
+      "x": 992,
+      "y": 1565,
+      "terrain": "song",
+      "roads": 3
+    },
+    {
+      "id": "hold_regensburg",
+      "name": "Thành phố Tự do Regensburg",
+      "x": 1720,
+      "y": 1441,
+      "terrain": "song",
+      "roads": 3
+    },
+    {
+      "id": "hold_sarai",
+      "name": "Cố đô Sarai",
+      "x": 4103,
+      "y": 1499,
+      "terrain": "thao-nguyen",
+      "roads": 0
+    },
+    {
+      "id": "hold_strasbourg",
+      "name": "Thành phố Tự do Strasbourg",
+      "x": 1409,
+      "y": 1490,
+      "terrain": "song",
+      "roads": 3
+    },
+    {
+      "id": "hold_trier",
+      "name": "Thành phố Trier",
+      "x": 1330,
+      "y": 1360,
+      "terrain": "song",
+      "roads": 2
+    },
+    {
+      "id": "hold_troyes",
+      "name": "Thành Troyes",
+      "x": 1147,
+      "y": 1521,
+      "terrain": "dong-bang",
+      "roads": 3
+    },
+    {
+      "id": "hold_varna",
+      "name": "Chiến trường Varna",
+      "x": 2847,
+      "y": 2087,
+      "terrain": "bien",
+      "roads": 2
+    },
+    {
+      "id": "hold_vienna",
+      "name": "Thành phố Vienna",
+      "x": 2024,
+      "y": 1531,
+      "terrain": "song",
+      "roads": 3
+    },
+    {
+      "id": "prov_alps",
+      "name": "Dãy Alps",
+      "x": 1605,
+      "y": 1721,
+      "terrain": "nui",
+      "roads": 0
+    },
+    {
+      "id": "prov_alsace",
+      "name": "Vùng Alsace",
+      "x": 1391,
+      "y": 1510,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "prov_anatolia",
+      "name": "Bán đảo Anatolia",
+      "x": 3139,
+      "y": 2498,
+      "terrain": "doi",
+      "roads": 1
+    },
+    {
+      "id": "prov_anjou",
+      "name": "Công quốc Anjou",
+      "x": 817,
+      "y": 1610,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "prov_ao",
+      "name": "Công quốc Áo",
+      "x": 1962,
+      "y": 1532,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "prov_aquitaine",
+      "name": "Công quốc Aquitaine",
+      "x": 813,
+      "y": 1909,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "prov_avignon",
+      "name": "Vùng Avignon",
+      "x": 1199,
+      "y": 2004,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "prov_baden",
+      "name": "Phiên hầu quốc Baden",
+      "x": 1441,
+      "y": 1476,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "prov_bayern",
+      "name": "Công quốc Bavaria",
+      "x": 1698,
+      "y": 1499,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "prov_bergslagen",
+      "name": "Vùng Bergslagen",
+      "x": 1926,
+      "y": 222,
+      "terrain": "rung",
+      "roads": 1
+    },
+    {
+      "id": "prov_bo-bien-baltic",
+      "name": "Bờ biển Baltic",
+      "x": 1641,
+      "y": 888,
+      "terrain": "bien",
+      "roads": 2
+    },
+    {
+      "id": "prov_bohemia",
+      "name": "Vương quốc Bohemia",
+      "x": 1884,
+      "y": 1332,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "prov_bourbon",
+      "name": "Công quốc Bourbon",
+      "x": 1092,
+      "y": 1721,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "prov_brandenburg",
+      "name": "Tuyển hầu quốc Brandenburg",
+      "x": 1784,
+      "y": 1066,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "prov_brittany",
+      "name": "Công quốc Brittany",
+      "x": 642,
+      "y": 1532,
+      "terrain": "doi",
+      "roads": 1
+    },
+    {
+      "id": "prov_carpathian",
+      "name": "Dãy Carpathian",
+      "x": 2604,
+      "y": 1610,
+      "terrain": "nui",
+      "roads": 0
+    },
+    {
+      "id": "prov_champagne",
+      "name": "Tỉnh Champagne",
+      "x": 1163,
+      "y": 1487,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "prov_cologne",
+      "name": "Tuyển hầu quốc Cologne",
+      "x": 1352,
+      "y": 1232,
+      "terrain": "dong-bang",
+      "roads": 3
+    },
+    {
+      "id": "prov_franken",
+      "name": "Vùng Franken",
+      "x": 1612,
+      "y": 1365,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "prov_hessen",
+      "name": "Bá quốc Hessen",
+      "x": 1498,
+      "y": 1265,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "prov_languedoc",
+      "name": "Vùng Languedoc",
+      "x": 1070,
+      "y": 2042,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "prov_low-countries",
+      "name": "Vùng Đất Thấp",
+      "x": 1177,
+      "y": 1221,
+      "terrain": "dam-lay",
+      "roads": 3
+    },
+    {
+      "id": "prov_luu-vuc-rhine",
+      "name": "Lưu vực sông Rhine",
+      "x": 1398,
+      "y": 1332,
+      "terrain": "song",
+      "roads": 3
+    },
+    {
+      "id": "prov_mainz",
+      "name": "Tuyển hầu quốc Mainz",
+      "x": 1448,
+      "y": 1332,
+      "terrain": "song",
+      "roads": 3
+    },
+    {
+      "id": "prov_mazovia",
+      "name": "Công quốc Mazovia",
+      "x": 2355,
+      "y": 1077,
+      "terrain": "dong-bang",
+      "roads": 1
+    },
+    {
+      "id": "prov_morea",
+      "name": "Vùng Morea",
+      "x": 2454,
+      "y": 2720,
+      "terrain": "nui",
+      "roads": 1
+    },
+    {
+      "id": "prov_normandy",
+      "name": "Công quốc Normandy",
+      "x": 863,
+      "y": 1432,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "prov_orleans",
+      "name": "Công quốc Orléans",
+      "x": 992,
+      "y": 1565,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "prov_palatinate",
+      "name": "Tuyển hầu quốc Palatinate",
+      "x": 1434,
+      "y": 1399,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "prov_pomerania",
+      "name": "Công quốc Pomerania",
+      "x": 1926,
+      "y": 910,
+      "terrain": "dong-bang",
+      "roads": 1
+    },
+    {
+      "id": "prov_rumelia",
+      "name": "Vùng Rumelia",
+      "x": 2747,
+      "y": 2253,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "prov_rung-den",
+      "name": "Rừng Đen",
+      "x": 1441,
+      "y": 1532,
+      "terrain": "rung",
+      "roads": 1
+    },
+    {
+      "id": "prov_saxony",
+      "name": "Tuyển hầu quốc Saxony",
+      "x": 1784,
+      "y": 1210,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "prov_steppe-pontic",
+      "name": "Thảo nguyên Hắc Hải – Caspi",
+      "x": 3496,
+      "y": 1665,
+      "terrain": "thao-nguyen",
+      "roads": 0
+    },
+    {
+      "id": "prov_swabia",
+      "name": "Tỉnh Swabia",
+      "x": 1534,
+      "y": 1499,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "prov_thanh-bang-ngam-lun",
+      "name": "Các thành bang ngầm tộc Lùn",
+      "x": 1427,
+      "y": 1721,
+      "terrain": "nui",
+      "roads": 0
+    },
+    {
+      "id": "prov_transylvania",
+      "name": "Các Công quốc Ma cà rồng Transylvania",
+      "x": 2604,
+      "y": 1721,
+      "terrain": "nui",
+      "roads": 1
+    },
+    {
+      "id": "prov_trier",
+      "name": "Tuyển hầu quốc Trier",
+      "x": 1331,
+      "y": 1360,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "prov_wurttemberg",
+      "name": "Công quốc Württemberg",
+      "x": 1513,
+      "y": 1476,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "prov_zaporizhia",
+      "name": "Vùng Zaporizhia",
+      "x": 3368,
+      "y": 1565,
+      "terrain": "thao-nguyen",
+      "roads": 0
+    },
+    {
+      "id": "realm_albania",
+      "name": "Liên minh Lezhë",
+      "x": 2269,
+      "y": 2298,
+      "terrain": "nui",
+      "roads": 0
+    },
+    {
+      "id": "realm_aragon",
+      "name": "Vương quốc Aragon",
+      "x": 899,
+      "y": 2264,
+      "terrain": "doi",
+      "roads": 1
+    },
+    {
+      "id": "realm_astrakhan",
+      "name": "Hãn quốc Astrakhan",
+      "x": 4281,
+      "y": 1743,
+      "terrain": "thao-nguyen",
+      "roads": 0
+    },
+    {
+      "id": "realm_burgundy",
+      "name": "Công quốc Burgundy",
+      "x": 1199,
+      "y": 1632,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "realm_byzantine",
+      "name": "Đế quốc Byzantine",
+      "x": 2918,
+      "y": 2331,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "realm_castile",
+      "name": "Vương quốc Castile",
+      "x": 571,
+      "y": 2387,
+      "terrain": "doi",
+      "roads": 1
+    },
+    {
+      "id": "realm_crimea",
+      "name": "Hãn quốc Crimea",
+      "x": 3282,
+      "y": 1865,
+      "terrain": "thao-nguyen",
+      "roads": 1
+    },
+    {
+      "id": "realm_denmark",
+      "name": "Vương quốc Đan Mạch",
+      "x": 1534,
+      "y": 699,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "realm_england",
+      "name": "Vương quốc Anh",
+      "x": 749,
+      "y": 1055,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "realm_ferrara",
+      "name": "Công quốc Ferrara",
+      "x": 1684,
+      "y": 1905,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "realm_florence",
+      "name": "Cộng hòa Florence",
+      "x": 1659,
+      "y": 2020,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "realm_france",
+      "name": "Vương quốc Pháp",
+      "x": 1035,
+      "y": 1610,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "realm_genoa",
+      "name": "Cộng hòa Genoa",
+      "x": 1491,
+      "y": 1954,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "realm_granada",
+      "name": "Tiểu vương quốc Granada",
+      "x": 599,
+      "y": 2753,
+      "terrain": "nui",
+      "roads": 1
+    },
+    {
+      "id": "realm_great-horde",
+      "name": "Đại Trướng Hãn Quốc",
+      "x": 4031,
+      "y": 1476,
+      "terrain": "thao-nguyen",
+      "roads": 0
+    },
+    {
+      "id": "realm_hre",
+      "name": "Đế quốc La Mã Thần thánh",
+      "x": 1570,
+      "y": 1332,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "realm_hungary",
+      "name": "Vương quốc Hungary",
+      "x": 2212,
+      "y": 1610,
+      "terrain": "dong-bang",
+      "roads": 1
+    },
+    {
+      "id": "realm_kazan",
+      "name": "Hãn quốc Kazan",
+      "x": 4359,
+      "y": 688,
+      "terrain": "rung",
+      "roads": 0
+    },
+    {
+      "id": "realm_lithuania",
+      "name": "Đại Công quốc Lithuania",
+      "x": 2661,
+      "y": 810,
+      "terrain": "rung",
+      "roads": 1
+    },
+    {
+      "id": "realm_livonia",
+      "name": "Liên bang Livonia",
+      "x": 2576,
+      "y": 566,
+      "terrain": "rung",
+      "roads": 1
+    },
+    {
+      "id": "realm_lucca",
+      "name": "Cộng hòa Lucca",
+      "x": 1605,
+      "y": 2015,
+      "terrain": "doi",
+      "roads": 1
+    },
+    {
+      "id": "realm_mantua",
+      "name": "Phiên hầu quốc Mantua",
+      "x": 1626,
+      "y": 1869,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "realm_milan",
+      "name": "Công quốc Milan",
+      "x": 1513,
+      "y": 1832,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "realm_muscovy",
+      "name": "Đại Công quốc Muscovy",
+      "x": 3539,
+      "y": 694,
+      "terrain": "rung",
+      "roads": 1
+    },
+    {
+      "id": "realm_naples",
+      "name": "Vương quốc Naples",
+      "x": 1876,
+      "y": 2348,
+      "terrain": "doi",
+      "roads": 1
+    },
+    {
+      "id": "realm_norway",
+      "name": "Vương quốc Na Uy",
+      "x": 1463,
+      "y": 167,
+      "terrain": "nui",
+      "roads": 0
+    },
+    {
+      "id": "realm_novgorod",
+      "name": "Cộng hòa Novgorod",
+      "x": 3089,
+      "y": 389,
+      "terrain": "rung",
+      "roads": 1
+    },
+    {
+      "id": "realm_ottoman",
+      "name": "Đế chế Ottoman",
+      "x": 2854,
+      "y": 2331,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "realm_papal",
+      "name": "Quốc gia Giáo hoàng",
+      "x": 1748,
+      "y": 2231,
+      "terrain": "doi",
+      "roads": 2
+    },
+    {
+      "id": "realm_poland",
+      "name": "Vương quốc Ba Lan",
+      "x": 2248,
+      "y": 1088,
+      "terrain": "dong-bang",
+      "roads": 1
+    },
+    {
+      "id": "realm_portugal",
+      "name": "Vương quốc Bồ Đào Nha",
+      "x": 271,
+      "y": 2498,
+      "terrain": "doi",
+      "roads": 1
+    },
+    {
+      "id": "realm_pskov",
+      "name": "Cộng hòa Pskov",
+      "x": 2875,
+      "y": 466,
+      "terrain": "rung",
+      "roads": 1
+    },
+    {
+      "id": "realm_ryazan",
+      "name": "Công quốc Ryazan",
+      "x": 3689,
+      "y": 821,
+      "terrain": "rung",
+      "roads": 1
+    },
+    {
+      "id": "realm_savoy",
+      "name": "Công quốc Savoy",
+      "x": 1320,
+      "y": 1832,
+      "terrain": "nui",
+      "roads": 1
+    },
+    {
+      "id": "realm_scotland",
+      "name": "Vương quốc Scotland",
+      "x": 557,
+      "y": 577,
+      "terrain": "nui",
+      "roads": 1
+    },
+    {
+      "id": "realm_siena",
+      "name": "Cộng hòa Siena",
+      "x": 1662,
+      "y": 2076,
+      "terrain": "doi",
+      "roads": 1
+    },
+    {
+      "id": "realm_sweden",
+      "name": "Vương quốc Thụy Điển",
+      "x": 1962,
+      "y": 300,
+      "terrain": "rung",
+      "roads": 1
+    },
+    {
+      "id": "realm_swiss",
+      "name": "Cựu Liên minh Thụy Sĩ",
+      "x": 1441,
+      "y": 1687,
+      "terrain": "nui",
+      "roads": 1
+    },
+    {
+      "id": "realm_teutonic",
+      "name": "Nhà nước Dòng tu Teuton",
+      "x": 2248,
+      "y": 888,
+      "terrain": "dong-bang",
+      "roads": 2
+    },
+    {
+      "id": "realm_tver",
+      "name": "Công quốc Tver",
+      "x": 3418,
+      "y": 571,
+      "terrain": "rung",
+      "roads": 1
+    },
+    {
+      "id": "realm_urbino",
+      "name": "Công quốc Urbino",
+      "x": 1755,
+      "y": 2031,
+      "terrain": "nui",
+      "roads": 1
+    },
+    {
+      "id": "realm_venice",
+      "name": "Cộng hòa Venice",
+      "x": 1734,
+      "y": 1843,
+      "terrain": "dam-lay",
+      "roads": 2
+    },
+    {
+      "id": "realm_wallachia",
+      "name": "Công quốc Wallachia",
+      "x": 2640,
+      "y": 1954,
+      "terrain": "dong-bang",
+      "roads": 1
+    }
+  ]
+}

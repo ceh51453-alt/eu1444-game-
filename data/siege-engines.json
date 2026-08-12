@@ -1,0 +1,175 @@
+{
+  "$comment": "MÁY CÔNG THÀNH VÀ ĐƯỜNG HẦM — Phần 11 mục 3 và 6. Máy móc là thứ DUY NHẤT của bên vây có thể bị đốt mất trong một đêm, và đó chính là lý do cuộc đột kích của bên thủ đáng liều mạng. Mọi số điều chỉnh khai theo thang d100, dương là lợi.",
+  "version": 1,
+
+  "config": {
+    "$comment": "Tiến độ dựng máy tính theo TUẦN, và trần `crewShare` là vế người ta hay quên: một đạo quân hai nghìn người không dựng nổi mười cỗ trebuchet cùng lúc vì không đủ thợ.",
+    "crewShare": 0.25,
+    "carpenterBonus": 18,
+    "rainPenalty": -14,
+    "winterPenalty": -22,
+    "$burnComment": "Đốt máy công thành là phần thưởng của cuộc đột kích (mục 3). Máy càng lớn càng khó kéo ra khỏi tầm, nên càng dễ cháy.",
+    "burnBaseChance": 45,
+    "guardedPenalty": -20,
+    "rebuildFactor": 0.6,
+
+    "$bombardComment": "Bắn phá (mục 3): hạ integrity tường, ỒN ÀO, và hạ sĩ khí bên trong. Vế thứ ba mới là vế thắng cuộc vây hãm — một bức tường nứt không mở cổng, một đám dân mất ngủ sáu tuần thì có.",
+    "bombardCheckId": "siege.cong-pha",
+    "bombardDomain": "siege.cong-pha",
+    "bombardBand": "thuong",
+    "damageByTier": {
+      "critSuccess": 1.8,
+      "success": 1,
+      "costlySuccess": 0.6,
+      "fail": 0.15,
+      "critFail": 0
+    },
+    "critFailBreaks": 35,
+    "$critFailComment": "Cần bẩy gãy, dây thừng đứt, đá rơi vào chính đội vận hành. Một cỗ trebuchet tự phá mình là chuyện có thật và là cái giá của việc bắn liên tục.",
+    "thicknessScale": 0.18,
+    "towerShareOfHits": 0.3
+  },
+
+  "engines": [
+    {
+      "id": "engine_thang",
+      "name": "Thang bắc tường",
+      "kind": "thang",
+      "buildWeeks": 0.2,
+      "crew": 8,
+      "cost": 4,
+      "wallDamage": 0,
+      "moraleDamage": 0,
+      "rangeMeters": 0,
+      "burnable": true,
+      "tags": ["tong-cong"],
+      "note": "gỗ và dây, dựng trong một buổi chiều — và chết cũng nhanh như thế"
+    },
+    {
+      "id": "engine_xe-huc",
+      "name": "Xe húc có mái",
+      "kind": "xe-huc",
+      "buildWeeks": 1,
+      "crew": 40,
+      "cost": 60,
+      "wallDamage": 0,
+      "gateDamage": 22,
+      "moraleDamage": 2,
+      "rangeMeters": 0,
+      "burnable": true,
+      "tags": ["tong-cong", "cong"],
+      "note": "chỉ dùng được ở cổng, và chỉ khi đã qua được hào"
+    },
+    {
+      "id": "engine_ballista",
+      "name": "Ballista",
+      "kind": "ban-thang",
+      "buildWeeks": 0.6,
+      "crew": 6,
+      "cost": 45,
+      "wallDamage": 1.5,
+      "moraleDamage": 1,
+      "rangeMeters": 320,
+      "burnable": true,
+      "tags": ["ban-pha", "chong-nguoi"],
+      "antiPersonnel": 0.004,
+      "note": "không phá được tường, nhưng quét sạch mặt tường trong lúc thang đang bắc"
+    },
+    {
+      "id": "engine_mangonel",
+      "name": "Mangonel",
+      "kind": "nem-da",
+      "buildWeeks": 1.4,
+      "crew": 12,
+      "cost": 120,
+      "wallDamage": 7,
+      "moraleDamage": 3,
+      "rangeMeters": 300,
+      "burnable": true,
+      "tags": ["ban-pha"],
+      "note": "bắn cầu vồng qua tường vào trong sân — thứ làm dân không ngủ được"
+    },
+    {
+      "id": "engine_trebuchet",
+      "name": "Trebuchet đối trọng",
+      "kind": "nem-da",
+      "buildWeeks": 3,
+      "crew": 45,
+      "cost": 420,
+      "wallDamage": 20,
+      "moraleDamage": 6,
+      "rangeMeters": 260,
+      "burnable": true,
+      "canThrowCorpses": true,
+      "tags": ["ban-pha", "nem-xac"],
+      "note": "ba tuần dựng, và một đêm để cháy rụi"
+    },
+    {
+      "id": "engine_thap-cong-thanh",
+      "name": "Tháp công thành",
+      "kind": "thap",
+      "buildWeeks": 2.5,
+      "crew": 60,
+      "cost": 340,
+      "wallDamage": 0,
+      "moraleDamage": 4,
+      "rangeMeters": 0,
+      "burnable": true,
+      "requiresMoatFilled": true,
+      "tags": ["tong-cong"],
+      "note": "đắt và chậm, nhưng đổ quân lên mặt tường theo hàng ngũ thay vì từng người một"
+    }
+  ],
+
+  "$miningComment": "ĐÀO HẦM PHÁ TƯỜNG (mục 3): Lùn và thợ mỏ giỏi nhất, mất nhiều tuần. Đây là con đường vào thành KHÔNG phơi ai ra trước tên đạn — và đó là lý do nó đáng chờ.",
+  "mining": {
+    "id": "dao-ham",
+    "name": "Đường hầm phá tường",
+    "baseWeeks": 6,
+    "minersPerCrew": 60,
+    "checkId": "siege.dao-ham",
+    "domain": "siege.dao-ham",
+    "band": "kho",
+    "progressByTier": {
+      "critSuccess": 2.2,
+      "success": 1,
+      "costlySuccess": 0.6,
+      "fail": 0.2,
+      "critFail": 0
+    },
+    "critFailCollapse": 0.25,
+    "$critFailComment": "Hầm sập vào chính người đào. Bốn phần mười đội thợ nằm lại dưới đó, và không ai đào tiếp trong tuần ấy.",
+    "wetMoatPenalty": -30,
+    "rockPenalty": -20,
+    "collapseIntegrity": 90,
+    "collapseTowerChance": 55,
+    "$racesComment": "Chủng tộc quen hầm mỏ đào nhanh hơn hẳn. Bảng khai theo id chủng tộc của `races.json`, không hardcode trong code (R5).",
+    "skilledRaces": {
+      "race_lun-nui": 45,
+      "race_lun-vuc-sau": 55,
+      "race_kobold": 30,
+      "race_gnome": 25,
+      "race_thach-due": 35,
+      "race_orc": 10
+    },
+
+    "$counterComment": "PHẢN ĐÀO HẦM (mục 3 và mục 10.5) — một minigame nhỏ riêng, RẤT CHẾT CHÓC. Đào ngược lại, gặp hầm địch, và đánh nhau dưới lòng đất trong bóng tối: không đội hình, không tầm bắn, không ai chạy được.",
+    "counterMine": {
+      "checkId": "siege.phan-dao-ham",
+      "domain": "siege.phan-dao-ham",
+      "listenBand": "kho",
+      "fightBand": "rat-kho",
+      "maxRounds": 8,
+      "crewDefault": 30,
+      "$darkComment": "Trong hầm, người nhìn được trong tối gần như bất khả chiến bại — nhãn lấy từ `weather.json → nightVisionTag` để hai chỗ không lệch nhau.",
+      "darkPenalty": -25,
+      "nightSightBonus": 30,
+      "casualtyPerRound": 0.22,
+      "collapseOnCritFail": 0.4,
+      "floodChance": 25,
+      "winStopsMine": true,
+      "moraleWinner": 10,
+      "moraleLoser": -12
+    }
+  }
+}

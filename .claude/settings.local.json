@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls /c/Users/LOC/.claude/projects/E--eu1444/memory/ 2>/dev/null)"
+    ]
+  }
+}

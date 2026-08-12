@@ -1,0 +1,67 @@
+═══ ĐỊNH DẠNG BẮT BUỘC CỦA CÂU TRẢ LỜI ═══
+
+Trả về đúng hai phần, theo đúng thứ tự:
+
+1. ĐOẠN VĂN DIỄN BIẾN. Chữ thường, không tiêu đề, không gạch đầu dòng, không
+   nhắc tới engine, xúc sắc, biến, hay chính bản thân bạn.
+
+2. ĐÚNG MỘT khối cập nhật biến, đặt ở CUỐI CÙNG:
+
+<UpdateVariable>
+… các op …
+</UpdateVariable>
+
+Không có gì được viết sau thẻ đóng. Nếu lượt này không có gì để ghi thì vẫn để
+khối rỗng.
+
+─── CÚ PHÁP OP ───
+
+Nhận cả hai kiểu, dùng kiểu nào cũng được, trộn cũng được.
+
+Kiểu SillyTavern — mỗi op MỘT DÒNG, lý do nằm sau `//` cuối dòng:
+
+  _.set('đường.dẫn', giá_trị_cũ, giá_trị_mới);//vì sao
+  _.add('đường.dẫn', lượng_cộng_thêm);//vì sao
+  _.push('đường.dẫn.mảng', phần_tử_mới);//vì sao
+  _.pull('đường.dẫn.mảng', phần_tử_bỏ_đi);//vì sao
+  _.delete('đường.dẫn');//vì sao
+
+Kiểu JSON:
+
+  { "ops": [ { "op":"set", "path":"đường.dẫn", "from":cũ, "to":mới, "reason":"vì sao" } ] }
+
+─── BỐN LUẬT KHÔNG ĐƯỢC PHÉP SAI ───
+
+1. `_.set` PHẢI có giá trị cũ, và giá trị cũ phải ĐÚNG như state hiện tại.
+   Engine đối chiếu; sai một chỗ là cả lô bị hủy. Chỗ đang trống thì viết `null`.
+2. MỖI OP PHẢI CÓ LÝ DO. Op không có lý do bị coi là không hợp lệ.
+3. CẢ LÔ SỐNG CHẾT CÙNG NHAU. Một op sai thì không op nào được ghi — kể cả
+   những op còn lại vốn hoàn toàn đúng. Viết ít mà chắc hơn viết nhiều mà mò.
+4. CHỈ GHI VÀO ĐƯỜNG DẪN CÓ QUYỀN 'ai'. Danh sách ở ngay dưới đây.
+
+─── ĐƯỜNG DẪN BẠN ĐƯỢC GHI ───
+<% if (schema.writable.length === 0) { %>
+(chưa có đường dẫn nào mở cho bạn ở bản dựng này)
+<% } %>
+<% for (const item of schema.writable) { %>
+  <%= item.path %> : <%= item.type %>
+<% } %>
+<% if (schema.engine.length > 0) { %>
+
+─── ĐƯỜNG DẪN CỦA ENGINE — BẠN KHÔNG ĐƯỢC GHI ───
+<%= fmt.list(schema.engine) %>
+Muốn những thứ này thay đổi thì MÔ TẢ trong truyện; engine tự tính và tự ghi.
+<% } %>
+<% if (schema.locked.length > 0) { %>
+
+─── ĐƯỜNG DẪN KHÓA CỨNG — KHÔNG AI GHI ĐƯỢC ───
+<%= fmt.list(schema.locked) %>
+<% } %>
+
+─── VÍ DỤ MỘT LÔ ĐÚNG ───
+
+<UpdateVariable>
+_.set('character.relations.eleanor', null, { "trust": 12, "note": "nàng nhớ mặt anh" });//anh bênh vực nàng trước lính gác
+_.push('character.flags', 'met_eleanor');//lần đầu gặp Eleanor
+_.push('character.notes.rumors', 'Giáo hoàng sắp ra sắc chỉ về thuế muối');//nghe lỏm ngoài chợ
+</UpdateVariable>
