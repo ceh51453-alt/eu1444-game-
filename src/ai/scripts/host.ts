@@ -99,6 +99,36 @@ export const DEFAULT_SCRIPT_HOST_OPTIONS: ScriptHostOptions = {
   timeoutEnabled: true,
 };
 
+/** Một tin AI tối thiểu theo hình dạng mà script Tavern Helper thường đọc. */
+export interface TavernNarrativeMessage {
+  id: number;
+  text: string;
+}
+
+interface TavernMessage {
+  is_user: boolean;
+  mes: string;
+  swipe_id: number;
+  gen_started: boolean;
+  extra: Record<string, unknown>;
+  /** Bản gốc giúp giữ `extra.reasoning` khi render lại cùng một tin. */
+  source: string;
+}
+
+type TavernListener = (...args: unknown[]) => void;
+
+const TAVERN_EVENTS = {
+  MESSAGE_UPDATED: 'message_updated',
+  MESSAGE_RECEIVED: 'message_received',
+  CHAT_CHANGED: 'chat_changed',
+  CHARACTER_MESSAGE_RENDERED: 'character_message_rendered',
+  STREAM_TOKEN_RECEIVED: 'stream_token_received',
+} as const;
+
+interface MiniQuery {
+  on(event: string, handler: unknown): MiniQuery;
+}
+
 type LogListener = (lines: readonly ScriptLogLine[]) => void;
 
 export class ScriptHost {
@@ -106,12 +136,42 @@ export class ScriptHost {
   #logs: ScriptLogLine[] = [];
   #lastRuns: ScriptRun[] = [];
   #listeners = new Set<LogListener>();
+  #tavernListeners = new Map<string, Set<TavernListener>>();
+  #tavernMessages: TavernMessage[] = [];
+  #scriptWindows = new Map<string, object>();
+  #domCleanups: Array<() => void> = [];
+  #reasoningSettings: Record<string, unknown> = {};
   #stopped = false;
   options: ScriptHostOptions = { ...DEFAULT_SCRIPT_HOST_OPTIONS };
 
   load(scripts: HelperScript[]): void {
+    for (const cleanup of this.#domCleanups.splice(0)) cleanup();
     this.#scripts = scripts.map((script) => ({ ...script }));
+    this.#tavernListeners.clear();
+    this.#scriptWindows.clear();
+    this.#reasoningSettings = {};
     this.#stopped = false;
+  }
+
+  /** Đồng bộ lịch sử kể chuyện sang `SillyTavern.chat` trước khi chạy script UI. */
+  setNarrativeMessages(messages: readonly TavernNarrativeMessage[]): void {
+    const previous = new Map(this.#tavernMessages.map((message, index) => [index, message] as const));
+    const next: TavernMessage[] = [];
+
+    for (const message of messages) {
+      const old = previous.get(message.id);
+      next[message.id] = {
+        is_user: false,
+        mes: message.text,
+        swipe_id: 0,
+        gen_started: false,
+        extra: old?.source === message.text ? old.extra : {},
+        source: message.text,
+      };
+    }
+
+    // Listener của preset giữ tham chiếu đến chính mảng này, nên không được gán mảng mới.
+    this.#tavernMessages.splice(0, this.#tavernMessages.length, ...next);
   }
 
   list(): readonly HelperScript[] {
@@ -175,7 +235,9 @@ export class ScriptHost {
         error: 'không có script với id này',
       };
     }
-    return this.#execute(script, state, input);
+    const run = await this.#execute(script, state, input);
+    this.#emitTavern(TAVERN_EVENTS.CHAT_CHANGED);
+    return run;
   }
 
   /** Chạy toàn bộ script đang bật. Một script hỏng không kéo theo cái khác. */
@@ -187,7 +249,108 @@ export class ScriptHost {
       runs.push(await this.#execute(script, state, input));
     }
     this.#lastRuns = runs;
+    this.#emitTavern(TAVERN_EVENTS.CHAT_CHANGED);
     return runs;
+  }
+
+  #onTavern(scriptId: string, event: string, listener: TavernListener): void {
+    let listeners = this.#tavernListeners.get(event);
+    if (listeners === undefined) {
+      listeners = new Set();
+      this.#tavernListeners.set(event, listeners);
+    }
+
+    const guarded: TavernListener = (...args) => {
+      const script = this.#scripts.find((candidate) => candidate.id === scriptId);
+      if (this.#stopped || script?.enabled !== true) return;
+      try {
+        listener(...args);
+      } catch (error) {
+        this.#push(scriptId, script?.name ?? scriptId, {
+          level: 'error',
+          args: [`Lỗi trong hook ${event}: ${String(error)}`],
+          at: Date.now(),
+        });
+      }
+    };
+    listeners.add(guarded);
+  }
+
+  #emitTavern(event: string, ...args: unknown[]): void {
+    for (const listener of this.#tavernListeners.get(event) ?? []) listener(...args);
+  }
+
+  #updateMessageBlock(messageId: unknown, message: unknown): void {
+    const id = typeof messageId === 'number' ? messageId : Number(messageId);
+    if (!Number.isInteger(id) || id < 0) return;
+
+    if (typeof document !== 'undefined') {
+      // React đã chạy toàn bộ regex hiển thị trong `.mes_text`. Chỉ bỏ nguồn
+      // reasoning mà script vừa chuyển thành panel; thay cả textContent ở đây
+      // sẽ phá những khung HTML khác của cùng preset.
+      const root = document.querySelector(`#chat [mesid="${String(id)}"] .mes_text`);
+      root?.querySelectorAll('thinking, think').forEach((node) => node.remove());
+    }
+
+    const record = typeof message === 'object' && message !== null
+      ? message as { mes?: unknown; extra?: unknown }
+      : null;
+    const current = this.#tavernMessages[id];
+    if (current !== undefined && record !== null) {
+      if (typeof record.mes === 'string') current.mes = record.mes;
+      if (typeof record.extra === 'object' && record.extra !== null && !Array.isArray(record.extra)) {
+        current.extra = record.extra as Record<string, unknown>;
+      }
+    }
+    this.#emitTavern(TAVERN_EVENTS.MESSAGE_UPDATED, id);
+  }
+
+  #windowFor(scriptId: string): object {
+    const existing = this.#scriptWindows.get(scriptId);
+    if (existing !== undefined) return existing;
+
+    const local: Record<PropertyKey, unknown> = {};
+    const realWindow = typeof window === 'undefined' ? null : window;
+    const proxy = new Proxy(local, {
+      get: (target, property) => {
+        if (Reflect.has(target, property)) return Reflect.get(target, property);
+        if (property === 'chat') return this.#tavernMessages;
+        if (property === 'updateMessageBlock') {
+          return (messageId: unknown, message: unknown): void => this.#updateMessageBlock(messageId, message);
+        }
+        if (realWindow === null) return undefined;
+        if (property === 'top' || property === 'parent' || property === 'self') return realWindow;
+        const value: unknown = Reflect.get(realWindow, property, realWindow);
+        return typeof value === 'function' ? value.bind(realWindow) : value;
+      },
+      set: (target, property, value) => {
+        Reflect.set(target, property, value);
+        return true;
+      },
+      has: (target, property) => Reflect.has(target, property) || (realWindow !== null && property in realWindow),
+    });
+    this.#scriptWindows.set(scriptId, proxy);
+    return proxy;
+  }
+
+  #dollarFor(scriptWindow: object): (target: unknown) => MiniQuery {
+    return (target: unknown): MiniQuery => {
+      if (typeof target === 'function') target();
+      const eventTarget = target === scriptWindow && typeof window !== 'undefined' ? window : target;
+      const query: MiniQuery = {
+        on: (event, handler) => {
+          if (typeof EventTarget !== 'undefined' && eventTarget instanceof EventTarget && typeof handler === 'function') {
+            const wrapped = (browserEvent: Event): void => {
+              handler(browserEvent);
+            };
+            eventTarget.addEventListener(event, wrapped);
+            this.#domCleanups.push(() => eventTarget.removeEventListener(event, wrapped));
+          }
+          return query;
+        },
+      };
+      return query;
+    };
   }
 
   async #execute(script: HelperScript, state: unknown, input: unknown): Promise<ScriptRun> {
@@ -205,8 +368,49 @@ export class ScriptHost {
           warn: (...args: unknown[]) => logs.push({ level: 'warn', args: args.map(String), at: Date.now() }),
           error: (...args: unknown[]) => logs.push({ level: 'error', args: args.map(String), at: Date.now() }),
         };
-        const fn = new Function('api', `"use strict";\n${script.code}`) as (arg: unknown) => unknown;
-        const value = fn(api);
+        const scriptWindow = this.#windowFor(script.id);
+        const sillyTavern = {
+          chat: this.#tavernMessages,
+          getContext: () => ({ powerUserSettings: { reasoning: this.#reasoningSettings } }),
+          updateMessageBlock: (messageId: unknown, message: unknown): void => {
+            this.#updateMessageBlock(messageId, message);
+          },
+        };
+        const eventOn = (event: unknown, listener: unknown): void => {
+          if (typeof event === 'string' && typeof listener === 'function') {
+            this.#onTavern(script.id, event, (...args) => {
+              listener(...args);
+            });
+          }
+        };
+        const scriptConsole = {
+          log: (...args: unknown[]) => logs.push({ level: 'log' as const, args: args.map(String), at: Date.now() }),
+          info: (...args: unknown[]) => logs.push({ level: 'log' as const, args: args.map(String), at: Date.now() }),
+          debug: (...args: unknown[]) => logs.push({ level: 'log' as const, args: args.map(String), at: Date.now() }),
+          warn: (...args: unknown[]) => logs.push({ level: 'warn' as const, args: args.map(String), at: Date.now() }),
+          error: (...args: unknown[]) => logs.push({ level: 'error' as const, args: args.map(String), at: Date.now() }),
+        };
+        const fn = new Function(
+          'api',
+          'window',
+          '$',
+          'SillyTavern',
+          'eventOn',
+          'tavern_events',
+          'getScriptId',
+          'console',
+          `"use strict";\n${script.code}`,
+        ) as (...args: unknown[]) => unknown;
+        const value = fn(
+          api,
+          scriptWindow,
+          this.#dollarFor(scriptWindow),
+          sillyTavern,
+          eventOn,
+          TAVERN_EVENTS,
+          () => script.id,
+          scriptConsole,
+        );
         for (const line of logs) this.#push(script.id, script.name, line);
         return { ...base, ok: true, elapsedMs: Math.round(performance.now() - started), value };
       } catch (error) {

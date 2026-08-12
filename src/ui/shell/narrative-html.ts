@@ -48,6 +48,9 @@ const ALLOWED = new Set([
   's', 'samp', 'section', 'small', 'source', 'span', 'strong', 'style', 'sub',
   'summary', 'sup', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'time', 'tr',
   'u', 'ul', 'var', 'wbr',
+  // Script Tavern Helper đọc reasoning từ chat rồi tự dựng panel. Giữ hai thẻ
+  // nguồn để updateMessageBlock chỉ bỏ đúng phần đã xử lý, không xóa cả tin.
+  'think', 'thinking',
   // SVG: preset dùng cho biểu tượng nhỏ trong khung tư duy.
   'svg', 'g', 'path', 'circle', 'ellipse', 'line', 'polyline', 'polygon', 'rect',
   'text', 'tspan', 'defs', 'linearGradient', 'radialGradient', 'stop', 'use',

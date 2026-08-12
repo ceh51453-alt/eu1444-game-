@@ -246,6 +246,20 @@ describe('script — chạy trên luồng chính, cách ly lỗi từng cái', (
     expect(logs[0]?.args.join(' ')).toContain('đang chạy');
   });
 
+  it('có lớp tương thích tối thiểu cho $, SillyTavern.chat và getScriptId', async () => {
+    host.setNarrativeMessages([{ id: 0, text: '<thinking>nháp</thinking>chính văn' }]);
+    host.load([
+      uiScript(
+        'tawa',
+        '$(() => { api.log(getScriptId(), SillyTavern.chat[0].mes); });',
+      ),
+    ]);
+
+    const runs = await host.runAll({});
+    expect(runs[0]?.ok).toBe(true);
+    expect(host.logs()[0]?.args.join(' ')).toContain('tawa <thinking>nháp</thinking>chính văn');
+  });
+
   it('đo thời gian chạy từng script mỗi lượt', async () => {
     host.load([uiScript('nhanh', 'return 1;')]);
     const runs = await host.runAll({});

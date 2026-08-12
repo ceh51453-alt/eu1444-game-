@@ -84,6 +84,12 @@ describe('lọc HTML trước khi vẽ vào DOM của game', () => {
   it('bỏ thẻ lạ nhưng giữ chữ bên trong', () => {
     expect(sanitizeMarkup('<marquee-x>chữ</marquee-x>')).toBe('chữ');
   });
+
+  it('giữ thẻ nguồn reasoning để script Tavern Helper thay bằng panel', () => {
+    expect(sanitizeMarkup('<thinking>nháp</thinking><p>chính văn</p>')).toBe(
+      '<thinking>nháp</thinking><p>chính văn</p>',
+    );
+  });
 });
 
 describe('bọc khối ```html vào iframe', () => {

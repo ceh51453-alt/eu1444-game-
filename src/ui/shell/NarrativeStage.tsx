@@ -143,6 +143,7 @@ function TurnNarrative({ text }: { text: string }): ReactNode {
 function useHelperScripts(entries: readonly TurnEntry[], running: boolean): void {
   useEffect(() => {
     if (running || scriptHost.list().length === 0) return;
+    scriptHost.setNarrativeMessages(entries.map((entry, id) => ({ id, text: entry.narrative })));
     void scriptHost.runAll(useGameStore.getState().snapshot(), {
       turn: entries.at(-1)?.turn ?? 0,
       narrative: entries.at(-1)?.narrative ?? '',
@@ -208,7 +209,7 @@ export function NarrativeStage({ onPlayEncounter }: NarrativeStageProps = {}): R
   return (
     <>
       <div className="min-h-0 flex-1 overflow-y-auto px-8 py-10">
-        <div className="mx-auto flex max-w-2xl flex-col gap-6">
+        <div id="chat" className="mx-auto flex max-w-2xl flex-col gap-6">
           <p className="text-xs tracking-[0.2em] text-brass uppercase">Diễn biến</p>
 
           {entries.length === 0 && !running && (
@@ -250,15 +251,26 @@ export function NarrativeStage({ onPlayEncounter }: NarrativeStageProps = {}): R
             đoạn AI viết, rồi đoạn engine kể lại trận đánh vừa xong trong chính
             lượt ấy.
           */}
-          {entries.map((entry, index) => (
-            <article key={`${String(entry.turn)}-${String(index)}`} className="flex flex-col gap-2">
+          {entries.map((entry, index) => {
+            const tavernAttributes = { mesid: String(index) };
+            return (
+            <article
+              key={`${String(entry.turn)}-${String(index)}`}
+              {...tavernAttributes}
+              className="mes flex flex-col gap-2"
+            >
               <p className="text-xs text-brass/70">
                 Lượt {entry.turn} · {entry.action}
                 {entry.outcome === '' ? '' : ` · ${entry.outcome}`}
               </p>
-              <TurnNarrative text={entry.narrative} />
+              <div className="mes_block">
+                <div className="mes_text">
+                  <TurnNarrative text={entry.narrative} />
+                </div>
+              </div>
             </article>
-          ))}
+            );
+          })}
 
           {running && (
             <article className="flex flex-col gap-2">
