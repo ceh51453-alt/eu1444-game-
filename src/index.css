@@ -50,6 +50,99 @@ body {
 }
 
 /*
+  Lorebook ưu tiên không gian đọc: cấu hình và chẩn đoán nằm ngoài ba cột chính,
+  còn nội dung entry dùng nền/nhịp chữ riêng để các đoạn lore dài dễ theo dõi.
+*/
+.lorebook-manager {
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 76% 8%, rgb(176 141 79 / 7%), transparent 30rem),
+    var(--color-ink);
+}
+
+.lorebook-browser {
+  grid-template-columns: 15rem 21rem minmax(0, 1fr);
+}
+
+.lorebook-column,
+.lorebook-reading-pane {
+  box-shadow: 0 12px 30px rgb(0 0 0 / 18%);
+}
+
+.lore-entry-reader-header {
+  background: linear-gradient(135deg, rgb(176 141 79 / 11%), rgb(42 35 32 / 42%));
+}
+
+.lore-entry-content {
+  background: linear-gradient(180deg, rgb(42 35 32 / 76%), rgb(27 23 19 / 82%));
+  box-shadow: inset 3px 0 0 rgb(176 141 79 / 34%);
+}
+
+.lore-entry-copy {
+  letter-spacing: 0.008em;
+  text-wrap: pretty;
+}
+
+.lorebook-reading-body,
+.lorebook-reading-body > .lore-entry-reader {
+  height: 100%;
+}
+
+.lore-entry-reader {
+  overscroll-behavior: contain;
+  scrollbar-color: rgb(214 199 168 / 62%) rgb(27 23 19 / 70%);
+  scrollbar-gutter: stable;
+  scrollbar-width: auto;
+}
+
+.lore-entry-reader::-webkit-scrollbar {
+  width: 12px;
+}
+
+.lore-entry-reader::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgb(27 23 19 / 70%);
+}
+
+.lore-entry-reader::-webkit-scrollbar-thumb {
+  min-height: 3rem;
+  border: 3px solid rgb(27 23 19 / 70%);
+  border-radius: 999px;
+  background: rgb(214 199 168 / 62%);
+}
+
+.lore-entry-reader::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brass);
+}
+
+.lore-entry-detail-section {
+  background: rgb(27 23 19 / 48%);
+}
+
+.lorebook-setup {
+  max-height: 42vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 1180px) {
+  .lorebook-browser {
+    grid-template-columns: 12rem 17rem minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 820px) {
+  .lorebook-browser {
+    grid-template-columns: minmax(10rem, 0.8fr) minmax(15rem, 1.2fr);
+    overflow-y: auto;
+  }
+
+  .lorebook-reading-pane {
+    grid-column: 1 / -1;
+    min-height: 70vh;
+  }
+}
+
+/*
   Menu mở đầu có lớp bố cục riêng để không bị biến thành các ô HTML thô khi
   trình duyệt bật chế độ tương phản hoặc một bản CSS tiện ích bị giữ trong cache.
 */

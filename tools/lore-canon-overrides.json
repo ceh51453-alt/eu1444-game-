@@ -1,0 +1,158 @@
+{
+  "$comment": "Những ngoại lệ canon dành cho entry không thuộc bảng chủng tộc. Converter áp dụng theo raw id để nguồn SillyTavern cũ vẫn có thể được nhập lại mà không phục hồi các mâu thuẫn đã sửa.",
+  "content": {
+    "14": "## Thông tin cốt lõi của Dãy núi Carpathian:\n- Định nghĩa: Vòng cung núi ngăn bình nguyên Hungary với các miền Ruthenia, Moldavia và Wallachia; đồng thời là hành lang đèo, rừng, mỏ và pháo đài.\n- Phân loại: Vùng biên đa chủng tộc, không phải một quốc gia hay vùng đất bị nguyền đồng nhất.\n- Trạng thái năm 1444: Bị chia giữa lãnh chúa Hungary, các công quốc đêm Transylvania, thị tộc Lang Nhân, cộng đồng Ám Tiên, Phong Tiên và Bán Khổng Lồ, dưới sức ép của Wallachia cùng Ottoman.\n\n## Cảnh quan, dân cư và sinh kế:\nRừng thông, sồi, vách đá vôi, hang sâu và mùa đông dài khiến đường đi nguy hiểm, nhưng các thung lũng vẫn có làng, tu viện, bãi chăn, mỏ muối, mỏ kim loại và chợ đèo. Sương chứa ma lực Ám hệ xuất hiện dày ở vài lưu vực chứ không phủ kín toàn dãy. Ám Tiên giữ một số đường hang và mỏ sâu; Lang Nhân sống trong cả thị tộc rừng lẫn làng chịu luật quý tộc; Phong Tiên, Bán Khổng Lồ, Nhân loại và các cộng đồng khác làm người dẫn đường, thợ mỏ, mục dân, binh giữ đèo hoặc thương nhân. Hùng Nhân không phải cư dân bản địa phổ biến của Carpathian.\n\n## Quyền lực và xung đột:\nTransylvania gồm nhiều thái ấp có thiểu số quý tộc Huyết Tộc cai trị dân sống và nhận chủ quyền Hungary trên giấy. Wallachia do các nhà Long Duệ chi phối, vừa tranh đèo và người nộp thuế với họ vừa có thể đình chiến trước Ottoman. Quan hệ giữa Huyết Tộc, Long Duệ và các thị tộc núi gồm chiến tranh, hôn ước, cống nạp, bảo hộ và buôn bán; không có cuộc chiến chủng tộc bất tận bao trùm mọi cá nhân.\n\n## Đi lại và giới hạn:\nVượt núi vẫn là canh bạc vì bão tuyết, thú dữ, thuế cầu, cướp đường và chiến sự. Người có giấy thông hành, người dẫn đường địa phương và thỏa thuận với chủ đèo có thể qua an toàn; không cộng đồng nào mặc nhiên xé xác mọi người ngoài. Pháo đài, sương phép và địa hình tạo lợi thế phòng thủ nhưng không làm vùng này bất khả xâm phạm.",
+    "235": "## Thông tin cốt lõi của Chiến thuật Thảo nguyên:\n- Định nghĩa: Học thuyết chiến tranh du động của nhiều hãn quốc, phối hợp trinh sát, kỵ xạ, rút lui giả và đánh vào tiếp tế.\n- Phân loại: Học thuyết quân sự thích hợp với đồng bằng rộng; không phải năng lực bẩm sinh chung của mọi dân thảo nguyên.\n- Trạng thái năm 1444: Rất nguy hiểm cho đội quân nặng rời công sự, nhưng bị hạn chế bởi địa hình, thời tiết, hậu cần, kỷ luật và chỉ huy.\n\n## Cơ động và bắn trên yên:\nMã Nhân có hình người hai chân với tai và đuôi ngựa; họ vẫn cưỡi chiến mã. Thính giác, thăng bằng và truyền thống huấn luyện giúp nhiều người trở thành kỵ xạ giỏi, nhưng kỹ năng phải học chứ không nằm sẵn trong huyết thống. Đội hình tản rộng quấy rối từ nhiều hướng, đổi ngựa hoặc luân phiên đơn vị, rồi tránh giao chiến gần khi đối phương còn nguyên hàng ngũ. Phong thuật có thể ổn định tư thế, tăng tầm hoặc bẻ nhẹ quỹ đạo, nhưng không khiến tên tự tìm khe giáp hay bảo đảm trúng đích.\n\n## Rút lui giả và đòn kết thúc:\nRút lui giả chỉ hiệu quả khi người và ngựa phối hợp tốt; nếu chiến mã hoảng, quân giả chạy tan hàng hoặc bị chặn đường rút, chính họ chịu tổn thất nặng. Khi đối phương bị kéo giãn, kỵ xạ quay trên yên bắn trả, còn lực lượng dự bị đánh vào cánh hoặc tuyến tiếp tế. Một số đạo quân dùng Mục Nhân làm bộ binh xung kích, nhưng họ cần được che tên và mở đường; tường giáo, hào, địa hình lầy cùng hỏa khí có thể chặn cú đánh.\n\n## Cách khắc chế và biến thể:\nDo phụ thuộc chiến mã, các đạo Mã Nhân phải bảo vệ đàn ngựa, cỏ khô, nước và thợ thú y. Doanh trại kiên cố, nỏ hoặc súng phối hợp, kỵ binh nhẹ bản địa, trinh sát tốt và việc từ chối truy đuổi đều có thể khắc chế. Chiến thuật thắng nhờ lựa chọn trận địa và làm đối phương kiệt sức, không vì một chủng tộc là khắc tinh tự nhiên không thể đánh bại.",
+    "236": "## Cấu trúc bộ lạc và Kurultai của xã hội thảo nguyên:\nCác hãn quốc là liên minh hộ gia đình, thị tộc, đoàn tùy tùng và thành thị–trạm chợ; không chỉ là một biển lều vô tổ chức. Mã Nhân thường nắm nhiều nhà cầm quyền nhờ mạng hôn nhân, đàn chiến mã và truyền thống kỵ binh, nhưng trong chính tộc vẫn có quý tộc, mục dân, thợ, giáo sĩ, thương nhân, con nợ và nô lệ. Mục Nhân có thể là người chăn, bộ binh, chủ trại hoặc thủ lĩnh độc lập; họ không phải tầng phục dịch bẩm sinh.\n\nKurultai triệu tập các nhà có quyền để xác nhận Hãn, chia bãi chăn, phân chiến lợi phẩm hoặc quyết chiến tranh. Uy tín chiến công và của cải quan trọng, nhưng tranh luận, hôn ước, con tin, quà tặng, luật kế vị và sự ủng hộ của giáo sĩ cũng quyết định kết quả. Mã Nhân tới hội bằng ngựa như các kỵ sĩ khác; họ có hình người hai chân với tai và đuôi ngựa.\n\nLuật Yassa không phải một bộ luật bất biến duy nhất. Mỗi hãn quốc kết hợp lệ truyền miệng, sắc lệnh của Hãn, luật Hồi giáo hoặc tục Shaman và quy ước địa phương. Trộm chiến mã, phá giếng, phản bội khi hành quân và giấu chiến lợi phẩm thường bị phạt nặng vì đe dọa sinh tồn chung. Tự do tín ngưỡng, mức nô dịch và quyền của dân định cư thay đổi theo thời kỳ và người cai trị; không xã hội nào vận hành chỉ bằng sức mạnh cơ bắp."
+  },
+  "replace": {
+    "1": [
+      [
+        "Trong khi đó, các chủng tộc phi nhân loại như Tiên và Orc vẫn giữ gìn hệ thống tín ngưỡng Đa thần giáo, Tín ngưỡng Tự nhiên cổ xưa và ma thuật Shaman của riêng họ, trực tiếp vay mượn và khai thác sức mạnh nguyên thủy của đất trời.",
+        "Các cộng đồng phi nhân cũng không có một đức tin duy nhất: nhiều nhóm Tiên giữ tín ngưỡng tự nhiên hoặc đa thần, phần lớn Orc trong cơ cấu Ottoman theo Hồi giáo, còn cá nhân và cộng đồng biên giới có thể cải đạo, dung hợp nghi lễ hay không theo giáo hội nào. Ma thuật Shaman là một truyền thống trong số nhiều truyền thống, không phải bản năng chung của mọi chủng tộc."
+      ],
+      [
+        "Các rặng núi hùng vĩ trải dài ở trung tâm lục địa như Alps và Bohemia bên trong Đế quốc là nơi cư ngụ của tộc Lùn, những kẻ làm chủ kỹ thuật luyện kim, kiểm soát giao thương vũ khí dưới lòng đất và các phường hội ngân hàng khổng lồ.",
+        "Các rặng núi như Alps và Bohemia có nhiều cộng đồng Lùn nổi tiếng về luyện kim, khai mỏ và tín dụng. Họ cạnh tranh lẫn hợp tác với thợ, thương nhân và nghiệp đoàn của nhiều tộc; không một chủng tộc nào độc quyền vũ khí hay ngân hàng của Đế quốc."
+      ],
+      [
+        "Giáo hội Công giáo, đặt trụ sở tại Lãnh địa Giáo hoàng ở bán đảo Ý, là tổ chức kiểm soát quyền lực tinh thần của toàn bộ Châu Âu và độc quyền quản lý Ma pháp Thần thánh.",
+        "Giáo hội Tây phương, đặt trung tâm tại Giáo triều ở bán đảo Ý, là tổ chức tinh thần mạnh nhất Tây và Trung Europa và tuyên bố quyền cấp phép Thánh thuật trong phạm vi của mình. Giáo hội Đông phương cùng các truyền thống khác không thừa nhận độc quyền ấy."
+      ]
+    ],
+    "2": [
+      [
+        "Đại Đế chế phương Tây (hay Đế quốc Tây La Mã) sụp đổ trước các cuộc di cư khổng lồ và xâm lăng của các bộ tộc man tộc, Orc và Người Thú từ phương Bắc và phương Đông.",
+        "Đại Đế chế phương Tây (hay Đế quốc Tây La Mã) sụp đổ giữa các cuộc đại di cư, nội chiến, khủng hoảng thuế và sự trỗi dậy của nhiều liên minh chiến binh đa tộc; không chủng tộc nào một mình gây ra biến cố."
+      ],
+      [
+        "Năm 1250 đến 1273 - Thời kỳ Đại Không Vương (Interregnum)",
+        "Năm 1254 đến 1273 - Thời kỳ Đại Không Vương (Interregnum)"
+      ],
+      [
+        "Bá tước Rudolf I đắc cử Hoàng đế",
+        "Bá tước Rudolf I được bầu làm Vua của người La Mã"
+      ],
+      [
+        "Đế chế Ottoman, một Đế quốc Orc mới đang trỗi dậy mạnh mẽ ở phương Đông.",
+        "Đế chế Ottoman, một đế quốc đa tộc do triều đình Orc giữ vai trò trung tâm, đang trỗi dậy mạnh mẽ ở phương Đông."
+      ]
+    ],
+    "174": [
+      [
+        "Mang trong mình dòng máu của Hải Tộc (những kẻ chuyên cướp bóc tàu thuyền) nhưng lại là người bảo vệ vĩ đại nhất cho các tàu buôn Venice.",
+        "Mang dòng máu Hải Tộc vốn bị một số quý tộc Venice gán tiếng cướp biển, nhưng lại là người bảo vệ vĩ đại nhất cho các tàu buôn của thành bang."
+      ]
+    ],
+    "191": [
+      [
+        "Bậc thầy bắn cung trên lưng ngựa (horse archery) và Ma pháp Phong hệ.",
+        "Bậc thầy bắn cung trên lưng ngựa và Ma pháp Phong hệ."
+      ],
+      [
+        "buông tay cương và xoay người bắn liên tiếp",
+        "thả lỏng dây cương và xoay người trên yên bắn liên tiếp"
+      ],
+      [
+        "Nửa thân trên là một nữ chiến binh Nhân loại với những múi cơ săn chắc, nửa thân dưới là cơ thể của một con ngựa chiến Ả Rập màu hung đỏ tuyệt đẹp.",
+        "Một nữ chiến binh hình người hai chân với cơ bắp săn chắc, đôi tai ngựa hung đỏ trên đỉnh đầu và chiếc đuôi dài cùng màu."
+      ],
+      [
+        "Phần thân người mặc một chiếc áo chẽn da nạm đinh tán đồng, thân ngựa được bọc bởi những tấm giáp vảy siêu nhẹ có khắc cổ ngữ Phong hệ.",
+        "Mặc áo chẽn da nạm đinh đồng, quần cưỡi ngựa và giáp vảy nhẹ; mũ giáp xẻ hai khe cho đôi tai ngựa."
+      ],
+      [
+        "Bốn chiếc móng guốc được bọc thép ma thuật, mỗi bước chạy đều để lại những vệt xước trên nền đá.",
+        "Đôi tai ngựa luôn xoay về phía tiếng động, còn chiếc đuôi hung đỏ quất mạnh khi ả mất kiên nhẫn."
+      ],
+      [
+        "thường xuyên gõ móng guốc xuống đất thể hiện sự thiếu kiên nhẫn",
+        "thường giật tai và quất đuôi thể hiện sự thiếu kiên nhẫn"
+      ],
+      [
+        "Altinay là một Centaur (Mã Nhân). Phải luôn nhớ cấu trúc cơ thể nửa người nửa ngựa của ả trong mọi tương tác vật lý.",
+        "Altinay là Mã Nhân hình người hai chân, chỉ có tai và đuôi ngựa; tuyệt đối không mô tả ả có thân ngựa hay bốn vó."
+      ],
+      [
+        "Ả chiến đấu bằng cung tên từ xa và sức mạnh của móng guốc.",
+        "Ả chiến đấu bằng cung tên từ trên yên và tốc độ của chiến mã."
+      ],
+      [
+        "để mặc cho các cơn gió vuốt ve bộ lông mượt mà của mình",
+        "để mặc cho gió vuốt mái tóc và chiếc đuôi hung đỏ"
+      ],
+      [
+        "Chồm hai chân trước lên cao, gầm lên một tiếng vang dội và dùng móng guốc bọc thép đạp nát lồng ngực của một lính bộ binh đang cố gắng dùng giáo cản đường.",
+        "Thúc chiến mã chồm lên, ả hét vang rồi để đôi vó bọc thép phá thế của người lính đang dùng giáo cản đường."
+      ],
+      [
+        "dấu móng guốc đẫm máu",
+        "dấu vó chiến mã đẫm máu"
+      ]
+    ],
+    "200": [
+      [
+        "Sinh ra trên yên ngựa, vươn lên nắm quyền",
+        "Sinh ra giữa một đoàn lều du mục, vươn lên nắm quyền"
+      ],
+      [
+        "Ả không cần ngai vàng, vì lưng ngựa là ngai vàng duy nhất.",
+        "Ả không cần ngai vàng, vì yên chiến mã và thảo nguyên là ngai vàng duy nhất."
+      ],
+      [
+        "Nửa thân trên là nữ chiến binh gân guốc, nửa thân dưới là cơ thể ngựa chiến màu đen tuyền khổng lồ.",
+        "Một nữ chiến binh hình người hai chân, gân guốc, có đôi tai ngựa đen trên đỉnh đầu và chiếc đuôi đen dài."
+      ],
+      [
+        "thường gõ móng guốc xuống đất để đe dọa",
+        "thường giậm ủng và quất đuôi để đe dọa"
+      ],
+      [
+        "Borte là một Centaur (nửa người nửa ngựa). Bắt buộc phải duy trì hình thể này trong mọi mô tả tương tác.",
+        "Borte là Mã Nhân hình người hai chân, chỉ có tai và đuôi ngựa; tuyệt đối không thêm thân ngựa, bốn vó hoặc móng guốc."
+      ],
+      [
+        "cuốn phăng {{user}} dưới móng guốc hoặc kết nạp họ",
+        "cuốn phăng {{user}} dưới vó chiến mã hoặc kết nạp họ"
+      ],
+      [
+        "——Móng Guốc Đạp Nát Vương Miện——",
+        "——Vó Ngựa Đạp Nát Vương Miện——"
+      ],
+      [
+        "dùng móng guốc của mình đạp nát những chiếc lồng đó",
+        "dẫn kỵ quân đạp nát những chiếc lồng đó"
+      ]
+    ],
+    "202": [
+      [
+        "Nửa thân trên đầy đặn, quyến rũ mang nét sắc sảo phương Đông, nửa thân dưới là cơ thể ngựa chiến màu trắng muốt với những cơ bắp hoàn hảo.",
+        "Một phụ nữ hình người hai chân đầy đặn và sắc sảo, có đôi tai ngựa trắng trên đỉnh đầu cùng chiếc đuôi trắng được chải kỹ."
+      ],
+      [
+        "Phần thân người mặc những bộ áo chẽn bằng lụa Ba Tư thêu chỉ vàng, thân ngựa được khoác những tấm thảm nhung đỏ thẫm đính ma thạch.",
+        "Mặc áo chẽn và váy cưỡi ngựa bằng lụa Ba Tư thêu chỉ vàng; khăn đội đầu chừa hai khe cho tai ngựa, đuôi buộc dải nhung đỏ đính ma thạch."
+      ],
+      [
+        "để che đi mùi mồ hôi của loài ngựa",
+        "để che mùi chuồng ngựa và đường dài"
+      ],
+      [
+        "Nur Devlet là một Mã Nhân (Centaur) quý tộc, mập mạp và xa hoa.",
+        "Nur Devlet là một Mã Nhân quý tộc hình người hai chân, có tai và đuôi ngựa, đầy đặn và xa hoa."
+      ]
+    ]
+  },
+  "keyTerms": {
+    "remove": ["Centaur", "Centaurs", "Centaur Altinay"],
+    "replace": { "Tộc Mã Nhân - Centaur": "Tộc Mã Nhân", "Equine Centaurs": "Equine Beastmen" }
+  },
+  "contentTerms": {
+    "Tộc Mã Nhân - Centaur": "Tộc Mã Nhân",
+    "Centaurs": "Mã Nhân",
+    "Centaur": "Mã Nhân",
+    "Hoàng đế Frederick III": "Vua của người La Mã Frederick III",
+    "Đế chế Ottoman của loài Orc": "Đế chế Ottoman đa chủng tộc do triều đình Orc chi phối",
+    "sức mạnh bầy đàn": "khả năng huy động quân số và hậu cần"
+  }
+}

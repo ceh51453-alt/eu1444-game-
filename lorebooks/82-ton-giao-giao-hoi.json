@@ -1,0 +1,1723 @@
+{
+  "kind": "eu1444-lorebook",
+  "schemaVersion": 1,
+  "exportedAt": 0,
+  "books": [
+    {
+      "id": "book-ton-giao-rel-giao-hoi",
+      "name": "Tôn giáo chuyên sâu · Giáo hội Tây phương",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "faith_rel-giao-hoi-nen-tang",
+          "title": "Giáo hội Tây phương · nguồn lịch sử và giáo lý",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_giao-hoi'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nCông giáo Latin thế kỷ XV, nhưng tên canon là Giáo hội Tây phương để không lẫn với Chính thống giáo Đông phương.\n\nMột Chúa, cứu rỗi qua đức tin, bí tích và cộng đồng Giáo hội. Kinh điển Latin, thánh tích và phép lạ được thẩm tra; ma pháp không có phép bị xếp vào huyền thuật, mê tín hoặc tà thuật tùy mức nguy hiểm.",
+          "summary": "Công giáo Latin thế kỷ XV, nhưng tên canon là Giáo hội Tây phương để không lẫn với Chính thống giáo Đông phương. Một Chúa, cứu rỗi qua đức tin, bí tích và cộng đồng Giáo hội. Kinh điển Latin, thánh tích và phép lạ được thẩm tra; ma pháp không có phép bị xếp vào huyền thuật, mê tín hoặc tà thuật tùy mức nguy hiểm.",
+          "keys": [
+            "Giáo hội Tây phương",
+            "Tây phương",
+            "giáo lý",
+            "thần học",
+            "nguồn lịch sử"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Giáo hội Tây phương. nguồn lịch sử và giáo lý. Công giáo Latin thế kỷ XV, nhưng tên canon là Giáo hội Tây phương để không lẫn với Chính thống giáo Đông phương.\n\nMột Chúa, cứu rỗi qua đức tin, bí tích và cộng đồng Giáo hội. Kinh điển Latin, thánh tích và phép lạ được thẩm tra; ma pháp không có phép bị xếp vào huyền thuật, mê tín hoặc tà thuật tùy mức nguy hiểm.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-giao-hoi-to-chuc",
+          "title": "Giáo hội Tây phương · giáo sĩ, tổ chức và tài sản",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_giao-hoi'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nGiáo hoàng đứng đầu; dưới là hồng y, tổng giám mục, giám mục, giáo xứ, tu viện và các dòng hành khất. Giáo luật, tòa riêng, thuế thập phân, đất của tu viện và quyền bổ nhiệm làm Giáo hội vừa thiêng liêng vừa là đại thế lực kinh tế.",
+          "summary": "Giáo hoàng đứng đầu; dưới là hồng y, tổng giám mục, giám mục, giáo xứ, tu viện và các dòng hành khất. Giáo luật, tòa riêng, thuế thập phân, đất của tu viện và quyền bổ nhiệm làm Giáo hội vừa thiêng liêng vừa là đại thế lực kinh tế.",
+          "keys": [
+            "Giáo hội Tây phương",
+            "Tây phương",
+            "giáo sĩ",
+            "tổ chức tôn giáo",
+            "tu viện",
+            "đền thờ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Giáo hội Tây phương. giáo sĩ, tổ chức và tài sản. Giáo hoàng đứng đầu; dưới là hồng y, tổng giám mục, giám mục, giáo xứ, tu viện và các dòng hành khất. Giáo luật, tòa riêng, thuế thập phân, đất của tu viện và quyền bổ nhiệm làm Giáo hội vừa thiêng liêng vừa là đại thế lực kinh tế.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-giao-hoi-doi-song",
+          "title": "Giáo hội Tây phương · nghi lễ và đời sống tín đồ",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_giao-hoi'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nDân thường sống theo chuông nhà thờ, lịch lễ, ngày chay, rửa tội, hôn phối, xưng tội và tang lễ. Đức tin chân thành có thể cùng tồn tại với bùa dân gian; giáo sĩ địa phương thường khoan dung hơn văn bản của Giáo triều.",
+          "summary": "Dân thường sống theo chuông nhà thờ, lịch lễ, ngày chay, rửa tội, hôn phối, xưng tội và tang lễ. Đức tin chân thành có thể cùng tồn tại với bùa dân gian; giáo sĩ địa phương thường khoan dung hơn văn bản của Giáo triều.",
+          "keys": [
+            "Giáo hội Tây phương",
+            "Tây phương",
+            "nghi lễ",
+            "đời sống tín đồ",
+            "lễ hội",
+            "kiêng kỵ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Giáo hội Tây phương. nghi lễ và đời sống tín đồ. Dân thường sống theo chuông nhà thờ, lịch lễ, ngày chay, rửa tội, hôn phối, xưng tội và tang lễ. Đức tin chân thành có thể cùng tồn tại với bùa dân gian; giáo sĩ địa phương thường khoan dung hơn văn bản của Giáo triều.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-giao-hoi-chinh-tri",
+          "title": "Giáo hội Tây phương · phe nội bộ và quan hệ năm 1444",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_giao-hoi'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nNăm 1444, Eugene IV đối đầu phe Công đồng Basel và đối Giáo hoàng Felix V. Buôn ân xá, giáo sĩ giữ nhiều bổng lộc và ký ức hai Giáo hoàng nuôi Phong trào Áo Vải; đáp án không chỉ là đàn áp mà còn có cải cách và giảng đạo.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Phái Thanh Tẩy: -100/100 — thù địch cực độ.\n- Phong trào Áo Vải: -95/100 — thù địch cực độ.\n- Nhất thần phương Nam: -85/100 — thù địch cực độ.\n- Tín ngưỡng Cổ nhánh Baltic: -80/100 — thù địch cực độ. Mục tiêu chính thức của thập tự chinh phương bắc.\n- Tín ngưỡng cổ: -70/100 — đối địch.\n- Thần Chiến Trận: -65/100 — đối địch.\n- Huyền học bí truyền: -60/100 — đối địch.\n- Giáo hội Đông phương: -55/100 — đối địch. Cùng một Chúa, khác một chữ, bốn thế kỷ không ai nhường.\n- Thiên tín thảo nguyên: -50/100 — đối địch.\n- Thờ tổ tiên thị tộc: -30/100 — căng thẳng.\n- Tín ngưỡng Lò Rèn: 5/100 — có thể hợp tác. Hòa ước: Lùn không truyền đạo nên Giáo hội không có gì để cấm.",
+          "summary": "Năm 1444, Eugene IV đối đầu phe Công đồng Basel và đối Giáo hoàng Felix V. Buôn ân xá, giáo sĩ giữ nhiều bổng lộc và ký ức hai Giáo hoàng nuôi Phong trào Áo Vải; đáp án không chỉ là đàn áp mà còn có cải cách và giảng đạo. Ma trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân): - Phái Thanh Tẩy: -100/100 — thù địch cực độ. - Phong trào Áo Vải: -95/100 — thù địch cực độ. - Nhất thần phương Nam: -85/100 — thù địch cực độ. - Tín ngưỡng Cổ nhánh Baltic: -80/100 — thù địch cực độ.…",
+          "keys": [
+            "Giáo hội Tây phương",
+            "Tây phương",
+            "phe tôn giáo",
+            "dị giáo",
+            "quan hệ tôn giáo",
+            "khủng hoảng đức tin"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Giáo hội Tây phương. phe nội bộ và quan hệ năm 1444. Năm 1444, Eugene IV đối đầu phe Công đồng Basel và đối Giáo hoàng Felix V. Buôn ân xá, giáo sĩ giữ nhiều bổng lộc và ký ức hai Giáo hoàng nuôi Phong trào Áo Vải; đáp án không chỉ là đàn áp mà còn có cải cách và giảng đạo.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Phái Thanh Tẩy: -100/100 — thù địch cực độ.\n- Phong trào Áo Vải: -95/100 — thù địch cực độ.\n- Nhất thần phương Nam: -85/100 — thù địch cực độ.\n- Tín ngưỡng Cổ nhánh Baltic: -80/100 — thù địch cực độ. Mục tiêu chính thức của thập tự chinh phương bắc.\n- Tín ngưỡng cổ: -70/100 — đối địch.\n- Thần Chiến Trận: -65/100 — đối địch.\n- Huyền học bí truyền: -60/100 — đối địch.\n- Giáo hội Đông phương: -55/100 — đối địch. Cùng một Chúa, khác một chữ, bốn thế kỷ không ai nhường.\n- Thiên tín thảo nguyên: -50/100 — đối địch.\n- Thờ tổ tiên thị tộc: -30/100 — căng thẳng.\n- Tín ngưỡng Lò Rèn: 5/100 — có thể hợp tác. Hòa ước: Lùn không truyền đạo nên Giáo hội không có gì để cấm.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-ton-giao-rel-ly-giao",
+      "name": "Tôn giáo chuyên sâu · Giáo hội Đông phương",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "faith_rel-ly-giao-nen-tang",
+          "title": "Giáo hội Đông phương · nguồn lịch sử và giáo lý",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_ly-giao'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nChính thống giáo Đông phương với các tòa thượng phụ và truyền thống Byzantine–Slav.\n\nCùng nền Kitô giáo với Tây phương nhưng khác quyền Giáo hoàng, vài công thức tín điều và nghi lễ. Thánh tượng không bị coi là thần; chúng là cửa sổ cầu nguyện. Thánh ca, hương, ánh sáng và phụng vụ cộng đồng dẫn ma lực chữa lành và bảo hộ.",
+          "summary": "Chính thống giáo Đông phương với các tòa thượng phụ và truyền thống Byzantine–Slav. Cùng nền Kitô giáo với Tây phương nhưng khác quyền Giáo hoàng, vài công thức tín điều và nghi lễ. Thánh tượng không bị coi là thần; chúng là cửa sổ cầu nguyện. Thánh ca, hương, ánh sáng và phụng vụ cộng đồng dẫn ma lực chữa lành và bảo hộ.",
+          "keys": [
+            "Giáo hội Đông phương",
+            "Ly giáo",
+            "giáo lý",
+            "thần học",
+            "nguồn lịch sử"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Giáo hội Đông phương. nguồn lịch sử và giáo lý. Chính thống giáo Đông phương với các tòa thượng phụ và truyền thống Byzantine–Slav.\n\nCùng nền Kitô giáo với Tây phương nhưng khác quyền Giáo hoàng, vài công thức tín điều và nghi lễ. Thánh tượng không bị coi là thần; chúng là cửa sổ cầu nguyện. Thánh ca, hương, ánh sáng và phụng vụ cộng đồng dẫn ma lực chữa lành và bảo hộ.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-ly-giao-to-chuc",
+          "title": "Giáo hội Đông phương · giáo sĩ, tổ chức và tài sản",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_ly-giao'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nCác tòa thượng phụ và giáo hội địa phương có mức tự trị cao; Constantinople giữ địa vị danh dự nhưng không cai mọi nơi như một quân chủ. Giám mục thường độc thân, linh mục giáo xứ có thể đã kết hôn trước khi thụ phong; tu viện là trung tâm chữ viết và đất đai.",
+          "summary": "Các tòa thượng phụ và giáo hội địa phương có mức tự trị cao; Constantinople giữ địa vị danh dự nhưng không cai mọi nơi như một quân chủ. Giám mục thường độc thân, linh mục giáo xứ có thể đã kết hôn trước khi thụ phong; tu viện là trung tâm chữ viết và đất đai.",
+          "keys": [
+            "Giáo hội Đông phương",
+            "Ly giáo",
+            "giáo sĩ",
+            "tổ chức tôn giáo",
+            "tu viện",
+            "đền thờ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Giáo hội Đông phương. giáo sĩ, tổ chức và tài sản. Các tòa thượng phụ và giáo hội địa phương có mức tự trị cao; Constantinople giữ địa vị danh dự nhưng không cai mọi nơi như một quân chủ. Giám mục thường độc thân, linh mục giáo xứ có thể đã kết hôn trước khi thụ phong; tu viện là trung tâm chữ viết và đất đai.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-ly-giao-doi-song",
+          "title": "Giáo hội Đông phương · nghi lễ và đời sống tín đồ",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_ly-giao'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nLịch lễ, ăn chay, kính thánh tượng và nghi thức gia đình định nhịp sống. Một làng có thể giữ tập tục tổ tiên bên dưới lớp nghi lễ Đông phương mà không tự xem mình là dị giáo.",
+          "summary": "Lịch lễ, ăn chay, kính thánh tượng và nghi thức gia đình định nhịp sống. Một làng có thể giữ tập tục tổ tiên bên dưới lớp nghi lễ Đông phương mà không tự xem mình là dị giáo.",
+          "keys": [
+            "Giáo hội Đông phương",
+            "Ly giáo",
+            "nghi lễ",
+            "đời sống tín đồ",
+            "lễ hội",
+            "kiêng kỵ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Giáo hội Đông phương. nghi lễ và đời sống tín đồ. Lịch lễ, ăn chay, kính thánh tượng và nghi thức gia đình định nhịp sống. Một làng có thể giữ tập tục tổ tiên bên dưới lớp nghi lễ Đông phương mà không tự xem mình là dị giáo.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-ly-giao-chinh-tri",
+          "title": "Giáo hội Đông phương · phe nội bộ và quan hệ năm 1444",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_ly-giao'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nHiệp ước Florence 1439 tuyên bố hợp nhất với Rome để đổi cứu viện, nhưng phe chống hợp nhất xem đó là bán đức tin. Ottoman tiến sát Constantinople; ở Rus, các giáo sĩ ngày càng nghĩ trung tâm tinh thần có thể chuyển về phía bắc.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Nhất thần phương Nam: -80/100 — thù địch cực độ.\n- Giáo hội Tây phương: -55/100 — đối địch. Cùng một Chúa, khác một chữ, bốn thế kỷ không ai nhường.\n- Phái Thanh Tẩy: -55/100 — đối địch.\n- Tín ngưỡng Cổ nhánh Baltic: -45/100 — đối địch.\n- Phong trào Áo Vải: -40/100 — căng thẳng. Không phải dị giáo của họ, nên họ chỉ khó chịu chứ không đốt.\n- Thiên tín thảo nguyên: -35/100 — căng thẳng.",
+          "summary": "Hiệp ước Florence 1439 tuyên bố hợp nhất với Rome để đổi cứu viện, nhưng phe chống hợp nhất xem đó là bán đức tin. Ottoman tiến sát Constantinople; ở Rus, các giáo sĩ ngày càng nghĩ trung tâm tinh thần có thể chuyển về phía bắc. Ma trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân): - Nhất thần phương Nam: -80/100 — thù địch cực độ. - Giáo hội Tây phương: -55/100 — đối địch. Cùng một Chúa, khác một chữ, bốn thế kỷ không ai nhường. - Phái Thanh Tẩy: -55/100 — đối địch.…",
+          "keys": [
+            "Giáo hội Đông phương",
+            "Ly giáo",
+            "phe tôn giáo",
+            "dị giáo",
+            "quan hệ tôn giáo",
+            "khủng hoảng đức tin"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Giáo hội Đông phương. phe nội bộ và quan hệ năm 1444. Hiệp ước Florence 1439 tuyên bố hợp nhất với Rome để đổi cứu viện, nhưng phe chống hợp nhất xem đó là bán đức tin. Ottoman tiến sát Constantinople; ở Rus, các giáo sĩ ngày càng nghĩ trung tâm tinh thần có thể chuyển về phía bắc.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Nhất thần phương Nam: -80/100 — thù địch cực độ.\n- Giáo hội Tây phương: -55/100 — đối địch. Cùng một Chúa, khác một chữ, bốn thế kỷ không ai nhường.\n- Phái Thanh Tẩy: -55/100 — đối địch.\n- Tín ngưỡng Cổ nhánh Baltic: -45/100 — đối địch.\n- Phong trào Áo Vải: -40/100 — căng thẳng. Không phải dị giáo của họ, nên họ chỉ khó chịu chứ không đốt.\n- Thiên tín thảo nguyên: -35/100 — căng thẳng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-ton-giao-rel-da-than",
+      "name": "Tôn giáo chuyên sâu · Tín ngưỡng cổ",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "faith_rel-da-than-nen-tang",
+          "title": "Tín ngưỡng cổ · nguồn lịch sử và giáo lý",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_da-than'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nTổng hợp các tín ngưỡng dân gian Celt, Germanic, Slav và thờ tự nhiên đã bị đẩy khỏi thể chế nhà nước.\n\nKhông có một kinh chung hay giáo chủ. Thần sông, thần rừng, tổ tiên, mùa màng và sinh vật bảo hộ được hiểu theo địa phương; lời thề có giá trị vì cộng đồng và nơi thiêng chứng giám.",
+          "summary": "Tổng hợp các tín ngưỡng dân gian Celt, Germanic, Slav và thờ tự nhiên đã bị đẩy khỏi thể chế nhà nước. Không có một kinh chung hay giáo chủ. Thần sông, thần rừng, tổ tiên, mùa màng và sinh vật bảo hộ được hiểu theo địa phương; lời thề có giá trị vì cộng đồng và nơi thiêng chứng giám.",
+          "keys": [
+            "Tín ngưỡng cổ",
+            "Đa thần",
+            "giáo lý",
+            "thần học",
+            "nguồn lịch sử"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Tín ngưỡng cổ. nguồn lịch sử và giáo lý. Tổng hợp các tín ngưỡng dân gian Celt, Germanic, Slav và thờ tự nhiên đã bị đẩy khỏi thể chế nhà nước.\n\nKhông có một kinh chung hay giáo chủ. Thần sông, thần rừng, tổ tiên, mùa màng và sinh vật bảo hộ được hiểu theo địa phương; lời thề có giá trị vì cộng đồng và nơi thiêng chứng giám.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-da-than-to-chuc",
+          "title": "Tín ngưỡng cổ · giáo sĩ, tổ chức và tài sản",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_da-than'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nNgười giữ lễ có thể là trưởng làng, bà đỡ, dược sư, tu sĩ rừng hoặc gia đình trông coi miếu. Quyền lực phân tán giúp tín ngưỡng sống dai nhưng khó tập hợp chống một giáo hội có văn thư và quân đội.",
+          "summary": "Người giữ lễ có thể là trưởng làng, bà đỡ, dược sư, tu sĩ rừng hoặc gia đình trông coi miếu. Quyền lực phân tán giúp tín ngưỡng sống dai nhưng khó tập hợp chống một giáo hội có văn thư và quân đội.",
+          "keys": [
+            "Tín ngưỡng cổ",
+            "Đa thần",
+            "giáo sĩ",
+            "tổ chức tôn giáo",
+            "tu viện",
+            "đền thờ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Tín ngưỡng cổ. giáo sĩ, tổ chức và tài sản. Người giữ lễ có thể là trưởng làng, bà đỡ, dược sư, tu sĩ rừng hoặc gia đình trông coi miếu. Quyền lực phân tán giúp tín ngưỡng sống dai nhưng khó tập hợp chống một giáo hội có văn thư và quân đội.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-da-than-doi-song",
+          "title": "Tín ngưỡng cổ · nghi lễ và đời sống tín đồ",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_da-than'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nLễ hạ chí, thu hoạch, cưới, sinh và tang gắn với cây, giếng, đá hoặc bếp. Nhiều tín đồ vẫn dự lễ nhà thờ để tránh rắc rối; ranh giới giữa tập tục và ngoại đạo thay đổi theo thái độ linh mục.",
+          "summary": "Lễ hạ chí, thu hoạch, cưới, sinh và tang gắn với cây, giếng, đá hoặc bếp. Nhiều tín đồ vẫn dự lễ nhà thờ để tránh rắc rối; ranh giới giữa tập tục và ngoại đạo thay đổi theo thái độ linh mục.",
+          "keys": [
+            "Tín ngưỡng cổ",
+            "Đa thần",
+            "nghi lễ",
+            "đời sống tín đồ",
+            "lễ hội",
+            "kiêng kỵ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Tín ngưỡng cổ. nghi lễ và đời sống tín đồ. Lễ hạ chí, thu hoạch, cưới, sinh và tang gắn với cây, giếng, đá hoặc bếp. Nhiều tín đồ vẫn dự lễ nhà thờ để tránh rắc rối; ranh giới giữa tập tục và ngoại đạo thay đổi theo thái độ linh mục.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-da-than-chinh-tri",
+          "title": "Tín ngưỡng cổ · phe nội bộ và quan hệ năm 1444",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_da-than'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nỞ Tây và Trung Europa, đây chủ yếu là mạng tục lệ kín hoặc bán kín. Không đồng nhất nó với nhánh Baltic còn đền công khai, tư tế và chỗ dựa chính trị.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -70/100 — đối địch.\n- Tín ngưỡng Cổ nhánh Baltic: 60/100 — gần gũi. Cùng gốc, nhưng một bên trốn trong rừng còn một bên có đền công khai.\n- Thờ tổ tiên thị tộc: 35/100 — có thể hợp tác.",
+          "summary": "Ở Tây và Trung Europa, đây chủ yếu là mạng tục lệ kín hoặc bán kín. Không đồng nhất nó với nhánh Baltic còn đền công khai, tư tế và chỗ dựa chính trị. Ma trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân): - Giáo hội Tây phương: -70/100 — đối địch. - Tín ngưỡng Cổ nhánh Baltic: 60/100 — gần gũi. Cùng gốc, nhưng một bên trốn trong rừng còn một bên có đền công khai. - Thờ tổ tiên thị tộc: 35/100 — có thể hợp tác.",
+          "keys": [
+            "Tín ngưỡng cổ",
+            "Đa thần",
+            "phe tôn giáo",
+            "dị giáo",
+            "quan hệ tôn giáo",
+            "khủng hoảng đức tin"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Tín ngưỡng cổ. phe nội bộ và quan hệ năm 1444. Ở Tây và Trung Europa, đây chủ yếu là mạng tục lệ kín hoặc bán kín. Không đồng nhất nó với nhánh Baltic còn đền công khai, tư tế và chỗ dựa chính trị.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -70/100 — đối địch.\n- Tín ngưỡng Cổ nhánh Baltic: 60/100 — gần gũi. Cùng gốc, nhưng một bên trốn trong rừng còn một bên có đền công khai.\n- Thờ tổ tiên thị tộc: 35/100 — có thể hợp tác.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-ton-giao-rel-thao-nguyen",
+      "name": "Tôn giáo chuyên sâu · Thiên tín thảo nguyên",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "faith_rel-thao-nguyen-nen-tang",
+          "title": "Thiên tín thảo nguyên · nguồn lịch sử và giáo lý",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_thao-nguyen'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nThiên tín kiểu Tengri, thờ Trời Cao, tổ tiên và linh hồn cảnh quan.\n\nTrời trao vận mệnh cho hãn nhưng có thể rút lại nếu ông thất bại; đất, nước, lửa và tổ tiên đòi sự tôn trọng. Đức tin thực dụng, ít giáo điều độc quyền và dễ cùng tồn tại với Phật giáo, Kitô giáo Đông phương hoặc Nhất thần phương Nam.",
+          "summary": "Thiên tín kiểu Tengri, thờ Trời Cao, tổ tiên và linh hồn cảnh quan. Trời trao vận mệnh cho hãn nhưng có thể rút lại nếu ông thất bại; đất, nước, lửa và tổ tiên đòi sự tôn trọng. Đức tin thực dụng, ít giáo điều độc quyền và dễ cùng tồn tại với Phật giáo, Kitô giáo Đông phương hoặc Nhất thần phương Nam.",
+          "keys": [
+            "Thiên tín thảo nguyên",
+            "Thiên tín",
+            "giáo lý",
+            "thần học",
+            "nguồn lịch sử"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Thiên tín thảo nguyên. nguồn lịch sử và giáo lý. Thiên tín kiểu Tengri, thờ Trời Cao, tổ tiên và linh hồn cảnh quan.\n\nTrời trao vận mệnh cho hãn nhưng có thể rút lại nếu ông thất bại; đất, nước, lửa và tổ tiên đòi sự tôn trọng. Đức tin thực dụng, ít giáo điều độc quyền và dễ cùng tồn tại với Phật giáo, Kitô giáo Đông phương hoặc Nhất thần phương Nam.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-thao-nguyen-to-chuc",
+          "title": "Thiên tín thảo nguyên · giáo sĩ, tổ chức và tài sản",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_thao-nguyen'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nKhông có giáo hội trung ương. Pháp sư–thầy lễ chữa bệnh, bói điềm và dẫn tang; hãn và trưởng thị tộc tài trợ nghi lễ để hợp thức quyền lực. Hội nghị quý tộc chọn người cầm quyền quan trọng hơn một lễ đăng quang cố định.",
+          "summary": "Không có giáo hội trung ương. Pháp sư–thầy lễ chữa bệnh, bói điềm và dẫn tang; hãn và trưởng thị tộc tài trợ nghi lễ để hợp thức quyền lực. Hội nghị quý tộc chọn người cầm quyền quan trọng hơn một lễ đăng quang cố định.",
+          "keys": [
+            "Thiên tín thảo nguyên",
+            "Thiên tín",
+            "giáo sĩ",
+            "tổ chức tôn giáo",
+            "tu viện",
+            "đền thờ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Thiên tín thảo nguyên. giáo sĩ, tổ chức và tài sản. Không có giáo hội trung ương. Pháp sư–thầy lễ chữa bệnh, bói điềm và dẫn tang; hãn và trưởng thị tộc tài trợ nghi lễ để hợp thức quyền lực. Hội nghị quý tộc chọn người cầm quyền quan trọng hơn một lễ đăng quang cố định.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-thao-nguyen-doi-song",
+          "title": "Thiên tín thảo nguyên · nghi lễ và đời sống tín đồ",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_thao-nguyen'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nLời thề dưới trời, kiêng làm bẩn nước, cúng sữa và tưởng nhớ tổ tiên theo nhịp di cư. Mã Nhân thường hiện diện nhưng vẫn cưỡi ngựa thật và không đại diện cho mọi tín đồ thảo nguyên.",
+          "summary": "Lời thề dưới trời, kiêng làm bẩn nước, cúng sữa và tưởng nhớ tổ tiên theo nhịp di cư. Mã Nhân thường hiện diện nhưng vẫn cưỡi ngựa thật và không đại diện cho mọi tín đồ thảo nguyên.",
+          "keys": [
+            "Thiên tín thảo nguyên",
+            "Thiên tín",
+            "nghi lễ",
+            "đời sống tín đồ",
+            "lễ hội",
+            "kiêng kỵ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Thiên tín thảo nguyên. nghi lễ và đời sống tín đồ. Lời thề dưới trời, kiêng làm bẩn nước, cúng sữa và tưởng nhớ tổ tiên theo nhịp di cư. Mã Nhân thường hiện diện nhưng vẫn cưỡi ngựa thật và không đại diện cho mọi tín đồ thảo nguyên.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-thao-nguyen-chinh-tri",
+          "title": "Thiên tín thảo nguyên · phe nội bộ và quan hệ năm 1444",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_thao-nguyen'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nĐại Trướng phân rã làm mỗi hãn diễn giải thiên mệnh theo lợi ích mình. Cải đạo sang Nhất thần phương Nam tăng ở Crimea và Kazan nhưng không xóa tập tục Thiên tín ngay trong một thế hệ.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -50/100 — đối địch.\n- Thần Chiến Trận: 45/100 — gần gũi.\n- Giáo hội Đông phương: -35/100 — căng thẳng.\n- Nhất thần phương Nam: -20/100 — căng thẳng.",
+          "summary": "Đại Trướng phân rã làm mỗi hãn diễn giải thiên mệnh theo lợi ích mình. Cải đạo sang Nhất thần phương Nam tăng ở Crimea và Kazan nhưng không xóa tập tục Thiên tín ngay trong một thế hệ. Ma trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân): - Giáo hội Tây phương: -50/100 — đối địch. - Thần Chiến Trận: 45/100 — gần gũi. - Giáo hội Đông phương: -35/100 — căng thẳng. - Nhất thần phương Nam: -20/100 — căng thẳng.",
+          "keys": [
+            "Thiên tín thảo nguyên",
+            "Thiên tín",
+            "phe tôn giáo",
+            "dị giáo",
+            "quan hệ tôn giáo",
+            "khủng hoảng đức tin"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Thiên tín thảo nguyên. phe nội bộ và quan hệ năm 1444. Đại Trướng phân rã làm mỗi hãn diễn giải thiên mệnh theo lợi ích mình. Cải đạo sang Nhất thần phương Nam tăng ở Crimea và Kazan nhưng không xóa tập tục Thiên tín ngay trong một thế hệ.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -50/100 — đối địch.\n- Thần Chiến Trận: 45/100 — gần gũi.\n- Giáo hội Đông phương: -35/100 — căng thẳng.\n- Nhất thần phương Nam: -20/100 — căng thẳng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-ton-giao-rel-nam-phuong",
+      "name": "Tôn giáo chuyên sâu · Nhất thần phương Nam",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "faith_rel-nam-phuong-nen-tang",
+          "title": "Nhất thần phương Nam · nguồn lịch sử và giáo lý",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_nam-phuong'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nHồi giáo Sunni thế kỷ XV được fantasy hóa dưới tên Nhất thần phương Nam.\n\nMột Chúa duy nhất, mặc khải thành kinh, cầu nguyện theo giờ, bố thí, chay và hành hương. Luật tôn giáo phân biệt điều bắt buộc, được phép và cấm; bùa, chiêm tinh hay ma thuật được xét theo mục đích và trường phái pháp học, không mặc định cùng một án.",
+          "summary": "Hồi giáo Sunni thế kỷ XV được fantasy hóa dưới tên Nhất thần phương Nam. Một Chúa duy nhất, mặc khải thành kinh, cầu nguyện theo giờ, bố thí, chay và hành hương. Luật tôn giáo phân biệt điều bắt buộc, được phép và cấm; bùa, chiêm tinh hay ma thuật được xét theo mục đích và trường phái pháp học, không mặc định cùng một án.",
+          "keys": [
+            "Nhất thần phương Nam",
+            "Nhất thần",
+            "giáo lý",
+            "thần học",
+            "nguồn lịch sử"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Nhất thần phương Nam. nguồn lịch sử và giáo lý. Hồi giáo Sunni thế kỷ XV được fantasy hóa dưới tên Nhất thần phương Nam.\n\nMột Chúa duy nhất, mặc khải thành kinh, cầu nguyện theo giờ, bố thí, chay và hành hương. Luật tôn giáo phân biệt điều bắt buộc, được phép và cấm; bùa, chiêm tinh hay ma thuật được xét theo mục đích và trường phái pháp học, không mặc định cùng một án.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-nam-phuong-to-chuc",
+          "title": "Nhất thần phương Nam · giáo sĩ, tổ chức và tài sản",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_nam-phuong'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nKhông có một “giáo hoàng phương Nam”. Ulema, qadi, trường học, quỹ waqf, giáo đường và các đoàn Sufi tạo mạng quyền lực; sultan cần học giả hợp thức hóa nhưng cũng tài trợ và kiểm soát họ.",
+          "summary": "Không có một “giáo hoàng phương Nam”. Ulema, qadi, trường học, quỹ waqf, giáo đường và các đoàn Sufi tạo mạng quyền lực; sultan cần học giả hợp thức hóa nhưng cũng tài trợ và kiểm soát họ.",
+          "keys": [
+            "Nhất thần phương Nam",
+            "Nhất thần",
+            "giáo sĩ",
+            "tổ chức tôn giáo",
+            "tu viện",
+            "đền thờ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Nhất thần phương Nam. giáo sĩ, tổ chức và tài sản. Không có một “giáo hoàng phương Nam”. Ulema, qadi, trường học, quỹ waqf, giáo đường và các đoàn Sufi tạo mạng quyền lực; sultan cần học giả hợp thức hóa nhưng cũng tài trợ và kiểm soát họ.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-nam-phuong-doi-song",
+          "title": "Nhất thần phương Nam · nghi lễ và đời sống tín đồ",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_nam-phuong'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nChợ dừng theo giờ cầu nguyện ở đô thị sùng đạo; hợp đồng, cưới, thừa kế và từ thiện đi qua qadi hoặc cộng đồng. Dân được bảo hộ theo đạo khác giữ nơi thờ tự và luật gia đình đổi lấy thuế và sự phục tùng chính trị.",
+          "summary": "Chợ dừng theo giờ cầu nguyện ở đô thị sùng đạo; hợp đồng, cưới, thừa kế và từ thiện đi qua qadi hoặc cộng đồng. Dân được bảo hộ theo đạo khác giữ nơi thờ tự và luật gia đình đổi lấy thuế và sự phục tùng chính trị.",
+          "keys": [
+            "Nhất thần phương Nam",
+            "Nhất thần",
+            "nghi lễ",
+            "đời sống tín đồ",
+            "lễ hội",
+            "kiêng kỵ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Nhất thần phương Nam. nghi lễ và đời sống tín đồ. Chợ dừng theo giờ cầu nguyện ở đô thị sùng đạo; hợp đồng, cưới, thừa kế và từ thiện đi qua qadi hoặc cộng đồng. Dân được bảo hộ theo đạo khác giữ nơi thờ tự và luật gia đình đổi lấy thuế và sự phục tùng chính trị.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-nam-phuong-chinh-tri",
+          "title": "Nhất thần phương Nam · phe nội bộ và quan hệ năm 1444",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_nam-phuong'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nOttoman năm 1444 đang cân bằng luật tôn giáo với lệ triều đình và nhu cầu cai Balkan đa đạo. Orc không sinh ra đã theo đạo; cải đạo là lựa chọn gia đình, chính trị hoặc cá nhân như ở mọi tộc khác.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -85/100 — thù địch cực độ.\n- Giáo hội Đông phương: -80/100 — thù địch cực độ.\n- Thần Chiến Trận: -30/100 — căng thẳng.\n- Thiên tín thảo nguyên: -20/100 — căng thẳng.\n- Phong trào Áo Vải: 10/100 — có thể hợp tác. Kẻ thù của kẻ thù. Triều Ottoman cho dị giáo tị nạn — và Giáo hội không bao giờ quên chuyện đó.",
+          "summary": "Ottoman năm 1444 đang cân bằng luật tôn giáo với lệ triều đình và nhu cầu cai Balkan đa đạo. Orc không sinh ra đã theo đạo; cải đạo là lựa chọn gia đình, chính trị hoặc cá nhân như ở mọi tộc khác. Ma trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân): - Giáo hội Tây phương: -85/100 — thù địch cực độ. - Giáo hội Đông phương: -80/100 — thù địch cực độ. - Thần Chiến Trận: -30/100 — căng thẳng. - Thiên tín thảo nguyên: -20/100 — căng thẳng. - Phong trào Áo Vải: 10/100 — có thể hợp tác.…",
+          "keys": [
+            "Nhất thần phương Nam",
+            "Nhất thần",
+            "phe tôn giáo",
+            "dị giáo",
+            "quan hệ tôn giáo",
+            "khủng hoảng đức tin"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Nhất thần phương Nam. phe nội bộ và quan hệ năm 1444. Ottoman năm 1444 đang cân bằng luật tôn giáo với lệ triều đình và nhu cầu cai Balkan đa đạo. Orc không sinh ra đã theo đạo; cải đạo là lựa chọn gia đình, chính trị hoặc cá nhân như ở mọi tộc khác.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -85/100 — thù địch cực độ.\n- Giáo hội Đông phương: -80/100 — thù địch cực độ.\n- Thần Chiến Trận: -30/100 — căng thẳng.\n- Thiên tín thảo nguyên: -20/100 — căng thẳng.\n- Phong trào Áo Vải: 10/100 — có thể hợp tác. Kẻ thù của kẻ thù. Triều Ottoman cho dị giáo tị nạn — và Giáo hội không bao giờ quên chuyện đó.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-ton-giao-rel-lo-ren",
+      "name": "Tôn giáo chuyên sâu · Tín ngưỡng Lò Rèn",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "faith_rel-lo-ren-nen-tang",
+          "title": "Tín ngưỡng Lò Rèn · nguồn lịch sử và giáo lý",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_lo-ren'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nĐức tin nghề nghiệp fantasy của cộng đồng thợ mỏ và thợ thủ công, mang nét hội kín nghề Trung Cổ.\n\nSáng tạo bền vững là hành vi thiêng; một vật tốt giữ lời của người làm ra nó. Tội nặng nhất là giấu lỗi có thể giết người, bỏ việc đã thề hoàn thành hoặc phá công trình còn phục vụ cộng đồng.",
+          "summary": "Đức tin nghề nghiệp fantasy của cộng đồng thợ mỏ và thợ thủ công, mang nét hội kín nghề Trung Cổ. Sáng tạo bền vững là hành vi thiêng; một vật tốt giữ lời của người làm ra nó. Tội nặng nhất là giấu lỗi có thể giết người, bỏ việc đã thề hoàn thành hoặc phá công trình còn phục vụ cộng đồng.",
+          "keys": [
+            "Tín ngưỡng Lò Rèn",
+            "Lò Rèn",
+            "giáo lý",
+            "thần học",
+            "nguồn lịch sử"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Tín ngưỡng Lò Rèn. nguồn lịch sử và giáo lý. Đức tin nghề nghiệp fantasy của cộng đồng thợ mỏ và thợ thủ công, mang nét hội kín nghề Trung Cổ.\n\nSáng tạo bền vững là hành vi thiêng; một vật tốt giữ lời của người làm ra nó. Tội nặng nhất là giấu lỗi có thể giết người, bỏ việc đã thề hoàn thành hoặc phá công trình còn phục vụ cộng đồng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-lo-ren-to-chuc",
+          "title": "Tín ngưỡng Lò Rèn · giáo sĩ, tổ chức và tài sản",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_lo-ren'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nLò chung, nghiệp đoàn, bậc thầy và người giữ mẫu chuẩn thay cho giáo sĩ chuyên nghiệp. Tranh chấp giáo lý được giải bằng kiểm tra tay nghề, ký hiệu thợ và lời chứng của xưởng.",
+          "summary": "Lò chung, nghiệp đoàn, bậc thầy và người giữ mẫu chuẩn thay cho giáo sĩ chuyên nghiệp. Tranh chấp giáo lý được giải bằng kiểm tra tay nghề, ký hiệu thợ và lời chứng của xưởng.",
+          "keys": [
+            "Tín ngưỡng Lò Rèn",
+            "Lò Rèn",
+            "giáo sĩ",
+            "tổ chức tôn giáo",
+            "tu viện",
+            "đền thờ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Tín ngưỡng Lò Rèn. giáo sĩ, tổ chức và tài sản. Lò chung, nghiệp đoàn, bậc thầy và người giữ mẫu chuẩn thay cho giáo sĩ chuyên nghiệp. Tranh chấp giáo lý được giải bằng kiểm tra tay nghề, ký hiệu thợ và lời chứng của xưởng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-lo-ren-doi-song",
+          "title": "Tín ngưỡng Lò Rèn · nghi lễ và đời sống tín đồ",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_lo-ren'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nLễ nhập nghề, đặt tên công cụ, bữa ăn hoàn công và tang lễ trả kim loại về lò là nghi thức chính. Người ngoài tộc Lùn vẫn có thể theo nếu được nhận vào truyền thống nghề.",
+          "summary": "Lễ nhập nghề, đặt tên công cụ, bữa ăn hoàn công và tang lễ trả kim loại về lò là nghi thức chính. Người ngoài tộc Lùn vẫn có thể theo nếu được nhận vào truyền thống nghề.",
+          "keys": [
+            "Tín ngưỡng Lò Rèn",
+            "Lò Rèn",
+            "nghi lễ",
+            "đời sống tín đồ",
+            "lễ hội",
+            "kiêng kỵ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Tín ngưỡng Lò Rèn. nghi lễ và đời sống tín đồ. Lễ nhập nghề, đặt tên công cụ, bữa ăn hoàn công và tang lễ trả kim loại về lò là nghi thức chính. Người ngoài tộc Lùn vẫn có thể theo nếu được nhận vào truyền thống nghề.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-lo-ren-chinh-tri",
+          "title": "Tín ngưỡng Lò Rèn · phe nội bộ và quan hệ năm 1444",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_lo-ren'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nGiáo hội Tây phương thường dung hòa vì Lò Rèn không chủ động truyền đạo. Xung đột lớn nhất là giữa nghiệp đoàn muốn giữ bí quyết và vương quyền muốn trưng dụng thợ, mỏ cùng đại bác.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Thờ tổ tiên thị tộc: 25/100 — có thể hợp tác.\n- Giáo hội Tây phương: 5/100 — có thể hợp tác. Hòa ước: Lùn không truyền đạo nên Giáo hội không có gì để cấm.",
+          "summary": "Giáo hội Tây phương thường dung hòa vì Lò Rèn không chủ động truyền đạo. Xung đột lớn nhất là giữa nghiệp đoàn muốn giữ bí quyết và vương quyền muốn trưng dụng thợ, mỏ cùng đại bác. Ma trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân): - Thờ tổ tiên thị tộc: 25/100 — có thể hợp tác. - Giáo hội Tây phương: 5/100 — có thể hợp tác. Hòa ước: Lùn không truyền đạo nên Giáo hội không có gì để cấm.",
+          "keys": [
+            "Tín ngưỡng Lò Rèn",
+            "Lò Rèn",
+            "phe tôn giáo",
+            "dị giáo",
+            "quan hệ tôn giáo",
+            "khủng hoảng đức tin"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Tín ngưỡng Lò Rèn. phe nội bộ và quan hệ năm 1444. Giáo hội Tây phương thường dung hòa vì Lò Rèn không chủ động truyền đạo. Xung đột lớn nhất là giữa nghiệp đoàn muốn giữ bí quyết và vương quyền muốn trưng dụng thợ, mỏ cùng đại bác.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Thờ tổ tiên thị tộc: 25/100 — có thể hợp tác.\n- Giáo hội Tây phương: 5/100 — có thể hợp tác. Hòa ước: Lùn không truyền đạo nên Giáo hội không có gì để cấm.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-ton-giao-rel-to-tien",
+      "name": "Tôn giáo chuyên sâu · Thờ tổ tiên thị tộc",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "faith_rel-to-tien-nen-tang",
+          "title": "Thờ tổ tiên thị tộc · nguồn lịch sử và giáo lý",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_to-tien'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nThờ tổ tiên và đạo lý thị tộc, không phải một hệ thống thần học thống nhất.\n\nNgười chết tiếp tục có quyền đòi nhớ tên, giữ lời thề và bảo hộ hậu duệ. Danh dự là món nợ liên thế hệ; một cá nhân có thể thay tín điều công khai mà vẫn giữ bàn thờ gia đình.",
+          "summary": "Thờ tổ tiên và đạo lý thị tộc, không phải một hệ thống thần học thống nhất. Người chết tiếp tục có quyền đòi nhớ tên, giữ lời thề và bảo hộ hậu duệ. Danh dự là món nợ liên thế hệ; một cá nhân có thể thay tín điều công khai mà vẫn giữ bàn thờ gia đình.",
+          "keys": [
+            "Thờ tổ tiên thị tộc",
+            "Tổ tiên",
+            "giáo lý",
+            "thần học",
+            "nguồn lịch sử"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Thờ tổ tiên thị tộc. nguồn lịch sử và giáo lý. Thờ tổ tiên và đạo lý thị tộc, không phải một hệ thống thần học thống nhất.\n\nNgười chết tiếp tục có quyền đòi nhớ tên, giữ lời thề và bảo hộ hậu duệ. Danh dự là món nợ liên thế hệ; một cá nhân có thể thay tín điều công khai mà vẫn giữ bàn thờ gia đình.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-to-tien-to-chuc",
+          "title": "Thờ tổ tiên thị tộc · giáo sĩ, tổ chức và tài sản",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_to-tien'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nGia trưởng, hội đồng dòng họ, người giữ gia phả và pháp sư gọi hồn chia quyền. Không có giáo chủ ngoài thị tộc; luật thừa kế và trả thù máu thường mạnh hơn lời răn phổ quát.",
+          "summary": "Gia trưởng, hội đồng dòng họ, người giữ gia phả và pháp sư gọi hồn chia quyền. Không có giáo chủ ngoài thị tộc; luật thừa kế và trả thù máu thường mạnh hơn lời răn phổ quát.",
+          "keys": [
+            "Thờ tổ tiên thị tộc",
+            "Tổ tiên",
+            "giáo sĩ",
+            "tổ chức tôn giáo",
+            "tu viện",
+            "đền thờ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Thờ tổ tiên thị tộc. giáo sĩ, tổ chức và tài sản. Gia trưởng, hội đồng dòng họ, người giữ gia phả và pháp sư gọi hồn chia quyền. Không có giáo chủ ngoài thị tộc; luật thừa kế và trả thù máu thường mạnh hơn lời răn phổ quát.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-to-tien-doi-song",
+          "title": "Thờ tổ tiên thị tộc · nghi lễ và đời sống tín đồ",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_to-tien'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nBữa cúng, kể gia phả, nuôi trẻ mồ côi cùng họ và chôn cất đúng nghi thức là trung tâm. Hồn ma có thật trong canon nhưng không phải mọi lời “tổ tiên phán” đều đáng tin; giả mạo điềm là một thủ đoạn chính trị.",
+          "summary": "Bữa cúng, kể gia phả, nuôi trẻ mồ côi cùng họ và chôn cất đúng nghi thức là trung tâm. Hồn ma có thật trong canon nhưng không phải mọi lời “tổ tiên phán” đều đáng tin; giả mạo điềm là một thủ đoạn chính trị.",
+          "keys": [
+            "Thờ tổ tiên thị tộc",
+            "Tổ tiên",
+            "nghi lễ",
+            "đời sống tín đồ",
+            "lễ hội",
+            "kiêng kỵ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Thờ tổ tiên thị tộc. nghi lễ và đời sống tín đồ. Bữa cúng, kể gia phả, nuôi trẻ mồ côi cùng họ và chôn cất đúng nghi thức là trung tâm. Hồn ma có thật trong canon nhưng không phải mọi lời “tổ tiên phán” đều đáng tin; giả mạo điềm là một thủ đoạn chính trị.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-to-tien-chinh-tri",
+          "title": "Thờ tổ tiên thị tộc · phe nội bộ và quan hệ năm 1444",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_to-tien'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nĐô thị hóa và quân dịch kéo người trẻ khỏi thị tộc; các giáo hội nhất thần tìm cách biến thờ tổ thành tưởng niệm. Mâu thuẫn thường xảy ra quanh hôn nhân ngoài họ, quyền góa phụ và của cải không người kế.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Tín ngưỡng cổ: 35/100 — có thể hợp tác.\n- Giáo hội Tây phương: -30/100 — căng thẳng.\n- Tín ngưỡng Cổ nhánh Baltic: 30/100 — có thể hợp tác.\n- Tín ngưỡng Lò Rèn: 25/100 — có thể hợp tác.",
+          "summary": "Đô thị hóa và quân dịch kéo người trẻ khỏi thị tộc; các giáo hội nhất thần tìm cách biến thờ tổ thành tưởng niệm. Mâu thuẫn thường xảy ra quanh hôn nhân ngoài họ, quyền góa phụ và của cải không người kế. Ma trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân): - Tín ngưỡng cổ: 35/100 — có thể hợp tác. - Giáo hội Tây phương: -30/100 — căng thẳng. - Tín ngưỡng Cổ nhánh Baltic: 30/100 — có thể hợp tác. - Tín ngưỡng Lò Rèn: 25/100 — có thể hợp tác.",
+          "keys": [
+            "Thờ tổ tiên thị tộc",
+            "Tổ tiên",
+            "phe tôn giáo",
+            "dị giáo",
+            "quan hệ tôn giáo",
+            "khủng hoảng đức tin"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Thờ tổ tiên thị tộc. phe nội bộ và quan hệ năm 1444. Đô thị hóa và quân dịch kéo người trẻ khỏi thị tộc; các giáo hội nhất thần tìm cách biến thờ tổ thành tưởng niệm. Mâu thuẫn thường xảy ra quanh hôn nhân ngoài họ, quyền góa phụ và của cải không người kế.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Tín ngưỡng cổ: 35/100 — có thể hợp tác.\n- Giáo hội Tây phương: -30/100 — căng thẳng.\n- Tín ngưỡng Cổ nhánh Baltic: 30/100 — có thể hợp tác.\n- Tín ngưỡng Lò Rèn: 25/100 — có thể hợp tác.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-ton-giao-rel-huyen-hoc",
+      "name": "Tôn giáo chuyên sâu · Huyền học bí truyền",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "faith_rel-huyen-hoc-nen-tang",
+          "title": "Huyền học bí truyền · nguồn lịch sử và giáo lý",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_huyen-hoc'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nMạng trường phái bí truyền lấy cảm hứng từ Hermetic, Kabbalah, giả kim và pháp thuật dân gian.\n\nVũ trụ có tương ứng giữa sao, nguyên tố, tên thật và hình học; tri thức nguy hiểm phải truyền từng cấp. Đây không phải một tôn giáo duy nhất mà là nhiều dòng thầy–trò có thể vẫn giữ đức tin công khai khác.",
+          "summary": "Mạng trường phái bí truyền lấy cảm hứng từ Hermetic, Kabbalah, giả kim và pháp thuật dân gian. Vũ trụ có tương ứng giữa sao, nguyên tố, tên thật và hình học; tri thức nguy hiểm phải truyền từng cấp. Đây không phải một tôn giáo duy nhất mà là nhiều dòng thầy–trò có thể vẫn giữ đức tin công khai khác.",
+          "keys": [
+            "Huyền học bí truyền",
+            "Huyền học",
+            "giáo lý",
+            "thần học",
+            "nguồn lịch sử"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Huyền học bí truyền. nguồn lịch sử và giáo lý. Mạng trường phái bí truyền lấy cảm hứng từ Hermetic, Kabbalah, giả kim và pháp thuật dân gian.\n\nVũ trụ có tương ứng giữa sao, nguyên tố, tên thật và hình học; tri thức nguy hiểm phải truyền từng cấp. Đây không phải một tôn giáo duy nhất mà là nhiều dòng thầy–trò có thể vẫn giữ đức tin công khai khác.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-huyen-hoc-to-chuc",
+          "title": "Huyền học bí truyền · giáo sĩ, tổ chức và tài sản",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_huyen-hoc'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nTế bào nhỏ, mật danh, bản thảo mã hóa và lời thề thay cho nhà thờ. Đại học, triều đình, xưởng giả kim và cộng đồng lưu vong đều có thể che một nhóm; hai trường phái thường bất đồng mạnh hơn người ngoài tưởng.",
+          "summary": "Tế bào nhỏ, mật danh, bản thảo mã hóa và lời thề thay cho nhà thờ. Đại học, triều đình, xưởng giả kim và cộng đồng lưu vong đều có thể che một nhóm; hai trường phái thường bất đồng mạnh hơn người ngoài tưởng.",
+          "keys": [
+            "Huyền học bí truyền",
+            "Huyền học",
+            "giáo sĩ",
+            "tổ chức tôn giáo",
+            "tu viện",
+            "đền thờ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Huyền học bí truyền. giáo sĩ, tổ chức và tài sản. Tế bào nhỏ, mật danh, bản thảo mã hóa và lời thề thay cho nhà thờ. Đại học, triều đình, xưởng giả kim và cộng đồng lưu vong đều có thể che một nhóm; hai trường phái thường bất đồng mạnh hơn người ngoài tưởng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-huyen-hoc-doi-song",
+          "title": "Huyền học bí truyền · nghi lễ và đời sống tín đồ",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_huyen-hoc'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nThành viên giữ nghề bình thường để sinh sống, luyện vào đêm hoặc trong phòng kín. Vật liệu đắt, sai một nét có thể gây thương tích; ma pháp không phải lối tắt bỏ qua lao động và tiền bạc.",
+          "summary": "Thành viên giữ nghề bình thường để sinh sống, luyện vào đêm hoặc trong phòng kín. Vật liệu đắt, sai một nét có thể gây thương tích; ma pháp không phải lối tắt bỏ qua lao động và tiền bạc.",
+          "keys": [
+            "Huyền học bí truyền",
+            "Huyền học",
+            "nghi lễ",
+            "đời sống tín đồ",
+            "lễ hội",
+            "kiêng kỵ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Huyền học bí truyền. nghi lễ và đời sống tín đồ. Thành viên giữ nghề bình thường để sinh sống, luyện vào đêm hoặc trong phòng kín. Vật liệu đắt, sai một nét có thể gây thương tích; ma pháp không phải lối tắt bỏ qua lao động và tiền bạc.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-huyen-hoc-chinh-tri",
+          "title": "Huyền học bí truyền · phe nội bộ và quan hệ năm 1444",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_huyen-hoc'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nGiáo hội và nhà nước vừa truy bức vừa bí mật thuê họ. Nguy cơ lớn nhất là một người bảo trợ thất thế để lộ toàn mạng, hoặc một trường phái dùng tai nạn làm cớ thanh trừng đối thủ.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -60/100 — đối địch.\n- Phái Thanh Tẩy: 25/100 — có thể hợp tác.",
+          "summary": "Giáo hội và nhà nước vừa truy bức vừa bí mật thuê họ. Nguy cơ lớn nhất là một người bảo trợ thất thế để lộ toàn mạng, hoặc một trường phái dùng tai nạn làm cớ thanh trừng đối thủ. Ma trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân): - Giáo hội Tây phương: -60/100 — đối địch. - Phái Thanh Tẩy: 25/100 — có thể hợp tác.",
+          "keys": [
+            "Huyền học bí truyền",
+            "Huyền học",
+            "phe tôn giáo",
+            "dị giáo",
+            "quan hệ tôn giáo",
+            "khủng hoảng đức tin"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Huyền học bí truyền. phe nội bộ và quan hệ năm 1444. Giáo hội và nhà nước vừa truy bức vừa bí mật thuê họ. Nguy cơ lớn nhất là một người bảo trợ thất thế để lộ toàn mạng, hoặc một trường phái dùng tai nạn làm cớ thanh trừng đối thủ.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -60/100 — đối địch.\n- Phái Thanh Tẩy: 25/100 — có thể hợp tác.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-ton-giao-rel-khong-theo",
+      "name": "Tôn giáo chuyên sâu · Không theo đạo nào",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "faith_rel-khong-theo-nen-tang",
+          "title": "Không theo đạo nào · nguồn lịch sử và giáo lý",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_khong-theo'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nVô tín, hoài nghi hoặc từ chối gia nhập thể chế; hiếm trong xã hội thế kỷ XV.\n\nKhông có giáo lý chung. Có người phủ nhận thần, có người tin thần tồn tại nhưng không đáng thờ, có người chỉ chống giáo sĩ, và có người giấu một đức tin bị cấm dưới nhãn vô tín.",
+          "summary": "Vô tín, hoài nghi hoặc từ chối gia nhập thể chế; hiếm trong xã hội thế kỷ XV. Không có giáo lý chung. Có người phủ nhận thần, có người tin thần tồn tại nhưng không đáng thờ, có người chỉ chống giáo sĩ, và có người giấu một đức tin bị cấm dưới nhãn vô tín.",
+          "keys": [
+            "Không theo đạo nào",
+            "Vô tín",
+            "giáo lý",
+            "thần học",
+            "nguồn lịch sử"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Không theo đạo nào. nguồn lịch sử và giáo lý. Vô tín, hoài nghi hoặc từ chối gia nhập thể chế; hiếm trong xã hội thế kỷ XV.\n\nKhông có giáo lý chung. Có người phủ nhận thần, có người tin thần tồn tại nhưng không đáng thờ, có người chỉ chống giáo sĩ, và có người giấu một đức tin bị cấm dưới nhãn vô tín.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-khong-theo-to-chuc",
+          "title": "Không theo đạo nào · giáo sĩ, tổ chức và tài sản",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_khong-theo'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nKhông có tổ chức công khai bền vững; tình bạn, quán rượu, nhóm học giả hoặc người bảo trợ tạo mạng nhỏ. Vì thiếu tư cách pháp lý tôn giáo, hôn nhân, tang lễ và lời thề của họ dễ bị tòa nghi ngờ.",
+          "summary": "Không có tổ chức công khai bền vững; tình bạn, quán rượu, nhóm học giả hoặc người bảo trợ tạo mạng nhỏ. Vì thiếu tư cách pháp lý tôn giáo, hôn nhân, tang lễ và lời thề của họ dễ bị tòa nghi ngờ.",
+          "keys": [
+            "Không theo đạo nào",
+            "Vô tín",
+            "giáo sĩ",
+            "tổ chức tôn giáo",
+            "tu viện",
+            "đền thờ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Không theo đạo nào. giáo sĩ, tổ chức và tài sản. Không có tổ chức công khai bền vững; tình bạn, quán rượu, nhóm học giả hoặc người bảo trợ tạo mạng nhỏ. Vì thiếu tư cách pháp lý tôn giáo, hôn nhân, tang lễ và lời thề của họ dễ bị tòa nghi ngờ.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-khong-theo-doi-song",
+          "title": "Không theo đạo nào · nghi lễ và đời sống tín đồ",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_khong-theo'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nPhần lớn vẫn làm theo lễ cộng đồng để tránh xúc phạm gia đình hoặc mất quyền lợi. Tuyên bố công khai không theo đạo là hành động chính trị có giá, không phải lựa chọn mặc định hiện đại.",
+          "summary": "Phần lớn vẫn làm theo lễ cộng đồng để tránh xúc phạm gia đình hoặc mất quyền lợi. Tuyên bố công khai không theo đạo là hành động chính trị có giá, không phải lựa chọn mặc định hiện đại.",
+          "keys": [
+            "Không theo đạo nào",
+            "Vô tín",
+            "nghi lễ",
+            "đời sống tín đồ",
+            "lễ hội",
+            "kiêng kỵ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Không theo đạo nào. nghi lễ và đời sống tín đồ. Phần lớn vẫn làm theo lễ cộng đồng để tránh xúc phạm gia đình hoặc mất quyền lợi. Tuyên bố công khai không theo đạo là hành động chính trị có giá, không phải lựa chọn mặc định hiện đại.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-khong-theo-chinh-tri",
+          "title": "Không theo đạo nào · phe nội bộ và quan hệ năm 1444",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_khong-theo'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nKhi dịch bệnh hay chiến tranh đến, họ bị ép tìm chỗ trong một hệ nghi lễ. Một số trở thành nhà phê bình sắc bén; số khác bị quy là huyền thuật hoặc dị giáo dù không có liên hệ.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Chưa có quan hệ thể chế cố định; thái độ do vùng và người quyết định.",
+          "summary": "Khi dịch bệnh hay chiến tranh đến, họ bị ép tìm chỗ trong một hệ nghi lễ. Một số trở thành nhà phê bình sắc bén; số khác bị quy là huyền thuật hoặc dị giáo dù không có liên hệ. Ma trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân): - Chưa có quan hệ thể chế cố định; thái độ do vùng và người quyết định.",
+          "keys": [
+            "Không theo đạo nào",
+            "Vô tín",
+            "phe tôn giáo",
+            "dị giáo",
+            "quan hệ tôn giáo",
+            "khủng hoảng đức tin"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Không theo đạo nào. phe nội bộ và quan hệ năm 1444. Khi dịch bệnh hay chiến tranh đến, họ bị ép tìm chỗ trong một hệ nghi lễ. Một số trở thành nhà phê bình sắc bén; số khác bị quy là huyền thuật hoặc dị giáo dù không có liên hệ.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Chưa có quan hệ thể chế cố định; thái độ do vùng và người quyết định.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-ton-giao-rel-da-than-baltic",
+      "name": "Tôn giáo chuyên sâu · Tín ngưỡng Cổ nhánh Baltic",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "faith_rel-da-than-baltic-nen-tang",
+          "title": "Tín ngưỡng Cổ nhánh Baltic · nguồn lịch sử và giáo lý",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_da-than-baltic'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nTôn giáo Baltic tiền Kitô giáo còn vị thế công khai, phân biệt rõ với tàn dư rừng phương Tây.\n\nThần sấm, mặt trời, lửa, rừng, tổ tiên và chu kỳ nông nghiệp cùng tạo trật tự. Đất thiêng thuộc cộng đồng và lời thề trước lửa có hiệu lực pháp lý.",
+          "summary": "Tôn giáo Baltic tiền Kitô giáo còn vị thế công khai, phân biệt rõ với tàn dư rừng phương Tây. Thần sấm, mặt trời, lửa, rừng, tổ tiên và chu kỳ nông nghiệp cùng tạo trật tự. Đất thiêng thuộc cộng đồng và lời thề trước lửa có hiệu lực pháp lý.",
+          "keys": [
+            "Tín ngưỡng Cổ nhánh Baltic",
+            "Cổ Baltic",
+            "giáo lý",
+            "thần học",
+            "nguồn lịch sử"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Tín ngưỡng Cổ nhánh Baltic. nguồn lịch sử và giáo lý. Tôn giáo Baltic tiền Kitô giáo còn vị thế công khai, phân biệt rõ với tàn dư rừng phương Tây.\n\nThần sấm, mặt trời, lửa, rừng, tổ tiên và chu kỳ nông nghiệp cùng tạo trật tự. Đất thiêng thuộc cộng đồng và lời thề trước lửa có hiệu lực pháp lý.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-da-than-baltic-to-chuc",
+          "title": "Tín ngưỡng Cổ nhánh Baltic · giáo sĩ, tổ chức và tài sản",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_da-than-baltic'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nĐền gỗ, rừng thiêng, tư tế địa phương và sự bảo trợ của quý tộc tạo bộ khung đủ công khai. Không có một giáo chủ tối cao; Litva cải đạo chính thức làm tầng trên suy yếu nhưng làng xa và một số dòng họ vẫn giữ lễ.",
+          "summary": "Đền gỗ, rừng thiêng, tư tế địa phương và sự bảo trợ của quý tộc tạo bộ khung đủ công khai. Không có một giáo chủ tối cao; Litva cải đạo chính thức làm tầng trên suy yếu nhưng làng xa và một số dòng họ vẫn giữ lễ.",
+          "keys": [
+            "Tín ngưỡng Cổ nhánh Baltic",
+            "Cổ Baltic",
+            "giáo sĩ",
+            "tổ chức tôn giáo",
+            "tu viện",
+            "đền thờ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Tín ngưỡng Cổ nhánh Baltic. giáo sĩ, tổ chức và tài sản. Đền gỗ, rừng thiêng, tư tế địa phương và sự bảo trợ của quý tộc tạo bộ khung đủ công khai. Không có một giáo chủ tối cao; Litva cải đạo chính thức làm tầng trên suy yếu nhưng làng xa và một số dòng họ vẫn giữ lễ.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-da-than-baltic-doi-song",
+          "title": "Tín ngưỡng Cổ nhánh Baltic · nghi lễ và đời sống tín đồ",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_da-than-baltic'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nLửa gia đình, lễ mùa, tang hỏa táng và vật hiến dâng kết nối nhà với cộng đồng. Người cải đạo có thể tiếp tục tập tục cũ, tạo gia đình hai lớp nghi lễ.",
+          "summary": "Lửa gia đình, lễ mùa, tang hỏa táng và vật hiến dâng kết nối nhà với cộng đồng. Người cải đạo có thể tiếp tục tập tục cũ, tạo gia đình hai lớp nghi lễ.",
+          "keys": [
+            "Tín ngưỡng Cổ nhánh Baltic",
+            "Cổ Baltic",
+            "nghi lễ",
+            "đời sống tín đồ",
+            "lễ hội",
+            "kiêng kỵ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Tín ngưỡng Cổ nhánh Baltic. nghi lễ và đời sống tín đồ. Lửa gia đình, lễ mùa, tang hỏa táng và vật hiến dâng kết nối nhà với cộng đồng. Người cải đạo có thể tiếp tục tập tục cũ, tạo gia đình hai lớp nghi lễ.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-da-than-baltic-chinh-tri",
+          "title": "Tín ngưỡng Cổ nhánh Baltic · phe nội bộ và quan hệ năm 1444",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_da-than-baltic'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nDòng Teuton dùng sự tồn tại của đức tin làm cớ chiến tranh; triều Ba Lan–Litva muốn thống nhất pháp lý nhưng cần quý tộc địa phương. Năm 1444, đức tin suy về quyền nhà nước nhưng chưa biến mất.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -80/100 — thù địch cực độ. Mục tiêu chính thức của thập tự chinh phương bắc.\n- Tín ngưỡng cổ: 60/100 — gần gũi. Cùng gốc, nhưng một bên trốn trong rừng còn một bên có đền công khai.\n- Giáo hội Đông phương: -45/100 — đối địch.\n- Thờ tổ tiên thị tộc: 30/100 — có thể hợp tác.",
+          "summary": "Dòng Teuton dùng sự tồn tại của đức tin làm cớ chiến tranh; triều Ba Lan–Litva muốn thống nhất pháp lý nhưng cần quý tộc địa phương. Năm 1444, đức tin suy về quyền nhà nước nhưng chưa biến mất. Ma trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân): - Giáo hội Tây phương: -80/100 — thù địch cực độ. Mục tiêu chính thức của thập tự chinh phương bắc. - Tín ngưỡng cổ: 60/100 — gần gũi. Cùng gốc, nhưng một bên trốn trong rừng còn một bên có đền công khai.…",
+          "keys": [
+            "Tín ngưỡng Cổ nhánh Baltic",
+            "Cổ Baltic",
+            "phe tôn giáo",
+            "dị giáo",
+            "quan hệ tôn giáo",
+            "khủng hoảng đức tin"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Tín ngưỡng Cổ nhánh Baltic. phe nội bộ và quan hệ năm 1444. Dòng Teuton dùng sự tồn tại của đức tin làm cớ chiến tranh; triều Ba Lan–Litva muốn thống nhất pháp lý nhưng cần quý tộc địa phương. Năm 1444, đức tin suy về quyền nhà nước nhưng chưa biến mất.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -80/100 — thù địch cực độ. Mục tiêu chính thức của thập tự chinh phương bắc.\n- Tín ngưỡng cổ: 60/100 — gần gũi. Cùng gốc, nhưng một bên trốn trong rừng còn một bên có đền công khai.\n- Giáo hội Đông phương: -45/100 — đối địch.\n- Thờ tổ tiên thị tộc: 30/100 — có thể hợp tác.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-ton-giao-rel-than-chien-tran",
+      "name": "Tôn giáo chuyên sâu · Thần Chiến Trận",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "faith_rel-than-chien-tran-nen-tang",
+          "title": "Thần Chiến Trận · nguồn lịch sử và giáo lý",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_than-chien-tran'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nGiáo phái chiến binh fantasy, gần các hội chiến hữu và tục thờ thần chiến tranh thảo nguyên–Bắc Âu.\n\nDanh dự nằm ở giữ đội hình, chia chiến lợi phẩm đúng luật, nhận đầu hàng đúng nghi thức và mang xác đồng đội về. Nó không dạy giết bừa; kẻ phá lời thề chiến hữu bị khinh hơn kẻ thù dũng cảm.",
+          "summary": "Giáo phái chiến binh fantasy, gần các hội chiến hữu và tục thờ thần chiến tranh thảo nguyên–Bắc Âu. Danh dự nằm ở giữ đội hình, chia chiến lợi phẩm đúng luật, nhận đầu hàng đúng nghi thức và mang xác đồng đội về. Nó không dạy giết bừa; kẻ phá lời thề chiến hữu bị khinh hơn kẻ thù dũng cảm.",
+          "keys": [
+            "Thần Chiến Trận",
+            "Chiến Thần",
+            "giáo lý",
+            "thần học",
+            "nguồn lịch sử"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Thần Chiến Trận. nguồn lịch sử và giáo lý. Giáo phái chiến binh fantasy, gần các hội chiến hữu và tục thờ thần chiến tranh thảo nguyên–Bắc Âu.\n\nDanh dự nằm ở giữ đội hình, chia chiến lợi phẩm đúng luật, nhận đầu hàng đúng nghi thức và mang xác đồng đội về. Nó không dạy giết bừa; kẻ phá lời thề chiến hữu bị khinh hơn kẻ thù dũng cảm.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-than-chien-tran-to-chuc",
+          "title": "Thần Chiến Trận · giáo sĩ, tổ chức và tài sản",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_than-chien-tran'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nKhông đền trung ương và không kinh thống nhất. Người lĩnh xướng bài ca, cựu binh, thủ lĩnh bầy và hội chia chiến lợi phẩm giữ kỷ luật; quyền của họ chấm dứt nếu chia phần bất công.",
+          "summary": "Không đền trung ương và không kinh thống nhất. Người lĩnh xướng bài ca, cựu binh, thủ lĩnh bầy và hội chia chiến lợi phẩm giữ kỷ luật; quyền của họ chấm dứt nếu chia phần bất công.",
+          "keys": [
+            "Thần Chiến Trận",
+            "Chiến Thần",
+            "giáo sĩ",
+            "tổ chức tôn giáo",
+            "tu viện",
+            "đền thờ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Thần Chiến Trận. giáo sĩ, tổ chức và tài sản. Không đền trung ương và không kinh thống nhất. Người lĩnh xướng bài ca, cựu binh, thủ lĩnh bầy và hội chia chiến lợi phẩm giữ kỷ luật; quyền của họ chấm dứt nếu chia phần bất công.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-than-chien-tran-doi-song",
+          "title": "Thần Chiến Trận · nghi lễ và đời sống tín đồ",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_than-chien-tran'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nBài ca trước trận, dấu sẹo, bữa chia phần và tang lễ chiến hữu là nghi thức. Sói Nhân giữ truyền thống mạnh nhất nhưng tín đồ có thể thuộc tộc khác; không phải mọi Sói Nhân đều theo giáo phái.",
+          "summary": "Bài ca trước trận, dấu sẹo, bữa chia phần và tang lễ chiến hữu là nghi thức. Sói Nhân giữ truyền thống mạnh nhất nhưng tín đồ có thể thuộc tộc khác; không phải mọi Sói Nhân đều theo giáo phái.",
+          "keys": [
+            "Thần Chiến Trận",
+            "Chiến Thần",
+            "nghi lễ",
+            "đời sống tín đồ",
+            "lễ hội",
+            "kiêng kỵ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Thần Chiến Trận. nghi lễ và đời sống tín đồ. Bài ca trước trận, dấu sẹo, bữa chia phần và tang lễ chiến hữu là nghi thức. Sói Nhân giữ truyền thống mạnh nhất nhưng tín đồ có thể thuộc tộc khác; không phải mọi Sói Nhân đều theo giáo phái.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-than-chien-tran-chinh-tri",
+          "title": "Thần Chiến Trận · phe nội bộ và quan hệ năm 1444",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_than-chien-tran'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nKhi vào quân đội nhà nước, luật chiến hữu va với quân pháp, thuế và mệnh lệnh tướng. Các hãn và vua thuê họ vì sức kết đoàn nhưng sợ lòng trung thành ngang hàng vượt lòng trung thành dọc.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -65/100 — đối địch.\n- Thiên tín thảo nguyên: 45/100 — gần gũi.\n- Nhất thần phương Nam: -30/100 — căng thẳng.",
+          "summary": "Khi vào quân đội nhà nước, luật chiến hữu va với quân pháp, thuế và mệnh lệnh tướng. Các hãn và vua thuê họ vì sức kết đoàn nhưng sợ lòng trung thành ngang hàng vượt lòng trung thành dọc. Ma trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân): - Giáo hội Tây phương: -65/100 — đối địch. - Thiên tín thảo nguyên: 45/100 — gần gũi. - Nhất thần phương Nam: -30/100 — căng thẳng.",
+          "keys": [
+            "Thần Chiến Trận",
+            "Chiến Thần",
+            "phe tôn giáo",
+            "dị giáo",
+            "quan hệ tôn giáo",
+            "khủng hoảng đức tin"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Thần Chiến Trận. phe nội bộ và quan hệ năm 1444. Khi vào quân đội nhà nước, luật chiến hữu va với quân pháp, thuế và mệnh lệnh tướng. Các hãn và vua thuê họ vì sức kết đoàn nhưng sợ lòng trung thành ngang hàng vượt lòng trung thành dọc.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -65/100 — đối địch.\n- Thiên tín thảo nguyên: 45/100 — gần gũi.\n- Nhất thần phương Nam: -30/100 — căng thẳng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-ton-giao-rel-di-giao-ao-vai",
+      "name": "Tôn giáo chuyên sâu · Phong trào Áo Vải",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "faith_rel-di-giao-ao-vai-nen-tang",
+          "title": "Phong trào Áo Vải · nguồn lịch sử và giáo lý",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_di-giao-ao-vai'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nPhong trào cải cách nội sinh tổng hợp nét Waldensian và Hussite, không phải ngoại đạo du nhập.\n\nGiáo sĩ giàu và vô đạo không thể độc quyền ân sủng; kinh nên được giảng bằng tiếng dân; cộng đồng có quyền đòi nghèo khó, minh bạch và dự phần nghi lễ. Các nhánh ôn hòa và cấp tiến không thống nhất về tài sản hay bạo lực.",
+          "summary": "Phong trào cải cách nội sinh tổng hợp nét Waldensian và Hussite, không phải ngoại đạo du nhập. Giáo sĩ giàu và vô đạo không thể độc quyền ân sủng; kinh nên được giảng bằng tiếng dân; cộng đồng có quyền đòi nghèo khó, minh bạch và dự phần nghi lễ. Các nhánh ôn hòa và cấp tiến không thống nhất về tài sản hay bạo lực.",
+          "keys": [
+            "Phong trào Áo Vải",
+            "Áo Vải",
+            "giáo lý",
+            "thần học",
+            "nguồn lịch sử"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Phong trào Áo Vải. nguồn lịch sử và giáo lý. Phong trào cải cách nội sinh tổng hợp nét Waldensian và Hussite, không phải ngoại đạo du nhập.\n\nGiáo sĩ giàu và vô đạo không thể độc quyền ân sủng; kinh nên được giảng bằng tiếng dân; cộng đồng có quyền đòi nghèo khó, minh bạch và dự phần nghi lễ. Các nhánh ôn hòa và cấp tiến không thống nhất về tài sản hay bạo lực.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-di-giao-ao-vai-to-chuc",
+          "title": "Phong trào Áo Vải · giáo sĩ, tổ chức và tài sản",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_di-giao-ao-vai'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nNhà giảng lưu động, hội làng, nghiệp đoàn và cựu binh xe chiến tạo mạng ngang. Không có một thủ lĩnh đủ quyền ra lệnh cho mọi nhóm; điều này giúp sống sót nhưng cũng sinh giáo lý trái nhau.",
+          "summary": "Nhà giảng lưu động, hội làng, nghiệp đoàn và cựu binh xe chiến tạo mạng ngang. Không có một thủ lĩnh đủ quyền ra lệnh cho mọi nhóm; điều này giúp sống sót nhưng cũng sinh giáo lý trái nhau.",
+          "keys": [
+            "Phong trào Áo Vải",
+            "Áo Vải",
+            "giáo sĩ",
+            "tổ chức tôn giáo",
+            "tu viện",
+            "đền thờ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Phong trào Áo Vải. giáo sĩ, tổ chức và tài sản. Nhà giảng lưu động, hội làng, nghiệp đoàn và cựu binh xe chiến tạo mạng ngang. Không có một thủ lĩnh đủ quyền ra lệnh cho mọi nhóm; điều này giúp sống sót nhưng cũng sinh giáo lý trái nhau.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-di-giao-ao-vai-doi-song",
+          "title": "Phong trào Áo Vải · nghi lễ và đời sống tín đồ",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_di-giao-ao-vai'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nÁo vải thô, bữa ăn chung, đọc kinh bản địa và quỹ cứu đói là dấu hiệu. Nhiều người vẫn nhận mình là tín đồ Tây phương chân chính, không phải người lập đạo mới.",
+          "summary": "Áo vải thô, bữa ăn chung, đọc kinh bản địa và quỹ cứu đói là dấu hiệu. Nhiều người vẫn nhận mình là tín đồ Tây phương chân chính, không phải người lập đạo mới.",
+          "keys": [
+            "Phong trào Áo Vải",
+            "Áo Vải",
+            "nghi lễ",
+            "đời sống tín đồ",
+            "lễ hội",
+            "kiêng kỵ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Phong trào Áo Vải. nghi lễ và đời sống tín đồ. Áo vải thô, bữa ăn chung, đọc kinh bản địa và quỹ cứu đói là dấu hiệu. Nhiều người vẫn nhận mình là tín đồ Tây phương chân chính, không phải người lập đạo mới.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-di-giao-ao-vai-chinh-tri",
+          "title": "Phong trào Áo Vải · phe nội bộ và quan hệ năm 1444",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_di-giao-ao-vai'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nSau chiến tranh Hussite, phe ôn hòa có thỏa hiệp pháp lý còn phe cấp tiến bị truy. Nạn đói, thuế giáo hội, buôn ân xá và Giáo hội mất uy tín làm phong trào tái bùng theo đúng cơ chế dữ liệu.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -95/100 — thù địch cực độ.\n- Giáo hội Đông phương: -40/100 — căng thẳng. Không phải dị giáo của họ, nên họ chỉ khó chịu chứ không đốt.\n- Phái Thanh Tẩy: -15/100 — căng thẳng. Hai phong trào cùng chống một Giáo hội và vẫn không chịu nhau.\n- Nhất thần phương Nam: 10/100 — có thể hợp tác. Kẻ thù của kẻ thù. Triều Ottoman cho dị giáo tị nạn — và Giáo hội không bao giờ quên chuyện đó.",
+          "summary": "Sau chiến tranh Hussite, phe ôn hòa có thỏa hiệp pháp lý còn phe cấp tiến bị truy. Nạn đói, thuế giáo hội, buôn ân xá và Giáo hội mất uy tín làm phong trào tái bùng theo đúng cơ chế dữ liệu. Ma trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân): - Giáo hội Tây phương: -95/100 — thù địch cực độ. - Giáo hội Đông phương: -40/100 — căng thẳng. Không phải dị giáo của họ, nên họ chỉ khó chịu chứ không đốt. - Phái Thanh Tẩy: -15/100 — căng thẳng.…",
+          "keys": [
+            "Phong trào Áo Vải",
+            "Áo Vải",
+            "phe tôn giáo",
+            "dị giáo",
+            "quan hệ tôn giáo",
+            "khủng hoảng đức tin"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Phong trào Áo Vải. phe nội bộ và quan hệ năm 1444. Sau chiến tranh Hussite, phe ôn hòa có thỏa hiệp pháp lý còn phe cấp tiến bị truy. Nạn đói, thuế giáo hội, buôn ân xá và Giáo hội mất uy tín làm phong trào tái bùng theo đúng cơ chế dữ liệu.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -95/100 — thù địch cực độ.\n- Giáo hội Đông phương: -40/100 — căng thẳng. Không phải dị giáo của họ, nên họ chỉ khó chịu chứ không đốt.\n- Phái Thanh Tẩy: -15/100 — căng thẳng. Hai phong trào cùng chống một Giáo hội và vẫn không chịu nhau.\n- Nhất thần phương Nam: 10/100 — có thể hợp tác. Kẻ thù của kẻ thù. Triều Ottoman cho dị giáo tị nạn — và Giáo hội không bao giờ quên chuyện đó.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-ton-giao-rel-di-giao-thanh-tay",
+      "name": "Tôn giáo chuyên sâu · Phái Thanh Tẩy",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "faith_rel-di-giao-thanh-tay-nen-tang",
+          "title": "Phái Thanh Tẩy · nguồn lịch sử và giáo lý",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_di-giao-thanh-tay'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nDị giáo nhị nguyên lấy cảm hứng từ Cathar và Bogomil, là nhánh riêng với Áo Vải.\n\nThế giới vật chất bị một quyền lực thấp hoặc ác làm ô nhiễm; linh hồn phải được thanh tẩy khỏi ham muốn và ràng buộc vật chất. Người đã nhận phép trọn giữ kiêng khem nghiêm ngặt hơn tín đồ thường.",
+          "summary": "Dị giáo nhị nguyên lấy cảm hứng từ Cathar và Bogomil, là nhánh riêng với Áo Vải. Thế giới vật chất bị một quyền lực thấp hoặc ác làm ô nhiễm; linh hồn phải được thanh tẩy khỏi ham muốn và ràng buộc vật chất. Người đã nhận phép trọn giữ kiêng khem nghiêm ngặt hơn tín đồ thường.",
+          "keys": [
+            "Phái Thanh Tẩy",
+            "Thanh Tẩy",
+            "giáo lý",
+            "thần học",
+            "nguồn lịch sử"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Phái Thanh Tẩy. nguồn lịch sử và giáo lý. Dị giáo nhị nguyên lấy cảm hứng từ Cathar và Bogomil, là nhánh riêng với Áo Vải.\n\nThế giới vật chất bị một quyền lực thấp hoặc ác làm ô nhiễm; linh hồn phải được thanh tẩy khỏi ham muốn và ràng buộc vật chất. Người đã nhận phép trọn giữ kiêng khem nghiêm ngặt hơn tín đồ thường.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-di-giao-thanh-tay-to-chuc",
+          "title": "Phái Thanh Tẩy · giáo sĩ, tổ chức và tài sản",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_di-giao-thanh-tay'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nCác “người trọn” đi thành đôi, nương nhà an toàn và truyền kinh bí mật. Không còn thành phố công khai mạnh như thời trước; ký ức đàn áp khiến tổ chức phân ô và thử lòng người mới rất lâu.",
+          "summary": "Các “người trọn” đi thành đôi, nương nhà an toàn và truyền kinh bí mật. Không còn thành phố công khai mạnh như thời trước; ký ức đàn áp khiến tổ chức phân ô và thử lòng người mới rất lâu.",
+          "keys": [
+            "Phái Thanh Tẩy",
+            "Thanh Tẩy",
+            "giáo sĩ",
+            "tổ chức tôn giáo",
+            "tu viện",
+            "đền thờ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Phái Thanh Tẩy. giáo sĩ, tổ chức và tài sản. Các “người trọn” đi thành đôi, nương nhà an toàn và truyền kinh bí mật. Không còn thành phố công khai mạnh như thời trước; ký ức đàn áp khiến tổ chức phân ô và thử lòng người mới rất lâu.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-di-giao-thanh-tay-doi-song",
+          "title": "Phái Thanh Tẩy · nghi lễ và đời sống tín đồ",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_di-giao-thanh-tay'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nTín đồ thường nuôi và giấu người trọn, xin phép thanh tẩy khi bệnh nặng, tránh lời thề vật chất. Không phải ai phản đối Giáo hội cũng là Thanh Tẩy, và nhãn này thường bị tòa án lạm dụng.",
+          "summary": "Tín đồ thường nuôi và giấu người trọn, xin phép thanh tẩy khi bệnh nặng, tránh lời thề vật chất. Không phải ai phản đối Giáo hội cũng là Thanh Tẩy, và nhãn này thường bị tòa án lạm dụng.",
+          "keys": [
+            "Phái Thanh Tẩy",
+            "Thanh Tẩy",
+            "nghi lễ",
+            "đời sống tín đồ",
+            "lễ hội",
+            "kiêng kỵ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Phái Thanh Tẩy. nghi lễ và đời sống tín đồ. Tín đồ thường nuôi và giấu người trọn, xin phép thanh tẩy khi bệnh nặng, tránh lời thề vật chất. Không phải ai phản đối Giáo hội cũng là Thanh Tẩy, và nhãn này thường bị tòa án lạm dụng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "faith_rel-di-giao-thanh-tay-chinh-tri",
+          "title": "Phái Thanh Tẩy · phe nội bộ và quan hệ năm 1444",
+          "type": "concept",
+          "content": "<% const noiDao = state.character && state.character.allegiance && state.character.allegiance.religionId === 'rel_di-giao-thanh-tay'; %><% if (noiDao) { %>[Góc nhìn người trong đạo · <%= now.year %>]<% } else { %>[Hồ sơ đối chiếu · <%= now.year %>]<% } %>\nGiáo hội Tây phương coi đây là đe dọa thần học tuyệt đối; Áo Vải cũng không ưa họ. Huyền học đôi khi trao đổi nơi trú nhưng không đồng giáo lý. Năm 1444, họ tồn tại bằng mạng bí mật chứ không cai vùng công khai.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -100/100 — thù địch cực độ.\n- Giáo hội Đông phương: -55/100 — đối địch.\n- Huyền học bí truyền: 25/100 — có thể hợp tác.\n- Phong trào Áo Vải: -15/100 — căng thẳng. Hai phong trào cùng chống một Giáo hội và vẫn không chịu nhau.",
+          "summary": "Giáo hội Tây phương coi đây là đe dọa thần học tuyệt đối; Áo Vải cũng không ưa họ. Huyền học đôi khi trao đổi nơi trú nhưng không đồng giáo lý. Năm 1444, họ tồn tại bằng mạng bí mật chứ không cai vùng công khai. Ma trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân): - Giáo hội Tây phương: -100/100 — thù địch cực độ. - Giáo hội Đông phương: -55/100 — đối địch. - Huyền học bí truyền: 25/100 — có thể hợp tác. - Phong trào Áo Vải: -15/100 — căng thẳng.…",
+          "keys": [
+            "Phái Thanh Tẩy",
+            "Thanh Tẩy",
+            "phe tôn giáo",
+            "dị giáo",
+            "quan hệ tôn giáo",
+            "khủng hoảng đức tin"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Phái Thanh Tẩy. phe nội bộ và quan hệ năm 1444. Giáo hội Tây phương coi đây là đe dọa thần học tuyệt đối; Áo Vải cũng không ưa họ. Huyền học đôi khi trao đổi nơi trú nhưng không đồng giáo lý. Năm 1444, họ tồn tại bằng mạng bí mật chứ không cai vùng công khai.\n\nMa trận quan hệ canon (thái độ thể chế, không phải định mệnh của từng cá nhân):\n- Giáo hội Tây phương: -100/100 — thù địch cực độ.\n- Giáo hội Đông phương: -55/100 — đối địch.\n- Huyền học bí truyền: 25/100 — có thể hợp tác.\n- Phong trào Áo Vải: -15/100 — căng thẳng. Hai phong trào cùng chống một Giáo hội và vẫn không chịu nhau.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 11,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    }
+  ]
+}

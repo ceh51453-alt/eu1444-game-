@@ -942,7 +942,7 @@
           "id": "npc_vittoria-dandolo-be-trong",
           "title": "Vittoria Dandolo — động cơ thật",
           "type": "person",
-          "content": "Động cơ thật của Vittoria Dandolo. Mô phỏng ngầm dùng cái này để ả hành động đúng lý do thật; AI kể chuyện KHÔNG được thấy.\n\nTầng nhân cách cốt lõi:\n  Sự thiếu hụt sâu thẳm: Cảm giác phải liên tục che giấu bản chất quái vật biển của mình trước một xã hội Nhân loại cuồng tín Công giáo.\n  Nỗi sợ hãi cốt lõi: Venice bị phong tỏa đường bộ bởi các cường quốc Ý và đường biển bị Ottoman bóp nghẹt, dẫn đến sự sụp đổ kinh tế.\n  Cơ chế phòng ngự: Sử dụng vàng bạc và mạng lưới điệp viên để mua chuộc mọi kẻ thù, không bao giờ trực tiếp đối đầu nếu có thể dùng tiền giải quyết.\n  Mâu thuẫn cốt lõi: Mang trong mình dòng máu của Hải Tộc (những kẻ chuyên cướp bóc tàu thuyền) nhưng lại là người bảo vệ vĩ đại nhất cho các tàu buôn Venice.",
+          "content": "Động cơ thật của Vittoria Dandolo. Mô phỏng ngầm dùng cái này để ả hành động đúng lý do thật; AI kể chuyện KHÔNG được thấy.\n\nTầng nhân cách cốt lõi:\n  Sự thiếu hụt sâu thẳm: Cảm giác phải liên tục che giấu bản chất quái vật biển của mình trước một xã hội Nhân loại cuồng tín Công giáo.\n  Nỗi sợ hãi cốt lõi: Venice bị phong tỏa đường bộ bởi các cường quốc Ý và đường biển bị Ottoman bóp nghẹt, dẫn đến sự sụp đổ kinh tế.\n  Cơ chế phòng ngự: Sử dụng vàng bạc và mạng lưới điệp viên để mua chuộc mọi kẻ thù, không bao giờ trực tiếp đối đầu nếu có thể dùng tiền giải quyết.\n  Mâu thuẫn cốt lõi: Mang dòng máu Hải Tộc vốn bị một số quý tộc Venice gán tiếng cướp biển, nhưng lại là người bảo vệ vĩ đại nhất cho các tàu buôn của thành bang.",
           "summary": "Động cơ thật của Vittoria Dandolo: sự thiếu hụt, nỗi sợ cốt lõi, cơ chế phòng ngự và mâu thuẫn bên trong.",
           "keys": [
             "Vittoria Dandolo",
@@ -1802,15 +1802,14 @@
           "id": "npc_altinay-rieng-tu",
           "title": "Altinay — mặt riêng",
           "type": "person",
-          "content": "Mặt riêng của Altinay — chỉ ai đã thân cận mới thấy:\n\n  Chế độ buông lỏng: Khi nằm nghỉ ngơi trên những đồng cỏ xanh mướt, để mặc cho các cơn gió vuốt ve bộ lông mượt mà của mình.\n  Chế độ vết nứt: Khi bị dồn vào các khe núi hẹp hoặc đầm lầy, nơi tốc độ của ả bị triệt tiêu hoàn toàn, ả sẽ trở nên hoảng loạn và điên cuồng.\n\nBức tranh trộn màu:\n  - Phi nước đại với tốc độ kinh hoàng, buông tay cương và xoay người bắn liên tiếp ba mũi tên xuyên qua khe hở áo giáp của một hiệp sĩ Teuton đang bỏ chạy.\n  - Chồm hai chân trước lên cao, gầm lên một tiếng vang dội và dùng móng guốc bọc thép đạp nát lồng ngực của một lính bộ binh đang cố gắng dùng giáo cản đường.",
+          "content": "Mặt riêng của Altinay — chỉ ai đã thân cận mới thấy:\n\n  Chế độ buông lỏng: Khi nằm nghỉ ngơi trên những đồng cỏ xanh mướt, để mặc cho gió vuốt mái tóc và chiếc đuôi hung đỏ.\n  Chế độ vết nứt: Khi bị dồn vào các khe núi hẹp hoặc đầm lầy, nơi tốc độ của ả bị triệt tiêu hoàn toàn, ả sẽ trở nên hoảng loạn và điên cuồng.\n\nBức tranh trộn màu:\n  - Phi nước đại với tốc độ kinh hoàng, thả lỏng dây cương và xoay người trên yên bắn liên tiếp ba mũi tên xuyên qua khe hở áo giáp của một hiệp sĩ Teuton đang bỏ chạy.\n  - Thúc chiến mã chồm lên, ả hét vang rồi để đôi vó bọc thép phá thế của người lính đang dùng giáo cản đường.",
           "summary": "Altinay lúc không phải diễn: dáng vẻ khi buông lỏng, và chỗ nứt khi kế hoạch đổ vỡ.",
           "keys": [
             "Altinay",
             "Tướng Mã Nhân",
             "Kỵ binh Altinay",
             "Tướng lĩnh Kỵ binh Akinji",
-            "Tộc Mã Nhân",
-            "Centaur Altinay"
+            "Tộc Mã Nhân"
           ],
           "matchMode": "wholeWord",
           "caseSensitive": false,
@@ -1837,8 +1836,7 @@
             "Tướng Mã Nhân",
             "Kỵ binh Altinay",
             "Tướng lĩnh Kỵ binh Akinji",
-            "Tộc Mã Nhân",
-            "Centaur Altinay"
+            "Tộc Mã Nhân"
           ],
           "matchMode": "wholeWord",
           "caseSensitive": false,
@@ -2267,8 +2265,7 @@
             "Borte",
             "Đại Hãn Nogai",
             "Quần thể Nogai",
-            "Tộc Mã Nhân",
-            "Centaur"
+            "Tộc Mã Nhân"
           ],
           "matchMode": "wholeWord",
           "caseSensitive": false,
@@ -2294,8 +2291,7 @@
             "Borte",
             "Đại Hãn Nogai",
             "Quần thể Nogai",
-            "Tộc Mã Nhân",
-            "Centaur"
+            "Tộc Mã Nhân"
           ],
           "matchMode": "wholeWord",
           "caseSensitive": false,
@@ -2372,7 +2368,6 @@
             "Thị tộc Shirin",
             "Hãn quốc Crimea",
             "Tộc Mã Nhân",
-            "Centaur",
             "Crimea"
           ],
           "matchMode": "wholeWord",
@@ -2400,7 +2395,6 @@
             "Thị tộc Shirin",
             "Hãn quốc Crimea",
             "Tộc Mã Nhân",
-            "Centaur",
             "Crimea"
           ],
           "matchMode": "wholeWord",

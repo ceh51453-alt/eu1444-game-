@@ -30,17 +30,17 @@ function yesNo(value: boolean): string {
 
 function DetailRow({ label, children }: { label: string; children: ReactNode }): ReactNode {
   return (
-    <div className="grid gap-1 border-b border-oak-light/35 py-1.5 last:border-b-0 sm:grid-cols-[9rem_minmax(0,1fr)]">
-      <dt className="text-[11px] text-vellum/45">{label}</dt>
-      <dd className="text-xs whitespace-pre-wrap break-words text-parchment">{children}</dd>
+    <div className="grid gap-1 border-b border-oak-light/35 py-2 last:border-b-0 sm:grid-cols-[9rem_minmax(0,1fr)]">
+      <dt className="text-xs text-vellum/50">{label}</dt>
+      <dd className="text-[13px] leading-5 whitespace-pre-wrap break-words text-parchment">{children}</dd>
     </div>
   );
 }
 
 function DetailSection({ title, children }: { title: string; children: ReactNode }): ReactNode {
   return (
-    <section className="rounded border border-oak-light bg-ink/35 p-2">
-      <h4 className="mb-1 text-[10px] tracking-[0.18em] text-brass uppercase">{title}</h4>
+    <section className="lore-entry-detail-section rounded-lg border border-oak-light bg-ink/35 p-3">
+      <h4 className="mb-1.5 text-[11px] tracking-[0.18em] text-brass uppercase">{title}</h4>
       <dl>{children}</dl>
     </section>
   );
@@ -52,10 +52,14 @@ export function LoreEntryDetails({ entry, bookName, bookId }: LoreEntryDetailsPr
   const related = entry.related?.map((item) => `${item.id} (${String(item.pullWeight)})`).join(' · ');
 
   return (
-    <article className="flex min-h-0 flex-col gap-2 overflow-y-auto pr-1">
-      <header className="rounded border border-brass/35 bg-brass/5 p-3">
+    <article
+      className="lore-entry-reader flex h-full min-h-0 flex-col gap-3 overflow-y-auto pr-2"
+      tabIndex={0}
+      aria-label={`Nội dung entry: ${entry.title || entry.id}`}
+    >
+      <header className="lore-entry-reader-header rounded-lg border border-brass/40 p-4">
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-          <h3 className="text-base text-brass">{entry.title || '(entry chưa có tiêu đề)'}</h3>
+          <h3 className="text-xl leading-snug text-brass">{entry.title || '(entry chưa có tiêu đề)'}</h3>
           <span className="rounded border border-oak-light px-1.5 py-0.5 text-[10px] text-vellum/60">{entry.type}</span>
           <span
             className={`rounded border px-1.5 py-0.5 text-[10px] ${
@@ -69,23 +73,26 @@ export function LoreEntryDetails({ entry, bookName, bookId }: LoreEntryDetailsPr
             {entry.knowledge}
           </span>
         </div>
-        <p className="mt-1 font-mono text-[10px] text-vellum/40">{entry.id}</p>
+        <p className="mt-1.5 font-mono text-[11px] text-vellum/45">{entry.id}</p>
         {(bookName !== undefined || bookId !== undefined) && (
-          <p className="mt-1 text-[11px] text-vellum/50">
+          <p className="mt-1 text-xs text-vellum/55">
             Sách: {bookName ?? bookId}
             {bookName !== undefined && bookId !== undefined ? ` · ${bookId}` : ''}
           </p>
         )}
         {entry.summary !== undefined && entry.summary !== '' && (
-          <p className="mt-2 text-xs whitespace-pre-wrap text-vellum/75">{entry.summary}</p>
+          <p className="mt-3 max-w-[75ch] border-t border-brass/20 pt-3 text-sm leading-6 whitespace-pre-wrap text-vellum/85">
+            {entry.summary}
+          </p>
         )}
       </header>
 
-      <DetailSection title="Nội dung">
-        <p className="text-xs whitespace-pre-wrap text-parchment">
+      <section className="lore-entry-content rounded-lg border border-brass/25 p-4 sm:p-5">
+        <h4 className="mb-3 text-[11px] tracking-[0.2em] text-brass uppercase">Nội dung entry</h4>
+        <p className="lore-entry-copy max-w-[78ch] text-[15px] leading-7 whitespace-pre-wrap text-parchment">
           {entry.content === '' ? '(entry chưa có nội dung)' : entry.content}
         </p>
-      </DetailSection>
+      </section>
 
       {entry.variants !== undefined && entry.variants.length > 0 && (
         <DetailSection title={`Biến thể nội dung (${String(entry.variants.length)})`}>
@@ -100,43 +107,45 @@ export function LoreEntryDetails({ entry, bookName, bookId }: LoreEntryDetailsPr
         </DetailSection>
       )}
 
-      <DetailSection title="Kích hoạt và phạm vi">
-        <DetailRow label="Từ khóa chính">{listText(entry.keys)}</DetailRow>
-        <DetailRow label="Từ khóa phụ">
-          {entry.keysSecondary === undefined
-            ? 'không có'
-            : `${entry.keysSecondary.logic}: ${listText(entry.keysSecondary.keys)}`}
-        </DetailRow>
-        <DetailRow label="Cách khớp">
-          {entry.matchMode} · phân biệt hoa/thường: {yesNo(entry.caseSensitive)} · luôn xét: {yesNo(entry.constant)}
-        </DetailRow>
-        <DetailRow label="Điều kiện state">{entry.condition?.trim() || 'không có'}</DetailRow>
-        <DetailRow label="Thời gian">
-          {dateText(entry.validFrom)} → {dateText(entry.validUntil)}
-        </DetailRow>
-        <DetailRow label="Vùng">
-          {listText(entry.regions)} · tính vùng kề: {yesNo(entry.includeAdjacent)}
-        </DetailRow>
-        <DetailRow label="Cổng tri thức">
-          {entry.knowledge}
-          {entry.knowledge === 'gated' ? ` · cần: ${listText(entry.requiresKnowledge)}` : ''}
-        </DetailRow>
-      </DetailSection>
+      <div className="grid gap-3 xl:grid-cols-2">
+        <DetailSection title="Kích hoạt và phạm vi">
+          <DetailRow label="Từ khóa chính">{listText(entry.keys)}</DetailRow>
+          <DetailRow label="Từ khóa phụ">
+            {entry.keysSecondary === undefined
+              ? 'không có'
+              : `${entry.keysSecondary.logic}: ${listText(entry.keysSecondary.keys)}`}
+          </DetailRow>
+          <DetailRow label="Cách khớp">
+            {entry.matchMode} · phân biệt hoa/thường: {yesNo(entry.caseSensitive)} · luôn xét: {yesNo(entry.constant)}
+          </DetailRow>
+          <DetailRow label="Điều kiện state">{entry.condition?.trim() || 'không có'}</DetailRow>
+          <DetailRow label="Thời gian">
+            {dateText(entry.validFrom)} → {dateText(entry.validUntil)}
+          </DetailRow>
+          <DetailRow label="Vùng">
+            {listText(entry.regions)} · tính vùng kề: {yesNo(entry.includeAdjacent)}
+          </DetailRow>
+          <DetailRow label="Cổng tri thức">
+            {entry.knowledge}
+            {entry.knowledge === 'gated' ? ` · cần: ${listText(entry.requiresKnowledge)}` : ''}
+          </DetailRow>
+        </DetailSection>
 
-      <DetailSection title="Cách chèn và hành vi">
-        <DetailRow label="Vị trí">{placement}{entry.role === undefined ? '' : ` · vai trò ${entry.role}`}</DetailRow>
-        <DetailRow label="Xếp hạng">
-          trọng số {String(entry.weight)} · ưu tiên ngân sách {String(entry.budgetPriority)}
-        </DetailRow>
-        <DetailRow label="Xác suất">{entry.probability === undefined ? 'mặc định 100%' : `${String(entry.probability)}%`}</DetailRow>
-        <DetailRow label="Sticky / cooldown / delay">
-          {String(entry.sticky ?? 0)} / {String(entry.cooldown ?? 0)} / {String(entry.delay ?? 0)} lượt
-        </DetailRow>
-        <DetailRow label="Kéo theo">{related === undefined || related === '' ? 'không có' : related}</DetailRow>
-        <DetailRow label="Đệ quy">
-          quét lại: {yesNo(entry.recurse)} · chỉ từ tin gốc: {yesNo(entry.preventRecursion)}
-        </DetailRow>
-      </DetailSection>
+        <DetailSection title="Cách chèn và hành vi">
+          <DetailRow label="Vị trí">{placement}{entry.role === undefined ? '' : ` · vai trò ${entry.role}`}</DetailRow>
+          <DetailRow label="Xếp hạng">
+            trọng số {String(entry.weight)} · ưu tiên ngân sách {String(entry.budgetPriority)}
+          </DetailRow>
+          <DetailRow label="Xác suất">{entry.probability === undefined ? 'mặc định 100%' : `${String(entry.probability)}%`}</DetailRow>
+          <DetailRow label="Sticky / cooldown / delay">
+            {String(entry.sticky ?? 0)} / {String(entry.cooldown ?? 0)} / {String(entry.delay ?? 0)} lượt
+          </DetailRow>
+          <DetailRow label="Kéo theo">{related === undefined || related === '' ? 'không có' : related}</DetailRow>
+          <DetailRow label="Đệ quy">
+            quét lại: {yesNo(entry.recurse)} · chỉ từ tin gốc: {yesNo(entry.preventRecursion)}
+          </DetailRow>
+        </DetailSection>
+      </div>
 
       <DetailSection title="Trigger">
         <DetailRow label="Thiết lập">

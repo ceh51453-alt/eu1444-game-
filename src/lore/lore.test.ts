@@ -10,10 +10,15 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 import { createRng } from '@/core/rng';
+import { renderTemplate } from '@/ai/ejs';
 import { createMacroContext } from '@/ai/macros';
 import { events } from '@/core/eventbus';
 import nationsFile from '@data/nations.json';
+import religionsFile from '@data/religions.json';
 import racesFile from '@data/races.json';
+import raceCanonFile from '../../tools/chung-toc-canon.json';
+import historicalPeopleFile from '../../tools/nhan-vat-lich-su-1444.json';
+import magicalCreaturesFile from '../../tools/ma-thu-thu-cuoi-1444.json';
 import { registerGameSlices } from '@/state/register';
 import { applyPatch } from '@/state/mvu';
 import { slices, type GameState } from '@/state/slices';
@@ -24,6 +29,7 @@ import { checkGate, knowledgeOf, gainKnowledgeOp, knowledgeSlice } from './knowl
 import { allRegions, isAdjacent, isWithin, matchesRegions } from './regions';
 import { bookActivation, matchKeys, scanLore, type ScanInput } from './scanner';
 import { selectWithinBudget } from './budget';
+import { loreEmbeddingSimilarity } from './embedding';
 import { runLorePass } from './pass';
 import { fireTriggers, registerLoreHandlers, LORE_EVENTS, MAX_LORE_EVENTS_PER_TURN } from './triggers';
 import { loreEntrySchema, lorebookSchema, type Lorebook } from './types';
@@ -197,6 +203,241 @@ describe('cổng gác cho nội dung tự viết', () => {
     }
     expect(offenders, offenders.join('\n')).toEqual([]);
   });
+
+  it('mọi chủng tộc trong dữ liệu đều có đúng một entry lore', () => {
+    const entries = seedBooks().books.flatMap((book) => book.entries);
+    const counts = new Map<string, number>();
+    for (const entry of entries) counts.set(entry.id, (counts.get(entry.id) ?? 0) + 1);
+
+    const offenders: string[] = [];
+    for (const race of (racesFile as { races: { id: string; name: string; loreEntry: string }[] }).races) {
+      const count = counts.get(race.loreEntry) ?? 0;
+      if (count !== 1) offenders.push(`${race.id} (${race.name}) → ${race.loreEntry}: có ${count} entry`);
+    }
+    expect(offenders, offenders.join('\n')).toEqual([]);
+  });
+
+  it('hồ sơ chủng tộc sinh tự động khớp tuổi thọ canon', () => {
+    const entries = new Map(
+      seedBooks().books.flatMap((book) => book.entries).map((entry) => [entry.id, entry]),
+    );
+    const races = new Map(
+      (racesFile as { races: { id: string; name: string; lifespan: number | null }[] }).races
+        .map((race) => [race.id, race]),
+    );
+    const profiles = (raceCanonFile as { profiles: Record<string, unknown> }).profiles;
+    const offenders: string[] = [];
+
+    for (const id of Object.keys(profiles)) {
+      const entry = entries.get(id);
+      if (entry === undefined) {
+        offenders.push(`${id}: có hồ sơ canon nhưng thiếu entry sinh ra`);
+        continue;
+      }
+      const race = races.get(id);
+      if (race?.lifespan !== null && race?.lifespan !== undefined && !entry.content.includes(`${race.lifespan} năm`)) {
+        offenders.push(`${id}: lore không chứa tuổi thọ ${race.lifespan} năm từ races.json`);
+      }
+    }
+    expect(offenders, offenders.join('\n')).toEqual([]);
+  });
+
+  it('các mâu thuẫn chủng tộc cũ không được lọt lại vào lorebook', () => {
+    const all = seedBooks().books
+      .flatMap((book) => book.entries)
+      .map((entry) => `${entry.id}\n${entry.content}`)
+      .join('\n');
+    const forbidden = [
+      'không thể sinh tồn trên đất liền quá vài giờ',
+      'những kẻ chuyên cướp bóc tàu thuyền',
+      'không cần một đội quân con người',
+      'Sinh ra trên yên ngựa',
+      'lưng ngựa là ngai vàng duy nhất',
+      'buông tay cương và xoay người bắn',
+      'tự động điều chỉnh quỹ đạo',
+      'gần như không chịu tổn thất nào',
+      'các chủng tộc phi nhân loại như Tiên và Orc vẫn giữ gìn',
+    ];
+
+    expect(forbidden.filter((phrase) => all.includes(phrase))).toEqual([]);
+  });
+
+  it('Mã Nhân giữ canon hình người có tai và đuôi ngựa trong dữ liệu chính', () => {
+    const entry = seedBooks().books.flatMap((book) => book.entries).find((item) => item.id === 'race_ma-nhan');
+    expect(entry?.content).toContain('hình người hai chân');
+    expect(entry?.content).toContain('tai ngựa trên đỉnh đầu');
+    expect(entry?.content).toContain('đuôi ngựa');
+    expect(entry?.content).not.toContain('centaur thật sự');
+    expect(entry?.content).not.toContain('thân người từ hông trở lên nối với thân ngựa');
+  });
+
+  it('có đúng một sách chuyên biệt auto-scope cho từng chủng tộc', () => {
+    const expected = new Set((racesFile as { races: { id: string }[] }).races.map((race) => race.id));
+    const specialist = seedBooks().books.filter((book) => book.id.startsWith('book-chuyen-biet-race-'));
+    const refs = specialist.map((book) => book.scope.refId ?? '');
+    expect(new Set(refs)).toEqual(expected);
+    expect(specialist.every((book) => book.scope.kind === 'race' && book.autoScope && book.entries.length === 4)).toBe(true);
+  });
+
+  it('khung lý thuyết hiện đại chỉ dành cho mô phỏng ngầm', () => {
+    const logicEntries = seedBooks().books
+      .filter((book) => book.id.startsWith('book-the-gioi-quan-'))
+      .flatMap((book) => book.entries);
+    expect(logicEntries.length).toBe(217);
+    expect(logicEntries.every((entry) => entry.knowledge === 'secret')).toBe(true);
+  });
+
+  it('bộ lịch sử biến tấu có niên biểu đến 1444 và khóa chống biết trước tương lai', () => {
+    const book = seedBooks().books.find((item) => item.id === 'book-lich-su-bien-tau');
+    expect(book?.entries).toHaveLength(23);
+    expect(book?.entries.some((item) => item.id === 'history_varna-1444')).toBe(true);
+    expect(book?.entries.find((item) => item.id === 'history_quy-tac-canon')?.constant).toBe(true);
+    expect(book?.entries.every((item) => item.embedding !== undefined && item.content.includes('<%'))).toBe(true);
+  });
+
+  it('mỗi tôn giáo có đúng bốn hồ sơ chuyên sâu và Tây–Đông không còn trùng tên', () => {
+    const faiths = (religionsFile as { religions: { id: string; name: string }[] }).religions;
+    const books = seedBooks().books.filter((book) => book.id.startsWith('book-ton-giao-rel-'));
+    expect(books).toHaveLength(faiths.length);
+    expect(books.every((book) => book.entries.length === 4)).toBe(true);
+    expect(faiths.find((faith) => faith.id === 'rel_giao-hoi')?.name).toBe('Giáo hội Tây phương');
+    expect(faiths.find((faith) => faith.id === 'rel_ly-giao')?.name).toBe('Giáo hội Đông phương');
+  });
+
+  it('mỗi quốc gia có một sách phe phái auto-scope gồm bốn lớp quyền lực', () => {
+    const expected = new Set((nationsFile as { nations: { id: string }[] }).nations.map((nation) => nation.id));
+    const books = seedBooks().books.filter((book) => book.id.startsWith('book-phe-phai-nation-'));
+    expect(books).toHaveLength(expected.size);
+    expect(new Set(books.map((book) => book.scope.refId ?? ''))).toEqual(expected);
+    expect(books.every((book) => book.scope.kind === 'nation' && book.autoScope && book.entries.length === 4)).toBe(true);
+
+    const hungary = books.find((book) => book.scope.refId === 'nation_hungary');
+    const text = hungary?.entries.map((item) => item.content).join('\n') ?? '';
+    expect(text).toContain('Đa số dân là người sống');
+    expect(text).toContain('không tồn tại “toàn bộ nông nô đều là Huyết Tộc”');
+  });
+
+  it('có 69 nguyên mẫu lịch sử được chuyển thành nữ, mỗi người có ba tầng lore', () => {
+    const people = (historicalPeopleFile as {
+      people: { id: string; name: string; nationId: string; role: string; anchor: string }[];
+    }).people;
+    const books = seedBooks().books.filter((book) => book.id.startsWith('book-nhan-vat-lich-su-nation-'));
+    expect(people).toHaveLength(69);
+    expect(new Set(people.map((person) => person.id)).size).toBe(69);
+    expect(books).toHaveLength(17);
+    expect(books.every((book) => book.scope.kind === 'nation' && book.autoScope)).toBe(true);
+    expect(books.find((book) => book.scope.refId === 'nation_frank')?.entries).toHaveLength(15);
+    expect(books.filter((book) => book.scope.refId !== 'nation_frank').every((book) => book.entries.length === 12)).toBe(true);
+    expect(books.flatMap((book) => book.entries)).toHaveLength(207);
+
+    for (const nation of (nationsFile as { nations: { id: string }[] }).nations) {
+      const expected = nation.id === 'nation_frank' ? 5 : 4;
+      expect(people.filter((person) => person.nationId === nation.id), nation.id).toHaveLength(expected);
+    }
+
+    const all = books.flatMap((book) => book.entries);
+    for (const person of people) {
+      expect(person.role.length).toBeGreaterThan(10);
+      expect(person.anchor.length).toBeGreaterThan(30);
+      const id = `historical_${person.id}`;
+      expect(all.find((entry) => entry.id === id)?.knowledge).toBe('public');
+      expect(all.find((entry) => entry.id === `${id}-than-can`)?.knowledge).toBe('gated');
+      expect(all.find((entry) => entry.id === `${id}-noi-tam`)?.knowledge).toBe('secret');
+    }
+    expect(all.every((entry) => entry.embedding !== undefined && entry.content.includes('<%'))).toBe(true);
+    expect(all.filter((entry) => entry.knowledge === 'public').every((entry) => entry.content.includes('giới tính canon: Nữ'))).toBe(true);
+    for (const entry of all) {
+      const narrative = entry.content.replace(/Giới hạn canon:[^\n]+/gu, '');
+      expect(narrative, entry.id).not.toMatch(/(?<![\p{L}])(ông|Ông|cậu|Cậu|chàng|Chàng)(?![\p{L}])/gu);
+    }
+  });
+
+  it('hồ sơ người thật khóa đúng chức vị 1444, không gán sớm thành tựu tương lai', () => {
+    const all = seedBooks().books.flatMap((book) => book.entries);
+    const publicOf = (id: string) => all.find((entry) => entry.id === `historical_${id}`)?.content ?? '';
+    expect(publicOf('mehmed-ii')).toContain('lần trị vì thứ nhất');
+    expect(publicOf('constantine-palaiologos')).toContain('chưa là nữ hoàng đế');
+    expect(publicOf('francesco-sforza')).toContain('chưa phải Nữ Công tước Milan');
+    expect(publicOf('charles-charolais')).toContain('chỉ là Bá tước Charolais trẻ');
+    expect(publicOf('richard-york')).toContain('năm 1444 Chiến Hoa Hồng chưa xảy ra');
+    expect(publicOf('dorothea-brandenburg')).toContain('đám cưới diễn ra năm 1445');
+  });
+
+  it('Joan of Arc sống sót trong canon và Jeanne des Armoises chính là bà', () => {
+    const all = seedBooks().books.flatMap((book) => book.entries);
+    const joan = all.find((entry) => entry.id === 'historical_joan-of-arc');
+    expect(joan?.content).toContain('Jeanne des Armoises');
+    expect(joan?.content).toContain('Năm 1444 bà ba mươi hai tuổi và còn sống');
+    expect(joan?.content).toContain('hình nhân thánh thuật không có sự sống');
+    expect(joan?.content).toContain('không ai chết thế');
+    expect(joan?.keys).toContain('Joan of Arc');
+  });
+
+  it('có 32 ma thú và thú cưỡi đặc biệt, đủ sinh thái, hậu cần và giới hạn', () => {
+    const groups = (magicalCreaturesFile as {
+      groups: {
+        id: string;
+        regions: string[];
+        creatures: { id: string; kind: string; nature: string; use: string; taming: string; limits: string }[];
+      }[];
+    }).groups;
+    const creatures = groups.flatMap((group) => group.creatures);
+    const books = seedBooks().books.filter((book) => book.id.startsWith('book-ma-thu-'));
+    const entries = books.flatMap((book) => book.entries);
+
+    expect(groups).toHaveLength(8);
+    expect(groups.every((group) => group.creatures.length === 4)).toBe(true);
+    expect(creatures).toHaveLength(32);
+    expect(new Set(creatures.map((creature) => creature.id)).size).toBe(32);
+    expect(creatures.filter((creature) => creature.kind.includes('thú cưỡi')).length).toBeGreaterThanOrEqual(20);
+    expect(books).toHaveLength(9);
+    expect(entries).toHaveLength(37);
+    expect(entries.every((entry) => entry.type === 'creature' && entry.embedding !== undefined)).toBe(true);
+    expect(entries.every((entry) => entry.content.includes('<%'))).toBe(true);
+
+    for (const creature of creatures) {
+      expect(creature.nature.length, creature.id).toBeGreaterThan(40);
+      expect(creature.use.length, creature.id).toBeGreaterThan(35);
+      expect(creature.taming.length, creature.id).toBeGreaterThan(35);
+      expect(creature.limits.length, creature.id).toBeGreaterThan(35);
+      expect(entries.some((entry) => entry.id === `creature_${creature.id}`), creature.id).toBe(true);
+    }
+
+    const rules = entries.find((entry) => entry.id === 'creature_quy-tac-hau-can');
+    expect(rules?.content).toContain('Ngựa, la, lừa, bò kéo và tàu vẫn vận chuyển gần như toàn bộ');
+    expect(entries.find((entry) => entry.id === 'creature_tulpar')?.content).toContain('Không bay đường dài như chim');
+    expect(entries.find((entry) => entry.id === 'creature_wyvern-carpathian')?.content).toContain('nuôi một con tốn ngang một đại đội kỵ binh nhỏ');
+  });
+
+  it('mọi EJS trong lorebook tích hợp đều biên dịch và render được', () => {
+    const state = freshState();
+    const q = new Proxy({}, { get: () => () => [] });
+    const locals = {
+      now: state.meta.gameDate,
+      state,
+      d: {},
+      q,
+      fmt: {},
+      roll: null,
+      lore: [],
+      history: [],
+      scene: {},
+      budget: { total: 6000, used: 0, remaining: 6000 },
+      action: { kind: 'freeform', text: '' },
+      schema: {},
+    };
+    const offenders: string[] = [];
+    for (const book of seedBooks().books) {
+      for (const entry of book.entries) {
+        for (const [label, source] of [['content', entry.content], ['summary', entry.summary]] as const) {
+          if (source === undefined || !source.includes('<%')) continue;
+          const result = renderTemplate(source, locals);
+          if (result.error !== null) offenders.push(`${entry.id}.${label}: ${result.error.message}`);
+        }
+      }
+    }
+    expect(offenders, offenders.join('\n')).toEqual([]);
+  });
 });
 
 describe('mô hình dữ liệu (mục 2)', () => {
@@ -338,6 +579,10 @@ describe('L1 — sách tự bật theo phe và theo chủng tộc (mục 3)', ()
     // Đường thần dân — đứng ở Swabia mà vẫn là người của nước Pháp.
     const book2 = sachAutoScope('nation', 'nation_frank');
     expect(bookActivation(book2, voi({ faction: 'nation_frank' }), EHRENFELD).active).toBe(true);
+    // refId thật của sách quốc gia phải được đổi qua `nations.json → regions`.
+    // Trước đây engine so thẳng `nation_frank` với cây vùng nên đứng tại Troyes
+    // vẫn không bật sách Pháp.
+    expect(bookActivation(book2, voi({ regionId: TROYES }), TROYES).active).toBe(true);
   });
 
   it("kind 'race' bật cả khi đứng trên đất của tộc đó, không chỉ khi mang tộc đó", () => {
@@ -494,6 +739,12 @@ describe('cổng tri thức (mục 5)', () => {
 // ---------------------------------------------------------------------------
 
 describe('từ khóa (mục 2)', () => {
+  it('embedding cục bộ kéo được cách nói gần nhau nhưng không kéo chủ đề xa', () => {
+    const market = 'đổi tiền bạc, cân đồng vàng, mặc cả ở hội chợ và ký khế ước buôn bán';
+    expect(loreEmbeddingSimilarity('thương nhân muốn đổi tiền ở chợ', market)).toBeGreaterThan(0.15);
+    expect(loreEmbeddingSimilarity('chữa vết thương bằng dược thảo', market)).toBeLessThan(0.2);
+  });
+
   it('plain khớp trong từ, wholeWord thì không', () => {
     expect(matchKeys('muối mỏ', ['muối'], 'plain', false)).toEqual(['muối']);
     expect(matchKeys('chợ muối', ['muối'], 'wholeWord', false)).toEqual(['muối']);

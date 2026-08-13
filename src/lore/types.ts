@@ -68,6 +68,11 @@ export const loreEntrySchema = z.object({
   caseSensitive: z.boolean().default(false),
   /** Luôn chèn, bỏ qua từ khóa — nhưng vẫn phải qua L1–L5 và vẫn tranh ngân sách. */
   constant: z.boolean().default(false),
+  /** Truy hồi mềm bằng embedding cục bộ khi không khớp từ khóa chính xác. */
+  embedding: z.object({
+    text: z.string().min(1),
+    threshold: z.number().min(0.05).max(1).default(0.32),
+  }).optional(),
 
   // --- Lớp 2: điều kiện state ---
   condition: z.string().optional(),

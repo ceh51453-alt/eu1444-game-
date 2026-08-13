@@ -1242,6 +1242,7 @@
         "trait_con-cuong"
       ],
       "language": "Tiếng thị tộc Lang",
+      "appearanceNote": "Các trường hình thể bên dưới mô tả chiến hình sói; hình người giữ tầm vóc tương đương nhưng không phủ lông toàn thân.",
       "appearance": {
         "heightCm": [
           172,
@@ -1341,6 +1342,7 @@
         "trait_ngu-dong"
       ],
       "language": "Tiếng thị tộc Hùng",
+      "appearanceNote": "Các trường hình thể bên dưới mô tả chiến hình gấu; hình người vẫn cao lớn nhưng không phủ lông toàn thân.",
       "appearance": {
         "heightCm": [
           185,
@@ -1665,10 +1667,10 @@
       ],
       "loreEntry": "race_ma-nhan",
       "stats": {
-        "per": 2,
-        "agi": 1,
-        "int": -2,
-        "arc": -1
+        "per": 1,
+        "agi": 2,
+        "str": -1,
+        "arc": -2
       },
       "statCaps": {},
       "traits": [
@@ -1679,12 +1681,12 @@
       "language": "Tiếng thảo nguyên",
       "appearance": {
         "heightCm": [
-          170,
-          192
+          160,
+          190
         ],
         "weightKg": [
-          70,
-          105
+          48,
+          92
         ],
         "musclePct": [
           38,
@@ -1699,14 +1701,16 @@
           "vạm vỡ"
         ],
         "skin": [
-          "lông hạt dẻ",
-          "lông đen",
-          "lông xám tro",
-          "lông hung"
+          "nâu nhạt",
+          "nâu đồng",
+          "ngăm",
+          "trắng hồng"
         ],
         "hair": [
-          "bờm dài tết",
-          "bờm cắt ngắn"
+          "đen",
+          "nâu hạt dẻ",
+          "hung đỏ",
+          "xám tro"
         ],
         "eyes": [
           "nâu sẫm",
@@ -1714,9 +1718,10 @@
           "hổ phách"
         ],
         "features": [
-          "chân móng guốc",
+          "tai ngựa trên đỉnh đầu",
           "đuôi ngựa",
-          "thân người từ hông trở lên"
+          "thân thể hai chân gần Nhân loại",
+          "không có tai người lộ rõ"
         ]
       },
       "spread": [
@@ -2528,7 +2533,7 @@
         "prov_carpathian"
       ],
       "loreEntry": "race_huyet-toc",
-      "note": "Lorebook chưa có entry [Chủng tộc] riêng — nội dung nằm ở entry địa danh Transylvania và nhân vật Carmilla Báthory. Tuổi thọ để null: Huyết Tộc không già đi, chỉ chết vì bị giết.",
+      "note": "Lorebook có entry chủng tộc riêng trong 75-huyet-toc-carpathian.json; nội dung địa phương nằm thêm ở Transylvania và hồ sơ Carmilla Báthory. Tuổi thọ để null: Huyết Tộc không già đi, chỉ chết vì bị giết.",
       "stats": {
         "pre": 2,
         "gui": 2,

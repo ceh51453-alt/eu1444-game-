@@ -138,10 +138,15 @@ Cả sáu kind đều chạy được rồi. Hai chỗ trước đây còn treo:
 | `matchMode` | `plain` | `plain` khớp trong từ · `wholeWord` khớp trọn từ (hiểu dấu tiếng Việt) · `regex` |
 | `caseSensitive` | `false` | |
 | `constant` | `false` | luôn chèn, bỏ qua từ khóa — **vẫn phải qua năm lớp và vẫn tranh ngân sách** |
+| `embedding` | — | `{ "text": "cụm nghĩa liên quan", "threshold": 0.17 }`; truy hồi mềm khi không khớp `keys` |
 
 > **Bẫy hay gặp nhất:** đặt từ khóa quá phổ thông (`"vua"`, `"đất"`, `"quân"`) thì
 > entry vào mọi lượt và ăn hết ngân sách. Từ khóa nên là **tên riêng** hoặc **cụm hai
 > ba chữ**. Muốn một entry luôn có mặt thì dùng `constant`, đừng dùng từ khóa rộng.
+
+`embedding` chạy hoàn toàn cục bộ, không gửi văn bản ra dịch vụ ngoài. Nó băm từ và
+cụm hai từ thành vector rồi so cosine; nên viết `text` bằng các cách diễn đạt thật mà
+người chơi có thể dùng. Ngưỡng thấp kéo rộng hơn nhưng dễ nhầm chủ đề.
 
 ### 4.3 Lớp 2 — thời gian
 
@@ -198,6 +203,7 @@ Xem mục 8 — đây là chỗ hệ này hơn hẳn SillyTavern, xin đọc k�
 **Cách tính điểm** (quyết định entry nào lọt ngân sách):
 ```
 điểm = (số từ khóa khớp × weight)
+     + (độ giống embedding × weight × 2) nếu vào bằng embedding
      + 5   nếu khớp trong tin nhắn MỚI NHẤT
      + 3   nếu khớp cả keysSecondary
      + 4   nếu entry gắn đúng vùng đang đứng
@@ -281,7 +287,7 @@ Xem mục 11.
 | `race_nguu-nhan` | **Mục Nhân** (còn gọi Ngưu Nhân) | xương sống bộ binh thảo nguyên, đấu sĩ Balkan | ngoài lề | 70 |
 | `race_ban-nhan` | Bán Nhân | nông dân, đầu bếp, tình báo | chính thống | 90 |
 | `race_tro-tan` | Tộc Tro Tàn | sinh sau đại dịch, gây sợ | bị xua đuổi | ? |
-| `race_huyet-toc` | Huyết Tộc | Phần 14b mục D | — | — |
+| `race_huyet-toc` | Huyết Tộc | lãnh chúa hắc ám vùng Carpathian, gia thần và huyết dân lệ thuộc | bị nguyền rủa | không già đi |
 
 > **Nguyên tắc gán tộc (Phần 14 mục 1b):** không tộc nào "man rợ" hay "văn minh" bẩm
 > sinh — vai trò đến từ thể chế. **Mỗi thế lực đều đa chủng tộc**; tộc thống trị chỉ

@@ -32,6 +32,7 @@ type LoreEntry = {
   matchMode: 'plain'|'wholeWord'|'regex';
   caseSensitive: boolean;
   constant: boolean;                // luôn chèn, bỏ qua từ khóa
+  embedding?: { text:string; threshold:number }; // truy hồi mềm cục bộ khi cách nói không trùng khóa
 
   // --- Lớp 2: điều kiện state ---
   condition?: string;               // biểu thức EJS trả boolean, đọc state

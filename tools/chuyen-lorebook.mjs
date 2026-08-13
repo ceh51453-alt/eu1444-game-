@@ -8,7 +8,7 @@
  * chỉ thêm field, đổi từ vựng bị cấm, và dọn từ khóa quá rộng. Chạy lại lúc nào
  * cũng ra đúng kết quả cũ.
  *
- * Bảy việc nó làm:
+ * Tám việc nó làm:
  *   1. Đặt id theo quy ước mục 2 (race_* nation_* hold_* npc_* …), thay cho 1..264
  *   2. Sinh `summary` cho mọi entry — bản lui khi hết ngân sách khối 4
  *   3. Sửa từ vựng bị cấm ("lãnh địa") và từ ngữ hiện đại ("hệ thống", "năng lượng"…)
@@ -16,9 +16,11 @@
  *   5. XẺ mỗi entry nhân vật thành ba tầng tri thức public / gated / secret (mục 8)
  *   6. Nối `related` giữa nhân vật ↔ địa danh ↔ thế lực (mục 7)
  *   7. Gắn `variants` viết tay trong `tools/bien-the.json` vào đúng entry (mục 6)
+ *   8. Dựng lại lore chủng tộc từ `data/races.json` + `tools/chung-toc-canon.json`,
+ *      rồi áp các bản vá canon ngoài chủng tộc trong `tools/lore-canon-overrides.json`.
  *
- * Nó KHÔNG đụng tới nội dung chủng tộc: theo yêu cầu, phần chủng tộc được chỉnh
- * ở phía game (`data/races.json`), không chỉnh trong sách.
+ * Các đoạn nguồn cũ bị thay thế vẫn được giữ trong tệp nhập để tiện đối chiếu;
+ * lorebook sinh ra mới là bản canon dùng lúc chơi.
  */
 
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
@@ -30,7 +32,28 @@ const ROOT = join(TOOLS, '..');
 const NGUON = join(ROOT, 'châu âu 1444.json');
 const DICH = join(ROOT, 'lorebooks');
 const VUNG = JSON.parse(readFileSync(join(ROOT, 'data', 'regions.json'), 'utf8')).regions;
+const DU_LIEU_CHUNG_TOC = JSON.parse(readFileSync(join(ROOT, 'data', 'races.json'), 'utf8')).races;
+const DU_LIEU_QUOC_GIA = JSON.parse(readFileSync(join(ROOT, 'data', 'nations.json'), 'utf8')).nations;
+const CHUNG_TOC_CANON = JSON.parse(readFileSync(join(TOOLS, 'chung-toc-canon.json'), 'utf8')).profiles;
 const BIEN_THE = JSON.parse(readFileSync(join(TOOLS, 'bien-the.json'), 'utf8'));
+const CANON_OVERRIDE = JSON.parse(readFileSync(join(TOOLS, 'lore-canon-overrides.json'), 'utf8'));
+
+function apCanonOverride(raw) {
+  let content = CANON_OVERRIDE.content?.[raw.id] ?? raw.content;
+  for (const [oldText, newText] of CANON_OVERRIDE.replace?.[raw.id] ?? []) {
+    if (!content.includes(oldText)) {
+      throw new Error(`Không tìm thấy đoạn canon cần thay trong entry nguồn ${raw.id}.`);
+    }
+    content = content.replace(oldText, newText);
+  }
+  for (const [oldText, newText] of Object.entries(CANON_OVERRIDE.contentTerms ?? {})) {
+    content = content.split(oldText).join(newText);
+  }
+  const remove = new Set(CANON_OVERRIDE.keyTerms?.remove ?? []);
+  const replace = CANON_OVERRIDE.keyTerms?.replace ?? {};
+  const keys = (raw.keys ?? []).map((key) => replace[key] ?? key).filter((key) => !remove.has(key));
+  return { ...raw, content, keys };
+}
 
 // ---------------------------------------------------------------------------
 // 1. TỪ VỰNG — mục 12 của hướng dẫn
@@ -292,6 +315,78 @@ const ID_CHUNG_TOC = {
   153: 'race_bang-toc', 154: 'race_moc-toc', 155: 'race_tro-tan', 156: 'race_nhan-loai',
 };
 
+const TEN_VUNG = new Map(VUNG.map((x) => [x.id, x.name]));
+const TEN_QUOC_GIA = new Map(DU_LIEU_QUOC_GIA.map((x) => [x.id, x.name]));
+const CHUNG_TOC_THEO_ID = new Map(DU_LIEU_CHUNG_TOC.map((x) => [x.id, x]));
+
+const VAI_TRO_CHUNG_TOC = {
+  'cai-tri': 'nắm chính quyền',
+  'quan-lai': 'quan lại và thông ngôn',
+  'tho-thu-cong': 'thợ thủ công và chuyên gia',
+  'thuong-nhan': 'thương nhân và người đi biển',
+  'binh-si': 'binh sĩ và lính đánh thuê',
+  'tang-lu': 'tăng lữ',
+  'lao-dich': 'lao động lệ thuộc',
+  'thieu-so': 'cộng đồng thiểu số',
+  'ngoai-le': 'cộng đồng ngoài lề pháp luật',
+};
+
+function noiDanhSach(items) {
+  if (items.length === 0) return 'không có vùng duy nhất được toàn tộc thừa nhận';
+  if (items.length === 1) return items[0];
+  return `${items.slice(0, -1).join(', ')} và ${items.at(-1)}`;
+}
+
+function moTaHinhThe(race) {
+  const a = race.appearance;
+  if (!a) return 'Không có một hình thể chung đủ hẹp để dùng làm căn cước.';
+  const cao = a.heightCm ? `${a.heightCm[0]}–${a.heightCm[1]} cm` : 'không cố định';
+  const nang = a.weightKg ? `${a.weightKg[0]}–${a.weightKg[1]} kg` : 'không cố định';
+  const dang = noiDanhSach(a.builds ?? []);
+  const da = noiDanhSach(a.skin ?? []);
+  const toc = noiDanhSach(a.hair ?? []);
+  const mat = noiDanhSach(a.eyes ?? []);
+  const dauHieu = noiDanhSach(a.features ?? []);
+  return `Tầm vóc chuẩn dùng khi tạo nhân vật: cao ${cao}, nặng ${nang}, dáng ${dang}. `
+    + `Da hoặc lớp phủ thường là ${da}; tóc hay cấu trúc tương ứng là ${toc}; mắt thường là ${mat}. `
+    + `Dấu hiệu dễ nhận: ${dauHieu}. ${race.appearanceNote ?? ''}`.trim();
+}
+
+function moTaPhanBo(race) {
+  const que = (race.homelands ?? []).map((id) => TEN_VUNG.get(id) ?? id);
+  const vaiTro = (race.spread ?? []).map((x) => {
+    const quocGia = TEN_QUOC_GIA.get(x.nation) ?? x.nation;
+    return `${quocGia}: ${VAI_TRO_CHUNG_TOC[x.role] ?? x.role}`;
+  });
+  const phanBo = vaiTro.length > 0 ? vaiTro.join('; ') : 'không có thế lực nào đại diện cho toàn tộc';
+  return `Quê hương và cộng đồng lớn: ${noiDanhSach(que)}. Phân bố chính trị năm 1444: ${phanBo}. `
+    + 'Đây là vai trò phổ biến, không phải nghề nghiệp hay lòng trung thành bẩm sinh của mọi cá nhân.';
+}
+
+function dungLoreChungToc(id) {
+  const profile = CHUNG_TOC_CANON[id];
+  if (!profile) throw new Error(`Thiếu hồ sơ canon cho ${id} trong tools/chung-toc-canon.json`);
+  if (profile.content) return profile.content;
+
+  const race = CHUNG_TOC_THEO_ID.get(id);
+  if (!race) throw new Error(`Hồ sơ ${id} không có dữ liệu tương ứng trong data/races.json`);
+  const tuoiTho = race.lifespan === null
+    ? profile.lifespanNote
+    : `Tuổi thọ sinh học điển hình khoảng ${race.lifespan} năm; chiến tranh, bệnh tật và địa vị có thể làm đời thực ngắn hơn.`;
+  if (!tuoiTho) throw new Error(`Chủng tộc ${id} có lifespan=null nhưng thiếu lifespanNote.`);
+
+  return `## Canon cốt lõi của ${profile.title}:\n`
+    + `- Căn tính: ${profile.identity}\n`
+    + `- Vị thế thường gặp: ${race.standing}.\n`
+    + `- Quan hệ với Giáo hội: ${race.church}.\n`
+    + `- Tuổi thọ: ${tuoiTho}\n\n`
+    + `## Hình thể và giới hạn sinh học:\n${moTaHinhThe(race)}\n\n${profile.biology}\n\n`
+    + `## Phân bố và thể chế:\n${moTaPhanBo(race)}\n\n${profile.society}\n\n`
+    + `## Gia đình, sinh kế và đời thường:\n${profile.dailyLife}\n\n${profile.family}\n\n`
+    + `## Đức tin, luật pháp và cách được nhìn nhận:\n${profile.faithAndLaw}\n\n`
+    + `## Chống hiểu sai:\n${profile.misconceptions}`;
+}
+
 const KHONG_DAU = {
   à: 'a', á: 'a', ạ: 'a', ả: 'a', ã: 'a', â: 'a', ầ: 'a', ấ: 'a', ậ: 'a', ẩ: 'a', ẫ: 'a',
   ă: 'a', ằ: 'a', ắ: 'a', ặ: 'a', ẳ: 'a', ẵ: 'a', è: 'e', é: 'e', ẹ: 'e', ẻ: 'e', ẽ: 'e',
@@ -519,7 +614,7 @@ const TRONG_SO = { place: 10, faction: 10, custom: 10, person: 14, concept: 12, 
 const UU_TIEN = { place: 7, faction: 7, custom: 7, person: 8, concept: 7, event: 8 };
 
 const goc = JSON.parse(readFileSync(NGUON, 'utf8'));
-const dsGoc = Object.values(goc.entries);
+const dsGoc = Object.values(goc.entries).map(apCanonOverride);
 
 const canhBao = [];
 const sach = {
@@ -617,7 +712,16 @@ for (const raw of dsGoc) {
   }
 
   if (loai !== 'person') {
-    dungEntry(raw, { id, loai, ten, keys, bookId });
+    if (loai === 'custom') {
+      const profile = CHUNG_TOC_CANON[id];
+      const khoaCanon = [...new Set([...(profile?.keys ?? []), ...keys])];
+      dungEntry(
+        { ...raw, content: dungLoreChungToc(id) },
+        { id, loai, ten: profile?.title ?? ten, keys: khoaCanon, bookId },
+      );
+    } else {
+      dungEntry(raw, { id, loai, ten, keys, bookId });
+    }
     continue;
   }
 

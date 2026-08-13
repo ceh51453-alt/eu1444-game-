@@ -803,7 +803,7 @@ function load(): NationData {
     if (found === undefined) throw new NationDataError(`phong trào dị giáo "${movement}" không có trong danh sách tôn giáo`);
     if (found.heresyOf !== religions.heresy.sourceFaith) {
       throw new NationDataError(
-        `"${movement}" phải khai heresyOf = "${religions.heresy.sourceFaith}" — mục 5: dị giáo phát sinh TỪ TRONG Giáo hội Chính thống`,
+        `"${movement}" phải khai heresyOf = "${religions.heresy.sourceFaith}" — mục 5: dị giáo phát sinh TỪ TRONG Giáo hội Tây phương`,
       );
     }
   }

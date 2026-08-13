@@ -202,16 +202,20 @@ function BookColumn(): ReactNode {
   const active = activation.filter((book) => book.active).length;
 
   return (
-    <div className="flex min-h-0 flex-col gap-1 overflow-y-auto pr-1">
-      <p className="text-xs tracking-[0.2em] text-brass uppercase">Sách ({books.length})</p>
-      {activation.length > 0 && (
-        <p className="text-[11px] text-vellum/50">
-          {active} sách đang bật
-          {regionId === '' ? '.' : ` vì bạn đang ở ${regionName(regionId)}.`}
-        </p>
-      )}
+    <section className="lorebook-column flex min-h-0 flex-col overflow-hidden rounded-lg border border-oak-light bg-oak/25">
+      <header className="border-b border-oak-light bg-oak/55 px-3 py-2.5">
+        <div className="flex items-center justify-between gap-2">
+          <h3 className="text-xs tracking-[0.2em] text-brass uppercase">Sách</h3>
+          <span className="rounded-full bg-ink/70 px-2 py-0.5 text-[10px] text-vellum/55">{books.length}</span>
+        </div>
+        {activation.length > 0 && (
+          <p className="mt-1 truncate text-[11px] text-vellum/50" title={regionId === '' ? undefined : regionName(regionId)}>
+            {active} đang bật{regionId === '' ? '' : ` · ${regionName(regionId)}`}
+          </p>
+        )}
+      </header>
 
-      <ul className="flex flex-col gap-1">
+      <ul className="min-h-0 flex-1 space-y-1 overflow-y-auto p-2">
         {books.map((book) => {
           const status = activation.find((item) => item.bookId === book.id);
           return (
@@ -219,8 +223,8 @@ function BookColumn(): ReactNode {
               <button
                 type="button"
                 onClick={() => store.select(book.id)}
-                className={`w-full rounded border px-2 py-1 text-left text-xs ${
-                  selected === book.id ? 'border-brass bg-brass/10' : 'border-oak-light bg-ink/40 hover:border-vellum/40'
+                className={`w-full rounded-md border px-2.5 py-2 text-left text-xs transition-colors ${
+                  selected === book.id ? 'border-brass bg-brass/12' : 'border-oak-light bg-ink/45 hover:border-vellum/40 hover:bg-oak/45'
                 }`}
               >
                 <span className="flex items-center gap-2">
@@ -233,7 +237,7 @@ function BookColumn(): ReactNode {
                   <span className="min-w-0 flex-1 truncate text-parchment">{book.name}</span>
                   <span className="text-vellum/40">{book.entries.length}</span>
                 </span>
-                <span className="mt-0.5 block text-[11px] text-vellum/40">
+                <span className="mt-1 block truncate text-[11px] text-vellum/40">
                   {book.scope.kind}
                   {book.scope.refId === undefined ? '' : `: ${book.scope.refId}`}
                   {status === undefined ? '' : ` · ${status.active ? 'ĐANG BẬT' : 'tắt'} — ${status.reason}`}
@@ -243,7 +247,7 @@ function BookColumn(): ReactNode {
           );
         })}
       </ul>
-    </div>
+    </section>
   );
 }
 
@@ -276,16 +280,22 @@ function EntryColumn(): ReactNode {
   });
 
   return (
-    <div className="flex min-h-0 flex-col gap-1">
-      <div className="flex gap-1">
+    <section className="lorebook-column flex min-h-0 flex-col overflow-hidden rounded-lg border border-oak-light bg-oak/25">
+      <header className="border-b border-oak-light bg-oak/55 p-2.5">
+        <div className="mb-2 flex items-center justify-between gap-2">
+          <h3 className="text-xs tracking-[0.2em] text-brass uppercase">Entries</h3>
+          <span className="text-[11px] text-vellum/45">{entries.length}/{book.entries.length}</span>
+        </div>
+        <div className="flex gap-1">
         <TextInput
           value={search}
           placeholder="tìm theo tên, id, từ khóa"
+          aria-label="Tìm entry"
           onChange={(event) => setSearch(event.target.value)}
         />
-        <Button onClick={() => store.addEntry(book.id)}>+</Button>
-      </div>
-      <div className="flex gap-1">
+        <Button className="shrink-0 px-3 text-base" aria-label="Thêm entry" title="Thêm entry" onClick={() => store.addEntry(book.id)}>+</Button>
+        </div>
+        <div className="mt-1.5 flex gap-1">
         <Select value={type} onChange={(event) => setType(event.target.value)}>
           <option>tất cả</option>
           {[...new Set(book.entries.map((entry) => entry.type))].map((value) => (
@@ -298,9 +308,10 @@ function EntryColumn(): ReactNode {
           <option>gated</option>
           <option>secret</option>
         </Select>
-      </div>
+        </div>
+      </header>
 
-      <ul className="min-h-0 flex-1 overflow-y-auto">
+      <ul className="min-h-0 flex-1 overflow-y-auto p-2">
         {entries.map((entry) => {
           const decision = decisions.find((item) => item.entryId === entry.id);
           const inserted = decision !== undefined && decision.outcome !== 'loại';
@@ -309,10 +320,10 @@ function EntryColumn(): ReactNode {
               <button
                 type="button"
                 onClick={() => store.select(book.id, entry.id)}
-                className={`mb-1 w-full rounded border px-2 py-1 text-left text-xs ${
+                className={`mb-1 w-full rounded-md border px-2.5 py-2 text-left text-xs transition-colors ${
                   selected === entry.id
-                    ? 'border-brass bg-brass/10'
-                    : 'border-oak-light bg-ink/40 hover:border-vellum/40'
+                    ? 'border-brass bg-brass/12 shadow-[inset_3px_0_0_var(--color-brass)]'
+                    : 'border-oak-light bg-ink/45 hover:border-vellum/40 hover:bg-oak/45'
                 }`}
               >
                 <span className="flex items-center gap-2">
@@ -325,15 +336,17 @@ function EntryColumn(): ReactNode {
                     </span>
                   )}
                 </span>
-                <span className="block truncate text-[11px] text-vellum/40">
+                <span className="mt-1 block truncate text-[11px] text-vellum/40">
                   {entry.keys.length === 0 ? '(không từ khóa)' : entry.keys.join(', ')}
                 </span>
+                <span className="mt-0.5 block truncate font-mono text-[10px] text-vellum/30">{entry.id}</span>
               </button>
             </li>
           );
         })}
+        {entries.length === 0 && <p className="px-3 py-6 text-center text-xs text-vellum/40 italic">Không có entry phù hợp.</p>}
       </ul>
-    </div>
+    </section>
   );
 }
 
@@ -444,6 +457,8 @@ export function LorebookManager({ onClose }: { onClose(): void }): ReactNode {
   const [probe, setProbe] = useState('Ngài hỏi thăm về bá tước Reinhard và chợ phiên.');
   const [dryRun, setDryRun] = useState<typeof pass | null>(null);
   const [entryMode, setEntryMode] = useState<'read' | 'edit'>('read');
+  const [showSetup, setShowSetup] = useState(false);
+  const [showDiagnostics, setShowDiagnostics] = useState(false);
 
   useEffect(() => {
     setEntryMode('read');
@@ -462,23 +477,38 @@ export function LorebookManager({ onClose }: { onClose(): void }): ReactNode {
   const shown = dryRun ?? pass;
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col gap-3 bg-ink/95 p-4">
-      <div className="flex items-center gap-3">
-        <h2 className="text-xs tracking-[0.2em] text-brass uppercase">Lorebook</h2>
-        <span className="text-xs text-vellum/40">
-          {books.reduce((sum, item) => sum + item.entries.length, 0)} entry · lượt gần nhất chèn{' '}
-          {pass.items.length + pass.depthBlocks.length} mục, {pass.used}/{pass.limit} token
+    <div className="lorebook-manager fixed inset-0 z-[110] flex flex-col bg-ink">
+      <header className="flex min-h-16 shrink-0 items-center gap-3 border-b border-oak-light bg-oak/45 px-4 py-3 shadow-lg">
+        <div>
+          <h2 className="text-sm tracking-[0.22em] text-brass uppercase">Lorebook</h2>
+          <p className="mt-0.5 text-[11px] text-vellum/40">Trình quản lý tri thức</p>
+        </div>
+        <span className="rounded-full border border-oak-light bg-ink/65 px-2.5 py-1 text-xs text-vellum/55">
+          {books.reduce((sum, item) => sum + item.entries.length, 0)} entries
+        </span>
+        <span className="hidden rounded-full border border-oak-light bg-ink/65 px-2.5 py-1 text-xs text-vellum/55 sm:inline">
+          Lượt gần nhất: {pass.items.length + pass.depthBlocks.length} mục · {pass.used}/{pass.limit} token
         </span>
         <div className="flex-1" />
-        <Button onClick={onClose}>Đóng (Esc)</Button>
-      </div>
+        <Button variant={showSetup ? 'primary' : 'normal'} onClick={() => setShowSetup((value) => !value)}>
+          {showSetup ? 'Ẩn thiết lập' : 'Thiết lập'}
+        </Button>
+        <Button variant={showDiagnostics ? 'primary' : 'normal'} onClick={() => setShowDiagnostics((value) => !value)}>
+          {showDiagnostics ? 'Ẩn kiểm tra' : 'Kiểm tra chèn'}
+        </Button>
+        <Button className="ml-1" onClick={onClose}>Đóng (Esc)</Button>
+      </header>
 
-      <LorebookToolbar />
-      <ViTriVaPhe />
-      <LorebookWarnings />
+      {showSetup && (
+        <section className="lorebook-setup shrink-0 border-b border-oak-light bg-ink px-4 py-3 shadow-lg">
+          <LorebookToolbar />
+          <div className="mt-3">
+            <ViTriVaPhe />
+          </div>
+          <LorebookWarnings />
 
-      {book !== undefined && (
-        <div className="grid grid-cols-4 gap-2">
+          {book !== undefined && (
+            <div className="mt-3 grid grid-cols-4 gap-2">
           <Field label="Tên sách">
             <TextInput value={book.name} onChange={(event) => store.patch(book.id, { name: event.target.value })} />
           </Field>
@@ -515,25 +545,36 @@ export function LorebookManager({ onClose }: { onClose(): void }): ReactNode {
               Xóa sách
             </Button>
           </div>
-        </div>
+            </div>
+          )}
+        </section>
       )}
 
-      <div className="grid min-h-0 flex-1 grid-cols-[18rem_20rem_1fr] gap-3 overflow-hidden">
+      <main className="lorebook-browser grid min-h-0 flex-1 gap-3 overflow-hidden p-3">
         <BookColumn />
         <EntryColumn />
         {entry === undefined || book === undefined ? (
-          <p className="text-xs text-vellum/40 italic">Chọn một entry ở cột giữa để đọc thông tin hoặc chỉnh sửa.</p>
+          <div className="lorebook-reading-pane flex min-h-0 items-center justify-center rounded-lg border border-dashed border-oak-light bg-oak/15 p-8 text-center">
+            <div>
+              <p className="text-base text-vellum/60">Chọn một entry để đọc</p>
+              <p className="mt-1 text-xs text-vellum/35">Nội dung đầy đủ và thông tin kích hoạt sẽ xuất hiện tại đây.</p>
+            </div>
+          </div>
         ) : (
-          <div className="flex min-h-0 flex-col gap-2">
-            <div className="flex items-center gap-1">
+          <section className="lorebook-reading-pane flex min-h-0 flex-col overflow-hidden rounded-lg border border-oak-light bg-oak/20">
+            <header className="flex shrink-0 items-center gap-2 border-b border-oak-light bg-oak/55 px-3 py-2">
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm text-parchment">{entry.title}</p>
+                <p className="truncate font-mono text-[10px] text-vellum/35">{entry.id}</p>
+              </div>
               <Button variant={entryMode === 'read' ? 'primary' : 'normal'} onClick={() => setEntryMode('read')}>
-                Đọc thông tin
+                Bản đọc
               </Button>
               <Button variant={entryMode === 'edit' ? 'primary' : 'normal'} onClick={() => setEntryMode('edit')}>
-                Sửa entry
+                Chỉnh sửa
               </Button>
-            </div>
-            <div className="min-h-0 flex-1 overflow-hidden">
+            </header>
+            <div className="lorebook-reading-body min-h-0 flex-1 overflow-hidden p-3">
               {entryMode === 'read' ? (
                 <LoreEntryDetails entry={entry} bookName={book.name} bookId={book.id} />
               ) : (
@@ -546,28 +587,32 @@ export function LorebookManager({ onClose }: { onClose(): void }): ReactNode {
                 />
               )}
             </div>
-          </div>
+          </section>
         )}
-      </div>
+      </main>
 
-      <div className="flex items-center gap-2">
-        <TextInput
-          value={probe}
-          placeholder="gõ một đoạn văn bản giả để thử quét"
-          onChange={(event) => setProbe(event.target.value)}
-        />
-        <Button variant="primary" onClick={() => setDryRun(useTurnStore.getState().dryRunLore(probe))}>
-          Thử quét
-        </Button>
-        <Button onClick={() => setDryRun(null)} disabled={dryRun === null}>
-          Xem lại lượt thật
-        </Button>
-        {dryRun !== null && <span className="text-xs text-brass">đang xem kết quả thử quét</span>}
-      </div>
+      {showDiagnostics && (
+        <section className="lorebook-diagnostics flex h-[min(22rem,42vh)] shrink-0 flex-col gap-2 border-t border-oak-light bg-oak/35 px-4 py-3 shadow-[0_-12px_30px_rgba(0,0,0,0.28)]">
+          <div className="flex items-center gap-2">
+            <TextInput
+              value={probe}
+              placeholder="gõ một đoạn văn bản giả để thử quét"
+              onChange={(event) => setProbe(event.target.value)}
+            />
+            <Button variant="primary" onClick={() => setDryRun(useTurnStore.getState().dryRunLore(probe))}>
+              Thử quét
+            </Button>
+            <Button onClick={() => setDryRun(null)} disabled={dryRun === null}>
+              Lượt thật
+            </Button>
+            {dryRun !== null && <span className="shrink-0 text-xs text-brass">đang xem thử</span>}
+          </div>
 
-      <div className="h-64 min-h-0">
-        <ExplainPanel decisions={shown.decisions} />
-      </div>
+          <div className="min-h-0 flex-1">
+            <ExplainPanel decisions={shown.decisions} />
+          </div>
+        </section>
+      )}
     </div>
   );
 }

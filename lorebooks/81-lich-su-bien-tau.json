@@ -1,0 +1,713 @@
+{
+  "kind": "eu1444-lorebook",
+  "schemaVersion": 1,
+  "exportedAt": 0,
+  "books": [
+    {
+      "id": "book-lich-su-bien-tau",
+      "name": "Europa 1444 · Lịch sử ngoài đời được biến tấu",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 5,
+      "entries": [
+        {
+          "id": "history_quy-tac-canon",
+          "title": "Quy tắc lịch sử biến tấu của Europa",
+          "type": "concept",
+          "content": "<% const nam = now.year; %>[CANON LỊCH SỬ · năm <%= nam %>] Europa bám niên đại, nhân vật, chiến tranh, dịch bệnh, thương mại và thiết chế có thật đến năm 1444. Ma pháp và các chủng tộc làm thay đổi cách sự kiện diễn ra, không xóa hậu cần, mùa vụ, luật thừa kế hay đấu tranh giai cấp. Không chủng tộc nào đồng nhất với một quốc gia, tôn giáo, nghề hoặc giai cấp. Không kể sự kiện sau 1444 như kết cục đã định; người trong thế giới chỉ có dự đoán, lời sấm hoặc tin đồn. Khi nguồn cũ xung đột, sách chuyên sâu 81–83 và dữ liệu canon hiện hành được ưu tiên.",
+          "summary": "Europa bám niên đại, nhân vật, chiến tranh, dịch bệnh, thương mại và thiết chế có thật đến năm 1444. Ma pháp và các chủng tộc làm thay đổi cách sự kiện diễn ra, không xóa hậu cần, mùa vụ, luật thừa kế hay đấu tranh giai cấp. Không chủng tộc nào đồng nhất với một quốc gia, tôn giáo, nghề hoặc giai cấp. Không kể sự kiện sau 1444 như kết cục đã định; người trong thế giới chỉ có dự đoán, lời sấm hoặc tin đồn. Khi nguồn cũ xung đột, sách chuyên sâu 81–83 và dữ liệu canon hiện hành được ưu tiên.",
+          "keys": [
+            "lịch sử Europa",
+            "niên biểu",
+            "canon lịch sử",
+            "năm 1444"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": true,
+          "embedding": {
+            "text": "quy tắc canon lịch sử thật biến tấu ma pháp chủng tộc niên đại không biết tương lai",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 15,
+          "budgetPriority": 10,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_de-quoc-tay-sup-do",
+          "title": "376–476 · Đại di cư và sự sụp đổ của Đế quốc Tây La Mã",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 476); %>[BIÊN NIÊN 376–476 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Các nhóm Goth, Vandal, Frank và nhiều liên minh chiến binh vượt biên giới; năm 476, hoàng đế Tây La Mã cuối cùng bị phế. Quyền lực trung ương biến mất nhưng đường La Mã, thành thị, điền trang, luật viết và mạng lưới giám mục không cùng lúc biến mất.\n\nĐiểm biến tấu của Europa: Trong Europa, “rợ” không phải một chủng tộc: các đoàn di cư gồm Teuton, Nhân Loại và nhiều cộng đồng khác. Ma pháp làm thành lũy tồn tại lâu hơn, nhưng cũng khiến vài vụ vỡ kết giới biến thành thảm họa; Giáo hội Tây phương giữ sổ đất, trường chép sách và nghi lễ bảo hộ khi quan lại bỏ đi.\n\nDi sản và giới hạn tri thức năm 1444: Vì vậy quý tộc năm 1444 vừa nhận mình là hậu duệ chiến binh di cư, vừa thèm uy danh La Mã. Đế quốc La Mã Thần thánh, Giáo triều và Đông La Mã đều dựa vào ký ức này để tranh quyền kế thừa.",
+          "summary": "Xương sống lịch sử ngoài đời: Các nhóm Goth, Vandal, Frank và nhiều liên minh chiến binh vượt biên giới; năm 476, hoàng đế Tây La Mã cuối cùng bị phế. Quyền lực trung ương biến mất nhưng đường La Mã, thành thị, điền trang, luật viết và mạng lưới giám mục không cùng lúc biến mất. Điểm biến tấu của Europa: Trong Europa, “rợ” không phải một chủng tộc: các đoàn di cư gồm Teuton, Nhân Loại và nhiều cộng đồng khác. Ma pháp làm thành lũy tồn tại lâu hơn, nhưng cũng khiến vài vụ vỡ kết giới biến thành thảm họa;…",
+          "keys": [
+            "Đại di cư",
+            "Tây La Mã",
+            "Rome thất thủ",
+            "476",
+            "hậu La Mã",
+            "Đại di cư và sự sụp đổ của Đế quốc Tây La Mã"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đại di cư và sự sụp đổ của Đế quốc Tây La Mã. Các nhóm Goth, Vandal, Frank và nhiều liên minh chiến binh vượt biên giới; năm 476, hoàng đế Tây La Mã cuối cùng bị phế. Quyền lực trung ương biến mất nhưng đường La Mã, thành thị, điền trang, luật viết và mạng lưới giám mục không cùng lúc biến mất. Trong Europa, “rợ” không phải một chủng tộc: các đoàn di cư gồm Teuton, Nhân Loại và nhiều cộng đồng khác. Ma pháp làm thành lũy tồn tại lâu hơn, nhưng cũng khiến vài vụ vỡ kết giới biến thành thảm họa; Giáo hội Tây phương giữ sổ đất, trường chép sách và nghi lễ bảo hộ khi quan lại bỏ đi. Vì vậy quý tộc năm 1444 vừa nhận mình là hậu duệ chiến binh di cư, vừa thèm uy danh La Mã. Đế quốc La Mã Thần thánh, Giáo triều và Đông La Mã đều dựa vào ký ức này để tranh quyền kế thừa.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_justinian-va-dai-dich",
+          "title": "527–565 · Justinian, cuộc tái chinh phục và Đại dịch đầu tiên",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 565); %>[BIÊN NIÊN 527–565 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Hoàng đế Justinian cố tái chiếm Ý và Bắc Phi, hệ thống hóa luật La Mã và dựng Hagia Sophia. Chiến tranh kéo dài cùng đại dịch từ năm 541 làm suy kiệt kho bạc, dân số và khả năng giữ những vùng vừa chiếm.\n\nĐiểm biến tấu của Europa: Các pháp quan Đông La Mã đóng luật khế ước và luật pháp thuật vào cùng một bộ; thánh ca tập thể gia cố mái vòm Hagia Sophia. Đại dịch lại bám theo cả đường buôn lẫn dòng mana, nên phép chữa trị quá mức tại một thành có thể kéo bệnh sang thành khác.\n\nDi sản và giới hạn tri thức năm 1444: Luật gia, Giáo hội Đông phương và triều Palaiologos vẫn viện dẫn bộ luật ấy. Người đời 1444 nhớ Justinian như bằng chứng rằng phép mạnh không cứu nổi một đế chế nếu thuế, hậu cần và nhân lực đã gãy.",
+          "summary": "Xương sống lịch sử ngoài đời: Hoàng đế Justinian cố tái chiếm Ý và Bắc Phi, hệ thống hóa luật La Mã và dựng Hagia Sophia. Chiến tranh kéo dài cùng đại dịch từ năm 541 làm suy kiệt kho bạc, dân số và khả năng giữ những vùng vừa chiếm. Điểm biến tấu của Europa: Các pháp quan Đông La Mã đóng luật khế ước và luật pháp thuật vào cùng một bộ; thánh ca tập thể gia cố mái vòm Hagia Sophia. Đại dịch lại bám theo cả đường buôn lẫn dòng mana, nên phép chữa trị quá mức tại một thành có thể kéo bệnh sang thành khác.…",
+          "keys": [
+            "Justinian",
+            "dịch Justinian",
+            "Corpus Juris",
+            "Lửa Hy Lạp",
+            "Đông La Mã",
+            "Justinian, cuộc tái chinh phục và Đại dịch đầu tiên"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Justinian, cuộc tái chinh phục và Đại dịch đầu tiên. Hoàng đế Justinian cố tái chiếm Ý và Bắc Phi, hệ thống hóa luật La Mã và dựng Hagia Sophia. Chiến tranh kéo dài cùng đại dịch từ năm 541 làm suy kiệt kho bạc, dân số và khả năng giữ những vùng vừa chiếm. Các pháp quan Đông La Mã đóng luật khế ước và luật pháp thuật vào cùng một bộ; thánh ca tập thể gia cố mái vòm Hagia Sophia. Đại dịch lại bám theo cả đường buôn lẫn dòng mana, nên phép chữa trị quá mức tại một thành có thể kéo bệnh sang thành khác. Luật gia, Giáo hội Đông phương và triều Palaiologos vẫn viện dẫn bộ luật ấy. Người đời 1444 nhớ Justinian như bằng chứng rằng phép mạnh không cứu nổi một đế chế nếu thuế, hậu cần và nhân lực đã gãy.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_nam-phuong-truong-thanh",
+          "title": "610–750 · Sự trỗi dậy của Nhất thần phương Nam",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 750); %>[BIÊN NIÊN 610–750 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Một tôn giáo nhất thần mới thống nhất nhiều bộ lạc Arabia rồi mở rộng qua Levant, Ai Cập, Bắc Phi và Iberia. Các caliphate kế tiếp xây bộ máy thuế, luật, học thuật và mạng thương mại nối ba châu lục.\n\nĐiểm biến tấu của Europa: Europa biến quá trình này thành một liên minh chính trị–đức tin đa chủng tộc; Orc nổi bật trong quân đội và triều chính nhưng không sinh ra đã theo đạo, còn người cải đạo thuộc mọi tộc đều có thể vào học viện, quân đoàn và thương hội. Pháp học quy định chặt ai được dùng loại ma thuật nào trước tòa.\n\nDi sản và giới hạn tri thức năm 1444: Đến 1444, Ottoman thừa hưởng nhiều thiết chế phương Nam nhưng không đại diện cho toàn bộ đức tin. Việc đồng nhất mọi Orc với một tôn giáo, hay mọi tín đồ với Ottoman, là định kiến sai canon.",
+          "summary": "Xương sống lịch sử ngoài đời: Một tôn giáo nhất thần mới thống nhất nhiều bộ lạc Arabia rồi mở rộng qua Levant, Ai Cập, Bắc Phi và Iberia. Các caliphate kế tiếp xây bộ máy thuế, luật, học thuật và mạng thương mại nối ba châu lục. Điểm biến tấu của Europa: Europa biến quá trình này thành một liên minh chính trị–đức tin đa chủng tộc; Orc nổi bật trong quân đội và triều chính nhưng không sinh ra đã theo đạo, còn người cải đạo thuộc mọi tộc đều có thể vào học viện, quân đoàn và thương hội.…",
+          "keys": [
+            "Nhất thần phương Nam",
+            "caliph",
+            "Hồi giáo",
+            "Damascus",
+            "Baghdad",
+            "cuộc chinh phục phương Nam",
+            "Sự trỗi dậy của Nhất thần phương Nam"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Sự trỗi dậy của Nhất thần phương Nam. Một tôn giáo nhất thần mới thống nhất nhiều bộ lạc Arabia rồi mở rộng qua Levant, Ai Cập, Bắc Phi và Iberia. Các caliphate kế tiếp xây bộ máy thuế, luật, học thuật và mạng thương mại nối ba châu lục. Europa biến quá trình này thành một liên minh chính trị–đức tin đa chủng tộc; Orc nổi bật trong quân đội và triều chính nhưng không sinh ra đã theo đạo, còn người cải đạo thuộc mọi tộc đều có thể vào học viện, quân đoàn và thương hội. Pháp học quy định chặt ai được dùng loại ma thuật nào trước tòa. Đến 1444, Ottoman thừa hưởng nhiều thiết chế phương Nam nhưng không đại diện cho toàn bộ đức tin. Việc đồng nhất mọi Orc với một tôn giáo, hay mọi tín đồ với Ottoman, là định kiến sai canon.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_carolingian",
+          "title": "768–843 · Charlemagne và sự phân chia đế chế Carolingian",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 843); %>[BIÊN NIÊN 768–843 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Charlemagne mở rộng vương quốc Frank, được Giáo hoàng đội vương miện hoàng đế năm 800 và thúc đẩy trường học cung đình. Hiệp ước Verdun năm 843 chia cơ nghiệp giữa các cháu, đặt nền xa cho Pháp, Đức và vùng tranh chấp ở giữa.\n\nĐiểm biến tấu của Europa: Lễ đăng quang còn là khế ước ma pháp: Giáo triều trao tính hợp thức thiêng, hoàng đế hứa bảo vệ giáo sĩ và đường hành hương. Khi đế chế chia ba, mạng ấn tín cũng đứt ba, để lại các tu viện và thành trì tranh nhau những mảnh pháp quyền cũ.\n\nDi sản và giới hạn tri thức năm 1444: Pháp, Đế quốc La Mã Thần thánh và Burgundy đều chọn phần có lợi trong ký ức Carolingian. Đây là gốc sâu của tranh chấp biên giới, tước hiệu và câu hỏi ai mới là người Frank “thật”.",
+          "summary": "Xương sống lịch sử ngoài đời: Charlemagne mở rộng vương quốc Frank, được Giáo hoàng đội vương miện hoàng đế năm 800 và thúc đẩy trường học cung đình. Hiệp ước Verdun năm 843 chia cơ nghiệp giữa các cháu, đặt nền xa cho Pháp, Đức và vùng tranh chấp ở giữa. Điểm biến tấu của Europa: Lễ đăng quang còn là khế ước ma pháp: Giáo triều trao tính hợp thức thiêng, hoàng đế hứa bảo vệ giáo sĩ và đường hành hương.…",
+          "keys": [
+            "Charlemagne",
+            "Carolus Magnus",
+            "Verdun",
+            "843",
+            "Carolingian",
+            "Charlemagne và sự phân chia đế chế Carolingian"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Charlemagne và sự phân chia đế chế Carolingian. Charlemagne mở rộng vương quốc Frank, được Giáo hoàng đội vương miện hoàng đế năm 800 và thúc đẩy trường học cung đình. Hiệp ước Verdun năm 843 chia cơ nghiệp giữa các cháu, đặt nền xa cho Pháp, Đức và vùng tranh chấp ở giữa. Lễ đăng quang còn là khế ước ma pháp: Giáo triều trao tính hợp thức thiêng, hoàng đế hứa bảo vệ giáo sĩ và đường hành hương. Khi đế chế chia ba, mạng ấn tín cũng đứt ba, để lại các tu viện và thành trì tranh nhau những mảnh pháp quyền cũ. Pháp, Đế quốc La Mã Thần thánh và Burgundy đều chọn phần có lợi trong ký ức Carolingian. Đây là gốc sâu của tranh chấp biên giới, tước hiệu và câu hỏi ai mới là người Frank “thật”.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_ly-giao-1054",
+          "title": "1054 · Đại Ly giáo Đông–Tây",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1054); %>[BIÊN NIÊN 1054 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Xung đột lâu dài về quyền tối thượng của Giáo hoàng, ngôn ngữ, nghi lễ và tín điều bùng thành các vạ tuyệt thông năm 1054. Đây không phải một ngày mọi liên hệ lập tức chấm dứt, mà là mốc biểu tượng của quá trình xa cách nhiều thế kỷ.\n\nĐiểm biến tấu của Europa: Trong Europa, hai bên còn bất đồng về cách kiểm chứng phép lạ: Tây phương đặt thánh tích dưới quyền cấp phép tập trung, Đông phương xem thánh tượng và thánh ca của cộng đoàn là nguồn chứng thực. Cả hai cùng thờ một Chúa nhưng gọi phép của nhau là sai nghi lễ.\n\nDi sản và giới hạn tri thức năm 1444: Đến 1444, ký ức cuộc cướp Constantinople năm 1204 khiến vết nứt sâu hơn thần học. Hiệp ước Florence 1439 tuyên bố hợp nhất trên giấy, nhưng phần lớn giáo sĩ và dân chúng Đông phương chưa chấp nhận.",
+          "summary": "Xương sống lịch sử ngoài đời: Xung đột lâu dài về quyền tối thượng của Giáo hoàng, ngôn ngữ, nghi lễ và tín điều bùng thành các vạ tuyệt thông năm 1054. Đây không phải một ngày mọi liên hệ lập tức chấm dứt, mà là mốc biểu tượng của quá trình xa cách nhiều thế kỷ. Điểm biến tấu của Europa: Trong Europa, hai bên còn bất đồng về cách kiểm chứng phép lạ: Tây phương đặt thánh tích dưới quyền cấp phép tập trung, Đông phương xem thánh tượng và thánh ca của cộng đoàn là nguồn chứng thực.…",
+          "keys": [
+            "Đại Ly giáo",
+            "1054",
+            "Đông Tây phân ly",
+            "Filioque",
+            "Giáo hội Đông phương",
+            "Đại Ly giáo Đông–Tây"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đại Ly giáo Đông–Tây. Xung đột lâu dài về quyền tối thượng của Giáo hoàng, ngôn ngữ, nghi lễ và tín điều bùng thành các vạ tuyệt thông năm 1054. Đây không phải một ngày mọi liên hệ lập tức chấm dứt, mà là mốc biểu tượng của quá trình xa cách nhiều thế kỷ. Trong Europa, hai bên còn bất đồng về cách kiểm chứng phép lạ: Tây phương đặt thánh tích dưới quyền cấp phép tập trung, Đông phương xem thánh tượng và thánh ca của cộng đoàn là nguồn chứng thực. Cả hai cùng thờ một Chúa nhưng gọi phép của nhau là sai nghi lễ. Đến 1444, ký ức cuộc cướp Constantinople năm 1204 khiến vết nứt sâu hơn thần học. Hiệp ước Florence 1439 tuyên bố hợp nhất trên giấy, nhưng phần lớn giáo sĩ và dân chúng Đông phương chưa chấp nhận.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_norman-1066",
+          "title": "1066 · Cuộc chinh phục Norman tại Anh",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1066); %>[BIÊN NIÊN 1066 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: William xứ Normandy thắng tại Hastings, thay tầng lớp cầm quyền Anglo-Saxon bằng quý tộc Norman và tổ chức kiểm kê tài sản quy mô lớn. Tiếng Pháp cung đình, tiếng Anh dân gian và Latin giáo sĩ cùng tồn tại.\n\nĐiểm biến tấu của Europa: Nhà vua buộc các lãnh chúa khai cả quyền thu thuế, nghĩa vụ quân sự lẫn giếng mana và cổ vật bảo hộ. Những cộng đồng khác tộc vẫn là nông dân, thợ và lính như nhau; chủng tộc không tự động quyết định giai cấp.\n\nDi sản và giới hạn tri thức năm 1444: Anh quốc năm 1444 có triều đình dùng văn hóa quý tộc Pháp nhưng đang chiến tranh với chính nước Pháp. Mọi yêu sách ngôi vua bên kia biển đều bắt rễ trong lịch sử hôn nhân và thừa kế này.",
+          "summary": "Xương sống lịch sử ngoài đời: William xứ Normandy thắng tại Hastings, thay tầng lớp cầm quyền Anglo-Saxon bằng quý tộc Norman và tổ chức kiểm kê tài sản quy mô lớn. Tiếng Pháp cung đình, tiếng Anh dân gian và Latin giáo sĩ cùng tồn tại. Điểm biến tấu của Europa: Nhà vua buộc các lãnh chúa khai cả quyền thu thuế, nghĩa vụ quân sự lẫn giếng mana và cổ vật bảo hộ. Những cộng đồng khác tộc vẫn là nông dân, thợ và lính như nhau; chủng tộc không tự động quyết định giai cấp.…",
+          "keys": [
+            "1066",
+            "Hastings",
+            "William Kẻ Chinh Phục",
+            "Norman",
+            "Domesday",
+            "Cuộc chinh phục Norman tại Anh"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Cuộc chinh phục Norman tại Anh. William xứ Normandy thắng tại Hastings, thay tầng lớp cầm quyền Anglo-Saxon bằng quý tộc Norman và tổ chức kiểm kê tài sản quy mô lớn. Tiếng Pháp cung đình, tiếng Anh dân gian và Latin giáo sĩ cùng tồn tại. Nhà vua buộc các lãnh chúa khai cả quyền thu thuế, nghĩa vụ quân sự lẫn giếng mana và cổ vật bảo hộ. Những cộng đồng khác tộc vẫn là nông dân, thợ và lính như nhau; chủng tộc không tự động quyết định giai cấp. Anh quốc năm 1444 có triều đình dùng văn hóa quý tộc Pháp nhưng đang chiến tranh với chính nước Pháp. Mọi yêu sách ngôi vua bên kia biển đều bắt rễ trong lịch sử hôn nhân và thừa kế này.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_thap-tu-chinh",
+          "title": "1095–1291 · Các cuộc Thập tự chinh phương Đông",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1291); %>[BIÊN NIÊN 1095–1291 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Từ lời kêu gọi năm 1095, nhiều đoàn viễn chinh Tây Âu đến Levant, lập các quốc gia thập tự rồi lần lượt mất chúng; Acre thất thủ năm 1291. Động cơ trộn đức tin, cứu rỗi, đất, nợ, thương mại và tham vọng dòng họ.\n\nĐiểm biến tấu của Europa: Giáo triều cấp phép cho vài dòng hiệp sĩ dùng thánh thuật chiến trường; thương nhân Latin đổi vận tải lấy khu phố và đặc quyền cảng. Dân thường mọi chủng tộc chịu thuế, cướp bóc và đổi chính quyền, nên ký ức địa phương khác hẳn anh hùng ca Tây phương.\n\nDi sản và giới hạn tri thức năm 1444: Năm 1444, “thập tự chinh” vẫn là công cụ ngoại giao và thuế khóa, nhưng Varna cho thấy lời thề chung không xóa cạnh tranh chỉ huy, hậu cần kém hay lợi ích riêng.",
+          "summary": "Xương sống lịch sử ngoài đời: Từ lời kêu gọi năm 1095, nhiều đoàn viễn chinh Tây Âu đến Levant, lập các quốc gia thập tự rồi lần lượt mất chúng; Acre thất thủ năm 1291. Động cơ trộn đức tin, cứu rỗi, đất, nợ, thương mại và tham vọng dòng họ. Điểm biến tấu của Europa: Giáo triều cấp phép cho vài dòng hiệp sĩ dùng thánh thuật chiến trường; thương nhân Latin đổi vận tải lấy khu phố và đặc quyền cảng. Dân thường mọi chủng tộc chịu thuế, cướp bóc và đổi chính quyền, nên ký ức địa phương khác hẳn anh hùng ca Tây phương.…",
+          "keys": [
+            "Thập tự chinh",
+            "Jerusalem",
+            "Đất Thánh",
+            "Hiệp sĩ dòng tu",
+            "1095",
+            "Các cuộc Thập tự chinh phương Đông"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các cuộc Thập tự chinh phương Đông. Từ lời kêu gọi năm 1095, nhiều đoàn viễn chinh Tây Âu đến Levant, lập các quốc gia thập tự rồi lần lượt mất chúng; Acre thất thủ năm 1291. Động cơ trộn đức tin, cứu rỗi, đất, nợ, thương mại và tham vọng dòng họ. Giáo triều cấp phép cho vài dòng hiệp sĩ dùng thánh thuật chiến trường; thương nhân Latin đổi vận tải lấy khu phố và đặc quyền cảng. Dân thường mọi chủng tộc chịu thuế, cướp bóc và đổi chính quyền, nên ký ức địa phương khác hẳn anh hùng ca Tây phương. Năm 1444, “thập tự chinh” vẫn là công cụ ngoại giao và thuế khóa, nhưng Varna cho thấy lời thề chung không xóa cạnh tranh chỉ huy, hậu cần kém hay lợi ích riêng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_magna-carta",
+          "title": "1215–1295 · Đại Hiến chương và sự lớn dần của nghị hội",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1295); %>[BIÊN NIÊN 1215–1295 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Năm 1215, các nam tước ép vua John chấp nhận rằng thuế và giam giữ phải chịu giới hạn pháp lý; văn kiện nhiều lần được tái ban. Trong thế kỷ XIII, hội đồng quý tộc, giáo sĩ và đại diện thị trấn phát triển thành nghị viện.\n\nĐiểm biến tấu của Europa: Khế ước được niêm bằng ấn thường lẫn ấn ma pháp, nhưng không phải bản tuyên ngôn bình đẳng hiện đại: nông dân và phần lớn phụ nữ không có tiếng nói trực tiếp. Các cộng đồng phi Nhân Loại giành quyền theo tư cách thành phố, nghiệp đoàn hoặc chư hầu, không theo “quyền chủng tộc” thống nhất.\n\nDi sản và giới hạn tri thức năm 1444: Đến 1444, nhà vua Anh cần Nghị viện cấp thuế cho chiến tranh. Viện dẫn Magna Carta thường là vũ khí của giới có đặc quyền chống lạm quyền, chứ chưa phải dân chủ phổ thông.",
+          "summary": "Xương sống lịch sử ngoài đời: Năm 1215, các nam tước ép vua John chấp nhận rằng thuế và giam giữ phải chịu giới hạn pháp lý; văn kiện nhiều lần được tái ban. Trong thế kỷ XIII, hội đồng quý tộc, giáo sĩ và đại diện thị trấn phát triển thành nghị viện. Điểm biến tấu của Europa: Khế ước được niêm bằng ấn thường lẫn ấn ma pháp, nhưng không phải bản tuyên ngôn bình đẳng hiện đại: nông dân và phần lớn phụ nữ không có tiếng nói trực tiếp.…",
+          "keys": [
+            "Magna Carta",
+            "Đại Hiến chương",
+            "Nghị viện Anh",
+            "1215",
+            "đại hội đẳng cấp",
+            "Đại Hiến chương và sự lớn dần của nghị hội"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đại Hiến chương và sự lớn dần của nghị hội. Năm 1215, các nam tước ép vua John chấp nhận rằng thuế và giam giữ phải chịu giới hạn pháp lý; văn kiện nhiều lần được tái ban. Trong thế kỷ XIII, hội đồng quý tộc, giáo sĩ và đại diện thị trấn phát triển thành nghị viện. Khế ước được niêm bằng ấn thường lẫn ấn ma pháp, nhưng không phải bản tuyên ngôn bình đẳng hiện đại: nông dân và phần lớn phụ nữ không có tiếng nói trực tiếp. Các cộng đồng phi Nhân Loại giành quyền theo tư cách thành phố, nghiệp đoàn hoặc chư hầu, không theo “quyền chủng tộc” thống nhất. Đến 1444, nhà vua Anh cần Nghị viện cấp thuế cho chiến tranh. Viện dẫn Magna Carta thường là vũ khí của giới có đặc quyền chống lạm quyền, chứ chưa phải dân chủ phổ thông.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_constantinople-1204",
+          "title": "1204–1261 · Cuộc Thập tự chinh thứ tư và vết thương Constantinople",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1261); %>[BIÊN NIÊN 1204–1261 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Đoàn Thập tự chinh thứ tư đổi hướng và cướp Constantinople năm 1204, lập Đế quốc Latin. Đông La Mã giành lại kinh đô năm 1261 nhưng không hồi phục hoàn toàn nhân lực, kho tàng và mạng thương mại.\n\nĐiểm biến tấu của Europa: Nhiều thư viện ma pháp, thánh tích và lõi kết giới bị phá, bán hoặc đưa sang Tây Âu. Vì các mảnh bị tách khỏi nghi lễ gốc, một số trở thành cổ vật nguy hiểm; Venice và các nhà sưu tầm vẫn giữ bí mật nguồn gốc.\n\nDi sản và giới hạn tri thức năm 1444: Người Đông phương năm 1444 có lý do chính trị cụ thể để nghi ngờ cứu viện Tây phương. Họ có thể sợ Ottoman mà vẫn phản đối hợp nhất giáo hội do hoàng đế ký.",
+          "summary": "Xương sống lịch sử ngoài đời: Đoàn Thập tự chinh thứ tư đổi hướng và cướp Constantinople năm 1204, lập Đế quốc Latin. Đông La Mã giành lại kinh đô năm 1261 nhưng không hồi phục hoàn toàn nhân lực, kho tàng và mạng thương mại. Điểm biến tấu của Europa: Nhiều thư viện ma pháp, thánh tích và lõi kết giới bị phá, bán hoặc đưa sang Tây Âu. Vì các mảnh bị tách khỏi nghi lễ gốc, một số trở thành cổ vật nguy hiểm; Venice và các nhà sưu tầm vẫn giữ bí mật nguồn gốc.…",
+          "keys": [
+            "1204",
+            "Thập tự chinh thứ tư",
+            "Constantinople bị cướp",
+            "Đế quốc Latin",
+            "Cuộc Thập tự chinh thứ tư và vết thương Constantinople"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Cuộc Thập tự chinh thứ tư và vết thương Constantinople. Đoàn Thập tự chinh thứ tư đổi hướng và cướp Constantinople năm 1204, lập Đế quốc Latin. Đông La Mã giành lại kinh đô năm 1261 nhưng không hồi phục hoàn toàn nhân lực, kho tàng và mạng thương mại. Nhiều thư viện ma pháp, thánh tích và lõi kết giới bị phá, bán hoặc đưa sang Tây Âu. Vì các mảnh bị tách khỏi nghi lễ gốc, một số trở thành cổ vật nguy hiểm; Venice và các nhà sưu tầm vẫn giữ bí mật nguồn gốc. Người Đông phương năm 1444 có lý do chính trị cụ thể để nghi ngờ cứu viện Tây phương. Họ có thể sợ Ottoman mà vẫn phản đối hợp nhất giáo hội do hoàng đế ký.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_mongol",
+          "title": "1237–1242 · Các cuộc xâm lược Mông Cổ và trật tự thảo nguyên",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1242); %>[BIÊN NIÊN 1237–1242 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Các đạo quân Mông Cổ đánh Rus, Ba Lan và Hungary bằng kỷ luật, trinh sát, tín hiệu, kỵ xạ và mạng trạm ngựa. Sau khi rút khỏi Trung Âu, các hãn quốc vẫn thu cống và chi phối Rus nhiều thế hệ.\n\nĐiểm biến tấu của Europa: Mã Nhân trong các đội quân có hình người hai chân, tai và đuôi ngựa; họ vẫn cưỡi ngựa thật, không có thân ngựa và không phải nhân mã. Kỹ năng liên lạc, chịu đường dài và đọc tín hiệu khiến họ nổi bật, nhưng quân thảo nguyên còn gồm nhiều tộc khác.\n\nDi sản và giới hạn tri thức năm 1444: Các công quốc Rus học thuế, sứ trạm và chiến thuật từ chính kẻ thống trị; Hungary củng cố thành đá. Năm 1444, Đại Trướng suy yếu thành nhiều hãn quốc cạnh tranh chứ không còn một khối duy nhất.",
+          "summary": "Xương sống lịch sử ngoài đời: Các đạo quân Mông Cổ đánh Rus, Ba Lan và Hungary bằng kỷ luật, trinh sát, tín hiệu, kỵ xạ và mạng trạm ngựa. Sau khi rút khỏi Trung Âu, các hãn quốc vẫn thu cống và chi phối Rus nhiều thế hệ. Điểm biến tấu của Europa: Mã Nhân trong các đội quân có hình người hai chân, tai và đuôi ngựa; họ vẫn cưỡi ngựa thật, không có thân ngựa và không phải nhân mã. Kỹ năng liên lạc, chịu đường dài và đọc tín hiệu khiến họ nổi bật, nhưng quân thảo nguyên còn gồm nhiều tộc khác.…",
+          "keys": [
+            "Mông Cổ",
+            "Hãn quốc",
+            "Horde",
+            "Batu",
+            "Legnica",
+            "Mohi",
+            "Các cuộc xâm lược Mông Cổ và trật tự thảo nguyên"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các cuộc xâm lược Mông Cổ và trật tự thảo nguyên. Các đạo quân Mông Cổ đánh Rus, Ba Lan và Hungary bằng kỷ luật, trinh sát, tín hiệu, kỵ xạ và mạng trạm ngựa. Sau khi rút khỏi Trung Âu, các hãn quốc vẫn thu cống và chi phối Rus nhiều thế hệ. Mã Nhân trong các đội quân có hình người hai chân, tai và đuôi ngựa; họ vẫn cưỡi ngựa thật, không có thân ngựa và không phải nhân mã. Kỹ năng liên lạc, chịu đường dài và đọc tín hiệu khiến họ nổi bật, nhưng quân thảo nguyên còn gồm nhiều tộc khác. Các công quốc Rus học thuế, sứ trạm và chiến thuật từ chính kẻ thống trị; Hungary củng cố thành đá. Năm 1444, Đại Trướng suy yếu thành nhiều hãn quốc cạnh tranh chứ không còn một khối duy nhất.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_thap-tu-phuong-bac",
+          "title": "1198–1410 · Thập tự chinh phương Bắc và Dòng Teuton",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1410); %>[BIÊN NIÊN 1198–1410 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Các dòng hiệp sĩ và vương quyền Cơ Đốc chinh phục, cải đạo và định cư tại vùng Baltic. Dòng Teuton dựng một nhà nước quân sự–tu viện; thất bại lớn trước Ba Lan–Litva tại Grunwald/Tannenberg năm 1410 làm suy thế.\n\nĐiểm biến tấu của Europa: Tín ngưỡng Cổ Baltic có đền, tư tế, lịch lễ và pháp quyền công khai, khác tàn dư tín ngưỡng rừng ở phương Tây. Việc nhiều Lâm Tiên và Mộc Tinh giữ rừng thiêng khiến chiến tranh vừa là cải đạo vừa là tranh gỗ, hổ phách và nút mana.\n\nDi sản và giới hạn tri thức năm 1444: Năm 1444, Dòng Teuton bị ép bởi nợ và các đô thị Phổ; Liên hiệp Phổ đã hình thành từ 1440. Xung đột không thể giản lược thành “người tốt chống quái vật ngoại đạo”.",
+          "summary": "Xương sống lịch sử ngoài đời: Các dòng hiệp sĩ và vương quyền Cơ Đốc chinh phục, cải đạo và định cư tại vùng Baltic. Dòng Teuton dựng một nhà nước quân sự–tu viện; thất bại lớn trước Ba Lan–Litva tại Grunwald/Tannenberg năm 1410 làm suy thế. Điểm biến tấu của Europa: Tín ngưỡng Cổ Baltic có đền, tư tế, lịch lễ và pháp quyền công khai, khác tàn dư tín ngưỡng rừng ở phương Tây. Việc nhiều Lâm Tiên và Mộc Tinh giữ rừng thiêng khiến chiến tranh vừa là cải đạo vừa là tranh gỗ, hổ phách và nút mana.…",
+          "keys": [
+            "Thập tự chinh phương Bắc",
+            "Dòng Teuton",
+            "Baltic",
+            "Grunwald",
+            "Tannenberg",
+            "Thập tự chinh phương Bắc và Dòng Teuton"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Thập tự chinh phương Bắc và Dòng Teuton. Các dòng hiệp sĩ và vương quyền Cơ Đốc chinh phục, cải đạo và định cư tại vùng Baltic. Dòng Teuton dựng một nhà nước quân sự–tu viện; thất bại lớn trước Ba Lan–Litva tại Grunwald/Tannenberg năm 1410 làm suy thế. Tín ngưỡng Cổ Baltic có đền, tư tế, lịch lễ và pháp quyền công khai, khác tàn dư tín ngưỡng rừng ở phương Tây. Việc nhiều Lâm Tiên và Mộc Tinh giữ rừng thiêng khiến chiến tranh vừa là cải đạo vừa là tranh gỗ, hổ phách và nút mana. Năm 1444, Dòng Teuton bị ép bởi nợ và các đô thị Phổ; Liên hiệp Phổ đã hình thành từ 1440. Xung đột không thể giản lược thành “người tốt chống quái vật ngoại đạo”.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_lien-bang-thuy-si",
+          "title": "1291–1444 · Sự hình thành Cựu Liên minh Thụy Sĩ",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1291); %>[BIÊN NIÊN 1291–1444 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Các cộng đồng Uri, Schwyz và Unterwalden liên minh bảo vệ quyền tự trị; thắng lợi tại Morgarten 1315 và Sempach 1386 làm liên minh có uy tín. Thành thị và bang nông thôn vẫn xung đột lợi ích.\n\nĐiểm biến tấu của Europa: Địa đạo và pháo đài Lùn Núi hỗ trợ phòng thủ đèo nhưng không biến liên minh thành “quốc gia của Lùn”. Hội đồng là liên minh đa cộng đồng; mỗi bang giữ luật, thuế và cả quy chế ma pháp riêng.\n\nDi sản và giới hạn tri thức năm 1444: Năm 1444, Chiến tranh Zürich Cũ đang chia rẽ liên minh. Danh tiếng lính giáo Thụy Sĩ tăng nhanh, trong khi câu hỏi ai kiểm soát đường đèo và tiền lính thuê vẫn chưa có đáp án chung.",
+          "summary": "Xương sống lịch sử ngoài đời: Các cộng đồng Uri, Schwyz và Unterwalden liên minh bảo vệ quyền tự trị; thắng lợi tại Morgarten 1315 và Sempach 1386 làm liên minh có uy tín. Thành thị và bang nông thôn vẫn xung đột lợi ích. Điểm biến tấu của Europa: Địa đạo và pháo đài Lùn Núi hỗ trợ phòng thủ đèo nhưng không biến liên minh thành “quốc gia của Lùn”. Hội đồng là liên minh đa cộng đồng; mỗi bang giữ luật, thuế và cả quy chế ma pháp riêng.…",
+          "keys": [
+            "Thụy Sĩ",
+            "1291",
+            "Morgarten",
+            "Sempach",
+            "các bang núi",
+            "Sự hình thành Cựu Liên minh Thụy Sĩ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Sự hình thành Cựu Liên minh Thụy Sĩ. Các cộng đồng Uri, Schwyz và Unterwalden liên minh bảo vệ quyền tự trị; thắng lợi tại Morgarten 1315 và Sempach 1386 làm liên minh có uy tín. Thành thị và bang nông thôn vẫn xung đột lợi ích. Địa đạo và pháo đài Lùn Núi hỗ trợ phòng thủ đèo nhưng không biến liên minh thành “quốc gia của Lùn”. Hội đồng là liên minh đa cộng đồng; mỗi bang giữ luật, thuế và cả quy chế ma pháp riêng. Năm 1444, Chiến tranh Zürich Cũ đang chia rẽ liên minh. Danh tiếng lính giáo Thụy Sĩ tăng nhanh, trong khi câu hỏi ai kiểm soát đường đèo và tiền lính thuê vẫn chưa có đáp án chung.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_tram-nam",
+          "title": "1337–1444 · Chiến tranh Trăm Năm đến đình chiến Tours",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1337); %>[BIÊN NIÊN 1337–1444 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Yêu sách ngai Pháp của Edward III mở chuỗi chiến tranh từ 1337. Anh thắng lớn tại Crécy 1346, Poitiers 1356 và Agincourt 1415; Hiệp ước Troyes 1420 gạt thái tử Pháp, nhưng Jeanne d’Arc giúp xoay cục diện năm 1429. Theo lịch sử ngoài đời và hồ sơ công khai trong thế giới, bà bị xử tử tại Rouen năm 1431; đình chiến Tours ký năm 1444.\n\nĐiểm biến tấu của Europa: Điểm phân kỳ canon: Jeanne được giải cứu khỏi ngục trước buổi hành hình; một hình nhân thánh thuật không có sự sống cháy trên giàn nên không ai chết thế. Năm 1436 bà xuất hiện dưới tên Jeanne des Armoises. Phần đông dân chúng cho rằng đó là kẻ mạo danh, nhưng sự thật cấp hệ thống xác nhận đây chính là Jeanne d’Arc, còn sống ở tuổi ba mươi hai vào năm 1444. Nguồn năng lực của bà vẫn bị Giáo triều, Pháp và Burgundy diễn giải khác nhau.\n\nDi sản và giới hạn tri thức năm 1444: Pháp của Charles VII đang tái tổ chức thuế và quân thường trực; Anh của Henry VI giữ yêu sách nhưng tài chính và phe triều đình rạn nứt. Đình chiến là khoảng thở, không phải hòa bình vĩnh viễn.",
+          "summary": "Xương sống lịch sử ngoài đời: Yêu sách ngai Pháp của Edward III mở chuỗi chiến tranh từ 1337. Anh thắng lớn tại Crécy 1346, Poitiers 1356 và Agincourt 1415; Hiệp ước Troyes 1420 gạt thái tử Pháp, nhưng Jeanne d’Arc giúp xoay cục diện năm 1429. Theo lịch sử ngoài đời và hồ sơ công khai trong thế giới, bà bị xử tử tại Rouen năm 1431; đình chiến Tours ký năm 1444. Điểm biến tấu của Europa: Điểm phân kỳ canon: Jeanne được giải cứu khỏi ngục trước buổi hành hình;…",
+          "keys": [
+            "Chiến tranh Trăm Năm",
+            "Crécy",
+            "Poitiers",
+            "Agincourt",
+            "Jeanne d’Arc",
+            "Tours",
+            "Chiến tranh Trăm Năm đến đình chiến Tours"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Chiến tranh Trăm Năm đến đình chiến Tours. Yêu sách ngai Pháp của Edward III mở chuỗi chiến tranh từ 1337. Anh thắng lớn tại Crécy 1346, Poitiers 1356 và Agincourt 1415; Hiệp ước Troyes 1420 gạt thái tử Pháp, nhưng Jeanne d’Arc giúp xoay cục diện năm 1429. Theo lịch sử ngoài đời và hồ sơ công khai trong thế giới, bà bị xử tử tại Rouen năm 1431; đình chiến Tours ký năm 1444. Điểm phân kỳ canon: Jeanne được giải cứu khỏi ngục trước buổi hành hình; một hình nhân thánh thuật không có sự sống cháy trên giàn nên không ai chết thế. Năm 1436 bà xuất hiện dưới tên Jeanne des Armoises. Phần đông dân chúng cho rằng đó là kẻ mạo danh, nhưng sự thật cấp hệ thống xác nhận đây chính là Jeanne d’Arc, còn sống ở tuổi ba mươi hai vào năm 1444. Nguồn năng lực của bà vẫn bị Giáo triều, Pháp và Burgundy diễn giải khác nhau. Pháp của Charles VII đang tái tổ chức thuế và quân thường trực; Anh của Henry VI giữ yêu sách nhưng tài chính và phe triều đình rạn nứt. Đình chiến là khoảng thở, không phải hòa bình vĩnh viễn.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_dai-dich-hac-tu",
+          "title": "1347–1352 · Cái Chết Đen và biến đổi xã hội",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1352); %>[BIÊN NIÊN 1347–1352 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Dịch hạch lan theo cảng và đường bộ, giết một phần rất lớn dân số châu Âu. Thiếu lao động làm tiền công tăng, nhiều thái ấp bỏ hoang, nhà chức trách ban luật ghìm lương và tìm vật tế thần.\n\nĐiểm biến tấu của Europa: Phép chữa trị cứu được từng người nhưng không đủ thầy thuốc, mana và hiểu biết để chặn dịch; nghi lễ tụ tập đôi khi còn làm lây lan. Một số Huyết Tộc tránh được bệnh nhưng mất nguồn máu an toàn, khiến họ vừa bị nghi ngờ vừa phải bí mật bảo vệ cộng đồng sống.\n\nDi sản và giới hạn tri thức năm 1444: Đến 1444, ký ức dịch vẫn nằm trong luật lương, giá đất, hội huynh đệ và nỗi sợ người ngoài. Dị giáo Áo Vải lớn mạnh đặc biệt nơi giáo sĩ giàu có bị cho là đã bỏ dân nghèo trong khủng hoảng.",
+          "summary": "Xương sống lịch sử ngoài đời: Dịch hạch lan theo cảng và đường bộ, giết một phần rất lớn dân số châu Âu. Thiếu lao động làm tiền công tăng, nhiều thái ấp bỏ hoang, nhà chức trách ban luật ghìm lương và tìm vật tế thần. Điểm biến tấu của Europa: Phép chữa trị cứu được từng người nhưng không đủ thầy thuốc, mana và hiểu biết để chặn dịch; nghi lễ tụ tập đôi khi còn làm lây lan. Một số Huyết Tộc tránh được bệnh nhưng mất nguồn máu an toàn, khiến họ vừa bị nghi ngờ vừa phải bí mật bảo vệ cộng đồng sống.…",
+          "keys": [
+            "Cái Chết Đen",
+            "dịch hạch",
+            "1348",
+            "Black Death",
+            "thiếu lao động",
+            "Cái Chết Đen và biến đổi xã hội"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Cái Chết Đen và biến đổi xã hội. Dịch hạch lan theo cảng và đường bộ, giết một phần rất lớn dân số châu Âu. Thiếu lao động làm tiền công tăng, nhiều thái ấp bỏ hoang, nhà chức trách ban luật ghìm lương và tìm vật tế thần. Phép chữa trị cứu được từng người nhưng không đủ thầy thuốc, mana và hiểu biết để chặn dịch; nghi lễ tụ tập đôi khi còn làm lây lan. Một số Huyết Tộc tránh được bệnh nhưng mất nguồn máu an toàn, khiến họ vừa bị nghi ngờ vừa phải bí mật bảo vệ cộng đồng sống. Đến 1444, ký ức dịch vẫn nằm trong luật lương, giá đất, hội huynh đệ và nỗi sợ người ngoài. Dị giáo Áo Vải lớn mạnh đặc biệt nơi giáo sĩ giàu có bị cho là đã bỏ dân nghèo trong khủng hoảng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_giao-hoang-avignon",
+          "title": "1309–1417 · Avignon, hai Giáo hoàng và Công đồng",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1417); %>[BIÊN NIÊN 1309–1417 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Giáo hoàng cư trú tại Avignon từ 1309 đến 1377; sau đó các phe bầu những Giáo hoàng đối địch trong cuộc Đại Ly giáo Tây phương 1378–1417. Công đồng Constance chấm dứt phần lớn khủng hoảng và khẳng định vai trò công đồng.\n\nĐiểm biến tấu của Europa: Mỗi triều Giáo hoàng cấp ấn phép, chức sắc và án tuyệt thông riêng, khiến cùng một thánh tích có hai giấy chứng thực. Vùng chịu hai hệ thuế giáo hội là nơi dị giáo và huyền học ngầm phát triển mạnh nhất.\n\nDi sản và giới hạn tri thức năm 1444: Năm 1444, Giáo hoàng Eugene IV còn đối đầu Công đồng Basel; phe công đồng đã bầu Felix V làm đối Giáo hoàng. Giáo hội Tây phương đã thống nhất hơn trước nhưng tranh luận “Giáo hoàng hay Công đồng tối cao” chưa chết.",
+          "summary": "Xương sống lịch sử ngoài đời: Giáo hoàng cư trú tại Avignon từ 1309 đến 1377; sau đó các phe bầu những Giáo hoàng đối địch trong cuộc Đại Ly giáo Tây phương 1378–1417. Công đồng Constance chấm dứt phần lớn khủng hoảng và khẳng định vai trò công đồng. Điểm biến tấu của Europa: Mỗi triều Giáo hoàng cấp ấn phép, chức sắc và án tuyệt thông riêng, khiến cùng một thánh tích có hai giấy chứng thực. Vùng chịu hai hệ thuế giáo hội là nơi dị giáo và huyền học ngầm phát triển mạnh nhất.…",
+          "keys": [
+            "Avignon",
+            "Đại Ly giáo Tây phương",
+            "hai Giáo hoàng",
+            "Công đồng Constance",
+            "chủ nghĩa công đồng",
+            "Avignon, hai Giáo hoàng và Công đồng"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Avignon, hai Giáo hoàng và Công đồng. Giáo hoàng cư trú tại Avignon từ 1309 đến 1377; sau đó các phe bầu những Giáo hoàng đối địch trong cuộc Đại Ly giáo Tây phương 1378–1417. Công đồng Constance chấm dứt phần lớn khủng hoảng và khẳng định vai trò công đồng. Mỗi triều Giáo hoàng cấp ấn phép, chức sắc và án tuyệt thông riêng, khiến cùng một thánh tích có hai giấy chứng thực. Vùng chịu hai hệ thuế giáo hội là nơi dị giáo và huyền học ngầm phát triển mạnh nhất. Năm 1444, Giáo hoàng Eugene IV còn đối đầu Công đồng Basel; phe công đồng đã bầu Felix V làm đối Giáo hoàng. Giáo hội Tây phương đã thống nhất hơn trước nhưng tranh luận “Giáo hoàng hay Công đồng tối cao” chưa chết.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_kalmar",
+          "title": "1397–1444 · Liên minh Kalmar và bài toán ba vương quốc",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1397); %>[BIÊN NIÊN 1397–1444 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Từ năm 1397, Đan Mạch, Na Uy và Thụy Điển chung một quân vương nhưng giữ hội đồng, luật và lợi ích riêng. Thuế, bổ nhiệm người Đan Mạch và quan hệ với Hanse liên tục gây phản kháng tại Thụy Điển.\n\nĐiểm biến tấu của Europa: Các tuyến biển lạnh cần Hoa Tiên thời tiết, Hải Tộc hoa tiêu và hải đăng rune, khiến vương quyền không thể chỉ dựa vào quý tộc đất liền. Không cộng đồng nào độc quyền lòng trung thành với một vương quốc.\n\nDi sản và giới hạn tri thức năm 1444: Năm 1444, Christopher xứ Bavaria đội ba vương miện, nhưng di sản nổi dậy Engelbrekt còn nóng. Liên minh là một khế ước triều đại dễ vỡ, chưa phải quốc gia tập quyền thống nhất.",
+          "summary": "Xương sống lịch sử ngoài đời: Từ năm 1397, Đan Mạch, Na Uy và Thụy Điển chung một quân vương nhưng giữ hội đồng, luật và lợi ích riêng. Thuế, bổ nhiệm người Đan Mạch và quan hệ với Hanse liên tục gây phản kháng tại Thụy Điển. Điểm biến tấu của Europa: Các tuyến biển lạnh cần Hoa Tiên thời tiết, Hải Tộc hoa tiêu và hải đăng rune, khiến vương quyền không thể chỉ dựa vào quý tộc đất liền. Không cộng đồng nào độc quyền lòng trung thành với một vương quốc.…",
+          "keys": [
+            "Kalmar",
+            "Margaret I",
+            "Đan Mạch",
+            "Thụy Điển",
+            "Na Uy",
+            "Liên minh Kalmar và bài toán ba vương quốc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Liên minh Kalmar và bài toán ba vương quốc. Từ năm 1397, Đan Mạch, Na Uy và Thụy Điển chung một quân vương nhưng giữ hội đồng, luật và lợi ích riêng. Thuế, bổ nhiệm người Đan Mạch và quan hệ với Hanse liên tục gây phản kháng tại Thụy Điển. Các tuyến biển lạnh cần Hoa Tiên thời tiết, Hải Tộc hoa tiêu và hải đăng rune, khiến vương quyền không thể chỉ dựa vào quý tộc đất liền. Không cộng đồng nào độc quyền lòng trung thành với một vương quốc. Năm 1444, Christopher xứ Bavaria đội ba vương miện, nhưng di sản nổi dậy Engelbrekt còn nóng. Liên minh là một khế ước triều đại dễ vỡ, chưa phải quốc gia tập quyền thống nhất.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_ottoman-troi-day",
+          "title": "1299–1444 · Sự trỗi dậy của Ottoman",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1299); %>[BIÊN NIÊN 1299–1444 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Từ một beylik biên giới Anatolia, Ottoman vượt sang Balkan, thắng tại Kosovo 1389 và Nicopolis 1396, rồi khôi phục sau thất bại trước Timur năm 1402. Murad II củng cố lại quyền lực và thắng liên quân tại Varna năm 1444.\n\nĐiểm biến tấu của Europa: Triều Ottoman do nhiều gia tộc Orc giữ vai trò trung tâm nhưng cai trị dân đa tộc, đa đạo qua thuế, tòa địa phương, timar và lực lượng phục vụ triều đình. Kỷ luật pháo binh, công binh và hậu cần quan trọng ngang ma pháp Hỏa; sức mạnh không đến từ “bản tính Orc”.\n\nDi sản và giới hạn tri thức năm 1444: Cuối năm 1444, Mehmed II vẫn là sultan trên danh nghĩa; Murad II được gọi khỏi nơi lui về để trực tiếp chỉ huy tại Varna rồi lại rời triều. Việc quân đội và đại thần có thể ép đổi người cầm quyền cho thấy kế vị chưa ổn; không kể lần Murad trở lại năm 1446 như chuyện đã xảy ra.",
+          "summary": "Xương sống lịch sử ngoài đời: Từ một beylik biên giới Anatolia, Ottoman vượt sang Balkan, thắng tại Kosovo 1389 và Nicopolis 1396, rồi khôi phục sau thất bại trước Timur năm 1402. Murad II củng cố lại quyền lực và thắng liên quân tại Varna năm 1444. Điểm biến tấu của Europa: Triều Ottoman do nhiều gia tộc Orc giữ vai trò trung tâm nhưng cai trị dân đa tộc, đa đạo qua thuế, tòa địa phương, timar và lực lượng phục vụ triều đình. Kỷ luật pháo binh, công binh và hậu cần quan trọng ngang ma pháp Hỏa;…",
+          "keys": [
+            "Ottoman trỗi dậy",
+            "Kosovo",
+            "Nicopolis",
+            "Murad II",
+            "Varna",
+            "Sự trỗi dậy của Ottoman"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Sự trỗi dậy của Ottoman. Từ một beylik biên giới Anatolia, Ottoman vượt sang Balkan, thắng tại Kosovo 1389 và Nicopolis 1396, rồi khôi phục sau thất bại trước Timur năm 1402. Murad II củng cố lại quyền lực và thắng liên quân tại Varna năm 1444. Triều Ottoman do nhiều gia tộc Orc giữ vai trò trung tâm nhưng cai trị dân đa tộc, đa đạo qua thuế, tòa địa phương, timar và lực lượng phục vụ triều đình. Kỷ luật pháo binh, công binh và hậu cần quan trọng ngang ma pháp Hỏa; sức mạnh không đến từ “bản tính Orc”. Cuối năm 1444, Mehmed II vẫn là sultan trên danh nghĩa; Murad II được gọi khỏi nơi lui về để trực tiếp chỉ huy tại Varna rồi lại rời triều. Việc quân đội và đại thần có thể ép đổi người cầm quyền cho thấy kế vị chưa ổn; không kể lần Murad trở lại năm 1446 như chuyện đã xảy ra.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_ba-lan-litva",
+          "title": "1385–1440 · Liên minh Ba Lan–Litva và chiến thắng Grunwald",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1385); %>[BIÊN NIÊN 1385–1440 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Liên minh Krewo 1385 gắn Jogaila của Litva với vương miện Ba Lan và quá trình Cơ Đốc hóa chính thức. Liên quân Ba Lan–Litva đánh bại Dòng Teuton tại Grunwald năm 1410 nhưng không xóa ngay nhà nước Dòng tu.\n\nĐiểm biến tấu của Europa: Việc cải đạo diễn ra không đồng đều: thành và triều đình theo Giáo hội Tây phương, nhiều làng Baltic giữ lịch lễ cũ, vùng Ruthenia theo Đông phương. Lâm Tiên, Mộc Tinh và Nhân Loại có thể đứng ở cả hai phía vì đất, họ hàng hoặc đức tin.\n\nDi sản và giới hạn tri thức năm 1444: Năm 1444, Đại công tước Casimir cai Litva trong khi ngai Ba Lan trống sau cái chết của Władysław III tại Varna. Liên minh là mạng thỏa thuận giữa hai tầng lớp quý tộc, chưa phải một nhà nước duy nhất.",
+          "summary": "Xương sống lịch sử ngoài đời: Liên minh Krewo 1385 gắn Jogaila của Litva với vương miện Ba Lan và quá trình Cơ Đốc hóa chính thức. Liên quân Ba Lan–Litva đánh bại Dòng Teuton tại Grunwald năm 1410 nhưng không xóa ngay nhà nước Dòng tu. Điểm biến tấu của Europa: Việc cải đạo diễn ra không đồng đều: thành và triều đình theo Giáo hội Tây phương, nhiều làng Baltic giữ lịch lễ cũ, vùng Ruthenia theo Đông phương. Lâm Tiên, Mộc Tinh và Nhân Loại có thể đứng ở cả hai phía vì đất, họ hàng hoặc đức tin.…",
+          "keys": [
+            "Krewo",
+            "Ba Lan Litva",
+            "Jagiełło",
+            "Grunwald",
+            "1410",
+            "Liên minh Ba Lan–Litva và chiến thắng Grunwald"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Liên minh Ba Lan–Litva và chiến thắng Grunwald. Liên minh Krewo 1385 gắn Jogaila của Litva với vương miện Ba Lan và quá trình Cơ Đốc hóa chính thức. Liên quân Ba Lan–Litva đánh bại Dòng Teuton tại Grunwald năm 1410 nhưng không xóa ngay nhà nước Dòng tu. Việc cải đạo diễn ra không đồng đều: thành và triều đình theo Giáo hội Tây phương, nhiều làng Baltic giữ lịch lễ cũ, vùng Ruthenia theo Đông phương. Lâm Tiên, Mộc Tinh và Nhân Loại có thể đứng ở cả hai phía vì đất, họ hàng hoặc đức tin. Năm 1444, Đại công tước Casimir cai Litva trong khi ngai Ba Lan trống sau cái chết của Władysław III tại Varna. Liên minh là mạng thỏa thuận giữa hai tầng lớp quý tộc, chưa phải một nhà nước duy nhất.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_hussite",
+          "title": "1415–1436 · Jan Hus, chiến tranh Hussite và Phong trào Áo Vải",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1436); %>[BIÊN NIÊN 1415–1436 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Jan Hus bị xử tử tại Constance năm 1415; nổi dậy Bohemia từ 1419 đánh bại nhiều cuộc thập tự bằng xe chiến, pháo tay và tổ chức cộng đồng. Hiệp ước Basel 1436 công nhận một số nhượng bộ cho phe ôn hòa.\n\nĐiểm biến tấu của Europa: Phong trào Áo Vải là nhánh Europa tổng hợp từ cải cách nghèo khó kiểu Waldensian và động lực Hussite; họ phản đối tài sản giáo sĩ, buôn ân xá và độc quyền nghi lễ. Vòng xe được khắc dấu triệt phép để giảm ưu thế của kỵ sĩ và pháp sư quý tộc.\n\nDi sản và giới hạn tri thức năm 1444: Năm 1444, Bohemia không còn chiến tranh toàn diện nhưng tín đồ ôn hòa, cấp tiến, quý tộc Công giáo và lính đánh thuê cũ vẫn cạnh tranh. Áo Vải không đồng nhất với Phái Thanh Tẩy nhị nguyên.",
+          "summary": "Xương sống lịch sử ngoài đời: Jan Hus bị xử tử tại Constance năm 1415; nổi dậy Bohemia từ 1419 đánh bại nhiều cuộc thập tự bằng xe chiến, pháo tay và tổ chức cộng đồng. Hiệp ước Basel 1436 công nhận một số nhượng bộ cho phe ôn hòa. Điểm biến tấu của Europa: Phong trào Áo Vải là nhánh Europa tổng hợp từ cải cách nghèo khó kiểu Waldensian và động lực Hussite; họ phản đối tài sản giáo sĩ, buôn ân xá và độc quyền nghi lễ. Vòng xe được khắc dấu triệt phép để giảm ưu thế của kỵ sĩ và pháp sư quý tộc.…",
+          "keys": [
+            "Jan Hus",
+            "Hussite",
+            "Tábor",
+            "xe chiến",
+            "Áo Vải",
+            "Bohemia",
+            "Jan Hus, chiến tranh Hussite và Phong trào Áo Vải"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Jan Hus, chiến tranh Hussite và Phong trào Áo Vải. Jan Hus bị xử tử tại Constance năm 1415; nổi dậy Bohemia từ 1419 đánh bại nhiều cuộc thập tự bằng xe chiến, pháo tay và tổ chức cộng đồng. Hiệp ước Basel 1436 công nhận một số nhượng bộ cho phe ôn hòa. Phong trào Áo Vải là nhánh Europa tổng hợp từ cải cách nghèo khó kiểu Waldensian và động lực Hussite; họ phản đối tài sản giáo sĩ, buôn ân xá và độc quyền nghi lễ. Vòng xe được khắc dấu triệt phép để giảm ưu thế của kỵ sĩ và pháp sư quý tộc. Năm 1444, Bohemia không còn chiến tranh toàn diện nhưng tín đồ ôn hòa, cấp tiến, quý tộc Công giáo và lính đánh thuê cũ vẫn cạnh tranh. Áo Vải không đồng nhất với Phái Thanh Tẩy nhị nguyên.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_phuc-hung-ngan-hang-in",
+          "title": "1300–1444 · Ngân hàng, Phục hưng và kỹ thuật in sơ kỳ",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1440); %>[BIÊN NIÊN 1300–1444 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Các thành Ý phát triển tín dụng, sổ kép, bảo hiểm biển và bảo trợ nghệ thuật; học giả nhân văn săn bản thảo cổ. Khoảng thập niên 1440, thợ Mainz thử hệ chữ rời kim loại, nhưng sách chép tay vẫn thống trị.\n\nĐiểm biến tấu của Europa: Khế ước ma pháp khiến ngân hàng phải thuê công chứng viên biết phát hiện sửa mực và lời thề giả. Chữ rune khó chuẩn hóa hơn alphabet nên in ấn tăng chậm; thợ Lùn và Gnome giữ bí quyết hợp kim nhưng không một tộc nào độc quyền phát minh.\n\nDi sản và giới hạn tri thức năm 1444: Năm 1444, tri thức mới lưu thông qua thư, xưởng chép, đại học và mạng thương nhân hơn là “truyền thông đại chúng”. Không dùng từ hiện đại hay cho nhân vật biết trước cuộc cách mạng in sẽ lớn đến đâu.",
+          "summary": "Xương sống lịch sử ngoài đời: Các thành Ý phát triển tín dụng, sổ kép, bảo hiểm biển và bảo trợ nghệ thuật; học giả nhân văn săn bản thảo cổ. Khoảng thập niên 1440, thợ Mainz thử hệ chữ rời kim loại, nhưng sách chép tay vẫn thống trị. Điểm biến tấu của Europa: Khế ước ma pháp khiến ngân hàng phải thuê công chứng viên biết phát hiện sửa mực và lời thề giả. Chữ rune khó chuẩn hóa hơn alphabet nên in ấn tăng chậm; thợ Lùn và Gnome giữ bí quyết hợp kim nhưng không một tộc nào độc quyền phát minh.…",
+          "keys": [
+            "Phục hưng",
+            "Medici",
+            "ngân hàng",
+            "in chữ rời",
+            "Mainz",
+            "nhân văn",
+            "Ngân hàng, Phục hưng và kỹ thuật in sơ kỳ"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Ngân hàng, Phục hưng và kỹ thuật in sơ kỳ. Các thành Ý phát triển tín dụng, sổ kép, bảo hiểm biển và bảo trợ nghệ thuật; học giả nhân văn săn bản thảo cổ. Khoảng thập niên 1440, thợ Mainz thử hệ chữ rời kim loại, nhưng sách chép tay vẫn thống trị. Khế ước ma pháp khiến ngân hàng phải thuê công chứng viên biết phát hiện sửa mực và lời thề giả. Chữ rune khó chuẩn hóa hơn alphabet nên in ấn tăng chậm; thợ Lùn và Gnome giữ bí quyết hợp kim nhưng không một tộc nào độc quyền phát minh. Năm 1444, tri thức mới lưu thông qua thư, xưởng chép, đại học và mạng thương nhân hơn là “truyền thông đại chúng”. Không dùng từ hiện đại hay cho nhân vật biết trước cuộc cách mạng in sẽ lớn đến đâu.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_iberia-1444",
+          "title": "711–1444 · Reconquista và Iberia trước hồi kết",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1444); %>[BIÊN NIÊN 711–1444 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Nhiều thế kỷ chiến tranh, triều cống, liên minh chéo và định cư làm các vương quốc Cơ Đốc mở rộng về nam. Đến 1444, Granada vẫn là vương quốc Nasrid độc lập; Castile, Aragon và Portugal là các nhà nước riêng với khủng hoảng riêng.\n\nĐiểm biến tấu của Europa: Biên giới có cộng đồng nói nhiều tiếng và theo nhiều đức tin; pháp sư, thợ, nông dân và quý tộc có thể đổi chủ mà không đổi ngay bản sắc. Các hiệp ước bảo hộ đền, nhà thờ và giếng mana thường bị phá khi triều đại đổi.\n\nDi sản và giới hạn tri thức năm 1444: Không đưa sự kiện 1492 vào hiện tại như điều đã biết. Người năm 1444 có thể hy vọng chinh phục Granada hoặc tìm đường biển mới, nhưng kết quả vẫn là tương lai mở.",
+          "summary": "Xương sống lịch sử ngoài đời: Nhiều thế kỷ chiến tranh, triều cống, liên minh chéo và định cư làm các vương quốc Cơ Đốc mở rộng về nam. Đến 1444, Granada vẫn là vương quốc Nasrid độc lập; Castile, Aragon và Portugal là các nhà nước riêng với khủng hoảng riêng. Điểm biến tấu của Europa: Biên giới có cộng đồng nói nhiều tiếng và theo nhiều đức tin; pháp sư, thợ, nông dân và quý tộc có thể đổi chủ mà không đổi ngay bản sắc. Các hiệp ước bảo hộ đền, nhà thờ và giếng mana thường bị phá khi triều đại đổi.…",
+          "keys": [
+            "Reconquista",
+            "Granada",
+            "Castile",
+            "Aragon",
+            "Portugal",
+            "Iberia",
+            "Reconquista và Iberia trước hồi kết"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Reconquista và Iberia trước hồi kết. Nhiều thế kỷ chiến tranh, triều cống, liên minh chéo và định cư làm các vương quốc Cơ Đốc mở rộng về nam. Đến 1444, Granada vẫn là vương quốc Nasrid độc lập; Castile, Aragon và Portugal là các nhà nước riêng với khủng hoảng riêng. Biên giới có cộng đồng nói nhiều tiếng và theo nhiều đức tin; pháp sư, thợ, nông dân và quý tộc có thể đổi chủ mà không đổi ngay bản sắc. Các hiệp ước bảo hộ đền, nhà thờ và giếng mana thường bị phá khi triều đại đổi. Không đưa sự kiện 1492 vào hiện tại như điều đã biết. Người năm 1444 có thể hy vọng chinh phục Granada hoặc tìm đường biển mới, nhưng kết quả vẫn là tương lai mở.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "history_varna-1444",
+          "title": "10 tháng 11 năm 1444 · Trận Varna và điểm mở màn chiến dịch",
+          "type": "event",
+          "content": "<% const daQua = Math.max(0, now.year - 1444); %>[BIÊN NIÊN 10 tháng 11 năm 1444 · nhìn từ năm <%= now.year %> · cách mốc khoảng <%= daQua %> năm]\n\nXương sống lịch sử ngoài đời: Liên quân do vua Władysław III của Ba Lan–Hungary và John Hunyadi chỉ huy bị Murad II đánh bại gần Varna; nhà vua tử trận. Thất bại phá hy vọng đẩy Ottoman khỏi Balkan trong ngắn hạn và gây khủng hoảng kế vị.\n\nĐiểm biến tấu của Europa: Các đội quân đa tộc chiến đấu theo quốc gia, lời thề và tiền lương chứ không chia thành “loài người chống Orc”. Sương ma pháp và thánh thuật có tác động cục bộ, nhưng cuộc xung phong nóng vội, đội hình vỡ và phối hợp kém vẫn quyết định thảm họa.\n\nDi sản và giới hạn tri thức năm 1444: Đây là hiện tại sống của Europa: Hungary tranh người nhiếp chính, Ba Lan trống ngôi, Ottoman lấy lại uy thế, Constantinople mất một hy vọng cứu viện. Tin đồn về số phận nhà vua có thể khác nhau, nhưng canon xác nhận ông đã chết.",
+          "summary": "Xương sống lịch sử ngoài đời: Liên quân do vua Władysław III của Ba Lan–Hungary và John Hunyadi chỉ huy bị Murad II đánh bại gần Varna; nhà vua tử trận. Thất bại phá hy vọng đẩy Ottoman khỏi Balkan trong ngắn hạn và gây khủng hoảng kế vị. Điểm biến tấu của Europa: Các đội quân đa tộc chiến đấu theo quốc gia, lời thề và tiền lương chứ không chia thành “loài người chống Orc”. Sương ma pháp và thánh thuật có tác động cục bộ, nhưng cuộc xung phong nóng vội, đội hình vỡ và phối hợp kém vẫn quyết định thảm họa.…",
+          "keys": [
+            "Varna",
+            "Władysław III",
+            "John Hunyadi",
+            "Murad II",
+            "1444",
+            "Trận Varna và điểm mở màn chiến dịch"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Trận Varna và điểm mở màn chiến dịch. Liên quân do vua Władysław III của Ba Lan–Hungary và John Hunyadi chỉ huy bị Murad II đánh bại gần Varna; nhà vua tử trận. Thất bại phá hy vọng đẩy Ottoman khỏi Balkan trong ngắn hạn và gây khủng hoảng kế vị. Các đội quân đa tộc chiến đấu theo quốc gia, lời thề và tiền lương chứ không chia thành “loài người chống Orc”. Sương ma pháp và thánh thuật có tác động cục bộ, nhưng cuộc xung phong nóng vội, đội hình vỡ và phối hợp kém vẫn quyết định thảm họa. Đây là hiện tại sống của Europa: Hungary tranh người nhiếp chính, Ba Lan trống ngôi, Ottoman lấy lại uy thế, Constantinople mất một hy vọng cứu viện. Tin đồn về số phận nhà vua có thể khác nhau, nhưng canon xác nhận ông đã chết.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 13,
+          "budgetPriority": 9,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    }
+  ]
+}

@@ -286,14 +286,14 @@ type PowerDemographics = {
 ## 5. TÔN GIÁO CẠNH TRANH
 `/data/religions.json`:
 ```
-Giáo hội Chính thống  chủ đạo phương tây, do Giáo triều lãnh đạo
+Giáo hội Tây phương   chủ đạo phương tây, do Giáo triều lãnh đạo
 Đông phương Ly giáo   Rus và phương đông
 Tín ngưỡng Cổ         Lâm Tiên, Mộc Tộc, các bộ lạc rừng — bị gọi là tà giáo
                       (nhánh phương tây và nhánh Baltic là HAI nhánh riêng)
 Đạo Đá / Tổ tiên      Lùn, khép kín, không truyền đạo
 Thần Chiến Trận       Sói Nhân, các tộc thảo nguyên
 Tín ngưỡng Orc        của đế quốc Orc, có chính sách khoan dung riêng
-Các phong trào dị giáo phát sinh TỪ TRONG Giáo hội Chính thống
+Các phong trào dị giáo phát sinh TỪ TRONG Giáo hội Tây phương
 ```
 
 **Cơ chế lan truyền:** mỗi province có tỷ lệ theo tôn giáo. Thay đổi vì truyền đạo,

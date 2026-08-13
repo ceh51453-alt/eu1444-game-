@@ -1,0 +1,342 @@
+{
+  "$comment": "Nguồn văn xuôi canon cho các entry [Chủng tộc] sinh tự động. Số liệu hình thể, tuổi thọ, quê hương, vị thế và phân bố luôn lấy trực tiếp từ data/races.json; file này chỉ giữ phần diễn giải xã hội. Không gán đạo đức, trí tuệ hay mức văn minh bẩm sinh cho một tộc.",
+  "profiles": {
+    "race_lam-tien": {
+      "title": "Lâm Tiên",
+      "keys": ["Lâm Tiên", "Tiên Rừng", "Wood Elves", "Wood Elf"],
+      "identity": "một nhánh Tiên tộc sống lâu, thích nghi với rừng già và giao ước tinh linh; họ sinh ra là Lâm Tiên, không phải người bị cây rừng biến đổi",
+      "biology": "Thị giác trong bóng râm, bước chân nhẹ và khả năng cảm nhận thay đổi của rừng là thiên hướng, không phải tàng hình tuyệt đối. Họ vẫn cần thức ăn, giấc ngủ và có thể chết vì sắt, lửa, bệnh hay vết thương như sinh vật sống khác.",
+      "society": "Lâm Tiên không có một vương quốc chung. Có thị tộc giữ rừng, cộng đồng nông–lâm nghiệp, cung thủ phục vụ lãnh chúa và cả quý tộc nắm quyền tại Anh hoặc Baltic. Quyền lực thường gắn với quyền chăm một khu rừng và sự đồng thuận của hội thị tộc, không tự động thuộc về người nhiều tuổi nhất.",
+      "dailyLife": "Họ kiếm sống bằng săn có hạn ngạch, hái dược liệu, nuôi ong, trồng dưới tán, dẫn đường và cung thủ. Làng Lâm Tiên vẫn trao đổi muối, sắt và vải với bên ngoài; cắt đứt hoàn toàn giao thương là lựa chọn của một số rừng thiêng, không phải bản tính toàn tộc.",
+      "family": "Sinh suất thấp hơn Nhân loại nhưng không tuyệt tự. Trẻ được nuôi bởi gia đình cùng nhóm tuổi trong thị tộc; con nuôi và người ngoại tộc được nhận qua lời thề có thể thừa hưởng quyền sử dụng rừng nhưng không đổi chủng tộc.",
+      "faithAndLaw": "Phần lớn tôn kính tinh linh địa phương và luật cân bằng khai thác–tái sinh. Giáo hội gọi họ ngoại đạo, song nhiều lãnh chúa ký hòa ước rừng và một số Lâm Tiên đã chịu phép rửa mà vẫn giữ tục cũ.",
+      "misconceptions": "Không viết mọi Lâm Tiên là ẩn sĩ hiền lành hoặc kẻ ghét Nhân loại. Họ có nông dân, quý tộc, lính thuê, kẻ buôn gỗ và phe cực đoan; vai trò tùy thể chế nơi sống. Không cho họ điều khiển mọi cây cối vô hạn."
+    },
+    "race_ban-nhan": {
+      "title": "Bán Nhân",
+      "keys": ["Bán Nhân", "Halfling", "Halflings", "Người Bán Nhân"],
+      "identity": "một chủng tộc hình người tầm vóc nhỏ, phân bố trong làng nông nghiệp và đô thị của nhiều nước; họ không phải trẻ em Nhân loại và tên gọi không có nghĩa là nửa linh hồn",
+      "biology": "Tầm vóc nhỏ giúp tiêu hao ít lương và đi qua chỗ hẹp, nhưng giảm tầm với và sức mang. Bàn chân lớn có lông là đặc điểm phổ biến chứ không khiến họ hút ma lực từ đất hay miễn dịch bệnh.",
+      "society": "Bán Nhân hiếm khi nắm triều đình riêng nhưng có làng, phường bếp, hội vận tải và mạng lưới bà con xuyên biên giới. Địa vị trải từ nông nô đến chủ quán giàu; việc họ thường làm nông hoặc bếp đến từ đất đai và phường nghề truyền đời, không phải sự phục tùng bẩm sinh.",
+      "dailyLife": "Họ nổi tiếng về canh tác vườn, bảo quản thực phẩm, nấu ăn, chăn gia cầm, vận chuyển kín và thu thập tin trong quán trọ. Một hộ thường có kho nhỏ, vườn dày và quan hệ họ hàng rộng để sống qua chiến tranh.",
+      "family": "Gia đình nhiều thế hệ và nhận con nuôi là phổ biến. Tài sản nhỏ thường chia theo công sức hoặc giao cho người giữ được căn bếp và mảnh vườn, thay vì mặc định con trưởng.",
+      "faithAndLaw": "Phần lớn theo tôn giáo địa phương và được Giáo hội coi là chính thống nếu chịu phép. Luật phong kiến thường đánh giá thấp lời khai và quyền mang vũ khí của họ, nhưng không có giáo luật chung cấm Bán Nhân sở hữu đất.",
+      "misconceptions": "Không viết toàn tộc là vui tính, mê ăn, hèn nhát hoặc giỏi trộm. May mắn và tài ăn nói trong traits là thiên hướng trò chơi, không bảo đảm kết quả."
+    },
+    "race_kobold": {
+      "title": "Kobold",
+      "keys": ["Kobold", "Kobolds", "Tộc Kobold"],
+      "identity": "một chủng tộc nhỏ có mõm ngắn, vảy sống lưng và đuôi; họ là dân có ngôn ngữ và cộng đồng, không phải loài dịch hại hay thú nuôi của rồng",
+      "biology": "Kobold nhìn tốt trong hầm, luồn khe và đào nhánh nhỏ giỏi. Tuổi thọ sinh học khoảng bốn mươi năm nhưng lao dịch mỏ khiến nhiều người chết trước ba mươi; sinh suất cao bù tử suất xã hội, không phải sinh sản vô hạn.",
+      "society": "Họ sống trong xóm mỏ, cống, mỏ tự quản hoặc tổ đội lao dịch của HRE và Bohemia. Cộng đồng bầu người nhớ đường, người giữ nước và thợ bẫy; bạo lực bầy đàn không phải thể chế duy nhất.",
+      "dailyLife": "Nghề quen thuộc gồm chống hầm, dò khí độc, nhặt quặng sót, sửa cống, đặt bẫy và vận chuyển trong đường thấp. Họ ăn nấm, rễ, ngũ cốc rẻ và thực phẩm lên men, không thể tiêu hóa mọi chất độc hay đá.",
+      "family": "Ổ gia đình thường chia việc chăm nhiều con cho cả cụm họ. Tên thật dùng trong nhà; tên nghề hoặc biệt danh dùng với chủ mỏ để tránh việc một người chết kéo nợ sang họ hàng.",
+      "faithAndLaw": "Giáo hội xếp họ ngoài lề chứ không tuyên bố vô hồn. Nhiều nơi coi Kobold là người lệ thuộc của mỏ, nơi khác cho lập phường; quyền pháp lý thay đổi theo hiến chương địa phương.",
+      "misconceptions": "Không gọi mọi Kobold là quái vật xảo quyệt, kẻ phá hoại hay kém trí. Bẫy là kỹ nghệ sinh tồn và chiến tranh của họ, không phải bản năng đạo đức."
+    },
+    "race_cao-tien": {
+      "title": "Cao Tiên",
+      "keys": ["Cao Tiên", "High Elves", "High Elf", "Tộc Cao Tiên"],
+      "identity": "một nhánh Tiên tộc sống lâu, có truyền thống Bí thuật và giữ nhiều chức vụ hoàng tộc–quan lại Đông La Mã; danh xưng 'cao' là địa vị lịch sử, không chứng minh họ thượng đẳng sinh học",
+      "biology": "Họ già rất chậm nhưng không bất tử: khoảng sáu thế kỷ là giới hạn điển hình. Ma lực mạnh cần học và luyện; không phải Cao Tiên nào cũng bẻ không gian, thời gian hay sở hữu sắc đẹp hoàn mỹ.",
+      "society": "Trung tâm chính trị của họ là triều đình, trường học và điền sản Đông La Mã tại Constantinople cùng Morea, không phải một mạng đảo bay tách khỏi thế giới. Có quý tộc, viên chức, binh sĩ, nghệ nhân và dân nghèo Cao Tiên.",
+      "dailyLife": "Tuổi đời dài khiến họ theo nghề nhiều thập kỷ: sao chép bản thảo, pháp luật, ngoại giao, kiến trúc, hàng hải và Bí thuật. Ký ức lâu không đồng nghĩa nhớ hoàn hảo; kho lưu trữ và gia phả vẫn thiết yếu.",
+      "family": "Sinh suất thấp và khoảng cách thế hệ dài. Hôn nhân quý tộc thường liên kết chức vụ, đất và trường phái phép; nhận học trò, con nuôi hoặc Bán Tiên vào nhà là phổ biến hơn lời tuyên bố huyết thống thuần khiết.",
+      "faithAndLaw": "Nhiều Cao Tiên theo Chính thống giáo Đông phương, pha nghi lễ cổ. Quan hệ đối địch ngầm với Rome đến từ giáo quyền và Bí thuật, không phải vì toàn tộc vô thần.",
+      "misconceptions": "Không viết Cao Tiên gần bất tử, toàn năng, thuần huyết tuyệt đối hay đứng ngoài chính trị 1444. Không mặc định họ khinh mọi tộc khác; đó có thể là thái độ của một gia đình hoặc phe."
+    },
+    "race_am-tien": {
+      "title": "Ám Tiên",
+      "keys": ["Ám Tiên", "Dark Elves", "Dark Elf", "Tộc Ám Tiên"],
+      "identity": "một nhánh Tiên tộc thích nghi với thành hang sâu dưới Alps và Carpathian; 'ám' chỉ môi trường và truyền thống phép, không đồng nghĩa tà ác",
+      "biology": "Họ nhìn tốt trong tối, da không bắt nắng và ánh sáng mạnh gây đau, suy yếu; mặt trời không luôn thiêu chết tức thì. Độc dược và huyễn thuật là nghề học, không phải quyền năng của mọi cá thể.",
+      "society": "Ám Tiên tổ chức thành nhà hang, phường nấm, đoàn thợ mỏ và cộng đồng lưu vong. Một số nơi theo mẫu hệ tư tế, nơi khác do hội thợ hoặc gia chủ cai quản; không có chế độ mẫu hệ tàn nhẫn chung cho toàn tộc.",
+      "dailyLife": "Sinh kế gồm trồng nấm, nuôi côn trùng, khai quặng sâu, bào chế thuốc, dẫn đường ngầm và buôn lậu lên mặt đất. Họ cần lương thực, nước và thông khí; không sống được chỉ bằng ma lực hắc ám.",
+      "family": "Gia đình giữ tên bí mật để tránh thợ săn và nợ máu. Người chạy khỏi một nhà hang có thể gia nhập cộng đồng bề mặt Hungary như dân ngoài lề.",
+      "faithAndLaw": "Bị Giáo hội truy bức vì Bí thuật, nơi ở và lời đồn huyết tế. Đức tin thực tế đa dạng: tổ tiên, thánh cải đạo, tinh linh đất hoặc giáo phái hắc ám đều tồn tại.",
+      "misconceptions": "Không viết mọi Ám Tiên thờ Cổ thần, hiến tế, ghét Lâm Tiên hay làm vũ khí nguyền. Những điều đó thuộc phe phái cụ thể."
+    },
+    "race_ban-tien": {
+      "title": "Bán Tiên",
+      "keys": ["Bán Tiên", "Half-Elves", "Half-Elf", "Tộc Bán Tiên"],
+      "identity": "hậu duệ giữa Nhân loại và các nhánh Tiên; họ là cộng đồng lai ổn định, không phải một giai đoạn tạm thời hay 'máu ô uế' theo canon",
+      "biology": "Tuổi thọ điển hình khoảng một trăm năm mươi, không kéo tới hai trăm theo chuẩn hiện tại. Ma lực, tai nhọn và nét mặt biến thiên; không phải ai cũng đẹp, trẻ lâu hoặc biết phép.",
+      "society": "Bán Tiên phân bố khắp Europa và thường làm thông ngôn, quan lại, sứ giả nhờ lớn lên giữa nhiều ngôn ngữ. Họ cũng có nông dân, lính, giáo sĩ và quý tộc; không phải tất cả đều bị cả hai phía ruồng bỏ.",
+      "dailyLife": "Khả năng đổi mã văn hóa giúp họ đi triều đình và thương lộ, nhưng cũng khiến lòng trung thành bị nghi. Nghề nghiệp đến từ giáo dục đa ngữ hơn là trí xảo bẩm sinh.",
+      "family": "Họ có thể sinh con với Nhân loại, Tiên hoặc Bán Tiên; đặc điểm và tuổi thọ dao động theo gia đình. Nhiều nhà giữ hai lịch lễ, hai tên và hai mạng họ hàng.",
+      "faithAndLaw": "Giáo hội xem xét từng cộng đồng: người chịu phép rửa có thể chính thống, người giữ tục rừng bị nghi. Luật thừa kế thường tranh cãi họ thuộc gia phả nào, tạo nhu cầu lớn về văn tự và bảo lãnh.",
+      "misconceptions": "Không mặc định Bán Tiên là cô độc, quyến rũ, xảo quyệt hoặc bị khinh miệt ở mọi nơi. Không cho tuổi thọ vượt chuẩn 150 nếu không có đặc tính cá nhân."
+    },
+    "race_lun-nui": {
+      "title": "Lùn Núi",
+      "keys": ["Lùn Núi", "Mountain Dwarves", "Mountain Dwarf", "Tộc Lùn Núi"],
+      "identity": "một nhánh Lùn sống trong thành núi, nổi tiếng về luyện kim, cổ ngữ và tài chính phường hội; tay nghề là truyền thống đào tạo lâu dài, không phải kiến thức có sẵn khi sinh",
+      "biology": "Khung người thấp, rộng và chắc giúp làm việc trong hầm nhưng không khiến họ miễn nhiễm sập mỏ, độc khí hay phép. Mắt trong đá là khả năng thích nghi ánh sáng thấp, không phải nhìn xuyên tường.",
+      "society": "Các bang Lùn là liên bang đô thị và phường hội có luật, bầu cử hoặc nhiệm kỳ riêng. Không có vua của toàn tộc. Lùn Núi ngoài quê có thể là thợ, chủ nợ, binh sĩ, nông dân vùng cao hoặc người nghèo mắc nợ.",
+      "dailyLife": "Mỏ cần thợ chống hầm, người đo khí, người luyện quặng, kế toán, người nuôi nấm và đoàn vận tải; thợ rèn chỉ là phần dễ thấy nhất. Họ giao thương lương thực để đổi kim loại và tín dụng.",
+      "family": "Dòng họ giữ cổ phần mỏ và bí quyết nghề; con không tự động kế nghiệp nếu không qua học việc. Cả nam lẫn nữ có thể để râu theo phong tục từng bang, nhưng bảng hình thể không ép mọi cá thể giống nhau.",
+      "faithAndLaw": "Quan hệ với Giáo hội được điều chỉnh bằng hòa ước. Họ cho phép nhà nguyện ở khu thương mại nhưng bảo vệ quyền phường hội và nghi lễ tổ tiên trong khu nội thành.",
+      "misconceptions": "Không viết mọi Lùn Núi tham vàng, thô lỗ, say rượu hoặc là thợ rèn. Cũng không cho cổ ngữ tạo vật phẩm vô hạn mà không cần vật liệu, thời gian và thợ giỏi."
+    },
+    "race_lun-vuc-sau": {
+      "title": "Lùn Vực Sâu",
+      "keys": ["Lùn Vực Sâu", "Deep Dwarves", "Deep Dwarf", "Tộc Lùn Vực Sâu"],
+      "identity": "một nhánh Lùn sống dưới các tầng mỏ thông thường, thích nghi với tối, khí độc và áp lực; dị hình của họ là sinh học, không phải bằng chứng bị quỷ hóa",
+      "biology": "Da dày, mắt tối và sức chịu môi trường giúp sinh tồn chứ không miễn dịch magma, axit hay mọi độc tố. Ánh sáng gây suy yếu; máu không mặc định là axit và cơ thể vẫn là sinh vật sống.",
+      "society": "Cộng đồng khép kín vì đường đi nguy hiểm và bị bề mặt nghi kỵ. Họ có thành hang, đoàn khai thác, hội thông khí, gia đình và luật cứu hộ; một số nhà luyện quặng nguyền nhưng không đại diện toàn tộc.",
+      "dailyLife": "Họ trồng nấm, thu nước ngưng, khai ma thạch sâu, sửa máy bơm và đổi khoáng sản lấy ngũ cốc. Người đi lên mặt đất thường làm thợ hầm, lính công binh hoặc người dẫn đường ban đêm.",
+      "family": "Sinh con ít hơn Lùn Núi do môi trường; cả cộng đồng bảo vệ trẻ và người giữ bản đồ. Trục xuất khỏi đường thông khí là hình phạt nặng hơn mất tiền.",
+      "faithAndLaw": "Giáo hội nghi kỵ nhưng chưa có một phán quyết chung. Tín ngưỡng gồm tổ tiên, tinh linh đá, thánh của thợ mỏ và cả giáo phái cấm.",
+      "misconceptions": "Không viết mọi Lùn Vực Sâu thù địch, hiến tế, dùng hắc thuật hay rèn đồ nguyền. Không gộp họ với Ám Tiên chỉ vì cùng sống dưới đất."
+    },
+    "race_gnome": {
+      "title": "Gnome",
+      "keys": ["Gnome", "Gnomes", "Tộc Gnome"],
+      "identity": "một chủng tộc nhỏ có truyền thống vi cơ khí, giả kim, đồng hồ và sổ sách đô thị",
+      "biology": "Tuổi thọ chuẩn khoảng 180 năm, không phải ba đến bốn thế kỷ. Ngón tay tinh xảo và khả năng nhận quy luật máy móc là thiên hướng; họ vẫn cần học việc và có thể vụng về ở ngành ngoài chuyên môn.",
+      "society": "Gnome sống trong phường đô thị, xóm thợ và các hội đồng thương mại; tại Hanse, vài cộng đồng nắm chính quyền thành phố. Họ không đồng loạt trung lập hay tránh chính trị—kiểm soát bằng sáng chế, tiền và hỏa khí vốn là chính trị.",
+      "dailyLife": "Nghề gồm thợ đồng hồ, người pha thuốc, thợ khắc, pháo thủ, kế toán, kiểm định cân và sửa dụng cụ hàng hải. Phòng làm việc có quy tắc an toàn, vốn vay và học việc, không phải lúc nào cũng là mớ hỗn độn phát nổ.",
+      "family": "Gia đình nhỏ kết hợp phường nghề; bằng sáng chế và sổ công thức có thể truyền cho học trò thay vì con. Tranh chấp lớn thường xoay quanh quyền sao chép.",
+      "faithAndLaw": "Giáo hội nghi giả kim là tà thuật, nên Gnome thường xin giấy bảo trợ của thành bang hoặc lãnh chúa. Có người chính thống, người duy lý và người theo tín ngưỡng phường.",
+      "misconceptions": "Không gọi Gnome là Địa tinh nếu ngữ cảnh có thể nhầm với Kobold. Không cho họ phát minh kỹ nghệ vượt thời đại hàng loạt; mọi thiết bị cần thợ, vật liệu, bảo dưỡng và có thể hỏng."
+    },
+    "race_lang-nhan": {
+      "title": "Lang Nhân",
+      "keys": ["Lang Nhân", "Werewolf", "Werewolves", "Ma Sói", "Sói Thần"],
+      "identity": "một chủng tộc biến hình có hình người và chiến hình sói; phần lớn sinh ra trong dòng Lang, còn 'lời nguyền qua vết cắn' là một bệnh huyết ma riêng chứ không phải nguồn gốc của toàn tộc",
+      "biology": "Thông số hình thể mô tả chiến hình có mõm, tai dựng, đuôi và lông. Hình người giữ vài dấu hiệu như mắt, nanh, mùi và thể lực. Trăng tròn làm cơn cuồng khó kiểm soát hơn nhưng không cưỡng ép mọi Lang Nhân biến hình; bạc gây thương tích khó lành chứ không tự động giết.",
+      "society": "Họ sống trong thị tộc rừng, làng hỗn hợp, đội trinh sát và quân ngũ ở Baltic, Rus, Hungary, Iberia. Bầy là cấu trúc thân tộc–quân sự, không biến họ thành thú không có luật.",
+      "dailyLife": "Nghề thường gặp là săn, chăn rừng, dò đường, canh biên và lính nhẹ. Khứu giác giúp truy dấu nhưng đô thị đông mùi gây quá tải. Cơn cuồng trong trait là rủi ro khi bị thương, không phải tính cách mặc định.",
+      "family": "Dòng Lang sinh con bình thường; trẻ học kiểm soát chiến hình từ người thân. Người mắc lời nguyền do cắn cần chữa trị và không tự động được thị tộc nhận làm thành viên.",
+      "faithAndLaw": "Nhiều thị tộc theo Shaman giáo, Chính thống giáo hoặc Công giáo địa phương. Giáo hội thường gộp chủng tộc với người mắc lời nguyền, dẫn đến săn lùng sai; vài nước cấp giấy quân dịch để bảo vệ Lang Nhân phục vụ quân đội.",
+      "misconceptions": "Không viết mọi Lang Nhân khát máu, hoang dã, mất trí dưới trăng hoặc lây giống qua cắn. Không gọi hình sói miễn nhiễm vũ khí thường; da dày chỉ giảm chấn thương."
+    },
+    "race_hung-nhan": {
+      "title": "Hùng Nhân",
+      "keys": ["Hùng Nhân", "Werebear", "Werebears", "Tộc Hùng Nhân"],
+      "identity": "một chủng tộc biến hình phương Bắc có hình người và chiến hình gấu; họ là dân có thị tộc, không phải gấu hoang được ban trí",
+      "biology": "Thông số hình thể mô tả chiến hình phủ lông, vai lớn và móng cùn; hình người vẫn cao nặng hơn trung bình. Họ chủ động chuyển hình sau huấn luyện. Ngủ đông là nhu cầu sinh học làm giảm hoạt động mùa lạnh, không có nghĩa mọi người ngủ suốt mùa đông.",
+      "society": "Hùng Nhân có gia đình fjord, làng rừng, thị tộc cao nguyên và đại đội lính thuê. Có người phục vụ Kalmar, Anh hoặc liên bang núi, người khác chống thuế; không có một bản tính trung thành hay cô độc chung.",
+      "dailyLife": "Họ đánh cá, đi biển, khai gỗ, chăn tuần lộc, hộ tống và làm lính hạng nặng. Khẩu phần lớn và giáp đặc chế khiến đơn vị Hùng Nhân đắt, giải thích giá trị lính thuê.",
+      "family": "Gia đình nhỏ liên kết thành thị tộc theo mùa. Trẻ học bơi, tìm thức ăn và kiểm soát chuyển hình; người ngoài có thể được nhận qua lời thề nhưng không nhờ đó biến thành Hùng Nhân.",
+      "faithAndLaw": "Tín ngưỡng đa dạng từ tinh linh đất–biển đến Kitô giáo phương Bắc. Giáo hội dửng dưng hơn với họ vì chuyển hình không lây và nhiều thị tộc giữ hòa ước quân dịch.",
+      "misconceptions": "Không viết mọi Hùng Nhân hung bạo, đơn độc, ngu chậm hoặc chỉ giải quyết bằng sức. Không cho chiến hình miễn nhiễm cung nỏ và mọi phép."
+    },
+    "race_mieu-nhan": {
+      "title": "Miêu Nhân",
+      "keys": ["Miêu Nhân", "Feline Beastmen", "Catfolk", "Tộc Miêu Nhân"],
+      "identity": "một chủng tộc Người Thú hình mèo sống nhiều quanh Địa Trung Hải; tai, đuôi, lông và mắt đêm là sinh học ổn định, không phải hóa trang",
+      "biology": "Họ nhìn tốt trong ánh sáng yếu, tiếp đất nhẹ và nghe sắc; không nhìn được trong bóng tối tuyệt đối, không phải ai cũng có vuốt xuyên giáp hay Huyễn thuật.",
+      "society": "Miêu Nhân có gia đình thương nhân, khu phố cảng, đoàn biểu diễn, thủy thủ, mật thám và kẻ trộm. Việc nhiều người làm nghề lưu động đến từ mạng lưới Địa Trung Hải và sự kỳ thị đất đai, không phải thiếu trung thành bẩm sinh.",
+      "dailyLife": "Nghề thường gặp gồm buôn đường dài, kho hàng, đưa thư, trèo sửa mái, trinh sát và bảo vệ đoàn. Tai nhạy khiến họ đặt giá cao cho phòng yên và tránh xưởng ồn.",
+      "family": "Hộ gia đình có thể trải qua nhiều cảng; con thường biết vài ngôn ngữ thương mại. Hôn nhân và nhận con nối các tuyến buôn hơn là lập một vương quốc riêng.",
+      "faithAndLaw": "Giáo hội coi nhiều cộng đồng là ngoại đạo, nhưng thành bang Latin và Ottoman cấp quy chế theo phường hoặc khu phố. Luật chống trộm thường được áp nặng hơn lên họ dù không có bằng chứng.",
+      "misconceptions": "Không viết mọi Miêu Nhân là sát thủ, đạo chích, quyến rũ, thất thường hay mua được bằng vàng. Không dùng hành vi mèo nhà làm tính cách bắt buộc."
+    },
+    "race_qua-nhan": {
+      "title": "Quạ Nhân",
+      "keys": ["Quạ Nhân", "Ravenfolk", "Raven Folk", "Tộc Quạ Nhân"],
+      "identity": "một chủng tộc Người Thú có mỏ, cẳng chân chim và lông cánh ở cẳng tay; phần lớn có thể bay quãng vừa hoặc lượn xa khi mang nhẹ",
+      "biology": "Xương nhẹ giúp bay nhưng giảm sức chịu đòn và tải mang. Cẳng tay vừa là cánh vừa giữ bàn tay ở khớp cuối, nên họ cầm bút và công cụ được nhưng khó dùng vũ khí nặng khi bay. Điềm báo là cảm nhận xác suất mơ hồ, không phải biết chắc tương lai.",
+      "society": "Quạ Nhân sống ở tháp, vách núi và khu đưa thư đô thị, tổ chức thành nhà tổ và hội sứ giả. Họ không có mạng tình báo thống nhất toàn lục địa; các nhà cạnh tranh và bán tin cho những chủ khác nhau.",
+      "dailyLife": "Họ làm sứ giả, trinh sát, người quan sát thời tiết, sao chép và tìm đồ thất lạc. Bay cần ăn nhiều, nghỉ và thời tiết phù hợp; bão, băng cánh và nỏ là nguy hiểm thật.",
+      "family": "Nhà tổ nuôi trẻ theo nhóm và ghi quan hệ bằng vật đánh dấu cùng chuyện kể. Người trẻ rời tổ lập tuyến thư mới nhưng vẫn gửi tin về theo mùa.",
+      "faithAndLaw": "Giáo hội nghi họ bói toán; nhiều thành cấp giấy sứ giả để phân biệt người đưa thư với gián điệp. Lời nguyền và Ám thuật chỉ thuộc một số thầy bói.",
+      "misconceptions": "Không viết mọi Quạ Nhân nghiện bí mật, chỉ đổi tin thay tiền, có thể nhại mọi âm thanh hoặc nguyền rủa máy móc."
+    },
+    "race_thu-nhan": {
+      "title": "Thử Nhân",
+      "keys": ["Thử Nhân", "Ratmen", "Ratfolk", "Tộc Thử Nhân"],
+      "identity": "một chủng tộc Người Thú hình chuột sống nhiều trong khu nghèo, cống và bến cảng; họ là cư dân đô thị bị gạt ra ngoài, không phải nguồn dịch bệnh bẩm sinh",
+      "biology": "Sức kháng dịch tốt giúp họ sống nơi ô nhiễm nhưng không miễn nhiễm mọi độc hay mang bệnh nhiều hơn tất yếu. Răng cửa cần mài; khả năng luồn hầm và vóc nhỏ có giới hạn vật lý bình thường.",
+      "society": "Cộng đồng lập hội thu gom, phường cống, đội bốc vác và đường dây buôn lậu. Có luật chia nước, lối thoát và chăm người bệnh; mô tả họ chỉ được cai trị bằng sợ hãi là tuyên truyền của người trên mặt đất.",
+      "dailyLife": "Họ dọn cống, bắt chuột thường, tái chế, bốc hàng, tìm rò, chuyển hàng lậu và làm người dẫn đường dưới phố. Nghèo đói giải thích việc dùng đồ bỏ, không phải thiếu sáng tạo.",
+      "family": "Gia đình đông hơn trung bình nhưng không sinh sản vô tận. Trẻ được nhiều hộ trông chung vì người lớn làm ca đêm và công việc nguy hiểm.",
+      "faithAndLaw": "Giáo hội và chính quyền thường ghê tởm, đổ dịch cho họ và áp lao dịch. Một số thành công nhận phường cống vì không ai khác chịu làm công việc ấy.",
+      "misconceptions": "Không viết mọi Thử Nhân hôi thối, mang dịch, ăn thịt thối, thờ thần dịch hay chế vũ khí khí độc. Đó là định kiến hoặc hoạt động của băng nhóm cụ thể."
+    },
+    "race_ma-nhan": {
+      "title": "Mã Nhân",
+      "keys": ["Mã Nhân", "Equine Beastmen", "Horse Folk", "Tộc Mã Nhân", "người tai ngựa"],
+      "identity": "một chủng tộc hình người hai chân, có tai ngựa trên đỉnh đầu và đuôi ngựa như uma-musume; họ không có thân ngựa, bốn vó hay móng guốc",
+      "biology": "Hình thể gần Nhân loại nên họ mặc quần áo, đi cầu thang, lên tàu và dùng đồ đạc bình thường. Tai ngựa rất thính, linh động theo cảm xúc; đuôi giúp giữ thăng bằng khi chạy. Chân vẫn là chân người, dù cơ bắp và tim phổi thích nghi tốt với chạy đường dài. Họ cưỡi chiến mã như các kỵ binh khác và vẫn có thể ngã ngựa, kiệt sức hoặc bị thương.",
+      "society": "Mã Nhân nắm nhiều hãn quốc nhờ liên minh thị tộc, kỹ năng kỵ xạ và quyền kiểm soát đàn gia súc, không vì 'sinh ra để cai trị'. Trong hãn quốc có Mã Nhân nghèo, thợ, người chăn, nô lệ, quý tộc và giáo sĩ như mọi xã hội phân tầng.",
+      "dailyLife": "Họ dùng kiến trúc và đồ đạc hình người, nhưng mũ, khăn trùm, mũ giáp và ghế yên cần chừa chỗ cho tai cùng đuôi. Họ chăn đàn, săn, hộ tống, buôn đường dài, làm chiến binh, thư lại và người đưa tin; việc chăm chiến mã vẫn là nghề cốt lõi.",
+      "family": "Gia đình gắn với thị tộc và đàn vật nuôi. Trẻ học điều khiển đôi tai nhạy, chăm đuôi, chạy bền, cưỡi ngựa và bắn trên yên; không có canon nữ giới áp đảo toàn tộc.",
+      "faithAndLaw": "Đức tin gồm Hồi giáo thảo nguyên, Shaman giáo và tôn giáo địa phương. Luật hãn quốc bảo vệ bãi chăn, giếng và đường di cư; Giáo hội phương Tây gọi họ ngoại đạo vì chính trị lẫn tôn giáo.",
+      "misconceptions": "Mã Nhân chỉ là người hình thể hai chân có tai và đuôi ngựa. Không miêu tả họ như centaur, không thêm thân ngựa, bốn chân hay móng guốc; cũng không viết họ là kỵ binh bất bại, kém trí hoặc toàn bộ là cướp nô lệ."
+    },
+    "race_nguu-nhan": {
+      "title": "Mục Nhân",
+      "keys": ["Mục Nhân", "Ngưu Nhân", "Minotaur", "Minotaurs", "Bovine Beastmen", "Tộc Mục Nhân"],
+      "identity": "một chủng tộc Người Thú hình ngưu; Mục Nhân là tên canon, còn Ngưu Nhân là tên cũ hoặc ngoại danh chỉ cùng một tộc",
+      "biology": "Chiều cao chuẩn 190–220 cm, không thường vượt 2,5 m. Sừng, cổ dày và sức vóc giúp cận chiến nhưng không làm da miễn nhiễm hàng chục mũi tên; họ cần khẩu phần lớn và vẫn bị thương như sinh vật sống.",
+      "society": "Họ là bộ binh, người chăn, đấu sĩ và thủ lĩnh thị tộc tại thảo nguyên–Balkan; tại Hungary một số nhà nắm chính quyền. Không phải toàn tộc phụ thuộc hay phục vụ Mã Nhân.",
+      "dailyLife": "Nghề thường gặp gồm chăn đàn, kéo xe, xây trại, bảo vệ đoàn, rèn dụng cụ lớn và bộ binh nặng. Sức mạnh có giá bằng thức ăn, không gian và trang bị đặc cỡ.",
+      "family": "Thị tộc thường nhận diện bằng kiểu sừng, dấu lông và gia súc bảo trợ. Nuôi trẻ là việc của hộ mở rộng; tranh vị trí thủ lĩnh có thể qua hội đồng, thừa kế hoặc thử sức tùy nơi.",
+      "faithAndLaw": "Tôn giáo gồm Shaman giáo, Hồi giáo, Chính thống giáo và tục tổ tiên. Vị thế pháp lý thay đổi từ quý tộc Hungary tới đấu sĩ hoặc lính ngoại tộc.",
+      "misconceptions": "Không viết Mục Nhân ngu, chỉ biết húc, luôn nổi giận, ăn cỏ thay mọi thức ăn hoặc là tấm khiên bẩm sinh của Mã Nhân."
+    },
+    "race_orc": {
+      "title": "Orc",
+      "keys": ["Orc", "Orcs", "Tộc Orc"],
+      "identity": "một chủng tộc hình người khỏe, hiện nắm tầng quân sự–hành chính cốt lõi của Ottoman; họ không phải quái vật sinh ra từ chiến tranh",
+      "biology": "Thể lực, sức bền hành quân và răng nanh là đặc điểm phổ biến, không tạo miễn dịch đau hay phép. Tuổi thọ ngắn hơn Nhân loại khiến thăng tiến sớm nhưng không làm họ thiếu khả năng học thuật.",
+      "society": "Quyền lực Orc trong Ottoman đến từ triều đình, quân chính quy, chế độ tuyển dụng và chiến thắng, không phải ưu thế đạo đức hay định mệnh. Có Orc nông dân, thợ, giáo sĩ, thương nhân, quan và phe chống Sultan.",
+      "dailyLife": "Nhiều hộ gắn với doanh trại, thái ấp quân sự, chợ Balkan và xưởng quân nhu. Kỷ luật đội hình là sản phẩm huấn luyện nhà nước; Orc ngoài Ottoman không tự có cùng kỷ luật.",
+      "family": "Gia đình và bảo trợ quân ngũ cùng quyết định địa vị. Con nhà binh có lợi thế giáo dục nhưng hệ thống vẫn thu nhận dị tộc và người mới.",
+      "faithAndLaw": "Phần lớn Orc Ottoman theo Hồi giáo của đế chế; cộng đồng khác có tín ngưỡng riêng. Giáo hội phương Tây gọi họ thù địch vì chiến tranh và tôn giáo, không vì họ không có linh hồn.",
+      "misconceptions": "Không viết mọi Orc hung bạo, man rợ, ngu hoặc trung thành tuyệt đối với Sultan. Không gọi Ottoman là quốc gia thuần Orc."
+    },
+    "race_ogre": {
+      "title": "Ogre",
+      "keys": ["Ogre", "Ogres", "Tộc Ogre"],
+      "identity": "một chủng tộc hình người cỡ lớn, nổi bật trong pháo binh, công binh và lao động nặng Ottoman",
+      "biology": "Cơ thể lớn cho sức mang và độ ổn định khi vận hành pháo nhưng cần nhiều lương, chỗ ở và phương tiện đặc cỡ. Trait chậm hiểu là bất lợi xử lý nhanh trong game, không chứng minh toàn tộc không có trí tuệ hay kỹ sư.",
+      "society": "Ogre sống trong khu quân nhu, làng, đoàn thợ, đơn vị pháo và đại đội thuê. Có chỉ huy, thợ tính góc bắn, chủ xưởng và dân nghèo; họ không chỉ là cơ bắp bị Orc sai khiến.",
+      "dailyLife": "Họ làm pháo thủ, đào hào, dựng cầu, vận chuyển, khai đá, xay bột và bảo vệ đoàn. Công việc pháo binh cần toán học, kỷ luật và nhóm Gnome–Ogre phối hợp.",
+      "family": "Hộ Ogre ít con hơn do chi phí nuôi lớn; cộng đồng chia kho lương và dụng cụ. Danh tiếng nghề thường truyền qua tổ đội chứ không chỉ huyết thống.",
+      "faithAndLaw": "Địa vị ngoài lề ở nhiều vùng phương Tây nhưng được Ottoman trả lương và cấp quy chế quân sự. Đức tin tùy nơi, không có tôn giáo ăn thịt người chung.",
+      "misconceptions": "Không viết Ogre ngu ngốc, ăn người, chỉ dùng bạo lực hoặc bất khả chiến bại. Họ có nghề, luật, gia đình và chính trị."
+    },
+    "race_ban-khong-lo": {
+      "title": "Bán Khổng Lồ",
+      "keys": ["Bán Khổng Lồ", "Half-Giants", "Half-Giant", "Tộc Bán Khổng Lồ"],
+      "identity": "một chủng tộc cao lớn mang huyết hệ Khổng Lồ cổ, không nhất thiết là con trực tiếp của Khổng Lồ và Nhân loại",
+      "biology": "Tầm vóc 230–280 cm đem lại sức mạnh, chịu lạnh và nhu cầu lương thực lớn. Nhà cửa, giáp và cầu đường thường không vừa họ; đây là bất lợi xã hội thật. Tuổi thọ khoảng 150 năm.",
+      "society": "Họ sống trong thị tộc Alps, Carpathian, Na Uy và cộng đồng phục vụ liên bang núi. Có người dẫn đèo, chăn gia súc, khai đá, lính, thợ xây và quý tộc địa phương.",
+      "dailyLife": "Công việc thường gắn với độ cao và vật nặng, nhưng họ cũng kể luật, buôn đường đèo và giữ trạm. Đồ dùng đặc cỡ đắt nên nhiều cộng đồng dùng tài sản chung.",
+      "family": "Gia đình ít con, khoảng cách thế hệ dài; nhận người nhỏ con vào thị tộc bằng lời thề là phổ biến. Tước 'Bán' không làm họ thuộc quyền Khổng Lồ.",
+      "faithAndLaw": "Thường theo tinh linh núi, Kitô giáo pha tục cổ hoặc luật thị tộc. Giáo hội coi họ ngoại đạo ở nơi chưa chịu phép, không có lệnh diệt chung.",
+      "misconceptions": "Không viết Bán Khổng Lồ chậm trí, hoang dã, luôn ở núi hoặc chỉ là lính đánh thuê. Không phóng đại chiều cao vượt thông số chuẩn."
+    },
+    "race_troll-da": {
+      "title": "Troll Đá",
+      "keys": ["Troll Đá", "Stone Troll", "Stone Trolls", "Tộc Troll Đá"],
+      "identity": "một chủng tộc lớn có da khoáng hóa và khả năng tái sinh, thường bị các nước gọi là quái vật dù có ngôn ngữ và cộng đồng",
+      "biology": "Tái sinh khép vết thương theo thời gian, cần thức ăn và nghỉ; không mọc lại tức thì mọi phần cơ thể. Lửa chặn tái sinh và gây hoảng sợ sinh học. Lạnh làm họ chậm, không biến thành đá bất động theo chu kỳ ngày.",
+      "society": "Troll Đá sống trong nhóm họ nhỏ, bãi đá và rừng núi; một số phục vụ Kalmar ngoài lề. Do kích thước và kỳ thị, họ hiếm có quyền đất nhưng có thể ký hợp đồng canh cầu, khai đá hoặc chiến đấu.",
+      "dailyLife": "Họ khai đá, dọn lở, làm cầu, chăn thú lớn và bảo vệ đường núi. Tài sản thiên về công cụ, hang trú và quyền qua đèo hơn vật nhỏ.",
+      "family": "Sinh suất rất thấp, trẻ lớn chậm và được cả nhóm bảo vệ. Tuổi thọ dài không đồng nghĩa ký ức hay trí tuệ vượt mọi tộc.",
+      "faithAndLaw": "Giáo hội thường xếp họ là quái vật vì hình thể và tái sinh; một số giáo sĩ tranh luận về khả năng chịu phép rửa. Hợp đồng có người bảo lãnh là cách bảo vệ pháp lý phổ biến.",
+      "misconceptions": "Không viết Troll Đá ăn người, không biết nói, ngu, tà ác hoặc tái sinh vô hạn. Đừng dùng lửa như nút giết tức thời; nó ngăn hồi phục và gây thương tích nặng."
+    },
+    "race_long-due": {
+      "title": "Long Duệ",
+      "keys": ["Long Duệ", "Dragonborn", "Dragon-kin", "Tộc Long Duệ"],
+      "identity": "một chủng tộc hình người mang huyết hệ Cổ Long, có vảy, sừng ngắn và hơi thở nóng; họ không phải rồng có thể tự do hóa người",
+      "biology": "Hơi thở nguyên tố là năng lực ngắn, hao sức và khác nhau theo dòng; bảng chuẩn chỉ bảo đảm hơi thở nóng, vảy cứng và uy áp huyết thống. Tuổi thọ khoảng ba trăm năm, không bất tử và không miễn nhiễm mọi phép.",
+      "society": "Long Duệ giữ nhiều vương thất tại Wallachia, Đông La Mã, Aragon và một phần Hungary. Quyền lực đến từ gia phả, pháo đài và quân đội; có Long Duệ thường dân, chi thứ, tu sĩ và kẻ lưu vong.",
+      "dailyLife": "Họ làm quan, lính, thợ kim loại chịu nhiệt, người giữ lò và nông dân như cư dân khác. Cơ thể nóng cần nước và thực phẩm; nhà Long Duệ chú ý thông gió và vật liệu không cháy.",
+      "family": "Dòng máu biểu hiện không đều; con có thể mang ít vảy hoặc hơi thở yếu. Hôn nhân vương thất dùng để hợp pháp hóa ngai và giữ dòng phép, nhưng không có 'thuần huyết' tuyệt đối.",
+      "faithAndLaw": "Giáo hội kính nể xa cách; nhiều nhà theo Chính thống giáo hoặc Công giáo để bảo vệ ngôi. Tục thờ tổ Long tồn tại song song và đôi khi bị cáo là ngoại đạo.",
+      "misconceptions": "Không viết mọi Long Duệ là vua, kiêu ngạo, tàn bạo hoặc có thể phun lửa quét cả đơn vị liên tục. Không coi Drăculești đại diện toàn tộc."
+    },
+    "race_ma-due": {
+      "title": "Ma Duệ",
+      "keys": ["Ma Duệ", "Tiefling", "Tieflings", "Tộc Ma Duệ"],
+      "identity": "một chủng tộc hình người có dấu ấn huyết hệ hoặc ma lực Hạ giới; việc sinh ra không chứng minh cá nhân đã ký giao ước hay có đạo đức tà ác",
+      "biology": "Sừng, đuôi, mắt khác thường và bóng lệch là dấu hiệu phổ biến. Cảm ứng Bí thuật và khả năng nói dối trong traits không cho đọc tâm trí, miễn lửa hoặc bắt buộc lừa đảo; năng lực cá nhân cần hồ sơ riêng.",
+      "society": "Bị truy bức khiến họ tụ thành mạng cứu trợ, đoàn lính thuê, khu nghèo và nghề giấu mặt. Một số có gia đình quyền thế che chở; số khác sống công khai ở nơi luật thế tục mạnh.",
+      "dailyLife": "Họ làm mọi nghề, nhưng việc khó xin phường và đất đẩy nhiều người vào lính thuê, sân khấu, mật vụ hoặc buôn đường dài. Che sừng và giấy bảo lãnh là nhu cầu xã hội, không phải bản tính bí mật.",
+      "family": "Ma Duệ có thể sinh trong gia đình không có Ma Duệ do dấu ấn xa hoặc ma lực vùng. Họ sinh con bình thường; đặc điểm có thể bỏ qua nhiều thế hệ.",
+      "faithAndLaw": "Giáo hội thường coi họ dị giáo hoặc bằng chứng tội tổ tiên, nhưng có Ma Duệ sùng đạo và tu sĩ bảo vệ họ. Phán quyết khác nhau theo giáo phận và người bảo trợ.",
+      "misconceptions": "Không viết Ma Duệ tà ác, quyến rũ, nói dối, kháng mọi lửa hoặc giao tiếp tự nhiên với quỷ. Không biến ngoại hình thành bằng chứng tội lỗi."
+    },
+    "race_thien-due": {
+      "title": "Thiên Duệ",
+      "keys": ["Thiên Duệ", "Aasimar", "Celestial-kin", "Tộc Thiên Duệ"],
+      "identity": "một chủng tộc hình người cộng hưởng Quang hệ hoặc mang huyết hệ Thiên giới; dấu ấn không tự chứng minh thánh thiện hay quyền Giáo hội",
+      "biology": "Hào quang mờ, giọng vang và cảm giác an lành là thiên hướng. Máu không chữa ngay vết thương chí mạng, sự hiện diện không tự giết xác sống, và cánh sáng nếu có là phép cá nhân chứ không phải đặc điểm chung.",
+      "society": "Nhiều Thiên Duệ giữ chức Giáo triều, thánh kỵ sĩ hoặc vương quyền Iberia–Baltic vì thể chế tôn họ làm biểu tượng. Cũng có dân thường, người trốn Giáo hội và kẻ lợi dụng danh tiếng.",
+      "dailyLife": "Giáo dục thường bắt đầu sớm trong tu viện, bao gồm Latin, lễ nghi, chữa trị và diễn thuyết. Người không theo con đường đó vẫn cần nghề và thu nhập như bất kỳ ai.",
+      "family": "Dấu ấn Thiên Duệ có thể xuất hiện sau nhiều thế hệ và không truyền chắc chắn. Gia đình thường bị Giáo hội hoặc vương quyền tranh quyền giám hộ.",
+      "faithAndLaw": "Giáo hội xem họ ở trung tâm biểu tượng nhưng vẫn yêu cầu ban phước, đào tạo và phục tùng. Thiên Duệ có thể phạm tội, mất chức hoặc không tin; huyết thống không thay thế giáo luật.",
+      "misconceptions": "Không viết mọi Thiên Duệ hoàn mỹ, tốt lành, có cánh, chữa lành vô hạn hoặc bị Giáo hội bắt ngay lập tức. Đừng cho máu họ làm thần dược chung."
+    },
+    "race_thach-due": {
+      "title": "Thạch Duệ",
+      "keys": ["Thạch Duệ", "Stoneborn", "Stonekin", "Tộc Thạch Duệ"],
+      "identity": "những cá thể sống có thân thể khoáng hóa, sinh ra từ tạo tác hoặc cộng hưởng Thổ hệ; họ không phải tượng đá vô tri",
+      "lifespanNote": "chưa ai xác định giới hạn; họ không già theo cách hữu cơ nhưng có thể nứt, mòn, mất lõi hoặc bị phá hủy",
+      "biology": "Họ nặng, da đá, không cần thở đều và chịu đòn tốt; vẫn bị búa nặng, phép phá đá, rơi vỡ và tổn thương lõi. Trọng lượng chuẩn 120–220 kg, không mặc định nửa tấn. Có cá thể cần hấp thụ khoáng hoặc ma lực thay thức ăn.",
+      "society": "Thạch Duệ không có quê hương duy nhất. Họ sống cạnh người tạo, mỏ, tu viện hoặc cộng đồng tự do; tại Rus và Iberia nhiều người bị ép lao dịch. Tranh luận về linh hồn là thái độ Giáo hội, không phải sự thật canon.",
+      "dailyLife": "Họ làm canh gác, khai đá, xây dựng, khảo sát đất và công việc lâu dài. Vận chuyển qua cầu, tàu và nền yếu là vấn đề; công cụ phải chịu lực lớn.",
+      "family": "Họ không sinh con theo một cách chung. Người mới có thể được tạc, kết tinh hoặc thức tỉnh; quan hệ thầy–tạo tác, nhóm lõi và nhận nuôi thay vai trò huyết thống.",
+      "faithAndLaw": "Giáo hội chưa phân định linh hồn, khiến quyền hôn nhân, thừa kế và lời thề khác nhau theo nơi. Một số Thạch Duệ tự theo đạo, điều đó chưa giải quyết tranh cãi pháp lý.",
+      "misconceptions": "Không tuyên bố họ không có linh hồn, miễn mọi vũ khí, không cảm xúc, nặng nửa tấn hoặc đều do Lùn tạo."
+    },
+    "race_nhom-nguoi-thu": {
+      "title": "Nhóm Người Thú",
+      "keys": ["Người Thú", "Beastmen", "Beastfolk", "nhóm Người Thú"],
+      "content": "## Nhóm Người Thú là gì:\nNgười Thú là nhãn phân loại dành cho Mã Nhân, Mục Nhân, Miêu Nhân, Quạ Nhân, Thử Nhân, Lang Nhân, Hùng Nhân và một số cộng đồng nhỏ. Đây không phải một chủng tộc chọn được, không có vua, ngôn ngữ, tôn giáo, tuổi thọ hay đặc tính chung.\n\n## Nguồn gốc và hình thể:\nCác học giả tranh luận liệu họ hình thành từ tiến hóa ma lực, giao ước cổ hay nhiều nguồn độc lập. Không giả thuyết nào cho phép suy phẩm chất đạo đức từ hình dáng thú. Lang Nhân và Hùng Nhân là hai dòng biến hình; các nhánh còn lại có hình thể ổn định. Mã Nhân có thân người hai chân, chỉ mang tai và đuôi ngựa.\n\n## Vị thế năm 1444:\nTại hãn quốc, Ottoman, Hungary, Baltic và Scandinavia, một số nhánh nắm chính quyền hoặc giữ ngạch quân sự. Tại nhiều thành Tây Âu, nhánh khác bị lao dịch hoặc đẩy ra ngoài luật. Sự khác biệt đến từ thể chế, chiến tranh và quyền sở hữu, không từ mức 'văn minh' bẩm sinh.\n\n## Chống hiểu sai:\nKhông dùng từ Người Thú như một tính cách. Không mặc định mọi nhánh có giác quan, sức mạnh, tuổi thọ, bản năng hay quan hệ tôn giáo giống nhau. Muốn biết một cá nhân, phải dùng entry của đúng chủng tộc cụ thể."
+    },
+    "race_hai-toc": {
+      "title": "Hải Tộc",
+      "keys": ["Hải Tộc", "Sea Folk", "Merfolk", "Tộc Hải Tộc"],
+      "identity": "một chủng tộc thủy sinh lưỡng cư ven biển có mang, màng tay và vảy nhỏ; có nhiều cộng đồng biển sâu, còn chuẩn tạo nhân vật ở đây mô tả nhánh ven bờ",
+      "biology": "Họ bơi giỏi, nín thở lâu và hô hấp được cả không khí lẫn nước trong giới hạn. Trên bờ da khô dần; được giữ ẩm và uống đủ nước thì họ làm việc cả ngày, không chết sau vài giờ. Sa mạc và hành quân khô gây suy yếu mạnh.",
+      "society": "Hải Tộc có làng triều, khu cảng, đoàn hoa tiêu và cộng đồng dưới nước. Họ làm thương nhân trong Ottoman, Đông La Mã, thành bang Latin, Kalmar, Iberia và Hanse; không thống trị toàn biển hay có quyền đánh chìm mọi hạm đội.",
+      "dailyLife": "Nghề gồm hoa tiêu, thợ lặn, cứu hộ, đánh cá, thu ngọc, vận tải ven bờ và thương mại. Nhà trên bờ có bể ngâm, nền thoát nước và kho muối; tàu thuê họ phải dành nước ngọt.",
+      "family": "Nhánh ven bờ sinh con và nuôi trẻ trong vùng nước nông được bảo vệ; gia đình thường có họ hàng ở nhiều cảng. Hôn nhân nối quyền neo đậu và bãi cá.",
+      "faithAndLaw": "Quan hệ với Giáo hội dựa trên hòa ước cảng; nghi thức rửa tội được điều chỉnh cho người có mang. Luật tranh cãi quyền cứu hộ, xác tàu và lãnh hải nhiều hơn linh hồn.",
+      "misconceptions": "Không viết mọi Hải Tộc là cướp biển, tống tiền tàu, điều khiển bão, không dùng tàu hoặc chết ngay trên cạn. Phép nước mạnh thuộc cá nhân được huấn luyện."
+    },
+    "race_phong-tien": {
+      "title": "Phong Tiên",
+      "keys": ["Phong Tiên", "Wind Elves", "Wind Elf", "Tộc Phong Tiên"],
+      "identity": "một nhánh Tiên tộc xương nhẹ thích nghi núi cao, nổi tiếng về lượn, quan sát và cung thuật",
+      "biology": "Họ không có cánh thật. Lông tơ cẳng tay, phổi núi và xương nhẹ giúp dùng tà lượn cùng Phong thuật; họ không tự bay nếu thiếu gió, dụng cụ hoặc phép. Xương nhẹ dễ gãy khi chịu va đập nặng.",
+      "society": "Phong Tiên sống trong thị tộc Alps, Carpathian, Scotland và cộng đồng thiểu số ở các nước khác. Tháp canh, tu viện gió và làng vách đá có nhiều thể chế, không phải toàn tộc tu hành khép kín.",
+      "dailyLife": "Họ dẫn đèo, chuyển thư, quan sát thời tiết, chăn dê núi, săn và trinh sát. Tà lượn cần lụa, khung, người bảo trì và điểm hạ an toàn.",
+      "family": "Trẻ học dây an toàn, đọc gió và leo trước khi lượn. Gia đình giữ quyền dùng bãi cất cánh; nhận người ngoại tộc vào thị tộc không ban xương nhẹ hay phép gió.",
+      "faithAndLaw": "Phần lớn theo tinh linh gió hoặc tôn giáo vùng núi, nên bị gọi ngoại đạo; các thỏa thuận đèo khiến nhiều tu viện và lãnh chúa dung nạp họ.",
+      "misconceptions": "Không viết Phong Tiên bay tự do, bắn chính xác tuyệt đối từ hàng ngàn thước, xa lánh mọi nền văn minh hoặc luôn đánh Bán Khổng Lồ."
+    },
+    "race_bang-toc": {
+      "title": "Băng Tộc",
+      "keys": ["Băng Tộc", "Frostborn", "Ice Folk", "Tộc Băng Tộc"],
+      "identity": "một chủng tộc hình người cộng hưởng Băng hệ ở Bắc Âu, có thân nhiệt thấp và khả năng chịu lạnh",
+      "biology": "Họ chịu rét tốt chứ không miễn nhiễm hoàn toàn Băng thuật. Nóng và khô gây suy yếu; Hỏa thuật mạnh nguy hiểm như với sinh vật khác. Tinh thể sương trên tóc và hơi thở lạnh là dấu hiệu thường gặp.",
+      "society": "Băng Tộc nắm nhiều triều đình Kalmar và ngạch quân sự Teuton–Rus, nhưng các vương quốc Bắc Âu vẫn đa chủng tộc. Có ngư dân, nông dân, thợ, giáo sĩ, quý tộc và phe chống liên minh.",
+      "dailyLife": "Họ đi biển, săn, đánh cá, khai rừng, buôn lông, giữ kho lạnh và phục vụ quân đội. Ở miền nam cần nhà mát, nước và tránh giờ nóng.",
+      "family": "Gia đình phân tán theo bờ biển và trang trại; hôn nhân chính trị nối các đảo. Khả năng Băng hệ truyền không đều và cần luyện để tạo băng có ích.",
+      "faithAndLaw": "Nhiều cộng đồng giữ tín ngưỡng Bắc Âu cổ, số khác theo Công giáo hoặc dòng tu. Nhãn ngoại đạo không có nghĩa toàn tộc chống Giáo hội.",
+      "misconceptions": "Không viết mọi Băng Tộc là Viking cướp biển, chiến binh, miễn băng, sợ mọi lửa hoặc cai trị thuần chủng Scandinavia."
+    },
+    "race_moc-toc": {
+      "title": "Mộc Tộc",
+      "keys": ["Mộc Tộc", "Plant-kin", "Sylvani", "Tộc Mộc Tộc"],
+      "identity": "một chủng tộc bán thực vật hình người có thớ gỗ, lá và rễ nhỏ, gắn với lùm thiêng Baltic–Rừng Đen",
+      "biology": "Họ hấp thụ ánh sáng và khoáng nhưng vẫn cần nước, chất dinh dưỡng và thời gian cắm rễ. Thông số chuẩn cao 168–195 cm, không gồm cây khổng lồ ba mét. Nhựa khép vết nhỏ; lửa là điểm yếu nghiêm trọng.",
+      "society": "Mộc Tộc có lùm gia đình, hội tư tế, làng hỗn hợp và vai trò cai trị tại Baltic. Họ hợp tác với Lâm Tiên ở nhiều nơi nhưng là chủng tộc riêng, không phải cây do Lâm Tiên gọi lên.",
+      "dailyLife": "Họ chăm rừng, chữa đất, trồng dược, giữ nguồn nước, làm đồ gỗ chết và tư tế. Mùa đông giảm hoạt động; đi xa cần đất, nước và ánh sáng phù hợp.",
+      "family": "Người mới có thể nảy từ hạt, chồi hoặc sinh sản kết hợp tùy lùm. Quan hệ gia đình tính theo cây gốc và người chăm; tuổi thơ kéo dài hơn Nhân loại.",
+      "faithAndLaw": "Tín ngưỡng Đa thần và tổ cây là cốt lõi tại Baltic, khiến Giáo hội gọi ngoại đạo. Hòa ước khai gỗ quy định cây nào được chặt và phần đất phải phục hồi.",
+      "misconceptions": "Không viết Mộc Tộc là cây vô cảm, bất tử, điều khiển cả rừng, không cần thức ăn–nước hoặc luôn hiền hòa. Không phóng đại tầm vóc ngoài thông số chuẩn."
+    },
+    "race_tro-tan": {
+      "title": "Tộc Tro Tàn",
+      "keys": ["Tộc Tro Tàn", "Tro Tàn", "Ash-born", "Ashborn"],
+      "identity": "một chủng tộc mới xuất hiện sau Cái Chết Đen, gồm người sinh ra hoặc biến đổi bởi vùng ma lực dịch–tử; họ còn sống và không phải xác chết",
+      "lifespanNote": "chưa có thế hệ nào sống đủ lâu để xác định; null nghĩa là chưa biết, không khẳng định bất tử",
+      "biology": "Họ kháng dịch và chịu đau tốt, da khô không toát mồ hôi; không miễn mọi độc, không thể sống vô hạn trong khí độc và không mặc định dùng Tử linh thuật. Ma pháp Thần thánh có thể gây khó chịu tùy cá nhân, không phải ánh sáng nào cũng thiêu da.",
+      "society": "Họ sống trong khu cách ly cũ, hầm mộ, phường xử lý xác, làng tái định cư và đoàn lang bạt khắp Europa. Có cộng đồng tự quản, gia đình và nghề bình thường dù bị xua đuổi.",
+      "dailyLife": "Nhiều người làm chăm bệnh, dọn dịch, thuộc da, đào mộ, đốt rác và công việc nguy hiểm vì sức kháng; đó là lựa chọn kinh tế bị ép, không phải ham chết chóc.",
+      "family": "Họ có thể sinh con Tro Tàn hoặc trẻ mang ít dấu hiệu; cơ chế chưa được học giả hiểu. Người sống sót dịch và Tro Tàn không phải cùng một chủng tộc nếu không có biến đổi ổn định.",
+      "faithAndLaw": "Giáo hội bị chia rẽ giữa coi họ ô uế và coi họ là người sống cần cứu. Nhiều thành bắt mang dấu kiểm dịch dù họ ít truyền bệnh hơn dân thường.",
+      "misconceptions": "Không viết Tro Tàn là xác sống, bất tử, vô hồn, mang dịch, miễn mọi độc hoặc pháp sư tử linh bẩm sinh."
+    },
+    "race_nhan-loai": {
+      "title": "Nhân loại",
+      "keys": ["Nhân loại", "Humanity", "Humans", "con người"],
+      "identity": "nhóm chủng tộc đông dân nhất Europa; theo quy ước tạo nhân vật, Nhân loại gồm bốn nhánh Frank, Teuton, Latin và Rus chứ không phải một nền văn hóa duy nhất",
+      "biology": "Tuổi thọ sinh học điển hình khoảng bảy mươi năm, nhưng tuổi thọ thực tế thấp hơn vì chiến tranh, dịch và sinh nở. Khả năng phép biến thiên; không đúng khi nói gần như mọi người hoàn toàn không có ma lực.",
+      "society": "Nhân loại nắm nhiều triều đình Tây–Trung Âu nhờ dân số, đất, Giáo hội và thể chế. Họ vẫn sống trong quốc gia đa chủng tộc; không có quyền cai trị 'tuyệt đối' toàn bề mặt hay mức văn minh bẩm sinh cao hơn tộc khác.",
+      "dailyLife": "Đại đa số là nông dân, thợ, gia nhân và dân thành; quý tộc, giáo sĩ và pháp sư là thiểu số. Bốn nhánh có ngôn ngữ, luật, tôn giáo và vai trò khác nhau, được mô tả trong sách riêng.",
+      "family": "Gia đình, hôn nhân, thừa kế và cộng đồng thay đổi theo vùng và giai cấp. Sinh suất cao hơn các tộc sống lâu góp phần vào dân số, nhưng không phải mọi hộ đông con hay mọi Nhân loại giống nhau.",
+      "faithAndLaw": "Công giáo, Chính thống giáo, Hồi giáo, Đa thần giáo và nhiều tín ngưỡng đều có tín đồ Nhân loại. Nhãn 'chính thống' trong bảng tạo nhân vật là vị thế của đa số Tây Âu, không phải bản chất chủng tộc.",
+      "misconceptions": "Không viết Nhân loại là mặc định trung tính, văn minh, thích nghi vô hạn hoặc thống nhất. Khi cần văn hóa cụ thể, dùng Frank, Teuton, Latin hoặc Rus thay vì suy từ chữ Nhân loại."
+    }
+  }
+}

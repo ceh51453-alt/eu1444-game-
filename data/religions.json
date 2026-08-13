@@ -1,12 +1,12 @@
 {
   "$comment": "TÔN GIÁO (Phần 6 mục 7). Dùng CHUNG khuôn hiệu ứng với data/traits.json — `domains` + `value` theo thang d100 + `whenAnyTag` — nên chỉ có đúng một đường quy đổi sang bốn hệ xúc sắc, và một dòng modifier tôn giáo đọc giống hệt một dòng đặc tính chủng tộc. `value` được NHÂN với mức sùng đạo (piety/100) trước khi vào phép kiểm: một người ghi tên trong sổ rửa tội mà không tin gì thì tôn giáo gần như không đụng tới con số nào của họ, còn một người sùng đạo thì vừa được nhiều hơn vừa bị trói nhiều hơn. `taboos` là chữ cho AI đọc, không vào công thức. Phần 14 (tám thế lực) sở hữu quan hệ giữa các tôn giáo và sẽ sửa lại `stance`.",
-  "$comment14": "PHẦN 14 MỤC 5 nối tiếp vào file này, KHÔNG mở file thứ hai — một tôn giáo hai nguồn sự thật là cách chắc chắn nhất để Phần 6 và Phần 14 nói về hai thứ khác nhau bằng cùng một cái tên. Phần 14 thêm bốn tôn giáo mà mục 5 đòi phải có riêng (nhánh Baltic của Tín ngưỡng Cổ TÁCH khỏi nhánh phương tây; giáo phái Thần Chiến Trận của Sói Nhân; hai phong trào dị giáo phát sinh TỪ TRONG Giáo hội Chính thống), cộng bốn khối mới: `spread` (cơ chế lan truyền), `heresy` (dị giáo bùng sau khủng hoảng — QUY TẮC BẮT BUỘC, không phải ngẫu nhiên), `relations` (ma trận quan hệ giữa các tôn giáo), `seeds` (tỷ lệ khởi đầu theo thế lực và theo tỉnh).",
+  "$comment14": "PHẦN 14 MỤC 5 nối tiếp vào file này, KHÔNG mở file thứ hai — một tôn giáo hai nguồn sự thật là cách chắc chắn nhất để Phần 6 và Phần 14 nói về hai thứ khác nhau bằng cùng một cái tên. Phần 14 thêm bốn tôn giáo mà mục 5 đòi phải có riêng (nhánh Baltic của Tín ngưỡng Cổ TÁCH khỏi nhánh phương tây; giáo phái Thần Chiến Trận của Sói Nhân; hai phong trào dị giáo phát sinh TỪ TRONG Giáo hội Tây phương), cộng bốn khối mới: `spread` (cơ chế lan truyền), `heresy` (dị giáo bùng sau khủng hoảng — QUY TẮC BẮT BUỘC, không phải ngẫu nhiên), `relations` (ma trận quan hệ giữa các tôn giáo), `seeds` (tỷ lệ khởi đầu theo thế lực và theo tỉnh).",
   "version": 2,
   "religions": [
     {
       "id": "rel_giao-hoi",
-      "name": "Giáo hội Chính thống",
-      "shortName": "Chính thống",
+      "name": "Giáo hội Tây phương",
+      "shortName": "Tây phương",
       "description": "Bộ máy tôn giáo lớn nhất Tây và Trung Europa. Biết chữ, có tòa án riêng, và nhớ rất dai.",
       "stance": "chính thống",
       "raceStandings": ["chính thống", "trung tâm"],
@@ -169,7 +169,7 @@
       "id": "rel_di-giao-ao-vai",
       "name": "Phong trào Áo Vải",
       "shortName": "Áo Vải",
-      "description": "Sinh ra TỪ TRONG Giáo hội Chính thống, không phải từ bên ngoài. Giảng rằng linh mục sống trong dinh thự thì không rửa tội cho ai được. Lan nhanh nhất ở nơi vừa có người chết đói.",
+      "description": "Sinh ra TỪ TRONG Giáo hội Tây phương, không phải từ bên ngoài. Giảng rằng linh mục sống trong dinh thự thì không rửa tội cho ai được. Lan nhanh nhất ở nơi vừa có người chết đói.",
       "stance": "dị giáo",
       "raceStandings": [],
       "heresyOf": "rel_giao-hoi",
@@ -307,7 +307,7 @@
       { "a": "rel_ly-giao", "b": "rel_di-giao-thanh-tay", "value": -55 },
       { "a": "rel_nam-phuong", "b": "rel_thao-nguyen", "value": -20 },
       { "a": "rel_nam-phuong", "b": "rel_than-chien-tran", "value": -30 },
-      { "a": "rel_nam-phuong", "b": "rel_di-giao-ao-vai", "value": 10, "note": "Kẻ thù của kẻ thù. Đế quốc Orc cho dị giáo tị nạn — và Giáo hội không bao giờ quên chuyện đó." },
+      { "a": "rel_nam-phuong", "b": "rel_di-giao-ao-vai", "value": 10, "note": "Kẻ thù của kẻ thù. Triều Ottoman cho dị giáo tị nạn — và Giáo hội không bao giờ quên chuyện đó." },
       { "a": "rel_thao-nguyen", "b": "rel_than-chien-tran", "value": 45 },
       { "a": "rel_da-than", "b": "rel_da-than-baltic", "value": 60, "note": "Cùng gốc, nhưng một bên trốn trong rừng còn một bên có đền công khai." },
       { "a": "rel_da-than", "b": "rel_to-tien", "value": 35 },

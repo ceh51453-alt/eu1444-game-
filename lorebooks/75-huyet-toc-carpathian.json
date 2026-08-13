@@ -1,0 +1,234 @@
+{
+  "kind": "eu1444-lorebook",
+  "schemaVersion": 1,
+  "exportedAt": 0,
+  "books": [
+    {
+      "id": "book-huyet-toc-carpathian",
+      "name": "Europa 1444 · Huyết Tộc và các Triều đình Đêm",
+      "version": 1,
+      "scope": { "kind": "global" },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 6,
+      "entries": [
+        {
+          "id": "race_huyet-toc",
+          "title": "Huyết Tộc",
+          "type": "custom",
+          "content": "Huyết Tộc là một chủng tộc bất tử sinh học: họ ngừng già sau khi trưởng thành nhưng vẫn có thể bị giết. Máu tươi nuôi ma lực, giữ đầu óc tỉnh táo và giúp họ phục hồi; thiếu máu lâu ngày khiến giác quan méo mó, lý trí suy giảm rồi rơi vào trạng thái khô ngủ. Họ vẫn ăn uống được vì lễ nghi hoặc khoái cảm, nhưng thức ăn thường không thay thế được máu.\n\nÁnh nắng trực tiếp làm bỏng da, phá Huyết ma pháp và chặn khả năng tự lành; nắng trưa nguy hiểm nhất, còn trời râm chỉ làm họ suy yếu. Bạc gây vết thương mà cơ thể Huyết Tộc không tự khép được. Lửa, chặt đầu, phá tim và Ma pháp Thần thánh đã được ban phước thật sự đều có thể giết họ. Tỏi, nước chảy, gương và việc phải được mời vào nhà chỉ là mê tín hoặc mẹo dân gian, không phải luật tự nhiên tuyệt đối.\n\nHuyết Tộc rất hiếm. Ở Transylvania chỉ có khoảng một Huyết Tộc trên ba mươi đến năm mươi dân sống; tỷ lệ cao hơn quanh lâu đài và thấp hơn hẳn tại các làng ruộng. Phần đông cư dân là Nhân loại, Bán Nhân cùng các á nhân bản địa. Tuổi thọ vô hạn khiến đất, nợ và chức vụ tích tụ vào tay vài gia tộc cổ; vì vậy hình ảnh quen thuộc nhất là quý tộc bất tử. Tuy nhiên, chủng tộc không tự ban tước: một Huyết Tộc không được gia tộc thừa nhận vẫn có thể là gia thần, kỵ sĩ, thư lại, thợ thủ công, con nợ hoặc kẻ ngoài vòng pháp luật.\n\nHọ nói tiếng Magyar quý tộc trong triều đình, còn gia nhân và dân làng dùng cả tiếng địa phương. Tập quán Huyết Tộc coi lời mời dùng máu, quyền đặt chân vào huyết kho và tên ghi trong gia phả quan trọng hơn lời tuyên thệ thông thường.",
+          "summary": "Huyết Tộc không già nhưng vẫn bị giết; máu nuôi ma lực và khả năng hồi phục. Nắng trực tiếp, bạc, lửa, phá tim/chặt đầu và phép Thần thánh là khắc tinh. Họ là thiểu số ở Transylvania: thường làm quý tộc, gia thần, kỵ sĩ, thư lại hoặc thợ chuyên môn chứ không phải ai cũng có tước.",
+          "keys": ["Huyết Tộc", "Huyết tộc", "Vampire", "Vampires", "Ma cà rồng", "Ma Cà Rồng"],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "weight": 16,
+          "budgetPriority": 9,
+          "related": [
+            { "id": "concept_giai-cap-huyet-toc", "pullWeight": 0.8 },
+            { "id": "concept_ba-tang-cong-khai-huyet-toc", "pullWeight": 0.8 }
+          ]
+        },
+        {
+          "id": "concept_giai-cap-huyet-toc",
+          "title": "Giai cấp trong xã hội Huyết Tộc",
+          "type": "concept",
+          "content": "Xã hội các Công quốc Đêm là xã hội đa chủng tộc do một thiểu số Huyết Tộc nắm chính quyền, không phải một quốc gia toàn ma cà rồng.\n\nTầng trên cùng là các gia chủ cổ huyết: công tước, bá tước và chủ thành nắm đất, huyết kho, quyền chuyển hóa người mới và ghế trong Hội nghị Đêm. Dưới họ là Huyết Tộc có đặc quyền nhưng không có chủ quyền: chi thứ, kỵ sĩ đêm, pháp sư huyết, quản gia, thẩm phán và sứ giả. Tầng thứ ba thường bị gọi miệt thị là huyết dân: người mới được chuyển hóa, con ngoài gia phả, thợ thủ công, lính canh hoặc con nợ sống nhờ khẩu phần máu của một nhà lớn. Họ tự do về thân thể trên giấy nhưng bị trói bằng nợ máu và lời thề; một số gần với nông nô hơn quý tộc.\n\nKhông có tầng lớp nông dân Huyết Tộc đông đảo cày ruộng ban ngày. Một sinh vật không chịu nổi nắng, cần máu để sống và được tạo ra với chi phí chính trị cao là lao động đồng áng rất tệ. Ruộng, đàn gia súc, mỏ và xưởng do nông nô Nhân loại, Bán Nhân, Gnome và á nhân làm việc. Huyết Tộc nghèo tồn tại, nhưng thường làm việc ban đêm trong lâu đài, quân đội, kho sổ hoặc nghề cần tuổi đời dài.\n\nKhoảng cách lớn nhất không chỉ là giữa Huyết Tộc và người sống, mà giữa kẻ có quyền cấp máu với kẻ phải xin khẩu phần. Một huyết dân xúc phạm gia chủ có thể không bị xử tử; họ chỉ bị xóa tên khỏi huyết kho, một bản án chết chậm.",
+          "summary": "Huyết Tộc gồm gia chủ quý tộc, chi thứ/gia thần có đặc quyền và huyết dân lệ thuộc bằng nợ máu. Không có đông đảo nông nô Huyết Tộc cày ruộng; dân sống và á nhân sản xuất, còn Huyết Tộc nghèo làm lính đêm, thư lại, quản gia hoặc thợ chuyên môn.",
+          "keys": ["nông nô Huyết Tộc", "nông dân Huyết Tộc", "quý tộc Huyết Tộc", "giai cấp Huyết Tộc", "huyết dân", "gia thần Huyết Tộc", "Huyết Tộc nghèo"],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "weight": 15,
+          "budgetPriority": 9
+        },
+        {
+          "id": "concept_ba-tang-cong-khai-huyet-toc",
+          "title": "Huyết Tộc công khai hay che giấu?",
+          "type": "concept",
+          "content": "Danh tính Huyết Tộc có ba mức, tùy nơi chứ không có một câu trả lời cho toàn Europa.\n\nTại các thung lũng do Triều đình Đêm cai trị ở Transylvania, thân phận của lãnh chúa là sự thật công khai. Dân làng thấy xe thu máu, lính gác chỉ ra sau hoàng hôn và các gia chủ không già qua nhiều thế hệ. Họ kiêng nói thẳng vì sợ hãi và phép tắc, gọi chủ núi là \"các ngài ở trên\".\n\nTại Buda và phần đồng bằng Hungary, đó là bí mật công khai. Luật và gia phả vẫn ghi các nhà ấy là quý tộc Cơ đốc giáo mắc \"bệnh đêm\"; họ giữ nhà nguyện, cử đại diện dự lễ ban ngày và nộp quân cho Vương miện. Quan lại biết sự thật nhưng tránh viết ra, vì thừa nhận chính thức sẽ buộc nhà vua và Giáo hội phải mở một cuộc thanh tẩy mà Hungary không đủ quân tiến hành trong lúc Ottoman áp sát. Nhà Cillei và vài chi họ tại triều đình sống theo cách này: ai cũng biết, không ai đóng dấu xác nhận.\n\nỞ phần còn lại của Europa, Huyết Tộc phải che thân phận hoặc đi dưới quyền miễn trừ ngoại giao. Một cá thể lộ nanh, không có gia tộc bảo lãnh và không đứng trên đất Transylvania có thể bị Tòa án Dị giáo, Teuton hoặc đám đông địa phương giết mà gần như không được luật bảo vệ.",
+          "summary": "Ở Transylvania, Huyết Tộc công khai trên thực tế; ở Buda, họ là bí mật công khai nhưng giấy tờ vẫn ghi là quý tộc Cơ đốc; ngoài Hungary–Balkan, phần lớn phải cải trang hoặc có miễn trừ ngoại giao để tránh bị săn.",
+          "keys": ["Huyết Tộc công khai", "Huyết Tộc che giấu", "giấu thân phận Huyết Tộc", "bí mật Huyết Tộc", "bệnh đêm", "danh tính ma cà rồng", "Ma cà rồng công khai"],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "weight": 16,
+          "budgetPriority": 9,
+          "related": [
+            { "id": "realm_hungary", "pullWeight": 0.6 },
+            { "id": "prov_transylvania", "pullWeight": 0.8 }
+          ]
+        },
+        {
+          "id": "org_cac-trieu-dinh-dem-transylvania",
+          "title": "Các Triều đình Đêm Transylvania",
+          "type": "faction",
+          "content": "\"Các Công quốc Ma cà rồng Transylvania\" là tên người ngoài dùng cho một chùm lãnh thổ phong kiến, không phải một quốc gia thống nhất. Trên giấy, tất cả thuộc Vương miện Thánh Stephen của Hungary; trên thực tế, mỗi gia chủ thu thuế, xử án, nuôi quân và ký thỏa thuận riêng. Hội nghị Đêm chỉ nhóm họp khi có thập tự chinh, nạn đói máu hoặc kẻ ngoài đe dọa toàn vùng.\n\nBa triều đình mạnh nhất năm 1444 là Vespermark của nhà Báthory, giàu nhờ các đèo phía tây và do Carmilla Báthory chi phối; Ködvár, một liên minh thành đá và rừng sương chuyên giữ huyết kho cùng gia phả; và Feketevíz ở các thung lũng phía đông, nghèo hơn nhưng có nhiều kỵ sĩ đêm và giao tranh liên miên với Long Duệ Wallachia. Xen giữa họ là hàng chục nam tước thành, tu viện bị thế tục hóa và làng tự trị mua sự bảo hộ của nhiều chủ cùng lúc.\n\nCác công quốc vừa hợp tác vừa phá nhau. Họ cấm chiến tranh tổng lực làm chết nguồn dân, nên tranh chấp thường diễn ra bằng hôn ước, bắt cóc người hiến máu quý, phá sổ gia phả, đấu tay đôi ủy nhiệm và các cuộc đột kích không mang cờ. Không có \"vua ma cà rồng\"; kẻ tự xưng như vậy sẽ khiến mọi nhà còn lại liên minh chống lại.",
+          "summary": "Các Công quốc Đêm là nhiều lãnh thổ bán độc lập thuộc Hungary trên danh nghĩa. Ba triều đình lớn là Vespermark, Ködvár và Feketevíz; họ chỉ họp Hội nghị Đêm khi toàn vùng bị đe dọa và thường tranh quyền bằng hôn ước, bắt cóc, phá gia phả cùng chiến tranh không cờ.",
+          "keys": ["Triều đình Đêm", "Công quốc Đêm", "các Công quốc Ma cà rồng", "Vampiric Principalities", "Vespermark", "Ködvár", "Feketevíz", "Hội nghị Đêm", "vua ma cà rồng"],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "weight": 15,
+          "budgetPriority": 9,
+          "related": [
+            { "id": "prov_transylvania", "pullWeight": 0.9 },
+            { "id": "npc_carmilla-bathory", "pullWeight": 0.7 }
+          ]
+        },
+        {
+          "id": "concept_than-phan-dan-song-transylvania",
+          "title": "Nông nô và dân sống dưới Triều đình Đêm",
+          "type": "concept",
+          "content": "Đại đa số dân Transylvania vẫn là người sống. Họ sinh con, làm ruộng, chăn cừu, khai muối, đốn gỗ, đi chợ và dự lễ như dân ở các vùng phong kiến khác. Một làng thường trực thuộc kép: ban ngày chịu cha xứ, trưởng làng và luật tục; ban đêm chịu quản sự của lâu đài cùng luật máu.\n\nNông nô không bị hút chết tùy hứng trong mọi bữa ăn. Một lãnh chúa biết tính toán cần đàn dân khỏe, nên thu máu theo sổ hộ, tuổi, bệnh và mùa vụ. Người được gọi lên thường ở huyết viện vài đêm, được ăn đủ rồi trở về trong tình trạng yếu sức. Kẻ phạm tội, người mắc nợ, tù binh và dân không có ai bảo lãnh dễ bị rút quá mức hoặc không bao giờ trở về. Máu có thiên phú ma lực bị đánh giá riêng và có thể trở thành tài sản tranh chấp giữa các nhà.\n\nĐổi lại, lâu đài giữ đường khỏi cướp, tích lúa cho mùa đói, kiểm soát dịch bệnh và đánh đuổi Akinji hay ma thú. Đây không phải khế ước công bằng: dân không được tự do rời đất, giấu người khỏi sổ máu bị coi là trộm tài sản của chủ, và quyền bảo hộ luôn đi kèm quyền lấy máu. Tuy vậy, nhiều làng sợ quân Ottoman, chiến tranh Long Duệ hoặc nạn đói hơn chính chủ núi, nên họ có thể chủ động đốt lửa hiệu cầu kỵ sĩ đêm cứu viện.",
+          "summary": "Dân Transylvania chủ yếu là nông nô sống và á nhân. Họ sản xuất bình thường nhưng nộp thêm thuế máu theo sổ; đa số người hiến trở về, còn tù nhân, con nợ và kẻ không bảo lãnh có thể biến mất. Lâu đài đổi việc bảo hộ, kho lúa và chống dịch lấy quyền giữ dân trên đất.",
+          "keys": ["nông nô máu", "nông nô Transylvania", "dân Transylvania", "người hiến máu", "huyết viện", "sổ máu", "làng ma cà rồng"],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "weight": 14,
+          "budgetPriority": 8
+        },
+        {
+          "id": "concept_thue-mau-va-huyet-kho",
+          "title": "Thuế máu, huyết kho và kinh tế ban đêm",
+          "type": "concept",
+          "content": "Máu là địa tô chiến lược, không phải đồng tiền dùng mua bánh ngoài chợ. Nông nghiệp, muối, gỗ, sắt, vải và đồng bạc vẫn vận hành nền kinh tế; điểm khác là chủ đất Huyết Tộc thu một phần nghĩa vụ bằng máu thay vì chỉ lấy thóc hoặc tiền. Một hộ có thể nộp máu cho lâu đài, ngày công cho làng và phần mười lúa cho nhà thờ cùng trong một năm.\n\nMỗi lâu đài có huyết kho do quản huyết trông coi. Máu được phân theo nguồn, tuổi, sức khỏe, ngày lấy và dấu ấn ma lực; bình kín được làm lạnh bằng băng hầm hoặc phép. Máu tươi dùng cho gia chủ và chữa thương, máu bảo quản nuôi gia thần, máu không đạt chuẩn dùng cho nghi lễ, giả kim hoặc quân xác sống. Trộm sổ hay pha loãng kho máu là tội gần ngang đầu độc giếng.\n\nHạn mức chính thức được đặt dưới mức làm dân chết hàng loạt vì một thung lũng trống người là tài sản mất vĩnh viễn. Nhưng chiến tranh, tiệc lớn và tham vọng của lãnh chúa thường phá vỡ hạn mức. Khi thiếu máu, công quốc mua tù binh từ Biển Đen, đòi cống người, vay huyết khố của nhà khác hoặc săn người không được luật bảo hộ. Chợ đen buôn máu tồn tại quanh mọi cửa đèo.",
+          "summary": "Máu là địa tô chiến lược chứ không thay toàn bộ tiền và lương thực. Huyết kho ghi nguồn, sức khỏe, ngày lấy và ma lực; máu tươi cho quý tộc/chữa thương, máu bảo quản cho gia thần. Chiến tranh và tiệc lớn gây thiếu máu, kéo theo cống người, tù binh và chợ đen.",
+          "keys": ["thuế máu", "Thuế Máu", "huyết kho", "huyết khố", "kinh tế máu", "khẩu phần máu", "quản huyết", "chợ đen buôn máu"],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "weight": 15,
+          "budgetPriority": 9,
+          "related": [
+            { "id": "concept_nen-kinh-te-huyet-ma-phap-transylvania", "pullWeight": 0.8 }
+          ]
+        },
+        {
+          "id": "law_luat-dem-transylvania",
+          "title": "Luật Đêm Transylvania",
+          "type": "law",
+          "content": "Luật Đêm có hiệu lực từ chuông tắt nắng đến chuông rạng đông và song song với luật làng ban ngày. Năm điều người dân nào cũng biết: không ra đường khi chuông săn đã đổ; không che giấu người có tên trong sổ máu; không mang bạc đã mài thành vũ khí nếu không có ấn của chủ; không mời khách lạ ngủ qua đêm mà chưa báo trưởng làng; và không phá đèn hiệu trên đường lên lâu đài.\n\nHuyết Tộc bị cấm giết dân có tên trong sổ của nhà khác, săn trong làng vào ngày thuế chưa đến hạn, chuyển hóa người sống khi chưa được gia chủ cho phép và để xác sống đi qua đất canh tác không người dẫn. Đây là luật tài sản nhiều hơn luật nhân đạo, nhưng nó vẫn tạo ra giới hạn thật. Một quý tộc phá hạn mức có thể phải bồi thường người, máu hoặc quyền thu của cả một làng.\n\nVụ án giữa người sống do trưởng làng hoặc quản sự xử. Vụ có Huyết Tộc do thẩm phán đêm của gia chủ xử; tranh chấp giữa hai nhà được đưa ra Hội nghị Đêm hoặc đấu tay đôi ủy nhiệm. Lời khai ban ngày vẫn có giá trị, nhưng văn bản chỉ được đóng ấn sau hoàng hôn.",
+          "summary": "Luật Đêm quản giờ giới nghiêm, sổ máu, vũ khí bạc, khách lạ và đường lên lâu đài. Nó cũng cấm Huyết Tộc săn sai hạn, giết dân thuộc nhà khác, chuyển hóa không phép và thả xác sống tự do. Đây chủ yếu là luật bảo vệ tài sản sống, nhưng quý tộc vi phạm vẫn phải bồi thường.",
+          "keys": ["Luật Đêm", "luật Transylvania", "giới nghiêm Transylvania", "chuông săn", "tội phạm Huyết Tộc", "thẩm phán đêm", "luật ma cà rồng"],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "weight": 14,
+          "budgetPriority": 8
+        },
+        {
+          "id": "concept_chuyen-hoa-va-sinh-no-huyet-toc",
+          "title": "Sinh ra và chuyển hóa Huyết Tộc",
+          "type": "concept",
+          "content": "Huyết Tộc có hai đường nối dòng. Cổ huyết có thể sinh con, nhưng thai kỳ hiếm, nguy hiểm và thường chỉ thành công khi người mẹ được nuôi bằng máu giàu ma lực. Con sinh ra lớn gần như người sống rồi ngừng già ở tuổi trưởng thành; chúng là tài sản thừa kế quý nhất của một nhà.\n\nĐường phổ biến hơn là chuyển hóa: người sống uống máu của người tạo, bị rút gần cạn rồi vượt qua ba đêm sốt chết. Phần lớn ứng viên chết, hóa điên hoặc trở thành sinh vật đói không có lý trí. Người sống sót mang một mối ràng buộc huyết ma với người tạo trong những năm đầu và cần được dạy cách ăn, ngủ, che nắng cùng kiểm soát cơn đói.\n\nVì mỗi người mới làm tăng nhu cầu máu và sức mạnh của một phe, quyền chuyển hóa là đặc quyền chính trị. Gia chủ phải cấp ấn; biến người trái phép bị coi là đúc tiền giả và tuyển quân phản nghịch cùng lúc. Nông nô giỏi không tự động được ban bất tử: đa số gia chủ thích giữ một quản sự trung thành còn sống hơn tạo thêm đối thủ bất tử.\n\nVết cắn thông thường không lây Huyết Tộc. Nó gây mất máu, bệnh hoặc dấu ấn ma pháp, nhưng không đủ để chuyển hóa nếu thiếu nghi thức và máu của người tạo.",
+          "summary": "Huyết Tộc cổ huyết sinh con rất hiếm; phần lớn người mới được tạo qua nghi thức ba đêm có tỷ lệ chết cao. Quyền chuyển hóa cần ấn gia chủ vì mỗi cá thể mới làm tăng nhu cầu máu và quyền lực phe phái. Vết cắn thông thường không tự biến nạn nhân thành Huyết Tộc.",
+          "keys": ["chuyển hóa Huyết Tộc", "biến thành Huyết Tộc", "Huyết Tộc sinh con", "con Huyết Tộc", "vết cắn ma cà rồng", "người tạo Huyết Tộc", "cổ huyết"],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "weight": 15,
+          "budgetPriority": 9
+        },
+        {
+          "id": "concept_hon-nhan-va-thua-ke-huyet-toc",
+          "title": "Hôn nhân, gia tộc và thừa kế bất tử",
+          "type": "concept",
+          "content": "Hôn nhân quý tộc Huyết Tộc là hợp đồng chia quyền tiếp cận huyết kho, đất và người bảo lãnh, không chỉ là chuyện sinh con. Họ có thể cưới người sống để nối một gia phả hợp pháp với Hungary, lấy của hồi môn hoặc sinh cổ huyết; người phối ngẫu thường được giữ sống nhiều năm và không mặc nhiên được chuyển hóa.\n\nVì gia chủ không chết già, tước vị hiếm khi truyền theo cách bình thường. Người thừa kế cai quản đất phụ, đi sứ hoặc chờ hàng thế kỷ; nhiều cuộc phản loạn bắt đầu từ một đứa con hiểu rằng cha mẹ mình sẽ không bao giờ tự rời ghế. Các nhà giải quyết bằng đồng nhiếp chính theo thế kỷ, chia quyền thu máu, giấc ngủ dài tự nguyện hoặc điều khoản truất quyền khi gia chủ phát điên vì đói.\n\nGia phả có hai cột: huyết thống sinh ra và huyết thống tạo thành. Cả hai đều có giá trị, nhưng cổ huyết được ưu tiên trong nghi lễ còn người được chuyển hóa thường trung thành trực tiếp với người tạo. Nhận con nuôi, bảo lãnh huyết dân và kết nghĩa bằng chén máu là công cụ chính trị phổ biến hơn sinh con.",
+          "summary": "Hôn nhân Huyết Tộc chia đất, huyết kho và tính hợp pháp. Vì gia chủ không chết già, người thừa kế có thể chờ hàng thế kỷ; quyền lực được chia bằng đồng nhiếp chính, đất phụ hoặc giấc ngủ dài. Gia phả ghi cả huyết thống sinh ra lẫn quan hệ người tạo–người được tạo.",
+          "keys": ["hôn nhân Huyết Tộc", "thừa kế Huyết Tộc", "gia phả Huyết Tộc", "người thừa kế bất tử", "huyết thống tạo thành", "cưới ma cà rồng"],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "weight": 13,
+          "budgetPriority": 8
+        },
+        {
+          "id": "concept_doi-song-ban-dem-huyet-toc",
+          "title": "Đời sống thường ngày của Huyết Tộc",
+          "type": "concept",
+          "content": "Ngày của một lâu đài Huyết Tộc bắt đầu lúc mặt trời lặn. Cửa chính mở, người ghi sổ đọc công văn từ ban ngày, bếp hâm món cho khách sống, huyết kho phát khẩu phần và phiên xử diễn ra trước nửa đêm. Từ nửa đêm đến gần sáng là giờ săn, luyện quân, tiếp khách và làm phép. Trước chuông sớm, mọi Huyết Tộc phải vào phòng đá, hầm rượu hoặc buồng có rèm chì.\n\nCông việc ban ngày không biến mất; nó do quản gia còn sống, người hầu Bán Nhân, thư lại Gnome hoặc Huyết Tộc cấp thấp chịu được ánh sáng gián tiếp làm. Vì thế người quản gia ban ngày thường có quyền lực thực tế rất lớn và là cầu nối giữa làng với chủ núi.\n\nHuyết Tộc không ngủ mỗi ngày vì phép bắt buộc, nhưng cơ thể suy yếu dưới nắng khiến đa số nghỉ vào ban ngày. Gia chủ già đôi khi vào khô ngủ nhiều năm để tiết kiệm máu; khi họ thức dậy, giấy tờ, đồng minh và ngôn ngữ đều có thể đã đổi.\n\nNghệ thuật của họ thiên về thứ tồn tại lâu: đá, kim loại, thảm, bản nhạc chép tay và ký ức truyền miệng. Họ ghét hỏa hoạn không chỉ vì lửa nguy hiểm mà vì một đêm cháy có thể xóa kho lưu trữ tích lũy ba trăm năm.",
+          "summary": "Lâu đài Huyết Tộc thức sau hoàng hôn: xử án, cấp máu, tiếp khách và luyện quân ban đêm; ban ngày do quản gia sống và thư lại điều hành. Huyết Tộc nghỉ trong buồng kín sáng, còn gia chủ già có thể khô ngủ nhiều năm để tiết kiệm máu.",
+          "keys": ["đời sống Huyết Tộc", "Huyết Tộc sống thế nào", "lâu đài Huyết Tộc", "khô ngủ", "ngủ ban ngày", "triều đình ban đêm", "quản gia ban ngày"],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "weight": 13,
+          "budgetPriority": 8
+        },
+        {
+          "id": "concept_duc-tin-va-giao-hoi-huyet-toc",
+          "title": "Huyết Tộc, đức tin và Giáo hội",
+          "type": "concept",
+          "content": "Giáo hội Công giáo gọi trạng thái Huyết Tộc là lời nguyền và trên giáo luật không công nhận họ có quyền nhận bí tích. Thực tế biên giới phức tạp hơn. Nhiều gia tộc vẫn duy trì nhà nguyện, trả phần mười và nuôi một cha xứ sống để bảo vệ vỏ bọc pháp lý; có người thật lòng tin rằng linh hồn mình chưa mất, có kẻ chỉ cần giấy tờ sạch.\n\nThánh vật chỉ gây hại khi đã được ban phước đúng nghi thức và người sử dụng còn giữ đức tin hoặc thẩm quyền. Một cây thánh giá mua ngoài chợ không tự thiêu được Huyết Tộc. Nước thánh, đất thánh và chuông nhà thờ làm Huyết ma pháp khó vận hành nhưng mức độ tùy sức của người ban phép.\n\nTrong nội bộ có ba khuynh hướng: phe Sám Hối kiêng giết người và tìm cách sống bằng thuế máu có hạn mức; phe Gia Phả coi bất tử là quyền tự nhiên của giống săn mồi; phe Vực Đỏ thờ các thực thể hắc ám và dùng hiến tế. Không phải mọi Huyết Tộc đều theo tà giáo, nhưng Giáo triều thường không chấp nhận sự phân biệt đó.\n\nRome tránh tuyên bố công khai Transylvania đã rơi vào tay ma cà rồng, bởi tuyên bố sẽ đòi hỏi một cuộc thập tự chinh mà Giáo triều chưa chắc thắng.",
+          "summary": "Giáo luật coi Huyết Tộc bị nguyền rủa, nhưng nhiều nhà vẫn giữ nhà nguyện và cha xứ để duy trì tính hợp pháp. Thánh vật chỉ có sức mạnh khi được ban phước thật. Nội bộ chia phe Sám Hối, phe Gia Phả và tà giáo Vực Đỏ; Rome biết Transylvania nhưng tránh tuyên bố chính thức.",
+          "keys": ["Huyết Tộc và Giáo hội", "Huyết Tộc có linh hồn", "thánh giá chống ma cà rồng", "nước thánh Huyết Tộc", "nhà nguyện Huyết Tộc", "phe Sám Hối", "Vực Đỏ"],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "weight": 14,
+          "budgetPriority": 8
+        },
+        {
+          "id": "concept_quan-su-huyet-toc",
+          "title": "Quân đội của các Công quốc Đêm",
+          "type": "concept",
+          "content": "Huyết Tộc không đủ đông để tự lập một đại quân. Lõi quân sự là kỵ sĩ đêm, trinh sát biến hình, pháp sư huyết và gia binh bất tử; số đông còn lại là dân binh sống, lính đánh thuê Lang Nhân, cung thủ miền núi và xác sống dùng cho việc nặng. Xác sống không thay được người sống: chúng chậm, khó giữ đội hình khi mất người điều khiển và làm hỏng ruộng nếu thả tự do.\n\nQuân Huyết Tộc mạnh nhất từ chạng vạng đến trước bình minh, trong rừng, đèo và sương. Họ đánh vào trại chỉ huy, ngựa, kho lương và tinh thần rồi rút trước khi trời sáng. Họ tránh trận tuyến ban ngày; nếu bị giữ chân tới bình minh, quân tinh nhuệ phải bỏ truy kích và tìm hầm trú.\n\nMỗi chiến dịch phải tính khẩu phần máu như quân thường tính lương. Uống máu tù binh cho phép hành quân nhanh nhưng phá kỷ luật và khiến đối phương không đầu hàng. Một công quốc cạn huyết kho có thể còn thành và vũ khí nhưng không còn quân chiến đấu.\n\nBạc, lửa, ánh sáng ban phước, pháo đốt rừng và chiến thuật kéo dài giao tranh tới ban ngày là các biện pháp chống Huyết Tộc hiệu quả hơn cố đấu sức trong đêm.",
+          "summary": "Quân Huyết Tộc là lõi tinh nhuệ nhỏ gồm kỵ sĩ đêm, trinh sát và pháp sư, hỗ trợ bởi dân binh sống, Lang Nhân, lính thuê và xác sống. Họ đánh đột kích trong đêm rồi rút trước bình minh; huyết kho là tuyến tiếp tế sống còn, còn bạc, lửa và kéo trận tới ban ngày là khắc chế chính.",
+          "keys": ["quân Huyết Tộc", "kỵ sĩ đêm", "chiến tranh Huyết Tộc", "đánh ma cà rồng", "khẩu phần máu quân đội", "quân xác sống Transylvania", "chống Huyết Tộc"],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "weight": 14,
+          "budgetPriority": 8
+        },
+        {
+          "id": "concept_ngoai-giao-huyet-toc-1444",
+          "title": "Ngoại giao Huyết Tộc năm 1444",
+          "type": "concept",
+          "content": "Quan hệ với Hungary là một cuộc mặc cả không ký. Các công quốc thừa nhận Vương miện Thánh Stephen trên giấy, gửi quà, tin tình báo và quân đêm khi Ottoman vượt đèo; đổi lại Buda không điều tra huyết thuế, không bổ nhiệm quan cai trị có thực quyền và gọi mọi tố cáo là mê tín địa phương. Sau Varna, Hungary cần các đèo được giữ hơn bao giờ hết.\n\nVới Wallachia và các nhà Long Duệ, quan hệ là thù truyền kiếp xen đình chiến. Hai bên tranh thung lũng, nguồn dân và pháo đài, nhưng đều hiểu Ottoman có thể nuốt cả hai. Một toán Huyết Tộc có thể đánh quân Akinji cạnh kỵ binh Long Duệ đêm nay rồi tiếp tục mối thù vào tuần sau.\n\nOttoman coi các công quốc là chư hầu tiềm năng: Sultan sẵn sàng nhận cống và để họ tự trị nếu đường quân được mở. Các gia chủ chia rẽ giữa phe chống Ottoman, phe muốn thần phục để thoát Hungary và phe bán tin cho cả hai.\n\nGiáo triều và Teuton là kẻ thù về giáo lý; Venice, Genoa cùng thương nhân Biển Đen vẫn buôn bán qua trung gian. Ngoại giao Huyết Tộc dựa vào đặc sứ sống ban ngày, hôn ước, con tin và thư có hai bản: một bản hợp pháp cho triều đình, một bản viết bằng máu cho người thật sự ra quyết định.",
+          "summary": "Các Công quốc Đêm thần phục Hungary trên giấy để đổi lấy quyền tự trị và giữ đèo chống Ottoman. Họ vừa chiến tranh vừa đình chiến với Long Duệ Wallachia, chia phe về việc chống hay thần phục Sultan, thù địch Giáo triều/Teuton nhưng vẫn buôn qua thương nhân Ý và Biển Đen.",
+          "keys": ["ngoại giao Huyết Tộc", "Huyết Tộc Hungary", "Huyết Tộc Ottoman", "Huyết Tộc Wallachia", "Huyết Tộc Long Duệ", "hiệp ước Transylvania", "Vương miện Thánh Stephen"],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "weight": 15,
+          "budgetPriority": 9,
+          "related": [
+            { "id": "realm_hungary", "pullWeight": 0.8 },
+            { "id": "realm_wallachia", "pullWeight": 0.7 },
+            { "id": "nation_ottoman", "pullWeight": 0.7 }
+          ]
+        },
+        {
+          "id": "concept_huyet-toc-ngoai-carpathian",
+          "title": "Huyết Tộc ngoài vùng Carpathian",
+          "type": "concept",
+          "content": "Ngoài quê nhà, Huyết Tộc thường rơi vào bốn dạng. Sứ giả có giấy miễn trừ đi cùng đoàn tùy tùng và quan tài hành lý niêm phong; quý tộc lưu vong giả bệnh, chỉ tiếp khách ban đêm và thay chân dung qua nhiều thế hệ; thương nhân hoặc học giả dùng tuổi đời dài để tích lũy bí quyết; kẻ đói không gia tộc bảo lãnh trở thành tội phạm bị cả người sống lẫn các nhà Huyết Tộc săn.\n\nMột Huyết Tộc che thân phận cần người đại diện hoạt động ban ngày, nguồn máu kín, chỗ trú không cửa sổ và giấy tờ giải thích vì sao mình không già. Thủ đoạn phổ biến là cứ hai mươi năm lại \"chết\" rồi xuất hiện với tư cách con cháu thừa kế. Thành phố lớn như Venice hoặc Prague dễ ẩn hơn làng nhỏ, nhưng phường hội, cha xứ và người ghi thuế có thể phát hiện một hộ chỉ mua thức ăn cho gia nhân mà nhập quá nhiều gia súc sống.\n\nCác gia chủ Transylvania không muốn người lưu vong gây tai tiếng. Họ có mạng lưới thu hồi kẻ săn bừa, vừa để giữ bí mật vừa kéo huyết dân bỏ trốn về trả nợ. Vì thế một Huyết Tộc ở Paris có thể sợ sứ giả Báthory không kém Tòa án Dị giáo.",
+          "summary": "Ngoài Carpathian, Huyết Tộc sống như sứ giả được miễn trừ, quý tộc giả bệnh, thương nhân/học giả ẩn danh hoặc kẻ đói ngoài vòng pháp luật. Họ cần đại diện ban ngày, nguồn máu kín và gia phả giả; các nhà Transylvania cũng săn kẻ lưu vong gây tai tiếng hoặc trốn nợ.",
+          "keys": ["Huyết Tộc lưu vong", "Huyết Tộc ở Europa", "Huyết Tộc ngoài Transylvania", "Huyết Tộc cải trang", "gia phả giả", "sứ giả Huyết Tộc", "Ma cà rồng ẩn danh"],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "weight": 13,
+          "budgetPriority": 8
+        }
+      ]
+    }
+  ]
+}

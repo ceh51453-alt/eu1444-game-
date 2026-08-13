@@ -352,7 +352,7 @@ export function App(): ReactNode {
           onClose={() => setMenuOpen(false)}
         />
       )}
-      {!creating && (
+      {!creating && !menuOpen && (
         <button
           type="button"
           onClick={() => setStatusDrawerOpen(true)}
@@ -363,7 +363,7 @@ export function App(): ReactNode {
           Trạng thái
         </button>
       )}
-      {!creating && statusDrawerOpen && (
+      {!creating && !menuOpen && statusDrawerOpen && (
         <div className="fixed inset-0 z-[100] flex justify-end bg-ink/75" role="dialog" aria-modal="true" aria-label="Bảng trạng thái">
           <button
             type="button"

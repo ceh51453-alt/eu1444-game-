@@ -159,7 +159,7 @@ thiếu sót thiết kế:
 | Registry modifier | Phần 5 mục 7 |
 | Thang độ khó chuẩn hóa | Phần 5 mục 8 |
 | 12 chỉ số | Phần 6 mục 1 · code: `src/systems/character/stats.ts` |
-| 34 chủng tộc | Phần 6 mục 2 (sửa lại ở 14, 14b) · bản máy đọc: `data/races.json` |
+| 35 chủng tộc | Phần 6 mục 2 (sửa lại ở 14, 14b) · bản máy đọc: `data/races.json` |
 | Đặc tính bẩm sinh | `data/traits.json` · nối registry ở `character/modifiers.ts` |
 | Tôn giáo, văn hóa | `data/religions.json`, `data/cultures.json` (Phần 14 sửa `stance`) |
 | Danh mục kỹ năng phẳng | Phần 6 mục 5 · `data/skills.json` (đồ thị nhánh ở Phần 8) |
@@ -285,9 +285,18 @@ Nút nào có vùng thật thì mang thêm trường `regionId` trỏ ngược v
                      đo đường đi của Phần 15 (xem README riêng trong thư mục)
 /data          toàn bộ file JSON nội dung
 /presets       preset tham số AI (định dạng SillyTavern)
-/lorebooks     lorebook người dùng nạp vào
+/lorebooks     lorebook chiến dịch và sách người dùng nạp vào; bộ 75–85 là canon mở rộng
 /prompts       15 file .ejs mặc định cho các khối prompt (14 khối của Phần 3 + khối trận đánh)
 ```
+
+Ba bộ canon chuyên sâu mới được sinh bởi
+`node tools/mo-rong-lich-su-ton-giao-phe-phai.mjs`:
+
+- `81-lich-su-bien-tau.json`: niên biểu thật được biến tấu đến đúng năm 1444.
+- `82-ton-giao-giao-hoi.json`: 13 tôn giáo, mỗi đạo có giáo lý, tổ chức, đời sống và quan hệ.
+- `83-phe-phai-chinh-tri.json`: 17 khối chính trị, mỗi khối có lịch sử, phe quyền lực, xã hội và khủng hoảng 1444.
+- `84-nhan-vat-lich-su-1444.json`: 69 nhân vật nữ dựa trên người có thật, mỗi khối bốn người, riêng Pháp có thêm Jeanne d’Arc còn sống; mỗi người có ba tầng tri thức.
+- `85-ma-thu-thu-cuoi.json`: 32 ma thú và thú cưỡi đặc biệt theo tám sinh cảnh, kèm giá nuôi, luật sở hữu, cách thuần dưỡng và giới hạn chiến trường.
 
 ### 7.3 Quy ước code
 - TypeScript strict. Không `any`, không `as` bừa.

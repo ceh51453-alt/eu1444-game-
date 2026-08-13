@@ -23,8 +23,10 @@ import type { Rng } from '@/core/rng';
 import { evaluateCondition } from '@/ai/ejs';
 import { looksCatastrophic } from '@/ai/regex/runner';
 import type { GameState } from '@/state/slices';
+import nationsFile from '@data/nations.json';
 import racesFile from '@data/races.json';
 import { checkGate, currentFaction, memoryOf } from './knowledge';
+import { loreEmbeddingSimilarity } from './embedding';
 import { isWithin, matchesRegions, regionName } from './regions';
 import type { LoreDecision, LoreEntry, LoreLayerId, LoreLayerResult, Lorebook } from './types';
 
@@ -126,6 +128,18 @@ const QUE_QUAN: ReadonlyMap<string, readonly string[]> = new Map(
 );
 
 /**
+ * Phạm vi lãnh thổ của từng thế lực. `scope.kind: 'nation'` dùng id quốc gia,
+ * không phải id vùng; vì vậy phải đổi id ấy thành các realm/province trước khi
+ * so với nơi nhân vật đang đứng. Giữ phép so trực tiếp làm fallback để lorebook
+ * do người chơi nhập theo quy ước cũ vẫn hoạt động.
+ */
+const LANH_THO_QUOC_GIA: ReadonlyMap<string, readonly string[]> = new Map(
+  ((nationsFile as { nations?: { id?: string; regions?: string[] }[] }).nations ?? [])
+    .filter((nation): nation is { id: string; regions?: string[] } => typeof nation.id === 'string')
+    .map((nation) => [nation.id, nation.regions ?? []]),
+);
+
+/**
  * Sách có `autoScope` được tính lại mỗi lượt.
  *
  * `enabled = false` thắng tất cả: đó là công tắc tay của người chơi, và
@@ -162,12 +176,13 @@ export function bookActivation(book: Lorebook, state: GameState, regionId: strin
       if (faction !== '' && faction === ref) {
         return { ...base, active: true, reason: `nhân vật thuộc ${ref}` };
       }
-      const matched = matchesRegions(regionId, [ref], false);
+      const regions = LANH_THO_QUOC_GIA.get(ref) ?? [ref];
+      const matched = matchesRegions(regionId, regions, false);
       return {
         ...base,
         active: matched.passed,
         reason: matched.passed
-          ? `đang ở trong ${regionName(ref)}`
+          ? `đang ở lãnh thổ của ${ref}`
           : `${matched.reason}, và cũng không thuộc ${ref}`,
       };
     }
@@ -496,6 +511,7 @@ export function scanLore(input: ScanInput): ScanResult {
 
     let matched: string[] = [];
     let secondaryBonus = 0;
+    let embeddingScore = 0;
 
     if (job.pulledBy !== undefined) {
       layers.push({ layer: 'keys', passed: true, reason: `được kéo vào từ "${job.pulledBy}"` });
@@ -512,8 +528,17 @@ export function scanLore(input: ScanInput): ScanResult {
       // quan hệ (mục 7) hoặc qua một vòng đệ quy (mục 8), và lúc đó biên bản cũ
       // được ghi đè bằng biên bản mới.
       matched = matchKeys(job.text, entry.keys, entry.matchMode, entry.caseSensitive);
+      if (matched.length === 0 && entry.embedding !== undefined) {
+        embeddingScore = loreEmbeddingSimilarity(job.text, entry.embedding.text);
+        if (embeddingScore >= entry.embedding.threshold) {
+          matched = [`embedding ${embeddingScore.toFixed(2)}`];
+        }
+      }
       if (matched.length === 0) {
-        layers.push({ layer: 'keys', passed: false, reason: 'không khớp từ khóa nào' });
+        const reason = entry.embedding === undefined
+          ? 'không khớp từ khóa nào'
+          : `không khớp từ khóa; embedding dưới ngưỡng ${entry.embedding.threshold}`;
+        layers.push({ layer: 'keys', passed: false, reason });
         record(entry.id, decisionOf(job.candidate, layers, { depth: job.depth }));
         return null;
       }
@@ -524,7 +549,11 @@ export function scanLore(input: ScanInput): ScanResult {
         return null;
       }
       if (secondary.matched.length > 0) secondaryBonus = SCORE_BONUS.secondary;
-      layers.push({ layer: 'keys', passed: true, reason: `khớp: ${matched.join(', ')}` });
+      layers.push({
+        layer: 'keys',
+        passed: true,
+        reason: embeddingScore > 0 ? `khớp embedding: ${embeddingScore.toFixed(2)}` : `khớp: ${matched.join(', ')}`,
+      });
     }
 
     if (entry.probability !== undefined && entry.probability < 100) {
@@ -542,6 +571,7 @@ export function scanLore(input: ScanInput): ScanResult {
 
     // --- điểm (mục 9) -----------------------------------------------------
     let score = matched.length * entry.weight + secondaryBonus;
+    if (embeddingScore > 0) score += embeddingScore * entry.weight * 2;
     if (matched.length > 0 && matchKeys(newest, matched, entry.matchMode, entry.caseSensitive).length > 0) {
       score += SCORE_BONUS.newest;
     }

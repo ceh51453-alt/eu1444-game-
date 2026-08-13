@@ -1,0 +1,1425 @@
+{
+  "kind": "eu1444-lorebook",
+  "schemaVersion": 1,
+  "exportedAt": 0,
+  "books": [
+    {
+      "id": "book-ma-thu-quy-tac",
+      "name": "Ma thú và thú cưỡi · Sinh thái, hậu cần và pháp luật",
+      "version": 1,
+      "scope": {
+        "kind": "global"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 6,
+      "entries": [
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_quy-tac-sinh-thai",
+          "title": "Quy tắc sinh thái của ma thú Europa",
+          "keys": [
+            "ma thú",
+            "quái thú",
+            "sinh vật ma pháp",
+            "magical beast"
+          ],
+          "content": "<% const nam = now.year; %>[SINH THÁI MA THÚ · năm <%= nam %>]\n\nMa thú là động vật có cơ quan, tập tính hoặc vòng đời chịu ảnh hưởng mana; chúng không mặc nhiên thông minh như người, không thuộc riêng một chủng tộc và không sinh ra để phục vụ chiến tranh. Quần thể lớn cần thức ăn, nơi sinh sản và lãnh thổ tương ứng. Loài ăn thịt khổng lồ luôn hiếm hơn con mồi; loài bay mang được ít tải hơn vẻ ngoài gợi ý.\n\nPhép thuật không xóa đói, bệnh, ký sinh, chấn thương hay mùa sinh sản. Nếu một lãnh chúa gom quá nhiều ma thú vào một chuồng, giá thịt tăng, làng mất gia súc và dịch bệnh bùng. Các mục sau mô tả quần thể điển hình năm 1444, không phải danh sách mọi cá thể trên thế giới.",
+          "summary": "Ma thú vẫn cần thức ăn, lãnh thổ, sinh sản và chăm sóc; loài lớn hoặc biết bay phải hiếm và không mặc nhiên thông minh như người.",
+          "embedding": {
+            "text": "ma thú sinh thái quần thể thức ăn lãnh thổ sinh sản mana giới hạn",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_quy-tac-thuan-hoa",
+          "title": "Thuần hóa, gây ấn tượng và khế ước",
+          "keys": [
+            "thuần hóa ma thú",
+            "nuôi ma thú",
+            "khế ước thú",
+            "huấn luyện thú cưỡi"
+          ],
+          "content": "<% const coKienThuc = state.knowledge && Object.keys(state.knowledge.known || {}).length > 0; %>[HUẤN LUYỆN · <%= coKienThuc ? 'người từng trải' : 'kiến thức phổ thông' %>]\n\nThuần hóa là thay đổi cả một giống qua nhiều thế hệ; huấn luyện là dạy một cá thể; gây ấn tượng khiến con non nhận người nuôi như thành viên đàn; khế ước là quan hệ pháp–ma giữa hai bên có ý chí. Bốn việc này không được dùng thay nhau. Một wyvern nuôi từ trứng vẫn có thể nguy hiểm, còn một Kelpie ký khế ước không trở thành gia súc.\n\nKỹ năng cần gồm chăm thú, cưỡi, xử lý vết thương, thức ăn, dây yên và đọc tín hiệu sợ hãi. Đánh đập có thể tạo phục tùng ngắn nhưng làm thú chiến dễ vỡ đội hình đúng lúc nguy hiểm nhất.",
+          "summary": "Phân biệt thuần hóa cả giống, huấn luyện cá thể, gây ấn tượng con non và khế ước. Không phương pháp nào xóa bản năng hay nhu cầu chăm sóc.",
+          "embedding": {
+            "text": "thuần hóa huấn luyện gây ấn tượng khế ước thú cưỡi chăm thú",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_quy-tac-hau-can",
+          "title": "Giá thành và hậu cần thú cưỡi đặc biệt",
+          "keys": [
+            "giá thú cưỡi",
+            "hậu cần thú cưỡi",
+            "chuồng ma thú",
+            "thức ăn ma thú"
+          ],
+          "content": "<% const thoiChien = now.year === 1444; %>[HẬU CẦN THÚ CƯỠI · <%= thoiChien ? 'khủng hoảng năm 1444' : 'thời mô phỏng' %>]\n\nNgựa, la, lừa, bò kéo và tàu vẫn vận chuyển gần như toàn bộ người, lương và pháo của Europa. Thú đặc biệt chỉ thắng ở một nhiệm vụ hẹp: vượt đèo, trinh sát, đi đêm, kéo dưới nước hoặc gây sốc trong một trận. Giá mua chỉ là phần đầu; chuồng, thức ăn, người giữ, thuốc, yên riêng và con thay thế mới quyết định khả năng triển khai.\n\nMột đơn vị thú bay không thể sống bằng cỏ ven đường nếu chúng ăn thịt. Một triều đình khoe mười griffon phải chứng minh có đàn dê, bãi tập, thợ yên cánh và người nuôi; nếu không, con số ấy chỉ là tuyên truyền.",
+          "summary": "Ngựa, la, bò và tàu vẫn thống trị hậu cần. Thú đặc biệt chỉ hiệu quả ở nhiệm vụ hẹp và cần chuồng, thức ăn, người giữ cùng trang bị riêng.",
+          "embedding": {
+            "text": "giá mua nuôi chuồng thức ăn hậu cần thú cưỡi ngựa la bò tàu",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_quy-tac-chien-tran",
+          "title": "Ma thú trên chiến trường",
+          "keys": [
+            "ma thú chiến tranh",
+            "kỵ binh ma thú",
+            "thú chiến",
+            "thú cưỡi bay"
+          ],
+          "content": "<% const sauVarna = now.year >= 1444; %>[CHIẾN TRƯỜNG · <%= sauVarna ? 'hậu Varna' : 'trước Varna' %>]\n\nMa thú gây sợ hãi mạnh trong lần chạm trán đầu, nhưng quân có kỷ luật sẽ học cách dùng tiếng nổ, cọc, lưới, nỏ, địa hình và đánh vào người giữ. Thú cưỡi bay bị giới hạn bởi tải trọng, thời tiết, bãi cất–hạ và đôi cánh dễ tổn thương; chúng thích hợp trinh sát hơn chở kỵ sĩ giáp nặng.\n\nMột con thú bị đau hoặc hoảng không hiểu kế hoạch tác chiến. Đội quân dùng ma thú phải có tuyến thú y, thức ăn, người bắt lại thú chạy và phương án chiến đấu khi chúng từ chối tiến. Không loài nào miễn nhiễm tuyệt đối với vũ khí thường.",
+          "summary": "Ma thú gây sốc nhưng bị khắc chế bằng kỷ luật, cọc, lưới, nỏ, tiếng nổ và địa hình. Thú bay chở ít, cần bãi hạ và dễ tổn thương cánh.",
+          "embedding": {
+            "text": "ma thú chiến trận kỵ binh bay tải trọng thời tiết nỏ lưới cọc thú y",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_quy-tac-phap-ly",
+          "title": "Luật săn, quyền sở hữu và buôn bán ma thú",
+          "keys": [
+            "luật săn ma thú",
+            "sở hữu ma thú",
+            "buôn trứng rồng",
+            "giấy nuôi thú"
+          ],
+          "content": "<% const phe = state.knowledge && state.knowledge.factionId; %>[PHÁP LÝ · <%= phe ? 'góc nhìn người trong một chính thể' : 'người đi đường' %>]\n\nMa thú có thể thuộc bốn chế độ chồng lấn: thú hoang thuộc quyền săn của lãnh chúa; đàn chung do làng quản; giống quân sự cần giấy triều đình; sinh vật có ý chí chỉ tham gia bằng khế ước. Tổ, trứng, bãi muối và đường di cư có thể quan trọng hơn quyền trên từng con.\n\nGiấy sở hữu không bảo đảm người cầm đủ năng lực chăm. Thành thị thường quy định rọ mõm, chuồng chống cháy, giờ vận chuyển và bồi thường. Giáo hội phản đối vài khế ước nhưng không có luật thống nhất toàn Europa; luật địa phương, đặc quyền nghiệp đoàn và nhu cầu quân sự thường va nhau.",
+          "summary": "Quyền săn, đàn chung, giấy giống quân sự và khế ước là bốn chế độ khác nhau. Tổ, trứng, đường di cư và trách nhiệm bồi thường đều có thể gây tranh chấp.",
+          "embedding": {
+            "text": "luật săn sở hữu ma thú trứng tổ giấy phép khế ước bồi thường",
+            "threshold": 0.17
+          }
+        }
+      ]
+    },
+    {
+      "id": "book-ma-thu-tay-au-rung-rhine",
+      "name": "Ma thú và thú cưỡi · Tây Âu, rừng cổ và lưu vực Rhine",
+      "version": 1,
+      "scope": {
+        "kind": "topic",
+        "refId": "ma-thu-tay-au-rung-rhine"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 5,
+      "entries": [
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_bach-ma-reims",
+          "title": "Bạch mã Reims · thú cưỡi",
+          "content": "<% const oGan = state.knowledge && [\"realm_france\",\"realm_burgundy\",\"realm_hre\"].includes(state.knowledge.regionId); %>[SINH VẬT HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Bạch mã Reims. Phân loại: thú cưỡi. Kích thước: ngựa chiến lớn.\n\nSinh học và tập tính: Ngựa trắng có vân sáng mờ dưới da, bình tĩnh trước chuông, cờ và đám đông nhưng nhạy với lời thề giả.\n\nThức ăn: yến mạch, cỏ khô sạch và một nhúm muối đã làm phép mỗi tuần.\n\nCông dụng thực tế: Nghi lễ đăng quang, hộ tống sứ thần và kỵ binh chỉ huy; chở một người cùng giáp vừa.\n\nThuần dưỡng hoặc khế ước: Phải nuôi từ non, cho quen tiếng đại bác dần và để cùng một quản mã chăm ít nhất hai năm.\n\nGiới hạn và cách đối phó: Không nhanh hơn chiến mã tốt, dễ viêm móng trên đường bùn và ánh sáng không chữa thương.\n\nKinh tế: ba đến năm chiến mã tốt; phần lớn thuộc tu viện hoặc chuồng ngựa vương thất.\n\nLuật và xã hội: Ăn cắp bị xử như trộm bảo vật của vương quyền.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Bạch mã Reims (hiếm, thú cưỡi): Ngựa trắng có vân sáng mờ dưới da, bình tĩnh trước chuông, cờ và đám đông nhưng nhạy với lời thề giả. Công dụng: Nghi lễ đăng quang, hộ tống sứ thần và kỵ binh chỉ huy; chở một người cùng giáp vừa. Giới hạn: Không nhanh hơn chiến mã tốt, dễ viêm móng trên đường bùn và ánh sáng không chữa thương.",
+          "keys": [
+            "Bạch mã Reims",
+            "ngựa Reims",
+            "ngựa đăng quang"
+          ],
+          "regions": [
+            "realm_france",
+            "realm_burgundy",
+            "realm_hre"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Bạch mã Reims thú cưỡi hiếm Tây Âu, rừng cổ và lưu vực Rhine Ngựa trắng có vân sáng mờ dưới da, bình tĩnh trước chuông, cờ và đám đông nhưng nhạy với lời thề giả. Nghi lễ đăng quang, hộ tống sứ thần và kỵ binh chỉ huy; chở một người cùng giáp vừa. Phải nuôi từ non, cho quen tiếng đại bác dần và để cùng một quản mã chăm ít nhất hai năm. Không nhanh hơn chiến mã tốt, dễ viêm móng trên đường bùn và ánh sáng không chữa thương.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_griffon-rhine",
+          "title": "Griffon sườn Rhine · ma thú kiêm thú cưỡi",
+          "content": "<% const oGan = state.knowledge && [\"realm_france\",\"realm_burgundy\",\"realm_hre\"].includes(state.knowledge.regionId); %>[SINH VẬT CỰC HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Griffon sườn Rhine. Phân loại: ma thú kiêm thú cưỡi. Kích thước: lớn hơn sư tử, sải cánh 7–9 mét.\n\nSinh học và tập tính: Đầu và cánh đại bàng, thân mèo lớn; làm tổ trên vách đá, giữ bạn đời lâu dài và cực kỳ bảo vệ trứng.\n\nThức ăn: dê, cừu và nội tạng tươi; một con trưởng thành ăn bằng cả chuồng chó săn.\n\nCông dụng thực tế: Trinh sát, đưa thư khẩn và chặn kẻ vượt sông; chỉ chở một kỵ sĩ nhẹ, không mang giáp tấm.\n\nThuần dưỡng hoặc khế ước: Không thật sự thuần hóa; người nuôi gây ấn tượng từ lúc nở và phải duy trì quan hệ bằng săn chung.\n\nGiới hạn và cách đối phó: Cất cánh cần khoảng trống, mưa đá và nỏ nặng rất nguy hiểm; bay đường dài phải nghỉ, không thể thả bom vô hạn.\n\nKinh tế: không có giá ổn định; một trứng có thể đổi ngang thái ấp nhỏ nhưng phần lớn trứng buôn lậu chết.\n\nLuật và xã hội: Các tuyển hầu coi tổ griffon là tài sản săn bắn; phá tổ dễ gây chiến địa phương.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Griffon sườn Rhine (cực hiếm, ma thú kiêm thú cưỡi): Đầu và cánh đại bàng, thân mèo lớn; làm tổ trên vách đá, giữ bạn đời lâu dài và cực kỳ bảo vệ trứng. Công dụng: Trinh sát, đưa thư khẩn và chặn kẻ vượt sông; chỉ chở một kỵ sĩ nhẹ, không mang giáp tấm. Giới hạn: Cất cánh cần khoảng trống, mưa đá và nỏ nặng rất nguy hiểm; bay đường dài phải nghỉ, không thể thả bom vô hạn.",
+          "keys": [
+            "Griffon sườn Rhine",
+            "Griffon Rhine",
+            "griffin Rhine",
+            "sư ưng Rhine",
+            "thú cưỡi griffon"
+          ],
+          "regions": [
+            "realm_france",
+            "realm_burgundy",
+            "realm_hre"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Griffon sườn Rhine ma thú kiêm thú cưỡi cực hiếm Tây Âu, rừng cổ và lưu vực Rhine Đầu và cánh đại bàng, thân mèo lớn; làm tổ trên vách đá, giữ bạn đời lâu dài và cực kỳ bảo vệ trứng. Trinh sát, đưa thư khẩn và chặn kẻ vượt sông; chỉ chở một kỵ sĩ nhẹ, không mang giáp tấm. Không thật sự thuần hóa; người nuôi gây ấn tượng từ lúc nở và phải duy trì quan hệ bằng săn chung. Cất cánh cần khoảng trống, mưa đá và nỏ nặng rất nguy hiểm; bay đường dài phải nghỉ, không thể thả bom vô hạn.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_lon-rung-thiet-bi",
+          "title": "Lợn rừng Thiết Bì Ardennes · ma thú",
+          "content": "<% const oGan = state.knowledge && [\"realm_france\",\"realm_burgundy\",\"realm_hre\"].includes(state.knowledge.regionId); %>[SINH VẬT KHÔNG PHỔ BIẾN · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Lợn rừng Thiết Bì Ardennes. Phân loại: ma thú. Kích thước: cao ngang ngực người, nặng 350–500 kg.\n\nSinh học và tập tính: Da đóng mảng sừng lẫn vụn quặng; hung dữ khi bị dồn nhưng thường tránh làng có lửa lớn.\n\nThức ăn: rễ, quả sồi, nấm, xác động vật và khoáng sắt trong đất.\n\nCông dụng thực tế: Nanh, da và tuyến dầu được thợ giáp mua; vài lãnh chúa dùng săn nó để phô uy tín.\n\nThuần dưỡng hoặc khế ước: Lợn con có thể nuôi nhốt nhưng trưởng thành vẫn khó đoán, không thích hợp làm thú cưỡi chiến trường.\n\nGiới hạn và cách đối phó: Bụng dưới, mắt và khớp chân không có giáp; chó săn, hố và giáo dài vẫn hạ được.\n\nKinh tế: một bộ da nguyên đáng giá bằng áo giáp tốt, nhưng đoàn săn thường chịu thương vong.\n\nLuật và xã hội: Quyền săn thuộc chủ rừng; nông dân được giết khi nó phá mùa màng nếu trình xác và nanh.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Lợn rừng Thiết Bì Ardennes (không phổ biến, ma thú): Da đóng mảng sừng lẫn vụn quặng; hung dữ khi bị dồn nhưng thường tránh làng có lửa lớn. Công dụng: Nanh, da và tuyến dầu được thợ giáp mua; vài lãnh chúa dùng săn nó để phô uy tín. Giới hạn: Bụng dưới, mắt và khớp chân không có giáp; chó săn, hố và giáo dài vẫn hạ được.",
+          "keys": [
+            "Lợn rừng Thiết Bì Ardennes",
+            "Lợn rừng Thiết Bì",
+            "lợn sắt Ardennes",
+            "Ironhide boar"
+          ],
+          "regions": [
+            "realm_france",
+            "realm_burgundy",
+            "realm_hre"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Lợn rừng Thiết Bì Ardennes ma thú không phổ biến Tây Âu, rừng cổ và lưu vực Rhine Da đóng mảng sừng lẫn vụn quặng; hung dữ khi bị dồn nhưng thường tránh làng có lửa lớn. Nanh, da và tuyến dầu được thợ giáp mua; vài lãnh chúa dùng săn nó để phô uy tín. Lợn con có thể nuôi nhốt nhưng trưởng thành vẫn khó đoán, không thích hợp làm thú cưỡi chiến trường. Bụng dưới, mắt và khớp chân không có giáp; chó săn, hố và giáo dài vẫn hạ được.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_soi-reu",
+          "title": "Sói Rêu Rừng Đen · ma thú có thể nuôi làm thú đồng hành",
+          "content": "<% const oGan = state.knowledge && [\"realm_france\",\"realm_burgundy\",\"realm_hre\"].includes(state.knowledge.regionId); %>[SINH VẬT KHÔNG PHỔ BIẾN · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Sói Rêu Rừng Đen. Phân loại: ma thú có thể nuôi làm thú đồng hành. Kích thước: lớn hơn sói xám một phần ba.\n\nSinh học và tập tính: Lông giữ rêu và địa y sống, giúp ngụy trang; săn theo đàn, giao tiếp bằng tiếng gừ thấp và dấu mùi.\n\nThức ăn: thịt, xương mềm và nấm rừng; cần mùi đàn quen thuộc.\n\nCông dụng thực tế: Truy dấu, canh rừng và kéo xe nhẹ mùa đông; cá thể lớn chỉ chở được Gnome hoặc Bán Nhân nhẹ.\n\nThuần dưỡng hoặc khế ước: Phải nhận cả đàn người nuôi chứ không chỉ một chủ; nhốt đơn khiến nó hóa hung hoặc tự cắn lông.\n\nGiới hạn và cách đối phó: Sợ cháy rừng, khứu giác bị vôi và tiêu làm rối; không vô hình và không hiểu lời người như ngôn ngữ.\n\nKinh tế: một con đã hòa đàn có giá bằng hai chó săn quý; chi phí thịt cao hơn nhiều.\n\nLuật và xã hội: Nhiều thành cấm đưa vào nội thành nếu không rọ mõm và có bảo chứng của kiểm lâm.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Sói Rêu Rừng Đen (không phổ biến, ma thú có thể nuôi làm thú đồng hành): Lông giữ rêu và địa y sống, giúp ngụy trang; săn theo đàn, giao tiếp bằng tiếng gừ thấp và dấu mùi. Công dụng: Truy dấu, canh rừng và kéo xe nhẹ mùa đông; cá thể lớn chỉ chở được Gnome hoặc Bán Nhân nhẹ. Giới hạn: Sợ cháy rừng, khứu giác bị vôi và tiêu làm rối; không vô hình và không hiểu lời người như ngôn ngữ.",
+          "keys": [
+            "Sói Rêu Rừng Đen",
+            "Sói Rêu",
+            "sói Rừng Đen",
+            "Moss wolf"
+          ],
+          "regions": [
+            "realm_france",
+            "realm_burgundy",
+            "realm_hre"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Sói Rêu Rừng Đen ma thú có thể nuôi làm thú đồng hành không phổ biến Tây Âu, rừng cổ và lưu vực Rhine Lông giữ rêu và địa y sống, giúp ngụy trang; săn theo đàn, giao tiếp bằng tiếng gừ thấp và dấu mùi. Truy dấu, canh rừng và kéo xe nhẹ mùa đông; cá thể lớn chỉ chở được Gnome hoặc Bán Nhân nhẹ. Phải nhận cả đàn người nuôi chứ không chỉ một chủ; nhốt đơn khiến nó hóa hung hoặc tự cắn lông. Sợ cháy rừng, khứu giác bị vôi và tiêu làm rối; không vô hình và không hiểu lời người như ngôn ngữ.",
+            "threshold": 0.17
+          }
+        }
+      ]
+    },
+    {
+      "id": "book-ma-thu-alps-va-lien-bang-nui",
+      "name": "Ma thú và thú cưỡi · Alps và các Liên bang Núi",
+      "version": 1,
+      "scope": {
+        "kind": "topic",
+        "refId": "ma-thu-alps-va-lien-bang-nui"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 5,
+      "entries": [
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_de-sam-alps",
+          "title": "Dê Sấm Alps · thú cưỡi",
+          "content": "<% const oGan = state.knowledge && [\"prov_alps\",\"realm_swiss\",\"realm_savoy\",\"prov_thanh-bang-ngam-lun\"].includes(state.knowledge.regionId); %>[SINH VẬT HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Dê Sấm Alps. Phân loại: thú cưỡi. Kích thước: dê núi khổng lồ, vai cao 1,5 mét.\n\nSinh học và tập tính: Sừng tích điện trong bão và móng bám đá cực tốt; bướng, nhớ đường và không chịu người nóng vội.\n\nThức ăn: cỏ núi, địa y và muối đồng; ăn ít nhưng phải gặm nhiều giờ.\n\nCông dụng thực tế: Chở trinh sát, thư và hàng giá trị qua đèo; phù hợp người thấp hoặc kỵ sĩ dưới 90 kg cả hành lý.\n\nThuần dưỡng hoặc khế ước: Nuôi theo đàn, tập yên mềm từ năm thứ hai; huấn luyện bằng nhịp chuông chứ không đánh roi.\n\nGiới hạn và cách đối phó: Chậm trên đồng bằng, điện chỉ phóng khi đã tích trong giông và có thể làm chính người cưỡi bị bỏng.\n\nKinh tế: hai la núi tốt; con biết đường tuyết có thể đắt gấp đôi.\n\nLuật và xã hội: Hội đồng thung lũng đánh dấu đàn; bắt trộm con cái sinh sản bị phạt nặng.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Dê Sấm Alps (hiếm, thú cưỡi): Sừng tích điện trong bão và móng bám đá cực tốt; bướng, nhớ đường và không chịu người nóng vội. Công dụng: Chở trinh sát, thư và hàng giá trị qua đèo; phù hợp người thấp hoặc kỵ sĩ dưới 90 kg cả hành lý. Giới hạn: Chậm trên đồng bằng, điện chỉ phóng khi đã tích trong giông và có thể làm chính người cưỡi bị bỏng.",
+          "keys": [
+            "Dê Sấm Alps",
+            "dê sét",
+            "thunder ibex"
+          ],
+          "regions": [
+            "prov_alps",
+            "realm_swiss",
+            "realm_savoy",
+            "prov_thanh-bang-ngam-lun"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Dê Sấm Alps thú cưỡi hiếm Alps và các Liên bang Núi Sừng tích điện trong bão và móng bám đá cực tốt; bướng, nhớ đường và không chịu người nóng vội. Chở trinh sát, thư và hàng giá trị qua đèo; phù hợp người thấp hoặc kỵ sĩ dưới 90 kg cả hành lý. Nuôi theo đàn, tập yên mềm từ năm thứ hai; huấn luyện bằng nhịp chuông chứ không đánh roi. Chậm trên đồng bằng, điện chỉ phóng khi đã tích trong giông và có thể làm chính người cưỡi bị bỏng.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_gau-rune",
+          "title": "Gấu Rune Bern · ma thú",
+          "content": "<% const oGan = state.knowledge && [\"prov_alps\",\"realm_swiss\",\"realm_savoy\",\"prov_thanh-bang-ngam-lun\"].includes(state.knowledge.regionId); %>[SINH VẬT HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Gấu Rune Bern. Phân loại: ma thú. Kích thước: gấu nâu rất lớn, 500–700 kg.\n\nSinh học và tập tính: Các vệt lông hình rune đổi màu theo mùa; thông minh trong việc mở khóa thô nhưng vẫn là thú hoang.\n\nThức ăn: cá, quả mọng, mật, thú nhỏ và xác gia súc.\n\nCông dụng thực tế: Mỡ, móng và lông dùng trong dược–ấn; biểu tượng của vài thị trấn, không phải binh khí biết nghe lệnh.\n\nThuần dưỡng hoặc khế ước: Có thể quen người khi nuôi non, song không thể bảo đảm an toàn khi đói, đau hoặc đến mùa giao phối.\n\nGiới hạn và cách đối phó: Nỏ, giáo săn và lửa vẫn giết được; rune làm da bền hơn chứ không tạo giáp đá.\n\nKinh tế: gấu sống gần như không mua bán hợp pháp; da có giá bằng vài con bò.\n\nLuật và xã hội: Giết gấu mang dấu hội đồng cần khai báo để tránh bị xem là phá linh vật.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Gấu Rune Bern (hiếm, ma thú): Các vệt lông hình rune đổi màu theo mùa; thông minh trong việc mở khóa thô nhưng vẫn là thú hoang. Công dụng: Mỡ, móng và lông dùng trong dược–ấn; biểu tượng của vài thị trấn, không phải binh khí biết nghe lệnh. Giới hạn: Nỏ, giáo săn và lửa vẫn giết được; rune làm da bền hơn chứ không tạo giáp đá.",
+          "keys": [
+            "Gấu Rune Bern",
+            "Gấu Rune",
+            "gấu Bern",
+            "rune bear"
+          ],
+          "regions": [
+            "prov_alps",
+            "realm_swiss",
+            "realm_savoy",
+            "prov_thanh-bang-ngam-lun"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Gấu Rune Bern ma thú hiếm Alps và các Liên bang Núi Các vệt lông hình rune đổi màu theo mùa; thông minh trong việc mở khóa thô nhưng vẫn là thú hoang. Mỡ, móng và lông dùng trong dược–ấn; biểu tượng của vài thị trấn, không phải binh khí biết nghe lệnh. Có thể quen người khi nuôi non, song không thể bảo đảm an toàn khi đói, đau hoặc đến mùa giao phối. Nỏ, giáo săn và lửa vẫn giết được; rune làm da bền hơn chứ không tạo giáp đá.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_dai-bang-tuyet",
+          "title": "Đại bàng Tuyết Mont Cenis · ma thú kiêm thú cưỡi",
+          "content": "<% const oGan = state.knowledge && [\"prov_alps\",\"realm_swiss\",\"realm_savoy\",\"prov_thanh-bang-ngam-lun\"].includes(state.knowledge.regionId); %>[SINH VẬT CỰC HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Đại bàng Tuyết Mont Cenis. Phân loại: ma thú kiêm thú cưỡi. Kích thước: sải cánh 8–10 mét.\n\nSinh học và tập tính: Săn trên đường khí nâng của núi, thị lực xa nhưng ghét khói và tiếng nổ sát tổ.\n\nThức ăn: sơn dương, cừu và cá lớn; cần ăn nhiều sau mỗi chuyến bay.\n\nCông dụng thực tế: Chở một trinh sát nhẹ hoặc hai túi thư qua đèo khi trời quang.\n\nThuần dưỡng hoặc khế ước: Ấp bằng cặp nuôi chuyên nghiệp và tập quay về một tổ; không đổi chủ dễ dàng.\n\nGiới hạn và cách đối phó: Không cất cánh với hiệp sĩ giáp nặng, không bay an toàn trong bão tuyết, rừng dày hay mưa tên.\n\nKinh tế: một cá thể đã tập tương đương thu nhập nhiều năm của pháo đài đèo.\n\nLuật và xã hội: Savoy và các bang núi tranh quyền trên tổ; bán ra ngoài cần giấy của cả chủ đèo lẫn hội thuần ưng.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Đại bàng Tuyết Mont Cenis (cực hiếm, ma thú kiêm thú cưỡi): Săn trên đường khí nâng của núi, thị lực xa nhưng ghét khói và tiếng nổ sát tổ. Công dụng: Chở một trinh sát nhẹ hoặc hai túi thư qua đèo khi trời quang. Giới hạn: Không cất cánh với hiệp sĩ giáp nặng, không bay an toàn trong bão tuyết, rừng dày hay mưa tên.",
+          "keys": [
+            "Đại bàng Tuyết Mont Cenis",
+            "Đại bàng Tuyết",
+            "đại bàng Mont Cenis",
+            "snow eagle mount"
+          ],
+          "regions": [
+            "prov_alps",
+            "realm_swiss",
+            "realm_savoy",
+            "prov_thanh-bang-ngam-lun"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Đại bàng Tuyết Mont Cenis ma thú kiêm thú cưỡi cực hiếm Alps và các Liên bang Núi Săn trên đường khí nâng của núi, thị lực xa nhưng ghét khói và tiếng nổ sát tổ. Chở một trinh sát nhẹ hoặc hai túi thư qua đèo khi trời quang. Ấp bằng cặp nuôi chuyên nghiệp và tập quay về một tổ; không đổi chủ dễ dàng. Không cất cánh với hiệp sĩ giáp nặng, không bay an toàn trong bão tuyết, rừng dày hay mưa tên.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_la-hang-sau",
+          "title": "La Hang Sâu · thú cưỡi và vận tải",
+          "content": "<% const oGan = state.knowledge && [\"prov_alps\",\"realm_swiss\",\"realm_savoy\",\"prov_thanh-bang-ngam-lun\"].includes(state.knowledge.regionId); %>[SINH VẬT KHÔNG PHỔ BIẾN · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: La Hang Sâu. Phân loại: thú cưỡi và vận tải. Kích thước: thấp, thân chắc, chân rộng.\n\nSinh học và tập tính: Mắt phản sáng, định hướng tốt trong tối và chịu tiếng búa mỏ; không phải sinh vật siêu nhiên hoàn toàn mà là giống lai được tuyển lâu đời.\n\nThức ăn: cỏ khô, rêu hang và ngũ cốc ít bụi.\n\nCông dụng thực tế: Chở quặng, thương binh và người cưỡi qua hầm; kéo xe nhỏ trên đường ray gỗ.\n\nThuần dưỡng hoặc khế ước: Giống la thường vô sinh; mỗi thế hệ phải lai lại từ lừa hang và ngựa núi rồi huấn luyện bằng còi.\n\nGiới hạn và cách đối phó: Ghét ánh nắng gắt, chậm ngoài đồng và vẫn cần nghỉ, nước cùng chăm móng.\n\nKinh tế: gấp rưỡi la thường; con nhớ mạng hầm lớn đắt bằng ngựa kỵ nhẹ.\n\nLuật và xã hội: Nghiệp đoàn mỏ đóng dấu tai và cấm xuất con giống cái khỏi thành ngầm.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "La Hang Sâu (không phổ biến, thú cưỡi và vận tải): Mắt phản sáng, định hướng tốt trong tối và chịu tiếng búa mỏ; không phải sinh vật siêu nhiên hoàn toàn mà là giống lai được tuyển lâu đời. Công dụng: Chở quặng, thương binh và người cưỡi qua hầm; kéo xe nhỏ trên đường ray gỗ. Giới hạn: Ghét ánh nắng gắt, chậm ngoài đồng và vẫn cần nghỉ, nước cùng chăm móng.",
+          "keys": [
+            "La Hang Sâu",
+            "la mỏ",
+            "deep-cave mule"
+          ],
+          "regions": [
+            "prov_alps",
+            "realm_swiss",
+            "realm_savoy",
+            "prov_thanh-bang-ngam-lun"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "La Hang Sâu thú cưỡi và vận tải không phổ biến Alps và các Liên bang Núi Mắt phản sáng, định hướng tốt trong tối và chịu tiếng búa mỏ; không phải sinh vật siêu nhiên hoàn toàn mà là giống lai được tuyển lâu đời. Chở quặng, thương binh và người cưỡi qua hầm; kéo xe nhỏ trên đường ray gỗ. Giống la thường vô sinh; mỗi thế hệ phải lai lại từ lừa hang và ngựa núi rồi huấn luyện bằng còi. Ghét ánh nắng gắt, chậm ngoài đồng và vẫn cần nghỉ, nước cùng chăm móng.",
+            "threshold": 0.17
+          }
+        }
+      ]
+    },
+    {
+      "id": "book-ma-thu-carpathian-va-hungary",
+      "name": "Ma thú và thú cưỡi · Carpathian, Transylvania và Hungary",
+      "version": 1,
+      "scope": {
+        "kind": "topic",
+        "refId": "ma-thu-carpathian-va-hungary"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 5,
+      "entries": [
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_da-ma-carpathian",
+          "title": "Dạ Mã Carpathian · thú cưỡi",
+          "content": "<% const oGan = state.knowledge && [\"prov_carpathian\",\"prov_transylvania\",\"realm_hungary\",\"realm_wallachia\"].includes(state.knowledge.regionId); %>[SINH VẬT HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Dạ Mã Carpathian. Phân loại: thú cưỡi. Kích thước: ngựa mảnh, cao và chân chắc.\n\nSinh học và tập tính: Mắt nhìn tốt trong chạng vạng, da lạnh và bình tĩnh trước mùi Huyết Tộc; không phải xác sống.\n\nThức ăn: cỏ khô, yến mạch đen và lượng nhỏ máu gia súc trộn muối mỗi tháng.\n\nCông dụng thực tế: Tuần đêm, chuyển thư và kỵ binh nhẹ của các Công quốc Đêm; chở một kỵ sĩ giáp nhẹ.\n\nThuần dưỡng hoặc khế ước: Lai chọn trong chuồng tối nhưng phải cho ra nắng sớm thường xuyên; huấn luyện với cả người sống lẫn Huyết Tộc.\n\nGiới hạn và cách đối phó: Nắng trưa làm mệt chứ không thiêu; cần máu rất ít và không được cho uống máu người vì dễ hóa hung.\n\nKinh tế: ba ngựa biên tốt; chỉ gia tộc có giấy huyết kho mới được gây giống.\n\nLuật và xã hội: Mỗi con phải có phả hệ và dấu chuồng, buôn lậu bị xem là lấy trộm tài sản quân sự.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Dạ Mã Carpathian (hiếm, thú cưỡi): Mắt nhìn tốt trong chạng vạng, da lạnh và bình tĩnh trước mùi Huyết Tộc; không phải xác sống. Công dụng: Tuần đêm, chuyển thư và kỵ binh nhẹ của các Công quốc Đêm; chở một kỵ sĩ giáp nhẹ. Giới hạn: Nắng trưa làm mệt chứ không thiêu; cần máu rất ít và không được cho uống máu người vì dễ hóa hung.",
+          "keys": [
+            "Dạ Mã Carpathian",
+            "Dạ Mã",
+            "ngựa đêm Carpathian",
+            "Nightmare Carpathian",
+            "Night Mare"
+          ],
+          "regions": [
+            "prov_carpathian",
+            "prov_transylvania",
+            "realm_hungary",
+            "realm_wallachia"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Dạ Mã Carpathian thú cưỡi hiếm Carpathian, Transylvania và Hungary Mắt nhìn tốt trong chạng vạng, da lạnh và bình tĩnh trước mùi Huyết Tộc; không phải xác sống. Tuần đêm, chuyển thư và kỵ binh nhẹ của các Công quốc Đêm; chở một kỵ sĩ giáp nhẹ. Lai chọn trong chuồng tối nhưng phải cho ra nắng sớm thường xuyên; huấn luyện với cả người sống lẫn Huyết Tộc. Nắng trưa làm mệt chứ không thiêu; cần máu rất ít và không được cho uống máu người vì dễ hóa hung.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_khuyen-huyet",
+          "title": "Khuyển Huyết Sekler · ma thú có thể thuần dưỡng",
+          "content": "<% const oGan = state.knowledge && [\"prov_carpathian\",\"prov_transylvania\",\"realm_hungary\",\"realm_wallachia\"].includes(state.knowledge.regionId); %>[SINH VẬT KHÔNG PHỔ BIẾN · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Khuyển Huyết Sekler. Phân loại: ma thú có thể thuần dưỡng. Kích thước: chó săn lớn, vai cao gần một mét.\n\nSinh học và tập tính: Ngửi được máu cũ qua mưa và nhận biết người bị thương; trung thành với cả toán nuôi chứ không riêng quý tộc Huyết Tộc.\n\nThức ăn: thịt, cháo lúa mạch và vài giọt máu mục tiêu khi cần truy dấu.\n\nCông dụng thực tế: Tìm người mất tích, truy thú bị thương và canh huyết kho.\n\nThuần dưỡng hoặc khế ước: Xã hội hóa từ nhỏ, tập dừng theo còi; cho ăn máu quá thường xuyên phá kỷ luật.\n\nGiới hạn và cách đối phó: Mùi vôi, giấm và lò mổ làm quá tải; giáp da chỉ bảo vệ thân, chân vẫn dễ bị giáo đâm.\n\nKinh tế: bằng ngựa thồ tốt; đàn huấn luyện hoàn chỉnh đắt hơn nhiều.\n\nLuật và xã hội: Luật Đêm cấm dùng chúng săn dân nợ nếu chưa có lệnh tòa.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Khuyển Huyết Sekler (không phổ biến, ma thú có thể thuần dưỡng): Ngửi được máu cũ qua mưa và nhận biết người bị thương; trung thành với cả toán nuôi chứ không riêng quý tộc Huyết Tộc. Công dụng: Tìm người mất tích, truy thú bị thương và canh huyết kho. Giới hạn: Mùi vôi, giấm và lò mổ làm quá tải; giáp da chỉ bảo vệ thân, chân vẫn dễ bị giáo đâm.",
+          "keys": [
+            "Khuyển Huyết Sekler",
+            "Khuyển Huyết",
+            "chó săn máu Sekler",
+            "blood hound"
+          ],
+          "regions": [
+            "prov_carpathian",
+            "prov_transylvania",
+            "realm_hungary",
+            "realm_wallachia"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Khuyển Huyết Sekler ma thú có thể thuần dưỡng không phổ biến Carpathian, Transylvania và Hungary Ngửi được máu cũ qua mưa và nhận biết người bị thương; trung thành với cả toán nuôi chứ không riêng quý tộc Huyết Tộc. Tìm người mất tích, truy thú bị thương và canh huyết kho. Xã hội hóa từ nhỏ, tập dừng theo còi; cho ăn máu quá thường xuyên phá kỷ luật. Mùi vôi, giấm và lò mổ làm quá tải; giáp da chỉ bảo vệ thân, chân vẫn dễ bị giáo đâm.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_wyvern-carpathian",
+          "title": "Wyvern Carpathian · ma thú kiêm thú cưỡi",
+          "content": "<% const oGan = state.knowledge && [\"prov_carpathian\",\"prov_transylvania\",\"realm_hungary\",\"realm_wallachia\"].includes(state.knowledge.regionId); %>[SINH VẬT CỰC HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Wyvern Carpathian. Phân loại: ma thú kiêm thú cưỡi. Kích thước: thân dài 5–7 mét, hai chân và hai cánh.\n\nSinh học và tập tính: Bò sát bay làm tổ trên vách, phun dịch độc gây bỏng thay vì lửa; bảo vệ lãnh địa và nhận người nuôi bằng mùi.\n\nThức ăn: dê, lợn và xác lớn; cần canxi từ xương.\n\nCông dụng thực tế: Trinh sát, khủng bố đội hình và săn ma thú lớn; cá thể trưởng thành khỏe chỉ chở một kỵ sĩ nhẹ cùng yên đặc biệt.\n\nThuần dưỡng hoặc khế ước: Phải lấy trứng hợp pháp, ấp nóng và nuôi bởi cả đội từ lúc nở; một người không thể tự chăm.\n\nGiới hạn và cách đối phó: Dịch độc chỉ đủ vài lần rồi phải hồi nhiều ngày; cánh dễ thủng bởi nỏ, không lượn được trong rừng và rét sâu.\n\nKinh tế: không bán công khai; nuôi một con tốn ngang một đại đội kỵ binh nhỏ.\n\nLuật và xã hội: Hội nghị Đêm cấp quyền giữ trứng; tự ý nuôi bị các công quốc coi là dựng vũ khí phản loạn.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Wyvern Carpathian (cực hiếm, ma thú kiêm thú cưỡi): Bò sát bay làm tổ trên vách, phun dịch độc gây bỏng thay vì lửa; bảo vệ lãnh địa và nhận người nuôi bằng mùi. Công dụng: Trinh sát, khủng bố đội hình và săn ma thú lớn; cá thể trưởng thành khỏe chỉ chở một kỵ sĩ nhẹ cùng yên đặc biệt. Giới hạn: Dịch độc chỉ đủ vài lần rồi phải hồi nhiều ngày; cánh dễ thủng bởi nỏ, không lượn được trong rừng và rét sâu.",
+          "keys": [
+            "Wyvern Carpathian",
+            "rồng hai chân Carpathian",
+            "thú cưỡi wyvern"
+          ],
+          "regions": [
+            "prov_carpathian",
+            "prov_transylvania",
+            "realm_hungary",
+            "realm_wallachia"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Wyvern Carpathian ma thú kiêm thú cưỡi cực hiếm Carpathian, Transylvania và Hungary Bò sát bay làm tổ trên vách, phun dịch độc gây bỏng thay vì lửa; bảo vệ lãnh địa và nhận người nuôi bằng mùi. Trinh sát, khủng bố đội hình và săn ma thú lớn; cá thể trưởng thành khỏe chỉ chở một kỵ sĩ nhẹ cùng yên đặc biệt. Phải lấy trứng hợp pháp, ấp nóng và nuôi bởi cả đội từ lúc nở; một người không thể tự chăm. Dịch độc chỉ đủ vài lần rồi phải hồi nhiều ngày; cánh dễ thủng bởi nỏ, không lượn được trong rừng và rét sâu.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_nai-hon-dam-lay",
+          "title": "Nai Hồn Đầm Tisza · ma thú kiêm thú cưỡi nghi lễ",
+          "content": "<% const oGan = state.knowledge && [\"prov_carpathian\",\"prov_transylvania\",\"realm_hungary\",\"realm_wallachia\"].includes(state.knowledge.regionId); %>[SINH VẬT HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Nai Hồn Đầm Tisza. Phân loại: ma thú kiêm thú cưỡi nghi lễ. Kích thước: nai sừng tấm cao, thân nhẹ khác thường.\n\nSinh học và tập tính: Sừng phát lân quang trên bãi chôn cũ và nghe được tiếng người sống qua sương; nhút nhát, không phải ma.\n\nThức ăn: lau non, cỏ nước và muối; không ăn linh hồn.\n\nCông dụng thực tế: Dẫn đường qua đầm, tìm nền đất chắc và chở pháp sư hoặc sứ giả không giáp.\n\nThuần dưỡng hoặc khế ước: Không nhốt chuồng kín; làng đầm gây quen bằng bãi muối và chỉ buộc yên trong mùa nước cao.\n\nGiới hạn và cách đối phó: Hoảng vì lửa, tiếng súng và đám đông; ánh sừng làm lộ vị trí, không gọi hay điều khiển người chết.\n\nKinh tế: hiếm khi bán; quyền cưỡi thường là nghĩa vụ cộng đồng hơn quyền sở hữu.\n\nLuật và xã hội: Giết trong mùa sinh bị cả luật làng sống lẫn triều đêm phạt.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Nai Hồn Đầm Tisza (hiếm, ma thú kiêm thú cưỡi nghi lễ): Sừng phát lân quang trên bãi chôn cũ và nghe được tiếng người sống qua sương; nhút nhát, không phải ma. Công dụng: Dẫn đường qua đầm, tìm nền đất chắc và chở pháp sư hoặc sứ giả không giáp. Giới hạn: Hoảng vì lửa, tiếng súng và đám đông; ánh sừng làm lộ vị trí, không gọi hay điều khiển người chết.",
+          "keys": [
+            "Nai Hồn Đầm Tisza",
+            "Nai Hồn Tisza",
+            "nai đầm lân quang",
+            "ghost elk Tisza"
+          ],
+          "regions": [
+            "prov_carpathian",
+            "prov_transylvania",
+            "realm_hungary",
+            "realm_wallachia"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Nai Hồn Đầm Tisza ma thú kiêm thú cưỡi nghi lễ hiếm Carpathian, Transylvania và Hungary Sừng phát lân quang trên bãi chôn cũ và nghe được tiếng người sống qua sương; nhút nhát, không phải ma. Dẫn đường qua đầm, tìm nền đất chắc và chở pháp sư hoặc sứ giả không giáp. Không nhốt chuồng kín; làng đầm gây quen bằng bãi muối và chỉ buộc yên trong mùa nước cao. Hoảng vì lửa, tiếng súng và đám đông; ánh sừng làm lộ vị trí, không gọi hay điều khiển người chết.",
+            "threshold": 0.17
+          }
+        }
+      ]
+    },
+    {
+      "id": "book-ma-thu-thao-nguyen-va-han-quoc",
+      "name": "Ma thú và thú cưỡi · Thảo nguyên Hắc Hải–Caspi và các Hãn quốc",
+      "version": 1,
+      "scope": {
+        "kind": "topic",
+        "refId": "ma-thu-thao-nguyen-va-han-quoc"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 5,
+      "entries": [
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_tulpar",
+          "title": "Tulpar Cánh Gió · thú cưỡi",
+          "content": "<% const oGan = state.knowledge && [\"prov_steppe-pontic\",\"realm_great-horde\",\"realm_crimea\",\"realm_kazan\",\"realm_astrakhan\"].includes(state.knowledge.regionId); %>[SINH VẬT CỰC HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Tulpar Cánh Gió. Phân loại: thú cưỡi. Kích thước: ngựa thảo nguyên lớn có đôi cánh thật.\n\nSinh học và tập tính: Bay bằng các quãng lướt ngắn sau khi phi lấy đà; sống theo đàn và ghét bị nhốt xa chân trời.\n\nThức ăn: cỏ giàu khoáng, kê, sữa lên men loãng và rất nhiều nước.\n\nCông dụng thực tế: Trinh sát, vượt sông và đưa thủ lĩnh thoát vây; một người cưỡi nhẹ, hành lý tối thiểu.\n\nThuần dưỡng hoặc khế ước: Chỉ ngựa con sinh trong đàn người nuôi mới chịu yên; cắt cánh hoặc nhốt hầm làm nó chết suy.\n\nGiới hạn và cách đối phó: Không bay đường dài như chim, không cất cánh đứng yên, cánh dễ bị tên và cần bãi cỏ lớn để hạ.\n\nKinh tế: món quà cấp hãn, không phải hàng chợ; nuôi một con dùng cỏ bằng ba ngựa nhỏ.\n\nLuật và xã hội: Trộm Tulpar khỏi đàn của một thị tộc là lý do hợp lệ cho báo thù huyết thống.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Tulpar Cánh Gió (cực hiếm, thú cưỡi): Bay bằng các quãng lướt ngắn sau khi phi lấy đà; sống theo đàn và ghét bị nhốt xa chân trời. Công dụng: Trinh sát, vượt sông và đưa thủ lĩnh thoát vây; một người cưỡi nhẹ, hành lý tối thiểu. Giới hạn: Không bay đường dài như chim, không cất cánh đứng yên, cánh dễ bị tên và cần bãi cỏ lớn để hạ.",
+          "keys": [
+            "Tulpar Cánh Gió",
+            "Tulpar",
+            "ngựa cánh thảo nguyên",
+            "winged steppe horse"
+          ],
+          "regions": [
+            "prov_steppe-pontic",
+            "realm_great-horde",
+            "realm_crimea",
+            "realm_kazan",
+            "realm_astrakhan"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Tulpar Cánh Gió thú cưỡi cực hiếm Thảo nguyên Hắc Hải–Caspi và các Hãn quốc Bay bằng các quãng lướt ngắn sau khi phi lấy đà; sống theo đàn và ghét bị nhốt xa chân trời. Trinh sát, vượt sông và đưa thủ lĩnh thoát vây; một người cưỡi nhẹ, hành lý tối thiểu. Chỉ ngựa con sinh trong đàn người nuôi mới chịu yên; cắt cánh hoặc nhốt hầm làm nó chết suy. Không bay đường dài như chim, không cất cánh đứng yên, cánh dễ bị tên và cần bãi cỏ lớn để hạ.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_phong-ma-kipchak",
+          "title": "Phong Mã Kipchak · thú cưỡi",
+          "content": "<% const oGan = state.knowledge && [\"prov_steppe-pontic\",\"realm_great-horde\",\"realm_crimea\",\"realm_kazan\",\"realm_astrakhan\"].includes(state.knowledge.regionId); %>[SINH VẬT KHÔNG PHỔ BIẾN · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Phong Mã Kipchak. Phân loại: thú cưỡi. Kích thước: ngựa nhỏ, ngực sâu.\n\nSinh học và tập tính: Bờm tích tĩnh điện, bền đường và biết theo đàn; tốc độ đến từ giống cùng luyện tập hơn ma pháp.\n\nThức ăn: cỏ thưa, kê và tuyết; tự kiếm ăn tốt nhưng không sống bằng gió.\n\nCông dụng thực tế: Kỵ xạ, đổi ngựa trạm và hành quân dài; mỗi chiến binh vẫn cần nhiều con luân phiên.\n\nThuần dưỡng hoặc khế ước: Chăn bán hoang, bắt đầu cưỡi nhẹ rồi tăng tải; Mã Nhân vẫn phải học cưỡi như mọi người.\n\nGiới hạn và cách đối phó: Yếu khi ăn cỏ ẩm lâu ngày, cung phức hợp và người cưỡi vẫn chịu mưa; không vượt hào hay tường giáo bằng phép.\n\nKinh tế: gấp rưỡi ngựa thảo nguyên thường; đàn giống tốt là tài sản chính trị.\n\nLuật và xã hội: Dấu tai xác định thị tộc; tranh đàn được xử ở kurultai hoặc bằng tiền bồi thường.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Phong Mã Kipchak (không phổ biến, thú cưỡi): Bờm tích tĩnh điện, bền đường và biết theo đàn; tốc độ đến từ giống cùng luyện tập hơn ma pháp. Công dụng: Kỵ xạ, đổi ngựa trạm và hành quân dài; mỗi chiến binh vẫn cần nhiều con luân phiên. Giới hạn: Yếu khi ăn cỏ ẩm lâu ngày, cung phức hợp và người cưỡi vẫn chịu mưa; không vượt hào hay tường giáo bằng phép.",
+          "keys": [
+            "Phong Mã Kipchak",
+            "ngựa gió Kipchak",
+            "steppe wind horse"
+          ],
+          "regions": [
+            "prov_steppe-pontic",
+            "realm_great-horde",
+            "realm_crimea",
+            "realm_kazan",
+            "realm_astrakhan"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Phong Mã Kipchak thú cưỡi không phổ biến Thảo nguyên Hắc Hải–Caspi và các Hãn quốc Bờm tích tĩnh điện, bền đường và biết theo đàn; tốc độ đến từ giống cùng luyện tập hơn ma pháp. Kỵ xạ, đổi ngựa trạm và hành quân dài; mỗi chiến binh vẫn cần nhiều con luân phiên. Chăn bán hoang, bắt đầu cưỡi nhẹ rồi tăng tải; Mã Nhân vẫn phải học cưỡi như mọi người. Yếu khi ăn cỏ ẩm lâu ngày, cung phức hợp và người cưỡi vẫn chịu mưa; không vượt hào hay tường giáo bằng phép.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_lac-da-tan-lua",
+          "title": "Lạc đà Tàn Lửa Caspi · thú cưỡi và vận tải",
+          "content": "<% const oGan = state.knowledge && [\"prov_steppe-pontic\",\"realm_great-horde\",\"realm_crimea\",\"realm_kazan\",\"realm_astrakhan\"].includes(state.knowledge.regionId); %>[SINH VẬT HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Lạc đà Tàn Lửa Caspi. Phân loại: thú cưỡi và vận tải. Kích thước: lạc đà hai bướu lớn.\n\nSinh học và tập tính: Hơi thở ấm, chịu rét đêm lẫn đất mặn; khi hoảng phun nước bọt nóng gây bỏng nhẹ.\n\nThức ăn: bụi gai, cỏ mặn và than thực vật rất ít để bổ khoáng.\n\nCông dụng thực tế: Chở hàng qua bán hoang mặn, kéo pháo nhẹ và làm thú cưỡi mùa đông khô.\n\nThuần dưỡng hoặc khế ước: Nuôi đàn, tập quỳ và chịu ách từ nhỏ; người giữ phải biết xử lý chân và bướu bị loét.\n\nGiới hạn và cách đối phó: Chậm trên bùn, mùi khiến ngựa lạ hoảng, không phun lửa và vẫn chết vì thiếu nước.\n\nKinh tế: hai đến ba lạc đà thường; con kéo pháo đắt hơn.\n\nLuật và xã hội: Các trạm thuế Caspi kiểm giấy đàn để ngăn trộm và lây bệnh.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Lạc đà Tàn Lửa Caspi (hiếm, thú cưỡi và vận tải): Hơi thở ấm, chịu rét đêm lẫn đất mặn; khi hoảng phun nước bọt nóng gây bỏng nhẹ. Công dụng: Chở hàng qua bán hoang mặn, kéo pháo nhẹ và làm thú cưỡi mùa đông khô. Giới hạn: Chậm trên bùn, mùi khiến ngựa lạ hoảng, không phun lửa và vẫn chết vì thiếu nước.",
+          "keys": [
+            "Lạc đà Tàn Lửa Caspi",
+            "Lạc đà Tàn Lửa",
+            "lạc đà Caspi",
+            "ember camel"
+          ],
+          "regions": [
+            "prov_steppe-pontic",
+            "realm_great-horde",
+            "realm_crimea",
+            "realm_kazan",
+            "realm_astrakhan"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Lạc đà Tàn Lửa Caspi thú cưỡi và vận tải hiếm Thảo nguyên Hắc Hải–Caspi và các Hãn quốc Hơi thở ấm, chịu rét đêm lẫn đất mặn; khi hoảng phun nước bọt nóng gây bỏng nhẹ. Chở hàng qua bán hoang mặn, kéo pháo nhẹ và làm thú cưỡi mùa đông khô. Nuôi đàn, tập quỳ và chịu ách từ nhỏ; người giữ phải biết xử lý chân và bướu bị loét. Chậm trên bùn, mùi khiến ngựa lạ hoảng, không phun lửa và vẫn chết vì thiếu nước.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_roc-sarai",
+          "title": "Roc Xám Sarai · ma thú",
+          "content": "<% const oGan = state.knowledge && [\"prov_steppe-pontic\",\"realm_great-horde\",\"realm_crimea\",\"realm_kazan\",\"realm_astrakhan\"].includes(state.knowledge.regionId); %>[SINH VẬT CỰC HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Roc Xám Sarai. Phân loại: ma thú. Kích thước: chim săn đủ lớn để quắp một ngựa con.\n\nSinh học và tập tính: Làm tổ trên tháp đổ và mỏm đá, thường bay theo luồng nhiệt; không có trí người và không phục vụ hãn nào.\n\nThức ăn: linh dương, cừu và xác; săn cách ngày khi nuôi con.\n\nCông dụng thực tế: Lông cánh dùng cho phù tiễn; việc theo dấu tổ có thể báo vị trí xác lớn hoặc đoàn gia súc mất.\n\nThuần dưỡng hoặc khế ước: Thử nuôi non gần như luôn thất bại; cá thể bị xích tự làm gãy cánh hoặc giết người giữ.\n\nGiới hạn và cách đối phó: Quắp được con mồi chứ không nâng voi hay đội quân; nỏ xoay, lưới và bão bụi có thể hạ nó.\n\nKinh tế: lông nguyên đáng giá, trứng gần như không có thị trường hợp pháp.\n\nLuật và xã hội: Hãn thường tuyên tổ Roc là khu săn riêng, nhưng quyền ấy chỉ có thật khi có quân canh.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Roc Xám Sarai (cực hiếm, ma thú): Làm tổ trên tháp đổ và mỏm đá, thường bay theo luồng nhiệt; không có trí người và không phục vụ hãn nào. Công dụng: Lông cánh dùng cho phù tiễn; việc theo dấu tổ có thể báo vị trí xác lớn hoặc đoàn gia súc mất. Giới hạn: Quắp được con mồi chứ không nâng voi hay đội quân; nỏ xoay, lưới và bão bụi có thể hạ nó.",
+          "keys": [
+            "Roc Xám Sarai",
+            "Roc Sarai",
+            "đại bàng khổng lồ Sarai",
+            "Roc Xám"
+          ],
+          "regions": [
+            "prov_steppe-pontic",
+            "realm_great-horde",
+            "realm_crimea",
+            "realm_kazan",
+            "realm_astrakhan"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Roc Xám Sarai ma thú cực hiếm Thảo nguyên Hắc Hải–Caspi và các Hãn quốc Làm tổ trên tháp đổ và mỏm đá, thường bay theo luồng nhiệt; không có trí người và không phục vụ hãn nào. Lông cánh dùng cho phù tiễn; việc theo dấu tổ có thể báo vị trí xác lớn hoặc đoàn gia súc mất. Thử nuôi non gần như luôn thất bại; cá thể bị xích tự làm gãy cánh hoặc giết người giữ. Quắp được con mồi chứ không nâng voi hay đội quân; nỏ xoay, lưới và bão bụi có thể hạ nó.",
+            "threshold": 0.17
+          }
+        }
+      ]
+    },
+    {
+      "id": "book-ma-thu-bac-au-baltic-rus",
+      "name": "Ma thú và thú cưỡi · Bắc Âu, Baltic và các xứ Rus",
+      "version": 1,
+      "scope": {
+        "kind": "topic",
+        "refId": "ma-thu-bac-au-baltic-rus"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 5,
+      "entries": [
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_nai-sung-rune",
+          "title": "Nai Sừng Rune Novgorod · thú cưỡi và vận tải",
+          "content": "<% const oGan = state.knowledge && [\"realm_denmark\",\"realm_sweden\",\"realm_norway\",\"realm_teutonic\",\"realm_livonia\",\"realm_muscovy\",\"realm_novgorod\",\"realm_tver\",\"realm_ryazan\"].includes(state.knowledge.regionId); %>[SINH VẬT HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Nai Sừng Rune Novgorod. Phân loại: thú cưỡi và vận tải. Kích thước: nai sừng tấm lớn.\n\nSinh học và tập tính: Sừng mọc vân giống chữ cổ, đi tuyết và lầy tốt; cá thể đực khó kiểm soát vào mùa động dục.\n\nThức ăn: cành liễu, vỏ cây, cỏ nước và muối.\n\nCông dụng thực tế: Kéo xe trượt, chở thư rừng và vận tải mùa đông; không phù hợp xung phong kỵ binh.\n\nThuần dưỡng hoặc khế ước: Gây quen qua nhiều thế hệ bán hoang; thường dùng con cái hoặc con đực thiến.\n\nGiới hạn và cách đối phó: Yên phải khác yên ngựa, chạy đường đá kém và dễ hoảng trước chó sói đông đàn.\n\nKinh tế: hai tuần lộc kéo xe hoặc một ngựa rừng tốt.\n\nLuật và xã hội: Làng săn giữ quyền trên đàn di cư; quý tộc không mặc nhiên được bắt hết.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Nai Sừng Rune Novgorod (hiếm, thú cưỡi và vận tải): Sừng mọc vân giống chữ cổ, đi tuyết và lầy tốt; cá thể đực khó kiểm soát vào mùa động dục. Công dụng: Kéo xe trượt, chở thư rừng và vận tải mùa đông; không phù hợp xung phong kỵ binh. Giới hạn: Yên phải khác yên ngựa, chạy đường đá kém và dễ hoảng trước chó sói đông đàn.",
+          "keys": [
+            "Nai Sừng Rune Novgorod",
+            "Nai Sừng Rune",
+            "nai Novgorod",
+            "rune elk"
+          ],
+          "regions": [
+            "realm_denmark",
+            "realm_sweden",
+            "realm_norway",
+            "realm_teutonic",
+            "realm_livonia",
+            "realm_muscovy",
+            "realm_novgorod",
+            "realm_tver",
+            "realm_ryazan"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Nai Sừng Rune Novgorod thú cưỡi và vận tải hiếm Bắc Âu, Baltic và các xứ Rus Sừng mọc vân giống chữ cổ, đi tuyết và lầy tốt; cá thể đực khó kiểm soát vào mùa động dục. Kéo xe trượt, chở thư rừng và vận tải mùa đông; không phù hợp xung phong kỵ binh. Gây quen qua nhiều thế hệ bán hoang; thường dùng con cái hoặc con đực thiến. Yên phải khác yên ngựa, chạy đường đá kém và dễ hoảng trước chó sói đông đàn.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_gau-cuc-quang",
+          "title": "Gấu Cực Quang Karelia · ma thú",
+          "content": "<% const oGan = state.knowledge && [\"realm_denmark\",\"realm_sweden\",\"realm_norway\",\"realm_teutonic\",\"realm_livonia\",\"realm_muscovy\",\"realm_novgorod\",\"realm_tver\",\"realm_ryazan\"].includes(state.knowledge.regionId); %>[SINH VẬT HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Gấu Cực Quang Karelia. Phân loại: ma thú. Kích thước: gấu trắng-xám 450–650 kg.\n\nSinh học và tập tính: Lông phản màu trời cực quang, phát sáng yếu khi có ma lực phương bắc; ngủ đông không đều.\n\nThức ăn: cá, tuần lộc, quả rừng và xác mùa đông.\n\nCông dụng thực tế: Dân săn theo dấu để tìm hang tinh thể băng; lông và mỡ có giá trong nghi lễ Rus.\n\nThuần dưỡng hoặc khế ước: Không có phương pháp an toàn; gấu diễn hội chợ chỉ là cá thể bị bẻ răng và vẫn nguy hiểm.\n\nGiới hạn và cách đối phó: Không điều khiển bão tuyết, sợ lửa lớn và bị thương bởi giáo, bẫy nặng như gấu thường.\n\nKinh tế: da nguyên bằng vài tháng lương đội săn, nhưng vận chuyển rất khó.\n\nLuật và xã hội: Một số tu viện cấm săn con mẹ; nơi khác trả thưởng nếu nó ăn gia súc.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Gấu Cực Quang Karelia (hiếm, ma thú): Lông phản màu trời cực quang, phát sáng yếu khi có ma lực phương bắc; ngủ đông không đều. Công dụng: Dân săn theo dấu để tìm hang tinh thể băng; lông và mỡ có giá trong nghi lễ Rus. Giới hạn: Không điều khiển bão tuyết, sợ lửa lớn và bị thương bởi giáo, bẫy nặng như gấu thường.",
+          "keys": [
+            "Gấu Cực Quang Karelia",
+            "Gấu Cực Quang",
+            "gấu Karelia",
+            "aurora bear"
+          ],
+          "regions": [
+            "realm_denmark",
+            "realm_sweden",
+            "realm_norway",
+            "realm_teutonic",
+            "realm_livonia",
+            "realm_muscovy",
+            "realm_novgorod",
+            "realm_tver",
+            "realm_ryazan"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Gấu Cực Quang Karelia ma thú hiếm Bắc Âu, Baltic và các xứ Rus Lông phản màu trời cực quang, phát sáng yếu khi có ma lực phương bắc; ngủ đông không đều. Dân săn theo dấu để tìm hang tinh thể băng; lông và mỡ có giá trong nghi lễ Rus. Không có phương pháp an toàn; gấu diễn hội chợ chỉ là cá thể bị bẻ răng và vẫn nguy hiểm. Không điều khiển bão tuyết, sợ lửa lớn và bị thương bởi giáo, bẫy nặng như gấu thường.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_cu-tuyet-khong-lo",
+          "title": "Cú Tuyết Khổng Lồ Livonia · ma thú kiêm thú cưỡi",
+          "content": "<% const oGan = state.knowledge && [\"realm_denmark\",\"realm_sweden\",\"realm_norway\",\"realm_teutonic\",\"realm_livonia\",\"realm_muscovy\",\"realm_novgorod\",\"realm_tver\",\"realm_ryazan\"].includes(state.knowledge.regionId); %>[SINH VẬT CỰC HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Cú Tuyết Khổng Lồ Livonia. Phân loại: ma thú kiêm thú cưỡi. Kích thước: sải cánh 6–8 mét.\n\nSinh học và tập tính: Bay gần như không tiếng, thấy tốt ban đêm nhưng dễ chói trong nắng phản tuyết.\n\nThức ăn: thỏ, cáo, cá và thịt sạch.\n\nCông dụng thực tế: Đưa thư đêm và trinh sát rừng; chỉ chở người rất nhẹ hoặc Quạ Nhân nhỏ cùng túi thư.\n\nThuần dưỡng hoặc khế ước: Ấp tại tháp yên tĩnh, tập quay về bằng còi xương; thường chỉ gắn với một người giữ.\n\nGiới hạn và cách đối phó: Không mang chiến binh giáp, móng không xuyên giáp tấm, mưa lạnh đóng băng lông cánh.\n\nKinh tế: không định giá công khai; chi phí nuôi bằng cả trại chim săn.\n\nLuật và xã hội: Dòng tu và thành Riga tranh quyền cấp phép, buôn trứng bị xem là phá mạng thư tín.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Cú Tuyết Khổng Lồ Livonia (cực hiếm, ma thú kiêm thú cưỡi): Bay gần như không tiếng, thấy tốt ban đêm nhưng dễ chói trong nắng phản tuyết. Công dụng: Đưa thư đêm và trinh sát rừng; chỉ chở người rất nhẹ hoặc Quạ Nhân nhỏ cùng túi thư. Giới hạn: Không mang chiến binh giáp, móng không xuyên giáp tấm, mưa lạnh đóng băng lông cánh.",
+          "keys": [
+            "Cú Tuyết Khổng Lồ Livonia",
+            "Cú Tuyết Khổng Lồ",
+            "cú Livonia",
+            "giant snow owl mount"
+          ],
+          "regions": [
+            "realm_denmark",
+            "realm_sweden",
+            "realm_norway",
+            "realm_teutonic",
+            "realm_livonia",
+            "realm_muscovy",
+            "realm_novgorod",
+            "realm_tver",
+            "realm_ryazan"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Cú Tuyết Khổng Lồ Livonia ma thú kiêm thú cưỡi cực hiếm Bắc Âu, Baltic và các xứ Rus Bay gần như không tiếng, thấy tốt ban đêm nhưng dễ chói trong nắng phản tuyết. Đưa thư đêm và trinh sát rừng; chỉ chở người rất nhẹ hoặc Quạ Nhân nhỏ cùng túi thư. Ấp tại tháp yên tĩnh, tập quay về bằng còi xương; thường chỉ gắn với một người giữ. Không mang chiến binh giáp, móng không xuyên giáp tấm, mưa lạnh đóng băng lông cánh.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_lon-bang-iceback",
+          "title": "Lợn Băng Iceback · thú cưỡi",
+          "content": "<% const oGan = state.knowledge && [\"realm_denmark\",\"realm_sweden\",\"realm_norway\",\"realm_teutonic\",\"realm_livonia\",\"realm_muscovy\",\"realm_novgorod\",\"realm_tver\",\"realm_ryazan\"].includes(state.knowledge.regionId); %>[SINH VẬT KHÔNG PHỔ BIẾN · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Lợn Băng Iceback. Phân loại: thú cưỡi. Kích thước: lợn rừng thuần lớn, 250–350 kg.\n\nSinh học và tập tính: Lớp mỡ dày, lông cứng đóng sương như gai; lì đòn và đi rừng tuyết tốt.\n\nThức ăn: củ, cám, cá khô và rễ dưới tuyết.\n\nCông dụng thực tế: Kéo gỗ, chở thợ săn hoặc kỵ sĩ lùn qua rừng; cú húc hữu dụng nhưng khó giữ đội hình.\n\nThuần dưỡng hoặc khế ước: Thiến con đực chiến, huấn luyện theo thức ăn và tiếng mõ; cần yên thấp có vòng ngực rộng.\n\nGiới hạn và cách đối phó: Nóng quá dễ kiệt, chạy đường dài kém ngựa và có thể quay cắn người cưỡi khi bị thương.\n\nKinh tế: ngang bò kéo tốt; cá thể chiến đã tập bằng ngựa thồ.\n\nLuật và xã hội: Được coi là gia súc nguy hiểm; chủ chịu bồi thường nếu phá ruộng hoặc húc người.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Lợn Băng Iceback (không phổ biến, thú cưỡi): Lớp mỡ dày, lông cứng đóng sương như gai; lì đòn và đi rừng tuyết tốt. Công dụng: Kéo gỗ, chở thợ săn hoặc kỵ sĩ lùn qua rừng; cú húc hữu dụng nhưng khó giữ đội hình. Giới hạn: Nóng quá dễ kiệt, chạy đường dài kém ngựa và có thể quay cắn người cưỡi khi bị thương.",
+          "keys": [
+            "Lợn Băng Iceback",
+            "lợn cưỡi phương bắc",
+            "iceback boar"
+          ],
+          "regions": [
+            "realm_denmark",
+            "realm_sweden",
+            "realm_norway",
+            "realm_teutonic",
+            "realm_livonia",
+            "realm_muscovy",
+            "realm_novgorod",
+            "realm_tver",
+            "realm_ryazan"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Lợn Băng Iceback thú cưỡi không phổ biến Bắc Âu, Baltic và các xứ Rus Lớp mỡ dày, lông cứng đóng sương như gai; lì đòn và đi rừng tuyết tốt. Kéo gỗ, chở thợ săn hoặc kỵ sĩ lùn qua rừng; cú húc hữu dụng nhưng khó giữ đội hình. Thiến con đực chiến, huấn luyện theo thức ăn và tiếng mõ; cần yên thấp có vòng ngực rộng. Nóng quá dễ kiệt, chạy đường dài kém ngựa và có thể quay cắn người cưỡi khi bị thương.",
+            "threshold": 0.17
+          }
+        }
+      ]
+    },
+    {
+      "id": "book-ma-thu-dia-trung-hai-va-iberia",
+      "name": "Ma thú và thú cưỡi · Địa Trung Hải và Iberia",
+      "version": 1,
+      "scope": {
+        "kind": "topic",
+        "refId": "ma-thu-dia-trung-hai-va-iberia"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 5,
+      "entries": [
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_nhat-ma-andalus",
+          "title": "Nhật Mã Andalus · thú cưỡi",
+          "content": "<% const oGan = state.knowledge && [\"realm_castile\",\"realm_aragon\",\"realm_portugal\",\"realm_granada\",\"realm_milan\",\"realm_venice\",\"realm_genoa\",\"realm_florence\",\"realm_naples\",\"realm_papal\"].includes(state.knowledge.regionId); %>[SINH VẬT HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Nhật Mã Andalus. Phân loại: thú cưỡi. Kích thước: ngựa thanh, cổ cong và phổi khỏe.\n\nSinh học và tập tính: Lông ấm dưới nắng, bình tĩnh trong tiếng nhạc và dễ học bước nghi lễ; không miễn lửa.\n\nThức ăn: cỏ khô, lúa mạch và muối; cần nhiều nước hơn lời đồn.\n\nCông dụng thực tế: Kỵ binh quý tộc, trường cưỡi và sứ đoàn; nhanh xoay trở hơn ngựa kéo nặng.\n\nThuần dưỡng hoặc khế ước: Lai tuyển tại chuồng có sổ phả, tập bằng chân và trọng tâm thay vì hàm thiếc tàn bạo.\n\nGiới hạn và cách đối phó: Không chở giáp cực nặng đường dài, rét ẩm làm bệnh phổi và ánh lông dễ lộ trong phục kích.\n\nKinh tế: hai đến bốn chiến mã thường tùy phả hệ.\n\nLuật và xã hội: Castile và Granada đều kiểm soát xuất giống tốt; giấy phả giả là nghề buôn lậu lớn.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Nhật Mã Andalus (hiếm, thú cưỡi): Lông ấm dưới nắng, bình tĩnh trong tiếng nhạc và dễ học bước nghi lễ; không miễn lửa. Công dụng: Kỵ binh quý tộc, trường cưỡi và sứ đoàn; nhanh xoay trở hơn ngựa kéo nặng. Giới hạn: Không chở giáp cực nặng đường dài, rét ẩm làm bệnh phổi và ánh lông dễ lộ trong phục kích.",
+          "keys": [
+            "Nhật Mã Andalus",
+            "ngựa mặt trời Andalusia",
+            "Andalus sun horse"
+          ],
+          "regions": [
+            "realm_castile",
+            "realm_aragon",
+            "realm_portugal",
+            "realm_granada",
+            "realm_milan",
+            "realm_venice",
+            "realm_genoa",
+            "realm_florence",
+            "realm_naples",
+            "realm_papal"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Nhật Mã Andalus thú cưỡi hiếm Địa Trung Hải và Iberia Lông ấm dưới nắng, bình tĩnh trong tiếng nhạc và dễ học bước nghi lễ; không miễn lửa. Kỵ binh quý tộc, trường cưỡi và sứ đoàn; nhanh xoay trở hơn ngựa kéo nặng. Lai tuyển tại chuồng có sổ phả, tập bằng chân và trọng tâm thay vì hàm thiếc tàn bạo. Không chở giáp cực nặng đường dài, rét ẩm làm bệnh phổi và ánh lông dễ lộ trong phục kích.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_salamander-lo-ren",
+          "title": "Salamander Lò Rèn Toscana · ma thú nuôi nghề nghiệp",
+          "content": "<% const oGan = state.knowledge && [\"realm_castile\",\"realm_aragon\",\"realm_portugal\",\"realm_granada\",\"realm_milan\",\"realm_venice\",\"realm_genoa\",\"realm_florence\",\"realm_naples\",\"realm_papal\"].includes(state.knowledge.regionId); %>[SINH VẬT KHÔNG PHỔ BIẾN · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Salamander Lò Rèn Toscana. Phân loại: ma thú nuôi nghề nghiệp. Kích thước: thằn lằn dài 60–90 cm.\n\nSinh học và tập tính: Tích nhiệt trong túi cổ, nằm gần lò và đổi màu theo nhiệt; không sống trong lửa vô hạn.\n\nThức ăn: côn trùng, trứng và vụn than có muối khoáng.\n\nCông dụng thực tế: Báo nhiệt lò, châm bùi nhùi và phát hiện khí độc bằng phản ứng da.\n\nThuần dưỡng hoặc khế ước: Nuôi trong hộp gạch ấm, cho ăn đều và không chọc túi nhiệt; học quen mùi xưởng.\n\nGiới hạn và cách đối phó: Nước lạnh gây sốc, hơi thở chỉ như đèn khò ngắn và có thể làm cháy xưởng nếu bị hoảng.\n\nKinh tế: bằng bộ dụng cụ thợ rèn lành nghề.\n\nLuật và xã hội: Nghiệp đoàn yêu cầu chuồng gạch và bình cát; cháy do nuôi sai làm chủ mất giấy nghề.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Salamander Lò Rèn Toscana (không phổ biến, ma thú nuôi nghề nghiệp): Tích nhiệt trong túi cổ, nằm gần lò và đổi màu theo nhiệt; không sống trong lửa vô hạn. Công dụng: Báo nhiệt lò, châm bùi nhùi và phát hiện khí độc bằng phản ứng da. Giới hạn: Nước lạnh gây sốc, hơi thở chỉ như đèn khò ngắn và có thể làm cháy xưởng nếu bị hoảng.",
+          "keys": [
+            "Salamander Lò Rèn Toscana",
+            "Salamander Lò Rèn",
+            "kỳ giông lửa Toscana",
+            "forge salamander"
+          ],
+          "regions": [
+            "realm_castile",
+            "realm_aragon",
+            "realm_portugal",
+            "realm_granada",
+            "realm_milan",
+            "realm_venice",
+            "realm_genoa",
+            "realm_florence",
+            "realm_naples",
+            "realm_papal"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Salamander Lò Rèn Toscana ma thú nuôi nghề nghiệp không phổ biến Địa Trung Hải và Iberia Tích nhiệt trong túi cổ, nằm gần lò và đổi màu theo nhiệt; không sống trong lửa vô hạn. Báo nhiệt lò, châm bùi nhùi và phát hiện khí độc bằng phản ứng da. Nuôi trong hộp gạch ấm, cho ăn đều và không chọc túi nhiệt; học quen mùi xưởng. Nước lạnh gây sốc, hơi thở chỉ như đèn khò ngắn và có thể làm cháy xưởng nếu bị hoảng.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_basilisk-tro",
+          "title": "Basilisk Tro Sicilia · ma thú",
+          "content": "<% const oGan = state.knowledge && [\"realm_castile\",\"realm_aragon\",\"realm_portugal\",\"realm_granada\",\"realm_milan\",\"realm_venice\",\"realm_genoa\",\"realm_florence\",\"realm_naples\",\"realm_papal\"].includes(state.knowledge.regionId); %>[SINH VẬT HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Basilisk Tro Sicilia. Phân loại: ma thú. Kích thước: bò sát tám chân dài 2–3 mét.\n\nSinh học và tập tính: Mắt gây co cứng cơ khi nhìn trực diện lâu; độc răng làm sốt và hoại tử, không hóa đá tức thì.\n\nThức ăn: chuột, chim, trứng và khoáng lưu huỳnh.\n\nCông dụng thực tế: Tuyến độc dùng cho nghiên cứu và thuốc giải; da chịu nhiệt được giới giả kim săn lùng.\n\nThuần dưỡng hoặc khế ước: Không thuần dưỡng đáng tin; người giữ dùng kính mờ, kẹp dài và chuồng hai cửa.\n\nGiới hạn và cách đối phó: Gương không giết nó, chỉ làm rối; nỏ, khói dày và lưới nặng vẫn hiệu quả.\n\nKinh tế: mẫu độc nhỏ đã niêm phong đắt hơn bạc cùng cân.\n\nLuật và xã hội: Nuôi trong thành cần giấy của y đoàn và quan phòng cháy; thả ra bị xử như đầu độc giếng.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Basilisk Tro Sicilia (hiếm, ma thú): Mắt gây co cứng cơ khi nhìn trực diện lâu; độc răng làm sốt và hoại tử, không hóa đá tức thì. Công dụng: Tuyến độc dùng cho nghiên cứu và thuốc giải; da chịu nhiệt được giới giả kim săn lùng. Giới hạn: Gương không giết nó, chỉ làm rối; nỏ, khói dày và lưới nặng vẫn hiệu quả.",
+          "keys": [
+            "Basilisk Tro Sicilia",
+            "Basilisk Tro",
+            "basilisk Sicilia",
+            "thằn lằn hóa cứng"
+          ],
+          "regions": [
+            "realm_castile",
+            "realm_aragon",
+            "realm_portugal",
+            "realm_granada",
+            "realm_milan",
+            "realm_venice",
+            "realm_genoa",
+            "realm_florence",
+            "realm_naples",
+            "realm_papal"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Basilisk Tro Sicilia ma thú hiếm Địa Trung Hải và Iberia Mắt gây co cứng cơ khi nhìn trực diện lâu; độc răng làm sốt và hoại tử, không hóa đá tức thì. Tuyến độc dùng cho nghiên cứu và thuốc giải; da chịu nhiệt được giới giả kim săn lùng. Không thuần dưỡng đáng tin; người giữ dùng kính mờ, kẹp dài và chuồng hai cửa. Gương không giết nó, chỉ làm rối; nỏ, khói dày và lưới nặng vẫn hiệu quả.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_ky-da-muoi",
+          "title": "Kỳ đà Muối Levant · thú cưỡi và vận tải",
+          "content": "<% const oGan = state.knowledge && [\"realm_castile\",\"realm_aragon\",\"realm_portugal\",\"realm_granada\",\"realm_milan\",\"realm_venice\",\"realm_genoa\",\"realm_florence\",\"realm_naples\",\"realm_papal\"].includes(state.knowledge.regionId); %>[SINH VẬT KHÔNG PHỔ BIẾN · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Kỳ đà Muối Levant. Phân loại: thú cưỡi và vận tải. Kích thước: bò sát bốn chân dài 4 mét.\n\nSinh học và tập tính: Chịu nóng, chân bám đá, có thể nhịn ăn lâu nhưng cần phơi nắng để tiêu hóa.\n\nThức ăn: cá khô, cỏ mặn lên men và nội tạng.\n\nCông dụng thực tế: Chở chum, muối và một người qua đường đá khô; kéo xe kém nhưng leo dốc tốt.\n\nThuần dưỡng hoặc khế ước: Ấp gần người, tập dây cương qua áp lực vai; chuồng cần nền đá ấm.\n\nGiới hạn và cách đối phó: Chậm khi lạnh hoặc mưa, mùi khiến nhiều ngựa hoảng và không chạy xung phong nhanh.\n\nKinh tế: ngang hai la khỏe; chi phí sưởi mùa đông làm nó hiếm ở phương bắc.\n\nLuật và xã hội: Cảng yêu cầu bịt mõm và người dẫn riêng khi đi qua chợ.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Kỳ đà Muối Levant (không phổ biến, thú cưỡi và vận tải): Chịu nóng, chân bám đá, có thể nhịn ăn lâu nhưng cần phơi nắng để tiêu hóa. Công dụng: Chở chum, muối và một người qua đường đá khô; kéo xe kém nhưng leo dốc tốt. Giới hạn: Chậm khi lạnh hoặc mưa, mùi khiến nhiều ngựa hoảng và không chạy xung phong nhanh.",
+          "keys": [
+            "Kỳ đà Muối Levant",
+            "Kỳ đà Muối",
+            "thằn lằn chở hàng Levant",
+            "salt monitor mount"
+          ],
+          "regions": [
+            "realm_castile",
+            "realm_aragon",
+            "realm_portugal",
+            "realm_granada",
+            "realm_milan",
+            "realm_venice",
+            "realm_genoa",
+            "realm_florence",
+            "realm_naples",
+            "realm_papal"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Kỳ đà Muối Levant thú cưỡi và vận tải không phổ biến Địa Trung Hải và Iberia Chịu nóng, chân bám đá, có thể nhịn ăn lâu nhưng cần phơi nắng để tiêu hóa. Chở chum, muối và một người qua đường đá khô; kéo xe kém nhưng leo dốc tốt. Ấp gần người, tập dây cương qua áp lực vai; chuồng cần nền đá ấm. Chậm khi lạnh hoặc mưa, mùi khiến nhiều ngựa hoảng và không chạy xung phong nhanh.",
+            "threshold": 0.17
+          }
+        }
+      ]
+    },
+    {
+      "id": "book-ma-thu-balkan-anatolia-dong-la-ma",
+      "name": "Ma thú và thú cưỡi · Balkan, Anatolia và Đông La Mã",
+      "version": 1,
+      "scope": {
+        "kind": "topic",
+        "refId": "ma-thu-balkan-anatolia-dong-la-ma"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 5,
+      "entries": [
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_bo-rung-chien-rumelia",
+          "title": "Bò Rừng Chiến Rumelia · thú cưỡi và kéo",
+          "content": "<% const oGan = state.knowledge && [\"realm_ottoman\",\"realm_byzantine\",\"realm_albania\",\"realm_wallachia\",\"prov_rumelia\",\"prov_anatolia\",\"prov_morea\"].includes(state.knowledge.regionId); %>[SINH VẬT HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Bò Rừng Chiến Rumelia. Phân loại: thú cưỡi và kéo. Kích thước: bò u vai lớn, nặng gần một tấn.\n\nSinh học và tập tính: Vai có mảng da xương, chịu tiếng trống và kéo khỏe; chậm đổi hướng, dễ nổi điên vì máu.\n\nThức ăn: cỏ, rơm, củ và rất nhiều nước.\n\nCông dụng thực tế: Kéo pháo, phá chướng ngại và chở một chiến binh Ogre hoặc giáp nặng trong quãng ngắn.\n\nThuần dưỡng hoặc khế ước: Thiến, nuôi đôi và tập ách nhiều năm; điều khiển bằng tiếng gọi cùng gậy chạm, không bằng đau đớn.\n\nGiới hạn và cách đối phó: Không phải kỵ binh nhanh; hào, lửa, cọc và địa hình lầy có thể vô hiệu hóa.\n\nKinh tế: bằng ba bò kéo cùng xe; con quen pháo đắt ngang chiến mã.\n\nLuật và xã hội: Chỉ đơn vị có giấy quân nhu được đưa bò chiến có giáp qua cổng thành.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Bò Rừng Chiến Rumelia (hiếm, thú cưỡi và kéo): Vai có mảng da xương, chịu tiếng trống và kéo khỏe; chậm đổi hướng, dễ nổi điên vì máu. Công dụng: Kéo pháo, phá chướng ngại và chở một chiến binh Ogre hoặc giáp nặng trong quãng ngắn. Giới hạn: Không phải kỵ binh nhanh; hào, lửa, cọc và địa hình lầy có thể vô hiệu hóa.",
+          "keys": [
+            "Bò Rừng Chiến Rumelia",
+            "bò chiến Ottoman",
+            "war aurochs"
+          ],
+          "regions": [
+            "realm_ottoman",
+            "realm_byzantine",
+            "realm_albania",
+            "realm_wallachia",
+            "prov_rumelia",
+            "prov_anatolia",
+            "prov_morea"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Bò Rừng Chiến Rumelia thú cưỡi và kéo hiếm Balkan, Anatolia và Đông La Mã Vai có mảng da xương, chịu tiếng trống và kéo khỏe; chậm đổi hướng, dễ nổi điên vì máu. Kéo pháo, phá chướng ngại và chở một chiến binh Ogre hoặc giáp nặng trong quãng ngắn. Thiến, nuôi đôi và tập ách nhiều năm; điều khiển bằng tiếng gọi cùng gậy chạm, không bằng đau đớn. Không phải kỵ binh nhanh; hào, lửa, cọc và địa hình lầy có thể vô hiệu hóa.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_cuu-lua-anatolia",
+          "title": "Cừu Lửa Anatolia · ma thú kiêm thú cưỡi nhỏ",
+          "content": "<% const oGan = state.knowledge && [\"realm_ottoman\",\"realm_byzantine\",\"realm_albania\",\"realm_wallachia\",\"prov_rumelia\",\"prov_anatolia\",\"prov_morea\"].includes(state.knowledge.regionId); %>[SINH VẬT KHÔNG PHỔ BIẾN · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Cừu Lửa Anatolia. Phân loại: ma thú kiêm thú cưỡi nhỏ. Kích thước: cừu đực rất lớn, vai cao 1,3 mét.\n\nSinh học và tập tính: Len giữ nhiệt, sừng tóe tia lửa khi va đá; bầy đàn, gan lì và hay húc vật màu sáng.\n\nThức ăn: cỏ khô, bụi gai và muối lưu huỳnh lượng nhỏ.\n\nCông dụng thực tế: Sưởi trại, lấy len chống rét và chở Gnome hoặc trẻ đưa tin ở đồi khô.\n\nThuần dưỡng hoặc khế ước: Nuôi bầy, thiến con cưỡi và dùng bịt sừng bằng da trong thành.\n\nGiới hạn và cách đối phó: Không phun lửa, len ướt rất nặng, tia sừng có thể đốt chính xe cỏ.\n\nKinh tế: gấp đôi cừu giống tốt; con cưỡi đã tập bằng lừa nhỏ.\n\nLuật và xã hội: Chợ thành bắt bọc sừng và cách xa kho thuốc súng.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Cừu Lửa Anatolia (không phổ biến, ma thú kiêm thú cưỡi nhỏ): Len giữ nhiệt, sừng tóe tia lửa khi va đá; bầy đàn, gan lì và hay húc vật màu sáng. Công dụng: Sưởi trại, lấy len chống rét và chở Gnome hoặc trẻ đưa tin ở đồi khô. Giới hạn: Không phun lửa, len ướt rất nặng, tia sừng có thể đốt chính xe cỏ.",
+          "keys": [
+            "Cừu Lửa Anatolia",
+            "dê lửa Anatolia",
+            "fire ram"
+          ],
+          "regions": [
+            "realm_ottoman",
+            "realm_byzantine",
+            "realm_albania",
+            "realm_wallachia",
+            "prov_rumelia",
+            "prov_anatolia",
+            "prov_morea"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Cừu Lửa Anatolia ma thú kiêm thú cưỡi nhỏ không phổ biến Balkan, Anatolia và Đông La Mã Len giữ nhiệt, sừng tóe tia lửa khi va đá; bầy đàn, gan lì và hay húc vật màu sáng. Sưởi trại, lấy len chống rét và chở Gnome hoặc trẻ đưa tin ở đồi khô. Nuôi bầy, thiến con cưỡi và dùng bịt sừng bằng da trong thành. Không phun lửa, len ướt rất nặng, tia sừng có thể đốt chính xe cỏ.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_cho-rung-tien-tri",
+          "title": "Chó Rừng Tiên Tri Cappadocia · ma thú",
+          "content": "<% const oGan = state.knowledge && [\"realm_ottoman\",\"realm_byzantine\",\"realm_albania\",\"realm_wallachia\",\"prov_rumelia\",\"prov_anatolia\",\"prov_morea\"].includes(state.knowledge.regionId); %>[SINH VẬT HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Chó Rừng Tiên Tri Cappadocia. Phân loại: ma thú. Kích thước: chó rừng chân dài cỡ chó săn.\n\nSinh học và tập tính: Kêu khác thường trước động đất hoặc khí độc do cảm rung và mùi; dân gian diễn thành lời tiên tri.\n\nThức ăn: thịt nhỏ, quả, côn trùng và thức ăn cúng.\n\nCông dụng thực tế: Cảnh báo hầm sập, dò khí và dẫn đường hang; tu viện nuôi theo cặp.\n\nThuần dưỡng hoặc khế ước: Cứu và gây quen từ non, thưởng khi báo đúng; không ép nó trả lời câu hỏi chính trị.\n\nGiới hạn và cách đối phó: Không thấy tương lai, có thể báo nhầm vì bão, thú săn hoặc sợ hãi.\n\nKinh tế: bằng chó săn quý; cặp đã tập mỏ đắt hơn.\n\nLuật và xã hội: Giả lời sấm bằng cách hành hạ chúng bị nhiều giáo sĩ xem là mê tín phạm luật.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Chó Rừng Tiên Tri Cappadocia (hiếm, ma thú): Kêu khác thường trước động đất hoặc khí độc do cảm rung và mùi; dân gian diễn thành lời tiên tri. Công dụng: Cảnh báo hầm sập, dò khí và dẫn đường hang; tu viện nuôi theo cặp. Giới hạn: Không thấy tương lai, có thể báo nhầm vì bão, thú săn hoặc sợ hãi.",
+          "keys": [
+            "Chó Rừng Tiên Tri Cappadocia",
+            "Chó Rừng Tiên Tri",
+            "chó Cappadocia",
+            "oracle jackal"
+          ],
+          "regions": [
+            "realm_ottoman",
+            "realm_byzantine",
+            "realm_albania",
+            "realm_wallachia",
+            "prov_rumelia",
+            "prov_anatolia",
+            "prov_morea"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Chó Rừng Tiên Tri Cappadocia ma thú hiếm Balkan, Anatolia và Đông La Mã Kêu khác thường trước động đất hoặc khí độc do cảm rung và mùi; dân gian diễn thành lời tiên tri. Cảnh báo hầm sập, dò khí và dẫn đường hang; tu viện nuôi theo cặp. Cứu và gây quen từ non, thưởng khi báo đúng; không ép nó trả lời câu hỏi chính trị. Không thấy tương lai, có thể báo nhầm vì bão, thú săn hoặc sợ hãi.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_thuy-long-bosphorus",
+          "title": "Thủy Long Bosphorus · ma thú kiêm thú cưỡi",
+          "content": "<% const oGan = state.knowledge && [\"realm_ottoman\",\"realm_byzantine\",\"realm_albania\",\"realm_wallachia\",\"prov_rumelia\",\"prov_anatolia\",\"prov_morea\"].includes(state.knowledge.regionId); %>[SINH VẬT CỰC HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Thủy Long Bosphorus. Phân loại: ma thú kiêm thú cưỡi. Kích thước: bò sát nước dài 5–6 mét.\n\nSinh học và tập tính: Có màng chân, phổi lớn và vảy xanh; cảm dòng chảy tốt, bảo vệ hang ven bờ.\n\nThức ăn: cá lớn, mực và gia cầm; cần nước mặn sạch.\n\nCông dụng thực tế: Đưa thợ lặn, kéo dây qua eo biển và tuần tra gần bờ; chở tối đa hai người nhẹ trong biển êm.\n\nThuần dưỡng hoặc khế ước: Nuôi từ trứng trong vũng triều, tập dây kéo bằng cá; cần đội thợ lặn chăm vảy.\n\nGiới hạn và cách đối phó: Không thở dưới nước vô hạn, không ra biển động xa bờ, lao móc và lưới nặng rất nguy hiểm.\n\nKinh tế: nuôi một con tốn ngang thuyền tuần nhỏ.\n\nLuật và xã hội: Cả Ottoman lẫn Đông La Mã tuyên quyền trên ổ trứng Bosphorus, khiến buôn trứng thành vấn đề ngoại giao.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Thủy Long Bosphorus (cực hiếm, ma thú kiêm thú cưỡi): Có màng chân, phổi lớn và vảy xanh; cảm dòng chảy tốt, bảo vệ hang ven bờ. Công dụng: Đưa thợ lặn, kéo dây qua eo biển và tuần tra gần bờ; chở tối đa hai người nhẹ trong biển êm. Giới hạn: Không thở dưới nước vô hạn, không ra biển động xa bờ, lao móc và lưới nặng rất nguy hiểm.",
+          "keys": [
+            "Thủy Long Bosphorus",
+            "rồng nước Bosphorus",
+            "Bosphorus drake"
+          ],
+          "regions": [
+            "realm_ottoman",
+            "realm_byzantine",
+            "realm_albania",
+            "realm_wallachia",
+            "prov_rumelia",
+            "prov_anatolia",
+            "prov_morea"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Thủy Long Bosphorus ma thú kiêm thú cưỡi cực hiếm Balkan, Anatolia và Đông La Mã Có màng chân, phổi lớn và vảy xanh; cảm dòng chảy tốt, bảo vệ hang ven bờ. Đưa thợ lặn, kéo dây qua eo biển và tuần tra gần bờ; chở tối đa hai người nhẹ trong biển êm. Nuôi từ trứng trong vũng triều, tập dây kéo bằng cá; cần đội thợ lặn chăm vảy. Không thở dưới nước vô hạn, không ra biển động xa bờ, lao móc và lưới nặng rất nguy hiểm.",
+            "threshold": 0.17
+          }
+        }
+      ]
+    },
+    {
+      "id": "book-ma-thu-bien-song-va-hai-cang",
+      "name": "Ma thú và thú cưỡi · Biển, sông lớn và các hải cảng",
+      "version": 1,
+      "scope": {
+        "kind": "topic",
+        "refId": "ma-thu-bien-song-va-hai-cang"
+      },
+      "enabled": true,
+      "autoScope": false,
+      "priority": 5,
+      "entries": [
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_hai-ma-adriatic",
+          "title": "Hải Mã Adriatic · thú cưỡi thủy sinh",
+          "content": "<% const oGan = state.knowledge && [\"reg_europa\"].includes(state.knowledge.regionId); %>[SINH VẬT HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Hải Mã Adriatic. Phân loại: thú cưỡi thủy sinh. Kích thước: thân trước giống ngựa, đuôi cá dài, nặng 500–700 kg.\n\nSinh học và tập tính: Sống đàn ven đảo, thở không khí và cần nổi thường xuyên; thân thiện hơn khi không bị tách đàn.\n\nThức ăn: cỏ biển, tảo, nhuyễn thể và muối khoáng.\n\nCông dụng thực tế: Kéo xuồng nhẹ, đưa thợ lặn và chở một người dọc bờ trong biển êm.\n\nThuần dưỡng hoặc khế ước: Gây quen tại vịnh kín, dùng đai ngực thay yên; người cưỡi phải biết bơi và tháo dây khi lật.\n\nGiới hạn và cách đối phó: Không chạy trên đất, không lặn sâu lâu, bão và nước ngọt kéo dài gây bệnh da.\n\nKinh tế: bằng thuyền đánh cá tốt; chi phí bến nuôi cao.\n\nLuật và xã hội: Venice đánh dấu đàn thuần, nhưng ngư dân vẫn có quyền cứu hoặc thả cá thể mắc lưới.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Hải Mã Adriatic (hiếm, thú cưỡi thủy sinh): Sống đàn ven đảo, thở không khí và cần nổi thường xuyên; thân thiện hơn khi không bị tách đàn. Công dụng: Kéo xuồng nhẹ, đưa thợ lặn và chở một người dọc bờ trong biển êm. Giới hạn: Không chạy trên đất, không lặn sâu lâu, bão và nước ngọt kéo dài gây bệnh da.",
+          "keys": [
+            "Hải Mã Adriatic",
+            "hippocampus Adriatic",
+            "ngựa biển cưỡi"
+          ],
+          "regions": [
+            "reg_europa"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Hải Mã Adriatic thú cưỡi thủy sinh hiếm Biển, sông lớn và các hải cảng Sống đàn ven đảo, thở không khí và cần nổi thường xuyên; thân thiện hơn khi không bị tách đàn. Kéo xuồng nhẹ, đưa thợ lặn và chở một người dọc bờ trong biển êm. Gây quen tại vịnh kín, dùng đai ngực thay yên; người cưỡi phải biết bơi và tháo dây khi lật. Không chạy trên đất, không lặn sâu lâu, bão và nước ngọt kéo dài gây bệnh da.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_kelpie-song-bac",
+          "title": "Kelpie Sông Bắc · ma thú có thể cưỡi trong điều kiện đặc biệt",
+          "content": "<% const oGan = state.knowledge && [\"reg_europa\"].includes(state.knowledge.regionId); %>[SINH VẬT HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Kelpie Sông Bắc. Phân loại: ma thú có thể cưỡi trong điều kiện đặc biệt. Kích thước: hình ngựa gầy, thân phủ màng nước.\n\nSinh học và tập tính: Bắt chước ngựa lạc để dụ người lên lưng rồi lao xuống nước; thông minh kiểu thú săn.\n\nThức ăn: cá, lươn và ma lực đọng ở khúc sông; chuyện ăn người bị phóng đại nhưng có vụ thật.\n\nCông dụng thực tế: Một số phù thủy sông ký khế ước để vượt nước hoặc kéo bè, nhưng đây không phải thuần hóa.\n\nThuần dưỡng hoặc khế ước: Chỉ khế ước có giới hạn, dây cương khắc tên sông và lễ trả cá; cưỡng ép khiến nó tìm kẽ chữ để giết chủ.\n\nGiới hạn và cách đối phó: Yếu xa nguồn nước, sắt lạnh làm vỡ màng da, không thể mang cả đội qua sông.\n\nKinh tế: không mua bán hợp pháp; phí người giữ sông thường là cá, bạc và nghĩa vụ.\n\nLuật và xã hội: Nhiều giáo phận cấm khế ước Kelpie; luật làng vẫn đôi khi công nhận nếu cứu người trong lũ.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Kelpie Sông Bắc (hiếm, ma thú có thể cưỡi trong điều kiện đặc biệt): Bắt chước ngựa lạc để dụ người lên lưng rồi lao xuống nước; thông minh kiểu thú săn. Công dụng: Một số phù thủy sông ký khế ước để vượt nước hoặc kéo bè, nhưng đây không phải thuần hóa. Giới hạn: Yếu xa nguồn nước, sắt lạnh làm vỡ màng da, không thể mang cả đội qua sông.",
+          "keys": [
+            "Kelpie Sông Bắc",
+            "Kelpie",
+            "ngựa nước"
+          ],
+          "regions": [
+            "reg_europa"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Kelpie Sông Bắc ma thú có thể cưỡi trong điều kiện đặc biệt hiếm Biển, sông lớn và các hải cảng Bắt chước ngựa lạc để dụ người lên lưng rồi lao xuống nước; thông minh kiểu thú săn. Một số phù thủy sông ký khế ước để vượt nước hoặc kéo bè, nhưng đây không phải thuần hóa. Chỉ khế ước có giới hạn, dây cương khắc tên sông và lễ trả cá; cưỡng ép khiến nó tìm kẽ chữ để giết chủ. Yếu xa nguồn nước, sắt lạnh làm vỡ màng da, không thể mang cả đội qua sông.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_ca-voi-suong",
+          "title": "Kình Sương Biển Bắc · ma thú",
+          "content": "<% const oGan = state.knowledge && [\"reg_europa\"].includes(state.knowledge.regionId); %>[SINH VẬT CỰC HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Kình Sương Biển Bắc. Phân loại: ma thú. Kích thước: cá voi dài 20–25 mét.\n\nSinh học và tập tính: Hơi thở tạo màn sương lạnh dày khi đàn nổi; hiền trừ lúc bảo vệ con.\n\nThức ăn: cá nhỏ và sinh vật phù du.\n\nCông dụng thực tế: Thủy thủ theo chúng để tìm luồng cá và đôi khi ẩn tàu trong sương; xương trôi dạt dùng làm cổng, không cần săn giết.\n\nThuần dưỡng hoặc khế ước: Không thể thuần hay cưỡi; vài đoàn tàu học tiếng tù và để tránh đường đàn.\n\nGiới hạn và cách đối phó: Không tạo bão, sương tan theo gió và đàn dễ mắc cạn nếu bị âm thanh phép làm rối.\n\nKinh tế: không có giá cho cá thể sống; dầu và xương gây tranh chấp săn bắt.\n\nLuật và xã hội: Một số cảng Bắc Âu cấm săn mẹ có con, nơi khác coi xác dạt bờ thuộc lãnh chúa.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Kình Sương Biển Bắc (cực hiếm, ma thú): Hơi thở tạo màn sương lạnh dày khi đàn nổi; hiền trừ lúc bảo vệ con. Công dụng: Thủy thủ theo chúng để tìm luồng cá và đôi khi ẩn tàu trong sương; xương trôi dạt dùng làm cổng, không cần săn giết. Giới hạn: Không tạo bão, sương tan theo gió và đàn dễ mắc cạn nếu bị âm thanh phép làm rối.",
+          "keys": [
+            "Kình Sương Biển Bắc",
+            "Kình Sương",
+            "cá voi sương",
+            "mist whale"
+          ],
+          "regions": [
+            "reg_europa"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Kình Sương Biển Bắc ma thú cực hiếm Biển, sông lớn và các hải cảng Hơi thở tạo màn sương lạnh dày khi đàn nổi; hiền trừ lúc bảo vệ con. Thủy thủ theo chúng để tìm luồng cá và đôi khi ẩn tàu trong sương; xương trôi dạt dùng làm cổng, không cần săn giết. Không thể thuần hay cưỡi; vài đoàn tàu học tiếng tù và để tránh đường đàn. Không tạo bão, sương tan theo gió và đàn dễ mắc cạn nếu bị âm thanh phép làm rối.",
+            "threshold": 0.17
+          }
+        },
+        {
+          "type": "creature",
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 7,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false,
+          "id": "creature_long-ran-san-ho",
+          "title": "Long Rạn San Hô · ma thú kiêm thú cưỡi thủy sinh",
+          "content": "<% const oGan = state.knowledge && [\"reg_europa\"].includes(state.knowledge.regionId); %>[SINH VẬT CỰC HIẾM · <%= oGan ? 'đang ở vùng ghi nhận trực tiếp' : 'tri thức địa phương được nhắc lại' %>]\n\nTên: Long Rạn San Hô. Phân loại: ma thú kiêm thú cưỡi thủy sinh. Kích thước: rồng biển nhỏ dài 3–4 mét.\n\nSinh học và tập tính: Vảy mọc nhánh như san hô, đổi màu trong nước; giữ một rạn nhỏ làm lãnh địa.\n\nThức ăn: cá, cua và vỏ nhuyễn thể giàu khoáng.\n\nCông dụng thực tế: Dò đá ngầm, chuyển thư giữa đảo và chở một người nhẹ có dây thở gần mặt nước.\n\nThuần dưỡng hoặc khế ước: Thợ lặn gây quen bằng thức ăn và dọn ký sinh; không bắt khỏi rạn quá lâu.\n\nGiới hạn và cách đối phó: Vảy giòn ngoài nước, không phun lửa, không chịu biển lạnh và chỉ bơi xa sau nhiều lần nghỉ.\n\nKinh tế: hiếm khi bán; quyền hợp tác với một cá thể đáng giá hơn quyền sở hữu.\n\nLuật và xã hội: Các cộng đồng đảo xem rạn của nó là tài sản chung; bắt trộm có thể bị tước quyền cập cảng.\n\nRào canon: đặc tính trên là khuynh hướng của loài, không bảo đảm mọi cá thể giống nhau; ma pháp không xóa nhu cầu thức ăn, nghỉ ngơi, huấn luyện và chữa trị.",
+          "summary": "Long Rạn San Hô (cực hiếm, ma thú kiêm thú cưỡi thủy sinh): Vảy mọc nhánh như san hô, đổi màu trong nước; giữ một rạn nhỏ làm lãnh địa. Công dụng: Dò đá ngầm, chuyển thư giữa đảo và chở một người nhẹ có dây thở gần mặt nước. Giới hạn: Vảy giòn ngoài nước, không phun lửa, không chịu biển lạnh và chỉ bơi xa sau nhiều lần nghỉ.",
+          "keys": [
+            "Long Rạn San Hô",
+            "rồng san hô",
+            "coral reef drake"
+          ],
+          "regions": [
+            "reg_europa"
+          ],
+          "includeAdjacent": true,
+          "embedding": {
+            "text": "Long Rạn San Hô ma thú kiêm thú cưỡi thủy sinh cực hiếm Biển, sông lớn và các hải cảng Vảy mọc nhánh như san hô, đổi màu trong nước; giữ một rạn nhỏ làm lãnh địa. Dò đá ngầm, chuyển thư giữa đảo và chở một người nhẹ có dây thở gần mặt nước. Thợ lặn gây quen bằng thức ăn và dọn ký sinh; không bắt khỏi rạn quá lâu. Vảy giòn ngoài nước, không phun lửa, không chịu biển lạnh và chỉ bơi xa sau nhiều lần nghỉ.",
+            "threshold": 0.17
+          }
+        }
+      ]
+    }
+  ]
+}

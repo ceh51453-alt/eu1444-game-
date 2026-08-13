@@ -13,6 +13,19 @@
       "priority": 0,
       "entries": [
         {
+          "id": "concept_bon-nhanh-nhan-loai",
+          "title": "Bốn nhánh Nhân loại là căn tính văn hóa",
+          "type": "custom",
+          "content": "## Quy ước canon về bốn nhánh Nhân loại:\nFrank, Teuton, Latin và Rus là những khối căn tính văn hóa–chính trị do ngôn ngữ, luật lệ, giáo hội, mạng thương mại và lịch sử tạo nên; họ không phải bốn phân loài sinh học. Biên giới giữa các nhánh mờ và thay đổi: một gia đình có thể nói nhiều tiếng, theo luật của thành phố Teuton, làm ăn theo mạng Latin và tự nhận gốc Frank.\n\nCác entry riêng mô tả thể chế nổi bật cùng định kiến thường gặp năm 1444, không ấn định tính cách, nghề nghiệp, tín ngưỡng hay đạo đức của từng người. Nông dân Frank không mặc nhiên là hiệp sĩ, người Latin không mặc nhiên là chủ ngân hàng, người Teuton không sinh ra đã mê điều lệ, và người Rus không phải ai cũng là dân biên cương. Địa vị giai cấp, nơi sống, nghề và lòng trung thành phải được xét trước nhãn nhánh.",
+          "summary": "Frank, Teuton, Latin và Rus là bốn khối văn hóa–chính trị chồng lấn, không phải phân loài hay bộ tính cách bẩm sinh. Các entry nhánh mô tả thể chế và định kiến phổ biến; cá nhân vẫn do nơi sống, giai cấp, nghề, đức tin và lựa chọn định hình.",
+          "keys": ["bốn nhánh Nhân loại", "các nhánh Nhân loại", "Frank Teuton Latin Rus", "căn tính Nhân loại"],
+          "matchMode": "wholeWord",
+          "constant": false,
+          "knowledge": "public",
+          "weight": 10,
+          "budgetPriority": 9
+        },
+        {
           "id": "race_frank",
           "title": "Nhánh Frank",
           "type": "custom",

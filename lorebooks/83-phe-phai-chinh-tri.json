@@ -1,0 +1,2251 @@
+{
+  "kind": "eu1444-lorebook",
+  "schemaVersion": 1,
+  "exportedAt": 0,
+  "books": [
+    {
+      "id": "book-phe-phai-nation-ottoman",
+      "name": "Phe phái chuyên sâu · Đế chế Ottoman",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_ottoman"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-ottoman-hinh-thanh",
+          "title": "Đế chế Ottoman · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_ottoman'; %><% if (noiPhe) { %>[Bản ghi nội bộ Đế chế Ottoman · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Đế chế Ottoman · <%= now.year %>]<% } %>\nKhởi từ một beylik biên giới cuối thế kỷ XIII, Ottoman hấp thụ chiến binh ghazi, quan lại đô thị, học giả Nhất thần và cộng đồng Cơ Đốc Balkan. Sau nội chiến 1402–1413, Murad II tái lập trung tâm; chiến thắng Varna 1444 xác nhận đế chế đã phục hồi.",
+          "summary": "Khởi từ một beylik biên giới cuối thế kỷ XIII, Ottoman hấp thụ chiến binh ghazi, quan lại đô thị, học giả Nhất thần và cộng đồng Cơ Đốc Balkan. Sau nội chiến 1402–1413, Murad II tái lập trung tâm; chiến thắng Varna 1444 xác nhận đế chế đã phục hồi.",
+          "keys": [
+            "Đế chế Ottoman",
+            "Ottoman",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đế chế Ottoman. hình thành lịch sử. Khởi từ một beylik biên giới cuối thế kỷ XIII, Ottoman hấp thụ chiến binh ghazi, quan lại đô thị, học giả Nhất thần và cộng đồng Cơ Đốc Balkan. Sau nội chiến 1402–1413, Murad II tái lập trung tâm; chiến thắng Varna 1444 xác nhận đế chế đã phục hồi.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-ottoman-quyen-luc",
+          "title": "Đế chế Ottoman · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_ottoman'; %><% if (noiPhe) { %>[Bản ghi nội bộ Đế chế Ottoman · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Đế chế Ottoman · <%= now.year %>]<% } %>\nTriều Osman và gia nhân cung đình cạnh tranh ảnh hưởng với các đại gia tộc biên giới. Quân kapıkulu cùng Janissary muốn lương và quyền gần sultan; các timar-bey muốn đất thu thuế và chiến tranh mở rộng. Ulema bảo vệ pháp học, còn quan chép sổ bảo vệ nguồn thu.",
+          "summary": "Triều Osman và gia nhân cung đình cạnh tranh ảnh hưởng với các đại gia tộc biên giới. Quân kapıkulu cùng Janissary muốn lương và quyền gần sultan; các timar-bey muốn đất thu thuế và chiến tranh mở rộng. Ulema bảo vệ pháp học, còn quan chép sổ bảo vệ nguồn thu.",
+          "keys": [
+            "Đế chế Ottoman",
+            "Ottoman",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đế chế Ottoman. các phe trong triều và thiết chế. Triều Osman và gia nhân cung đình cạnh tranh ảnh hưởng với các đại gia tộc biên giới. Quân kapıkulu cùng Janissary muốn lương và quyền gần sultan; các timar-bey muốn đất thu thuế và chiến tranh mở rộng. Ulema bảo vệ pháp học, còn quan chép sổ bảo vệ nguồn thu.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-ottoman-xa-hoi",
+          "title": "Đế chế Ottoman · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_ottoman'; %><% if (noiPhe) { %>[Bản ghi nội bộ Đế chế Ottoman · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Đế chế Ottoman · <%= now.year %>]<% } %>\nNông dân Cơ Đốc và Nhất thần cùng nộp thuế theo địa vị pháp lý; giáo hội địa phương, thương nhân Hy Lạp, Slav, Do Thái và Armenia nối kinh tế. Orc nổi bật ở thượng tầng quân sự nhưng dân và quan đa tộc; không có đẳng cấp “nông nô Orc” chung cho toàn đế chế.",
+          "summary": "Nông dân Cơ Đốc và Nhất thần cùng nộp thuế theo địa vị pháp lý; giáo hội địa phương, thương nhân Hy Lạp, Slav, Do Thái và Armenia nối kinh tế. Orc nổi bật ở thượng tầng quân sự nhưng dân và quan đa tộc; không có đẳng cấp “nông nô Orc” chung cho toàn đế chế.",
+          "keys": [
+            "Đế chế Ottoman",
+            "Ottoman",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đế chế Ottoman. dân thường, giai cấp và chủng tộc. Nông dân Cơ Đốc và Nhất thần cùng nộp thuế theo địa vị pháp lý; giáo hội địa phương, thương nhân Hy Lạp, Slav, Do Thái và Armenia nối kinh tế. Orc nổi bật ở thượng tầng quân sự nhưng dân và quan đa tộc; không có đẳng cấp “nông nô Orc” chung cho toàn đế chế.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-ottoman-khung-hoang-1444",
+          "title": "Đế chế Ottoman · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_ottoman'; %><% if (noiPhe) { %>[Bản ghi nội bộ Đế chế Ottoman · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Đế chế Ottoman · <%= now.year %>]<% } %>\nCuối 1444, Mehmed II còn ở ngôi; Murad II chỉ được gọi trở lại cầm quân tại Varna rồi lui về, dù đại thần và quân đội vẫn xem ông là chỗ dựa. Phe muốn đánh Constantinople, phe giữ Balkan và phe ưu tiên Anatolia tranh nguồn lực; chiến thắng che bất đồng kế vị chứ chưa giải quyết nó.",
+          "summary": "Cuối 1444, Mehmed II còn ở ngôi; Murad II chỉ được gọi trở lại cầm quân tại Varna rồi lui về, dù đại thần và quân đội vẫn xem ông là chỗ dựa. Phe muốn đánh Constantinople, phe giữ Balkan và phe ưu tiên Anatolia tranh nguồn lực; chiến thắng che bất đồng kế vị chứ chưa giải quyết nó.",
+          "keys": [
+            "Đế chế Ottoman",
+            "Ottoman",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đế chế Ottoman. khủng hoảng và mục tiêu năm 1444. Cuối 1444, Mehmed II còn ở ngôi; Murad II chỉ được gọi trở lại cầm quân tại Varna rồi lui về, dù đại thần và quân đội vẫn xem ông là chỗ dựa. Phe muốn đánh Constantinople, phe giữ Balkan và phe ưu tiên Anatolia tranh nguồn lực; chiến thắng che bất đồng kế vị chứ chưa giải quyết nó.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-hre",
+      "name": "Phe phái chuyên sâu · Đế quốc La Mã Thần thánh",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_hre"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-hre-hinh-thanh",
+          "title": "Đế quốc La Mã Thần thánh · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_hre'; %><% if (noiPhe) { %>[Bản ghi nội bộ Đế quốc La Mã Thần thánh · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Đế quốc La Mã Thần thánh · <%= now.year %>]<% } %>\nĐế quốc kế thừa truyền thống Đông Frank và lễ đăng quang La Mã, nhưng là mạng vương hầu chứ không phải nhà nước tập quyền. Golden Bull 1356 định bảy Tuyển hầu; vương quyền hoàng đế phụ thuộc đất riêng, thương lượng và uy tín.",
+          "summary": "Đế quốc kế thừa truyền thống Đông Frank và lễ đăng quang La Mã, nhưng là mạng vương hầu chứ không phải nhà nước tập quyền. Golden Bull 1356 định bảy Tuyển hầu; vương quyền hoàng đế phụ thuộc đất riêng, thương lượng và uy tín.",
+          "keys": [
+            "Đế quốc La Mã Thần thánh",
+            "HRE",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đế quốc La Mã Thần thánh. hình thành lịch sử. Đế quốc kế thừa truyền thống Đông Frank và lễ đăng quang La Mã, nhưng là mạng vương hầu chứ không phải nhà nước tập quyền. Golden Bull 1356 định bảy Tuyển hầu; vương quyền hoàng đế phụ thuộc đất riêng, thương lượng và uy tín.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-hre-quyen-luc",
+          "title": "Đế quốc La Mã Thần thánh · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_hre'; %><% if (noiPhe) { %>[Bản ghi nội bộ Đế quốc La Mã Thần thánh · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Đế quốc La Mã Thần thánh · <%= now.year %>]<% } %>\nFriedrich III nhà Habsburg là Vua của người La Mã và đứng đầu Đế quốc, nhưng năm 1444 chưa được Giáo hoàng đội vương miện hoàng đế; ông dựa vào tài sản Áo. Tuyển hầu giữ lá phiếu; vương công, giám mục–vương hầu, hiệp sĩ trực thuộc và thành phố tự do bảo vệ quyền riêng.",
+          "summary": "Friedrich III nhà Habsburg là Vua của người La Mã và đứng đầu Đế quốc, nhưng năm 1444 chưa được Giáo hoàng đội vương miện hoàng đế; ông dựa vào tài sản Áo. Tuyển hầu giữ lá phiếu; vương công, giám mục–vương hầu, hiệp sĩ trực thuộc và thành phố tự do bảo vệ quyền riêng.",
+          "keys": [
+            "Đế quốc La Mã Thần thánh",
+            "HRE",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đế quốc La Mã Thần thánh. các phe trong triều và thiết chế. Friedrich III nhà Habsburg là Vua của người La Mã và đứng đầu Đế quốc, nhưng năm 1444 chưa được Giáo hoàng đội vương miện hoàng đế; ông dựa vào tài sản Áo. Tuyển hầu giữ lá phiếu; vương công, giám mục–vương hầu, hiệp sĩ trực thuộc và thành phố tự do bảo vệ quyền riêng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-hre-xa-hoi",
+          "title": "Đế quốc La Mã Thần thánh · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_hre'; %><% if (noiPhe) { %>[Bản ghi nội bộ Đế quốc La Mã Thần thánh · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Đế quốc La Mã Thần thánh · <%= now.year %>]<% } %>\nThành thị giàu nhờ nghiệp đoàn và thương mại, nông thôn chia từ nông dân tự do đến lệ thuộc. Teuton phổ biến nhưng Lùn, Gnome, Bán Nhân và nhiều tộc khác có địa vị theo thành phố, nghiệp đoàn, thái ấp hoặc giáo luật—không theo một luật chủng tộc duy nhất.",
+          "summary": "Thành thị giàu nhờ nghiệp đoàn và thương mại, nông thôn chia từ nông dân tự do đến lệ thuộc. Teuton phổ biến nhưng Lùn, Gnome, Bán Nhân và nhiều tộc khác có địa vị theo thành phố, nghiệp đoàn, thái ấp hoặc giáo luật—không theo một luật chủng tộc duy nhất.",
+          "keys": [
+            "Đế quốc La Mã Thần thánh",
+            "HRE",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đế quốc La Mã Thần thánh. dân thường, giai cấp và chủng tộc. Thành thị giàu nhờ nghiệp đoàn và thương mại, nông thôn chia từ nông dân tự do đến lệ thuộc. Teuton phổ biến nhưng Lùn, Gnome, Bán Nhân và nhiều tộc khác có địa vị theo thành phố, nghiệp đoàn, thái ấp hoặc giáo luật—không theo một luật chủng tộc duy nhất.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-hre-khung-hoang-1444",
+          "title": "Đế quốc La Mã Thần thánh · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_hre'; %><% if (noiPhe) { %>[Bản ghi nội bộ Đế quốc La Mã Thần thánh · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Đế quốc La Mã Thần thánh · <%= now.year %>]<% } %>\nNăm 1444, hoàng đế yếu về tiền mặt, Bohemia còn di sản Hussite, Burgundy lấn phía tây và Ottoman đe dọa đông nam. Cải cách thuế, tòa và hòa bình công cộng được nói nhiều nhưng mỗi đẳng cấp sợ mất đặc quyền.",
+          "summary": "Năm 1444, hoàng đế yếu về tiền mặt, Bohemia còn di sản Hussite, Burgundy lấn phía tây và Ottoman đe dọa đông nam. Cải cách thuế, tòa và hòa bình công cộng được nói nhiều nhưng mỗi đẳng cấp sợ mất đặc quyền.",
+          "keys": [
+            "Đế quốc La Mã Thần thánh",
+            "HRE",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đế quốc La Mã Thần thánh. khủng hoảng và mục tiêu năm 1444. Năm 1444, hoàng đế yếu về tiền mặt, Bohemia còn di sản Hussite, Burgundy lấn phía tây và Ottoman đe dọa đông nam. Cải cách thuế, tòa và hòa bình công cộng được nói nhiều nhưng mỗi đẳng cấp sợ mất đặc quyền.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-frank",
+      "name": "Phe phái chuyên sâu · Vương quốc Pháp",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_frank"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-frank-hinh-thanh",
+          "title": "Vương quốc Pháp · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_frank'; %><% if (noiPhe) { %>[Bản ghi nội bộ Vương quốc Pháp · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Vương quốc Pháp · <%= now.year %>]<% } %>\nVương quyền Capet và Valois lớn dần từ vùng quanh Paris, nhưng Chiến tranh Trăm Năm gần phá hủy nhà nước. Jeanne d’Arc và phe Armagnac giúp Charles VII phục hồi; đến đình chiến Tours 1444, cán cân đã nghiêng về Pháp nhưng chiến tranh chưa kết thúc.",
+          "summary": "Vương quyền Capet và Valois lớn dần từ vùng quanh Paris, nhưng Chiến tranh Trăm Năm gần phá hủy nhà nước. Jeanne d’Arc và phe Armagnac giúp Charles VII phục hồi; đến đình chiến Tours 1444, cán cân đã nghiêng về Pháp nhưng chiến tranh chưa kết thúc.",
+          "keys": [
+            "Vương quốc Pháp",
+            "Pháp",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Vương quốc Pháp. hình thành lịch sử. Vương quyền Capet và Valois lớn dần từ vùng quanh Paris, nhưng Chiến tranh Trăm Năm gần phá hủy nhà nước. Jeanne d’Arc và phe Armagnac giúp Charles VII phục hồi; đến đình chiến Tours 1444, cán cân đã nghiêng về Pháp nhưng chiến tranh chưa kết thúc.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-frank-quyen-luc",
+          "title": "Vương quốc Pháp · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_frank'; %><% if (noiPhe) { %>[Bản ghi nội bộ Vương quốc Pháp · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Vương quốc Pháp · <%= now.year %>]<% } %>\nNhà vua và quan tài chính muốn thuế taille ổn định, đại đội thường trực và pháo binh; các thân vương máu muốn quyền tự trị. Phe Burgundy vừa là đối thủ cũ vừa là đối tác hòa giải; giáo sĩ, nghị hội và các đô thị mặc cả miễn trừ.",
+          "summary": "Nhà vua và quan tài chính muốn thuế taille ổn định, đại đội thường trực và pháo binh; các thân vương máu muốn quyền tự trị. Phe Burgundy vừa là đối thủ cũ vừa là đối tác hòa giải; giáo sĩ, nghị hội và các đô thị mặc cả miễn trừ.",
+          "keys": [
+            "Vương quốc Pháp",
+            "Pháp",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Vương quốc Pháp. các phe trong triều và thiết chế. Nhà vua và quan tài chính muốn thuế taille ổn định, đại đội thường trực và pháo binh; các thân vương máu muốn quyền tự trị. Phe Burgundy vừa là đối thủ cũ vừa là đối tác hòa giải; giáo sĩ, nghị hội và các đô thị mặc cả miễn trừ.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-frank-xa-hoi",
+          "title": "Vương quốc Pháp · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_frank'; %><% if (noiPhe) { %>[Bản ghi nội bộ Vương quốc Pháp · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Vương quốc Pháp · <%= now.year %>]<% } %>\nLàng bị chiến tranh và lính giải ngũ tàn phá, trong khi Lyon, Paris và các hội chợ hồi phục. Frank chiếm nhiều vị trí quý tộc nhưng dân Pháp đa tộc; Bán Tiên, Ma Duệ và Bán Nhân có thể là tá điền, thợ, giáo sĩ hoặc quý tộc tùy giấy tờ và dòng họ.",
+          "summary": "Làng bị chiến tranh và lính giải ngũ tàn phá, trong khi Lyon, Paris và các hội chợ hồi phục. Frank chiếm nhiều vị trí quý tộc nhưng dân Pháp đa tộc; Bán Tiên, Ma Duệ và Bán Nhân có thể là tá điền, thợ, giáo sĩ hoặc quý tộc tùy giấy tờ và dòng họ.",
+          "keys": [
+            "Vương quốc Pháp",
+            "Pháp",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Vương quốc Pháp. dân thường, giai cấp và chủng tộc. Làng bị chiến tranh và lính giải ngũ tàn phá, trong khi Lyon, Paris và các hội chợ hồi phục. Frank chiếm nhiều vị trí quý tộc nhưng dân Pháp đa tộc; Bán Tiên, Ma Duệ và Bán Nhân có thể là tá điền, thợ, giáo sĩ hoặc quý tộc tùy giấy tờ và dòng họ.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-frank-khung-hoang-1444",
+          "title": "Vương quốc Pháp · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_frank'; %><% if (noiPhe) { %>[Bản ghi nội bộ Vương quốc Pháp · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Vương quốc Pháp · <%= now.year %>]<% } %>\nVấn đề năm 1444 là biến quân thời chiến thành quân của vua mà không để họ cướp dân. Charles VII cần tiền, kỷ luật và hòa hoãn Burgundy; phe quý tộc sợ quân thường trực sẽ làm họ mất quyền quân sự.",
+          "summary": "Vấn đề năm 1444 là biến quân thời chiến thành quân của vua mà không để họ cướp dân. Charles VII cần tiền, kỷ luật và hòa hoãn Burgundy; phe quý tộc sợ quân thường trực sẽ làm họ mất quyền quân sự.",
+          "keys": [
+            "Vương quốc Pháp",
+            "Pháp",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Vương quốc Pháp. khủng hoảng và mục tiêu năm 1444. Vấn đề năm 1444 là biến quân thời chiến thành quân của vua mà không để họ cướp dân. Charles VII cần tiền, kỷ luật và hòa hoãn Burgundy; phe quý tộc sợ quân thường trực sẽ làm họ mất quyền quân sự.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-giao-trieu",
+      "name": "Phe phái chuyên sâu · Giáo triều",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_giao-trieu"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-giao-trieu-hinh-thanh",
+          "title": "Giáo triều · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_giao-trieu'; %><% if (noiPhe) { %>[Bản ghi nội bộ Giáo triều · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Giáo triều · <%= now.year %>]<% } %>\nGiáo triều phát triển từ quyền giám mục Rome thành bộ máy quốc tế có giáo luật, thuế, ngoại giao và lãnh thổ ở Ý. Avignon và cuộc Đại Ly giáo Tây phương làm uy tín tổn thương; Công đồng Constance thống nhất lại phần lớn Giáo hội.",
+          "summary": "Giáo triều phát triển từ quyền giám mục Rome thành bộ máy quốc tế có giáo luật, thuế, ngoại giao và lãnh thổ ở Ý. Avignon và cuộc Đại Ly giáo Tây phương làm uy tín tổn thương; Công đồng Constance thống nhất lại phần lớn Giáo hội.",
+          "keys": [
+            "Giáo triều",
+            "Papacy",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Giáo triều. hình thành lịch sử. Giáo triều phát triển từ quyền giám mục Rome thành bộ máy quốc tế có giáo luật, thuế, ngoại giao và lãnh thổ ở Ý. Avignon và cuộc Đại Ly giáo Tây phương làm uy tín tổn thương; Công đồng Constance thống nhất lại phần lớn Giáo hội.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-giao-trieu-quyen-luc",
+          "title": "Giáo triều · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_giao-trieu'; %><% if (noiPhe) { %>[Bản ghi nội bộ Giáo triều · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Giáo triều · <%= now.year %>]<% } %>\nGiáo hoàng Eugene IV và các hồng y Giáo triều chống phe cho Công đồng tối cao. Các dòng tu, đại học, quan tòa, nhà ngân hàng và gia tộc quý tộc Rome đều có mạng bảo trợ. Chức vụ thiêng liêng và lợi tức bổng lộc thường nằm trong cùng cuộc mặc cả.",
+          "summary": "Giáo hoàng Eugene IV và các hồng y Giáo triều chống phe cho Công đồng tối cao. Các dòng tu, đại học, quan tòa, nhà ngân hàng và gia tộc quý tộc Rome đều có mạng bảo trợ. Chức vụ thiêng liêng và lợi tức bổng lộc thường nằm trong cùng cuộc mặc cả.",
+          "keys": [
+            "Giáo triều",
+            "Papacy",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Giáo triều. các phe trong triều và thiết chế. Giáo hoàng Eugene IV và các hồng y Giáo triều chống phe cho Công đồng tối cao. Các dòng tu, đại học, quan tòa, nhà ngân hàng và gia tộc quý tộc Rome đều có mạng bảo trợ. Chức vụ thiêng liêng và lợi tức bổng lộc thường nằm trong cùng cuộc mặc cả.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-giao-trieu-xa-hoi",
+          "title": "Giáo triều · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_giao-trieu'; %><% if (noiPhe) { %>[Bản ghi nội bộ Giáo triều · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Giáo triều · <%= now.year %>]<% } %>\nGiáo quốc cai dân thường như một chính quyền: thu thuế, xử án, duy trì đường và thuê quân. Tu viện cứu tế và chép sách nhưng cũng là đại chủ đất; dân thành Rome không phải lúc nào cũng chấp nhận quan chức từ nơi khác.",
+          "summary": "Giáo quốc cai dân thường như một chính quyền: thu thuế, xử án, duy trì đường và thuê quân. Tu viện cứu tế và chép sách nhưng cũng là đại chủ đất; dân thành Rome không phải lúc nào cũng chấp nhận quan chức từ nơi khác.",
+          "keys": [
+            "Giáo triều",
+            "Papacy",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Giáo triều. dân thường, giai cấp và chủng tộc. Giáo quốc cai dân thường như một chính quyền: thu thuế, xử án, duy trì đường và thuê quân. Tu viện cứu tế và chép sách nhưng cũng là đại chủ đất; dân thành Rome không phải lúc nào cũng chấp nhận quan chức từ nơi khác.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-giao-trieu-khung-hoang-1444",
+          "title": "Giáo triều · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_giao-trieu'; %><% if (noiPhe) { %>[Bản ghi nội bộ Giáo triều · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Giáo triều · <%= now.year %>]<% } %>\nNăm 1444, Felix V vẫn là đối Giáo hoàng của phe Basel; Eugene IV cần tiền, đồng minh Ý và thành công của chính sách hợp nhất Đông–Tây. Đàn áp dị giáo quá mạnh làm tăng bất mãn, nhưng nhượng bộ quá rộng đe quyền trung tâm.",
+          "summary": "Năm 1444, Felix V vẫn là đối Giáo hoàng của phe Basel; Eugene IV cần tiền, đồng minh Ý và thành công của chính sách hợp nhất Đông–Tây. Đàn áp dị giáo quá mạnh làm tăng bất mãn, nhưng nhượng bộ quá rộng đe quyền trung tâm.",
+          "keys": [
+            "Giáo triều",
+            "Papacy",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Giáo triều. khủng hoảng và mục tiêu năm 1444. Năm 1444, Felix V vẫn là đối Giáo hoàng của phe Basel; Eugene IV cần tiền, đồng minh Ý và thành công của chính sách hợp nhất Đông–Tây. Đàn áp dị giáo quá mạnh làm tăng bất mãn, nhưng nhượng bộ quá rộng đe quyền trung tâm.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-dong-la-ma",
+      "name": "Phe phái chuyên sâu · Đế quốc Đông La Mã",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_dong-la-ma"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-dong-la-ma-hinh-thanh",
+          "title": "Đế quốc Đông La Mã · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_dong-la-ma'; %><% if (noiPhe) { %>[Bản ghi nội bộ Đế quốc Đông La Mã · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Đế quốc Đông La Mã · <%= now.year %>]<% } %>\nĐông La Mã là phần tiếp tục của Đế quốc La Mã, không phải một nước mới sinh thời Trung Cổ. Sau 1204 và phục hồi 1261, đế chế co lại quanh Constantinople, Morea và vài điểm rời; Ottoman cùng các cường quốc biển bóp nghẹt nguồn thu.",
+          "summary": "Đông La Mã là phần tiếp tục của Đế quốc La Mã, không phải một nước mới sinh thời Trung Cổ. Sau 1204 và phục hồi 1261, đế chế co lại quanh Constantinople, Morea và vài điểm rời; Ottoman cùng các cường quốc biển bóp nghẹt nguồn thu.",
+          "keys": [
+            "Đế quốc Đông La Mã",
+            "Byzantine",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đế quốc Đông La Mã. hình thành lịch sử. Đông La Mã là phần tiếp tục của Đế quốc La Mã, không phải một nước mới sinh thời Trung Cổ. Sau 1204 và phục hồi 1261, đế chế co lại quanh Constantinople, Morea và vài điểm rời; Ottoman cùng các cường quốc biển bóp nghẹt nguồn thu.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-dong-la-ma-quyen-luc",
+          "title": "Đế quốc Đông La Mã · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_dong-la-ma'; %><% if (noiPhe) { %>[Bản ghi nội bộ Đế quốc Đông La Mã · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Đế quốc Đông La Mã · <%= now.year %>]<% } %>\nHoàng đế John VIII Palaiologos đứng giữa phe hợp nhất với Rome để xin quân và phe chống hợp nhất bảo vệ đức tin. Các despot họ hàng, quan cung đình, Thượng phụ, thương nhân Genoa–Venice và chỉ huy tường thành cùng tranh nguồn lực ít ỏi.",
+          "summary": "Hoàng đế John VIII Palaiologos đứng giữa phe hợp nhất với Rome để xin quân và phe chống hợp nhất bảo vệ đức tin. Các despot họ hàng, quan cung đình, Thượng phụ, thương nhân Genoa–Venice và chỉ huy tường thành cùng tranh nguồn lực ít ỏi.",
+          "keys": [
+            "Đế quốc Đông La Mã",
+            "Byzantine",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đế quốc Đông La Mã. các phe trong triều và thiết chế. Hoàng đế John VIII Palaiologos đứng giữa phe hợp nhất với Rome để xin quân và phe chống hợp nhất bảo vệ đức tin. Các despot họ hàng, quan cung đình, Thượng phụ, thương nhân Genoa–Venice và chỉ huy tường thành cùng tranh nguồn lực ít ỏi.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-dong-la-ma-xa-hoi",
+          "title": "Đế quốc Đông La Mã · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_dong-la-ma'; %><% if (noiPhe) { %>[Bản ghi nội bộ Đế quốc Đông La Mã · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Đế quốc Đông La Mã · <%= now.year %>]<% } %>\nDân thủ đô gồm thợ, tu sĩ, thủy thủ, thương nhân ngoại kiều và người tị nạn; nhiều khu phố có đặc quyền riêng. Di sản luật và học thuật còn lớn nhưng kho bạc rỗng; phép bảo hộ thành cần người, vật liệu và nghi lễ liên tục.",
+          "summary": "Dân thủ đô gồm thợ, tu sĩ, thủy thủ, thương nhân ngoại kiều và người tị nạn; nhiều khu phố có đặc quyền riêng. Di sản luật và học thuật còn lớn nhưng kho bạc rỗng; phép bảo hộ thành cần người, vật liệu và nghi lễ liên tục.",
+          "keys": [
+            "Đế quốc Đông La Mã",
+            "Byzantine",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đế quốc Đông La Mã. dân thường, giai cấp và chủng tộc. Dân thủ đô gồm thợ, tu sĩ, thủy thủ, thương nhân ngoại kiều và người tị nạn; nhiều khu phố có đặc quyền riêng. Di sản luật và học thuật còn lớn nhưng kho bạc rỗng; phép bảo hộ thành cần người, vật liệu và nghi lễ liên tục.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-dong-la-ma-khung-hoang-1444",
+          "title": "Đế quốc Đông La Mã · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_dong-la-ma'; %><% if (noiPhe) { %>[Bản ghi nội bộ Đế quốc Đông La Mã · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Đế quốc Đông La Mã · <%= now.year %>]<% } %>\nSau Varna, cứu viện gần như tan. Triều đình phải chọn giữa nhượng thêm đặc quyền cho phương Tây, thương lượng với Ottoman hay đặt cược vào pháo đài; không phe nào biết chắc Constantinople sẽ tồn tại bao lâu.",
+          "summary": "Sau Varna, cứu viện gần như tan. Triều đình phải chọn giữa nhượng thêm đặc quyền cho phương Tây, thương lượng với Ottoman hay đặt cược vào pháo đài; không phe nào biết chắc Constantinople sẽ tồn tại bao lâu.",
+          "keys": [
+            "Đế quốc Đông La Mã",
+            "Byzantine",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Đế quốc Đông La Mã. khủng hoảng và mục tiêu năm 1444. Sau Varna, cứu viện gần như tan. Triều đình phải chọn giữa nhượng thêm đặc quyền cho phương Tây, thương lượng với Ottoman hay đặt cược vào pháo đài; không phe nào biết chắc Constantinople sẽ tồn tại bao lâu.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-lien-bang-nui",
+      "name": "Phe phái chuyên sâu · Cựu Liên minh Thụy Sĩ",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_lien-bang-nui"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-lien-bang-nui-hinh-thanh",
+          "title": "Cựu Liên minh Thụy Sĩ · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_lien-bang-nui'; %><% if (noiPhe) { %>[Bản ghi nội bộ Cựu Liên minh Thụy Sĩ · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Cựu Liên minh Thụy Sĩ · <%= now.year %>]<% } %>\nCựu Liên minh hình thành từ khế ước giữa các cộng đồng núi và thành phố, mở rộng qua chiến tranh với Habsburg. Đây là liên minh các bang có chủ quyền riêng, không có vua và chưa có chính phủ trung ương thường trực.",
+          "summary": "Cựu Liên minh hình thành từ khế ước giữa các cộng đồng núi và thành phố, mở rộng qua chiến tranh với Habsburg. Đây là liên minh các bang có chủ quyền riêng, không có vua và chưa có chính phủ trung ương thường trực.",
+          "keys": [
+            "Cựu Liên minh Thụy Sĩ",
+            "các bang Thụy Sĩ",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Cựu Liên minh Thụy Sĩ. hình thành lịch sử. Cựu Liên minh hình thành từ khế ước giữa các cộng đồng núi và thành phố, mở rộng qua chiến tranh với Habsburg. Đây là liên minh các bang có chủ quyền riêng, không có vua và chưa có chính phủ trung ương thường trực.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-lien-bang-nui-quyen-luc",
+          "title": "Cựu Liên minh Thụy Sĩ · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_lien-bang-nui'; %><% if (noiPhe) { %>[Bản ghi nội bộ Cựu Liên minh Thụy Sĩ · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Cựu Liên minh Thụy Sĩ · <%= now.year %>]<% } %>\nLandsgemeinde ở vài bang nông thôn đối trọng hội đồng gia tộc và nghiệp đoàn ở đô thị. Zürich, Schwyz, Bern và các đồng minh bất đồng về đường thương mại, bồi thường và đất phụ thuộc; hội đồng chung chỉ mạnh khi các bang chịu nghe.",
+          "summary": "Landsgemeinde ở vài bang nông thôn đối trọng hội đồng gia tộc và nghiệp đoàn ở đô thị. Zürich, Schwyz, Bern và các đồng minh bất đồng về đường thương mại, bồi thường và đất phụ thuộc; hội đồng chung chỉ mạnh khi các bang chịu nghe.",
+          "keys": [
+            "Cựu Liên minh Thụy Sĩ",
+            "các bang Thụy Sĩ",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Cựu Liên minh Thụy Sĩ. các phe trong triều và thiết chế. Landsgemeinde ở vài bang nông thôn đối trọng hội đồng gia tộc và nghiệp đoàn ở đô thị. Zürich, Schwyz, Bern và các đồng minh bất đồng về đường thương mại, bồi thường và đất phụ thuộc; hội đồng chung chỉ mạnh khi các bang chịu nghe.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-lien-bang-nui-xa-hoi",
+          "title": "Cựu Liên minh Thụy Sĩ · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_lien-bang-nui'; %><% if (noiPhe) { %>[Bản ghi nội bộ Cựu Liên minh Thụy Sĩ · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Cựu Liên minh Thụy Sĩ · <%= now.year %>]<% } %>\nNông dân tương đối tự do, chủ quán đèo, thợ Lùn Núi, lính đánh thuê và thương nhân cùng hưởng lợi từ đường Alps. Bình đẳng là giữa cộng đồng có đặc quyền, chưa phải bình đẳng mọi cá nhân; vùng phụ thuộc không có tiếng nói ngang bang lõi.",
+          "summary": "Nông dân tương đối tự do, chủ quán đèo, thợ Lùn Núi, lính đánh thuê và thương nhân cùng hưởng lợi từ đường Alps. Bình đẳng là giữa cộng đồng có đặc quyền, chưa phải bình đẳng mọi cá nhân; vùng phụ thuộc không có tiếng nói ngang bang lõi.",
+          "keys": [
+            "Cựu Liên minh Thụy Sĩ",
+            "các bang Thụy Sĩ",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Cựu Liên minh Thụy Sĩ. dân thường, giai cấp và chủng tộc. Nông dân tương đối tự do, chủ quán đèo, thợ Lùn Núi, lính đánh thuê và thương nhân cùng hưởng lợi từ đường Alps. Bình đẳng là giữa cộng đồng có đặc quyền, chưa phải bình đẳng mọi cá nhân; vùng phụ thuộc không có tiếng nói ngang bang lõi.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-lien-bang-nui-khung-hoang-1444",
+          "title": "Cựu Liên minh Thụy Sĩ · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_lien-bang-nui'; %><% if (noiPhe) { %>[Bản ghi nội bộ Cựu Liên minh Thụy Sĩ · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Cựu Liên minh Thụy Sĩ · <%= now.year %>]<% } %>\nChiến tranh Zürich Cũ 1440–1446 đang diễn ra: Zürich liên minh với Habsburg chống các bang khác. Nguy cơ không chỉ là thua trận mà là khế ước liên minh mất thiêng và thị trường lính thuê biến thành phe vũ trang riêng.",
+          "summary": "Chiến tranh Zürich Cũ 1440–1446 đang diễn ra: Zürich liên minh với Habsburg chống các bang khác. Nguy cơ không chỉ là thua trận mà là khế ước liên minh mất thiêng và thị trường lính thuê biến thành phe vũ trang riêng.",
+          "keys": [
+            "Cựu Liên minh Thụy Sĩ",
+            "các bang Thụy Sĩ",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Cựu Liên minh Thụy Sĩ. khủng hoảng và mục tiêu năm 1444. Chiến tranh Zürich Cũ 1440–1446 đang diễn ra: Zürich liên minh với Habsburg chống các bang khác. Nguy cơ không chỉ là thua trận mà là khế ước liên minh mất thiêng và thị trường lính thuê biến thành phe vũ trang riêng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-han-quoc",
+      "name": "Phe phái chuyên sâu · Các hãn quốc thảo nguyên",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_han-quoc"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-han-quoc-hinh-thanh",
+          "title": "Các hãn quốc thảo nguyên · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_han-quoc'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các hãn quốc thảo nguyên · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các hãn quốc thảo nguyên · <%= now.year %>]<% } %>\nKim Trướng hãn quốc từng cai không gian rộng sau đế chế Mông Cổ, thu cống Rus và kiểm soát đường thảo nguyên. Đến thế kỷ XV, quyền lực vỡ thành Đại Trướng, Crimea, Kazan, Nogai và nhiều nhóm cạnh tranh.",
+          "summary": "Kim Trướng hãn quốc từng cai không gian rộng sau đế chế Mông Cổ, thu cống Rus và kiểm soát đường thảo nguyên. Đến thế kỷ XV, quyền lực vỡ thành Đại Trướng, Crimea, Kazan, Nogai và nhiều nhóm cạnh tranh.",
+          "keys": [
+            "Các hãn quốc thảo nguyên",
+            "các tộc du mục",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các hãn quốc thảo nguyên. hình thành lịch sử. Kim Trướng hãn quốc từng cai không gian rộng sau đế chế Mông Cổ, thu cống Rus và kiểm soát đường thảo nguyên. Đến thế kỷ XV, quyền lực vỡ thành Đại Trướng, Crimea, Kazan, Nogai và nhiều nhóm cạnh tranh.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-han-quoc-quyen-luc",
+          "title": "Các hãn quốc thảo nguyên · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_han-quoc'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các hãn quốc thảo nguyên · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các hãn quốc thảo nguyên · <%= now.year %>]<% } %>\nHãn cần dòng dõi Chinggis để chính danh nhưng quyền thực tế đến từ các mirza, thị tộc, đoàn tùy tùng và thành phố buôn. Crimea của Hacı I Giray mới nổi từ 1441; Kazan hình thành 1438; mỗi triều vừa đánh nhau vừa kết hôn và đổi đồng minh.",
+          "summary": "Hãn cần dòng dõi Chinggis để chính danh nhưng quyền thực tế đến từ các mirza, thị tộc, đoàn tùy tùng và thành phố buôn. Crimea của Hacı I Giray mới nổi từ 1441; Kazan hình thành 1438; mỗi triều vừa đánh nhau vừa kết hôn và đổi đồng minh.",
+          "keys": [
+            "Các hãn quốc thảo nguyên",
+            "các tộc du mục",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các hãn quốc thảo nguyên. các phe trong triều và thiết chế. Hãn cần dòng dõi Chinggis để chính danh nhưng quyền thực tế đến từ các mirza, thị tộc, đoàn tùy tùng và thành phố buôn. Crimea của Hacı I Giray mới nổi từ 1441; Kazan hình thành 1438; mỗi triều vừa đánh nhau vừa kết hôn và đổi đồng minh.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-han-quoc-xa-hoi",
+          "title": "Các hãn quốc thảo nguyên · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_han-quoc'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các hãn quốc thảo nguyên · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các hãn quốc thảo nguyên · <%= now.year %>]<% } %>\nDu mục chăn đàn, nông dân ốc đảo, thương nhân Genoa, cộng đồng Slav và nhiều tộc sống xen kẽ. Mã Nhân là người hình người có tai và đuôi ngựa, vẫn dùng ngựa thật; họ có thể là dân chăn, sứ giả, quý tộc hay nô lệ như các nhóm khác.",
+          "summary": "Du mục chăn đàn, nông dân ốc đảo, thương nhân Genoa, cộng đồng Slav và nhiều tộc sống xen kẽ. Mã Nhân là người hình người có tai và đuôi ngựa, vẫn dùng ngựa thật; họ có thể là dân chăn, sứ giả, quý tộc hay nô lệ như các nhóm khác.",
+          "keys": [
+            "Các hãn quốc thảo nguyên",
+            "các tộc du mục",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các hãn quốc thảo nguyên. dân thường, giai cấp và chủng tộc. Du mục chăn đàn, nông dân ốc đảo, thương nhân Genoa, cộng đồng Slav và nhiều tộc sống xen kẽ. Mã Nhân là người hình người có tai và đuôi ngựa, vẫn dùng ngựa thật; họ có thể là dân chăn, sứ giả, quý tộc hay nô lệ như các nhóm khác.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-han-quoc-khung-hoang-1444",
+          "title": "Các hãn quốc thảo nguyên · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_han-quoc'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các hãn quốc thảo nguyên · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các hãn quốc thảo nguyên · <%= now.year %>]<% } %>\nNăm 1444, các hãn tranh cống Rus, cảng Crimea và tuyến nô lệ. Nhất thần phương Nam tăng ảnh hưởng nhưng Thiên tín và tục thị tộc còn mạnh; phe nào cũng cần thương mại mà lại sống bằng đột kích.",
+          "summary": "Năm 1444, các hãn tranh cống Rus, cảng Crimea và tuyến nô lệ. Nhất thần phương Nam tăng ảnh hưởng nhưng Thiên tín và tục thị tộc còn mạnh; phe nào cũng cần thương mại mà lại sống bằng đột kích.",
+          "keys": [
+            "Các hãn quốc thảo nguyên",
+            "các tộc du mục",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các hãn quốc thảo nguyên. khủng hoảng và mục tiêu năm 1444. Năm 1444, các hãn tranh cống Rus, cảng Crimea và tuyến nô lệ. Nhất thần phương Nam tăng ảnh hưởng nhưng Thiên tín và tục thị tộc còn mạnh; phe nào cũng cần thương mại mà lại sống bằng đột kích.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-thanh-bang-latin",
+      "name": "Phe phái chuyên sâu · Các thành bang Latin",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_thanh-bang-latin"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-thanh-bang-latin-hinh-thanh",
+          "title": "Các thành bang Latin · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_thanh-bang-latin'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các thành bang Latin · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các thành bang Latin · <%= now.year %>]<% } %>\nÝ bị chia giữa cộng hòa đô thị, công quốc, Giáo quốc và vương quyền phương Nam. Venice xây đế chế biển, Florence là cộng hòa dưới ảnh hưởng Medici, Milan do Visconti cai, Genoa đổi phe liên tục; chiến tranh phần lớn dựa condottieri.",
+          "summary": "Ý bị chia giữa cộng hòa đô thị, công quốc, Giáo quốc và vương quyền phương Nam. Venice xây đế chế biển, Florence là cộng hòa dưới ảnh hưởng Medici, Milan do Visconti cai, Genoa đổi phe liên tục; chiến tranh phần lớn dựa condottieri.",
+          "keys": [
+            "Các thành bang Latin",
+            "các thành bang Ý",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các thành bang Latin. hình thành lịch sử. Ý bị chia giữa cộng hòa đô thị, công quốc, Giáo quốc và vương quyền phương Nam. Venice xây đế chế biển, Florence là cộng hòa dưới ảnh hưởng Medici, Milan do Visconti cai, Genoa đổi phe liên tục; chiến tranh phần lớn dựa condottieri.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-thanh-bang-latin-quyen-luc",
+          "title": "Các thành bang Latin · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_thanh-bang-latin'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các thành bang Latin · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các thành bang Latin · <%= now.year %>]<% } %>\nMỗi thành có phe riêng: đại hội đồng quý tộc Venice; Medici và đối thủ cộng hòa Florence; triều Visconti cùng tướng thuê Milan; các họ Adorno–Fregoso ở Genoa. Nghiệp đoàn, ngân hàng và đại sứ là vũ khí ngang quân đội.",
+          "summary": "Mỗi thành có phe riêng: đại hội đồng quý tộc Venice; Medici và đối thủ cộng hòa Florence; triều Visconti cùng tướng thuê Milan; các họ Adorno–Fregoso ở Genoa. Nghiệp đoàn, ngân hàng và đại sứ là vũ khí ngang quân đội.",
+          "keys": [
+            "Các thành bang Latin",
+            "các thành bang Ý",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các thành bang Latin. các phe trong triều và thiết chế. Mỗi thành có phe riêng: đại hội đồng quý tộc Venice; Medici và đối thủ cộng hòa Florence; triều Visconti cùng tướng thuê Milan; các họ Adorno–Fregoso ở Genoa. Nghiệp đoàn, ngân hàng và đại sứ là vũ khí ngang quân đội.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-thanh-bang-latin-xa-hoi",
+          "title": "Các thành bang Latin · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_thanh-bang-latin'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các thành bang Latin · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các thành bang Latin · <%= now.year %>]<% } %>\nThợ dệt, phu bến, công chứng viên, chủ xưởng, học giả và thương nhân ngoại quốc làm nên đô thị. Chủng tộc đi theo mạng nghề và khu phố hơn biên giới; đặc quyền công dân quyết định thuế và tòa án.",
+          "summary": "Thợ dệt, phu bến, công chứng viên, chủ xưởng, học giả và thương nhân ngoại quốc làm nên đô thị. Chủng tộc đi theo mạng nghề và khu phố hơn biên giới; đặc quyền công dân quyết định thuế và tòa án.",
+          "keys": [
+            "Các thành bang Latin",
+            "các thành bang Ý",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các thành bang Latin. dân thường, giai cấp và chủng tộc. Thợ dệt, phu bến, công chứng viên, chủ xưởng, học giả và thương nhân ngoại quốc làm nên đô thị. Chủng tộc đi theo mạng nghề và khu phố hơn biên giới; đặc quyền công dân quyết định thuế và tòa án.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-thanh-bang-latin-khung-hoang-1444",
+          "title": "Các thành bang Latin · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_thanh-bang-latin'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các thành bang Latin · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các thành bang Latin · <%= now.year %>]<% } %>\nNăm 1444 chưa có Hòa ước Lodi 1454. Milan đối mặt bài toán kế vị của Filippo Maria Visconti, Venice mở rộng đất liền, Florence giữ thăng bằng và Giáo triều tranh quyền; liên minh đổi nhanh theo tiền và hôn nhân.",
+          "summary": "Năm 1444 chưa có Hòa ước Lodi 1454. Milan đối mặt bài toán kế vị của Filippo Maria Visconti, Venice mở rộng đất liền, Florence giữ thăng bằng và Giáo triều tranh quyền; liên minh đổi nhanh theo tiền và hôn nhân.",
+          "keys": [
+            "Các thành bang Latin",
+            "các thành bang Ý",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các thành bang Latin. khủng hoảng và mục tiêu năm 1444. Năm 1444 chưa có Hòa ước Lodi 1454. Milan đối mặt bài toán kế vị của Filippo Maria Visconti, Venice mở rộng đất liền, Florence giữ thăng bằng và Giáo triều tranh quyền; liên minh đổi nhanh theo tiền và hôn nhân.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-anh-quoc",
+      "name": "Phe phái chuyên sâu · Anh quốc",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_anh-quoc"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-anh-quoc-hinh-thanh",
+          "title": "Anh quốc · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_anh-quoc'; %><% if (noiPhe) { %>[Bản ghi nội bộ Anh quốc · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Anh quốc · <%= now.year %>]<% } %>\nNhà Plantagenet mất dần đất Pháp rồi mở Chiến tranh Trăm Năm vì thừa kế. Các thắng lợi lớn không tạo nổi quyền kiểm soát bền nếu thiếu tiền và đồn trú; Henry VI kế vị khi còn nhỏ, lớn lên mộ đạo nhưng yếu trong phe phái.",
+          "summary": "Nhà Plantagenet mất dần đất Pháp rồi mở Chiến tranh Trăm Năm vì thừa kế. Các thắng lợi lớn không tạo nổi quyền kiểm soát bền nếu thiếu tiền và đồn trú; Henry VI kế vị khi còn nhỏ, lớn lên mộ đạo nhưng yếu trong phe phái.",
+          "keys": [
+            "Anh quốc",
+            "14b mục A",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Anh quốc. hình thành lịch sử. Nhà Plantagenet mất dần đất Pháp rồi mở Chiến tranh Trăm Năm vì thừa kế. Các thắng lợi lớn không tạo nổi quyền kiểm soát bền nếu thiếu tiền và đồn trú; Henry VI kế vị khi còn nhỏ, lớn lên mộ đạo nhưng yếu trong phe phái.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-anh-quoc-quyen-luc",
+          "title": "Anh quốc · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_anh-quoc'; %><% if (noiPhe) { %>[Bản ghi nội bộ Anh quốc · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Anh quốc · <%= now.year %>]<% } %>\nTriều Lancaster, công tước Gloucester, phe hòa bình quanh Suffolk, nhà Beaufort và Richard xứ York tranh ảnh hưởng. Nghị viện nắm thuế; quý tộc có đoàn tùy tùng mặc hiệu riêng; luật thường, hội đồng nhà vua và giáo hội chồng quyền.",
+          "summary": "Triều Lancaster, công tước Gloucester, phe hòa bình quanh Suffolk, nhà Beaufort và Richard xứ York tranh ảnh hưởng. Nghị viện nắm thuế; quý tộc có đoàn tùy tùng mặc hiệu riêng; luật thường, hội đồng nhà vua và giáo hội chồng quyền.",
+          "keys": [
+            "Anh quốc",
+            "14b mục A",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Anh quốc. các phe trong triều và thiết chế. Triều Lancaster, công tước Gloucester, phe hòa bình quanh Suffolk, nhà Beaufort và Richard xứ York tranh ảnh hưởng. Nghị viện nắm thuế; quý tộc có đoàn tùy tùng mặc hiệu riêng; luật thường, hội đồng nhà vua và giáo hội chồng quyền.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-anh-quoc-xa-hoi",
+          "title": "Anh quốc · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_anh-quoc'; %><% if (noiPhe) { %>[Bản ghi nội bộ Anh quốc · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Anh quốc · <%= now.year %>]<% } %>\nNông dân tự do và tá điền cùng tồn tại; thương nhân len, London và các cảng tài trợ chiến tranh. Teuton/Anh và nhiều cộng đồng khác không tạo đẳng cấp tách biệt; quyền làng, nghiệp đoàn và người bảo trợ quan trọng hơn ngoại hình.",
+          "summary": "Nông dân tự do và tá điền cùng tồn tại; thương nhân len, London và các cảng tài trợ chiến tranh. Teuton/Anh và nhiều cộng đồng khác không tạo đẳng cấp tách biệt; quyền làng, nghiệp đoàn và người bảo trợ quan trọng hơn ngoại hình.",
+          "keys": [
+            "Anh quốc",
+            "14b mục A",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Anh quốc. dân thường, giai cấp và chủng tộc. Nông dân tự do và tá điền cùng tồn tại; thương nhân len, London và các cảng tài trợ chiến tranh. Teuton/Anh và nhiều cộng đồng khác không tạo đẳng cấp tách biệt; quyền làng, nghiệp đoàn và người bảo trợ quan trọng hơn ngoại hình.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-anh-quoc-khung-hoang-1444",
+          "title": "Anh quốc · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_anh-quoc'; %><% if (noiPhe) { %>[Bản ghi nội bộ Anh quốc · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Anh quốc · <%= now.year %>]<% } %>\nĐình chiến Tours 1444 chia triều đình thành phe muốn hòa để cưới Margaret of Anjou và phe muốn giữ mọi đất Pháp. Cuộc Chiến Hoa Hồng chưa xảy ra và không được kể như định mệnh, dù mầm nợ, thù họ và tranh quyền đã có.",
+          "summary": "Đình chiến Tours 1444 chia triều đình thành phe muốn hòa để cưới Margaret of Anjou và phe muốn giữ mọi đất Pháp. Cuộc Chiến Hoa Hồng chưa xảy ra và không được kể như định mệnh, dù mầm nợ, thù họ và tranh quyền đã có.",
+          "keys": [
+            "Anh quốc",
+            "14b mục A",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Anh quốc. khủng hoảng và mục tiêu năm 1444. Đình chiến Tours 1444 chia triều đình thành phe muốn hòa để cưới Margaret of Anjou và phe muốn giữ mọi đất Pháp. Cuộc Chiến Hoa Hồng chưa xảy ra và không được kể như định mệnh, dù mầm nợ, thù họ và tranh quyền đã có.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-baltic",
+      "name": "Phe phái chuyên sâu · Ba Lan–Litva và Baltic",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_baltic"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-baltic-hinh-thanh",
+          "title": "Ba Lan–Litva và Baltic · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_baltic'; %><% if (noiPhe) { %>[Bản ghi nội bộ Ba Lan–Litva và Baltic · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Ba Lan–Litva và Baltic · <%= now.year %>]<% } %>\nBa Lan và Litva nối triều đại từ Krewo 1385 nhưng giữ luật, hội đồng và lợi ích riêng. Cơ Đốc hóa chính thức của Litva, chiến thắng Grunwald và việc cai vùng Ruthenia tạo một nhà nước đa đạo, đa ngôn ngữ.",
+          "summary": "Ba Lan và Litva nối triều đại từ Krewo 1385 nhưng giữ luật, hội đồng và lợi ích riêng. Cơ Đốc hóa chính thức của Litva, chiến thắng Grunwald và việc cai vùng Ruthenia tạo một nhà nước đa đạo, đa ngôn ngữ.",
+          "keys": [
+            "Ba Lan–Litva và Baltic",
+            "14b mục B",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Ba Lan–Litva và Baltic. hình thành lịch sử. Ba Lan và Litva nối triều đại từ Krewo 1385 nhưng giữ luật, hội đồng và lợi ích riêng. Cơ Đốc hóa chính thức của Litva, chiến thắng Grunwald và việc cai vùng Ruthenia tạo một nhà nước đa đạo, đa ngôn ngữ.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-baltic-quyen-luc",
+          "title": "Ba Lan–Litva và Baltic · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_baltic'; %><% if (noiPhe) { %>[Bản ghi nội bộ Ba Lan–Litva và Baltic · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Ba Lan–Litva và Baltic · <%= now.year %>]<% } %>\nQuý tộc Ba Lan bảo vệ đặc quyền và quyền chọn vua; các đại quý tộc Litva giữ hội đồng quanh Đại công tước Casimir; lãnh chúa Ruthenia theo Đông phương; Mazovia và các thành Phổ có lợi ích riêng. Không có một “phe Baltic” duy nhất.",
+          "summary": "Quý tộc Ba Lan bảo vệ đặc quyền và quyền chọn vua; các đại quý tộc Litva giữ hội đồng quanh Đại công tước Casimir; lãnh chúa Ruthenia theo Đông phương; Mazovia và các thành Phổ có lợi ích riêng. Không có một “phe Baltic” duy nhất.",
+          "keys": [
+            "Ba Lan–Litva và Baltic",
+            "14b mục B",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Ba Lan–Litva và Baltic. các phe trong triều và thiết chế. Quý tộc Ba Lan bảo vệ đặc quyền và quyền chọn vua; các đại quý tộc Litva giữ hội đồng quanh Đại công tước Casimir; lãnh chúa Ruthenia theo Đông phương; Mazovia và các thành Phổ có lợi ích riêng. Không có một “phe Baltic” duy nhất.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-baltic-xa-hoi",
+          "title": "Ba Lan–Litva và Baltic · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_baltic'; %><% if (noiPhe) { %>[Bản ghi nội bộ Ba Lan–Litva và Baltic · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Ba Lan–Litva và Baltic · <%= now.year %>]<% } %>\nNông dân, boyar, szlachta, thương nhân thành thị và cộng đồng Do Thái sống dưới hệ luật khác nhau. Tín ngưỡng Cổ Baltic vẫn tồn tại ở làng và vài dòng họ; Lâm Tiên, Mộc Tinh cùng Nhân Loại phân hóa theo nơi ở và đức tin.",
+          "summary": "Nông dân, boyar, szlachta, thương nhân thành thị và cộng đồng Do Thái sống dưới hệ luật khác nhau. Tín ngưỡng Cổ Baltic vẫn tồn tại ở làng và vài dòng họ; Lâm Tiên, Mộc Tinh cùng Nhân Loại phân hóa theo nơi ở và đức tin.",
+          "keys": [
+            "Ba Lan–Litva và Baltic",
+            "14b mục B",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Ba Lan–Litva và Baltic. dân thường, giai cấp và chủng tộc. Nông dân, boyar, szlachta, thương nhân thành thị và cộng đồng Do Thái sống dưới hệ luật khác nhau. Tín ngưỡng Cổ Baltic vẫn tồn tại ở làng và vài dòng họ; Lâm Tiên, Mộc Tinh cùng Nhân Loại phân hóa theo nơi ở và đức tin.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-baltic-khung-hoang-1444",
+          "title": "Ba Lan–Litva và Baltic · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_baltic'; %><% if (noiPhe) { %>[Bản ghi nội bộ Ba Lan–Litva và Baltic · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Ba Lan–Litva và Baltic · <%= now.year %>]<% } %>\nWładysław III chết tại Varna khiến ngai Ba Lan trống; Casimir cai Litva nhưng chưa nhận vương miện Ba Lan. Dòng Teuton yếu song chưa hết; Liên hiệp Phổ từ 1440 có thể kéo các thành sang phía Ba Lan.",
+          "summary": "Władysław III chết tại Varna khiến ngai Ba Lan trống; Casimir cai Litva nhưng chưa nhận vương miện Ba Lan. Dòng Teuton yếu song chưa hết; Liên hiệp Phổ từ 1440 có thể kéo các thành sang phía Ba Lan.",
+          "keys": [
+            "Ba Lan–Litva và Baltic",
+            "14b mục B",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Ba Lan–Litva và Baltic. khủng hoảng và mục tiêu năm 1444. Władysław III chết tại Varna khiến ngai Ba Lan trống; Casimir cai Litva nhưng chưa nhận vương miện Ba Lan. Dòng Teuton yếu song chưa hết; Liên hiệp Phổ từ 1440 có thể kéo các thành sang phía Ba Lan.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-hungary",
+      "name": "Phe phái chuyên sâu · Hungary–Balkan",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_hungary"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-hungary-hinh-thanh",
+          "title": "Hungary–Balkan · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_hungary'; %><% if (noiPhe) { %>[Bản ghi nội bộ Hungary–Balkan · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Hungary–Balkan · <%= now.year %>]<% } %>\nVương quốc Hungary hình thành quanh lưu vực Carpathian, cai các cộng đồng Magyar, Slav, Vlach, Đức và nhiều tộc khác. Biên giới Balkan, quan hệ Wallachia–Serbia và áp lực Ottoman khiến quyền quý tộc quân sự rất lớn.",
+          "summary": "Vương quốc Hungary hình thành quanh lưu vực Carpathian, cai các cộng đồng Magyar, Slav, Vlach, Đức và nhiều tộc khác. Biên giới Balkan, quan hệ Wallachia–Serbia và áp lực Ottoman khiến quyền quý tộc quân sự rất lớn.",
+          "keys": [
+            "Hungary–Balkan",
+            "14b mục C",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Hungary–Balkan. hình thành lịch sử. Vương quốc Hungary hình thành quanh lưu vực Carpathian, cai các cộng đồng Magyar, Slav, Vlach, Đức và nhiều tộc khác. Biên giới Balkan, quan hệ Wallachia–Serbia và áp lực Ottoman khiến quyền quý tộc quân sự rất lớn.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-hungary-quyen-luc",
+          "title": "Hungary–Balkan · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_hungary'; %><% if (noiPhe) { %>[Bản ghi nội bộ Hungary–Balkan · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Hungary–Balkan · <%= now.year %>]<% } %>\nSau cái chết Władysław III ở Varna, phe ủng hộ Ladislaus Hậu sinh tranh với liên minh quanh John Hunyadi; các đại quý tộc, giáo sĩ, thành phố hoàng gia và hội đồng Transylvania mặc cả. Triều đình Huyết Tộc ban đêm là mạng quý tộc địa phương, không phải chủ quyền trên toàn vương quốc.",
+          "summary": "Sau cái chết Władysław III ở Varna, phe ủng hộ Ladislaus Hậu sinh tranh với liên minh quanh John Hunyadi; các đại quý tộc, giáo sĩ, thành phố hoàng gia và hội đồng Transylvania mặc cả. Triều đình Huyết Tộc ban đêm là mạng quý tộc địa phương, không phải chủ quyền trên toàn vương quốc.",
+          "keys": [
+            "Hungary–Balkan",
+            "14b mục C",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Hungary–Balkan. các phe trong triều và thiết chế. Sau cái chết Władysław III ở Varna, phe ủng hộ Ladislaus Hậu sinh tranh với liên minh quanh John Hunyadi; các đại quý tộc, giáo sĩ, thành phố hoàng gia và hội đồng Transylvania mặc cả. Triều đình Huyết Tộc ban đêm là mạng quý tộc địa phương, không phải chủ quyền trên toàn vương quốc.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-hungary-xa-hoi",
+          "title": "Hungary–Balkan · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_hungary'; %><% if (noiPhe) { %>[Bản ghi nội bộ Hungary–Balkan · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Hungary–Balkan · <%= now.year %>]<% } %>\nĐa số dân là người sống làm nông, chăn nuôi, khai mỏ và buôn; Huyết Tộc rất ít, thường là quý tộc, cận vệ, thầy thuốc hoặc dân thành che thân phận. Có vài hộ lệ thuộc Huyết Tộc, nhưng không tồn tại “toàn bộ nông nô đều là Huyết Tộc”. Công khai tùy thành và khế ước.",
+          "summary": "Đa số dân là người sống làm nông, chăn nuôi, khai mỏ và buôn; Huyết Tộc rất ít, thường là quý tộc, cận vệ, thầy thuốc hoặc dân thành che thân phận. Có vài hộ lệ thuộc Huyết Tộc, nhưng không tồn tại “toàn bộ nông nô đều là Huyết Tộc”. Công khai tùy thành và khế ước.",
+          "keys": [
+            "Hungary–Balkan",
+            "14b mục C",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Hungary–Balkan. dân thường, giai cấp và chủng tộc. Đa số dân là người sống làm nông, chăn nuôi, khai mỏ và buôn; Huyết Tộc rất ít, thường là quý tộc, cận vệ, thầy thuốc hoặc dân thành che thân phận. Có vài hộ lệ thuộc Huyết Tộc, nhưng không tồn tại “toàn bộ nông nô đều là Huyết Tộc”. Công khai tùy thành và khế ước.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-hungary-khung-hoang-1444",
+          "title": "Hungary–Balkan · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_hungary'; %><% if (noiPhe) { %>[Bản ghi nội bộ Hungary–Balkan · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Hungary–Balkan · <%= now.year %>]<% } %>\nNăm 1444 là khủng hoảng kế vị, biên phòng và tài chính. Hunyadi cần thuế chống Ottoman; quý tộc sợ nhiếp chính mạnh; các công quốc Ma cà rồng muốn giữ quy chế đêm và nguồn máu hợp pháp mà không kích động Giáo hội.",
+          "summary": "Năm 1444 là khủng hoảng kế vị, biên phòng và tài chính. Hunyadi cần thuế chống Ottoman; quý tộc sợ nhiếp chính mạnh; các công quốc Ma cà rồng muốn giữ quy chế đêm và nguồn máu hợp pháp mà không kích động Giáo hội.",
+          "keys": [
+            "Hungary–Balkan",
+            "14b mục C",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Hungary–Balkan. khủng hoảng và mục tiêu năm 1444. Năm 1444 là khủng hoảng kế vị, biên phòng và tài chính. Hunyadi cần thuế chống Ottoman; quý tộc sợ nhiếp chính mạnh; các công quốc Ma cà rồng muốn giữ quy chế đêm và nguồn máu hợp pháp mà không kích động Giáo hội.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-burgundy",
+      "name": "Phe phái chuyên sâu · Công quốc Burgundy",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_burgundy"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-burgundy-hinh-thanh",
+          "title": "Công quốc Burgundy · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_burgundy'; %><% if (noiPhe) { %>[Bản ghi nội bộ Công quốc Burgundy · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Công quốc Burgundy · <%= now.year %>]<% } %>\nCác công tước Valois-Burgundy gom hai cụm đất: công quốc gần Pháp và các vùng Hà Lan giàu đô thị, nằm trong quan hệ chư hầu khác nhau với Pháp và Đế quốc. Philip the Good dùng hôn nhân, mua quyền và chiến tranh để nối chúng.",
+          "summary": "Các công tước Valois-Burgundy gom hai cụm đất: công quốc gần Pháp và các vùng Hà Lan giàu đô thị, nằm trong quan hệ chư hầu khác nhau với Pháp và Đế quốc. Philip the Good dùng hôn nhân, mua quyền và chiến tranh để nối chúng.",
+          "keys": [
+            "Công quốc Burgundy",
+            "undefined",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Công quốc Burgundy. hình thành lịch sử. Các công tước Valois-Burgundy gom hai cụm đất: công quốc gần Pháp và các vùng Hà Lan giàu đô thị, nằm trong quan hệ chư hầu khác nhau với Pháp và Đế quốc. Philip the Good dùng hôn nhân, mua quyền và chiến tranh để nối chúng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-burgundy-quyen-luc",
+          "title": "Công quốc Burgundy · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_burgundy'; %><% if (noiPhe) { %>[Bản ghi nội bộ Công quốc Burgundy · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Công quốc Burgundy · <%= now.year %>]<% } %>\nCông tước, Hội Hiệp sĩ Lông Cừu Vàng, quan tài chính chuyên nghiệp và quý tộc cung đình đứng trên mạng tỉnh có đặc quyền. Thành Ghent, Bruges và Brabant giữ tiền lẫn dân quân; phe thân Pháp, thân Anh và tự chủ Burgundy thay đổi theo lợi ích.",
+          "summary": "Công tước, Hội Hiệp sĩ Lông Cừu Vàng, quan tài chính chuyên nghiệp và quý tộc cung đình đứng trên mạng tỉnh có đặc quyền. Thành Ghent, Bruges và Brabant giữ tiền lẫn dân quân; phe thân Pháp, thân Anh và tự chủ Burgundy thay đổi theo lợi ích.",
+          "keys": [
+            "Công quốc Burgundy",
+            "undefined",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Công quốc Burgundy. các phe trong triều và thiết chế. Công tước, Hội Hiệp sĩ Lông Cừu Vàng, quan tài chính chuyên nghiệp và quý tộc cung đình đứng trên mạng tỉnh có đặc quyền. Thành Ghent, Bruges và Brabant giữ tiền lẫn dân quân; phe thân Pháp, thân Anh và tự chủ Burgundy thay đổi theo lợi ích.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-burgundy-xa-hoi",
+          "title": "Công quốc Burgundy · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_burgundy'; %><% if (noiPhe) { %>[Bản ghi nội bộ Công quốc Burgundy · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Công quốc Burgundy · <%= now.year %>]<% } %>\nLen Anh, xưởng dệt Flanders, hội chợ và cảng nuôi triều đình. Dân thành giàu có thể buộc công tước thương lượng; nông thôn không đồng nhất. Văn hóa Pháp cung đình phủ lên nhiều tiếng địa phương và cộng đồng chủng tộc.",
+          "summary": "Len Anh, xưởng dệt Flanders, hội chợ và cảng nuôi triều đình. Dân thành giàu có thể buộc công tước thương lượng; nông thôn không đồng nhất. Văn hóa Pháp cung đình phủ lên nhiều tiếng địa phương và cộng đồng chủng tộc.",
+          "keys": [
+            "Công quốc Burgundy",
+            "undefined",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Công quốc Burgundy. dân thường, giai cấp và chủng tộc. Len Anh, xưởng dệt Flanders, hội chợ và cảng nuôi triều đình. Dân thành giàu có thể buộc công tước thương lượng; nông thôn không đồng nhất. Văn hóa Pháp cung đình phủ lên nhiều tiếng địa phương và cộng đồng chủng tộc.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-burgundy-khung-hoang-1444",
+          "title": "Công quốc Burgundy · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_burgundy'; %><% if (noiPhe) { %>[Bản ghi nội bộ Công quốc Burgundy · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Công quốc Burgundy · <%= now.year %>]<% } %>\nHiệp ước Arras 1435 hòa Burgundy với Charles VII nhưng ký ức nội chiến còn sâu. Năm 1444, Philip muốn triều đình rực rỡ và nhà nước liền mạch, còn các đô thị sợ thuế, Pháp muốn phục tùng và Đế quốc phản đối bành trướng.",
+          "summary": "Hiệp ước Arras 1435 hòa Burgundy với Charles VII nhưng ký ức nội chiến còn sâu. Năm 1444, Philip muốn triều đình rực rỡ và nhà nước liền mạch, còn các đô thị sợ thuế, Pháp muốn phục tùng và Đế quốc phản đối bành trướng.",
+          "keys": [
+            "Công quốc Burgundy",
+            "undefined",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Công quốc Burgundy. khủng hoảng và mục tiêu năm 1444. Hiệp ước Arras 1435 hòa Burgundy với Charles VII nhưng ký ức nội chiến còn sâu. Năm 1444, Philip muốn triều đình rực rỡ và nhà nước liền mạch, còn các đô thị sợ thuế, Pháp muốn phục tùng và Đế quốc phản đối bành trướng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-kalmar",
+      "name": "Phe phái chuyên sâu · Liên minh Kalmar",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_kalmar"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-kalmar-hinh-thanh",
+          "title": "Liên minh Kalmar · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_kalmar'; %><% if (noiPhe) { %>[Bản ghi nội bộ Liên minh Kalmar · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Liên minh Kalmar · <%= now.year %>]<% } %>\nLiên minh Kalmar từ 1397 đặt Đan Mạch, Na Uy và Thụy Điển dưới một quân vương nhưng không nhập luật hay hội đồng. Biển, thuế eo biển và quyền bổ nhiệm là cốt lõi hơn ý niệm dân tộc hiện đại.",
+          "summary": "Liên minh Kalmar từ 1397 đặt Đan Mạch, Na Uy và Thụy Điển dưới một quân vương nhưng không nhập luật hay hội đồng. Biển, thuế eo biển và quyền bổ nhiệm là cốt lõi hơn ý niệm dân tộc hiện đại.",
+          "keys": [
+            "Liên minh Kalmar",
+            "undefined",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Liên minh Kalmar. hình thành lịch sử. Liên minh Kalmar từ 1397 đặt Đan Mạch, Na Uy và Thụy Điển dưới một quân vương nhưng không nhập luật hay hội đồng. Biển, thuế eo biển và quyền bổ nhiệm là cốt lõi hơn ý niệm dân tộc hiện đại.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-kalmar-quyen-luc",
+          "title": "Liên minh Kalmar · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_kalmar'; %><% if (noiPhe) { %>[Bản ghi nội bộ Liên minh Kalmar · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Liên minh Kalmar · <%= now.year %>]<% } %>\nVua Christopher xứ Bavaria dựa vào Hội đồng Đan Mạch; quý tộc và chủ mỏ Thụy Điển nhớ cuộc nổi dậy Engelbrekt; Hội đồng Na Uy bảo vệ luật riêng. Hanse, giáo sĩ và người giữ hạm đội tác động từ ngoài ngai.",
+          "summary": "Vua Christopher xứ Bavaria dựa vào Hội đồng Đan Mạch; quý tộc và chủ mỏ Thụy Điển nhớ cuộc nổi dậy Engelbrekt; Hội đồng Na Uy bảo vệ luật riêng. Hanse, giáo sĩ và người giữ hạm đội tác động từ ngoài ngai.",
+          "keys": [
+            "Liên minh Kalmar",
+            "undefined",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Liên minh Kalmar. các phe trong triều và thiết chế. Vua Christopher xứ Bavaria dựa vào Hội đồng Đan Mạch; quý tộc và chủ mỏ Thụy Điển nhớ cuộc nổi dậy Engelbrekt; Hội đồng Na Uy bảo vệ luật riêng. Hanse, giáo sĩ và người giữ hạm đội tác động từ ngoài ngai.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-kalmar-xa-hoi",
+          "title": "Liên minh Kalmar · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_kalmar'; %><% if (noiPhe) { %>[Bản ghi nội bộ Liên minh Kalmar · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Liên minh Kalmar · <%= now.year %>]<% } %>\nNông dân Scandinavia có mức tự do khác nhau; ngư dân, thợ mỏ, thương nhân Hanse, Hải Tộc và Hoa Tiên thời tiết giữ các mắt xích kinh tế. Vùng Sami và bắc xa không tự nhiên phục tùng văn hóa triều đình.",
+          "summary": "Nông dân Scandinavia có mức tự do khác nhau; ngư dân, thợ mỏ, thương nhân Hanse, Hải Tộc và Hoa Tiên thời tiết giữ các mắt xích kinh tế. Vùng Sami và bắc xa không tự nhiên phục tùng văn hóa triều đình.",
+          "keys": [
+            "Liên minh Kalmar",
+            "undefined",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Liên minh Kalmar. dân thường, giai cấp và chủng tộc. Nông dân Scandinavia có mức tự do khác nhau; ngư dân, thợ mỏ, thương nhân Hanse, Hải Tộc và Hoa Tiên thời tiết giữ các mắt xích kinh tế. Vùng Sami và bắc xa không tự nhiên phục tùng văn hóa triều đình.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-kalmar-khung-hoang-1444",
+          "title": "Liên minh Kalmar · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_kalmar'; %><% if (noiPhe) { %>[Bản ghi nội bộ Liên minh Kalmar · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Liên minh Kalmar · <%= now.year %>]<% } %>\nNăm 1444, nhà vua phải cân bằng ba hội đồng, phục hồi thuế mà không tái gây nổi dậy và đối phó Hanse. Một cuộc khủng hoảng kế vị có thể làm khế ước chung vỡ vì không có bộ máy thống nhất giữ nó.",
+          "summary": "Năm 1444, nhà vua phải cân bằng ba hội đồng, phục hồi thuế mà không tái gây nổi dậy và đối phó Hanse. Một cuộc khủng hoảng kế vị có thể làm khế ước chung vỡ vì không có bộ máy thống nhất giữ nó.",
+          "keys": [
+            "Liên minh Kalmar",
+            "undefined",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Liên minh Kalmar. khủng hoảng và mục tiêu năm 1444. Năm 1444, nhà vua phải cân bằng ba hội đồng, phục hồi thuế mà không tái gây nổi dậy và đối phó Hanse. Một cuộc khủng hoảng kế vị có thể làm khế ước chung vỡ vì không có bộ máy thống nhất giữ nó.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-teuton",
+      "name": "Phe phái chuyên sâu · Nhà nước Dòng tu Teuton",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_teuton"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-teuton-hinh-thanh",
+          "title": "Nhà nước Dòng tu Teuton · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_teuton'; %><% if (noiPhe) { %>[Bản ghi nội bộ Nhà nước Dòng tu Teuton · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Nhà nước Dòng tu Teuton · <%= now.year %>]<% } %>\nDòng Teuton chuyển từ dòng bệnh viện Thập tự sang nhà nước quân sự–tu viện ở Prussia và Livonia. Họ xây thành, đưa dân định cư và ép cải đạo; thất bại Grunwald 1410 cùng bồi thường làm nền tài chính suy yếu.",
+          "summary": "Dòng Teuton chuyển từ dòng bệnh viện Thập tự sang nhà nước quân sự–tu viện ở Prussia và Livonia. Họ xây thành, đưa dân định cư và ép cải đạo; thất bại Grunwald 1410 cùng bồi thường làm nền tài chính suy yếu.",
+          "keys": [
+            "Nhà nước Dòng tu Teuton",
+            "undefined",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Nhà nước Dòng tu Teuton. hình thành lịch sử. Dòng Teuton chuyển từ dòng bệnh viện Thập tự sang nhà nước quân sự–tu viện ở Prussia và Livonia. Họ xây thành, đưa dân định cư và ép cải đạo; thất bại Grunwald 1410 cùng bồi thường làm nền tài chính suy yếu.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-teuton-quyen-luc",
+          "title": "Nhà nước Dòng tu Teuton · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_teuton'; %><% if (noiPhe) { %>[Bản ghi nội bộ Nhà nước Dòng tu Teuton · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Nhà nước Dòng tu Teuton · <%= now.year %>]<% } %>\nĐại Tổng quản và tổng hội dòng đối trọng các chỉ huy địa phương. Hiệp sĩ thệ nguyện muốn giữ kỷ luật tu viện; quý tộc thế tục, thành phố Hanse và địa chủ Phổ đòi tiếng nói thuế. Nhánh Livonia có lợi ích riêng với trung tâm Prussia.",
+          "summary": "Đại Tổng quản và tổng hội dòng đối trọng các chỉ huy địa phương. Hiệp sĩ thệ nguyện muốn giữ kỷ luật tu viện; quý tộc thế tục, thành phố Hanse và địa chủ Phổ đòi tiếng nói thuế. Nhánh Livonia có lợi ích riêng với trung tâm Prussia.",
+          "keys": [
+            "Nhà nước Dòng tu Teuton",
+            "undefined",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Nhà nước Dòng tu Teuton. các phe trong triều và thiết chế. Đại Tổng quản và tổng hội dòng đối trọng các chỉ huy địa phương. Hiệp sĩ thệ nguyện muốn giữ kỷ luật tu viện; quý tộc thế tục, thành phố Hanse và địa chủ Phổ đòi tiếng nói thuế. Nhánh Livonia có lợi ích riêng với trung tâm Prussia.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-teuton-xa-hoi",
+          "title": "Nhà nước Dòng tu Teuton · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_teuton'; %><% if (noiPhe) { %>[Bản ghi nội bộ Nhà nước Dòng tu Teuton · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Nhà nước Dòng tu Teuton · <%= now.year %>]<% } %>\nDân bản địa Baltic, nông dân định cư Đức, thợ thành thị và thương nhân chịu các luật khác nhau. Teuton là văn hóa quyền lực chứ không có nghĩa mọi người tộc Teuton đều là hiệp sĩ dòng, hoặc mọi hiệp sĩ cùng một tộc.",
+          "summary": "Dân bản địa Baltic, nông dân định cư Đức, thợ thành thị và thương nhân chịu các luật khác nhau. Teuton là văn hóa quyền lực chứ không có nghĩa mọi người tộc Teuton đều là hiệp sĩ dòng, hoặc mọi hiệp sĩ cùng một tộc.",
+          "keys": [
+            "Nhà nước Dòng tu Teuton",
+            "undefined",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Nhà nước Dòng tu Teuton. dân thường, giai cấp và chủng tộc. Dân bản địa Baltic, nông dân định cư Đức, thợ thành thị và thương nhân chịu các luật khác nhau. Teuton là văn hóa quyền lực chứ không có nghĩa mọi người tộc Teuton đều là hiệp sĩ dòng, hoặc mọi hiệp sĩ cùng một tộc.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-teuton-khung-hoang-1444",
+          "title": "Nhà nước Dòng tu Teuton · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_teuton'; %><% if (noiPhe) { %>[Bản ghi nội bộ Nhà nước Dòng tu Teuton · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Nhà nước Dòng tu Teuton · <%= now.year %>]<% } %>\nLiên hiệp Phổ thành lập năm 1440 để chống lạm quyền và thuế; Ba Lan chờ cơ hội. Năm 1444, Dòng phải chọn cải cách, đàn áp hay nhượng quyền—mỗi lựa chọn đều đụng nợ và lời thề tôn giáo.",
+          "summary": "Liên hiệp Phổ thành lập năm 1440 để chống lạm quyền và thuế; Ba Lan chờ cơ hội. Năm 1444, Dòng phải chọn cải cách, đàn áp hay nhượng quyền—mỗi lựa chọn đều đụng nợ và lời thề tôn giáo.",
+          "keys": [
+            "Nhà nước Dòng tu Teuton",
+            "undefined",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Nhà nước Dòng tu Teuton. khủng hoảng và mục tiêu năm 1444. Liên hiệp Phổ thành lập năm 1440 để chống lạm quyền và thuế; Ba Lan chờ cơ hội. Năm 1444, Dòng phải chọn cải cách, đàn áp hay nhượng quyền—mỗi lựa chọn đều đụng nợ và lời thề tôn giáo.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-rus",
+      "name": "Phe phái chuyên sâu · Các công quốc Rus",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_rus"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-rus-hinh-thanh",
+          "title": "Các công quốc Rus · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_rus'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các công quốc Rus · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các công quốc Rus · <%= now.year %>]<% } %>\nCác công quốc Rus chia sẻ di sản Kiev và Đông phương nhưng đi theo đường khác dưới ách cống Hãn quốc. Moscow tăng quyền bằng thu thuế và hôn nhân; Novgorod giữ veche cùng mạng buôn; Tver, Ryazan, Pskov còn độc lập.",
+          "summary": "Các công quốc Rus chia sẻ di sản Kiev và Đông phương nhưng đi theo đường khác dưới ách cống Hãn quốc. Moscow tăng quyền bằng thu thuế và hôn nhân; Novgorod giữ veche cùng mạng buôn; Tver, Ryazan, Pskov còn độc lập.",
+          "keys": [
+            "Các công quốc Rus",
+            "undefined",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các công quốc Rus. hình thành lịch sử. Các công quốc Rus chia sẻ di sản Kiev và Đông phương nhưng đi theo đường khác dưới ách cống Hãn quốc. Moscow tăng quyền bằng thu thuế và hôn nhân; Novgorod giữ veche cùng mạng buôn; Tver, Ryazan, Pskov còn độc lập.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-rus-quyen-luc",
+          "title": "Các công quốc Rus · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_rus'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các công quốc Rus · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các công quốc Rus · <%= now.year %>]<% } %>\nVasily II của Moscow đang trong nội chiến với Dmitry Shemyaka; boyar và thân vương họ hàng đổi phe. Novgorod do các gia tộc boyar, tổng giám mục và veche chi phối; Giáo hội nắm đất, chữ viết và chính danh xuyên các nước Rus.",
+          "summary": "Vasily II của Moscow đang trong nội chiến với Dmitry Shemyaka; boyar và thân vương họ hàng đổi phe. Novgorod do các gia tộc boyar, tổng giám mục và veche chi phối; Giáo hội nắm đất, chữ viết và chính danh xuyên các nước Rus.",
+          "keys": [
+            "Các công quốc Rus",
+            "undefined",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các công quốc Rus. các phe trong triều và thiết chế. Vasily II của Moscow đang trong nội chiến với Dmitry Shemyaka; boyar và thân vương họ hàng đổi phe. Novgorod do các gia tộc boyar, tổng giám mục và veche chi phối; Giáo hội nắm đất, chữ viết và chính danh xuyên các nước Rus.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-rus-xa-hoi",
+          "title": "Các công quốc Rus · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_rus'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các công quốc Rus · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các công quốc Rus · <%= now.year %>]<% } %>\nNông dân rừng, thợ săn, thương nhân đường sông, dân thành và đoàn tùy tùng quý tộc sống trong khí hậu khắc nghiệt. Tộc Rus chiếm đa số nhiều nơi nhưng Mộc Tinh, Hùng Nhân, Miêu Nhân và cộng đồng thảo nguyên có thể thuộc mọi tầng.",
+          "summary": "Nông dân rừng, thợ săn, thương nhân đường sông, dân thành và đoàn tùy tùng quý tộc sống trong khí hậu khắc nghiệt. Tộc Rus chiếm đa số nhiều nơi nhưng Mộc Tinh, Hùng Nhân, Miêu Nhân và cộng đồng thảo nguyên có thể thuộc mọi tầng.",
+          "keys": [
+            "Các công quốc Rus",
+            "undefined",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các công quốc Rus. dân thường, giai cấp và chủng tộc. Nông dân rừng, thợ săn, thương nhân đường sông, dân thành và đoàn tùy tùng quý tộc sống trong khí hậu khắc nghiệt. Tộc Rus chiếm đa số nhiều nơi nhưng Mộc Tinh, Hùng Nhân, Miêu Nhân và cộng đồng thảo nguyên có thể thuộc mọi tầng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-rus-khung-hoang-1444",
+          "title": "Các công quốc Rus · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_rus'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các công quốc Rus · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các công quốc Rus · <%= now.year %>]<% } %>\nNăm 1444, Moscow chưa thống nhất Rus và cũng chưa tự xưng chắc chắn là “Rome thứ ba”. Nội chiến, Kazan và cạnh tranh Litva–Novgorod khiến mọi kế hoạch tập quyền có thể đảo ngược.",
+          "summary": "Năm 1444, Moscow chưa thống nhất Rus và cũng chưa tự xưng chắc chắn là “Rome thứ ba”. Nội chiến, Kazan và cạnh tranh Litva–Novgorod khiến mọi kế hoạch tập quyền có thể đảo ngược.",
+          "keys": [
+            "Các công quốc Rus",
+            "undefined",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các công quốc Rus. khủng hoảng và mục tiêu năm 1444. Năm 1444, Moscow chưa thống nhất Rus và cũng chưa tự xưng chắc chắn là “Rome thứ ba”. Nội chiến, Kazan và cạnh tranh Litva–Novgorod khiến mọi kế hoạch tập quyền có thể đảo ngược.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-iberia",
+      "name": "Phe phái chuyên sâu · Các vương quốc Iberia",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_iberia"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-iberia-hinh-thanh",
+          "title": "Các vương quốc Iberia · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_iberia'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các vương quốc Iberia · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các vương quốc Iberia · <%= now.year %>]<% } %>\nIberia năm 1444 gồm Castile, Aragon, Portugal, Navarra và Granada, không phải một Tây Ban Nha thống nhất. Các vương triều vừa chiến tranh vừa kết hôn và ký hòa ước xuyên tôn giáo; Reconquista là quá trình dài, không phải một mặt trận liên tục.",
+          "summary": "Iberia năm 1444 gồm Castile, Aragon, Portugal, Navarra và Granada, không phải một Tây Ban Nha thống nhất. Các vương triều vừa chiến tranh vừa kết hôn và ký hòa ước xuyên tôn giáo; Reconquista là quá trình dài, không phải một mặt trận liên tục.",
+          "keys": [
+            "Các vương quốc Iberia",
+            "undefined",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các vương quốc Iberia. hình thành lịch sử. Iberia năm 1444 gồm Castile, Aragon, Portugal, Navarra và Granada, không phải một Tây Ban Nha thống nhất. Các vương triều vừa chiến tranh vừa kết hôn và ký hòa ước xuyên tôn giáo; Reconquista là quá trình dài, không phải một mặt trận liên tục.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-iberia-quyen-luc",
+          "title": "Các vương quốc Iberia · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_iberia'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các vương quốc Iberia · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các vương quốc Iberia · <%= now.year %>]<% } %>\nỞ Castile, Juan II và cận thần Álvaro de Luna đối đầu đại quý tộc; Aragon của Alfonso V dồn sức vào Naples; Portugal dưới Afonso V còn chịu ảnh hưởng nhiếp chính; Granada có đấu đá Nasrid. Thành thị, Cortes, quân đoàn dòng tu và thương nhân có quyền riêng.",
+          "summary": "Ở Castile, Juan II và cận thần Álvaro de Luna đối đầu đại quý tộc; Aragon của Alfonso V dồn sức vào Naples; Portugal dưới Afonso V còn chịu ảnh hưởng nhiếp chính; Granada có đấu đá Nasrid. Thành thị, Cortes, quân đoàn dòng tu và thương nhân có quyền riêng.",
+          "keys": [
+            "Các vương quốc Iberia",
+            "undefined",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các vương quốc Iberia. các phe trong triều và thiết chế. Ở Castile, Juan II và cận thần Álvaro de Luna đối đầu đại quý tộc; Aragon của Alfonso V dồn sức vào Naples; Portugal dưới Afonso V còn chịu ảnh hưởng nhiếp chính; Granada có đấu đá Nasrid. Thành thị, Cortes, quân đoàn dòng tu và thương nhân có quyền riêng.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-iberia-xa-hoi",
+          "title": "Các vương quốc Iberia · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_iberia'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các vương quốc Iberia · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các vương quốc Iberia · <%= now.year %>]<% } %>\nCơ Đốc, Nhất thần phương Nam và Do Thái cùng đóng vai trò trong nông nghiệp tưới, dịch thuật, thuế và thương mại. Quy chế cộng đồng bảo hộ tồn tại nhưng bạo lực và cưỡng ép vẫn có; không dự phóng chính sách cuối thế kỷ vào năm 1444.",
+          "summary": "Cơ Đốc, Nhất thần phương Nam và Do Thái cùng đóng vai trò trong nông nghiệp tưới, dịch thuật, thuế và thương mại. Quy chế cộng đồng bảo hộ tồn tại nhưng bạo lực và cưỡng ép vẫn có; không dự phóng chính sách cuối thế kỷ vào năm 1444.",
+          "keys": [
+            "Các vương quốc Iberia",
+            "undefined",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các vương quốc Iberia. dân thường, giai cấp và chủng tộc. Cơ Đốc, Nhất thần phương Nam và Do Thái cùng đóng vai trò trong nông nghiệp tưới, dịch thuật, thuế và thương mại. Quy chế cộng đồng bảo hộ tồn tại nhưng bạo lực và cưỡng ép vẫn có; không dự phóng chính sách cuối thế kỷ vào năm 1444.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-iberia-khung-hoang-1444",
+          "title": "Các vương quốc Iberia · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_iberia'; %><% if (noiPhe) { %>[Bản ghi nội bộ Các vương quốc Iberia · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Các vương quốc Iberia · <%= now.year %>]<% } %>\nCastile cần kiềm đại quý tộc, Aragon cần trả giá cho tham vọng Ý, Portugal nhìn Đại Tây Dương, Granada sống bằng ngoại giao và triều cống. Hôn nhân thống nhất và thất thủ Granada còn là khả năng tương lai, chưa phải kiến thức chắc chắn.",
+          "summary": "Castile cần kiềm đại quý tộc, Aragon cần trả giá cho tham vọng Ý, Portugal nhìn Đại Tây Dương, Granada sống bằng ngoại giao và triều cống. Hôn nhân thống nhất và thất thủ Granada còn là khả năng tương lai, chưa phải kiến thức chắc chắn.",
+          "keys": [
+            "Các vương quốc Iberia",
+            "undefined",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Các vương quốc Iberia. khủng hoảng và mục tiêu năm 1444. Castile cần kiềm đại quý tộc, Aragon cần trả giá cho tham vọng Ý, Portugal nhìn Đại Tây Dương, Granada sống bằng ngoại giao và triều cống. Hôn nhân thống nhất và thất thủ Granada còn là khả năng tương lai, chưa phải kiến thức chắc chắn.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    },
+    {
+      "id": "book-phe-phai-nation-hanse",
+      "name": "Phe phái chuyên sâu · Liên minh Hanse",
+      "version": 1,
+      "scope": {
+        "kind": "nation",
+        "refId": "nation_hanse"
+      },
+      "enabled": true,
+      "autoScope": true,
+      "priority": 4,
+      "entries": [
+        {
+          "id": "factionguide_nation-hanse-hinh-thanh",
+          "title": "Liên minh Hanse · hình thành lịch sử",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_hanse'; %><% if (noiPhe) { %>[Bản ghi nội bộ Liên minh Hanse · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Liên minh Hanse · <%= now.year %>]<% } %>\nHanse lớn lên từ liên minh thương nhân và thành phố quanh Baltic–Bắc Hải, với Lübeck là đầu mối nhưng không phải thủ đô của một quốc gia. Các kontor tại London, Bruges, Bergen và Novgorod bảo vệ đặc quyền ngoại thương.",
+          "summary": "Hanse lớn lên từ liên minh thương nhân và thành phố quanh Baltic–Bắc Hải, với Lübeck là đầu mối nhưng không phải thủ đô của một quốc gia. Các kontor tại London, Bruges, Bergen và Novgorod bảo vệ đặc quyền ngoại thương.",
+          "keys": [
+            "Liên minh Hanse",
+            "undefined",
+            "lịch sử quốc gia",
+            "hình thành",
+            "triều đại"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Liên minh Hanse. hình thành lịch sử. Hanse lớn lên từ liên minh thương nhân và thành phố quanh Baltic–Bắc Hải, với Lübeck là đầu mối nhưng không phải thủ đô của một quốc gia. Các kontor tại London, Bruges, Bergen và Novgorod bảo vệ đặc quyền ngoại thương.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-hanse-quyen-luc",
+          "title": "Liên minh Hanse · các phe trong triều và thiết chế",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_hanse'; %><% if (noiPhe) { %>[Bản ghi nội bộ Liên minh Hanse · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Liên minh Hanse · <%= now.year %>]<% } %>\nHội đồng các thành cử đại biểu tới Hansetag nhưng quyết định khó cưỡng chế. Gia tộc đại thương nhân, nghiệp đoàn thủ công, chủ tàu và thành viên nhỏ có lợi ích khác; Lübeck thường dẫn dắt nhưng phải thuyết phục, cho vay hoặc đe cấm vận.",
+          "summary": "Hội đồng các thành cử đại biểu tới Hansetag nhưng quyết định khó cưỡng chế. Gia tộc đại thương nhân, nghiệp đoàn thủ công, chủ tàu và thành viên nhỏ có lợi ích khác; Lübeck thường dẫn dắt nhưng phải thuyết phục, cho vay hoặc đe cấm vận.",
+          "keys": [
+            "Liên minh Hanse",
+            "undefined",
+            "phe phái",
+            "triều đình",
+            "hội đồng",
+            "quý tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Liên minh Hanse. các phe trong triều và thiết chế. Hội đồng các thành cử đại biểu tới Hansetag nhưng quyết định khó cưỡng chế. Gia tộc đại thương nhân, nghiệp đoàn thủ công, chủ tàu và thành viên nhỏ có lợi ích khác; Lübeck thường dẫn dắt nhưng phải thuyết phục, cho vay hoặc đe cấm vận.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-hanse-xa-hoi",
+          "title": "Liên minh Hanse · dân thường, giai cấp và chủng tộc",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_hanse'; %><% if (noiPhe) { %>[Bản ghi nội bộ Liên minh Hanse · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Liên minh Hanse · <%= now.year %>]<% } %>\nThủy thủ, phu bến, thông dịch, chủ kho và cộng đồng ngoại kiều tạo mạng đa tộc. Hải Tộc và người ven biển giỏi nghề biển nhưng không sở hữu độc quyền thương mại; quyền công dân thành phố mới quyết định phần lớn pháp lý.",
+          "summary": "Thủy thủ, phu bến, thông dịch, chủ kho và cộng đồng ngoại kiều tạo mạng đa tộc. Hải Tộc và người ven biển giỏi nghề biển nhưng không sở hữu độc quyền thương mại; quyền công dân thành phố mới quyết định phần lớn pháp lý.",
+          "keys": [
+            "Liên minh Hanse",
+            "undefined",
+            "dân thường",
+            "nông dân",
+            "giai cấp",
+            "chủng tộc"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Liên minh Hanse. dân thường, giai cấp và chủng tộc. Thủy thủ, phu bến, thông dịch, chủ kho và cộng đồng ngoại kiều tạo mạng đa tộc. Hải Tộc và người ven biển giỏi nghề biển nhưng không sở hữu độc quyền thương mại; quyền công dân thành phố mới quyết định phần lớn pháp lý.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        },
+        {
+          "id": "factionguide_nation-hanse-khung-hoang-1444",
+          "title": "Liên minh Hanse · khủng hoảng và mục tiêu năm 1444",
+          "type": "faction",
+          "content": "<% const noiPhe = state.knowledge && state.knowledge.factionId === 'nation_hanse'; %><% if (noiPhe) { %>[Bản ghi nội bộ Liên minh Hanse · <%= now.year %>]<% } else { %>[Hồ sơ chính trị Liên minh Hanse · <%= now.year %>]<% } %>\nNăm 1444, Hanse cạnh tranh với thương nhân Hà Lan, vương quyền Scandinavia và chính các thành viên muốn tự giao dịch. Eo biển, cá trích, sáp, lông thú, gỗ và ngũ cốc quan trọng hơn chinh phục đất; vũ khí chính là đoàn tàu, tín dụng và cấm vận.",
+          "summary": "Năm 1444, Hanse cạnh tranh với thương nhân Hà Lan, vương quyền Scandinavia và chính các thành viên muốn tự giao dịch. Eo biển, cá trích, sáp, lông thú, gỗ và ngũ cốc quan trọng hơn chinh phục đất; vũ khí chính là đoàn tàu, tín dụng và cấm vận.",
+          "keys": [
+            "Liên minh Hanse",
+            "undefined",
+            "khủng hoảng 1444",
+            "mục tiêu chính trị",
+            "tranh quyền"
+          ],
+          "matchMode": "wholeWord",
+          "caseSensitive": false,
+          "constant": false,
+          "embedding": {
+            "text": "Liên minh Hanse. khủng hoảng và mục tiêu năm 1444. Năm 1444, Hanse cạnh tranh với thương nhân Hà Lan, vương quyền Scandinavia và chính các thành viên muốn tự giao dịch. Eo biển, cá trích, sáp, lông thú, gỗ và ngũ cốc quan trọng hơn chinh phục đất; vũ khí chính là đoàn tàu, tín dụng và cấm vận.",
+            "threshold": 0.17
+          },
+          "knowledge": "public",
+          "placement": "block",
+          "role": "system",
+          "weight": 12,
+          "budgetPriority": 8,
+          "recurse": false,
+          "preventRecursion": false,
+          "triggerOnce": false
+        }
+      ]
+    }
+  ]
+}

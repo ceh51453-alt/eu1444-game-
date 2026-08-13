@@ -245,8 +245,8 @@
     },
     {
       "id": "trait_ban-cung-tren-ngua",
-      "name": "Bắn cung trên ngựa",
-      "description": "Bắn vào lúc bốn vó rời đất — nhịp mà không ai dạy được cho người lớn.",
+      "name": "Bắn cung trên lưng ngựa",
+      "description": "Giữ được nhịp bắn khi chiến mã đang phi hết tốc lực.",
       "effects": [{ "domains": ["skill.cung-no", "combat.ban-xa"], "value": 20, "whenAnyTag": ["tren-ngua"] }]
     },
     {
