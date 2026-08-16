@@ -30,8 +30,11 @@ import { registerBattleSources } from '@/minigames/battle';
 import { registerSiegeSources } from '@/systems/siege';
 import { militarySliceSchema } from '@/systems/military';
 import { newItem } from '@/systems/items';
+import { emptyCampaign, type CampaignArmy } from '@/systems/campaign';
+import { createHolding, holdingsSliceSchema } from '@/systems/holding';
 import {
   autoResolve,
+  availableEncounters,
   buildEncounter,
   encounterRequestsFromOutput,
   parseEncounterRequests,
@@ -61,6 +64,27 @@ function playing(swordSkill = 40, seed = 'encounter'): GameState {
   character.identity.name = 'Guillaume';
   character.skills = { 'skill_kiem-thuat': { level: swordSkill } };
   return state;
+}
+
+/** Hai đơn vị có thật trong slice `military` — cộng lại đúng 500 người. */
+function armyOfTwo(): unknown {
+  return militarySliceSchema.parse({
+    forces: [{
+      id: 'force_1',
+      name: 'Đạo quân của ngài',
+      kind: 'land',
+      commander: 'Guillaume',
+      location: 'chiến đồ',
+      units: [
+        { id: 'unit_1', typeId: 'unit_bo-binh-thue', name: 'Bộ binh', source: 'mercenary', strength: 360, morale: 70, experience: 30, training: 50, monthlyUpkeep: 40 },
+        { id: 'unit_2', typeId: 'unit_cung-thu', name: 'Cung thủ', source: 'barracks', strength: 140, morale: 65, experience: 25, training: 55, monthlyUpkeep: 24 },
+      ],
+    }],
+  });
+}
+
+function army(id: string, factionId: string, forceId: string, nodeId: string, troops: number): CampaignArmy {
+  return { id, name: id, factionId, forceId, troops, nodeId, stance: 'dong-quan', march: null, siegeNodeId: '' };
 }
 
 function offerFrom(raw: string, state: GameState): EncounterOffer {
@@ -205,6 +229,113 @@ describe('bốn cửa kiểm duyệt', () => {
 // ---------------------------------------------------------------------------
 // Dựng ván
 // ---------------------------------------------------------------------------
+
+describe('bốn cái nút chỉ mở khi state có tình huống ấy', () => {
+  /** Ván đã chạy được vài lượt — `meta.turn > 0` là cửa "đã có diễn biến". */
+  function running(): GameState {
+    const state = playing(40, 'nut-bam');
+    state.meta.turn = 4;
+    return state;
+  }
+
+  it('lượt 0 thì KHÔNG cửa nào mở — chưa có diễn biến nào để đánh nhau trong đó', () => {
+    const gate = availableEncounters(playing(40, 'chua-chay'));
+    expect(gate.spar.ok).toBe(false);
+    expect(gate.battle.ok).toBe(false);
+    expect(gate.besiege.ok).toBe(false);
+    expect(gate.defend.ok).toBe(false);
+    expect(gate.spar.reason).toContain('chưa bắt đầu');
+  });
+
+  it('chưa chốt nhân vật thì không cửa nào mở', () => {
+    const state = createInitialState('chua-chot', 'Ngài');
+    state.meta.turn = 4;
+    expect(availableEncounters(state).spar.ok).toBe(false);
+  });
+
+  it('ván đã chạy thì ĐẤU TẬP mở, còn ba cửa kia vẫn đóng vì chưa có quân', () => {
+    const gate = availableEncounters(running());
+    expect(gate.spar.ok).toBe(true);
+    expect(gate.battle.ok).toBe(false);
+    expect(gate.battle.reason).toContain('chưa có đạo quân');
+    expect(gate.besiege.ok).toBe(false);
+    expect(gate.defend.ok).toBe(false);
+  });
+
+  it('CÓ QUÂN nhưng không ai đứng trước mặt thì vẫn chưa RA TRẬN được', () => {
+    const state = running();
+    (state as unknown as Record<string, unknown>)['military'] = armyOfTwo();
+    (state as unknown as Record<string, unknown>)['campaign'] = {
+      ...emptyCampaign(),
+      playerFactionId: 'phe_ta',
+      armies: [army('army_ta', 'phe_ta', 'force_1', 'huyen_x', 500)],
+    };
+    const gate = availableEncounters(state);
+    expect(gate.battle.ok).toBe(false);
+    expect(gate.battle.reason).toContain('không có quân địch');
+  });
+
+  it('địch đứng CÙNG Ô thì RA TRẬN mở, và lý do mang đúng quân số thật', () => {
+    const state = running();
+    (state as unknown as Record<string, unknown>)['military'] = armyOfTwo();
+    (state as unknown as Record<string, unknown>)['campaign'] = {
+      ...emptyCampaign(),
+      playerFactionId: 'phe_ta',
+      armies: [
+        army('army_ta', 'phe_ta', 'force_1', 'huyen_x', 500),
+        army('army_dich', 'phe_dich', '', 'huyen_x', 460),
+      ],
+    };
+    const gate = availableEncounters(state);
+    expect(gate.battle.ok).toBe(true);
+    // 500 là con số ĐẾM ĐƯỢC từ slice `military` (360 + 140), không phải hằng số.
+    expect(gate.battle.reason).toContain('500');
+    expect(gate.battle.reason).toContain('460');
+  });
+
+  it('CÔNG THÀNH chỉ mở khi quân mình đang thật sự vây một ô', () => {
+    const state = running();
+    (state as unknown as Record<string, unknown>)['military'] = armyOfTwo();
+    const camp = {
+      ...emptyCampaign(),
+      playerFactionId: 'phe_ta',
+      armies: [{ ...army('army_ta', 'phe_ta', 'force_1', 'huyen_x', 500), siegeNodeId: 'huyen_y' }],
+      sieges: [{ nodeId: 'huyen_y', attackerId: 'phe_ta', armyId: 'army_ta', weeks: 3, weeksNeeded: 8 }],
+    };
+    (state as unknown as Record<string, unknown>)['campaign'] = camp;
+    const gate = availableEncounters(state);
+    expect(gate.besiege.ok).toBe(true);
+    expect(gate.besiege.reason).toContain('3 tuần');
+    // Vây người khác KHÔNG mở cửa thủ thành.
+    expect(gate.defend.ok).toBe(false);
+  });
+
+  it('THỦ THÀNH mở khi một thành trì của mình mang cờ `besieged`', () => {
+    const state = running();
+    const holding = createHolding(createRng('bi-vay'), {
+      slug: 'ben-say', name: 'Bến Sậy', path: 'phat-trien', turn: 0, seat: true,
+    });
+    (state as unknown as Record<string, unknown>)['holdings'] = holdingsSliceSchema.parse({
+      list: [{ ...holding, besieged: true }],
+    });
+    const gate = availableEncounters(state);
+    expect(gate.defend.ok).toBe(true);
+    expect(gate.defend.reason).toContain('Bến Sậy');
+  });
+
+  it('người chết thì mọi cửa đóng, kể cả khi đang bị vây', () => {
+    const state = running();
+    const holding = createHolding(createRng('chet'), {
+      slug: 'ben-say', name: 'Bến Sậy', path: 'phat-trien', turn: 0, seat: true,
+    });
+    (state as unknown as Record<string, unknown>)['holdings'] = holdingsSliceSchema.parse({
+      list: [{ ...holding, besieged: true }],
+    });
+    const body = bodyOf(state);
+    if (body !== null) body.dead = true;
+    expect(availableEncounters(state).defend.ok).toBe(false);
+  });
+});
 
 describe('engine dựng ván từ dữ kiện câu chuyện', () => {
   it('TƯƠNG QUAN LÀ TƯƠNG ĐỐI: cùng một chữ, hai người chơi khác nhau ra hai đối thủ khác nhau', () => {

@@ -1,7 +1,6 @@
 {
   "$comment": "TÀI NGUYÊN & NHÂN CÔNG — Phần 12 mục 6, cộng địa hình ô của mục 4. NHÂN CÔNG LÀ RÀNG BUỘC THẬT SỰ, KHÔNG PHẢI TIỀN: mọi con số ở đây tồn tại để câu ấy đúng trong lúc chạy chứ không chỉ đúng trong tài liệu. Id mùa (`xuan`/`ha`/`thu`/`dong`) trùng với data/fortifications.json có chủ ý — một cuộc vây hãm mùa đông và một công trường mùa đông phải nói về CÙNG một mùa đông.",
   "version": 1,
-
   "resources": [
     {
       "id": "luong-thuc",
@@ -12,12 +11,54 @@
       "bulk": 1,
       "note": "Cùng đơn vị PHẦN một người một tuần với data/fortifications.json. Kho lương của thành trì đi thẳng vào cuộc vây hãm."
     },
-    { "id": "go", "name": "gỗ", "unit": "khối", "perishable": false, "spoilPerWeek": 0, "bulk": 1.4 },
-    { "id": "da", "name": "đá", "unit": "khối", "perishable": false, "spoilPerWeek": 0, "bulk": 3 },
-    { "id": "sat", "name": "sắt", "unit": "tạ", "perishable": false, "spoilPerWeek": 0, "bulk": 2 },
-    { "id": "len", "name": "len", "unit": "cuộn", "perishable": false, "spoilPerWeek": 0.001, "bulk": 0.6 },
-    { "id": "vai", "name": "vải", "unit": "thước", "perishable": false, "spoilPerWeek": 0.001, "bulk": 0.4 },
-    { "id": "muoi", "name": "muối", "unit": "đấu", "perishable": false, "spoilPerWeek": 0, "bulk": 0.8 },
+    {
+      "id": "go",
+      "name": "gỗ",
+      "unit": "khối",
+      "perishable": false,
+      "spoilPerWeek": 0,
+      "bulk": 1.4
+    },
+    {
+      "id": "da",
+      "name": "đá",
+      "unit": "khối",
+      "perishable": false,
+      "spoilPerWeek": 0,
+      "bulk": 3
+    },
+    {
+      "id": "sat",
+      "name": "sắt",
+      "unit": "tạ",
+      "perishable": false,
+      "spoilPerWeek": 0,
+      "bulk": 2
+    },
+    {
+      "id": "len",
+      "name": "len",
+      "unit": "cuộn",
+      "perishable": false,
+      "spoilPerWeek": 0.001,
+      "bulk": 0.6
+    },
+    {
+      "id": "vai",
+      "name": "vải",
+      "unit": "thước",
+      "perishable": false,
+      "spoilPerWeek": 0.001,
+      "bulk": 0.4
+    },
+    {
+      "id": "muoi",
+      "name": "muối",
+      "unit": "đấu",
+      "perishable": false,
+      "spoilPerWeek": 0,
+      "bulk": 0.8
+    },
     {
       "id": "da-thu",
       "name": "da",
@@ -27,50 +68,164 @@
       "bulk": 0.7,
       "note": "Id là `da-thu` chứ không phải `da`: `da` đã là ĐÁ. Hai thứ khác nhau hoàn toàn mà tiếng Việt không dấu viết giống hệt, và một va chạm id ở đây thì lò rèn sẽ ăn da thú thay vì than đá."
     },
-    { "id": "than", "name": "than", "unit": "sọt", "perishable": false, "spoilPerWeek": 0, "bulk": 1.2 },
-    { "id": "tien", "name": "tiền", "unit": "đồng", "perishable": false, "spoilPerWeek": 0, "bulk": 0 }
+    {
+      "id": "than",
+      "name": "than",
+      "unit": "sọt",
+      "perishable": false,
+      "spoilPerWeek": 0,
+      "bulk": 1.2
+    },
+    {
+      "id": "tien",
+      "name": "tiền",
+      "unit": "đồng",
+      "perishable": false,
+      "spoilPerWeek": 0,
+      "bulk": 0
+    }
   ],
-
   "$terrainComment": "ĐỊA HÌNH Ô — mục 4. KHÔNG phải data/terrain.json: ô ở đó rộng hàng chục mét và nói về một chiến trường; ô ở đây là một mảnh đất trong tường thành, và điều duy nhất nó quyết định là XÂY ĐƯỢC GÌ Ở ĐÂY. `buildFactor` < 1 nghĩa là móng khó làm, tốn thêm công.",
   "terrain": [
     {
       "id": "dat-tot",
       "name": "đất tốt",
       "weight": 30,
-      "buildFactor": 1.0,
-      "yields": { "luong-thuc": 1.35 },
-      "tags": ["dat", "trong-trot"],
+      "buildFactor": 1,
+      "yields": {
+        "luong-thuc": 1.35
+      },
+      "tags": [
+        "dat",
+        "trong-trot"
+      ],
       "note": "Chỗ để cày. Lấp nó bằng nhà kho là phí một đời."
     },
-    { "id": "dat-can", "name": "đất cằn", "weight": 20, "buildFactor": 1.0, "yields": { "luong-thuc": 0.7 }, "tags": ["dat"] },
-    { "id": "song", "name": "sông", "weight": 5, "buildFactor": 0.0, "yields": {}, "tags": ["nuoc", "song"], "buildable": false, "note": "Không đặt được gì lên mặt nước, nhưng ô kề nó là ô đắt nhất trong thành." },
-    { "id": "suoi", "name": "suối", "weight": 7, "buildFactor": 0.85, "yields": { "luong-thuc": 1.1 }, "tags": ["nuoc", "song"] },
-    { "id": "doi", "name": "đồi", "weight": 10, "buildFactor": 0.8, "yields": {}, "tags": ["cao"], "note": "Đắt để xây, nhưng tháp trên đồi nhìn xa hơn và tường trên đồi khó trèo hơn." },
-    { "id": "da-goc", "name": "đá gốc", "weight": 8, "buildFactor": 0.7, "yields": { "da": 1.0 }, "tags": ["da", "mo"] },
-    { "id": "mo-sat", "name": "vỉa sắt", "weight": 3, "buildFactor": 0.75, "yields": { "sat": 1.0 }, "tags": ["mo"] },
-    { "id": "rung", "name": "rừng", "weight": 12, "buildFactor": 0.9, "yields": { "go": 1.0 }, "tags": ["rung"] },
+    {
+      "id": "dat-can",
+      "name": "đất cằn",
+      "weight": 20,
+      "buildFactor": 1,
+      "yields": {
+        "luong-thuc": 0.7
+      },
+      "tags": [
+        "dat"
+      ]
+    },
+    {
+      "id": "song",
+      "name": "sông",
+      "weight": 5,
+      "buildFactor": 0,
+      "yields": {},
+      "tags": [
+        "nuoc",
+        "song"
+      ],
+      "buildable": false,
+      "note": "Không đặt được gì lên mặt nước, nhưng ô kề nó là ô đắt nhất trong thành."
+    },
+    {
+      "id": "suoi",
+      "name": "suối",
+      "weight": 7,
+      "buildFactor": 0.85,
+      "yields": {
+        "luong-thuc": 1.1
+      },
+      "tags": [
+        "nuoc",
+        "song"
+      ]
+    },
+    {
+      "id": "doi",
+      "name": "đồi",
+      "weight": 10,
+      "buildFactor": 0.8,
+      "yields": {},
+      "tags": [
+        "cao"
+      ],
+      "note": "Đắt để xây, nhưng tháp trên đồi nhìn xa hơn và tường trên đồi khó trèo hơn."
+    },
+    {
+      "id": "da-goc",
+      "name": "đá gốc",
+      "weight": 8,
+      "buildFactor": 0.7,
+      "yields": {
+        "da": 1
+      },
+      "tags": [
+        "da",
+        "mo"
+      ]
+    },
+    {
+      "id": "mo-sat",
+      "name": "vỉa sắt",
+      "weight": 3,
+      "buildFactor": 0.75,
+      "yields": {
+        "sat": 1
+      },
+      "tags": [
+        "mo"
+      ]
+    },
+    {
+      "id": "rung",
+      "name": "rừng",
+      "weight": 12,
+      "buildFactor": 0.9,
+      "yields": {
+        "go": 1
+      },
+      "tags": [
+        "rung"
+      ]
+    },
     {
       "id": "dam",
       "name": "đầm",
       "weight": 5,
       "buildFactor": 0.45,
-      "yields": { "muoi": 0.6, "sat": 0.3 },
-      "tags": ["nuoc", "lay"],
+      "yields": {
+        "muoi": 0.6,
+        "sat": 0.3
+      },
+      "tags": [
+        "nuoc",
+        "lay"
+      ],
       "note": "Móng phải đóng cọc. Bù lại, quân vây không dựng trại được ở đây, và trong bùn có SẮT ĐẦM LẦY — thứ quặng nghèo mà cả châu Âu thời này vẫn moi lên bằng tay. Không có nó thì một khu định cư chưa tới cấp mở mỏ sẽ không bao giờ có nổi mười tạ sắt để dựng một cái lò rèn, và cả nhánh phát triển khoá chết ở cấp 2."
+    },
+    {
+      "id": "bien",
+      "name": "biển",
+      "weight": 0,
+      "buildFactor": 0,
+      "yields": {},
+      "tags": [
+        "nuoc",
+        "bien"
+      ],
+      "buildable": false,
+      "note": "Mép nước mặn của một thành trì ven biển. Không đặt được gì lên mặt biển — trừ bến cảng, thứ dựng trên bờ và với ra. Bù lại, một thành trì có biển thì không bao giờ bị vây kín: tiếp tế vẫn vào được bằng thuyền chừng nào chưa ai phong toả nổi mặt nước."
     }
   ],
-
   "labour": {
     "$comment": "MỤC 6: dân vừa phải làm ruộng vừa phải xây. Con số cốt lõi của cả phần nằm ở đây.",
     "workforceShare": 0.42,
     "$workforceComment": "Phần dân đủ sức làm việc nặng. Phần còn lại là trẻ con, người già, người bệnh, và người đang nuôi ba thứ đó.",
-
     "seasons": [
       {
         "id": "xuan",
         "name": "Mùa xuân",
         "farmDemand": 0.58,
-        "buildFactor": 1.0,
+        "buildFactor": 1,
         "stoneWork": true,
         "note": "GIEO. Kéo người khỏi ruộng lúc này là mùa gặt sau đói."
       },
@@ -99,15 +254,12 @@
         "note": "Rảnh người nhưng VỮA KHÔNG ĐÔNG. Công trình đá đứng im, chỉ chuẩn bị vật liệu."
       }
     ],
-
     "$harvestComment": "Rút người khỏi ruộng thì mùa màng kém — đây là chỗ câu 'nhân công là ràng buộc thật sự' thành một con số. `harvestPenaltyPerWorker` là phần sản lượng lương thực mất đi cho mỗi nhân công lấn sang phần của mùa vụ, chia cho tổng nhân lực.",
     "harvestPenaltyPerWorker": 1.15,
     "harvestPenaltyFloor": 0.25,
-
     "$crewComment": "Một công trường quá đông thì người giẫm chân nhau. Trần là bội số của tổ thợ tối thiểu.",
     "maxCrewMultiplier": 3.5,
     "overCrewFactor": 0.6,
-
     "$skilledComment": "THỢ LÀNH NGHỀ KHÁC DÂN THƯỜNG (mục 6). Không thuê được thì công trình đá đứng ở mức tiến độ tối đa `withoutSkilledFactor`, và không bao giờ xong.",
     "skilled": [
       {
@@ -120,12 +272,27 @@
         "fromStratum": "tho",
         "note": "Không có thợ đá thì không có tường đá, và không có tường đá thì Phần 11 chỉ còn một lớp."
       },
-      { "id": "tho-moc", "name": "Thợ mộc", "trainWeeks": 16, "trainCost": 20, "hireCost": 6, "upkeepPerWeek": 0.8, "fromStratum": "tho" },
-      { "id": "tho-ren", "name": "Thợ rèn", "trainWeeks": 22, "trainCost": 28, "hireCost": 8, "upkeepPerWeek": 1.0, "fromStratum": "tho" }
+      {
+        "id": "tho-moc",
+        "name": "Thợ mộc",
+        "trainWeeks": 16,
+        "trainCost": 20,
+        "hireCost": 6,
+        "upkeepPerWeek": 0.8,
+        "fromStratum": "tho"
+      },
+      {
+        "id": "tho-ren",
+        "name": "Thợ rèn",
+        "trainWeeks": 22,
+        "trainCost": 28,
+        "hireCost": 8,
+        "upkeepPerWeek": 1,
+        "fromStratum": "tho"
+      }
     ],
     "withoutSkilledFactor": 0.25,
     "partialSkilledFloor": 0.4,
-
     "$architectComment": "CÔNG TRÌNH LỚN CẦN MỘT KIẾN TRÚC SƯ — MỘT NPC THẬT, PHẢI ĐI TÌM (mục 6). Engine không sinh ra ông ta; thiếu ông ta thì dự án không khởi công được, chấm hết. `skill` 0–100 vào thẳng ngưỡng kiểm định chất lượng của mục 7.",
     "architect": {
       "requiredFromSize": 6,
@@ -134,13 +301,11 @@
       "qualityPerTenSkill": 0.9,
       "feePerWeek": 3.5
     },
-
     "$levyComment": "GỌI QUÂN LÀM GIẢM NHÂN CÔNG VÀ SẢN LƯỢNG (mục 9). Người cầm giáo là người không cày và không xây.",
-    "levyWorkerCost": 1.0,
+    "levyWorkerCost": 1,
     "levyExhaustionWeeks": 12,
     "levyExhaustionMorale": -0.35
   },
-
   "upkeep": {
     "$comment": "CÔNG TRÌNH XUỐNG CẤP THEO THỜI GIAN (mục 7). `integrity` 0–100. Trả đủ chi phí duy trì thì GIỮ ĐƯỢC; bỏ bê thì trôi xuống, và dưới `ruinedBelow` là công trình ngừng sản xuất.",
     "$repairComment": "`upkeepRecoveryPerWeek` phải LỚN HƠN `decayPerWeek`, và đó là cả ý nghĩa của khoản chi phí duy trì: tiền ấy là tiền lợp lại mái, thay dầm mục, trát lại vữa. Nếu công trình vẫn mục dần dù đã trả đủ thì chi phí duy trì chỉ là một cái lỗ thủng trong ngân khố, và một thành trì nuôi được trăm năm sẽ tự sập xuống thành đống gạch mà người chơi không làm gì sai — đúng thứ đã xảy ra khi hai con số này đặt ngược.",
@@ -156,18 +321,42 @@
     "outputPerIntegrityPoint": 0.01,
     "collapseBelow": 5
   },
-
   "$qualityComment": "KIỂM ĐỊNH 3d6 CHẤT LƯỢNG LÚC HOÀN THÀNH (mục 7). Hệ 3d6 là 'NĂNG LỰC DÀI HẠN' theo phân miền cứng của Phần 5 mục 2 — xây dựng thuộc đúng miền ấy, nên KHÔNG được dùng d100 ở đây dù nó có vẻ tiện hơn.",
   "quality": {
     "checkId": "check.xay-dung",
     "domain": "admin.xay-dung",
     "baseTarget": 9,
     "tiers": {
-      "critSuccess": { "integrity": 100, "outputFactor": 1.2, "note": "vượt trội — thợ cả sẽ được nhắc tên nhiều năm sau" },
-      "success": { "integrity": 100, "outputFactor": 1.0, "note": "đúng thiết kế" },
-      "costlySuccess": { "integrity": 85, "outputFactor": 1.0, "costOverrun": 0.3, "extraWeeks": 3, "note": "vượt ngân sách hoặc chậm, nhưng dùng được" },
-      "fail": { "integrity": 55, "outputFactor": 0.7, "decayMultiplier": 2.0, "note": "chất lượng kém, mau hỏng" },
-      "critFail": { "integrity": 0, "collapsed": true, "materialLoss": 0.6, "deathsPerTenCrew": 1, "note": "SẬP TRONG LÚC XÂY. Chết người, mất vật liệu, phải làm lại từ đầu." }
+      "critSuccess": {
+        "integrity": 100,
+        "outputFactor": 1.2,
+        "note": "vượt trội — thợ cả sẽ được nhắc tên nhiều năm sau"
+      },
+      "success": {
+        "integrity": 100,
+        "outputFactor": 1,
+        "note": "đúng thiết kế"
+      },
+      "costlySuccess": {
+        "integrity": 85,
+        "outputFactor": 1,
+        "costOverrun": 0.3,
+        "extraWeeks": 3,
+        "note": "vượt ngân sách hoặc chậm, nhưng dùng được"
+      },
+      "fail": {
+        "integrity": 55,
+        "outputFactor": 0.7,
+        "decayMultiplier": 2,
+        "note": "chất lượng kém, mau hỏng"
+      },
+      "critFail": {
+        "integrity": 0,
+        "collapsed": true,
+        "materialLoss": 0.6,
+        "deathsPerTenCrew": 1,
+        "note": "SẬP TRONG LÚC XÂY. Chết người, mất vật liệu, phải làm lại từ đầu."
+      }
     }
   }
 }

@@ -39,7 +39,10 @@ import {
   type Building,
   type QualityTier,
 } from './data';
-import { canPlace, cellsOf, occupy, release, tileAt } from './grid';
+import { footprintOf } from './data';
+import { terrainAt } from './field';
+import { bindNode } from './nodes';
+import { canPlace, fieldOf } from './place';
 import type { LabourPool } from './labour';
 import type { BuildProject, Cell, Holding, PlacedBuilding } from './types';
 
@@ -50,9 +53,11 @@ export class HoldingBuildError extends Error {
   }
 }
 
-/** Id thực thể suy từ chỗ đứng — duy nhất vì hai công trình không chung ô. */
-export function entityIdFor(buildingId: string, at: Cell, perimeter: boolean): string {
-  if (perimeter) return `${buildingId}@vanh-dai`;
+/**
+ * Id thực thể suy từ chỗ đứng — duy nhất vì hai khuôn viên không chồng nhau, và
+ * `canPlace` còn bắt chúng cách nhau cả một khoảng thở.
+ */
+export function entityIdFor(buildingId: string, at: Cell): string {
   return `${buildingId}@${String(at.x)},${String(at.y)}`;
 }
 
@@ -108,13 +113,16 @@ export function startProject(holding: Holding, buildingId: string, at: Cell, opt
     };
   }
 
-  const placement = canPlace(holding, buildingId, at, options.playerRaces ?? []);
+  const placement = canPlace(holding, buildingId, at, { playerRaces: options.playerRaces ?? [] });
   if (!placement.ok) return { ok: false, reason: placement.reason, holding, illegal: false };
 
   const architect = architectConfig();
-  const cells = cellsOf(building, at);
+  // `requiredFromSize` đếm bằng Ô CỦA BẢN CŨ, và `size` vẫn giữ đúng thang ấy.
+  // Đo bằng khuôn viên mới thì mọi công trình đều vượt ngưỡng và cả thành trì
+  // không dựng nổi một cái giếng nếu chưa tìm được kiến trúc sư.
+  const legacyCells = building.size[0] * building.size[1];
   const architectSkill = options.architectSkill ?? 0;
-  if (building.needsArchitect || cells.length >= architect.requiredFromSize) {
+  if (building.needsArchitect || legacyCells >= architect.requiredFromSize) {
     if (architectSkill <= 0) {
       return {
         ok: false,
@@ -141,9 +149,9 @@ export function startProject(holding: Holding, buildingId: string, at: Cell, opt
   }
 
   const project: BuildProject = {
-    id: entityIdFor(buildingId, at, building.perimeter),
+    id: entityIdFor(buildingId, at),
     buildingId,
-    at: building.perimeter ? { x: -1, y: -1 } : { ...at },
+    at: { ...at },
     manWeeksLeft: building.manWeeks,
     weeksLeft: building.minWeeks,
     crew: 0,
@@ -154,11 +162,16 @@ export function startProject(holding: Holding, buildingId: string, at: Cell, opt
     stalled: '',
     startedOnTurn: options.turn,
     qualityTier: '',
+    // Mạch được GIỮ CHỖ ngay từ lúc khởi công, cùng lý do khuôn viên được giữ:
+    // không giữ thì người chơi mở hai công trường trên cùng một mạch nghèo và
+    // chỉ phát hiện ra khi cái thứ hai xong mà không có gì để đào.
+    nodeId: placement.node?.id ?? '',
   };
 
-  // Ô bị GIỮ CHỖ ngay từ lúc khởi công. Không giữ thì người chơi đặt chồng hai
-  // công trường lên nhau và chỉ phát hiện lúc cái thứ hai xong.
-  const tiles = building.perimeter ? holding.tiles : occupy(holding.tiles, holding.gridSize, cells, project.id);
+  // Khuôn viên bị giữ chỗ nhờ chính sự có mặt của dự án trong `holding.projects`
+  // — `occupiedRects` đọc cả hai danh sách, nên không còn bảng ô nào để đánh dấu.
+  const nodes = holding.nodes.map((node) => ({ ...node, workedBy: [...node.workedBy] }));
+  if (placement.node !== null) bindNode(nodes, project.id, placement.node.id);
 
   return {
     ok: true,
@@ -166,7 +179,7 @@ export function startProject(holding: Holding, buildingId: string, at: Cell, opt
     illegal,
     holding: {
       ...holding,
-      tiles,
+      nodes,
       projects: [...holding.projects, project],
       permits: illegal
         ? { ...holding.permits, illegalWorks: [...holding.permits.illegalWorks, buildingId] }
@@ -186,7 +199,7 @@ export function cancelProject(holding: Holding, projectId: string): Holding {
   return {
     ...holding,
     stores,
-    tiles: release(holding.tiles, projectId),
+    nodes: holding.nodes.map((node) => ({ ...node, workedBy: node.workedBy.filter((id) => id !== projectId) })),
     projects: holding.projects.filter((row) => row.id !== projectId),
   };
 }
@@ -226,16 +239,24 @@ function skilledFactor(building: Building, pool: LabourPool): { factor: number; 
   return { factor: Math.max(config.partialSkilledFloor, worst), missing };
 }
 
-/** Móng trên đầm phải đóng cọc; móng trên đá gốc phải đục. Cả hai đều chậm. */
+/**
+ * Móng trên đầm phải đóng cọc; móng trên đá gốc phải đục. Cả hai đều chậm.
+ *
+ * Lấy hệ số XẤU NHẤT dưới khuôn viên, không lấy trung bình: một cái nhà bốn góc
+ * thì ba góc trên đất tốt và một góc trên đầm vẫn phải đóng cọc cả bốn góc —
+ * trung bình sẽ nói ngược lại và nói sai.
+ */
 function terrainBuildFactor(holding: Holding, building: Building, at: Cell): number {
-  if (building.perimeter) return 1;
-  const cells = cellsOf(building, at);
+  const size = footprintOf(building);
+  if (size <= 0) return 1;
+  const field = fieldOf(holding);
+  const step = Math.max(1, Math.floor(size / 3));
   let worst = 1;
-  for (const cell of cells) {
-    const tile = tileAt(holding, cell);
-    if (tile === null) continue;
-    const factor = terrainOf(tile.terrain)?.buildFactor ?? 1;
-    if (factor < worst) worst = factor;
+  for (let dy = 0; dy < size; dy += step) {
+    for (let dx = 0; dx < size; dx += step) {
+      const factor = terrainOf(terrainAt(field, at.x + dx, at.y + dy))?.buildFactor ?? 1;
+      if (factor < worst) worst = factor;
+    }
   }
   return worst;
 }
@@ -276,7 +297,7 @@ export function advanceProjects(holding: Holding, rng: Rng, options: WeekOptions
   const architect = architectConfig();
 
   let stores = { ...holding.stores };
-  let tiles = holding.tiles;
+  const nodes = holding.nodes.map((node) => ({ ...node, workedBy: [...node.workedBy] }));
   const buildings = [...holding.buildings];
   const projects: BuildProject[] = [];
   const completed: CompletedBuilding[] = [];
@@ -406,7 +427,7 @@ export function advanceProjects(holding: Holding, rng: Rng, options: WeekOptions
       for (const [id, amount] of Object.entries(project.delivered)) {
         stores[id] = (stores[id] ?? 0) + amount * (1 - row.materialLoss);
       }
-      tiles = release(tiles, project.id);
+      for (const node of nodes) node.workedBy = node.workedBy.filter((id) => id !== project.id);
       collapsed.push({
         buildingId: project.buildingId,
         deaths: dead,
@@ -416,7 +437,7 @@ export function advanceProjects(holding: Holding, rng: Rng, options: WeekOptions
     }
 
     const placed: PlacedBuilding = {
-      id: entityIdFor(project.buildingId, project.at, building.perimeter),
+      id: entityIdFor(project.buildingId, project.at),
       buildingId: project.buildingId,
       at: { ...project.at },
       integrity: row.integrity,
@@ -425,23 +446,17 @@ export function advanceProjects(holding: Holding, rng: Rng, options: WeekOptions
       customName: '',
       builtOnTurn: options.turn,
       maintained: true,
+      nodeId: project.nodeId,
     };
 
-    // Tường lớp mới THAY lớp cũ (mục 3): không có thành nào có hai tường ngoài.
-    let kept = buildings.filter((row2) => row2.id !== placed.id);
-    const layer = building.fortify?.wallLayer;
-    if (layer !== undefined && building.fortify?.replacesWall === true) {
-      kept = kept.filter((row2) => {
-        const other = buildingOf(row2.buildingId);
-        return other?.fortify?.wallLayer !== layer;
-      });
-    }
+    const kept = buildings.filter((row2) => row2.id !== placed.id);
     buildings.length = 0;
     buildings.push(...kept, placed);
 
-    if (!building.perimeter) {
-      tiles = occupy(tiles, holding.gridSize, cellsOf(building, project.at), placed.id);
-    }
+    // Chỗ giữ trên mạch chuyển từ DỰ ÁN sang CÔNG TRÌNH. Không chuyển thì mạch
+    // tưởng mình vừa được giải phóng và nhận thêm một xưởng nữa lên cùng chỗ.
+    for (const node of nodes) node.workedBy = node.workedBy.filter((id) => id !== project.id);
+    if (placed.nodeId !== '') bindNode(nodes, placed.id, placed.nodeId);
 
     completed.push({
       placed,
@@ -452,7 +467,7 @@ export function advanceProjects(holding: Holding, rng: Rng, options: WeekOptions
   }
 
   return {
-    holding: { ...holding, stores, tiles, buildings, projects },
+    holding: { ...holding, stores, nodes, buildings, projects },
     completed,
     collapsed,
     stalls,
@@ -499,7 +514,7 @@ export function payUpkeep(holding: Holding, upkeepDue: Record<string, number>, w
     if (taken + 1e-9 < amount) shortfall.add(id);
   }
 
-  let tiles = holding.tiles;
+  const freed: string[] = [];
   const buildings: PlacedBuilding[] = [];
   for (const placed of holding.buildings) {
     const building = buildingOf(placed.buildingId);
@@ -522,24 +537,31 @@ export function payUpkeep(holding: Holding, upkeepDue: Record<string, number>, w
 
     if (integrity < config.collapseBelow) {
       ruined.push(placed.buildingId);
-      tiles = release(tiles, placed.id);
+      freed.push(placed.id);
       continue;
     }
     buildings.push({ ...placed, integrity, maintained: !owing });
   }
 
-  return { holding: { ...holding, stores, tiles, buildings }, unpaid, ruined, paid };
+  // Công trình sập thì nhả mạch nó đang khai thác — nếu không, một xưởng cưa đã
+  // thành đống đổ nát vẫn giữ chỗ trên khu rừng và không ai dựng cái mới được.
+  const nodes = freed.length === 0
+    ? holding.nodes
+    : holding.nodes.map((node) => ({ ...node, workedBy: node.workedBy.filter((id) => !freed.includes(id)) }));
+
+  return { holding: { ...holding, stores, nodes, buildings }, unpaid, ruined, paid };
 }
 
 /**
  * PHÁ DỠ một công trình đã dựng.
  *
  * "phá dỡ" nằm trong bộ động từ độc quyền của THÀNH TRÌ (Phụ lục A mục 4), và
- * nó phải có thật vì ô đất là tài nguyên khan nhất của Phần 12: tới cấp 4 thì
- * một lưới 12×12 lát đầy nhà gỗ cấp 1 là một thành trì không bao giờ lớn thêm
- * được nữa. Không có cửa phá dỡ thì một quyết định quy hoạch tồi ở năm thứ năm
- * khoá chết ván chơi ở năm thứ sáu mươi, và người chơi không có cách nào biết
- * điều đó lúc họ đặt viên gạch đầu tiên.
+ * nó phải có thật vì CHỖ ĐẤT TỐT là tài nguyên khan nhất của Phần 12. Đất thì
+ * rộng, nhưng đất nằm gần toà chính, gần nước, gần mạch quặng và trong tầm với
+ * của cấp hiện tại thì hẹp — lát đầy nó bằng nhà gỗ cấp một là một thành trì
+ * không bao giờ lớn thêm được nữa. Không có cửa phá dỡ thì một quyết định quy
+ * hoạch tồi ở năm thứ năm khoá chết ván chơi ở năm thứ sáu mươi, và người chơi
+ * không có cách nào biết điều đó lúc họ đặt viên gạch đầu tiên.
  *
  * Thu hồi được một phần vật liệu — đá cũ xây lại được, gỗ mục thì không.
  */
@@ -569,7 +591,7 @@ export function demolish(
     holding: {
       ...holding,
       stores,
-      tiles: release(holding.tiles, entityId),
+      nodes: holding.nodes.map((node) => ({ ...node, workedBy: node.workedBy.filter((id) => id !== entityId) })),
       buildings: holding.buildings.filter((row) => row.id !== entityId),
     },
   };

@@ -1006,6 +1006,16 @@ describe('mục 9 bước 8 — khai báo sở hữu', () => {
     expect(titles[0]?.titleId).toBe('ba-tuoc');
   });
 
+  it('không thừa kế gì thì slice `holdings` RỖNG — không ai được tặng một cái thôn', () => {
+    // Nút "Thành trì" trên bảng trạng thái đọc thẳng slice này (`hasHolding`
+    // trong `ui/shell/StatusPanel.tsx`). Bản trước dựng sẵn một cái thôn khi
+    // slice rỗng, nên một đứa con thứ không được thừa kế gì vẫn mở bảng ra thấy
+    // mình làm chủ sáu chục dân — đúng thứ bài này chặn.
+    const state = buildInitialState(draftFor('race_frank', 'origin_dai-quy-toc', SEED, 'con-thu'));
+    expect(characterOf(state)?.holdings).toEqual([]);
+    expect(allHoldings(state)).toEqual([]);
+  });
+
   it('con đường có tước quyết định chính danh ban đầu, không mặc định mọi tước là thừa kế', () => {
     const base = draftFor('race_frank', 'origin_dai-quy-toc', SEED, 'con-ca');
     const draft = { ...base, fiefs: base.fiefs.map((fief) => ({ ...fief, acquisition: 'chiem-doat' as const })) };

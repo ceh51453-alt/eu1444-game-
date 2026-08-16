@@ -180,6 +180,17 @@ function damagedHolding(holding: Holding, siege: SiegeState): Holding {
     besieged: false,
     stores: { ...holding.stores, 'luong-thuc': Math.max(0, siege.fort.supplies.food) },
     buildings: holding.buildings.map((building) => ({ ...building, integrity: Math.max(5, building.integrity * buildingRatio) })),
+    // BỨC TƯỜNG CŨNG PHẢI MANG SẸO VỀ.
+    //
+    // Cuộc vây hãm đánh vào `fort.outerWall`, và trước đây con số ấy chết ở đó:
+    // thành trì cầm cự xong là tường lại nguyên vẹn như chưa có gì xảy ra, nên
+    // cuộc vây thứ hai giống hệt cuộc vây thứ nhất. Giờ thiệt hại ghi thẳng vào
+    // tuyến — lớp ngoài chịu trọn, lớp trong chỉ chịu một phần vì quân địch phải
+    // phá xong lớp ngoài mới chạm tới nó.
+    walls: holding.walls.map((wall) => ({
+      ...wall,
+      integrity: clamp(wall.integrity * (wall.layer === 'ngoai' ? wallRatio : clamp(0.6 + wallRatio * 0.4, 0.6, 1)), 1, 100),
+    })),
     population: {
       ...holding.population,
       total: siege.fort.population,

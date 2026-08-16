@@ -1,14 +1,18 @@
 /**
  * MÀN HÌNH THÀNH TRÌ — Phần 12 mục 11.
  *
- * Lưới ô kéo thả có xem trước hiệu ứng kề nhau, bảng tài nguyên và nhân công có
- * dự báo bốn mùa, hàng đợi xây dựng, bảng dân cư theo nhóm và theo chủng tộc,
- * bảng "Nếu bị vây" nối sang Phần 11, và thanh chuyển nhanh giữa các thành trì
- * có đánh dấu tòa chính.
+ * Bản đồ mảnh đất 5 m TRÀN KHUNG, kéo và phóng được, có mạng đường, có xem
+ * trước hiệu ứng kề nhau, có công cụ vạch tường và lát phố. Bốn bảng của mục 11
+ * là panel nổi bật tắt được, và bảng tra cứu hiện ra khi bấm vào một thứ trên
+ * bản đồ.
+ *
+ * KHÔNG có nút tua thời gian và không có nút chốt: thành trì chạy theo lịch của
+ * ván chơi, và lịch trôi theo diễn biến. Xem `systems/holding/tick.ts`.
  */
 
 export { HoldingScreen, type HoldingScreenProps } from './HoldingScreen';
-export { HoldingGrid, type HoldingGridProps } from './HoldingGrid';
+export { HoldingMap, type HoldingMapProps, type MapSelection, type MapTool } from './HoldingMap';
+export { Inspector, LayerPanel, Panel, PreviewCard, RoadToolPanel, WallToolPanel } from './HoldingOverlays';
 export {
   BuildQueue,
   PopulationPanel,
@@ -17,4 +21,4 @@ export {
   type BuildQueueProps,
   type ResourcePanelProps,
 } from './HoldingPanels';
-export { openHoldings } from './holding';
+export { hasAnyHolding, openHoldings } from './holding';

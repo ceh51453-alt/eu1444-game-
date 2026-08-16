@@ -45,6 +45,7 @@ import {
 import { capReport, skillsOf, slowBreakdown, tierName, trainedSkills } from '@/systems/skills';
 import { LiveNewsFeed } from '@/ui/world/NewsFeed';
 import { allHoldings } from '@/systems/holding';
+import { availableEncounters } from '@/systems/encounter';
 import { economyOf } from '@/systems/economy';
 import { logisticsSummaryOf, militaryStateOf, summaryOf } from '@/systems/military';
 import { countryStyleOf, nationsStateOf, powerName } from '@/systems/nations';
@@ -610,6 +611,35 @@ export function StatusPanel({
   const character = useGameStore((state) => characterOf(state));
   const ready = character !== null && character.identity.finalized;
   const hasRealm = useGameStore((state) => heldTitles(state).length > 0 || (characterOf(state)?.fiefs.length ?? 0) > 0);
+  /**
+   * CÓ TẤC ĐẤT NÀO KHÔNG.
+   *
+   * Đọc slice `holdings` thật chứ không đọc `character.holdings`: khai lúc tạo
+   * nhân vật là cách THƯỜNG có thành trì, không phải cách duy nhất. Một kẻ đánh
+   * chiếm được một toà thành ở lượt thứ tám mươi cũng phải thấy cái nút này, mà
+   * hắn thì chưa bao giờ khai gì ở bước 8 cả.
+   *
+   * Trả về BOOLEAN chứ không trả mảng: `allHoldings` dựng một mảng mới mỗi lần
+   * gọi, và một selector trả tham chiếu mới mỗi lần render sẽ làm React quay
+   * vòng cho tới khi tràn ngăn xếp.
+   */
+  const hasHolding = useGameStore((state) => allHoldings(state as GameState).length > 0);
+  /**
+   * BỐN CỬA ĐÁNH NHAU, xét theo state thật — xem `systems/encounter/available.ts`.
+   *
+   * Bấu vào từng trường một chứ không giữ cả đối tượng: `availableEncounters`
+   * dựng một đối tượng mới mỗi lần gọi, và một selector trả tham chiếu mới mỗi
+   * lần render sẽ làm React quay vòng. Bốn chuỗi và bốn boolean thì so bằng giá
+   * trị, nên chúng đứng yên khi tình hình đứng yên.
+   */
+  const spar = useGameStore((store) => availableEncounters(store as GameState).spar.ok);
+  const sparWhy = useGameStore((store) => availableEncounters(store as GameState).spar.reason);
+  const battle = useGameStore((store) => availableEncounters(store as GameState).battle.ok);
+  const battleWhy = useGameStore((store) => availableEncounters(store as GameState).battle.reason);
+  const besiege = useGameStore((store) => availableEncounters(store as GameState).besiege.ok);
+  const besiegeWhy = useGameStore((store) => availableEncounters(store as GameState).besiege.reason);
+  const defend = useGameStore((store) => availableEncounters(store as GameState).defend.ok);
+  const defendWhy = useGameStore((store) => availableEncounters(store as GameState).defend.reason);
 
   return (
     <div className="flex flex-col">
@@ -650,43 +680,53 @@ export function StatusPanel({
               Kỹ năng & nhánh
             </button>
           )}
-          {onOpenDuel !== undefined && ready && (
+          {/*
+            BỐN CỬA ĐÁNH NHAU chỉ hiện khi state THẬT có tình huống ấy: có đạo
+            quân, có địch đứng cùng ô, đang vây ai, hay đang bị ai vây. `title`
+            mang câu giải thích của `availableEncounters` nên người chơi rê chuột
+            là biết mình sắp đánh ai — chứ không chỉ biết là bấm được.
+          */}
+          {onOpenDuel !== undefined && spar && (
             <button
               type="button"
               onClick={onOpenDuel}
+              title={sparWhy}
               className="rounded border border-brass px-2 py-1 text-xs text-brass hover:bg-brass/10"
             >
               Đấu tập
             </button>
           )}
-          {onOpenBattle !== undefined && ready && (
+          {onOpenBattle !== undefined && battle && (
             <button
               type="button"
               onClick={onOpenBattle}
+              title={battleWhy}
               className="rounded border border-brass px-2 py-1 text-xs text-brass hover:bg-brass/10"
             >
               Ra trận
             </button>
           )}
-          {onOpenSiege !== undefined && ready && (
+          {onOpenSiege !== undefined && besiege && (
             <button
               type="button"
               onClick={onOpenSiege}
+              title={besiegeWhy}
               className="rounded border border-brass px-2 py-1 text-xs text-brass hover:bg-brass/10"
             >
               Công thành
             </button>
           )}
-          {onOpenDefence !== undefined && ready && (
+          {onOpenDefence !== undefined && defend && (
             <button
               type="button"
               onClick={onOpenDefence}
+              title={defendWhy}
               className="rounded border border-brass px-2 py-1 text-xs text-brass hover:bg-brass/10"
             >
               Thủ thành
             </button>
           )}
-          {onOpenHolding !== undefined && ready && (
+          {onOpenHolding !== undefined && ready && hasHolding && (
             <button
               type="button"
               onClick={onOpenHolding}

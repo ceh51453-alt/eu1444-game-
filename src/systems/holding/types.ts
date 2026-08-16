@@ -7,30 +7,53 @@
  * đang lẫn — chúng thuộc `realm` của Phần 13, và mục 1 của Phần 12 nói thẳng là
  * hai slice KHÔNG được đọc thẳng vào nhau.
  *
- * ĐƠN VỊ (Phụ lục A mục 5): người, công trình, ô, tuần, giạ, thước tường, số
- * quân đồn trú. KHÔNG BAO GIỜ phần trăm dân số — phần trăm là ngôn ngữ của lãnh
- * thổ, và một con số phần trăm lọt vào đây sẽ kéo theo cả giọng văn của tầng kia.
+ * ĐƠN VỊ (Phụ lục A mục 5): người, công trình, Ô 5 MÉT, tuần, giạ, thước tường,
+ * số quân đồn trú. KHÔNG BAO GIỜ phần trăm dân số — phần trăm là ngôn ngữ của
+ * lãnh thổ, và một con số phần trăm lọt vào đây sẽ kéo theo cả giọng văn của
+ * tầng kia.
+ *
+ * ---
+ *
+ * BA THỨ BIẾN MẤT KHỎI `Holding` TRONG CUỘC ĐẠI TU KHÔNG GIAN, và cả ba đều
+ * biến mất vì cùng một lý do: chúng lưu lại một thứ tính lại được.
+ *
+ *  - `tiles[]` — hàng nghìn ô địa hình. Bây giờ là một trường liên tục sinh tất
+ *    định từ `seed`; xem `field.ts`. Một số nguyên 32 bit thay cho 256 dòng dữ
+ *    liệu, và mảnh đất còn đẹp hơn hẳn.
+ *  - `gridSize` — cạnh lưới theo cấp. Bây giờ đất là đất ấy từ đầu, lên cấp chỉ
+ *    NỚI BÁN KÍNH QUY HOẠCH. Bước "mở rộng lưới" từng là chỗ duy nhất một công
+ *    trình có thể rơi mất, và nó không còn tồn tại.
+ *  - `hinterland[]` — bảng đếm ruộng ngoài tường. Bây giờ đếm thật trên đất
+ *    thật trong bán kính quy hoạch; xem `terrainTally` trong `field.ts`.
+ *
+ * Và bốn thứ MỚI vào, cả bốn đều là thứ không tính lại được vì chúng là LỊCH SỬ
+ * CỦA NGƯỜI CHƠI chứ không phải hình dạng của đất: `nodes` (trữ lượng đã đào
+ * hết bao nhiêu), `walls` (đã vạch tuyến tường ở đâu), `roads` (đã bỏ tiền lát
+ * quãng phố nào) và `streetsRazed` (đã cho phá con ngõ tự sinh nào).
+ *
+ * Phép thử để biết một thứ thuộc nhóm nào: **hỏi hạt giống có trả lời được
+ * không.** Con sông thì có, nên nó không nằm trong save. Việc lãnh chúa đã lát
+ * đá phố nào thì không, nên nó nằm.
  */
 
 import type { HoldingId } from '@/core/ids';
+import type { ResourceNode } from './nodes';
+import type { RoadLine } from './roads';
+import type { WallLine } from './walls';
 
 // ---------------------------------------------------------------------------
-// Lưới ô
+// Toạ độ
 // ---------------------------------------------------------------------------
 
-/** Toạ độ ô, gốc ở góc tây-bắc. Lưới MỞ RỘNG chứ không reset, nên gốc cố định. */
+/**
+ * Toạ độ Ô, gốc ở góc tây-bắc của mảnh đất, mỗi ô 5 m.
+ *
+ * Gốc ở GÓC chứ không ở tâm dù mọi bán kính đều đo từ tâm, vì một hệ toạ độ
+ * không âm đơn giản hơn hẳn khi đánh chỉ số vào mảng và khi ghi ra save.
+ */
 export interface Cell {
   x: number;
   y: number;
-}
-
-export interface HoldingTile {
-  x: number;
-  y: number;
-  /** Id trong `data/resources.json → terrain`. */
-  terrain: string;
-  /** Id công trình đang chiếm ô, rỗng là đất trống. */
-  occupiedBy: string;
 }
 
 /** Một công trình ĐÃ DỰNG XONG, đứng ở một chỗ cụ thể. */
@@ -39,7 +62,7 @@ export interface PlacedBuilding {
   id: string;
   /** Id trong `data/buildings.json`. */
   buildingId: string;
-  /** Góc tây-bắc. Công trình vành đai (`perimeter`) dùng `{x:-1,y:-1}`. */
+  /** Góc tây-bắc của khuôn viên, tính bằng ô. */
   at: Cell;
   /** 0–100. Dưới `ruinedBelow` là ngừng sản xuất, dưới `collapseBelow` là sập. */
   integrity: number;
@@ -53,6 +76,13 @@ export interface PlacedBuilding {
   builtOnTurn: number;
   /** Có trả chi phí duy trì tuần vừa rồi không. Bỏ bê là hỏng. */
   maintained: boolean;
+  /**
+   * Vùng tài nguyên công trình này đang khai thác. Rỗng là không bám vùng nào.
+   *
+   * Xưởng cưa không bám vùng rừng thì không ra gỗ, và đó là một sự thật hình
+   * học: nó đang đứng giữa đồng.
+   */
+  nodeId: string;
 }
 
 /** Một dự án ĐANG XÂY (mục 7). */
@@ -87,6 +117,8 @@ export interface BuildProject {
    * save-scum ngay giữa một hệ thống mà R3 đã cố công đóng lại.
    */
   qualityTier: string;
+  /** Vùng tài nguyên dự án sẽ bám khi xong. Rỗng là không bám vùng nào. */
+  nodeId: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -131,12 +163,34 @@ export interface Population {
 // ---------------------------------------------------------------------------
 
 /**
- * Ô địa hình QUANH thành trì (mục 6). Vẫn là tầng thành trì: đi bộ tới được
- * trong một ngày. KHÔNG phải tỉnh — tỉnh CHỨA thành trì, không nằm trong nó.
+ * Một dòng trong bảng đếm địa hình quanh thành.
+ *
+ * KHÔNG còn lưu trong save: `terrainTally()` đếm lại từ mảnh đất thật mỗi khi
+ * cần. Kiểu vẫn tồn tại vì `labour.ts` nói bằng thứ tiếng này, và vì đổi cả
+ * cách tính sản lượng trong một cuộc đại tu về KHÔNG GIAN là đổi hai thứ cùng
+ * lúc — cách chắc chắn nhất để không biết thứ nào làm lệch cân bằng.
  */
 export interface HinterlandTile {
   terrain: string;
   count: number;
+}
+
+// ---------------------------------------------------------------------------
+// Mảnh đất
+// ---------------------------------------------------------------------------
+
+/**
+ * GỢI Ý ĐỊA THẾ TỪ LỜI KỂ.
+ *
+ * Cầu nối hai chiều giữa văn bản và bản đồ. Khi AI kể "toà thành dựng bên khúc
+ * sông cạn" thì bản đồ BẮT BUỘC phải có một dòng sông, nếu không hai nguồn sự
+ * thật nói hai chuyện và người chơi tin cái nào cũng sai. Đây là chỗ duy nhất
+ * lời kể được phép động tới hình dạng của đất — và nó chỉ bật cờ, không vẽ.
+ */
+export interface TerrainHint {
+  river: boolean;
+  sea: boolean;
+  mountain: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -173,7 +227,7 @@ export interface Ownership {
 export interface Permits {
   /** Id cấp khu định cư đã được phép lên. */
   granted: string[];
-  /** Công trình phòng thủ đã được phép xây. */
+  /** Công trình phòng thủ và tuyến tường đã được phép xây. */
   grantedWorks: string[];
   /** Đã xây mà chưa xin phép. Lãnh chúa có quyền đem quân san bằng. */
   illegalWorks: string[];
@@ -209,12 +263,43 @@ export interface Holding {
   name: string;
   /** Id cấp trong `data/settlement-tiers.json`. */
   tierId: string;
-  /** Cạnh lưới hiện tại. Lên cấp thì MỞ RỘNG, công trình cũ giữ nguyên tọa độ. */
-  gridSize: number;
-  tiles: HoldingTile[];
+
+  // --- mảnh đất -----------------------------------------------------------
+  /**
+   * Hạt giống địa hình. Cả 6 km vuông đất sinh ra từ đúng con số này, nên nó là
+   * thứ DUY NHẤT về địa hình cần nằm trong save.
+   *
+   * Đổi hạt giống là đổi mảnh đất, nên nó `locked`: một thành trì không được
+   * thức dậy vào một buổi sáng và thấy con sông của mình đã dời chỗ.
+   */
+  seed: number;
+  /** Địa hình VĨ MÔ của nút bản đồ thế giới chứa thành trì này. */
+  dominant: string;
+  coastal: boolean;
+  /** Toạ độ px trên bản đồ thế giới — chỗ thành trì này thật sự toạ lạc. */
+  anchor: Cell;
+  hint: TerrainHint;
+
   buildings: PlacedBuilding[];
   projects: BuildProject[];
-  hinterland: HinterlandTile[];
+  /** Mỏ, rừng và bãi cá — có biên, có trữ lượng, có ngày cạn. */
+  nodes: ResourceNode[];
+  /** Tuyến tường người chơi tự vạch. Xây rồi là nằm đó cho tới khi bị phá. */
+  walls: WallLine[];
+  /**
+   * Tuyến đường người chơi bỏ tiền lát. KHÔNG phải mạng đường của thành — quan
+   * lộ và ngõ mòn sinh tất định từ `seed` và không tốn một byte nào (`streets.ts`).
+   */
+  roads: RoadLine[];
+  /**
+   * Id những tuyến TỰ SINH người chơi đã cho phá.
+   *
+   * Lưu ý dạng: một chuỗi id, không phải một bản sao của tuyến. Cả mạng đường
+   * dựng lại được từ hạt giống bất cứ lúc nào, nên thứ duy nhất phải giữ là ý
+   * muốn của người chơi — và giữ nó bằng vài chục byte thay vì vài nghìn toạ độ.
+   */
+  streetsRazed: string[];
+
   population: Population;
   /** Kho hàng, theo id trong `data/resources.json`. Con số CHÍNH XÁC. */
   stores: Record<string, number>;
@@ -233,6 +318,20 @@ export interface Holding {
   lastTurn: number;
   /** Số tuần đã trôi qua kể từ khi thành trì được dựng. */
   weeksLived: number;
+  /**
+   * SỔ NGÀY CÒN NỢ — số ngày lịch đã trôi mà chưa gộp thành một tuần chốt sổ.
+   *
+   * Thành trì chốt sổ theo TUẦN (mùa vụ, khẩu phần, tiến độ công trường đều
+   * tính theo tuần), nhưng thời gian trong game trôi theo NGÀY và trôi theo lời
+   * kể: một cảnh nói chuyện trong sảnh tốn hai giờ, một chuyến đi sứ tốn mười
+   * một ngày. Con số này là chỗ hai nhịp ấy gặp nhau — ngày cộng dồn vào đây,
+   * đủ bảy thì một tuần được chốt và bảy ngày bị trừ đi.
+   *
+   * Nó tồn tại thay cho cái nút "chạy một tuần" của bản cũ. Cái nút ấy cho phép
+   * lãnh chúa nuôi thành hai mươi năm trong khi ngoài kia mới là chiều thứ Ba,
+   * và hai cái đồng hồ chạy lệch nhau thì mọi hạn chót trong game mất nghĩa.
+   */
+  daysOwed: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -266,4 +365,13 @@ export interface HoldingSummary {
   defence: number;
   beauty: number;
   unrest: string;
+  /** Bán kính quy hoạch hiện tại, tính bằng thước. */
+  planningMetres: number;
+  /** Tổng chiều dài mọi tuyến tường đã dựng, tính bằng thước. */
+  wallMetres: number;
+  /**
+   * Quân đang có trên mỗi người cần có để canh kín tường. Dưới 1 là có chỗ
+   * trống trên mặt tường — và một vòng tường quá rộng là chỗ trống ấy.
+   */
+  wallDensity: number;
 }

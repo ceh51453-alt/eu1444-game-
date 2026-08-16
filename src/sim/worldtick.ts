@@ -32,6 +32,8 @@ import { emptyTickReport, type TickReport } from './types';
 import { runEconomyTick } from '@/systems/economy/tick';
 import { runMilitaryMonthTick } from '@/systems/military/tick';
 import { runCampaignTick } from '@/systems/campaign/tick';
+import { runHoldingTick } from '@/systems/holding';
+import { crueltyOf, mercyOf } from '@/systems/siege';
 
 /** Dòng xúc sắc riêng của mô phỏng ngầm (Phần 0 mục 5, R3). */
 export const WORLDTICK_STREAM = RNG_STREAMS.worldtick;
@@ -102,6 +104,27 @@ export async function runWorldTick(input: WorldTickInput): Promise<WorldTickResu
   const campaign = runCampaignTick(state, fast.days, fast.date);
   state = commit(state, campaign.ops, failures) ?? state;
   report.lines.push(...campaign.lines);
+
+  // --- Thành trì -----------------------------------------------------------
+  //
+  // Cũng đứng ở nhịp NHANH, ngay sau chiến đồ: ngày trôi bao nhiêu thì thành
+  // trì chốt sổ bấy nhiêu, và không có cái nút nào cho người chơi bấm để nó
+  // xảy ra. Trước đây màn hình thành trì tự chạy tuần rồi "chốt kết quả" một
+  // lô — hai đồng hồ chạy lệch nhau, và cái đồng hồ ở đây mới là cái thật.
+  //
+  // Lòng dân đọc tiếng tăm tàn bạo/nhân từ của Phần 11. Đọc Ở ĐÂY rồi bơm vào
+  // qua tham số, không để `holdings` tự với sang slice `siege` — mục 13 của
+  // README thành trì khai chỗ này là một tham số, và nó phải đúng là thế.
+  const holdings = runHoldingTick({
+    state,
+    days: fast.days,
+    date: fast.date,
+    rng,
+    turn: input.turn,
+    lord: { cruelty: crueltyOf(state), mercy: mercyOf(state), maimed: false },
+  });
+  state = commit(state, holdings.ops, failures) ?? state;
+  report.lines.push(...holdings.lines);
 
   // --- Tick sâu, chạy bù từng tháng ---------------------------------------
   let deepTicks = 0;

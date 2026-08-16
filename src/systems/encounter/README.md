@@ -29,6 +29,42 @@ chỉ gọi vào đây đúng hai hàm (đọc thẻ, bóc thẻ), y như cách 
 | `body.dead` | cửa kiểm duyệt 2 |
 | `meta.gameDate.month` | mùa của cuộc vây hãm — tháng Chạp phải là vây hãm mùa đông |
 | `meta.seed`, `meta.rng` | người gọi khôi phục dòng xúc sắc riêng trước khi dựng |
+| `meta.turn` | cửa "đã có diễn biến chưa" của `available.ts` |
+| `military.forces[*].units[*].strength` | có đạo quân thật không, và bao nhiêu người |
+| `campaign.armies`, `.sieges`, `.control`, `.playerFactionId` | có địch trước mặt không, đang vây ai, ai đang vây mình |
+| `holdings.list[*].besieged` | thành trì của mình có đang bị vây không |
+
+## BỐN CÁI NÚT — `available.ts`
+
+`availableEncounters(state)` trả lời bốn câu hỏi, mỗi câu một `{ ok, reason }`:
+
+| Nút | Mở khi |
+|---|---|
+| Đấu tập | ván đã chạy (`meta.turn > 0`) — sân tập là chỗ luôn có người |
+| Ra trận | có đạo quân bộ còn quân sống **và** có địch đứng CÙNG Ô trên chiến đồ |
+| Công thành | một đạo quân của người chơi đang vây một ô (`siegeNodeId !== ''`) |
+| Thủ thành | một thành trì mang cờ `besieged`, hoặc một dấu vây của phe khác trên ô của mình |
+
+Hai cửa kiểm duyệt của `screenEncounters` (chưa chốt nhân vật, nhân vật đã chết)
+đứng trước cả bốn — **cùng một luật cho cả hai đường vào**, vì "truyện mở được
+trận mà nút bấm thì không" là một mâu thuẫn không ai gỡ được từ phía người chơi.
+
+**Vì sao có file này.** Bản trước cho cả bốn nút hiện ngay khi nhân vật vừa chốt,
+và bấm cái nào cũng ra một trận — nhưng cái trận ấy phần lớn là BỊA:
+`ui/battle/field.ts` từng có một hàm tên thẳng là `fallbackArmy` dựng 1.800 quân
+từ hư không, còn `ui/siege/siege.ts` phát cho kẻ vây 2.000 người khi state trống.
+Hai hệ quả: con số nói dối (người chơi thấy 1.800 quân trong khi `military` nói
+không có ai, rồi `battleCampaignOps` ghi thương vong về một đạo quân không tồn
+tại), và truyện nói dối (bấm "Công thành" giữa một cảnh uống rượu thì đột nhiên
+có một cuộc vây hãm mà không dòng diễn biến nào dẫn tới).
+
+Giờ **không có đường nào sinh ra một quân số không nằm trong state.** Thứ duy
+nhất còn suy ra là TỈ LỆ binh chủng của quân AI (`standingOrderOfBattle`), và nó
+suy ra vì chiến đồ thật sự không mô hình hoá tới từng đơn vị cho chúng — một lỗ
+hổng của mô hình dữ liệu, khai rõ tại chỗ chứ không giấu.
+
+`App.tsx` xét lại cửa một lần nữa lúc bấm chứ không tin cái nút: nút ẩn theo
+state lúc render, còn tình hình đổi được giữa lúc render và lúc bấm.
 
 ## GHI biến nào
 

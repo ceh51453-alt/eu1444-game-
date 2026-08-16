@@ -16,7 +16,7 @@ import { RealmScreen, createJudicialDuel, openRealm, type OpenRealm } from '@/ui
 import { EventCards, WorldScreen, openWorld, useWorld, type OpenWorld } from '@/ui/world';
 import { knowledgeOf } from '@/lore/knowledge';
 import { worldStateOf } from '@/sim';
-import { HOLDING_STREAM, type Holding } from '@/systems/holding';
+import type { Holding } from '@/systems/holding';
 import { createRngHub } from '@/core/rng';
 import { applyPatch } from '@/state/mvu';
 import { useGameStore } from '@/state/store';
@@ -29,6 +29,7 @@ import type { JudicialDuelRequest } from '@/systems/realm';
 import { usePromptStore } from '@/state/prompts';
 import { useSettingsStore } from '@/state/settings';
 import {
+  availableEncounters,
   battleSummary,
   duelSummary,
   siegeSummary,
@@ -124,13 +125,21 @@ export function App(): ReactNode {
    */
   const openDuel = (): void => {
     const snapshot = useGameStore.getState().snapshot();
+    if (!availableEncounters(snapshot).spar.ok) return;
     const hub = createRngHub(snapshot.meta.seed, snapshot.meta.rng);
     setDuel(createSparringDuel(snapshot, hub.stream(DUEL_STREAM), snapshot.meta.turn));
   };
 
-  /** Ra trận cùng lãnh chúa. Dòng xúc sắc riêng của dã chiến, cùng lý do (R3). */
+  /**
+   * Ra trận cùng lãnh chúa. Dòng xúc sắc riêng của dã chiến, cùng lý do (R3).
+   *
+   * Cửa `availableEncounters` xét lại ở đây chứ không tin cái nút: nút ẩn theo
+   * state lúc render, còn tình hình đổi được giữa lúc render và lúc bấm — một
+   * đạo quân tan trong tick vừa rồi là đủ.
+   */
   const openBattle = (): void => {
     const snapshot = useGameStore.getState().snapshot();
+    if (!availableEncounters(snapshot).battle.ok) return;
     const hub = createRngHub(snapshot.meta.seed, snapshot.meta.rng);
     setBattle(createFieldBattle(snapshot, hub.stream(BATTLE_STREAM), snapshot.meta.turn));
   };
@@ -138,18 +147,21 @@ export function App(): ReactNode {
   /** Tới trước một lâu đài đá. Dòng xúc sắc riêng của công thành, cùng lý do (R3). */
   const openSiege = (side: SiegeSide = 'vay'): void => {
     const snapshot = useGameStore.getState().snapshot();
+    const gate = availableEncounters(snapshot);
+    if (!(side === 'vay' ? gate.besiege.ok : gate.defend.ok)) return;
     const hub = createRngHub(snapshot.meta.seed, snapshot.meta.rng);
     setSiege(createCastleSiege(snapshot, hub.stream(SIEGE_STREAM), snapshot.meta.turn, side));
   };
 
   /**
-   * Mở thành trì đang sở hữu. Dòng xúc sắc riêng, cùng lý do (R3): số lần tung
-   * trong một năm xây dựng thay đổi theo cách người chơi quy hoạch.
+   * Mở thành trì đang sở hữu. KHÔNG có cái nào thì không mở gì cả — cùng luật
+   * với bảng cai trị ngay dưới đây, và cùng lý do: một màn hình trống là một
+   * lời hứa suông. Nút trên bảng trạng thái cũng đã ẩn sẵn trong trường hợp ấy.
    */
   const openHolding = (): void => {
-    const snapshot = useGameStore.getState().snapshot();
-    const hub = createRngHub(snapshot.meta.seed, snapshot.meta.rng);
-    setHoldings(openHoldings(snapshot, hub.stream(HOLDING_STREAM)));
+    const rows = openHoldings(useGameStore.getState().snapshot());
+    if (rows.length === 0) return;
+    setHoldings(rows);
   };
 
   /**
@@ -290,11 +302,7 @@ export function App(): ReactNode {
         />
       )}
       {holdings !== null && !creating && !skillsOpen && siege === null && (
-        <HoldingScreen
-          holdings={holdings}
-          date={useGameStore.getState().meta.gameDate}
-          onClose={() => setHoldings(null)}
-        />
+        <HoldingScreen holdings={holdings} onClose={() => setHoldings(null)} />
       )}
       {realm !== null && !creating && !skillsOpen && holdings === null && (
         <RealmScreen

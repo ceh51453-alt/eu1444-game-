@@ -31,9 +31,12 @@ import {
   tierOf,
   unrestFor,
   upkeepConfig,
+  type Building,
   type LabourSeason,
 } from './data';
-import type { Holding, PlacedBuilding } from './types';
+import { nodeById, nodeMultiplier, nodeYields } from './nodes';
+import { hinterlandOf } from './place';
+import type { HinterlandTile, Holding, PlacedBuilding } from './types';
 
 // ---------------------------------------------------------------------------
 // Nhân lực
@@ -141,6 +144,16 @@ export interface Production {
   jobs: number;
   /** Sức chứa kho, theo tài nguyên. Vượt kho thì hàng hỏng nhanh. */
   storage: Record<string, number>;
+  /**
+   * Đã moi lên bao nhiêu từ TỪNG vùng tài nguyên tuần này, khoá theo id vùng.
+   *
+   * `produce()` chỉ ĐẾM chứ không rút — trước đây nó rút thẳng vào `holding.nodes`
+   * qua một cờ `deplete`, nghĩa là một hàm mang tên "sản xuất" lặng lẽ sửa state
+   * của người gọi, và một lần vẽ lại bảng UI là một tuần cái mỏ bị đào thêm.
+   * Bây giờ `week.ts` cầm con số này rồi tự chốt sổ mạch (`tickNodes`), nên
+   * `produce()` thuần đúng nghĩa của Phần 0 mục 7.
+   */
+  drawn: Record<string, number>;
   beauty: number;
   hygiene: number;
   faith: number;
@@ -180,9 +193,9 @@ const FOOD_PRICE = 0.06;
 /** Số tuần lương phải giữ lại trong kho trước khi bán một hạt nào ra chợ. */
 const FOOD_RESERVE_WEEKS = 10;
 
-function hinterlandFood(holding: Holding): number {
+function hinterlandFood(rows: readonly HinterlandTile[]): number {
   let total = 0;
-  for (const row of holding.hinterland) {
+  for (const row of rows) {
     const terrain = terrainOf(row.terrain);
     const yieldPerTile = terrain?.yields['luong-thuc'] ?? 0;
     total += yieldPerTile * row.count * FOOD_PER_HINTERLAND_TILE;
@@ -190,8 +203,8 @@ function hinterlandFood(holding: Holding): number {
   return total;
 }
 
-function hinterlandRaw(holding: Holding, into: Record<string, number>): void {
-  for (const row of holding.hinterland) {
+function hinterlandRaw(rows: readonly HinterlandTile[], into: Record<string, number>): void {
+  for (const row of rows) {
     const terrain = terrainOf(row.terrain);
     if (terrain === undefined || terrain === null) continue;
     for (const [id, amount] of Object.entries(terrain.yields)) {
@@ -199,6 +212,34 @@ function hinterlandRaw(holding: Holding, into: Record<string, number>): void {
       add(into, id, amount * row.count * RAW_PER_HINTERLAND_TILE);
     }
   }
+}
+
+/**
+ * SẢN LƯỢNG TỪ MẠCH TÀI NGUYÊN.
+ *
+ * Đây là phần bản cũ không có: đất quanh thành nhả ra một ít gỗ đá cho cả thành
+ * trì (`hinterlandRaw` ở trên), nhưng một cái mỏ THẬT thì phải có xưởng đứng
+ * trên nó. Sản lượng nhân theo bậc trữ lượng và theo thành phần sản vật của
+ * vùng, nên hai xưởng cưa giống hệt nhau đặt trên hai khu rừng khác bậc cho ra
+ * hai con số khác hẳn — và đó chính là điều làm việc TÌM chỗ đặt có giá trị.
+ */
+function nodeOutput(holding: Holding, placed: PlacedBuilding, building: Building, factor: number, into: Record<string, number>): number {
+  if (building.requiresNode.length === 0) return 0;
+  const node = nodeById(holding.nodes, placed.nodeId);
+  // Xưởng không bám được mạch nào thì đứng không. Không phạt, không báo lỗi —
+  // nó chỉ đơn giản là không có gì để đào, và bảng sản lượng sẽ nói đúng thế.
+  if (node === null || node.grade <= 0) return 0;
+
+  const multiplier = nodeMultiplier(node);
+  let drawn = 0;
+  for (const [id, amount] of Object.entries(building.output)) {
+    const share = nodeYields(node, id);
+    if (share <= 0) continue;
+    const got = amount * factor * multiplier;
+    add(into, id, got);
+    drawn += got;
+  }
+  return drawn;
 }
 
 export interface ProductionContext {
@@ -223,6 +264,7 @@ export function produce(holding: Holding, context: ProductionContext, adjacency?
     housing: tier?.baseHousing ?? 0,
     jobs: tier?.baseJobs ?? 0,
     storage: {},
+    drawn: {},
     beauty: tier?.baseBeauty ?? 0,
     hygiene: 0,
     faith: 0,
@@ -232,6 +274,7 @@ export function produce(holding: Holding, context: ProductionContext, adjacency?
   };
 
   let farmMultiplier = 1;
+  const drawnFromNodes = new Map<string, number>();
 
   for (const placed of holding.buildings) {
     const building = buildingOf(placed.buildingId);
@@ -251,7 +294,17 @@ export function produce(holding: Holding, context: ProductionContext, adjacency?
     production.literacy += building.literacy * standing;
     production.trade += building.trade * (effects?.trade ?? 1) - building.trade;
 
-    for (const [id, amount] of Object.entries(building.output)) add(production.resources, id, amount * factor);
+    // Công trình KHAI THÁC lấy sản lượng từ mạch nó bám; công trình thường sinh
+    // ra theo bảng của chính nó. Hai đường tách hẳn, nếu không thì một xưởng cưa
+    // đứng giữa đồng vẫn ra gỗ và cả `nodes.ts` thành trang trí.
+    if (building.requiresNode.length > 0) {
+      const drawn = nodeOutput(holding, placed, building, factor, production.resources);
+      if (drawn > 0 && placed.nodeId !== '') {
+        drawnFromNodes.set(placed.nodeId, (drawnFromNodes.get(placed.nodeId) ?? 0) + drawn);
+      }
+    } else {
+      for (const [id, amount] of Object.entries(building.output)) add(production.resources, id, amount * factor);
+    }
     for (const [id, amount] of Object.entries(building.consumes)) add(production.resources, id, -amount * standing);
     for (const [id, amount] of Object.entries(building.storage)) add(production.storage, id, amount * standing);
     for (const [id, amount] of Object.entries(building.upkeep)) {
@@ -265,17 +318,22 @@ export function produce(holding: Holding, context: ProductionContext, adjacency?
   const harvest = harvestFactor(context.pool, context.borrowed);
   const siegeStop = context.besieged ? 0.15 : 1;
 
-  production.food = hinterlandFood(holding) * farmMultiplier * harvest * morale * Math.max(0, tension) * siegeStop;
+  const hinterland = hinterlandOf(holding);
+  production.food = hinterlandFood(hinterland) * farmMultiplier * harvest * morale * Math.max(0, tension) * siegeStop;
   for (const id of Object.keys(production.resources)) {
     const value = production.resources[id] ?? 0;
     if (value > 0) production.resources[id] = value * morale * Math.max(0, tension);
   }
 
   const raw: Record<string, number> = {};
-  hinterlandRaw(holding, raw);
+  hinterlandRaw(hinterland, raw);
   for (const [id, amount] of Object.entries(raw)) {
     add(production.resources, id, amount * morale * siegeStop);
   }
+
+  // Mỏ nào cũng có ngày cạn — nhưng việc RÚT trữ lượng không xảy ra ở đây.
+  // Ghi lại phần đã moi lên rồi trả cho `week.ts`; xem chú thích của `drawn`.
+  for (const [nodeId, amount] of drawnFromNodes) add(production.drawn, nodeId, amount);
 
   // BÁN PHẦN DƯ RA CHỢ — nguồn tiền đầu tiên và, ở một cái thôn, nguồn duy nhất.
   // Chỉ bán phần trên mức dự trữ: một lãnh chúa bán sạch kho để lấy tiền xây

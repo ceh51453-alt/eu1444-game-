@@ -8,6 +8,9 @@
  */
 
 import { MAIN_STREAM } from '@/core/rng';
+import { migrateHolding, settleMigratedHolding } from '@/systems/holding/migrate';
+import { holdingsSliceSchema } from '@/systems/holding/slice';
+import type { Holding } from '@/systems/holding/types';
 import { CURRENT_SCHEMA_VERSION } from './schema';
 import { slices, type GameState } from './slices';
 
@@ -40,11 +43,39 @@ const migrateV1ToV2: MigrationStep = (raw) => {
 };
 
 /**
+ * v2 → v3: `holdings` bỏ lưới ô trừu tượng, sang mảnh đất 5 m sinh từ hạt giống.
+ *
+ * `tiles`, `gridSize` và `hinterland` rời khỏi save vì cả ba tính lại được;
+ * `nodes` và `walls` vào vì cả hai là lịch sử của người chơi. Toạ độ công trình
+ * được dịch sang hệ mới, còn việc DỌN bố cục thì đợi tới sau khi save đã qua
+ * schema — xem `settleMigratedHoldings` ở cuối file.
+ *
+ * Save chưa từng có thành trì nào thì bước này không làm gì cả, và đó là phần
+ * lớn các save.
+ */
+const migrateV2ToV3: MigrationStep = (raw) => {
+  const holdings = raw['holdings'];
+  if (typeof holdings !== 'object' || holdings === null || Array.isArray(holdings)) return raw;
+
+  const slice = { ...(holdings as Record<string, unknown>) };
+  const list = slice['list'];
+  if (!Array.isArray(list)) return raw;
+
+  slice['list'] = list.map((holding: unknown) =>
+    typeof holding === 'object' && holding !== null && !Array.isArray(holding)
+      ? migrateHolding(holding as Record<string, unknown>)
+      : holding,
+  );
+  return { ...raw, holdings: slice };
+};
+
+/**
  * Keyed by the version being migrated FROM. The loop below bumps
  * `meta.schemaVersion` itself, so a step only has to fix the shape.
  */
 const MIGRATIONS: ReadonlyMap<number, MigrationStep> = new Map<number, MigrationStep>([
   [1, migrateV1ToV2],
+  [2, migrateV2ToV3],
 ]);
 
 export class MigrationError extends Error {
@@ -87,6 +118,7 @@ export function migrateToCurrent(raw: unknown): GameState {
   }
 
   let working = structuredClone(raw) as Record<string, unknown>;
+  const migrated = version < CURRENT_SCHEMA_VERSION;
 
   while (version < CURRENT_SCHEMA_VERSION) {
     const step = MIGRATIONS.get(version);
@@ -117,7 +149,29 @@ export function migrateToCurrent(raw: unknown): GameState {
       version,
     );
   }
-  return parsed.data as unknown as GameState;
+
+  const state = parsed.data as unknown as GameState;
+  settleMigratedHoldings(state, migrated);
+  return state;
+}
+
+/**
+ * DỌN BỐ CỤC SAU KHI SAVE ĐÃ QUA SCHEMA.
+ *
+ * Bước v2 → v3 chỉ dịch toạ độ; nó không thể dọn, vì dọn cần chạy bộ sinh địa
+ * hình và bộ kiểm tra đặt công trình, mà cả hai đều đòi một `Holding` đã đúng
+ * kiểu. Nên phép dời công trình xảy ra ở đây, một lần, ngay sau khi validate.
+ *
+ * `repairLayout` idempotent nên chạy thừa không hại gì — nhưng vẫn chỉ chạy khi
+ * save thật sự vừa đi qua bước v2 → v3, để mở một save mới không phải trả tiền
+ * cho một cuộc dọn dẹp không có gì để dọn.
+ */
+function settleMigratedHoldings(state: GameState, migrated: boolean): void {
+  if (!migrated) return;
+  const parsed = holdingsSliceSchema.safeParse(state['holdings']);
+  if (!parsed.success) return;
+  for (const holding of parsed.data.list) settleMigratedHolding(holding as Holding);
+  state['holdings'] = parsed.data;
 }
 
 /** True when a save can be opened by this build without data loss. */

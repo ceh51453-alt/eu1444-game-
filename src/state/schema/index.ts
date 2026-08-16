@@ -16,8 +16,11 @@ import { z } from 'zod';
  * Bump whenever the persisted shape changes; add a step in `migrate.ts`.
  *
  * v1 → v2: a single `meta.rngState` became `meta.rng`, a set of named streams.
+ * v2 → v3: `holdings` moved from an abstract N×N tile grid to a real 5 m-cell
+ *          landscape generated from a seed. Tiles, grid size and the hinterland
+ *          tally left the save; resource nodes and hand-drawn wall lines entered.
  */
-export const CURRENT_SCHEMA_VERSION = 2;
+export const CURRENT_SCHEMA_VERSION = 3;
 
 /** Serialised xoshiro128** state — must round-trip byte-exact (R3). */
 export const rngStateSchema = z.object({

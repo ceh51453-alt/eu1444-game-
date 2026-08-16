@@ -37,7 +37,21 @@ import {
   unrestFor,
   type SettlementTier,
 } from './data';
-import { expandGrid, growHinterland } from './grid';
+import { planningRadius } from './place';
+import { cellsToMetres } from './scale';
+import {
+  assignLayers,
+  describeWall,
+  hasWallOfLeast,
+  standingWalls,
+  wallDensity,
+  wallMaterialOf,
+  wallPrerequisiteOf,
+  wallUpkeep,
+  watchmenNeeded,
+} from './walls';
+import { describeRoad, pavingHygiene, roadSurfaceOf, roadUpkeep } from './roads';
+import { tickNodes } from './nodes';
 import { garrisonOf } from './garrison';
 import { capacityOf, foodEaten, labourOf, produce, type LabourPool, type Production } from './labour';
 import { advancePopulation, tickTraining, NO_LORD, type LordContext, type MoraleLine } from './population';
@@ -131,6 +145,10 @@ export function advanceWeek(holding: Holding, rng: Rng, input: WeekInput): WeekR
 
   // 3. sản xuất — đã biết phần nhân công bị kéo khỏi ruộng
   const adjacency = adjacencyOf(holding, { besieged: holding.besieged });
+  // `produce` chỉ ĐẾM phần moi lên từ từng mạch (`production.drawn`); việc chốt
+  // sổ mạch nằm ở mục 4b dưới đây, vì đó mới là chỗ một vùng cạn có thể BIẾN
+  // MẤT khỏi danh sách — và một hàm tên là "sản xuất" thì không nên xoá được
+  // thực thể khỏi state của người gọi.
   const production = produce(
     holding,
     { borrowed: assigned.borrowed, pool, besieged: holding.besieged },
@@ -164,6 +182,34 @@ export function advanceWeek(holding: Holding, rng: Rng, input: WeekInput): WeekR
     working.stores[id] = amount - (sheltered * resource.spoilPerWeek * shelterFactor + exposed * resource.spoilPerWeek * 3);
   }
 
+  // 4b. CHỐT SỔ MẠCH TÀI NGUYÊN — hai luật, tách hẳn nhau.
+  //
+  // Vùng KHOÁNG SẢN (vỉa đá, mạch sắt, bãi cá, ruộng muối): bậc cố định, trừ
+  // dần, moi tới tấn cuối cùng thì vùng BIẾN MẤT khỏi bản đồ.
+  // Vùng TÁI SINH (rừng, đồng cỏ): mọc lại theo bậc × mùa, và bậc lên xuống
+  // theo cán cân giữ gìn — mười năm chặt quá tay thì thưa một bậc, năm mươi
+  // năm giữ gìn thì dày một bậc. Xem `nodes.ts`.
+  const nodeTick = tickNodes(working.nodes, production.drawn, season.id);
+  if (nodeTick.removed.length > 0) {
+    // Một vùng biến mất thì xưởng đứng trên nó mất chỗ bám. Gỡ `nodeId` ngay ở
+    // đây: để nó trỏ vào một vùng không còn tồn tại thì bảng sản lượng sẽ đọc
+    // ra một mạch `null` mỗi tuần và không ai hiểu vì sao xưởng đứng không.
+    const gone = new Set(nodeTick.removed);
+    working = {
+      ...working,
+      nodes: nodeTick.nodes,
+      buildings: working.buildings.map((placed) =>
+        gone.has(placed.nodeId) ? { ...placed, nodeId: '' } : placed,
+      ),
+      projects: working.projects.map((project) =>
+        gone.has(project.nodeId) ? { ...project, nodeId: '' } : project,
+      ),
+    };
+  } else {
+    working = { ...working, nodes: nodeTick.nodes };
+  }
+  for (const line of nodeTick.notes) notes.push(line);
+
   const upkeepResult = payUpkeep(working, production.upkeep, season.id === 'dong');
   working = upkeepResult.holding;
   if (upkeepResult.unpaid.length > 0) {
@@ -184,6 +230,63 @@ export function advanceWeek(holding: Holding, rng: Rng, input: WeekInput): WeekR
   working = build.holding;
   for (const done of build.completed) notes.push(done.line);
   for (const gone of build.collapsed) notes.push(gone.line);
+
+  // 5b. CÔNG TRƯỜNG TƯỜNG THÀNH.
+  //
+  // Tách khỏi hàng đợi công trình vì tuyến tường không phải một công trình:
+  // nó không chiếm khuôn viên, không có kiểm định chất lượng, không xuống cấp
+  // theo cùng một bảng. Nhưng nó CHIA CHUNG hai ràng buộc thật của mục 6 —
+  // mùa đông vữa không đông, và nhân công là thứ khan chứ không phải tiền.
+  // Nhân công CÒN LẠI sau khi công trường công trình đã lấy phần của nó. Cho cả
+  // hai cùng đọc `pool.free` là tiêu một người hai lần, và mục 6 nói thẳng nhân
+  // công là ràng buộc thật — một ràng buộc tiêu được hai lần thì không phải ràng
+  // buộc.
+  const wallResult = advanceWalls(working, season.stoneWork, pool.free - build.labourUsed);
+  working = wallResult.holding;
+  for (const line of wallResult.notes) notes.push(line);
+
+  // Phí duy trì tường: một vòng tường dài là một khoản chi trọn đời, và đó
+  // chính là cái giá của việc vạch rộng.
+  const wallCost = wallUpkeep(working.walls);
+  if (wallCost > 0) {
+    const paid = Math.min(wallCost, Math.max(0, working.stores['tien'] ?? 0));
+    working = { ...working, stores: { ...working.stores, tien: (working.stores['tien'] ?? 0) - paid } };
+    if (paid + 1e-9 < wallCost) {
+      working = {
+        ...working,
+        walls: working.walls.map((wall) =>
+          wall.weeksLeft > 0 ? wall : { ...wall, integrity: Math.max(1, wall.integrity - 0.4) },
+        ),
+      };
+      notes.push('Không đủ tiền tu bổ tường — vữa mục dần và mặt tường bắt đầu nứt.');
+    }
+  }
+
+  // 5c. CÔNG TRƯỜNG ĐƯỜNG SÁ — phần nhân công còn lại sau tường.
+  const roadResult = advanceRoads(
+    working,
+    season.stoneWork,
+    pool.free - build.labourUsed - wallResult.labourUsed,
+  );
+  working = roadResult.holding;
+  for (const line of roadResult.notes) notes.push(line);
+
+  // Phí duy trì mặt đường. Bỏ bê thì đá bong, và một quãng phố lở thì thoát
+  // nước kém đi đúng bằng phần nó đã lở — xem `pavingHygiene`.
+  const roadCost = roadUpkeep(working.roads);
+  if (roadCost > 0) {
+    const paid = Math.min(roadCost, Math.max(0, working.stores['tien'] ?? 0));
+    working = { ...working, stores: { ...working.stores, tien: (working.stores['tien'] ?? 0) - paid } };
+    if (paid + 1e-9 < roadCost) {
+      working = {
+        ...working,
+        roads: working.roads.map((road) =>
+          road.weeksLeft > 0 ? road : { ...road, integrity: Math.max(1, road.integrity - 0.6) },
+        ),
+      };
+      notes.push('Không đủ tiền tu bổ đường — đá lát bong dần và rãnh thoát bắt đầu tắc.');
+    }
+  }
 
   // 6. dân số và lòng dân
   const capacity = capacityOf(production);
@@ -207,7 +310,13 @@ export function advanceWeek(holding: Holding, rng: Rng, input: WeekInput): WeekR
     ...working,
     population,
     ownership,
-    hygiene: Math.max(0, Math.min(100, 45 + production.hygiene - (working.plague ? 20 : 0))),
+    // Mặt đường THOÁT NƯỚC, và đó là việc duy nhất nó làm về mặt cơ học — một
+    // con phố đất trong một thành trì bốn nghìn dân là một rãnh bùn trộn phân.
+    // Chặn trên 12 điểm nằm trong `pavingHygiene`; xem chú thích ở đó.
+    hygiene: Math.max(
+      0,
+      Math.min(100, 45 + production.hygiene + pavingHygiene(working.roads) - (working.plague ? 20 : 0)),
+    ),
     lastTurn: input.turn,
     weeksLived: working.weeksLived + 1,
   };
@@ -241,6 +350,97 @@ function bottleneckName(id: 'cho-o' | 'luong-thuc' | 'viec-lam'): string {
 }
 
 // ---------------------------------------------------------------------------
+// Công trường tường thành
+// ---------------------------------------------------------------------------
+
+/**
+ * Một tuần trên các tuyến đang thi công.
+ *
+ * Nhân công rảnh chia đều cho các tuyến; tuyến nào cũng chỉ nhận tới mức tổ thợ
+ * chuẩn của nó. Mùa đông thì công trường ĐÁ đứng im — vữa không đông, và đó là
+ * cùng một luật đã áp cho công trình đá trong `data/resources.json`. Hàng rào gỗ
+ * vẫn dựng được giữa mùa đông, và cái khác biệt ấy là một quyết định thật của
+ * một lãnh chúa đang vội.
+ */
+function advanceWalls(
+  holding: Holding,
+  stoneWork: boolean,
+  freeLabour: number,
+): { holding: Holding; notes: string[]; labourUsed: number } {
+  const building = holding.walls.filter((wall) => wall.weeksLeft > 0);
+  if (building.length === 0) return { holding, notes: [], labourUsed: 0 };
+
+  const notes: string[] = [];
+  const share = Math.max(0, freeLabour) / building.length;
+  let labourUsed = 0;
+
+  const walls = holding.walls.map((wall) => {
+    if (wall.weeksLeft <= 0) return wall;
+    const material = wallMaterialOf(wall.materialId);
+    if (material === null) return wall;
+    if (material.stoneWork && !stoneWork) return wall;
+    if (share <= 0) return wall;
+
+    // Tiến độ tính bằng CÔNG, không bằng tuần trôi qua: một tuyến bỏ hoang không
+    // tự xong. Nhưng vẫn có sàn số tuần, vì vữa cần thời gian đông dù có bao
+    // nhiêu người đứng nhìn.
+    const manWeeksLeft = Math.max(0, wall.manWeeksLeft - share);
+    // Tổ thợ chỉ tiêu ĐÚNG phần công còn thiếu. Một tuyến sắp xong không nuốt
+    // trọn suất của mình rồi bỏ phí — phần thừa đi tiếp xuống công trường đường.
+    labourUsed += wall.manWeeksLeft - manWeeksLeft;
+    const weeksLeft = Math.max(0, wall.weeksLeft - 1);
+    const done = manWeeksLeft <= 0 && weeksLeft <= 0;
+    if (done) notes.push(`${wall.name} dựng xong — ${describeWall({ ...wall, weeksLeft: 0 })}.`);
+    return { ...wall, manWeeksLeft, weeksLeft: done ? 0 : Math.max(weeksLeft, manWeeksLeft > 0 ? 1 : 0) };
+  });
+
+  return { holding: { ...holding, walls: assignLayers(walls) }, notes, labourUsed };
+}
+
+// ---------------------------------------------------------------------------
+// Công trường đường sá
+// ---------------------------------------------------------------------------
+
+/**
+ * Một tuần trên các quãng phố đang lát.
+ *
+ * Cùng luật với công trường tường, và cố ý cùng: đá lát cần vữa hệt như tường
+ * đá cần vữa, nên mùa đông một quãng phố lát đá cũng đứng im. Đường đất và
+ * đường sỏi thì không, và đó là lý do chúng tồn tại — lãnh chúa nào cần một lối
+ * đi được TRƯỚC MÙA XUÂN thì rải sỏi, rồi mười năm sau lát lại bằng đá.
+ *
+ * Nhân công vào đây là phần CÒN LẠI sau công trường công trình và công trường
+ * tường. Ba cái công trường cùng đọc `pool.free` là tiêu một người ba lần.
+ */
+function advanceRoads(
+  holding: Holding,
+  stoneWork: boolean,
+  freeLabour: number,
+): { holding: Holding; notes: string[] } {
+  const paving = holding.roads.filter((road) => road.weeksLeft > 0);
+  if (paving.length === 0) return { holding, notes: [] };
+
+  const notes: string[] = [];
+  const share = Math.max(0, freeLabour) / paving.length;
+
+  const roads = holding.roads.map((road) => {
+    if (road.weeksLeft <= 0) return road;
+    const surface = roadSurfaceOf(road.surfaceId);
+    if (surface === null) return road;
+    if (surface.stoneWork && !stoneWork) return road;
+    if (share <= 0) return road;
+
+    const manWeeksLeft = Math.max(0, road.manWeeksLeft - share);
+    const weeksLeft = Math.max(0, road.weeksLeft - 1);
+    const done = manWeeksLeft <= 0 && weeksLeft <= 0;
+    if (done) notes.push(`${road.name} lát xong — ${describeRoad({ ...road, weeksLeft: 0 })}.`);
+    return { ...road, manWeeksLeft, weeksLeft: done ? 0 : Math.max(weeksLeft, manWeeksLeft > 0 ? 1 : 0) };
+  });
+
+  return { holding: { ...holding, roads }, notes };
+}
+
+// ---------------------------------------------------------------------------
 // Lên cấp — ĐỦ BỐN THỨ (mục 3)
 // ---------------------------------------------------------------------------
 
@@ -252,6 +452,19 @@ export interface UpgradeCheck {
   cost: { ok: boolean; missing: Record<string, number> };
   permit: { ok: boolean; illegalAllowed: boolean };
   next: SettlementTier | null;
+}
+
+/**
+ * Tiên quyết lên cấp: có cái từng là công trình, giờ là một TUYẾN TƯỜNG.
+ *
+ * `requiresBuildings` khai `bld_tuong-go` ở cấp Thành và `bld_tuong-da` ở cấp
+ * Đại thành; cả hai giờ là vật liệu tường. Phép dịch nằm trong `walls.ts` để cả
+ * `canPlace` lẫn chỗ này cùng đọc một bảng.
+ */
+function holdingHas(holding: Holding, buildingId: string): boolean {
+  const material = wallPrerequisiteOf(buildingId);
+  if (material !== null) return hasWallOfLeast(holding.walls, material);
+  return holding.buildings.some((placed) => placed.buildingId === buildingId);
 }
 
 export function canUpgrade(holding: Holding): UpgradeCheck {
@@ -269,9 +482,7 @@ export function canUpgrade(holding: Holding): UpgradeCheck {
 
   const rule = next.upgrade;
   const have = holding.population.total;
-  const missingBuildings = rule.requiresBuildings.filter(
-    (id) => !holding.buildings.some((placed) => placed.buildingId === id),
-  );
+  const missingBuildings = rule.requiresBuildings.filter((id) => !holdingHas(holding, id));
   const missingCost: Record<string, number> = {};
   for (const [id, amount] of Object.entries(rule.cost)) {
     const short = amount - Math.max(0, holding.stores[id] ?? 0);
@@ -310,7 +521,7 @@ export interface UpgradeResult {
  * sẽ đọc để cho lãnh chúa phản ứng thật. Nếu engine chỉ chặn thì cả điểm chính
  * trị đặc trưng nhất của thế kỷ 14 biến mất khỏi trò chơi.
  */
-export function upgrade(holding: Holding, rng: Rng, allowIllegal = false): UpgradeResult {
+export function upgrade(holding: Holding, allowIllegal = false): UpgradeResult {
   const check = canUpgrade(holding);
   const next = check.next;
   if (next?.upgrade === undefined) return { holding, ok: false, reason: 'đã ở cấp cao nhất', illegal: false };
@@ -324,7 +535,13 @@ export function upgrade(holding: Holding, rng: Rng, allowIllegal = false): Upgra
     };
   }
   if (!check.buildings.ok) {
-    const names = check.buildings.missing.map((id) => buildingOf(id)?.name ?? id).join(', ');
+    const names = check.buildings.missing
+      .map((id) => {
+        const material = wallPrerequisiteOf(id);
+        if (material !== null) return `một vòng ${wallMaterialOf(material)?.name ?? material} khép kín`;
+        return buildingOf(id)?.name ?? id;
+      })
+      .join(', ');
     return { holding, ok: false, reason: `còn thiếu: ${names}`, illegal: false };
   }
   if (!check.cost.ok) {
@@ -343,14 +560,18 @@ export function upgrade(holding: Holding, rng: Rng, allowIllegal = false): Upgra
     };
   }
 
-  const current = tierOf(holding.tierId);
-  const rank = current?.rank ?? 1;
-
   const stores = { ...holding.stores };
   for (const [id, amount] of Object.entries(next.upgrade.cost)) {
     stores[id] = Math.max(0, (stores[id] ?? 0) - amount);
   }
 
+  // LÊN CẤP LÀ NỚI TẦM VỚI, KHÔNG PHẢI ĐỔI ĐẤT.
+  //
+  // Bản cũ phải sinh thêm ô lưới và cấy thêm ruộng ở đây, và cả hai bước ấy đều
+  // cần `rng` — nghĩa là lên cấp cùng một thành trì hai lần từ cùng một save cho
+  // ra hai mảnh đất khác nhau. Bây giờ đất đã có sẵn từ tuần thứ nhất; lãnh chúa
+  // chỉ vừa được phép với tay xa hơn. Không xúc xắc nào phải tung, và không công
+  // trình nào có chỗ để rơi mất.
   return {
     ok: true,
     reason: '',
@@ -358,10 +579,6 @@ export function upgrade(holding: Holding, rng: Rng, allowIllegal = false): Upgra
     holding: {
       ...holding,
       tierId: next.id,
-      gridSize: next.grid,
-      // MỞ RỘNG, không reset: công trình cũ giữ nguyên toạ độ và nguyên `occupiedBy`.
-      tiles: expandGrid(holding.tiles, holding.gridSize, next.grid, rng),
-      hinterland: growHinterland(holding.hinterland, rng, rank, next.rank),
       stores,
       permits: illegal
         ? { ...holding.permits, illegalWorks: [...holding.permits.illegalWorks, next.id] }
@@ -408,6 +625,12 @@ export function summarize(holding: Holding, date: GameDate, titleId = 'thuong-da
     defence: readiness.defence,
     beauty: production.beauty,
     unrest: unrest.name,
+    planningMetres: Math.round(cellsToMetres(planningRadius(holding))),
+    wallMetres: Math.round(cellsToMetres(standingWalls(holding.walls).reduce((sum, wall) => sum + wall.length, 0))),
+    // Không có tuyến nào thì mật độ vô nghĩa, và trả 0 sẽ làm UI kêu "thiếu
+    // quân canh" ở một thành trì chưa có gì để canh. Trả 1: đủ đúng bằng cái
+    // không phải canh.
+    wallDensity: watchmenNeeded(holding.walls) === 0 ? 1 : wallDensity(holding.walls, garrison.men),
   };
 }
 

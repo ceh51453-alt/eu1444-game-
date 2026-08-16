@@ -14,10 +14,13 @@
 import { makeId, type HoldingId } from '@/core/ids';
 import type { Rng } from '@/core/rng';
 import { holdingConfig, lowestTier, tierByRank, tierOf } from './data';
-import { generateGrid, generateHinterland } from './grid';
+import { seedFromId } from './field';
+import { layoutHolding, startingLayout } from './layout';
+import { ensureNodes } from './nodes';
+import { fieldOf } from './place';
 import { PATH_PROFILES, ownershipFor } from './ownership';
 import { raceTensionOf } from './population';
-import type { Holding, Population, RaceCount } from './types';
+import type { Cell, Holding, Population, RaceCount, TerrainHint } from './types';
 import type { OwnershipPath } from './types';
 
 export interface CreateHoldingOptions {
@@ -38,8 +41,27 @@ export interface CreateHoldingOptions {
   stores?: Record<string, number>;
   serviceDays?: number;
   rivalClaimant?: string;
-  /** Ép địa hình vài ô — dùng khi vị trí thật trên bản đồ đã biết. */
-  fixedTerrain?: { x: number; y: number; terrain: string }[];
+  /**
+   * Địa hình VĨ MÔ của nút bản đồ thế giới chứa thành trì này — id trong
+   * `data/world-map.json` (`dong-bang`, `doi`, `nui`, `rung`, `dam-lay`,
+   * `song`, `thao-nguyen`, `bien`). Cả 6 km vuông đất mọc ra từ đây.
+   */
+  dominant?: string;
+  coastal?: boolean;
+  /** Toạ độ px của nút trên bản đồ thế giới. */
+  anchor?: Cell;
+  /** Hạt giống địa hình. Bỏ trống thì suy từ id — cùng id thì cùng mảnh đất. */
+  seed?: number;
+  /** Gợi ý từ lời kể: "dựng bên sông", "dưới chân núi". */
+  hint?: Partial<TerrainHint>;
+  /**
+   * Dựng sẵn công trình theo cấp.
+   *
+   * Mặc định BẬT cho ba con đường có sẵn thành trì và TẮT cho `phat-trien` —
+   * mục 2 nói người đi đường thứ tư "tìm hoặc mua một thôn nhỏ rồi nuôi lớn",
+   * và một cái thôn đã có sẵn chợ thì không còn gì để nuôi.
+   */
+  prebuild?: boolean;
 }
 
 export function createHolding(rng: Rng, options: CreateHoldingOptions): Holding {
@@ -76,14 +98,24 @@ export function createHolding(rng: Rng, options: CreateHoldingOptions): Holding 
     id,
     name: options.name,
     tierId: tier.id,
-    gridSize: tier.grid,
-    tiles: generateGrid(rng, {
-      size: tier.grid,
-      ...(options.fixedTerrain === undefined ? {} : { fixed: options.fixedTerrain }),
-    }),
+    // Hạt giống suy từ ID chứ không rút từ `rng`, và đó là chủ ý: hai ván chơi
+    // khác nhau cùng gặp thành Aachen phải thấy CÙNG một mảnh đất. Địa lý không
+    // đổi theo người đi qua nó. Ai muốn một mảnh đất khác thì truyền `seed`.
+    seed: options.seed ?? seedFromId(id),
+    dominant: options.dominant ?? 'dong-bang',
+    coastal: options.coastal ?? options.dominant === 'bien',
+    anchor: options.anchor ?? { x: 0, y: 0 },
+    hint: {
+      river: options.hint?.river ?? false,
+      sea: options.hint?.sea ?? false,
+      mountain: options.hint?.mountain ?? false,
+    },
     buildings: [],
     projects: [],
-    hinterland: generateHinterland(rng, tier.rank),
+    nodes: [],
+    walls: [],
+    roads: [],
+    streetsRazed: [],
     population,
     stores: { ...(options.stores ?? {}) },
     ownership: ownershipFor(options.path, options.turn, options.rivalClaimant ?? ''),
@@ -101,9 +133,27 @@ export function createHolding(rng: Rng, options: CreateHoldingOptions): Holding 
     hygiene: 50,
     lastTurn: options.turn,
     weeksLived: 0,
+    daysOwed: 0,
   };
 
-  return { ...holding, population: { ...population, raceTension: raceTensionOf(holding) } };
+  holding.nodes = ensureNodes(fieldOf(holding), [], holding.walls);
+  holding.population.raceTension = raceTensionOf(holding);
+
+  // Ba con đường có sẵn thành trì thì thành trì đã đứng đó từ trước; đường thứ
+  // tư bắt đầu từ một cái thôn trần. Công trình của thành đánh chiếm được vào
+  // với thương tích sẵn — mục 2 nói "công trình hư hại", và một thành chiếm
+  // được mà mọi thứ còn nguyên vẹn 100 thì cả câu ấy chỉ là lời kể.
+  const prebuild = options.prebuild ?? options.path !== 'phat-trien';
+  if (prebuild) {
+    const damaged = options.path === 'danh-chiem';
+    layoutHolding(
+      holding,
+      startingLayout(tier.id).map((item) => (damaged ? { ...item, integrity: 55 + rng.next() * 25 } : item)),
+      options.turn,
+    );
+  }
+
+  return holding;
 }
 
 /**

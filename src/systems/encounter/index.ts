@@ -34,6 +34,12 @@ export {
 export { playerFighterSpec, skillLevels } from './player';
 
 export {
+  availableEncounters,
+  type AvailableEncounters,
+  type EncounterOption,
+} from './available';
+
+export {
   autoResolve,
   battleSummary,
   duelSummary,

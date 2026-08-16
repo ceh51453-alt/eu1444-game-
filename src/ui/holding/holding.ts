@@ -1,47 +1,34 @@
 /**
  * MỞ MÀN HÌNH THÀNH TRÌ TỪ VÁN CHƠI ĐANG CHẠY.
  *
- * Ưu tiên các thành trì ĐÃ CÓ trong state. Chỉ khi chưa có cái nào — ván chơi mới
- * dựng, hoặc người chơi xuất thân nông nô — thì mới dựng một thôn khởi đầu, và
- * nó đi theo con đường `phat-trien` của mục 2: không ai cho gì, nên cũng không ai
- * đòi gì, và mọi viên đá đều do người chơi đặt.
+ * Chỉ mở những thành trì ĐÃ CÓ THẬT trong state. **Không dựng gì cả.**
  *
- * Thành trì khai lúc tạo nhân vật nằm ở `data/starting-possessions.json` (Phần 6)
- * — đó là LỚP KHAI BÁO, còn hệ thật là Phần 12, đúng như bảng tra của README mục
- * 5 nói. Cửa dưới đây là chỗ hai thứ ấy gặp nhau.
+ * Bản trước dựng sẵn một cái thôn khi state chưa có thành trì nào, và đó là một
+ * món quà không ai xin: một tên du thủ du thực, một thầy tu, một đứa con thứ
+ * không được thừa kế gì — cả ba mở bảng trạng thái ra đều thấy mình đang làm
+ * chủ một cái thôn sáu chục dân. Bước 8 của Phần 6 (`starting-possessions.json`)
+ * đã HỎI người chơi giữ cái gì; dựng thêm ở đây là trả lời hộ họ, và trả lời
+ * ngược lại với câu họ vừa nói.
+ *
+ * Bốn con đường có thành trì của mục 2 vẫn còn nguyên — `xuat-than` là con
+ * đường đi qua khâu tạo nhân vật, ba con đường kia (`duoc-phong`, `danh-chiem`,
+ * `phat-trien`) là chuyện xảy ra TRONG ván chơi và đi qua `createHolding` ở
+ * đúng cái lượt chúng xảy ra. Không con đường nào trong bốn cái đi qua đây.
+ *
+ * Nút "Thành trì" trên bảng trạng thái vì thế cũng chỉ hiện khi có thật —
+ * xem `hasHolding` trong `ui/shell/StatusPanel.tsx`. Một cái nút mở ra màn hình
+ * trống là một lời hứa suông; không có nút mới là câu trả lời đúng cho một nhân
+ * vật không có tấc đất nào.
  */
 
-import type { Rng } from '@/core/rng';
 import type { GameState } from '@/state/slices';
-import { characterOf } from '@/systems/character/slice';
-import { allHoldings, createHolding, uniqueHoldingName, type Holding } from '@/systems/holding';
+import { allHoldings, type Holding } from '@/systems/holding';
 
-/** Tên thôn khởi đầu, để không đụng tên bất kỳ lãnh thổ nào (Phụ lục A mục 9a). */
-const SEED_NAMES = ['Bạch Dương', 'Cửa Suối', 'Gò Sồi', 'Bến Sậy', 'Đồi Mía'];
+export function openHoldings(state: GameState): Holding[] {
+  return allHoldings(state);
+}
 
-export function openHoldings(state: GameState, rng: Rng): Holding[] {
-  const existing = allHoldings(state);
-  if (existing.length > 0) return existing;
-
-  // Danh sách tên đã dùng đến từ NGOÀI, không phải từ slice `realm` — Phụ lục A
-  // mục 9a chặn trùng tên ở khâu dữ liệu, và mục 1 của Phần 12 cấm `holdings`
-  // đọc thẳng sang tầng lãnh thổ. Ở đây chưa có thành trì nào nên danh sách rỗng;
-  // khi Phần 13 có tên lãnh thổ thật thì nó truyền vào qua cửa này.
-  const name = uniqueHoldingName(rng.pick(SEED_NAMES), []);
-  const raceId = characterOf(state)?.identity.race ?? 'race_frank';
-
-  return [
-    createHolding(rng, {
-      slug: 'thon-khoi-dau',
-      name,
-      path: 'phat-trien',
-      turn: state.meta.turn,
-      seat: true,
-      population: 62,
-      races: [{ raceId, people: 62 }],
-      // Đủ để dựng căn nhà đầu tiên và đào cái giếng đầu tiên, không hơn. Mọi
-      // thứ sau đó phải tự kiếm — đó là cả ý nghĩa của con đường `phat-trien`.
-      stores: { tien: 60, go: 40, da: 10 },
-    }),
-  ];
+/** Nhân vật này có tấc đất nào không. Bảng trạng thái hỏi câu này. */
+export function hasAnyHolding(state: GameState | null): boolean {
+  return state !== null && allHoldings(state).length > 0;
 }

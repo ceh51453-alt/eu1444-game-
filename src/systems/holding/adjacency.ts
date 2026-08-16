@@ -18,9 +18,25 @@
  *     Người chơi phải xem trước được hiệu ứng TRƯỚC KHI đặt (mục 11).
  */
 
-import { adjacencyConfig, adjacencyRules, buildingOf, terrainMatches, type AdjacencyRule, type AdjacencySelector, type Building } from './data';
-import { cellsOf, chebyshev, hasWall, isBorderCell, tileAt } from './grid';
+import { adjacencyConfig, adjacencyRules, buildingOf, footprintOf, terrainMatches, type AdjacencyRule, type AdjacencySelector, type Building } from './data';
+import { terrainAt } from './field';
+import { centreOf, fieldOf, hasWall, WALL_BOUND_CELLS } from './place';
+import { distanceToWall, standingWalls } from './walls';
 import type { Cell, Holding, PlacedBuilding } from './types';
+
+/**
+ * MỘT BẬC `radius` TRONG `data/adjacency.json` BẰNG BAO NHIÊU Ô 5 M.
+ *
+ * Bảng luật khai `radius` từ 0 tới 4 — con số ấy có từ thời một "ô" là một chỗ
+ * đặt công trình. Ở hệ mới một chỗ đặt công trình là khoảng 16 ô cộng khoảng
+ * thở, nên một bậc kề nhau ứng với chừng 110 m: đủ gần để ngửi thấy mùi xưởng
+ * thuộc da, đủ xa để không phải là cùng một khoảnh đất.
+ *
+ * Quy đổi ở ĐÂY chứ không sửa 40 dòng data, vì con số trong data là một QUAN HỆ
+ * ("cái này kề cái kia") chứ không phải một khoảng cách; sửa nó thành 22 là làm
+ * bảng luật phụ thuộc vào tỉ lệ lưới, và lần sau đổi tỉ lệ thì phải sửa lại cả bảng.
+ */
+export const CELLS_PER_ADJACENCY_STEP = 22;
 
 /** Khoá NHÂN — cộng dồn rồi áp `1 + tổng`. */
 const FACTOR_KEYS = new Set(['output', 'faith', 'trade', 'upkeep', 'buildSpeed']);
@@ -76,107 +92,95 @@ function subjectMatches(selector: AdjacencySelector, building: Building): boolea
   return false;
 }
 
-/**
- * Ô mà chủ thể "đứng trên".
- *
- * Công trình VÀNH ĐAI không chiếm ô nào, nhưng nó vẫn có mặt ở một chỗ vật lý:
- * cả vòng mép thành. Nếu trả về mảng rỗng thì mọi luật có chủ thể là tường hay
- * hào sẽ im lặng không chạy — và luật "hào kề nước thì ngập được" là một trong
- * bảy luật của mục 4, không được phép biến mất.
- */
-function subjectCells(holding: Holding, building: Building, at: Cell): Cell[] {
-  if (!building.perimeter) return cellsOf(building, at);
-  const ring: Cell[] = [];
-  const size = holding.gridSize;
-  for (let y = 0; y < size; y++) {
-    for (let x = 0; x < size; x++) {
-      if (isBorderCell({ x, y }, size)) ring.push({ x, y });
-    }
-  }
-  return ring;
-}
-
-/**
- * Ô trong tầm `radius` của chủ thể. `radius === 0` là chính ô mình đứng.
- *
- * Quét theo HỘP BAO của chủ thể, không quét cả lưới. Cách quét cả lưới đọc dễ
- * hơn nhưng nó là O(cạnh²) cho mỗi luật của mỗi công trình của mỗi tuần, và ở
- * một đại thành 16×16 với trăm công trình thì một lượt mô phỏng biến thành hàng
- * trăm nghìn phép so sánh — bài test nuôi thành của mục 12.11 phải chạy hàng
- * chục nghìn tuần, nên chỗ này là chỗ duy nhất trong Phần 12 mà tốc độ đáng để
- * đánh đổi lấy vài dòng số học.
- */
-function neighbourCells(holding: Holding, own: readonly Cell[], radius: number): Cell[] {
-  if (radius === 0) return [...own];
-  if (own.length === 0) return [];
-
-  let minX = Number.POSITIVE_INFINITY;
-  let minY = Number.POSITIVE_INFINITY;
-  let maxX = Number.NEGATIVE_INFINITY;
-  let maxY = Number.NEGATIVE_INFINITY;
-  const ownKeys = new Set<string>();
-  for (const cell of own) {
-    ownKeys.add(`${String(cell.x)},${String(cell.y)}`);
-    if (cell.x < minX) minX = cell.x;
-    if (cell.y < minY) minY = cell.y;
-    if (cell.x > maxX) maxX = cell.x;
-    if (cell.y > maxY) maxY = cell.y;
-  }
-
-  const size = holding.gridSize;
-  const fromX = Math.max(0, minX - radius);
-  const toX = Math.min(size - 1, maxX + radius);
-  const fromY = Math.max(0, minY - radius);
-  const toY = Math.min(size - 1, maxY + radius);
-
-  const cells: Cell[] = [];
-  for (let y = fromY; y <= toY; y++) {
-    for (let x = fromX; x <= toX; x++) {
-      if (ownKeys.has(`${String(x)},${String(y)}`)) continue;
-      if (!own.some((cell) => chebyshev(cell, { x, y }) <= radius)) continue;
-      cells.push({ x, y });
-    }
-  }
-  return cells;
+/** Tầm với thật của một luật, tính bằng ô. `radius === 0` là chính khuôn viên. */
+function reachOf(building: Building, radius: number): number {
+  return footprintOf(building) / 2 + radius * CELLS_PER_ADJACENCY_STEP;
 }
 
 /**
  * Đếm số lần một luật bắt được.
  *
- * Công trình láng giềng đếm theo THỰC THỂ chứ không theo ô: một dãy nhà 2×2 nằm
- * cạnh xưởng thuộc da là MỘT dãy nhà bị hôi, không phải bốn.
+ * BA CÁCH ĐẾM KHÁC NHAU, và sự khác nhau ấy có chủ ý:
+ *
+ *  - **Láng giềng là CÔNG TRÌNH** thì đếm theo THỰC THỂ: một dãy nhà rộng 80 m
+ *    đứng cạnh xưởng thuộc da là MỘT dãy nhà bị hôi, không phải mười sáu ô nhà.
+ *    Đo từ mép khuôn viên tới mép khuôn viên, nên một công trình to không tự
+ *    dưng "kề" được nhiều thứ hơn chỉ vì nó to.
+ *  - **Láng giềng là ĐỊA HÌNH** thì đếm theo MẪU trên một vòng quanh khuôn viên.
+ *    Một cối xay có cả khúc sông chảy dọc mặt nam ăn nhiều hơn một cối xay chỉ
+ *    chạm nước ở một góc — và bây giờ điều đó đo được, vì sông là một dòng có bề
+ *    rộng chứ không phải một ô đánh dấu.
+ *  - **Láng giềng là TƯỜNG** thì hỏi khoảng cách tới tuyến gần nhất. Bản cũ hỏi
+ *    "có đứng ở mép lưới không", mà mép lưới chưa bao giờ là chỗ tường chạy.
  */
-function countMatches(holding: Holding, rule: AdjacencyRule, own: readonly Cell[]): number {
+function countMatches(holding: Holding, rule: AdjacencyRule, building: Building, at: Cell): number {
+  const centre = centreOf(building, at);
+  const reach = reachOf(building, rule.radius);
+
   if (rule.neighbor.kind === 'wall') {
-    if (!hasWall(holding)) return 0;
-    return own.some((cell) => isBorderCell(cell, holding.gridSize)) ? 1 : 0;
+    const walls = standingWalls(holding.walls);
+    if (walls.length === 0 || !hasWall(holding)) return 0;
+    return distanceToWall(walls, centre.x, centre.y) <= WALL_BOUND_CELLS + footprintOf(building) / 2 ? 1 : 0;
   }
 
-  const cells = neighbourCells(holding, own, rule.radius);
-
   if (rule.neighbor.kind === 'terrain' || rule.neighbor.kind === 'terrainTag') {
-    let count = 0;
-    for (const cell of cells) {
-      const tile = tileAt(holding, cell);
-      if (tile === null) continue;
-      if (rule.neighbor.ids.some((name) => terrainMatches(tile.terrain, name))) count++;
+    const field = fieldOf(holding);
+    const half = footprintOf(building) / 2;
+
+    // `radius === 0` nghĩa là ĐẤT MÌNH ĐỨNG LÊN, không phải đất quanh mình.
+    // "Xây trên đá gốc" và "tháp trên đồi" là hai luật thuộc loại này, và lấy
+    // mẫu ở vành ngoài sẽ trả lời sai cho cả hai: một cái tháp đứng trọn trên
+    // đỉnh đồi mà bốn phía là đồng bằng sẽ được ghi là không ở trên đồi.
+    if (rule.radius === 0) {
+      let hits = 0;
+      const probes: readonly [number, number][] = [
+        [centre.x, centre.y],
+        [centre.x - half * 0.5, centre.y - half * 0.5],
+        [centre.x + half * 0.5, centre.y - half * 0.5],
+        [centre.x - half * 0.5, centre.y + half * 0.5],
+        [centre.x + half * 0.5, centre.y + half * 0.5],
+      ];
+      for (const [px, py] of probes) {
+        const id = terrainAt(field, px, py);
+        if (rule.neighbor.ids.some((name) => terrainMatches(id, name))) hits++;
+      }
+      // Quá nửa khuôn viên nằm trên loại đất ấy thì tính là đứng trên nó.
+      return hits >= 3 ? 1 : 0;
     }
-    return count;
+
+    const inner = half;
+    let count = 0;
+    // Lấy mẫu theo vành: 24 tia × 3 vòng là 72 phép, không phụ thuộc vào kích
+    // thước công trình hay bán kính luật. Quét cả hộp bao thì một luật bán kính
+    // 4 quanh một nhà thờ là hơn hai vạn phép, mỗi tuần, cho mỗi công trình —
+    // và bài test nuôi thành của mục 12.11 chạy hàng nghìn tuần.
+    const rings = 3;
+    for (let ring = 1; ring <= rings; ring++) {
+      const distance = inner + ((reach - inner) * ring) / rings;
+      for (let index = 0; index < 24; index++) {
+        const angle = (index / 24) * Math.PI * 2;
+        const id = terrainAt(field, centre.x + Math.cos(angle) * distance, centre.y + Math.sin(angle) * distance);
+        if (rule.neighbor.ids.some((name) => terrainMatches(id, name))) count++;
+      }
+    }
+    // Quy về thang cũ: một "ô kề" ứng với chừng một phần tám vành mẫu, nên một
+    // mặt sông chạy dọc cả cạnh nam đếm ra khoảng ba, đúng như bản cũ đếm ba ô.
+    return Math.round(count / 8);
   }
 
   const entities = new Set<string>();
-  for (const cell of cells) {
-    const tile = tileAt(holding, cell);
-    if (tile === null || tile.occupiedBy === '') continue;
-    const placed = holding.buildings.find((row) => row.id === tile.occupiedBy);
-    if (placed === undefined) continue;
-    const building = buildingOf(placed.buildingId);
-    if (building === null) continue;
+  for (const placed of holding.buildings) {
+    if (placed.at === at) continue;
+    const other = buildingOf(placed.buildingId);
+    if (other === null) continue;
     const hit =
       rule.neighbor.kind === 'building'
-        ? rule.neighbor.ids.includes(building.id)
-        : rule.neighbor.ids.includes(building.group);
-    if (hit) entities.add(placed.id);
+        ? rule.neighbor.ids.includes(other.id)
+        : rule.neighbor.ids.includes(other.group);
+    if (!hit) continue;
+    const otherCentre = centreOf(other, placed.at);
+    const gap = Math.hypot(otherCentre.x - centre.x, otherCentre.y - centre.y) - footprintOf(other) / 2;
+    if (gap <= reach) entities.add(placed.id);
   }
   return entities.size;
 }
@@ -206,14 +210,13 @@ export function adjacencyFor(
   const lines: AdjacencyLine[] = [];
   if (building === null) return { effects, lines };
 
-  const own = subjectCells(holding, building, at);
   const config = adjacencyConfig();
 
   for (const rule of adjacencyRules()) {
     if (!subjectMatches(rule.subject, building)) continue;
     if (rule.when === 'besieged' && !context.besieged) continue;
 
-    const matches = Math.min(rule.stacks, countMatches(holding, rule, own));
+    const matches = Math.min(rule.stacks, countMatches(holding, rule, building, at));
     if (matches === 0) continue;
 
     const total = rule.value * matches;
@@ -298,10 +301,8 @@ export function previewPlacement(
   const before = adjacencyOf(holding, context);
   const { effects, lines } = adjacencyFor(holding, buildingId, at, context);
 
-  const building = buildingOf(buildingId);
-  const ghostId = '__xem-truoc__';
   const ghost: PlacedBuilding = {
-    id: ghostId,
+    id: '__xem-truoc__',
     buildingId,
     at,
     integrity: 100,
@@ -310,13 +311,13 @@ export function previewPlacement(
     customName: '',
     builtOnTurn: 0,
     maintained: true,
+    nodeId: '',
   };
 
-  const cells = building === null ? [] : cellsOf(building, at);
-  const tiles = holding.tiles.map((tile) =>
-    cells.some((cell) => cell.x === tile.x && cell.y === tile.y) ? { ...tile, occupiedBy: ghostId } : tile,
-  );
-  const withGhost: Holding = { ...holding, tiles, buildings: [...holding.buildings, ghost] };
+  // Không còn phải vá `tiles` để "đánh dấu ô đã chiếm": láng giềng bây giờ tìm
+  // nhau bằng khoảng cách giữa hai khuôn viên, nên thêm bóng ma vào danh sách
+  // công trình là đủ để mọi luật nhìn thấy nó.
+  const withGhost: Holding = { ...holding, buildings: [...holding.buildings, ghost] };
   const after = adjacencyOf(withGhost, context);
 
   const neighbours: PlacementPreview['neighbours'] = [];

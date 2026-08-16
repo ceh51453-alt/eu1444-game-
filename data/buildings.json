@@ -1,152 +1,279 @@
 {
   "$comment": "CÔNG TRÌNH TRONG THÀNH TRÌ — Phần 12 mục 5. NHÓM `phong-thu` ĐỔ THẲNG VÀO `Fortification` CỦA PHẦN 11 qua khối `fortify`: xây gì hôm nay quyết định cuộc vây hãm năm sau, và đó phải là một quan hệ có thật trong code chứ không phải một câu trong tài liệu. Nhóm `quan-su` đổ vào quân đồn trú của Phần 10 qua khối `garrison`. Mọi công trình đều là một ĐIỂM đặt trên một ô đất cụ thể (Phụ lục A mục 1) — không công trình nào 'đặt trong bá quốc'.",
   "version": 1,
-
   "$sizeComment": "`size` là [rộng, cao] tính bằng ô. `perimeter: true` nghĩa là công trình KHÔNG chiếm ô nào: nó chạy vòng quanh mép thành (tường, hào, lỗ châu mai). `border: true` nghĩa là bắt buộc đặt trên vành ngoài của lưới (tháp, cổng).",
   "$materialComment": "`material` quyết định mùa đông có xây được không: `da` thì KHÔNG (vữa không đông, mục 6), `go`/`dat` thì được, chỉ chậm.",
   "$manWeeksComment": "`manWeeks` là tổng công lao động; `minWeeks` là số tuần KHÔNG rút ngắn được dù có bao nhiêu người (vữa phải khô, gỗ phải ngâm). Đây là chỗ 'thêm người' ngừng có tác dụng.",
-
   "buildings": [
     {
       "id": "bld_nong-trai",
       "name": "Nông trại",
       "group": "san-xuat",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 1,
       "material": "go",
       "manWeeks": 110,
       "minWeeks": 3,
       "minCrew": 8,
       "skilled": {},
-      "cost": { "tien": 24, "go": 30 },
-      "upkeep": { "tien": 0.4 },
+      "cost": {
+        "tien": 24,
+        "go": 30
+      },
+      "upkeep": {
+        "tien": 0.4
+      },
       "jobs": 120,
       "housing": 0,
       "output": {},
       "farmMultiplier": 0.28,
       "happiness": 0,
       "beauty": 0,
-      "terrain": { "prefer": ["dat-tot"], "forbid": ["song"] },
-      "note": "Nhà kho, chuồng và tổ thợ cày trông coi ruộng NGOÀI tường. Sản lượng thật nằm ở đồng, nên nó nhân sản lượng ruộng chứ không tự sinh ra lương."
+      "terrain": {
+        "prefer": [
+          "dat-tot"
+        ],
+        "forbid": [
+          "song"
+        ]
+      },
+      "note": "Nhà kho, chuồng và tổ thợ cày trông coi ruộng NGOÀI tường. Sản lượng thật nằm ở đồng, nên nó nhân sản lượng ruộng chứ không tự sinh ra lương.",
+      "footprint": 20
     },
     {
       "id": "bld_coi-xay",
       "name": "Cối xay",
       "group": "san-xuat",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 2,
       "material": "go",
       "manWeeks": 190,
       "minWeeks": 5,
       "minCrew": 10,
-      "skilled": { "tho-moc": 2 },
-      "cost": { "tien": 70, "go": 80, "da": 20, "sat": 6 },
-      "upkeep": { "tien": 1.0 },
+      "skilled": {
+        "tho-moc": 2
+      },
+      "cost": {
+        "tien": 70,
+        "go": 80,
+        "da": 20,
+        "sat": 6
+      },
+      "upkeep": {
+        "tien": 1
+      },
       "jobs": 14,
       "output": {},
       "farmMultiplier": 0.14,
       "happiness": 2,
       "beauty": 1,
-      "terrain": { "prefer": ["suoi"], "forbid": ["song"] },
+      "terrain": {
+        "prefer": [
+          "suoi"
+        ],
+        "forbid": [
+          "song"
+        ]
+      },
       "note": "Xay hết chỗ thóc mà cối tay không xay nổi. Kề nước là khác hẳn — xem data/adjacency.json."
     },
     {
       "id": "bld_lo-ren",
       "name": "Lò rèn",
       "group": "san-xuat",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 2,
       "material": "da",
       "manWeeks": 95,
       "minWeeks": 4,
       "minCrew": 6,
-      "skilled": { "tho-da": 1 },
-      "cost": { "tien": 48, "da": 30, "go": 14, "sat": 10 },
-      "upkeep": { "tien": 0.9, "than": 2 },
+      "skilled": {
+        "tho-da": 1
+      },
+      "cost": {
+        "tien": 48,
+        "da": 30,
+        "go": 14,
+        "sat": 10
+      },
+      "upkeep": {
+        "tien": 0.9,
+        "than": 2
+      },
       "jobs": 8,
-      "output": { "tien": 3 },
-      "consumes": { "sat": 1.2 },
+      "output": {
+        "tien": 3
+      },
+      "consumes": {
+        "sat": 1.2
+      },
       "happiness": -1,
       "beauty": 0,
-      "trains": { "tho-ren": 1 },
+      "trains": {
+        "tho-ren": 1
+      },
       "note": "Móng ngựa, lưỡi cày, đinh. Và khi cần thì mũi giáo."
     },
     {
       "id": "bld_xuong-moc",
       "name": "Xưởng mộc",
       "group": "san-xuat",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 2,
       "material": "go",
       "manWeeks": 120,
       "minWeeks": 4,
       "minCrew": 8,
       "skilled": {},
-      "cost": { "tien": 40, "go": 60 },
-      "upkeep": { "tien": 0.6 },
+      "cost": {
+        "tien": 40,
+        "go": 60
+      },
+      "upkeep": {
+        "tien": 0.6
+      },
       "jobs": 16,
-      "output": { "go": 9 },
+      "output": {
+        "go": 9
+      },
       "happiness": 0,
       "beauty": 0,
-      "trains": { "tho-moc": 2 },
-      "terrain": { "prefer": ["rung"] }
+      "trains": {
+        "tho-moc": 2
+      },
+      "terrain": {
+        "prefer": [
+          "rung"
+        ]
+      },
+      "requiresNode": [
+        "go"
+      ]
     },
     {
       "id": "bld_mo",
       "name": "Mỏ",
       "group": "san-xuat",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 3,
       "material": "go",
       "manWeeks": 260,
       "minWeeks": 8,
       "minCrew": 14,
-      "skilled": { "tho-da": 2 },
-      "cost": { "tien": 120, "go": 90, "sat": 14 },
-      "upkeep": { "tien": 2.0 },
+      "skilled": {
+        "tho-da": 2
+      },
+      "cost": {
+        "tien": 120,
+        "go": 90,
+        "sat": 14
+      },
+      "upkeep": {
+        "tien": 2
+      },
       "jobs": 45,
-      "output": { "da": 14, "sat": 5, "than": 6 },
+      "output": {
+        "da": 14,
+        "sat": 5,
+        "than": 6
+      },
       "happiness": -2,
       "beauty": -2,
-      "terrain": { "require": ["mo"] },
-      "note": "Phải đặt trên vỉa. Không có vỉa trong thành thì đá và sắt phải mua, và giá đó là thứ bóp nghẹt cấp 4."
+      "terrain": {
+        "require": [
+          "mo"
+        ]
+      },
+      "note": "Phải đặt trên vỉa. Không có vỉa trong thành thì đá và sắt phải mua, và giá đó là thứ bóp nghẹt cấp 4.",
+      "requiresNode": [
+        "da",
+        "sat",
+        "than"
+      ]
     },
     {
       "id": "bld_thuoc-da",
       "name": "Xưởng thuộc da",
       "group": "san-xuat",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 3,
       "material": "go",
       "manWeeks": 80,
       "minWeeks": 3,
       "minCrew": 6,
       "skilled": {},
-      "cost": { "tien": 34, "go": 26 },
-      "upkeep": { "tien": 0.5 },
+      "cost": {
+        "tien": 34,
+        "go": 26
+      },
+      "upkeep": {
+        "tien": 0.5
+      },
       "jobs": 12,
-      "output": { "da-thu": 7, "tien": 2 },
+      "output": {
+        "da-thu": 7,
+        "tien": 2
+      },
       "happiness": -3,
       "beauty": -3,
-      "terrain": { "prefer": ["suoi", "dam"] },
-      "note": "Nước tiểu và vôi. Đặt cuối gió, và tuyệt đối đừng đặt cạnh nhà ở."
+      "terrain": {
+        "prefer": [
+          "suoi",
+          "dam"
+        ]
+      },
+      "note": "Nước tiểu và vôi. Đặt cuối gió, và tuyệt đối đừng đặt cạnh nhà ở.",
+      "requiresNode": [
+        "da-thu"
+      ]
     },
     {
       "id": "bld_det",
       "name": "Xưởng dệt",
       "group": "san-xuat",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 3,
       "material": "go",
       "manWeeks": 150,
       "minWeeks": 5,
       "minCrew": 8,
       "skilled": {},
-      "cost": { "tien": 66, "go": 44 },
-      "upkeep": { "tien": 0.8 },
+      "cost": {
+        "tien": 66,
+        "go": 44
+      },
+      "upkeep": {
+        "tien": 0.8
+      },
       "jobs": 34,
-      "output": { "vai": 12, "tien": 4 },
-      "consumes": { "len": 6 },
+      "output": {
+        "vai": 12,
+        "tien": 4
+      },
+      "consumes": {
+        "len": 6
+      },
       "happiness": 0,
       "beauty": 0
     },
@@ -154,17 +281,29 @@
       "id": "bld_lo-gom",
       "name": "Lò gốm",
       "group": "san-xuat",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 3,
       "material": "da",
       "manWeeks": 70,
       "minWeeks": 3,
       "minCrew": 5,
       "skilled": {},
-      "cost": { "tien": 30, "da": 18, "go": 10 },
-      "upkeep": { "tien": 0.4, "than": 1 },
+      "cost": {
+        "tien": 30,
+        "da": 18,
+        "go": 10
+      },
+      "upkeep": {
+        "tien": 0.4,
+        "than": 1
+      },
       "jobs": 9,
-      "output": { "tien": 3 },
+      "output": {
+        "tien": 3
+      },
       "happiness": -1,
       "beauty": 0
     },
@@ -172,38 +311,70 @@
       "id": "bld_vuon-nho",
       "name": "Vườn nho",
       "group": "san-xuat",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 3,
       "material": "dat",
       "manWeeks": 90,
       "minWeeks": 12,
       "minCrew": 6,
       "skilled": {},
-      "cost": { "tien": 55, "go": 16 },
-      "upkeep": { "tien": 0.7 },
+      "cost": {
+        "tien": 55,
+        "go": 16
+      },
+      "upkeep": {
+        "tien": 0.7
+      },
       "jobs": 22,
-      "output": { "tien": 9 },
+      "output": {
+        "tien": 9
+      },
       "happiness": 2,
       "beauty": 3,
-      "terrain": { "prefer": ["doi", "dat-tot"], "forbid": ["dam", "song"] },
-      "note": "Mười hai tuần tối thiểu là vì dây leo cần thời gian, không phải vì thiếu người."
+      "terrain": {
+        "prefer": [
+          "doi",
+          "dat-tot"
+        ],
+        "forbid": [
+          "dam",
+          "song"
+        ]
+      },
+      "note": "Mười hai tuần tối thiểu là vì dây leo cần thời gian, không phải vì thiếu người.",
+      "footprint": 22
     },
     {
       "id": "bld_xuong-bia",
       "name": "Xưởng bia",
       "group": "san-xuat",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 2,
       "material": "go",
       "manWeeks": 65,
       "minWeeks": 3,
       "minCrew": 5,
       "skilled": {},
-      "cost": { "tien": 26, "go": 22 },
-      "upkeep": { "tien": 0.4 },
+      "cost": {
+        "tien": 26,
+        "go": 22
+      },
+      "upkeep": {
+        "tien": 0.4
+      },
       "jobs": 7,
-      "output": { "tien": 3 },
-      "consumes": { "luong-thuc": 5 },
+      "output": {
+        "tien": 3
+      },
+      "consumes": {
+        "luong-thuc": 5
+      },
       "happiness": 5,
       "beauty": 0,
       "note": "Bia loãng là thứ uống an toàn duy nhất ở một nơi không ai biết đun sôi nước để làm gì."
@@ -212,198 +383,356 @@
       "id": "bld_lo-muoi",
       "name": "Lò muối",
       "group": "san-xuat",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 2,
       "material": "go",
       "manWeeks": 75,
       "minWeeks": 3,
       "minCrew": 6,
       "skilled": {},
-      "cost": { "tien": 32, "go": 24 },
-      "upkeep": { "tien": 0.5, "than": 1 },
+      "cost": {
+        "tien": 32,
+        "go": 24
+      },
+      "upkeep": {
+        "tien": 0.5,
+        "than": 1
+      },
       "jobs": 10,
-      "output": { "muoi": 8, "tien": 3 },
+      "output": {
+        "muoi": 8,
+        "tien": 3
+      },
       "happiness": 0,
       "beauty": 0,
-      "terrain": { "require": ["nuoc"] },
-      "note": "Muối là thứ giữ cho kho lương sống qua mùa đông — và qua một cuộc vây hãm."
+      "terrain": {
+        "require": [
+          "nuoc"
+        ]
+      },
+      "note": "Muối là thứ giữ cho kho lương sống qua mùa đông — và qua một cuộc vây hãm.",
+      "requiresNode": [
+        "muoi"
+      ]
     },
     {
       "id": "bld_xuong-nghe",
       "name": "Xưởng nghề",
       "group": "san-xuat",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 3,
       "material": "go",
       "manWeeks": 230,
       "minWeeks": 7,
       "minCrew": 12,
-      "skilled": { "tho-moc": 2 },
-      "cost": { "tien": 130, "go": 90, "da": 40, "sat": 12 },
-      "upkeep": { "tien": 1.6 },
+      "skilled": {
+        "tho-moc": 2
+      },
+      "cost": {
+        "tien": 130,
+        "go": 90,
+        "da": 40,
+        "sat": 12
+      },
+      "upkeep": {
+        "tien": 1.6
+      },
       "jobs": 60,
-      "output": { "tien": 12 },
+      "output": {
+        "tien": 12
+      },
       "happiness": 1,
       "beauty": 1,
-      "trains": { "tho-moc": 2, "tho-ren": 1 },
+      "trains": {
+        "tho-moc": 2,
+        "tho-ren": 1
+      },
       "note": "Phường hội. Đây là nơi thợ lành nghề SINH RA, chứ không phải nơi thuê họ."
     },
     {
       "id": "bld_xuong-lon",
       "name": "Xưởng lớn",
       "group": "san-xuat",
-      "size": [2, 3],
+      "size": [
+        2,
+        3
+      ],
       "minTier": 4,
       "material": "da",
       "manWeeks": 900,
       "minWeeks": 20,
       "minCrew": 30,
-      "skilled": { "tho-da": 4, "tho-moc": 3 },
-      "cost": { "tien": 620, "da": 380, "go": 220, "sat": 70 },
-      "upkeep": { "tien": 4.5 },
+      "skilled": {
+        "tho-da": 4,
+        "tho-moc": 3
+      },
+      "cost": {
+        "tien": 620,
+        "da": 380,
+        "go": 220,
+        "sat": 70
+      },
+      "upkeep": {
+        "tien": 4.5
+      },
       "jobs": 240,
-      "output": { "tien": 34, "vai": 10 },
+      "output": {
+        "tien": 34,
+        "vai": 10
+      },
       "happiness": 1,
       "beauty": 2,
-      "trains": { "tho-moc": 3, "tho-ren": 2, "tho-da": 1 },
+      "trains": {
+        "tho-moc": 3,
+        "tho-ren": 2,
+        "tho-da": 1
+      },
       "needsArchitect": true
     },
     {
       "id": "bld_xuong-duc",
       "name": "Xưởng đúc",
       "group": "san-xuat",
-      "size": [2, 3],
+      "size": [
+        2,
+        3
+      ],
       "minTier": 5,
       "material": "da",
       "manWeeks": 1400,
       "minWeeks": 28,
       "minCrew": 36,
-      "skilled": { "tho-da": 5, "tho-ren": 4 },
-      "cost": { "tien": 1500, "da": 700, "go": 300, "sat": 320 },
-      "upkeep": { "tien": 9, "than": 12 },
+      "skilled": {
+        "tho-da": 5,
+        "tho-ren": 4
+      },
+      "cost": {
+        "tien": 1500,
+        "da": 700,
+        "go": 300,
+        "sat": 320
+      },
+      "upkeep": {
+        "tien": 9,
+        "than": 12
+      },
       "jobs": 150,
-      "output": { "tien": 52 },
-      "consumes": { "sat": 14 },
+      "output": {
+        "tien": 52
+      },
+      "consumes": {
+        "sat": 14
+      },
       "happiness": -3,
       "beauty": -1,
       "needsArchitect": true,
       "note": "Đúc chuông, đúc tượng, và khi lãnh chúa muốn thì đúc cả nòng pháo."
     },
-
     {
       "id": "bld_doanh-trai",
       "name": "Doanh trại",
       "group": "quan-su",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 3,
       "material": "go",
       "manWeeks": 210,
       "minWeeks": 6,
       "minCrew": 12,
-      "skilled": { "tho-moc": 1 },
-      "cost": { "tien": 140, "go": 110, "da": 30 },
-      "upkeep": { "tien": 2.2 },
+      "skilled": {
+        "tho-moc": 1
+      },
+      "cost": {
+        "tien": 140,
+        "go": 110,
+        "da": 30
+      },
+      "upkeep": {
+        "tien": 2.2
+      },
       "jobs": 10,
       "output": {},
       "happiness": 1,
       "beauty": 0,
-      "garrison": { "capacity": 180, "quality": 3, "unitType": "unit_bo-binh-thue", "trainingWeeks": 8 },
+      "garrison": {
+        "capacity": 180,
+        "quality": 3,
+        "unitType": "unit_bo-binh-thue",
+        "trainingWeeks": 8
+      },
       "note": "Không có doanh trại thì quân đồn trú là dân binh ngủ ở nhà mình, và họ sẽ về nhà đúng lúc cần nhất."
     },
     {
       "id": "bld_kho-vu-khi",
       "name": "Kho vũ khí",
       "group": "quan-su",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 3,
       "material": "da",
       "manWeeks": 110,
       "minWeeks": 5,
       "minCrew": 8,
-      "skilled": { "tho-da": 1 },
-      "cost": { "tien": 90, "da": 55, "sat": 26 },
-      "upkeep": { "tien": 1.3 },
+      "skilled": {
+        "tho-da": 1
+      },
+      "cost": {
+        "tien": 90,
+        "da": 55,
+        "sat": 26
+      },
+      "upkeep": {
+        "tien": 1.3
+      },
       "jobs": 4,
       "output": {},
       "happiness": 0,
       "beauty": 0,
-      "garrison": { "capacity": 0, "qualityBonus": 1, "unitType": "" },
+      "garrison": {
+        "capacity": 0,
+        "qualityBonus": 1,
+        "unitType": ""
+      },
       "note": "Cùng một đám nông dân, nhưng có giáp và có giáo tử tế."
     },
     {
       "id": "bld_truong-ban",
       "name": "Trường bắn",
       "group": "quan-su",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 3,
       "material": "dat",
       "manWeeks": 70,
       "minWeeks": 3,
       "minCrew": 6,
       "skilled": {},
-      "cost": { "tien": 40, "go": 24 },
-      "upkeep": { "tien": 0.6 },
+      "cost": {
+        "tien": 40,
+        "go": 24
+      },
+      "upkeep": {
+        "tien": 0.6
+      },
       "jobs": 3,
       "output": {},
       "happiness": 2,
       "beauty": 0,
-      "garrison": { "capacity": 60, "quality": 3, "unitType": "unit_cung-thu", "trainingWeeks": 26 },
+      "garrison": {
+        "capacity": 60,
+        "quality": 3,
+        "unitType": "unit_cung-thu",
+        "trainingWeeks": 26
+      },
       "note": "Luật bắt buộc tập bắn ngày Chủ nhật. Hai mươi sáu tuần mới ra một cung thủ dùng được."
     },
     {
       "id": "bld_chuong-ngua",
       "name": "Chuồng ngựa",
       "group": "quan-su",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 3,
       "material": "go",
       "manWeeks": 160,
       "minWeeks": 5,
       "minCrew": 10,
-      "skilled": { "tho-moc": 1 },
-      "cost": { "tien": 120, "go": 90 },
-      "upkeep": { "tien": 3.0, "luong-thuc": 12 },
+      "skilled": {
+        "tho-moc": 1
+      },
+      "cost": {
+        "tien": 120,
+        "go": 90
+      },
+      "upkeep": {
+        "tien": 3,
+        "luong-thuc": 12
+      },
       "jobs": 14,
       "output": {},
       "happiness": 0,
       "beauty": 1,
-      "garrison": { "capacity": 40, "quality": 4, "unitType": "unit_ky-si-nhe", "trainingWeeks": 20 },
+      "garrison": {
+        "capacity": 40,
+        "quality": 4,
+        "unitType": "unit_ky-si-nhe",
+        "trainingWeeks": 20
+      },
       "note": "Ngựa ăn phần của ba người. Đó là lý do kỵ binh là chuyện của quý tộc."
     },
     {
       "id": "bld_xuong-cung-no",
       "name": "Xưởng cung nỏ",
       "group": "quan-su",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 4,
       "material": "go",
       "manWeeks": 130,
       "minWeeks": 5,
       "minCrew": 8,
-      "skilled": { "tho-moc": 2 },
-      "cost": { "tien": 110, "go": 60, "sat": 18 },
-      "upkeep": { "tien": 1.4 },
+      "skilled": {
+        "tho-moc": 2
+      },
+      "cost": {
+        "tien": 110,
+        "go": 60,
+        "sat": 18
+      },
+      "upkeep": {
+        "tien": 1.4
+      },
       "jobs": 12,
-      "output": { "tien": 4 },
+      "output": {
+        "tien": 4
+      },
       "happiness": 0,
       "beauty": 0,
-      "garrison": { "capacity": 50, "quality": 3, "unitType": "unit_no-thu", "trainingWeeks": 6 },
+      "garrison": {
+        "capacity": 50,
+        "quality": 3,
+        "unitType": "unit_no-thu",
+        "trainingWeeks": 6
+      },
       "note": "Nỏ học sáu tuần là bắn được. Cung dài học sáu năm. Đó là cả một chính sách quốc phòng gói trong một con số."
     },
-
     {
       "id": "bld_nha-go",
       "name": "Nhà gỗ",
       "group": "dan-sinh",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 1,
       "material": "go",
       "manWeeks": 34,
       "minWeeks": 2,
       "minCrew": 4,
       "skilled": {},
-      "cost": { "tien": 9, "go": 16 },
-      "upkeep": { "tien": 0.1 },
+      "cost": {
+        "tien": 9,
+        "go": 16
+      },
+      "upkeep": {
+        "tien": 0.1
+      },
       "jobs": 0,
       "housing": 30,
       "output": {},
@@ -414,15 +743,26 @@
       "id": "bld_day-nha-o",
       "name": "Dãy nhà ở",
       "group": "dan-sinh",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 2,
       "material": "go",
       "manWeeks": 145,
       "minWeeks": 4,
       "minCrew": 9,
-      "skilled": { "tho-moc": 1 },
-      "cost": { "tien": 52, "go": 70, "da": 10 },
-      "upkeep": { "tien": 0.5 },
+      "skilled": {
+        "tho-moc": 1
+      },
+      "cost": {
+        "tien": 52,
+        "go": 70,
+        "da": 10
+      },
+      "upkeep": {
+        "tien": 0.5
+      },
       "jobs": 0,
       "housing": 260,
       "output": {},
@@ -433,15 +773,27 @@
       "id": "bld_khu-nha-gach",
       "name": "Khu nhà gạch",
       "group": "dan-sinh",
-      "size": [2, 3],
+      "size": [
+        2,
+        3
+      ],
       "minTier": 4,
       "material": "da",
       "manWeeks": 760,
       "minWeeks": 16,
       "minCrew": 26,
-      "skilled": { "tho-da": 3, "tho-moc": 2 },
-      "cost": { "tien": 430, "da": 340, "go": 150 },
-      "upkeep": { "tien": 2.8 },
+      "skilled": {
+        "tho-da": 3,
+        "tho-moc": 2
+      },
+      "cost": {
+        "tien": 430,
+        "da": 340,
+        "go": 150
+      },
+      "upkeep": {
+        "tien": 2.8
+      },
       "jobs": 0,
       "housing": 950,
       "output": {},
@@ -454,98 +806,166 @@
       "id": "bld_gieng",
       "name": "Giếng",
       "group": "dan-sinh",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 1,
       "material": "da",
       "manWeeks": 45,
       "minWeeks": 3,
       "minCrew": 5,
       "skilled": {},
-      "cost": { "tien": 16, "da": 12 },
-      "upkeep": { "tien": 0.1 },
+      "cost": {
+        "tien": 16,
+        "da": 12
+      },
+      "upkeep": {
+        "tien": 0.1
+      },
       "jobs": 0,
       "output": {},
       "happiness": 3,
       "beauty": 0,
-      "fortify": { "wells": 1 },
-      "terrain": { "forbid": ["da-goc"] },
-      "note": "Số giếng đi THẲNG vào Fortification: cắt nguồn nước là cách giết một thành trì không có giếng riêng (Phần 11 mục 3)."
+      "fortify": {
+        "wells": 1
+      },
+      "terrain": {
+        "forbid": [
+          "da-goc"
+        ]
+      },
+      "note": "Số giếng đi THẲNG vào Fortification: cắt nguồn nước là cách giết một thành trì không có giếng riêng (Phần 11 mục 3).",
+      "footprint": 2,
+      "clearance": 3
     },
     {
       "id": "bld_kho-luong",
       "name": "Kho lương",
       "group": "dan-sinh",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 2,
       "material": "da",
       "manWeeks": 170,
       "minWeeks": 6,
       "minCrew": 10,
-      "skilled": { "tho-da": 1 },
-      "cost": { "tien": 95, "da": 70, "go": 40 },
-      "upkeep": { "tien": 1.0 },
+      "skilled": {
+        "tho-da": 1
+      },
+      "cost": {
+        "tien": 95,
+        "da": 70,
+        "go": 40
+      },
+      "upkeep": {
+        "tien": 1
+      },
       "jobs": 6,
       "output": {},
-      "storage": { "luong-thuc": 2600 },
+      "storage": {
+        "luong-thuc": 2600
+      },
       "spoilFactor": 0.4,
       "happiness": 1,
       "beauty": 0,
-      "fortify": { "stores": 900 },
+      "fortify": {
+        "stores": 900
+      },
       "note": "Sức chứa kho là số tuần cầm cự. Không có kho thì thóc mốc trong ba tháng và cuộc vây hãm kết thúc ở tuần thứ tư."
     },
     {
       "id": "bld_quang-truong",
       "name": "Quảng trường",
       "group": "dan-sinh",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 3,
       "material": "da",
       "manWeeks": 120,
       "minWeeks": 5,
       "minCrew": 10,
-      "skilled": { "tho-da": 1 },
-      "cost": { "tien": 80, "da": 90 },
-      "upkeep": { "tien": 0.6 },
+      "skilled": {
+        "tho-da": 1
+      },
+      "cost": {
+        "tien": 80,
+        "da": 90
+      },
+      "upkeep": {
+        "tien": 0.6
+      },
       "jobs": 0,
       "output": {},
       "happiness": 4,
-      "beauty": 6
+      "beauty": 6,
+      "clearance": 10
     },
     {
       "id": "bld_cho",
       "name": "Chợ",
       "group": "dan-sinh",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 3,
       "material": "go",
       "manWeeks": 130,
       "minWeeks": 4,
       "minCrew": 9,
       "skilled": {},
-      "cost": { "tien": 95, "go": 60, "da": 20 },
-      "upkeep": { "tien": 1.2 },
+      "cost": {
+        "tien": 95,
+        "go": 60,
+        "da": 20
+      },
+      "upkeep": {
+        "tien": 1.2
+      },
       "jobs": 55,
-      "output": { "tien": 16 },
-      "trade": 1.0,
+      "output": {
+        "tien": 16
+      },
+      "trade": 1,
       "happiness": 4,
       "beauty": 1,
-      "note": "Chợ là chỗ tin đồn vào thành. Phần 15 sẽ đọc con số này khi hỏi tin tức lan tới đây nhanh chậm ra sao."
+      "note": "Chợ là chỗ tin đồn vào thành. Phần 15 sẽ đọc con số này khi hỏi tin tức lan tới đây nhanh chậm ra sao.",
+      "clearance": 10
     },
     {
       "id": "bld_nha-tam",
       "name": "Nhà tắm",
       "group": "dan-sinh",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 4,
       "material": "da",
       "manWeeks": 100,
       "minWeeks": 4,
       "minCrew": 7,
-      "skilled": { "tho-da": 1 },
-      "cost": { "tien": 85, "da": 60, "go": 20 },
-      "upkeep": { "tien": 1.4, "than": 2 },
+      "skilled": {
+        "tho-da": 1
+      },
+      "cost": {
+        "tien": 85,
+        "da": 60,
+        "go": 20
+      },
+      "upkeep": {
+        "tien": 1.4,
+        "than": 2
+      },
       "jobs": 8,
-      "output": { "tien": 3 },
+      "output": {
+        "tien": 3
+      },
       "happiness": 4,
       "beauty": 2,
       "hygiene": 6,
@@ -555,15 +975,24 @@
       "id": "bld_benh-xa",
       "name": "Bệnh xá",
       "group": "dan-sinh",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 3,
       "material": "go",
       "manWeeks": 85,
       "minWeeks": 3,
       "minCrew": 6,
       "skilled": {},
-      "cost": { "tien": 55, "go": 34, "da": 12 },
-      "upkeep": { "tien": 1.1 },
+      "cost": {
+        "tien": 55,
+        "go": 34,
+        "da": 12
+      },
+      "upkeep": {
+        "tien": 1.1
+      },
       "jobs": 6,
       "output": {},
       "happiness": 3,
@@ -576,35 +1005,55 @@
       "id": "bld_quan-tro",
       "name": "Quán trọ",
       "group": "dan-sinh",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 3,
       "material": "go",
       "manWeeks": 75,
       "minWeeks": 3,
       "minCrew": 6,
       "skilled": {},
-      "cost": { "tien": 60, "go": 40 },
-      "upkeep": { "tien": 0.8 },
+      "cost": {
+        "tien": 60,
+        "go": 40
+      },
+      "upkeep": {
+        "tien": 0.8
+      },
       "jobs": 10,
-      "output": { "tien": 7 },
+      "output": {
+        "tien": 7
+      },
       "trade": 0.3,
       "happiness": 3,
       "beauty": 1
     },
-
     {
       "id": "bld_nha-nguyen",
       "name": "Nhà nguyện",
       "group": "ton-giao",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 2,
       "material": "da",
       "manWeeks": 120,
       "minWeeks": 6,
       "minCrew": 7,
-      "skilled": { "tho-da": 1 },
-      "cost": { "tien": 70, "da": 55, "go": 18 },
-      "upkeep": { "tien": 0.8 },
+      "skilled": {
+        "tho-da": 1
+      },
+      "cost": {
+        "tien": 70,
+        "da": 55,
+        "go": 18
+      },
+      "upkeep": {
+        "tien": 0.8
+      },
       "jobs": 3,
       "output": {},
       "happiness": 5,
@@ -615,15 +1064,27 @@
       "id": "bld_nha-tho",
       "name": "Nhà thờ",
       "group": "ton-giao",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 4,
       "material": "da",
       "manWeeks": 620,
       "minWeeks": 26,
       "minCrew": 20,
-      "skilled": { "tho-da": 3 },
-      "cost": { "tien": 420, "da": 330, "go": 110, "sat": 24 },
-      "upkeep": { "tien": 2.6 },
+      "skilled": {
+        "tho-da": 3
+      },
+      "cost": {
+        "tien": 420,
+        "da": 330,
+        "go": 110,
+        "sat": 24
+      },
+      "upkeep": {
+        "tien": 2.6
+      },
       "jobs": 12,
       "output": {},
       "happiness": 9,
@@ -635,17 +1096,32 @@
       "id": "bld_tu-vien",
       "name": "Tu viện",
       "group": "ton-giao",
-      "size": [2, 3],
+      "size": [
+        2,
+        3
+      ],
       "minTier": 4,
       "material": "da",
       "manWeeks": 820,
       "minWeeks": 30,
       "minCrew": 22,
-      "skilled": { "tho-da": 3, "tho-moc": 2 },
-      "cost": { "tien": 560, "da": 420, "go": 160 },
-      "upkeep": { "tien": 1.5 },
+      "skilled": {
+        "tho-da": 3,
+        "tho-moc": 2
+      },
+      "cost": {
+        "tien": 560,
+        "da": 420,
+        "go": 160
+      },
+      "upkeep": {
+        "tien": 1.5
+      },
       "jobs": 40,
-      "output": { "tien": 10, "luong-thuc": 40 },
+      "output": {
+        "tien": 10,
+        "luong-thuc": 40
+      },
       "happiness": 6,
       "beauty": 8,
       "faith": 14,
@@ -657,37 +1133,64 @@
       "id": "bld_dai-giao-duong",
       "name": "Đại giáo đường",
       "group": "ton-giao",
-      "size": [3, 3],
+      "size": [
+        3,
+        3
+      ],
       "minTier": 5,
       "material": "da",
       "manWeeks": 5200,
       "minWeeks": 140,
       "minCrew": 60,
-      "skilled": { "tho-da": 12, "tho-moc": 6, "tho-ren": 3 },
-      "cost": { "tien": 4200, "da": 3100, "go": 800, "sat": 260 },
-      "upkeep": { "tien": 9 },
+      "skilled": {
+        "tho-da": 12,
+        "tho-moc": 6,
+        "tho-ren": 3
+      },
+      "cost": {
+        "tien": 4200,
+        "da": 3100,
+        "go": 800,
+        "sat": 260
+      },
+      "upkeep": {
+        "tien": 9
+      },
       "jobs": 45,
       "output": {},
       "happiness": 14,
       "beauty": 28,
       "faith": 40,
       "needsArchitect": true,
-      "note": "Một trăm bốn mươi tuần là mốc TỐI THIỂU, và ngoài đời không đại giáo đường nào xong dưới ba đời người. Người khởi công sẽ không thấy nó xong."
+      "note": "Một trăm bốn mươi tuần là mốc TỐI THIỂU, và ngoài đời không đại giáo đường nào xong dưới ba đời người. Người khởi công sẽ không thấy nó xong.",
+      "footprint": 26
     },
-
     {
       "id": "bld_sanh-lanh-chua",
       "name": "Sảnh lãnh chúa",
       "group": "hanh-chinh",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 3,
       "material": "da",
       "manWeeks": 300,
       "minWeeks": 10,
       "minCrew": 14,
-      "skilled": { "tho-da": 2, "tho-moc": 1 },
-      "cost": { "tien": 230, "da": 170, "go": 80, "sat": 18 },
-      "upkeep": { "tien": 2.4 },
+      "skilled": {
+        "tho-da": 2,
+        "tho-moc": 1
+      },
+      "cost": {
+        "tien": 230,
+        "da": 170,
+        "go": 80,
+        "sat": 18
+      },
+      "upkeep": {
+        "tien": 2.4
+      },
       "jobs": 14,
       "output": {},
       "happiness": 2,
@@ -699,15 +1202,26 @@
       "id": "bld_nha-tu",
       "name": "Nhà tù",
       "group": "hanh-chinh",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 3,
       "material": "da",
       "manWeeks": 110,
       "minWeeks": 5,
       "minCrew": 8,
-      "skilled": { "tho-da": 1 },
-      "cost": { "tien": 75, "da": 60, "sat": 20 },
-      "upkeep": { "tien": 1.1 },
+      "skilled": {
+        "tho-da": 1
+      },
+      "cost": {
+        "tien": 75,
+        "da": 60,
+        "sat": 20
+      },
+      "upkeep": {
+        "tien": 1.1
+      },
       "jobs": 5,
       "output": {},
       "happiness": -2,
@@ -718,17 +1232,30 @@
       "id": "bld_toa-an",
       "name": "Tòa án",
       "group": "hanh-chinh",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 4,
       "material": "da",
       "manWeeks": 340,
       "minWeeks": 12,
       "minCrew": 16,
-      "skilled": { "tho-da": 2 },
-      "cost": { "tien": 300, "da": 200, "go": 70 },
-      "upkeep": { "tien": 2.2 },
+      "skilled": {
+        "tho-da": 2
+      },
+      "cost": {
+        "tien": 300,
+        "da": 200,
+        "go": 70
+      },
+      "upkeep": {
+        "tien": 2.2
+      },
       "jobs": 16,
-      "output": { "tien": 6 },
+      "output": {
+        "tien": 6
+      },
       "happiness": 6,
       "beauty": 4,
       "justice": 12,
@@ -738,18 +1265,32 @@
       "id": "bld_kho-bac",
       "name": "Kho bạc",
       "group": "hanh-chinh",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 4,
       "material": "da",
       "manWeeks": 190,
       "minWeeks": 8,
       "minCrew": 10,
-      "skilled": { "tho-da": 2, "tho-ren": 1 },
-      "cost": { "tien": 220, "da": 130, "sat": 45 },
-      "upkeep": { "tien": 1.6 },
+      "skilled": {
+        "tho-da": 2,
+        "tho-ren": 1
+      },
+      "cost": {
+        "tien": 220,
+        "da": 130,
+        "sat": 45
+      },
+      "upkeep": {
+        "tien": 1.6
+      },
       "jobs": 5,
       "output": {},
-      "storage": { "tien": 12000 },
+      "storage": {
+        "tien": 12000
+      },
       "happiness": 0,
       "beauty": 1
     },
@@ -757,35 +1298,57 @@
       "id": "bld_nha-thue",
       "name": "Nhà thuế",
       "group": "hanh-chinh",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 4,
       "material": "go",
       "manWeeks": 90,
       "minWeeks": 4,
       "minCrew": 7,
       "skilled": {},
-      "cost": { "tien": 80, "go": 40, "da": 20 },
-      "upkeep": { "tien": 0.9 },
+      "cost": {
+        "tien": 80,
+        "go": 40,
+        "da": 20
+      },
+      "upkeep": {
+        "tien": 0.9
+      },
       "jobs": 8,
-      "output": { "tien": 8 },
+      "output": {
+        "tien": 8
+      },
       "happiness": -4,
       "beauty": 0,
       "note": "Thu THUẾ là động từ của lãnh thổ. Cái nhà này chỉ ĐẾM và CẤT hộ phần nghĩa vụ thành trì phải nộp lên."
     },
-
     {
       "id": "bld_thu-vien",
       "name": "Thư viện",
       "group": "hoc-van",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 5,
       "material": "da",
       "manWeeks": 640,
       "minWeeks": 24,
       "minCrew": 18,
-      "skilled": { "tho-da": 3, "tho-moc": 2 },
-      "cost": { "tien": 700, "da": 380, "go": 160 },
-      "upkeep": { "tien": 4.0 },
+      "skilled": {
+        "tho-da": 3,
+        "tho-moc": 2
+      },
+      "cost": {
+        "tien": 700,
+        "da": 380,
+        "go": 160
+      },
+      "upkeep": {
+        "tien": 4
+      },
       "jobs": 14,
       "output": {},
       "happiness": 3,
@@ -797,15 +1360,24 @@
       "id": "bld_truong-hoc",
       "name": "Trường học",
       "group": "hoc-van",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 4,
       "material": "go",
       "manWeeks": 110,
       "minWeeks": 5,
       "minCrew": 8,
       "skilled": {},
-      "cost": { "tien": 90, "go": 50, "da": 20 },
-      "upkeep": { "tien": 1.3 },
+      "cost": {
+        "tien": 90,
+        "go": 50,
+        "da": 20
+      },
+      "upkeep": {
+        "tien": 1.3
+      },
       "jobs": 6,
       "output": {},
       "happiness": 3,
@@ -818,286 +1390,365 @@
       "id": "bld_xuong-chep-sach",
       "name": "Xưởng chép sách",
       "group": "hoc-van",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 4,
       "material": "go",
       "manWeeks": 95,
       "minWeeks": 4,
       "minCrew": 6,
       "skilled": {},
-      "cost": { "tien": 120, "go": 40, "da-thu": 30 },
-      "upkeep": { "tien": 1.8 },
+      "cost": {
+        "tien": 120,
+        "go": 40,
+        "da-thu": 30
+      },
+      "upkeep": {
+        "tien": 1.8
+      },
       "jobs": 9,
-      "output": { "tien": 11 },
-      "consumes": { "da-thu": 4 },
+      "output": {
+        "tien": 11
+      },
+      "consumes": {
+        "da-thu": 4
+      },
       "happiness": 1,
       "beauty": 1,
       "literacy": 12
-    },
-
-    {
-      "id": "bld_rao-go",
-      "name": "Hàng rào gỗ",
-      "group": "phong-thu",
-      "perimeter": true,
-      "size": [0, 0],
-      "minTier": 2,
-      "material": "go",
-      "manWeeks": 150,
-      "minWeeks": 4,
-      "minCrew": 12,
-      "skilled": {},
-      "cost": { "tien": 60, "go": 130 },
-      "upkeep": { "tien": 1.0 },
-      "jobs": 0,
-      "output": {},
-      "happiness": 2,
-      "beauty": 0,
-      "fortify": { "wallLayer": "ngoai", "replacesWall": true, "wallName": "Hàng rào gỗ", "integrity": 45, "height": 2.5, "thickness": 0.4 }
-    },
-    {
-      "id": "bld_tuong-go",
-      "name": "Tường gỗ và đất",
-      "group": "phong-thu",
-      "perimeter": true,
-      "size": [0, 0],
-      "minTier": 3,
-      "material": "dat",
-      "manWeeks": 620,
-      "minWeeks": 16,
-      "minCrew": 26,
-      "skilled": { "tho-moc": 2 },
-      "cost": { "tien": 280, "go": 420, "da": 90 },
-      "upkeep": { "tien": 2.6 },
-      "jobs": 0,
-      "output": {},
-      "happiness": 4,
-      "beauty": 1,
-      "fortify": { "wallLayer": "ngoai", "replacesWall": true, "wallName": "Tường gỗ và đất", "integrity": 130, "height": 5, "thickness": 1.6 },
-      "note": "Ụ đất có mặt gỗ. Máy bắn đá làm nó rung chứ không làm nó vỡ — nhưng lửa thì làm."
-    },
-    {
-      "id": "bld_tuong-da",
-      "name": "Tường đá",
-      "group": "phong-thu",
-      "perimeter": true,
-      "size": [0, 0],
-      "minTier": 4,
-      "material": "da",
-      "manWeeks": 2600,
-      "minWeeks": 60,
-      "minCrew": 45,
-      "skilled": { "tho-da": 8 },
-      "cost": { "tien": 1600, "da": 2200, "go": 400, "sat": 120 },
-      "upkeep": { "tien": 6.5 },
-      "jobs": 0,
-      "output": {},
-      "happiness": 7,
-      "beauty": 6,
-      "needsArchitect": true,
-      "fortify": { "wallLayer": "ngoai", "replacesWall": true, "wallName": "Tường đá", "integrity": 320, "height": 9, "thickness": 3.2 },
-      "note": "Sáu mươi tuần TỐI THIỂU và mùa đông đứng im. Ba năm thật là chuyện bình thường, và đó là lý do người ta xin phép trước khi khởi công chứ không sau."
-    },
-    {
-      "id": "bld_tuong-trong",
-      "name": "Tường trong",
-      "group": "phong-thu",
-      "perimeter": true,
-      "size": [0, 0],
-      "minTier": 5,
-      "material": "da",
-      "manWeeks": 2100,
-      "minWeeks": 52,
-      "minCrew": 40,
-      "skilled": { "tho-da": 7 },
-      "cost": { "tien": 1400, "da": 1800, "go": 300, "sat": 90 },
-      "upkeep": { "tien": 5.0 },
-      "jobs": 0,
-      "output": {},
-      "happiness": 3,
-      "beauty": 4,
-      "needsArchitect": true,
-      "requires": ["bld_tuong-da"],
-      "fortify": { "wallLayer": "trong", "replacesWall": true, "wallName": "Tường thành nội", "integrity": 300, "height": 11, "thickness": 3.0 },
-      "note": "MẤT TƯỜNG NGOÀI CHƯA PHẢI MẤT THÀNH (Phần 11 mục 2). Câu ấy chỉ đúng ở thành trì nào đã trả tiền cho lớp thứ hai."
     },
     {
       "id": "bld_thap",
       "name": "Tháp",
       "group": "phong-thu",
       "border": true,
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 3,
       "material": "da",
       "manWeeks": 320,
       "minWeeks": 14,
       "minCrew": 16,
-      "skilled": { "tho-da": 2 },
-      "cost": { "tien": 240, "da": 300, "go": 60, "sat": 20 },
-      "upkeep": { "tien": 1.8 },
+      "skilled": {
+        "tho-da": 2
+      },
+      "cost": {
+        "tien": 240,
+        "da": 300,
+        "go": 60,
+        "sat": 20
+      },
+      "upkeep": {
+        "tien": 1.8
+      },
       "jobs": 0,
       "output": {},
       "happiness": 2,
       "beauty": 3,
       "requiresWall": true,
-      "fortify": { "towers": 1, "towerIntegrity": 70 },
-      "garrison": { "capacity": 20, "quality": 3, "unitType": "unit_no-thu" },
-      "note": "MỘT tháp thêm là MỘT tháp thật trong Fortification của Phần 11: bên vây phải bắn thêm một mục tiêu, và bên thủ có thêm một chỗ bắn dọc chân tường."
+      "fortify": {
+        "towers": 1,
+        "towerIntegrity": 70
+      },
+      "garrison": {
+        "capacity": 20,
+        "quality": 3,
+        "unitType": "unit_no-thu"
+      },
+      "note": "MỘT tháp thêm là MỘT tháp thật trong Fortification của Phần 11: bên vây phải bắn thêm một mục tiêu, và bên thủ có thêm một chỗ bắn dọc chân tường.",
+      "footprint": 4,
+      "clearance": 3
     },
     {
       "id": "bld_cong",
       "name": "Cổng",
       "group": "phong-thu",
       "border": true,
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 2,
       "material": "da",
       "manWeeks": 260,
       "minWeeks": 12,
       "minCrew": 14,
-      "skilled": { "tho-da": 2, "tho-ren": 1 },
-      "cost": { "tien": 200, "da": 180, "go": 90, "sat": 60 },
-      "upkeep": { "tien": 1.6 },
+      "skilled": {
+        "tho-da": 2,
+        "tho-ren": 1
+      },
+      "cost": {
+        "tien": 200,
+        "da": 180,
+        "go": 90,
+        "sat": 60
+      },
+      "upkeep": {
+        "tien": 1.6
+      },
       "jobs": 4,
       "output": {},
       "happiness": 1,
       "beauty": 3,
       "requiresWall": true,
       "trade": 0.4,
-      "fortify": { "gateIntegrity": 150, "portcullis": true, "drawbridge": false },
-      "note": "Cổng là chỗ yếu nhất và cũng là chỗ tiền đi qua. Cả hai điều đó đều đúng cùng lúc."
+      "fortify": {
+        "gateIntegrity": 150,
+        "portcullis": true,
+        "drawbridge": false
+      },
+      "note": "Cổng là chỗ yếu nhất và cũng là chỗ tiền đi qua. Cả hai điều đó đều đúng cùng lúc.",
+      "footprint": 5,
+      "clearance": 3
     },
     {
       "id": "bld_lo-chau-mai",
       "name": "Lỗ châu mai",
       "group": "phong-thu",
-      "perimeter": true,
-      "size": [0, 0],
+      "perimeter": false,
+      "size": [
+        1,
+        1
+      ],
       "minTier": 4,
       "material": "da",
       "manWeeks": 180,
       "minWeeks": 8,
       "minCrew": 12,
-      "skilled": { "tho-da": 2 },
-      "cost": { "tien": 150, "da": 120, "sat": 30 },
-      "upkeep": { "tien": 0.9 },
+      "skilled": {
+        "tho-da": 2
+      },
+      "cost": {
+        "tien": 150,
+        "da": 120,
+        "sat": 30
+      },
+      "upkeep": {
+        "tien": 0.9
+      },
       "jobs": 0,
       "output": {},
       "happiness": 1,
       "beauty": 0,
       "requiresWall": true,
-      "requires": ["bld_cong"],
-      "fortify": { "murderHoles": true, "integrity": 30 }
+      "requires": [
+        "bld_cong"
+      ],
+      "fortify": {
+        "murderHoles": true,
+        "integrity": 30
+      },
+      "footprint": 3,
+      "clearance": 2,
+      "border": true
     },
     {
       "id": "bld_hao",
       "name": "Hào",
       "group": "phong-thu",
-      "perimeter": true,
-      "size": [0, 0],
+      "perimeter": false,
+      "size": [
+        2,
+        2
+      ],
       "minTier": 3,
       "material": "dat",
       "manWeeks": 480,
       "minWeeks": 12,
       "minCrew": 30,
       "skilled": {},
-      "cost": { "tien": 180, "go": 60 },
-      "upkeep": { "tien": 1.2 },
+      "cost": {
+        "tien": 180,
+        "go": 60
+      },
+      "upkeep": {
+        "tien": 1.2
+      },
       "jobs": 0,
       "output": {},
       "happiness": 0,
       "beauty": -1,
       "requiresWall": true,
-      "fortify": { "moatWidth": 9, "moatWetIfWater": true },
-      "note": "Hào khô chỉ chặn được thang. Hào NGẬP NƯỚC chặn được đào hầm — và đào hầm mới là thứ hạ thành nhanh nhất ở Phần 11."
+      "fortify": {
+        "moatWidth": 9,
+        "moatWetIfWater": true
+      },
+      "note": "Hào khô chỉ chặn được thang. Hào NGẬP NƯỚC chặn được đào hầm — và đào hầm mới là thứ hạ thành nhanh nhất ở Phần 11.",
+      "footprint": 6,
+      "clearance": 2,
+      "border": true,
+      "overrideTerrain": [
+        "song",
+        "suoi",
+        "dam"
+      ]
     },
     {
       "id": "bld_thap-chinh",
       "name": "Tháp chính",
       "group": "phong-thu",
-      "size": [3, 3],
+      "size": [
+        3,
+        3
+      ],
       "minTier": 5,
       "material": "da",
       "manWeeks": 3400,
       "minWeeks": 90,
       "minCrew": 50,
-      "skilled": { "tho-da": 10, "tho-moc": 4, "tho-ren": 2 },
-      "cost": { "tien": 3200, "da": 2600, "go": 700, "sat": 340 },
-      "upkeep": { "tien": 8.0 },
+      "skilled": {
+        "tho-da": 10,
+        "tho-moc": 4,
+        "tho-ren": 2
+      },
+      "cost": {
+        "tien": 3200,
+        "da": 2600,
+        "go": 700,
+        "sat": 340
+      },
+      "upkeep": {
+        "tien": 8
+      },
       "jobs": 12,
       "output": {},
       "happiness": 5,
       "beauty": 16,
       "needsArchitect": true,
-      "requires": ["bld_tuong-da"],
-      "fortify": { "keepIntegrity": 420, "keepCapacity": 900, "stores": 1600, "wells": 1 },
-      "garrison": { "capacity": 80, "quality": 4, "unitType": "unit_bo-binh-thue" },
-      "note": "Lớp cuối cùng. Lùi vào đây là đổi ba mươi tuần lương lấy sáu tuần — nhưng sáu tuần ấy là sáu tuần để quân cứu viện tới."
+      "requires": [
+        "bld_tuong-da"
+      ],
+      "fortify": {
+        "keepIntegrity": 420,
+        "keepCapacity": 900,
+        "stores": 1600,
+        "wells": 1
+      },
+      "garrison": {
+        "capacity": 80,
+        "quality": 4,
+        "unitType": "unit_bo-binh-thue"
+      },
+      "note": "Lớp cuối cùng. Lùi vào đây là đổi ba mươi tuần lương lấy sáu tuần — nhưng sáu tuần ấy là sáu tuần để quân cứu viện tới.",
+      "footprint": 26
     },
-
     {
       "id": "bld_xuong-khac-rune",
       "name": "Xưởng khắc rune",
       "group": "dac-thu-toc",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 4,
       "material": "da",
       "manWeeks": 700,
       "minWeeks": 24,
       "minCrew": 18,
-      "skilled": { "tho-da": 4, "tho-ren": 3 },
-      "cost": { "tien": 800, "da": 400, "sat": 200 },
-      "upkeep": { "tien": 5.0 },
+      "skilled": {
+        "tho-da": 4,
+        "tho-ren": 3
+      },
+      "cost": {
+        "tien": 800,
+        "da": 400,
+        "sat": 200
+      },
+      "upkeep": {
+        "tien": 5
+      },
       "jobs": 24,
-      "output": { "tien": 26 },
+      "output": {
+        "tien": 26
+      },
       "happiness": 3,
       "beauty": 6,
-      "races": ["race_lun-nui", "race_lun-vuc-sau"],
+      "races": [
+        "race_lun-nui",
+        "race_lun-vuc-sau"
+      ],
       "needsArchitect": true,
-      "fortify": { "integrity": 60 },
+      "fortify": {
+        "integrity": 60
+      },
       "note": "Rune khắc vào đá tường làm tường bền hơn. Chỉ Lùn khắc được, và họ không dạy ai."
     },
     {
       "id": "bld_lum-thieng",
       "name": "Lùm thiêng",
       "group": "dac-thu-toc",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 2,
       "material": "dat",
       "manWeeks": 60,
       "minWeeks": 20,
       "minCrew": 4,
       "skilled": {},
-      "cost": { "tien": 20 },
-      "upkeep": { "tien": 0.2 },
+      "cost": {
+        "tien": 20
+      },
+      "upkeep": {
+        "tien": 0.2
+      },
       "jobs": 4,
-      "output": { "luong-thuc": 30 },
+      "output": {
+        "luong-thuc": 30
+      },
       "happiness": 6,
       "beauty": 10,
       "faith": 12,
-      "races": ["race_moc-toc", "race_lam-tien"],
-      "terrain": { "require": ["rung", "dat"] },
-      "note": "Hai mươi tuần tối thiểu là thời gian cây lớn, không phải thời gian người làm. Không kiến trúc sư nào rút ngắn được."
+      "races": [
+        "race_moc-toc",
+        "race_lam-tien"
+      ],
+      "terrain": {
+        "require": [
+          "rung",
+          "dat"
+        ]
+      },
+      "note": "Hai mươi tuần tối thiểu là thời gian cây lớn, không phải thời gian người làm. Không kiến trúc sư nào rút ngắn được.",
+      "footprint": 20
     },
     {
       "id": "bld_thap-huyen-thuat",
       "name": "Tháp huyền thuật",
       "group": "dac-thu-toc",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 4,
       "material": "da",
       "manWeeks": 900,
       "minWeeks": 32,
       "minCrew": 16,
-      "skilled": { "tho-da": 5 },
-      "cost": { "tien": 1100, "da": 520, "sat": 80 },
-      "upkeep": { "tien": 7.0 },
+      "skilled": {
+        "tho-da": 5
+      },
+      "cost": {
+        "tien": 1100,
+        "da": 520,
+        "sat": 80
+      },
+      "upkeep": {
+        "tien": 7
+      },
       "jobs": 10,
       "output": {},
       "happiness": -2,
       "beauty": 12,
       "literacy": 18,
-      "races": ["race_cao-tien"],
+      "races": [
+        "race_cao-tien"
+      ],
       "needsArchitect": true,
       "note": "Dân thường không thích ở gần. Giáo hội thì thích còn ít hơn."
     },
@@ -1105,45 +1756,900 @@
       "id": "bld_ham-sau",
       "name": "Hầm sâu",
       "group": "dac-thu-toc",
-      "size": [2, 2],
+      "size": [
+        2,
+        2
+      ],
       "minTier": 3,
       "material": "da",
       "manWeeks": 520,
       "minWeeks": 20,
       "minCrew": 20,
-      "skilled": { "tho-da": 4 },
-      "cost": { "tien": 380, "da": 160, "go": 120 },
-      "upkeep": { "tien": 2.4 },
+      "skilled": {
+        "tho-da": 4
+      },
+      "cost": {
+        "tien": 380,
+        "da": 160,
+        "go": 120
+      },
+      "upkeep": {
+        "tien": 2.4
+      },
       "jobs": 30,
-      "output": { "da": 10, "sat": 6, "than": 8 },
-      "storage": { "luong-thuc": 1800 },
+      "output": {
+        "da": 10,
+        "sat": 6,
+        "than": 8
+      },
+      "storage": {
+        "luong-thuc": 1800
+      },
       "happiness": 0,
       "beauty": 0,
-      "races": ["race_lun-vuc-sau"],
-      "fortify": { "stores": 700, "counterMineBonus": 12 },
-      "note": "Kho dưới đất không cháy được và không bị bắn tới. Và một thành có sẵn đường hầm thì phản đào hầm dễ hơn hẳn (Phần 11)."
+      "races": [
+        "race_lun-vuc-sau"
+      ],
+      "fortify": {
+        "stores": 700,
+        "counterMineBonus": 12
+      },
+      "note": "Kho dưới đất không cháy được và không bị bắn tới. Và một thành có sẵn đường hầm thì phản đào hầm dễ hơn hẳn (Phần 11).",
+      "requiresNode": [
+        "da",
+        "sat",
+        "than"
+      ]
     },
     {
       "id": "bld_to-chuong",
       "name": "Tổ chuông",
       "group": "dac-thu-toc",
-      "size": [1, 1],
+      "size": [
+        1,
+        1
+      ],
       "minTier": 3,
       "material": "go",
       "manWeeks": 120,
       "minWeeks": 6,
       "minCrew": 8,
-      "skilled": { "tho-moc": 2 },
-      "cost": { "tien": 140, "go": 90, "sat": 20 },
-      "upkeep": { "tien": 1.2 },
+      "skilled": {
+        "tho-moc": 2
+      },
+      "cost": {
+        "tien": 140,
+        "go": 90,
+        "sat": 20
+      },
+      "upkeep": {
+        "tien": 1.2
+      },
       "jobs": 6,
       "output": {},
       "happiness": 2,
       "beauty": 4,
-      "races": ["race_qua-nhan"],
+      "races": [
+        "race_qua-nhan"
+      ],
       "border": true,
-      "fortify": { "watchBonus": 15 },
+      "fortify": {
+        "watchBonus": 15
+      },
       "note": "Nhìn xa hơn mọi tháp canh. Một đạo quân không bao giờ tới bất ngờ trước một thành có Quạ Nhân."
+    },
+    {
+      "id": "bld_ben-ca",
+      "name": "Bến cá",
+      "group": "san-xuat",
+      "size": [
+        2,
+        1
+      ],
+      "minTier": 1,
+      "material": "go",
+      "manWeeks": 40,
+      "minWeeks": 3,
+      "minCrew": 4,
+      "cost": {
+        "tien": 22,
+        "go": 30
+      },
+      "upkeep": {
+        "tien": 0.3
+      },
+      "jobs": 12,
+      "output": {
+        "luong-thuc": 26
+      },
+      "requiresNode": [
+        "luong-thuc"
+      ],
+      "nearWater": true,
+      "overrideTerrain": [
+        "song",
+        "suoi",
+        "bien"
+      ],
+      "happiness": 1,
+      "note": "Sàn gỗ đóng cọc chìa ra mặt nước. Trước bản này BÃI CÁ là một vùng chết: bản đồ vẽ ra, bộ lọc liệt kê, mà không công trình nào trong game với tới được. Đây là cái với ấy — và nó phải đứng CHÌA RA NƯỚC, nên nó là một trong số ít công trình được phép đè lên sông và biển."
+    },
+    {
+      "id": "bld_bai-chan",
+      "name": "Bãi chăn",
+      "group": "san-xuat",
+      "size": [
+        3,
+        3
+      ],
+      "minTier": 2,
+      "material": "dat",
+      "manWeeks": 70,
+      "minWeeks": 4,
+      "minCrew": 5,
+      "cost": {
+        "tien": 34,
+        "go": 40
+      },
+      "upkeep": {
+        "tien": 0.5
+      },
+      "jobs": 16,
+      "output": {
+        "len": 14,
+        "luong-thuc": 8
+      },
+      "requiresNode": [
+        "len"
+      ],
+      "terrain": {
+        "prefer": [
+          "trong-trot"
+        ],
+        "forbid": [
+          "da-goc",
+          "dam"
+        ]
+      },
+      "happiness": 1,
+      "note": "ĐÂY LÀ CHỖ LEN RA ĐỜI. Trước bản này không một công trình nào sinh ra len, trong khi Xưởng dệt ăn 6 cuộn mỗi tuần — nghĩa là xưởng dệt chưa từng chạy được một tuần nào kể từ ngày nó có mặt trong data. Đồng cỏ cũng là vùng chết cùng lý do với bãi cá."
+    },
+    {
+      "id": "bld_nha-uop",
+      "name": "Nhà ướp",
+      "group": "san-xuat",
+      "size": [
+        2,
+        2
+      ],
+      "minTier": 2,
+      "material": "go",
+      "manWeeks": 95,
+      "minWeeks": 4,
+      "minCrew": 6,
+      "cost": {
+        "tien": 48,
+        "go": 46,
+        "da": 14
+      },
+      "upkeep": {
+        "tien": 0.6
+      },
+      "jobs": 14,
+      "consumes": {
+        "muoi": 5,
+        "luong-thuc": 10
+      },
+      "output": {
+        "luong-thuc": 16,
+        "tien": 3
+      },
+      "storage": {
+        "luong-thuc": 260
+      },
+      "spoilFactor": 0.35,
+      "hygiene": -1,
+      "note": "MUỐI CUỐI CÙNG CŨNG CÓ CHỖ DÙNG. Lò muối vẫn moi muối lên từ đầm như cũ, nhưng trước bản này muối chỉ nằm trong kho tới hết ván. Ướp là lý do người ta thèm muối: mười giạ cá tươi vào, mười sáu giạ ăn được qua mùa đông ra — và số ấy KHÔNG hỏng theo tuần như thóc tươi."
+    },
+    {
+      "id": "bld_xuong-nhuom",
+      "name": "Xưởng nhuộm",
+      "group": "san-xuat",
+      "size": [
+        2,
+        2
+      ],
+      "minTier": 4,
+      "material": "go",
+      "manWeeks": 190,
+      "minWeeks": 6,
+      "minCrew": 9,
+      "skilled": {
+        "tho-moc": 1
+      },
+      "cost": {
+        "tien": 130,
+        "go": 70,
+        "da": 40
+      },
+      "upkeep": {
+        "tien": 1.4
+      },
+      "jobs": 30,
+      "consumes": {
+        "vai": 8
+      },
+      "output": {
+        "tien": 26
+      },
+      "hygiene": -3,
+      "trade": 3,
+      "terrain": {
+        "prefer": [
+          "nuoc"
+        ]
+      },
+      "note": "VẢI CUỐI CÙNG CŨNG CÓ NGƯỜI MUA. Vải dệt ra trước bản này không đi đâu cả — không công trình nào ăn nó, không ai bán nó. Thùng nhuộm biến tấm vải thô thành thứ một thương nhân Flanders chịu trả tiền, và trả rất nhiều. Đổi lại là mùi và nước thải: đừng dựng nó đầu nguồn."
+    },
+    {
+      "id": "bld_lo-luyen",
+      "name": "Lò luyện",
+      "group": "san-xuat",
+      "size": [
+        2,
+        2
+      ],
+      "minTier": 3,
+      "material": "da",
+      "manWeeks": 175,
+      "minWeeks": 6,
+      "minCrew": 10,
+      "skilled": {
+        "tho-ren": 1
+      },
+      "cost": {
+        "tien": 105,
+        "da": 90,
+        "go": 40,
+        "sat": 20
+      },
+      "upkeep": {
+        "tien": 1.2
+      },
+      "jobs": 24,
+      "consumes": {
+        "than": 9,
+        "sat": 6
+      },
+      "output": {
+        "sat": 11,
+        "tien": 4
+      },
+      "hygiene": -2,
+      "note": "THAN CUỐI CÙNG CŨNG CHÁY. Mỏ moi than lên từ mạch sắt, rồi than nằm đó — không lò nào trong game đốt nó. Ở đây than biến quặng thô thành sắt rèn được: sáu tạ quặng cộng chín sọt than ra mười một tạ sắt, và cái chênh lệch ấy là cả lý do một thành trì cần mỏ than chứ không chỉ cần mỏ sắt."
+    },
+    {
+      "id": "bld_chuong-gia-suc",
+      "name": "Chuồng gia súc",
+      "group": "dan-sinh",
+      "size": [
+        2,
+        2
+      ],
+      "minTier": 1,
+      "material": "go",
+      "manWeeks": 32,
+      "minWeeks": 2,
+      "minCrew": 3,
+      "cost": {
+        "tien": 14,
+        "go": 26
+      },
+      "upkeep": {
+        "tien": 0.2
+      },
+      "jobs": 6,
+      "output": {
+        "luong-thuc": 12
+      },
+      "farmMultiplier": 0.06,
+      "hygiene": -2,
+      "happiness": 1,
+      "note": "Bò kéo cày và phân bón ruộng — nên nó nhân sản lượng ruộng chứ không chỉ tự sinh ra thịt. Cái giá là mùi: đặt sát nhà ở thì biết ngay."
+    },
+    {
+      "id": "bld_lo-banh",
+      "name": "Lò bánh",
+      "group": "dan-sinh",
+      "size": [
+        1,
+        1
+      ],
+      "minTier": 1,
+      "material": "da",
+      "manWeeks": 28,
+      "minWeeks": 2,
+      "minCrew": 3,
+      "cost": {
+        "tien": 18,
+        "da": 16,
+        "go": 8
+      },
+      "upkeep": {
+        "tien": 0.2
+      },
+      "jobs": 5,
+      "consumes": {
+        "luong-thuc": 6
+      },
+      "output": {
+        "tien": 4
+      },
+      "happiness": 4,
+      "note": "Một cái lò chung cho cả xóm. Thóc thành bánh, bánh thành tiền và thành một chỗ để người ta đứng nói chuyện mỗi sáng — đó là lý do nó cộng hạnh phúc nhiều hơn hẳn số tiền nó đẻ ra."
+    },
+    {
+      "id": "bld_san-phoi",
+      "name": "Sân phơi",
+      "group": "san-xuat",
+      "size": [
+        2,
+        2
+      ],
+      "minTier": 1,
+      "material": "dat",
+      "manWeeks": 18,
+      "minWeeks": 1,
+      "minCrew": 2,
+      "cost": {
+        "tien": 8,
+        "go": 12
+      },
+      "upkeep": {
+        "tien": 0.05
+      },
+      "jobs": 3,
+      "storage": {
+        "luong-thuc": 140
+      },
+      "spoilFactor": 0.6,
+      "terrain": {
+        "forbid": [
+          "dam"
+        ]
+      },
+      "note": "Một khoảnh đất nện phẳng và mấy cái giàn. Rẻ tới mức gần như miễn phí, và nó là thứ DUY NHẤT một cái thôn dựng nổi để thóc khỏi mốc trước khi có tiền xây kho lương."
+    },
+    {
+      "id": "bld_bai-cui",
+      "name": "Bãi củi",
+      "group": "san-xuat",
+      "size": [
+        2,
+        2
+      ],
+      "minTier": 1,
+      "material": "dat",
+      "manWeeks": 22,
+      "minWeeks": 2,
+      "minCrew": 3,
+      "cost": {
+        "tien": 10,
+        "go": 6
+      },
+      "upkeep": {
+        "tien": 0.1
+      },
+      "jobs": 8,
+      "output": {
+        "go": 5
+      },
+      "terrain": {
+        "require": [
+          "rung",
+          "dat"
+        ],
+        "prefer": [
+          "rung"
+        ]
+      },
+      "note": "Không phải một cái mỏ gỗ — nó không bám mạch, không ăn vào trữ lượng rừng, chỉ nhặt cành khô và đốn cây tạp. Đủ để dựng căn nhà đầu tiên, và cố ý KHÔNG đủ hơn thế: muốn gỗ thật thì phải có Xưởng mộc đứng trên một khu rừng thật."
+    },
+    {
+      "id": "bld_nha-thay-do",
+      "name": "Nhà thầy đồ",
+      "group": "hoc-van",
+      "size": [
+        1,
+        1
+      ],
+      "minTier": 2,
+      "material": "go",
+      "manWeeks": 40,
+      "minWeeks": 3,
+      "minCrew": 3,
+      "cost": {
+        "tien": 26,
+        "go": 20
+      },
+      "upkeep": {
+        "tien": 0.4
+      },
+      "jobs": 3,
+      "literacy": 4,
+      "happiness": 2,
+      "note": "Một ông thầy, một cái bảng sáp, sáu đứa trẻ. Cả nhóm học vấn trước bản này mở từ cấp 4 trở lên — nghĩa là một cái làng không có đường nào chạm tới chữ nghĩa, và chữ nghĩa thì không phải đặc quyền của thành phố."
+    },
+    {
+      "id": "bld_hoc-vien",
+      "name": "Học viện",
+      "group": "hoc-van",
+      "size": [
+        3,
+        3
+      ],
+      "minTier": 5,
+      "material": "da",
+      "manWeeks": 900,
+      "minWeeks": 40,
+      "minCrew": 28,
+      "skilled": {
+        "tho-da": 3,
+        "tho-moc": 2
+      },
+      "cost": {
+        "tien": 2600,
+        "da": 1900,
+        "go": 620,
+        "sat": 150
+      },
+      "upkeep": {
+        "tien": 9
+      },
+      "jobs": 40,
+      "needsArchitect": true,
+      "requires": [
+        "bld_thu-vien"
+      ],
+      "literacy": 26,
+      "beauty": 12,
+      "happiness": 4,
+      "authority": 4,
+      "note": "Không phải trường học lớn hơn — là chỗ người ta VIẾT RA cái chưa ai biết, chứ không chỉ chép lại cái đã biết. Đòi phải có Thư viện trước, vì không ai nghiên cứu được trong một toà nhà trống."
+    },
+    {
+      "id": "bld_nha-truong-lang",
+      "name": "Nhà trưởng làng",
+      "group": "hanh-chinh",
+      "size": [
+        1,
+        1
+      ],
+      "minTier": 2,
+      "material": "go",
+      "manWeeks": 45,
+      "minWeeks": 3,
+      "minCrew": 4,
+      "cost": {
+        "tien": 30,
+        "go": 26
+      },
+      "upkeep": {
+        "tien": 0.4
+      },
+      "jobs": 2,
+      "order": 5,
+      "authority": 3,
+      "justice": 2,
+      "happiness": 1,
+      "note": "Một gian nhà có cái bàn, chỗ người ta cãi nhau về bờ ruộng trước khi phải lên tới sảnh lãnh chúa. Cấp làng trước bản này không có một công trình hành chính nào, nên trật tự ở đó là một con số không ai tác động được."
+    },
+    {
+      "id": "bld_ngan-hang",
+      "name": "Nhà băng",
+      "group": "hanh-chinh",
+      "size": [
+        2,
+        2
+      ],
+      "minTier": 5,
+      "material": "da",
+      "manWeeks": 640,
+      "minWeeks": 26,
+      "minCrew": 20,
+      "skilled": {
+        "tho-da": 2
+      },
+      "cost": {
+        "tien": 2000,
+        "da": 1200,
+        "sat": 220,
+        "go": 300
+      },
+      "upkeep": {
+        "tien": 6
+      },
+      "jobs": 26,
+      "needsArchitect": true,
+      "requires": [
+        "bld_kho-bac"
+      ],
+      "output": {
+        "tien": 60
+      },
+      "trade": 8,
+      "authority": 5,
+      "note": "Người Lombard và người Florence đã làm chuyện này từ trước 1444 rất lâu: tiền cho vay đẻ ra tiền, và một thành trì có nhà băng hút thương nhân từ ba ngày đường. Đòi Kho bạc trước — không ai gửi vàng vào một chỗ không khoá được."
+    },
+    {
+      "id": "bld_choi-canh",
+      "name": "Chòi canh",
+      "group": "quan-su",
+      "size": [
+        1,
+        1
+      ],
+      "minTier": 2,
+      "material": "go",
+      "manWeeks": 34,
+      "minWeeks": 2,
+      "minCrew": 3,
+      "cost": {
+        "tien": 18,
+        "go": 28
+      },
+      "upkeep": {
+        "tien": 0.3
+      },
+      "jobs": 0,
+      "order": 3,
+      "happiness": 1,
+      "garrison": {
+        "capacity": 12,
+        "quality": 1,
+        "unitType": "unit_dan-binh"
+      },
+      "note": "Bốn cây cột và một cái sàn cao ngang ngọn cây. Không chặn được ai, nhưng nó THẤY trước — và với một cái làng thì biết trước nửa buổi là khác biệt giữa kịp lùa trâu vào rừng và không kịp."
+    },
+    {
+      "id": "bld_xuong-giap",
+      "name": "Xưởng giáp",
+      "group": "quan-su",
+      "size": [
+        2,
+        2
+      ],
+      "minTier": 4,
+      "material": "da",
+      "manWeeks": 260,
+      "minWeeks": 9,
+      "minCrew": 12,
+      "skilled": {
+        "tho-ren": 2
+      },
+      "cost": {
+        "tien": 320,
+        "da": 150,
+        "go": 90,
+        "sat": 140
+      },
+      "upkeep": {
+        "tien": 2.6
+      },
+      "jobs": 26,
+      "requires": [
+        "bld_lo-ren"
+      ],
+      "consumes": {
+        "sat": 10,
+        "than": 4
+      },
+      "output": {
+        "tien": 12
+      },
+      "trains": {
+        "tho-ren": 1
+      },
+      "hygiene": -1,
+      "garrison": {
+        "capacity": 40,
+        "quality": 5,
+        "unitType": "unit_bo-binh-nang"
+      },
+      "note": "Doanh trại cho ra QUÂN, xưởng giáp cho ra quân MẶC GIÁP — và đó là hai chuyện khác nhau ở Phần 11. Cũng là một trong hai chỗ trong cả game đào tạo ra thợ rèn mới."
+    },
+    {
+      "id": "bld_chong-ngam",
+      "name": "Bãi chông",
+      "group": "phong-thu",
+      "size": [
+        2,
+        2
+      ],
+      "minTier": 2,
+      "material": "go",
+      "manWeeks": 30,
+      "minWeeks": 2,
+      "minCrew": 4,
+      "cost": {
+        "tien": 12,
+        "go": 34
+      },
+      "upkeep": {
+        "tien": 0.2
+      },
+      "jobs": 0,
+      "fortify": {
+        "ditchDepth": 1
+      },
+      "terrain": {
+        "forbid": [
+          "da-goc"
+        ]
+      },
+      "note": "Cọc vót nhọn cắm nghiêng dưới cỏ. Rẻ tới mức một cái làng dựng nổi, và nó là thứ phòng thủ DUY NHẤT dưới cấp trấn — trước bản này ai chưa lên trấn thì chỉ có một lựa chọn là không phòng thủ gì cả."
+    },
+    {
+      "id": "bld_kho-nuoc",
+      "name": "Bể nước",
+      "group": "phong-thu",
+      "size": [
+        1,
+        1
+      ],
+      "minTier": 3,
+      "material": "da",
+      "manWeeks": 120,
+      "minWeeks": 6,
+      "minCrew": 8,
+      "skilled": {
+        "tho-da": 1
+      },
+      "cost": {
+        "tien": 90,
+        "da": 130,
+        "go": 20
+      },
+      "upkeep": {
+        "tien": 0.5
+      },
+      "jobs": 0,
+      "requires": [
+        "bld_gieng"
+      ],
+      "fortify": {
+        "wells": 2
+      },
+      "hygiene": 3,
+      "note": "Một cái giếng cắt được thì thành mất; hai cái thì phải cắt cả hai. Bể xây ngầm dưới sân, hứng nước mưa suốt năm — đây là cách một thành trì mua thêm tuần cầm cự bằng đá thay vì bằng máu."
+    },
+    {
+      "id": "bld_nghia-trang",
+      "name": "Nghĩa trang",
+      "group": "ton-giao",
+      "size": [
+        3,
+        3
+      ],
+      "minTier": 2,
+      "material": "dat",
+      "manWeeks": 36,
+      "minWeeks": 3,
+      "minCrew": 3,
+      "cost": {
+        "tien": 16,
+        "da": 20
+      },
+      "upkeep": {
+        "tien": 0.15
+      },
+      "jobs": 2,
+      "faith": 4,
+      "happiness": 3,
+      "hygiene": 2,
+      "beauty": 2,
+      "plagueResist": 0.08,
+      "terrain": {
+        "forbid": [
+          "dam",
+          "song"
+        ]
+      },
+      "note": "Chôn người chết ĐÚNG CHỖ là một biện pháp vệ sinh trước khi nó là một nghi lễ. Không có nghĩa trang thì xác nằm gần giếng, và Phần 11 mục 3 đọc thẳng vào `hygiene` khi tính dịch."
+    },
+    {
+      "id": "bld_nha-te-ban",
+      "name": "Nhà tế bần",
+      "group": "ton-giao",
+      "size": [
+        2,
+        2
+      ],
+      "minTier": 3,
+      "material": "go",
+      "manWeeks": 130,
+      "minWeeks": 5,
+      "minCrew": 7,
+      "cost": {
+        "tien": 70,
+        "go": 60,
+        "da": 30
+      },
+      "upkeep": {
+        "tien": 1.6
+      },
+      "jobs": 8,
+      "housing": 40,
+      "consumes": {
+        "luong-thuc": 8
+      },
+      "requires": [
+        "bld_nha-nguyen"
+      ],
+      "faith": 6,
+      "happiness": 7,
+      "hygiene": 1,
+      "note": "Nuôi người không làm ra gì — nó ăn lương thực và trả về đúng một thứ: lòng dân. Đó là một khoản chi có thật, và một lãnh chúa cắt nó đi sẽ thấy con số ấy đi xuống chính xác bằng ngần ấy."
+    },
+    {
+      "id": "bld_xuong-thung",
+      "name": "Xưởng thùng",
+      "group": "san-xuat",
+      "size": [
+        2,
+        2
+      ],
+      "minTier": 3,
+      "material": "go",
+      "manWeeks": 120,
+      "minWeeks": 5,
+      "minCrew": 7,
+      "skilled": {
+        "tho-moc": 1
+      },
+      "cost": {
+        "tien": 60,
+        "go": 80
+      },
+      "upkeep": {
+        "tien": 0.7
+      },
+      "jobs": 20,
+      "requires": [
+        "bld_xuong-moc"
+      ],
+      "consumes": {
+        "go": 7
+      },
+      "output": {
+        "tien": 9
+      },
+      "storage": {
+        "luong-thuc": 200,
+        "muoi": 160
+      },
+      "spoilFactor": 0.7,
+      "note": "Thùng gỗ đai sắt. Nghe nhỏ, nhưng KHÔNG CÓ THÙNG thì không chở được gì đi xa và không ướp được gì qua đông — nó là cái hạ tầng vô hình đứng sau cả nhà ướp lẫn mọi chuyến hàng."
+    },
+    {
+      "id": "bld_hai-cang",
+      "name": "Hải cảng",
+      "group": "san-xuat",
+      "size": [
+        3,
+        3
+      ],
+      "minTier": 5,
+      "material": "da",
+      "manWeeks": 820,
+      "minWeeks": 34,
+      "minCrew": 26,
+      "skilled": {
+        "tho-da": 2,
+        "tho-moc": 2
+      },
+      "cost": {
+        "tien": 2400,
+        "da": 1700,
+        "go": 900,
+        "sat": 260
+      },
+      "upkeep": {
+        "tien": 7
+      },
+      "jobs": 60,
+      "needsArchitect": true,
+      "nearWater": true,
+      "overrideTerrain": [
+        "song",
+        "bien"
+      ],
+      "terrain": {
+        "require": [
+          "nuoc"
+        ]
+      },
+      "output": {
+        "tien": 48
+      },
+      "trade": 14,
+      "beauty": 4,
+      "note": "Kè đá, cần trục và chỗ đậu cho thuyền có mớn sâu. Chỉ một thành trì THẬT SỰ đứng trên nước mới dựng nổi, và nó là con đường tiền lớn nhất trong cả Phần 12 — nhưng đổi lại là một mặt thành không tường nào chắn được."
+    },
+    {
+      "id": "bld_vuon-thuoc",
+      "name": "Vườn thuốc",
+      "group": "dan-sinh",
+      "size": [
+        2,
+        2
+      ],
+      "minTier": 3,
+      "material": "dat",
+      "manWeeks": 55,
+      "minWeeks": 8,
+      "minCrew": 3,
+      "cost": {
+        "tien": 24,
+        "go": 14
+      },
+      "upkeep": {
+        "tien": 0.3
+      },
+      "jobs": 6,
+      "requires": [
+        "bld_benh-xa"
+      ],
+      "output": {
+        "tien": 3
+      },
+      "hygiene": 4,
+      "beauty": 3,
+      "happiness": 2,
+      "plagueResist": 0.12,
+      "terrain": {
+        "forbid": [
+          "da-goc"
+        ]
+      },
+      "note": "Tám tuần tối thiểu là thời gian cây thuốc lớn, không phải thời gian người làm — cùng luật với Lùm thiêng. Chống dịch mạnh hơn hẳn giá của nó, và đó là chủ ý: Phần 11 mục 3 giết cả một thành trì bằng dịch, nên phải có một cửa rẻ để chống lại."
+    },
+    {
+      "id": "bld_nha-khach",
+      "name": "Nhà khách",
+      "group": "dan-sinh",
+      "size": [
+        2,
+        2
+      ],
+      "minTier": 4,
+      "material": "da",
+      "manWeeks": 210,
+      "minWeeks": 8,
+      "minCrew": 10,
+      "skilled": {
+        "tho-da": 1
+      },
+      "cost": {
+        "tien": 190,
+        "da": 130,
+        "go": 90
+      },
+      "upkeep": {
+        "tien": 2
+      },
+      "jobs": 16,
+      "housing": 90,
+      "requires": [
+        "bld_quan-tro"
+      ],
+      "output": {
+        "tien": 14
+      },
+      "trade": 4,
+      "happiness": 3,
+      "beauty": 3,
+      "note": "Quán trọ là chỗ ngủ cho người đi đường; nhà khách là chỗ ngủ cho người ĐẾN LÀM ĂN, và họ ở lại hàng tháng. Chỗ ở nhiều hơn hẳn quán trọ, tiền nhiều hơn, và nó kéo thương nhân tới ở luôn."
     }
   ]
 }

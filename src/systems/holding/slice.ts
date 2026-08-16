@@ -32,16 +32,10 @@
 import { z } from 'zod';
 import { holdingIdSchema } from '@/state/schema/ids';
 import type { GameState, SliceDefinition } from '@/state/slices';
+import { NODE_ZONES } from './nodes';
 import type { Holding } from './types';
 
 const cellSchema = z.object({ x: z.number().int(), y: z.number().int() });
-
-const tileSchema = z.object({
-  x: z.number().int().min(0),
-  y: z.number().int().min(0),
-  terrain: z.string().min(1),
-  occupiedBy: z.string().default(''),
-});
 
 const placedSchema = z.object({
   id: z.string().min(1),
@@ -53,6 +47,49 @@ const placedSchema = z.object({
   customName: z.string().default(''),
   builtOnTurn: z.number().int().min(0),
   maintained: z.boolean().default(true),
+  nodeId: z.string().default(''),
+});
+
+const nodeSchema = z.object({
+  id: z.string().min(1),
+  zone: z.enum(NODE_ZONES),
+  at: cellSchema,
+  size: z.number().min(0),
+  grade: z.number().int().min(0).max(3),
+  left: z.number().min(0),
+  coverage: z.array(cellSchema).default([]),
+  workedBy: z.array(z.string()).default([]),
+  /**
+   * Cán cân giữ gìn của vùng TÁI SINH, đo bằng tuần liên tục. Dương là rừng
+   * đang mọc kịp mức bị chặt, âm là ngược lại. Vùng khoáng sản luôn là 0.
+   */
+  strain: z.number().default(0),
+});
+
+const wallSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  materialId: z.string().min(1),
+  level: z.number().int().min(1),
+  points: z.array(cellSchema).min(2),
+  length: z.number().min(0),
+  closed: z.boolean().default(false),
+  integrity: z.number().min(0).max(100),
+  weeksLeft: z.number().min(0),
+  manWeeksLeft: z.number().min(0),
+  layer: z.enum(['ngoai', 'trong']).default('ngoai'),
+});
+
+const roadSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  surfaceId: z.string().min(1),
+  width: z.number().int().min(1).max(3).default(1),
+  points: z.array(cellSchema).min(2),
+  length: z.number().min(0),
+  integrity: z.number().min(0).max(100),
+  weeksLeft: z.number().min(0),
+  manWeeksLeft: z.number().min(0),
 });
 
 const projectSchema = z.object({
@@ -69,6 +106,7 @@ const projectSchema = z.object({
   stalled: z.string().default(''),
   startedOnTurn: z.number().int().min(0),
   qualityTier: z.string().default(''),
+  nodeId: z.string().default(''),
 });
 
 const populationSchema = z.object({
@@ -89,11 +127,34 @@ export const holdingSchema = z.object({
   id: holdingIdSchema,
   name: z.string().min(1),
   tierId: z.string().min(1),
-  gridSize: z.number().int().min(2),
-  tiles: z.array(tileSchema),
+  /**
+   * Cả mảnh đất 6 km vuông nằm trong con số này. Không còn `tiles[]`, không còn
+   * `gridSize`, không còn `hinterland[]` — ba mảng ấy đều tính lại được từ đây
+   * (xem `field.ts`), và lưu chúng là lưu một thứ mình đã biết cách dựng lại.
+   */
+  seed: z.number().int(),
+  dominant: z.string().min(1).default('dong-bang'),
+  coastal: z.boolean().default(false),
+  anchor: cellSchema.default({ x: 0, y: 0 }),
+  hint: z
+    .object({ river: z.boolean(), sea: z.boolean(), mountain: z.boolean() })
+    .default({ river: false, sea: false, mountain: false }),
   buildings: z.array(placedSchema).default([]),
   projects: z.array(projectSchema).default([]),
-  hinterland: z.array(z.object({ terrain: z.string().min(1), count: z.number().int().min(0) })).default([]),
+  /** Trữ lượng đã đào hết bao nhiêu — thứ DUY NHẤT về mỏ không tính lại được. */
+  nodes: z.array(nodeSchema).default([]),
+  /** Người chơi đã vạch tuyến tường ở đâu — cũng là thứ không tính lại được. */
+  walls: z.array(wallSchema).default([]),
+  /**
+   * Quãng phố người chơi bỏ tiền lát. Mạng đường tự sinh KHÔNG ở đây: quan lộ
+   * và ngõ mòn suy ra từ `seed` mỗi lần cần (`streets.ts`).
+   *
+   * `.default([])` là cả phép nâng save cũ: một save dựng trước khi có đường
+   * mở lại thành một thành trì chưa lát quãng nào, đúng như nó vốn thế.
+   */
+  roads: z.array(roadSchema).default([]),
+  /** Id những tuyến tự sinh người chơi đã cho phá. */
+  streetsRazed: z.array(z.string()).default([]),
   population: populationSchema,
   stores: z.record(z.string(), z.number()).default({}),
   ownership: z.object({
@@ -122,6 +183,8 @@ export const holdingSchema = z.object({
   hygiene: z.number().min(0).max(100),
   lastTurn: z.number().int().min(0),
   weeksLived: z.number().int().min(0),
+  /** Ngày đã trôi mà chưa gộp thành tuần chốt sổ. Save cũ vào bằng 0. */
+  daysOwed: z.number().min(0).default(0),
 });
 
 export const holdingsSliceSchema = z.object({
@@ -141,7 +204,7 @@ export type HoldingsSliceState = z.infer<typeof holdingsSliceSchema>;
 
 export const holdingsSlice: SliceDefinition = {
   id: 'holdings',
-  version: 1,
+  version: 2,
   schema: holdingsSliceSchema,
   defaults: () => ({ list: [], viewing: '', rumours: [], relations: [], localFame: [] }),
   permissions: {
@@ -150,23 +213,39 @@ export const holdingsSlice: SliceDefinition = {
     'list.*.stores.*': 'engine',
     'list.*.projects.*': 'engine',
     'list.*.buildings.*': 'engine',
-    'list.*.tiles.*': 'engine',
-    'list.*.hinterland.*': 'engine',
+    'list.*.nodes.*': 'engine',
+    'list.*.walls.*': 'engine',
+    'list.*.roads.*': 'engine',
+    'list.*.streetsRazed': 'engine',
     'list.*.ownership.*': 'engine',
     'list.*.permits.*': 'engine',
     'list.*.obligations.*': 'engine',
     'list.*.hygiene': 'engine',
-    'list.*.gridSize': 'engine',
     'list.*.tierId': 'engine',
     'list.*.besieged': 'engine',
     'list.*.plague': 'engine',
     'list.*.seat': 'engine',
     'list.*.lastTurn': 'engine',
     'list.*.weeksLived': 'engine',
-    // Tên: khoá cứng. Xem chú thích đầu file.
+    'list.*.daysOwed': 'engine',
+    // GỢI Ý ĐỊA THẾ là chỗ DUY NHẤT lời kể được động tới đất, và nó chỉ bật cờ
+    // chứ không vẽ: AI nói "toà thành bên sông" thì bộ sinh địa hình buộc phải
+    // chừa một dòng chảy, nhưng dòng ấy chảy qua đâu vẫn do hạt giống quyết.
+    // Không mở cửa này thì lời kể và bản đồ nói hai chuyện khác nhau; mở rộng
+    // hơn cửa này thì một đoạn văn cảm động sẽ dời được cả một quả núi.
+    'list.*.hint.*': 'ai',
+    // Tên và MẢNH ĐẤT: khoá cứng. Tên vì Phụ lục A mục 9a; hạt giống vì một
+    // thành trì không được thức dậy vào một buổi sáng và thấy sông đã dời chỗ —
+    // mọi công trình đang đứng đều đứng trên một mảnh đất suy ra từ nó.
     'list.*.id': 'locked',
     'list.*.name': 'locked',
+    'list.*.seed': 'locked',
+    'list.*.dominant': 'locked',
+    'list.*.coastal': 'locked',
+    'list.*.anchor': 'locked',
     'list.*.buildings.*.customName': 'locked',
+    'list.*.walls.*.name': 'locked',
+    'list.*.roads.*.name': 'locked',
     // Ba chỗ duy nhất AI được ghi, và cả ba đều không có hệ quả cơ học.
     //
     // Khai CẢ MẢNG chứ không chỉ khai `rumours.*`: thêm một tin đồn là một op

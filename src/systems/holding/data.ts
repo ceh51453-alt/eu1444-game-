@@ -28,6 +28,8 @@ import adjacencyFile from '@data/adjacency.json';
 import { DIFFICULTY_BANDS } from '@/systems/check/difficulty';
 import { fortTemplateOf } from '@/systems/siege/data';
 import type { DifficultyBand } from '@/core/turn';
+import { CELLS_PER_SIZE_UNIT, DEFAULT_CLEARANCE_CELLS, planningRadiusCells } from './scale';
+import { wallPrerequisiteOf } from './walls';
 
 export class HoldingDataError extends Error {
   constructor(message: string) {
@@ -389,9 +391,37 @@ const buildingSchema = z.object({
   name: z.string().min(1),
   group: z.enum(BUILDING_GROUPS),
   size: z.tuple([z.number().int().min(0), z.number().int().min(0)]),
-  /** Không chiếm ô nào: chạy vòng quanh mép thành. */
+  /**
+   * Cạnh khuôn viên THẬT, tính bằng ô 5 m. Bỏ trống thì suy từ `size` —
+   * xem `CELLS_PER_SIZE_UNIT` trong `scale.ts`.
+   */
+  footprint: z.number().int().min(0).optional(),
+  /** Khoảng thở quanh khuôn viên, tính bằng ô. Bỏ trống là dùng mặc định. */
+  clearance: z.number().int().min(0).optional(),
+  /**
+   * Công trình KHAI THÁC: phải đứng trên một vùng tài nguyên có ít nhất một
+   * trong các sản vật này, và sản lượng nhân theo bậc trữ lượng của vùng ấy.
+   */
+  requiresNode: z.array(z.string()).default([]),
+  /** Phải dựng sát mép nước — bến, cối xay nước, ruộng muối. */
+  nearWater: z.boolean().default(false),
+  /**
+   * Địa hình công trình này ĐƯỢC PHÉP đứng lên dù nơi khác cấm — nhà sàn trên
+   * đầm, cầu đá qua sông, pháo đài vách đá. Đây là cả lý do tồn tại của chúng,
+   * nên chúng cũng BẮT BUỘC phải chạm được một trong các loại đất ấy: dựng nhà
+   * sàn giữa đồng bằng chỉ là một căn nhà đắt tiền vô nghĩa.
+   */
+  overrideTerrain: z.array(z.string()).default([]),
+  /** Không chiếm ô nào: chạy vòng quanh mép thành. Đã bỏ — xem `walls.ts`. */
   perimeter: z.boolean().default(false),
-  /** Bắt buộc đặt trên vành ngoài của lưới. */
+  /**
+   * Phải dựng bám vào một tuyến tường: tháp, cổng, lỗ châu mai.
+   *
+   * Thay cho cờ `border` của bản cũ. `border` nghĩa là "sát mép lưới", mà mép
+   * lưới không còn là mép thành nữa — tường bây giờ chạy ở đâu là do người chơi
+   * vạch, nên một cái tháp phải bám vào TUYẾN chứ không phải vào một ranh giới
+   * hình vuông mà chẳng ai xây.
+   */
   border: z.boolean().default(false),
   minTier: z.number().int().min(1).max(5),
   material: z.enum(['go', 'da', 'dat']),
@@ -604,12 +634,19 @@ function load(): Loaded {
   let previousMax = -1;
   for (const tier of tiers) {
     if (tierById.has(tier.id)) throw new HoldingDataError(`cấp khu định cư trùng id: ${tier.id}`);
-    // Lưới MỞ RỘNG chứ không reset (mục 3). Một cấp trên có lưới nhỏ hơn cấp dưới
-    // thì "mở rộng" hoá ra là xoá công trình, và cả câu đó thành sai.
+    // `grid` không còn là lưới chơi — mảnh đất bây giờ là một trường liên tục
+    // 1 200 ô (xem `field.ts`), và lên cấp NỚI BÁN KÍNH QUY HOẠCH chứ không đổi
+    // lưới. Con số này chỉ còn một việc: cho `migrate.ts` biết save cũ có lưới
+    // mấy ô để dịch toạ độ công trình sang hệ mới. Vẫn kiểm thứ tự, vì một bảng
+    // dịch sai thứ tự làm save cũ mở ra với công trình nằm chồng lên nhau.
     if (tier.grid <= previousGrid) {
-      throw new HoldingDataError(`cấp "${tier.id}" có lưới ${String(tier.grid)} không lớn hơn cấp trước`);
+      throw new HoldingDataError(`cấp "${tier.id}" có lưới cũ ${String(tier.grid)} không lớn hơn cấp trước`);
     }
     previousGrid = tier.grid;
+    // Ràng buộc thật của mục 3 bây giờ nằm ở đây: với tay ra xa hơn theo cấp.
+    if (tier.rank > 1 && planningRadiusCells(tier.rank) <= planningRadiusCells(tier.rank - 1)) {
+      throw new HoldingDataError(`cấp "${tier.id}" có bán kính quy hoạch không lớn hơn cấp trước`);
+    }
     // Bảng mục 3 dùng chung mốc ở hai cấp liền nhau (Làng 100–500, Trấn 500–2.000),
     // nên bằng nhau là hợp lệ; chỉ CHỒNG LÊN mới sai, vì lúc ấy một con số dân
     // ứng với hai cấp và `tierForPopulation` trả lời khác nhau tuỳ chiều quét.
@@ -672,9 +709,13 @@ function load(): Loaded {
     if (homeTier === undefined) {
       throw new HoldingDataError(`công trình "${building.id}" khai minTier ${String(building.minTier)} không có cấp nào`);
     }
-    if (!building.perimeter && (width > homeTier.grid || height > homeTier.grid)) {
+    // Đặt vừa vào vùng quy hoạch của cấp nó mở ra thì mới có nghĩa. Đo bằng
+    // ĐƯỜNG KÍNH trừ hai lần khoảng thở: một công trình chiếm trọn vùng quy
+    // hoạch thì mở ra cũng như không, vì không còn chỗ cho bất cứ thứ gì khác.
+    const room = planningRadiusCells(homeTier.rank) * 2 - clearanceOf(building) * 2;
+    if (!building.perimeter && footprintOf(building) > room) {
       throw new HoldingDataError(
-        `công trình "${building.id}" (${String(width)}×${String(height)}) không đặt vừa lưới ${String(homeTier.grid)} của cấp "${homeTier.id}"`,
+        `công trình "${building.id}" rộng ${String(footprintOf(building))} ô, không đặt vừa vùng quy hoạch ${String(room)} ô của cấp "${homeTier.id}"`,
       );
     }
     buildings.set(building.id, building);
@@ -683,6 +724,11 @@ function load(): Loaded {
   // --- tiên quyết: kiểm sau khi đã có đủ bảng, và kiểm cả chiều cấp (kiểm 3)
   for (const building of buildings.values()) {
     for (const id of building.requires) {
+      // Tiên quyết trỏ tới một VẬT LIỆU TƯỜNG là hợp lệ và không kiểm ở đây:
+      // tường không còn là công trình, nên nó không có mặt trong bảng này và
+      // cũng không có `minTier` để mà so. `walls.ts` giữ bảng dịch, `place.ts`
+      // và `week.ts` cùng đọc nó.
+      if (wallPrerequisiteOf(id) !== null) continue;
       const prereq = buildings.get(id);
       if (prereq === undefined) {
         throw new HoldingDataError(`công trình "${building.id}" đòi tiên quyết "${id}" không có`);
@@ -712,6 +758,9 @@ function load(): Loaded {
     }
     if (tier.upgrade === undefined) continue;
     for (const id of tier.upgrade.requiresBuildings) {
+      // Cùng lý do với tiên quyết công trình ở dưới: `bld_tuong-go` và
+      // `bld_tuong-da` giờ là vật liệu tường, không phải công trình.
+      if (wallPrerequisiteOf(id) !== null) continue;
       const building = buildings.get(id);
       if (building === undefined) {
         throw new HoldingDataError(`cấp "${tier.id}" đòi công trình "${id}" không có`);
@@ -894,6 +943,37 @@ export function buildingName(id: string): string {
 
 export function buildingsOfGroup(group: BuildingGroup): Building[] {
   return [...DATA.buildings.values()].filter((row) => row.group === group);
+}
+
+/**
+ * CẠNH KHUÔN VIÊN THẬT, tính bằng ô 5 m.
+ *
+ * `size` trong `data/buildings.json` là kích thước tương đối có từ thời lưới ô
+ * trừu tượng; nó vẫn dùng được vì thứ tự to nhỏ giữa 55 công trình vốn đã đúng.
+ * Nhân lên là ra bề rộng thật, và công trình nào cần con số riêng thì khai thẳng
+ * `footprint`. Giữ lại `size` chứ không xoá, để không phải sửa 55 dòng data cho
+ * một phép nhân.
+ */
+export function footprintOf(building: Building): number {
+  if (building.footprint !== undefined) return building.footprint;
+  const [width, height] = building.size;
+  return Math.max(width, height) * CELLS_PER_SIZE_UNIT;
+}
+
+/** Khoảng thở quanh khuôn viên — chỗ cho một con đường và cái sân. */
+export function clearanceOf(building: Building): number {
+  return building.clearance ?? DEFAULT_CLEARANCE_CELLS;
+}
+
+/**
+ * Công trình có phải một phần công sự bám tường không.
+ *
+ * `border` của bản cũ nghĩa là "sát mép lưới"; ở đây nó nghĩa là "bám vào một
+ * tuyến tường". Cùng một cờ trong data, khác hẳn về nghĩa — nên đọc nó qua hàm
+ * này chứ đừng đọc thẳng, để chỗ đổi nghĩa chỉ có đúng một.
+ */
+export function isWallBound(building: Building): boolean {
+  return building.border || building.perimeter;
 }
 
 export function skilledTrades(): SkilledTrade[] {

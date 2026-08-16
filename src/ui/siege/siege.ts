@@ -26,8 +26,17 @@ function templateFor(rank: number): string {
   return 'fort_dinh-lang';
 }
 
-function armySetup(state: GameState, force: MilitaryForce | undefined, fallbackTroops: number, enemy = false): BesiegerSetup {
-  const troops = force?.units.reduce((sum, unit) => sum + unit.strength, 0) ?? fallbackTroops;
+/**
+ * Đạo quân vây, dựng từ quân lực và hậu cần THẬT khi có.
+ *
+ * `force` là một đạo quân trong slice `military` — có từng đơn vị, từng nguồn
+ * lính, từng ngày lương trong xe. Quân của AI thì không: chiến đồ chỉ giữ một
+ * con số `troops`, nên khi `force` vắng mặt, mọi thứ dưới đây suy ra từ chính
+ * con số ấy theo tỉ lệ chuẩn. `knownTroops` vì thế BẮT BUỘC là một con số có
+ * thật trong state — bản trước truyền thẳng hằng 2000 vào đây.
+ */
+function armySetup(state: GameState, force: MilitaryForce | undefined, knownTroops: number, enemy = false): BesiegerSetup {
+  const troops = force?.units.reduce((sum, unit) => sum + unit.strength, 0) ?? knownTroops;
   const count = (source: string): number => force?.units
     .filter((unit) => unit.source === source)
     .reduce((sum, unit) => sum + unit.strength, 0) ?? 0;
@@ -88,8 +97,12 @@ export function createCastleSiege(
   const defenderTroops = Array.isArray(fort.garrison)
     ? fort.garrison.reduce((sum, unit) => sum + unit.men, 0)
     : Math.max(300, (target?.fort ?? 2) * 220);
+  // Bên VÂY khi người chơi cầm quân: đọc `military` thật, không có thì lấy con
+  // số ước lượng của chính đạo quân ấy trên chiến đồ. Bên vây khi người chơi
+  // THỦ là quân AI — chiến đồ không giữ danh sách đơn vị của chúng, nên quy mô
+  // suy từ đồn trú đang có, và điều đó được khai ở `armySetup`.
   const attacker = playerSide === 'vay'
-    ? armySetup(state, land, 2000)
+    ? armySetup(state, land, Math.max(1, mappedArmy?.troops ?? activeArmy?.troops ?? 1))
     : armySetup(state, undefined, Math.max(600, defenderTroops * 2), true);
 
   return createSiege(rng, {
